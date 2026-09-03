@@ -1,0 +1,49 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+
+const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
+const { default: worker } = await import(workerUrl.href);
+
+function render(pathname = "/") {
+  return worker.fetch(new Request(`http://localhost${pathname}`, { headers: { accept: "text/html" } }), { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
+}
+
+const routes = ["/", "/framework", "/architecture", "/manifesto", "/guide", "/guide/understand", "/guide/design", "/guide/build", "/guide/prove", "/guide/operate", "/guide/improve", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/about"];
+
+test("server-renders every public route with FDLC metadata and a heading", async () => {
+  for (const route of routes) {
+    const response = await render(route);
+    assert.equal(response.status, 200, route);
+    assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i, route);
+    const html = await response.text();
+    assert.match(html, /<title>.*FDLC\.ai<\/title>/i, route);
+    assert.match(html, /<h1[\s>]/i, route);
+    assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i, route);
+  }
+});
+
+test("homepage answers the category boundary and links to primary destinations", async () => {
+  const response = await render("/");
+  const html = await response.text();
+  assert.match(html, /Build the factory that builds your software/i);
+  assert.match(html, /Coding agents are not software factories/i);
+  assert.match(html, /Manages the lifecycle of software/i);
+  for (const href of ["/framework", "/architecture", "/guide", "/mission-control", "/maturity", "/start"]) assert.match(html, new RegExp(`href=["']${href}["']`));
+});
+
+test("interactive routes have complete server-rendered entry states", async () => {
+  const maturity = await (await render("/maturity")).text();
+  assert.match(maturity, /Start assessment/);
+  assert.match(maturity, /results stay in this browser session/i);
+  const start = await (await render("/start")).text();
+  assert.match(start, /What engineering outcome are you trying to produce/i);
+  assert.match(start, /Factory Definition/i);
+});
+
+test("preview products are explicitly labeled", async () => {
+  for (const route of ["/spec", "/benchmarks", "/enterprise", "/deploy"]) {
+    const html = await (await render(route)).text();
+    assert.match(html, /Proposed|Design partner/i, route);
+  }
+});
