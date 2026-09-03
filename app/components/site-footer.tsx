@@ -13,7 +13,7 @@ export function SiteFooter() {
       <div className="footer-inner">
         <div className="footer-brand">
           <Link className="wordmark footer-wordmark" href="/"><span aria-hidden="true" className="wordmark-mark">F</span><span>FDLC<span className="wordmark-dot">.ai</span></span></Link>
-          <p>Verified delivery,<br />not merely generated code.</p>
+          <p>The operating model and technical foundation for trusted autonomous software delivery.</p>
         </div>
         {groups.map(([title, links]) => (
           <nav aria-label={`${title} links`} className="footer-group" key={title}>
@@ -25,9 +25,8 @@ export function SiteFooter() {
       <div className="footer-base">
         <span>© 2026 FDLC.ai</span>
         <span>Factory Development Lifecycle</span>
-        <span>Open framework · Independent verification · Governed autonomy</span>
+        <span>Open framework · Working reference · Governed autonomy</span>
       </div>
     </footer>
   );
 }
-

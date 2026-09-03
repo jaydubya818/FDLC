@@ -1,6 +1,20 @@
 export const siteName = "FDLC.ai";
 export const canonicalDefinition =
-  "The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.";
+  "The Factory Development Lifecycle is the end-to-end operating model and engineering discipline for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.";
+
+export const deliveryLoop = ["Intent", "Plan", "Execute", "Verify", "Approve", "Deploy", "Learn"] as const;
+
+export const factorySystemComponents = [
+  "Agents", "Models", "Skills", "Tools", "Context", "Runtime", "Policy", "Evals", "Observability", "Human control",
+] as const;
+
+export const ecosystemRoles = [
+  { name: "FDLC", role: "Defines it.", description: "The open operating model, engineering discipline, and reference architecture.", status: "Open framework", href: "/framework" },
+  { name: "Mission Control", role: "Demonstrates it.", description: "The open-source reference implementation with current capability boundaries visible.", status: "Available reference", href: "/mission-control" },
+  { name: "The Guide", role: "Teaches it.", description: "The methodology and engineering practices from first principles through operation.", status: "Open methodology", href: "/guide" },
+  { name: "FDLC Deploy", role: "Implements it.", description: "A forward-deployed path for proving one bounded factory line in a real environment.", status: "Design partner", href: "/deploy" },
+  { name: "FDLC Enterprise", role: "Industrializes it.", description: "The proposed commercial control plane for organizational scale and reliability.", status: "Proposed", href: "/enterprise" },
+] as const;
 
 export const lifecycleStages = [
   { id: "discover", number: 1, name: "Discover", purpose: "Find work worth turning into a factory line and establish the baseline.", activities: ["Candidate workflows", "Cycle-time baseline", "Cost and human effort", "Defect and failure rates"], output: "A measured opportunity" },
@@ -157,4 +171,3 @@ export const factoryLines = [
   ["Documentation maintenance", "Detect stale technical documentation and validate updates against source."],
   ["Code review assistance", "Produce evidence-backed findings while leaving consequential decisions to reviewers."],
 ] as const;
-

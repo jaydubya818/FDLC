@@ -29,6 +29,9 @@ test("homepage answers the category boundary and links to primary destinations",
   assert.match(html, /Build the factory that builds your software/i);
   assert.match(html, /Coding agents are not software factories/i);
   assert.match(html, /Manages the lifecycle of software/i);
+  assert.match(html, /FDLC is the lifecycle for the factory itself/i);
+  assert.match(html, /Intent.*Plan.*Execute.*Verify.*Approve.*Deploy.*Learn/is);
+  assert.match(html, /FDLC.*Defines it.*Mission Control.*Demonstrates it.*The Guide.*Teaches it/is);
   for (const href of ["/framework", "/architecture", "/guide", "/mission-control", "/maturity", "/start"]) assert.match(html, new RegExp(`href=["']${href}["']`));
 });
 

@@ -7,10 +7,10 @@ import { ProtocolDiagram } from "./components/protocol-diagram";
 import { SectionHeader } from "./components/page-hero";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
-import { manifesto, maturityLevels } from "../data/fdlc";
+import { deliveryLoop, ecosystemRoles, factorySystemComponents, manifesto, maturityLevels } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Build the factory that builds your software", "FDLC is the open framework for governed, verifiable AI software factories.", "/");
+export const metadata: Metadata = pageMetadata("Build the factory that builds your software", "FDLC is the open operating model, engineering framework, and reference architecture for building and operating governed AI software factories.", "/");
 
 export default function Home() {
   return (
@@ -22,14 +22,14 @@ export default function Home() {
             <p className="eyebrow"><span>Open framework</span><span>v0.1</span></p>
             <h1>Build the factory that builds your software.</h1>
             <p className="hero-lede">
-              FDLC — the Factory Development Lifecycle — is an open framework for
-              designing, governing, verifying, operating, and continuously improving
-              AI software factories.
+              FDLC is the open operating model, engineering framework, and reference
+              architecture for building and operating AI software factories—from intent
+              and governed execution through independent verification, production
+              outcomes, and controlled learning.
             </p>
             <div className="hero-actions">
               <Link className="button button-dark" href="/framework">Explore FDLC</Link>
-              <Link className="button button-light" href="/guide">Read the Guide</Link>
-              <Link className="text-action" href="/mission-control">See Mission Control <span aria-hidden="true">↗</span></Link>
+              <a className="button button-light" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View Mission Control on GitHub ↗</a>
             </div>
           </div>
           <aside className="hero-model" aria-labelledby="hero-model-title">
@@ -44,18 +44,21 @@ export default function Home() {
         </section>
 
         <section className="statement-band" aria-label="FDLC category statement">
-          <p>Not another coding agent.</p>
-          <strong>The control system around them.</strong>
-          <span>Intent → governed execution → evidence → outcome</span>
+          <p>Factory Development Lifecycle</p>
+          <strong>The operating model and technical foundation for trusted autonomous software delivery.</strong>
+          <span>FDLC is the lifecycle for the factory itself.</span>
         </section>
 
         <section className="content-section shift-section">
-          <SectionHeader eyebrow="The shift" title="Coding agents are not software factories." description="Codex, Claude Code, Cursor, Copilot, internal agents, and the providers still to come can all perform valuable work. The durable problem is the governed system around them." />
-          <div className="governance-grid" aria-label="What FDLC governs">
-            {[
-              "Intent", "Plans", "Agent identity", "Authority", "Tools", "Execution",
-              "Evidence", "Verification", "Release", "Outcomes", "Learning",
-            ].map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</div>)}
+          <SectionHeader eyebrow="The operating model" title="Coding agents are not software factories." description="Traditional SDLC tells humans how to develop software. FDLC defines how humans, agents, models, tools, policies, execution environments, and verification systems work together as a governed autonomous production system." />
+          <p className="orientation-label">Governed delivery loop</p>
+          <ol className="delivery-flow" aria-label="Governed delivery loop">
+            {deliveryLoop.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></li>)}
+          </ol>
+          <p className="orientation-note">An orientation layer for the end-to-end outcome. The canonical FDLC lifecycle and nine-artifact execution protocol appear below.</p>
+          <p className="orientation-label architecture-label">Factory architecture</p>
+          <div className="governance-grid" aria-label="Factory architecture components">
+            {factorySystemComponents.map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</div>)}
           </div>
         </section>
 
@@ -137,12 +140,10 @@ export default function Home() {
           <div><p>The AI Software Factory Guide covers architecture, governance, agents, harnesses, tools, context, models, verification, security, operations, and governed learning across 36 chapters.</p><Link className="button button-light" href="/guide">Read the Guide</Link></div>
         </section>
 
-        <section className="content-section paths-section">
-          <SectionHeader eyebrow="Build with FDLC" title="Start at the layer you need." />
-          <div className="path-cards">
-            <Link href="/framework"><span>01 / Learn</span><h3>Understand the system.</h3><p>Framework, architecture, manifesto, and field guide.</p><strong>Explore the framework →</strong></Link>
-            <Link href="/mission-control"><span>02 / Build</span><h3>Inspect a real implementation.</h3><p>Mission Control, the execution protocol, and the emerging Specification.</p><strong>See Mission Control →</strong></Link>
-            <Link href="/deploy"><span>03 / Adopt</span><h3>Prove one factory line.</h3><p>Assess readiness, implement a lighthouse line, then scale what works.</p><strong>Explore deployment →</strong></Link>
+        <section className="content-section ecosystem-section">
+          <SectionHeader eyebrow="The FDLC.ai ecosystem" title="One discipline. Five distinct roles." description="The open foundation defines the category. Products and services make it concrete without becoming the definition of FDLC itself." />
+          <div className="ecosystem-cards">
+            {ecosystemRoles.map((item, index) => <Link href={item.href} key={item.name}><span>{String(index + 1).padStart(2, "0")} / {item.status}</span><h3>{item.name}</h3><strong>{item.role}</strong><p>{item.description}</p><small>Explore →</small></Link>)}
           </div>
         </section>
       </main>

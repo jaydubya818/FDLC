@@ -8,6 +8,8 @@ Date: 2026-09-03
 - Long-form explanation can be page-specific; names, sequence, definitions, and status must not be duplicated manually.
 - Status is a property of a specific product capability, not a whole future product.
 - FDLC entities and Mission Control entities are mapped explicitly rather than forced into identical names.
+- FDLC is the discipline and architecture; FDLC.ai is the ecosystem that develops and applies it.
+- The seven-step delivery loop is a homepage orientation layer, not a replacement for the eight-stage lifecycle or nine-artifact execution protocol.
 
 ## Core types
 
@@ -142,12 +144,12 @@ Generated tokens, lines of code, prompt count, and agent count are operational t
 
 ```text
 FDLC.ai
-├── FDLC Framework — defines the discipline
+├── FDLC Framework — defines the discipline and reference architecture
 ├── FDLC Specification — formalizes interoperable artifacts
-├── AI Software Factory Guide — teaches the discipline
 ├── Mission Control — open-source reference implementation
-├── FDLC Enterprise — future commercial organizational capabilities
-└── FDLC Deploy — implementation services
+├── AI Software Factory Guide — teaches the discipline
+├── FDLC Deploy — design-partner implementation services
+└── FDLC Enterprise — proposed commercial organizational control plane
 ```
 
 ## Factory Definition output model
@@ -171,4 +173,3 @@ type FactoryDefinition = {
 ```
 
 The V0 record is explicitly educational and not accepted directly by Mission Control. Future schema work should align identifiers and invariants with Mission Control rather than introduce a competing execution contract.
-

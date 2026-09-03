@@ -10,7 +10,7 @@ Every primary page reinforces three distinct mental models:
 2. **Architecture** — what capabilities the factory contains.
 3. **Execution Protocol** — how one governed unit of work moves from intent to outcome.
 
-Mission Control demonstrates the protocol. The Guide teaches the discipline. The Specification will formalize interoperability. None replaces the FDLC framework itself.
+FDLC defines the discipline. Mission Control demonstrates it. The Guide teaches it. FDLC Deploy implements it in bounded customer environments. FDLC Enterprise is intended to industrialize proven patterns. The Specification will formalize interoperability. None replaces the FDLC framework itself.
 
 ## Sitemap and ownership
 
@@ -62,19 +62,20 @@ Homepage
 
 ## Homepage content contract
 
-The homepage uses the requested eleven-section narrative but groups it into a scannable sequence:
+The homepage uses a scannable category-to-adoption sequence:
 
-1. Category hero and three clear entry CTAs.
-2. The shift from isolated coding agents to governed factories.
-3. FDLC versus SDLC.
-4. The six-area architecture diagram.
-5. The eight-stage lifecycle.
-6. The execution protocol and its three key invariants.
-7. Manifesto preview.
-8. Mission Control as reference implementation, with capability caveat.
-9. Maturity model preview.
-10. Guide preview.
-11. Learn / Build / Adopt paths.
+1. Memorable category hero and two primary entry CTAs.
+2. Institutional category statement: the operating model and technical foundation for trusted autonomous software delivery.
+3. Seven-step governed delivery orientation plus the factory system components.
+4. FDLC versus SDLC.
+5. The six-area architecture diagram.
+6. The canonical eight-stage lifecycle.
+7. The canonical nine-artifact execution protocol and its three key invariants.
+8. Manifesto preview.
+9. Mission Control as reference implementation, with capability caveat.
+10. Maturity model preview.
+11. Guide preview.
+12. Five-part ecosystem model with Deploy and Enterprise status boundaries.
 
 ## Guide content mapping
 
@@ -121,4 +122,3 @@ V0 publishes the map and a high-quality documentation shell. The current 36-chap
 ## Documentation UX
 
 Guide detail pages use breadcrumbs, desktop sidebar, mobile section navigation, generated table of contents, heading anchors, previous/next links, responsive tables, callouts, and readable code blocks. Search is prepared through semantic structure and deterministic content metadata; lightweight search is P1 and must not block V0.
-

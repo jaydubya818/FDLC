@@ -131,6 +131,15 @@ button, input, textarea, select { font: inherit; }
 
 /* Home */
 .shift-section { padding-top: 132px; }
+.orientation-label { margin: 0 0 12px; color: var(--green); font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.architecture-label { margin-top: 42px; }
+.delivery-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
+.delivery-flow li { position: relative; min-height: 118px; padding: 15px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.delivery-flow li:not(:last-child)::after { content: "→"; position: absolute; z-index: 1; top: 50%; right: -9px; width: 18px; height: 18px; display: grid; place-items: center; transform: translateY(-50%); background: var(--paper); color: var(--amber); font-size: 11px; }
+.delivery-flow li:last-child { background: var(--green); color: white; }
+.delivery-flow span { color: var(--amber); font-family: var(--mono); font-size: 9px; }
+.delivery-flow strong { margin-top: auto; font-size: 14px; }
+.orientation-note { max-width: 760px; margin: 16px 0 0 auto; color: var(--muted); font-size: 12px; line-height: 1.55; text-align: right; }
 .governance-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
 .governance-grid div { min-height: 112px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 650; }
 .governance-grid span { color: var(--amber); font-family: var(--mono); font-size: 9px; }
@@ -198,15 +207,15 @@ button, input, textarea, select { font: inherit; }
 .guide-preview > div:last-child { align-self: end; }
 .guide-preview > div:last-child p { color: #b9cbc2; font-size: 17px; line-height: 1.7; }
 .guide-preview .button { color: white; border-color: #77988a; }
-.paths-section { padding-bottom: 130px; }
-.path-cards { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
-.path-cards > a { min-height: 330px; padding: 24px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.path-cards > a:first-child { border-left: 1px solid var(--line); }
-.path-cards span { color: var(--green); font-family: var(--mono); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; }
-.path-cards h3 { max-width: 260px; margin: auto 0 10px; font-family: var(--serif); font-size: 34px; font-weight: 500; letter-spacing: -.04em; line-height: 1.05; }
-.path-cards p { margin: 0; color: var(--muted); line-height: 1.55; }
-.path-cards strong { margin-top: 28px; font-size: 13px; }
-.path-cards > a:hover { background: var(--surface); }
+.ecosystem-section { padding-bottom: 130px; }
+.ecosystem-cards { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
+.ecosystem-cards > a { min-height: 330px; padding: 22px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.ecosystem-cards > a:hover { background: var(--surface); }
+.ecosystem-cards span { color: var(--green); font-family: var(--mono); font-size: 8px; letter-spacing: .05em; line-height: 1.5; text-transform: uppercase; }
+.ecosystem-cards h3 { margin: auto 0 8px; font-family: var(--serif); font-size: 30px; font-weight: 500; letter-spacing: -.04em; line-height: 1.02; }
+.ecosystem-cards strong { color: var(--green); font-size: 13px; }
+.ecosystem-cards p { margin: 14px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.ecosystem-cards small { margin-top: 28px; font-size: 12px; font-weight: 700; }
 
 /* Footer */
 .site-footer { padding: 72px max(20px, calc((100vw - 1240px) / 2)) 20px; background: #111311; color: white; }
@@ -552,6 +561,9 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 .not-found > p:not(.section-label) { margin: 0 0 34px; color: var(--muted); font-size: 18px; }
 
 @media (max-width: 1080px) {
+  .delivery-flow { grid-template-columns: repeat(4, 1fr); }
+  .delivery-flow li:nth-child(4n)::after { display: none; }
+  .ecosystem-cards { grid-template-columns: repeat(3, 1fr); }
   .dark-section .architecture-diagram, .architecture-overview .architecture-diagram, .architecture-framework .architecture-diagram { grid-template-columns: repeat(3, 1fr); }
   .lifecycle-track { grid-template-columns: repeat(4, 1fr); }
   .protocol-track { grid-template-columns: repeat(3, 1fr); }
@@ -575,8 +587,8 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
   .comparison-section, .mission-preview, .guide-preview, .reference-callout, .source-note, .restrained-cta, .founder-note, .about-thesis, .quickstart-section, .spec-versioning { grid-template-columns: 1fr; }
   .comparison-table { margin-top: 10px; }
   .principles-preview { grid-template-columns: 1fr; }
-  .path-cards, .three-models, .engagement-grid, .factory-line-grid { grid-template-columns: 1fr; }
-  .path-cards > a { min-height: 250px; border-left: 1px solid var(--line); }
+  .ecosystem-cards, .three-models, .engagement-grid, .factory-line-grid { grid-template-columns: 1fr; }
+  .ecosystem-cards > a { min-height: 250px; }
   .definition-block { grid-template-columns: 1fr; }
   .definition-block blockquote { max-width: 800px; }
   .lifecycle-track.is-detailed, .protocol-track.is-detailed { grid-template-columns: repeat(2, 1fr); }
@@ -619,6 +631,11 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
   .page-hero h1 { font-size: clamp(48px, 15vw, 70px); }
   .section-header h2 { font-size: clamp(38px, 12vw, 54px); }
   .governance-grid, .reason-grid, .dark-section .architecture-diagram, .architecture-overview .architecture-diagram, .architecture-framework .architecture-diagram, .metric-grid, .metric-grid.is-full, .object-grid, .maturity-overview { grid-template-columns: 1fr; }
+  .delivery-flow { grid-template-columns: 1fr; }
+  .delivery-flow li { min-height: 76px; display: grid; grid-template-columns: 38px 1fr; align-items: center; }
+  .delivery-flow strong { margin: 0; }
+  .delivery-flow li::after { display: none; }
+  .orientation-note { text-align: left; }
   .governance-grid div { min-height: 88px; }
   .comparison-table article { grid-template-columns: 56px 1fr; }
   .lifecycle-track, .lifecycle-track.is-detailed, .protocol-track, .protocol-track.is-detailed, .maturity-ladder { grid-template-columns: 1fr; }

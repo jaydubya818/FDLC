@@ -8,12 +8,12 @@ import { SiteShell } from "../components/site-shell";
 import { canonicalDefinition, manifesto, metrics } from "../../data/fdlc";
 import { pageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Framework", "The canonical definition, lifecycle, architecture, execution protocol, and principles of the Factory Development Lifecycle.", "/framework");
+export const metadata: Metadata = pageMetadata("Framework", "FDLC is the lifecycle for the factory itself: the operating model, architecture, execution protocol, and principles for AI software factories.", "/framework");
 
 export default function FrameworkPage() {
   return <SiteShell>
     <div className="page-wrap">
-      <PageHero eyebrow="FDLC Framework / 01" title="The operating discipline for AI software factories." description={canonicalDefinition}>
+      <PageHero eyebrow="FDLC Framework / 01" title="The lifecycle for the factory itself." description={canonicalDefinition}>
         <div className="hero-actions"><Link className="button button-dark" href="/architecture">Explore architecture</Link><Link className="button button-light" href="/guide">Read the Guide</Link></div>
       </PageHero>
 
