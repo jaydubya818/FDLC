@@ -1,14 +1,14 @@
 export const dependencyModernizationExample = {
   title: "Dependency modernization",
   scope: "Upgrade the Acme Payments SDK from v3 to v4 in checkout-api without changing public API behavior.",
-  businessCase: "Major dependency upgrades recur across repositories, consume senior review time, and carry compatibility risk—making them a strong candidate for one reusable, evidence-gated factory line.",
+  businessCase: "It is repetitive, high-volume, risk-bearing, and objectively verifiable. That makes dependency modernization a strong lighthouse candidate: the work is well-scoped, the evidence requirements are clear, and success can be measured without inventing new product metrics.",
   status: "Worked reference scenario",
   boundary: "Illustrative records and targets—not a production case study or benchmark result.",
   baselineMetrics: [
-    ["Cycle time", "Median elapsed time from admitted upgrade to accepted change"],
-    ["Human minutes", "Review and intervention time per accepted upgrade"],
-    ["Reopen rate", "Accepted work that must re-enter governed execution"],
-    ["Escaped defects", "Compatibility failures found after the release boundary"],
+    ["Cycle time", "Days to weeks", "Elapsed time from admitted upgrade to accepted change"],
+    ["Human review minutes", "High", "Compatibility, test-failure, and subtle-breakage review per accepted upgrade"],
+    ["Reopen / rollback risk", "Material", "Accepted work that must re-enter governed execution or be reversed"],
+    ["Escaped defect potential", "Real", "Compatibility failures found after the release boundary"],
   ],
   acceptanceCriteria: [
     "All existing contract and integration tests pass against the exact candidate.",
@@ -63,5 +63,13 @@ export const dependencyModernizationExample = {
     baseline: "Measure the current manual path before the first factory run.",
     success: "Improve verified completion without increasing escaped defects, rollback rate, or human review minutes.",
   },
+  outcomeMetrics: [
+    ["Verified completion rate", "Share of admitted Work Orders that satisfy their verification contract."],
+    ["Cost per verified outcome", "Model, compute, tooling, and human-attention cost divided by accepted upgrades."],
+    ["Human review minutes", "Judgment time required per accepted change."],
+    ["Cycle time", "Elapsed time from approved intent to accepted outcome."],
+    ["First-pass verification rate", "Candidates that satisfy required checks without corrective rework."],
+    ["Reopen / rollback rate", "Accepted or released work that must re-enter governed execution or be reversed."],
+  ],
   guardrailMetrics: ["Cycle time", "Human review minutes", "First-pass verification", "Reopen rate", "Rollback rate", "Escaped defects", "Cost per verified outcome"],
 } as const;

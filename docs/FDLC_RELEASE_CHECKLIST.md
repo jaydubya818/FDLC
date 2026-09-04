@@ -29,8 +29,8 @@ This checklist separates what is verifiable in the repository from launch decisi
 - [x] Semantic headings, labels, fieldsets, legends, and status regions are used.
 - [x] Reduced-motion preferences are respected.
 - [x] Desktop and mobile layouts are defined without horizontal page overflow.
-- [x] Long reference navigation adapts from an active side rail to floating and in-flow disclosures.
-- [x] Detailed lifecycle, protocol, and Architecture content progressively discloses on mobile.
+- [x] Framework and Architecture use an active 240px side rail at desktop widths and an in-flow jump disclosure below 1,024px.
+- [x] Detailed lifecycle and protocol content progressively discloses on mobile; Architecture content does so on tablet and mobile.
 - [x] Images include useful alternative text and fixed dimensions.
 - [ ] Run a human screen-reader pass with VoiceOver or NVDA.
 - [ ] Confirm WCAG AA contrast with an independent automated scanner after final domain deployment.

@@ -4,7 +4,14 @@ import { useEffect, useState } from "react";
 
 export type PageContentsItem = { label: string; href: `#${string}` };
 
-export function PageContentsNav({ items, title = "On this page" }: { items: readonly PageContentsItem[]; title?: string }) {
+type PageContentsNavProps = {
+  items: readonly PageContentsItem[];
+  title?: string;
+  mobileTitle?: string;
+  variant?: "floating" | "rail";
+};
+
+export function PageContentsNav({ items, title = "On this page", mobileTitle = "On this page", variant = "floating" }: PageContentsNavProps) {
   const [activeHref, setActiveHref] = useState(items[0]?.href);
 
   useEffect(() => {
@@ -12,28 +19,45 @@ export function PageContentsNav({ items, title = "On this page" }: { items: read
       .map((item) => document.getElementById(item.href.slice(1)))
       .filter((section): section is HTMLElement => Boolean(section));
 
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries.filter((entry) => entry.isIntersecting).sort((left, right) => left.boundingClientRect.top - right.boundingClientRect.top);
-      if (visible[0]) setActiveHref(`#${visible[0].target.id}` as `#${string}`);
-    }, { rootMargin: "-18% 0px -68% 0px", threshold: [0, 1] });
+    const updateActiveSection = () => {
+      const readingLine = window.innerHeight * 0.26;
+      let activeSection = sections[0];
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= readingLine) activeSection = section;
+        else break;
+      }
+      if (activeSection) setActiveHref(`#${activeSection.id}` as `#${string}`);
+    };
+
+    let animationFrame = 0;
+    const scheduleUpdate = () => {
+      window.cancelAnimationFrame(animationFrame);
+      animationFrame = window.requestAnimationFrame(updateActiveSection);
+    };
+
+    const observer = new IntersectionObserver(scheduleUpdate, { rootMargin: "-18% 0px -68% 0px", threshold: 0 });
 
     sections.forEach((section) => observer.observe(section));
     const syncHash = () => {
       if (items.some((item) => item.href === window.location.hash)) setActiveHref(window.location.hash as `#${string}`);
     };
     window.addEventListener("hashchange", syncHash);
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
     syncHash();
+    updateActiveSection();
 
     return () => {
       observer.disconnect();
+      window.cancelAnimationFrame(animationFrame);
       window.removeEventListener("hashchange", syncHash);
+      window.removeEventListener("scroll", scheduleUpdate);
     };
   }, [items]);
 
   const links = items.map((item) => <a aria-current={activeHref === item.href ? "location" : undefined} href={item.href} key={item.href} onClick={() => setActiveHref(item.href)}>{item.label}</a>);
 
   return (
-    <aside className="page-contents" aria-label={title}>
+    <aside className={`page-contents${variant === "rail" ? " is-rail" : ""}`} aria-label={title}>
       <nav aria-label={title} className="page-contents-desktop">
         <span>{title}</span>
         <div>{links}</div>
@@ -43,7 +67,7 @@ export function PageContentsNav({ items, title = "On this page" }: { items: read
         <nav aria-label={title}>{links}</nav>
       </details>
       <details className="page-contents-mobile">
-        <summary>On this page <span aria-hidden="true">Sections ↓</span></summary>
+        <summary>{mobileTitle} <span aria-hidden="true">Sections ↓</span></summary>
         <nav aria-label={title}>{links}</nav>
       </details>
     </aside>
