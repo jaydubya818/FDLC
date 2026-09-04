@@ -57,16 +57,32 @@ test("framework publishes the exact category definition and distinction", async 
 
 test("guide is an accurate portal into the authoritative 44-chapter book", async () => {
   const html = await (await render("/guide")).text();
-  assert.match(html, /The index into the full Guide/i);
+  assert.match(html, /Build the system around the agent/i);
+  assert.match(html, /evidence.*not an agent saying done.*decides what advances/is);
+  assert.match(html, /FDLC.*operating model and category definition.*AI Software Factory Guide.*detailed methodology/is);
   assert.match(html, /44<\/strong> chapters.*6<\/strong> parts.*8<\/strong> Guide stages/is);
   assert.match(html, /not a second, incomplete edition/i);
-  assert.match(html, /The factory in one view.*Trace the architecture.*Build the system/is);
+  assert.match(html, /10 minutes.*Builder.*Architect.*Operator.*Executive \/ Fund.*Front to back/is);
   assert.match(html, /same system described at different levels of abstraction/i);
   assert.match(html, /eight stages are not a competing FDLC lifecycle/i);
-  assert.match(html, /Executive.*Architect.*Builder.*Operator/is);
-  assert.match(html, /Twenty-five working routes into the system/i);
+  assert.match(html, /Runtime Lifecycle and Artifact Protocol.*not a second lifecycle or a one-to-one artifact list/is);
+  assert.match(html, /Twenty-five entry points into the same source/i);
+  assert.match(html, /Mission Control and the Guide.*living implementation.*boundaries visible/is);
+  assert.match(html, /Next steps on FDLC.ai.*FDLC in 5 Minutes.*Framework.*Architecture.*Manifesto.*Maturity.*Mission Control/is);
+  assert.match(html, /Verified delivery, not merely generated code/i);
   assert.match(html, /https:\/\/ai-software-factory-mastery\.vercel\.app\/docs\/01-understand\/02-the-factory-in-one-view/i);
   assert.match(html, /https:\/\/ai-software-factory-mastery\.vercel\.app\/search/i);
+});
+
+test("manifesto publishes the ten operating invariants and the state boundary", async () => {
+  const html = await (await render("/manifesto")).text();
+  assert.match(html, /Autonomy is useful only when it can be trusted/i);
+  assert.match(html, /operating invariants of the Factory Development Lifecycle/i);
+  assert.match(html, /Mission Control, another control plane, or your own implementation/i);
+  assert.match(html, /Intent must be explicit.*Plan is a governed artifact.*Every agent has an identity.*Execution must be isolated.*Producers should not be their only verifier.*State transitions require evidence.*Autonomy must be earned.*Human attention belongs.*Learning must come from validated outcomes.*value of a factory is measured in verified outcomes/is);
+  assert.match(html, /Execution complete.*Verified.*Approved.*Released.*Outcome proven/is);
+  assert.match(html, /distinct states with distinct owners and evidence requirements.*faster guessing/is);
+  for (const href of ["/in-5-minutes", "/framework", "/architecture", "/mission-control"]) assert.match(html, new RegExp(`href=["']${href}["']`));
 });
 
 test("worked example connects all four models without claiming production proof", async () => {
