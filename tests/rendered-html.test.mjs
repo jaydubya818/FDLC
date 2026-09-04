@@ -35,6 +35,14 @@ test("homepage answers the category boundary and links to primary destinations",
   assert.match(html, /FDLC is the lifecycle for the factory itself/i);
   assert.match(html, /Intelligence may vary.*Authority remains explicit.*Evidence must return/is);
   assert.match(html, /Receive.*Specify.*Plan.*Execute.*Verify.*Approve.*Release.*Observe.*Learn/is);
+  assert.match(html, /Interactive factory explorer.*Choose a stage.*inspect the capabilities it activates/is);
+  assert.match(html, /Does the exact candidate satisfy the specification.*Evidence required.*independent checks/is);
+  assert.match(html, /participate at/i);
+  assert.match(html, /Active capabilities are marked in green/i);
+  assert.match(html, /Agents.*Models.*Skills.*Tools.*Context.*Runtime.*Policy.*Evals.*Observability.*Human control/is);
+  assert.match(html, /Evals.*Test the exact candidate/is);
+  assert.match(html, /Participates at/i);
+  assert.match(html, /href=["']\/architecture#trust["']/i);
   assert.match(html, /Discover.*Design.*Assemble.*Validate.*Deploy.*Operate.*Improve/is);
   assert.match(html, /Continuous controls.*Govern.*Secure.*Observe.*Measure/is);
   assert.match(html, /Intent.*Specification.*Plan.*Work Order.*Attempt.*Evidence.*Verification.*Approval.*Release.*Outcome.*Learning Signal/is);
