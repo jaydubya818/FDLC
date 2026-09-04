@@ -170,11 +170,11 @@ Worked examples map one bounded workflow to every canonical model without creati
 - all six architecture areas;
 - all eleven artifact protocol objects;
 - one primary outcome metric and explicit guardrails;
-- a pre-automation baseline contract and concrete next actions;
+- a pre-automation baseline contract, clearly labeled illustrative values, and concrete next actions;
 - implementation evidence or screenshots whose capability boundaries remain explicit;
 - a visible boundary between illustrative records and observed production evidence.
 
-The first example is dependency modernization at `/in-5-minutes`. Its sample identifiers and targets are educational records, not benchmark results or customer proof. The former `/examples/dependency-modernization` path permanently redirects to the canonical route.
+The first example is dependency modernization at `/in-5-minutes`. It explains why the line is a useful lighthouse candidate, traces Mission Control participation, and defines verified completion plus five operating measures. Its sample identifiers and targets are educational records, not benchmark results or customer proof. The former `/examples/dependency-modernization` path permanently redirects to the canonical route.
 
 ### Product relationships
 

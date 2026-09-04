@@ -9,10 +9,10 @@ import { architectureAreas, factoryControls, lifecycleStages, protocolSteps, run
 import { dependencyModernizationExample as example } from "../../data/dependency-modernization-example";
 import { pageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("FDLC in 5 Minutes", "Follow one dependency-modernization factory line through four FDLC system views, eleven durable artifacts, Mission Control, and one measurable outcome.", "/in-5-minutes");
+export const metadata: Metadata = pageMetadata("FDLC in 5 Minutes", "One workflow. Four system views. Eleven artifacts. One measurable outcome. See how a dependency-modernization factory line moves from opportunity to verified result.", "/in-5-minutes");
 
 const contents = [
-  { label: "01 Factory line", href: "#scope" },
+  { label: "01 Factory line", href: "#the-factory-line" },
   { label: "02 Four views", href: "#views" },
   { label: "03 Factory lifecycle", href: "#factory-lifecycle" },
   { label: "04 Runtime", href: "#runtime" },
@@ -40,16 +40,18 @@ const missionControlViews = [
 export default function FiveMinuteWalkthroughPage() {
   return <SiteShell><div className="page-wrap example-page">
     <PageHero eyebrow="FDLC in 5 Minutes" status="Illustrative" title="One workflow. Four views. Eleven artifacts. One measurable outcome." description="Watch a dependency-upgrade factory line move from opportunity to verified outcome—and see exactly which records, gates, and architecture areas make it trustworthy.">
-      <div className="hero-actions"><a className="button button-dark" href="#factory-lifecycle">Follow the example</a><Link className="button button-light" href="/mission-control#quickstart">Run the Mission Control demo</Link></div>
+      <div className="hero-actions"><a className="button button-dark" href="#the-factory-line">Follow the example</a><Link className="button button-light" href="/mission-control#quickstart">Run the Mission Control demo</Link></div>
     </PageHero>
 
+    <div className="example-introduction"><p><strong>This is not a product tour.</strong> It is a concrete walkthrough of the Factory Development Lifecycle applied to one bounded, high-value class of work.</p></div>
     <div className="example-thesis" aria-label="One workflow, four system views, eleven artifacts, and one measurable outcome" role="group">
       <span>One workflow</span><strong>Four system views</strong><strong>Eleven artifacts</strong><strong>One measurable outcome</strong>
     </div>
     <PageContentsNav items={contents} title="Walkthrough" />
 
-    <section className="section-block example-scope" id="scope">
-      <SectionHeader eyebrow="01 / The concrete factory line" title="Modernize a payment dependency without changing behavior." description={example.businessCase} />
+    <section className="section-block example-scope" id="the-factory-line">
+      <SectionHeader eyebrow="01 / The factory line" title="Dependency modernization." description="Upgrade a defined set of approved libraries across a single repository while preserving build integrity, test results, and public API compatibility." />
+      <aside className="example-rationale"><strong>Why this line first</strong><p>{example.businessCase}</p></aside>
       <div className="example-brief">
         <article className="example-intent">
           <span>INT-104 / Intent</span>
@@ -66,17 +68,18 @@ export default function FiveMinuteWalkthroughPage() {
           <ol>{example.acceptanceCriteria.map((criterion, index) => <li key={criterion}><span>{String(index + 1).padStart(2, "0")}</span><p>{criterion}</p></li>)}</ol>
         </article>
       </div>
-      <div className="example-baseline"><span>Baseline before automation</span>{example.baselineMetrics.map(([name, definition]) => <article key={name}><strong>{name}</strong><p>{definition}</p></article>)}</div>
+      <div className="example-baseline"><span>Baseline / illustrative</span>{example.baselineMetrics.map(([name, value, definition]) => <article key={name}><strong>{name}</strong><b>{value}</b><p>{definition}</p></article>)}</div>
       <p className="example-disclaimer"><strong>{example.status}.</strong> {example.boundary}</p>
+      <p className="example-goal">The goal of the factory line is not “run an agent.” It is to produce verified, accepted upgrades at lower cost, lower risk, and with less scarce human attention—while preserving a complete evidence trail.</p>
     </section>
 
     <section className="section-block example-views" id="views">
-      <SectionHeader eyebrow="02 / Four system views" title="The same factory. Four different questions." description="The views connect, but they are not interchangeable. Together they explain how the line evolves, how work moves, what capabilities participate, and what records preserve proof." />
+      <SectionHeader eyebrow="02 / Four system views" title="The same factory. Four different questions." description="FDLC is not one diagram. The views connect, but they are not interchangeable. Collapsing them produces confusion; keeping them separate produces clarity." />
       <div className="example-view-grid">{views.map(([number, name, description, href]) => <Link href={href} key={name}><span>{number}</span><h3>{name}</h3><p>{description}</p><strong>Explore the full view →</strong></Link>)}</div>
     </section>
 
     <section className="section-block" id="factory-lifecycle">
-      <SectionHeader eyebrow="03 / Factory lifecycle" title="First, engineer the line that will do the work." description="The factory line is designed and validated once, then operates repeatedly for eligible dependency upgrades. Evidence from real outcomes may propose a new version; it cannot silently rewrite the active line." />
+      <SectionHeader eyebrow="03 / Factory lifecycle applied" title="The factory line itself is engineered. It is not installed by prompting." description="Discover, design, assemble, validate, deploy, operate, and improve the line under continuous governance, security, observability, and measurement. Evidence from real outcomes may propose a new version; it cannot silently rewrite the active line." />
       <ol className="example-factory-stages">
         {example.factoryStages.map((item) => {
           const stage = lifecycleStages.find((candidate) => candidate.id === item.stageId);
@@ -85,12 +88,12 @@ export default function FiveMinuteWalkthroughPage() {
         })}
       </ol>
       <div className="example-controls"><span>Across every stage</span>{factoryControls.map((control) => <strong key={control.name}>{control.name}</strong>)}</div>
-      <p className="example-factory-note"><strong>Engineered once. Operated many times.</strong> The factory version remains fixed until validated evidence justifies a governed improvement.</p>
+      <p className="example-factory-note"><strong>Designed once. Run many times.</strong> Each run produces evidence that can improve the next run—under change control. The active factory version remains fixed until validated evidence justifies a governed improvement.</p>
     </section>
 
     <section className="example-runtime-section" id="runtime">
       <div className="example-inner">
-        <SectionHeader eyebrow="04 / Runtime lifecycle" title="Now run one software change through the operating factory." description="Runtime verbs move the work. Artifact links point to the durable records that make every transition attributable and reviewable." />
+        <SectionHeader eyebrow="04 / Runtime lifecycle" title="One unit of work advances only by earning the next state." description="Optimistic status labels are not sufficient. Runtime verbs move the work; artifact links point to the durable records that make every transition attributable and reviewable." />
         <ol className="example-runtime-ledger">
           {example.runtimeSteps.map((item) => {
             const step = runtimeLifecycle.find((candidate) => candidate.id === item.stepId);
@@ -118,7 +121,7 @@ export default function FiveMinuteWalkthroughPage() {
     </section>
 
     <section className="section-block" id="architecture">
-      <SectionHeader eyebrow="05 / Architecture participation" title="Six capability areas participate in the same run." description="No single agent owns the outcome. Each architectural area contributes a distinct responsibility and maps to concrete Mission Control records or decisions." />
+      <SectionHeader eyebrow="05 / Architecture participation" title="All six areas participate in the same run." description="No single agent owns the outcome. Each architectural area contributes a distinct responsibility and maps to concrete Mission Control records or decisions." />
       <div className="example-architecture-grid">
         {example.architecture.map((item) => {
           const area = architectureAreas.find((candidate) => candidate.id === item.areaId);
@@ -126,18 +129,27 @@ export default function FiveMinuteWalkthroughPage() {
           return <article key={item.areaId}><span>{String(area.number).padStart(2, "0")} / {area.name}</span><h3>{area.short}</h3><p>{item.contribution}</p><dl><dt>Mission Control</dt><dd>{item.missionControl}</dd></dl><div><Link href={`/architecture#${area.id}`}>Architecture →</Link><Link href={item.guideHref}>Guide →</Link></div></article>;
         })}
       </div>
+      <p className="example-architecture-invariant"><strong>Trust constrains every area.</strong> Learning captures validated outcomes and failures, but it never writes directly to production.</p>
       <p className="example-evidence-link">Implementation status remains capability-specific. <Link href="/mission-control#capabilities">Inspect the current Mission Control maturity ledger →</Link></p>
     </section>
 
     <section className="example-mission-section" id="mission-control">
       <div className="example-inner">
         <SectionHeader eyebrow="06 / Mission Control in the loop" title="The control plane materializes the records, gates, and attention boundaries." description="These reference-implementation views show where governed work, evidence, and decisions become inspectable. They demonstrate the operating model; they do not claim fleet-scale production certification." />
+        <ul className="example-mission-ledger">
+          <li><strong>Mission + Specification</strong><span>Define the governed outcome and proof contract.</span></li>
+          <li><strong>Versioned Plan</strong><span>Must be approved before Work Orders are released.</span></li>
+          <li><strong>Leased Attempts</strong><span>Execute against frozen configuration with durable lineage.</span></li>
+          <li><strong>Evidence Envelopes</strong><span>Bind attributable proof to exact candidates.</span></li>
+          <li><strong>Independent verification</strong><span>Produces explicit Quality Gate decisions.</span></li>
+          <li><strong>Human acceptance</strong><span>Preserves accountable judgment at the consequential boundary.</span></li>
+        </ul>
         <div className="example-mission-grid">{missionControlViews.map((view) => <figure className="product-frame" key={view.image}><div><span>{view.label}</span><span>Reference view</span></div><Image src={view.image} alt={view.alt} width={1600} height={1050} sizes="(max-width: 820px) 100vw, 33vw" /><figcaption><strong>{view.title}</strong><span>{view.description}</span></figcaption></figure>)}</div>
         <div className="example-mission-actions"><Link className="button button-dark" href="/mission-control#quickstart">Run the deterministic demo</Link><a className="text-action" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Inspect the source ↗</a></div>
       </div>
     </section>
 
-    <section className="example-boundary-section" id="boundaries"><StateBoundary dark mode="primary" /></section>
+    <section className="example-boundary-section" id="boundaries"><StateBoundary dark mode="primary" /><p className="example-boundary-mapping">In Mission Control: Attempt completion → Quality Gate Decision → Human Acceptance → Release → Outcome. No single actor can advance more than one boundary without the required evidence and authority.</p></section>
 
     <section className="section-block example-measure" id="measure">
       <SectionHeader eyebrow="08 / How we know the factory improved" title="Measure verified completion—not generated activity." description="The first run does not get to claim improvement. Baseline the manual path, observe accepted outcomes, and protect quality with explicit guardrails." />
@@ -145,7 +157,9 @@ export default function FiveMinuteWalkthroughPage() {
         <div><span>Primary measure</span><h3>{example.primaryMetric.name}</h3><code>{example.primaryMetric.formula}</code></div>
         <dl><div><dt>Baseline</dt><dd>{example.primaryMetric.baseline}</dd></div><div><dt>What success looks like</dt><dd>{example.primaryMetric.success}</dd></div></dl>
       </div>
-      <div className="example-guardrails"><span>Guardrails</span>{example.guardrailMetrics.slice(0, 6).map((metric) => <strong key={metric}>{metric}</strong>)}</div>
+      <div className="example-measure-ledger">{example.outcomeMetrics.map(([name, definition], index) => <article key={name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{name}</strong><p>{definition}</p></article>)}</div>
+      <div className="example-guardrails"><span>Quality guardrails</span>{example.guardrailMetrics.slice(3).map((metric) => <strong key={metric}>{metric}</strong>)}</div>
+      <p className="example-measure-note">Improvement is measured against the original baseline, not against model confidence scores.</p>
     </section>
 
     <section className="example-next-section" id="next-steps">

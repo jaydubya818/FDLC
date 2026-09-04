@@ -46,8 +46,8 @@ No remote font dependency is required for V0.
 - Data table with responsive horizontal overflow and text alternative.
 - Documentation callouts for Principle, Implementation Note, Status, and Warning.
 - Form controls with persistent labels, visible focus, inline help, error text, and explicit success output.
-- Active sticky page-contents rail on wide reference pages; it becomes a floating disclosure on narrower desktop and an in-flow disclosure on mobile.
-- Progressive detail cards that remain fully visible on desktop and collapse secondary detail on mobile.
+- Active 240px sticky page-contents rail on Framework and Architecture from 1,024px upward; it becomes an in-flow jump disclosure on tablet and mobile. Other long pages may retain the floating intermediate-desktop treatment.
+- Progressive Architecture detail cards that remain fully visible from 1,024px upward and collapse through tablet and mobile widths, with native keyboard-accessible multi-expand behavior.
 - State-boundary callout with a fixed semantic sequence plus distinct completion, verification, judgment, promotion, and reality definitions.
 - Worked-example ledger combining editorial narrative, baseline contracts, Mission Control evidence views, attributable record IDs, and explicit evidence boundaries.
 
@@ -75,7 +75,7 @@ Every diagram includes an `aria-label` or adjacent accessible text list. No info
 ## Responsive behavior
 
 - Desktop: full navigation and horizontal diagrams.
-- Tablet: reduced columns, diagrams wrap into two rows, table of contents moves below article intro.
+- Tablet: reduced columns, diagrams wrap into two rows, long-reference navigation moves directly below the hero, and Architecture areas collapse into summary cards.
 - Mobile: navigation disclosure, single-column cards, collapsed lifecycle/protocol detail, collapsed Architecture areas, no clipped labels, 44px minimum interactive targets.
 - Documentation sidebars become an in-flow disclosure before the article.
 

@@ -32,7 +32,9 @@ export default function FrameworkPage() {
       <PageHero eyebrow="FDLC Framework / 01" title="The lifecycle for the factory itself." description={canonicalDefinition}>
         <div className="hero-actions"><Link className="button button-dark" href="/in-5-minutes">See FDLC in 5 minutes</Link><Link className="button button-light" href="/architecture">Explore architecture</Link></div>
       </PageHero>
-      <PageContentsNav items={contents} title="Framework sections" />
+      <div className="longform-layout">
+      <PageContentsNav items={contents} mobileTitle="Jump to section" title="Framework sections" variant="rail" />
+      <div className="longform-content">
 
       <section className="definition-block" id="definition" aria-labelledby="definition-title">
         <p className="section-label">Canonical definition</p>
@@ -100,6 +102,8 @@ export default function FrameworkPage() {
       </section>
 
       <section className="reference-callout" id="mission-control"><div><p className="section-label">Reference implementation</p><h2>Mission Control makes the protocol concrete.</h2></div><div><p>Inspect how one open-source control plane models governed Plans, WorkOrders, Attempts, evidence, verification, and human acceptance—with current limitations visible.</p><div className="hero-actions"><Link className="button button-light" href="/mission-control">Explore Mission Control</Link><Link className="text-action light-link" href="/in-5-minutes">See the walkthrough →</Link></div></div></section>
+      </div>
+      </div>
     </div>
   </SiteShell>;
 }

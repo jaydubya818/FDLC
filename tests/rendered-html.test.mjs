@@ -42,13 +42,16 @@ test("homepage answers the category boundary and links to primary destinations",
 test("worked example connects all four models without claiming production proof", async () => {
   const html = await (await render("/in-5-minutes")).text();
   assert.match(html, /FDLC in 5 Minutes/i);
+  assert.match(html, /This is not a product tour.*concrete walkthrough of the Factory Development Lifecycle/is);
   assert.match(html, /Illustrative records and targets.*not a production case study or benchmark result/is);
   assert.match(html, /One workflow.*Four system views.*Eleven artifacts.*One measurable outcome/is);
-  assert.match(html, /Baseline before automation.*Cycle time.*Human minutes.*Reopen rate.*Escaped defects/is);
+  assert.match(html, /Baseline.*illustrative.*Cycle time.*Human review minutes.*Reopen.*rollback risk.*Escaped defect potential/is);
   assert.match(html, /Discover.*Design.*Assemble.*Validate.*Deploy.*Operate.*Improve/is);
   assert.match(html, /Receive.*Specify.*Plan.*Execute.*Verify.*Approve.*Release.*Observe.*Learn/is);
   assert.match(html, /INT-104.*SPEC-104-R1.*PLAN-104-R2.*WO-104-01.*ATT-104-03.*EVD-104-09.*VER-104-02.*APR-104-01.*REL-104-01.*OUT-104-01.*LS-104-01/is);
   assert.match(html, /Command Center.*Work Order.*Audit and evidence/is);
+  assert.match(html, /Evidence Envelopes.*Independent verification.*Human acceptance/is);
+  assert.match(html, /Cost per verified outcome.*First-pass verification rate.*Reopen.*rollback rate/is);
   assert.match(html, /accepted dependency upgrades.*eligible dependency-upgrade missions/is);
   assert.match(html, /canonical example.*not a claim of fleet-scale production/is);
 });
@@ -64,6 +67,17 @@ test("core technical pages preserve distinct delivery states", async () => {
     const html = await (await render(route)).text();
     assert.match(html, /Execution complete.*Verified.*Approved.*Released.*Outcome proven/is, route);
   }
+});
+
+test("long technical pages expose the requested rail and tablet jump navigation", async () => {
+  for (const route of ["/framework", "/architecture"]) {
+    const html = await (await render(route)).text();
+    assert.match(html, /page-contents is-rail/i, route);
+    assert.match(html, /Jump to (?:section|area)/i, route);
+  }
+  const architecture = await (await render("/architecture")).text();
+  assert.match(architecture, /Expand area.*Collapse area/is);
+  assert.match(architecture, /See in Mission Control/is);
 });
 
 test("interactive routes have complete server-rendered entry states", async () => {
