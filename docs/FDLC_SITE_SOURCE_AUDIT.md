@@ -42,11 +42,11 @@ The Guide already makes the durable distinction FDLC.ai needs:
 - Mission Control is one implementation of the control-plane responsibilities, not the definition of the whole factory;
 - validated outcomes, not model assertions or generated code volume, are the unit of value.
 
-The proposed FDLC category gives this body of knowledge a cleaner organizing layer: Lifecycle, Architecture, and Execution Protocol.
+The proposed FDLC category gives this body of knowledge a cleaner organizing layer: Factory Lifecycle, Runtime Lifecycle, Architecture, and Artifact Protocol.
 
 ### Guide content ready to reorganize
 
-The current Guide is unusually deep and already structured for repository-based publishing. Its 36 chapters contain the authoritative material needed for all six FDLC architecture areas and all eight lifecycle stages. The strongest V0 reuse strategy is to preserve the Guide’s six-part reading arc while adding the FDLC taxonomy as the primary orientation layer. Rewriting the entire Guide would create editorial drift without improving the category definition.
+The current Guide is unusually deep and already structured for repository-based publishing. Its 36 chapters contain the authoritative material needed for all six FDLC architecture areas and the seven-stage factory lifecycle. The strongest V0 reuse strategy is to preserve the Guide’s six-part reading arc while adding the FDLC taxonomy as the primary orientation layer. Rewriting the entire Guide would create editorial drift without improving the category definition.
 
 ### Mission Control capabilities supported by source and evidence
 
@@ -83,9 +83,10 @@ These are already used by the public README and can support the Mission Control 
 
 | Source term or conflict | Resolution for FDLC.ai |
 | --- | --- |
-| Mission Control sometimes uses `Mission` where the proposed protocol begins with `Goal`. | Define `Goal` as the protocol-level intent object. Explain that Mission Control realizes it as a governed `Mission` with a Specification and approved Plan. Do not rename Mission Control’s implemented domain objects. |
-| The implemented hierarchy includes `Task` and `candidate`, while the concise FDLC chain omits them. | Keep the canonical FDLC chain concise. On Mission Control pages, show the concrete expansion: Mission → Spec → Plan → WorkOrder → Task → Attempt → candidate → evidence/verification → acceptance → release. |
-| The Guide’s stage mnemonic differs from the proposed FDLC Lifecycle. | Use the brief’s eight lifecycle stages as the category model. Map the Guide’s stages into them; do not erase the Guide’s useful execution-oriented teaching sequence. |
+| Mission Control uses `Mission` where the artifact protocol begins with `Intent`. | Define `Intent` as the protocol-level object. Explain that Mission Control realizes it as a governed `Mission` with a `Mission Spec` and approved Plan. Do not rename Mission Control’s implemented domain objects. |
+| The implemented hierarchy includes `Task` and `candidate`, while the portable protocol uses broader semantics. | Treat Task and Candidate as associated implementation objects. On Mission Control pages, show the concrete expansion: Mission → Mission Spec → Plan → WorkOrder → Task → Attempt → Candidate → Evidence/Verification → Acceptance → Release. |
+| The Guide’s stage mnemonic differs from the reconciled FDLC Lifecycle. | Use `Discover → Design → Assemble → Validate → Deploy → Operate → Improve` for the factory lifecycle. Keep `Govern · Secure · Observe · Measure` visible as continuous controls. Preserve the Guide’s useful execution-oriented teaching sequence as source material rather than presenting it as a second canonical lifecycle. |
+| Earlier positioning mixed lifecycle verbs and protocol nouns. | Use `Receive → Specify → Plan → Execute → Verify → Approve → Release → Observe → Learn` for the runtime lifecycle and the eleven durable artifact objects from Intent through Learning Signal for the protocol. |
 | `Harness` can mean the inner model/tool loop, an outer supervisor, or the whole runtime. | On FDLC.ai, `Harness` is the architectural area for orchestration, durable state, lifecycle, recovery, scheduling, leases, and handoffs. Guide pages can preserve the narrower inner/outer distinction. |
 | Agent Factory vs. Capability area. | Treat the Agent Factory as an important implementation pattern inside the broader FDLC Capability area. |
 | Loom appears in technical status material. | Do not use Loom as a public product identity. Omit it from marketing and overview content; mention only in developer documentation if needed to explain an unsupported adapter identifier. |
@@ -126,4 +127,3 @@ These are already used by the public README and can support the Mission Control 
 5. Use three first-party public Mission Control screenshots and label them as product/demo views.
 6. Keep Specification, Benchmarks, Enterprise, and Deploy transparent preview pages until their underlying programs exist.
 7. Ship V0 without a CMS, database, authentication, hosted search service, or analytics dependency.
-

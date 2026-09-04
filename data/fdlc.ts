@@ -1,8 +1,25 @@
 export const siteName = "FDLC.ai";
 export const canonicalDefinition =
-  "The Factory Development Lifecycle is the end-to-end operating model and engineering discipline for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.";
+  "The Factory Development Lifecycle is the engineering discipline for discovering, designing, assembling, validating, deploying, operating, and continuously improving AI software factories under pervasive governance, security, observability, and measurement.";
 
-export const deliveryLoop = ["Intent", "Plan", "Execute", "Verify", "Approve", "Deploy", "Learn"] as const;
+export const runtimeLifecycle = [
+  { id: "receive", number: 1, name: "Receive", artifact: "Intent", purpose: "Capture the desired outcome, constraints, owner, and initial risk." },
+  { id: "specify", number: 2, name: "Specify", artifact: "Specification", purpose: "Define what must be true and what evidence will establish it." },
+  { id: "plan", number: 3, name: "Plan", artifact: "Plan", purpose: "Choose the governed path, decomposition, and verification strategy." },
+  { id: "execute", number: 4, name: "Execute", artifact: "Work Order · Attempt", purpose: "Run bounded, authorized work as attributable attempts." },
+  { id: "verify", number: 5, name: "Verify", artifact: "Evidence · Verification", purpose: "Evaluate the exact candidate against the specification." },
+  { id: "approve", number: 6, name: "Approve", artifact: "Approval", purpose: "Apply policy and human authority at consequential boundaries." },
+  { id: "release", number: 7, name: "Release", artifact: "Release", purpose: "Promote the exact accepted software artifact with rollback readiness." },
+  { id: "observe", number: 8, name: "Observe", artifact: "Outcome", purpose: "Compare the production result with the intended outcome." },
+  { id: "learn", number: 9, name: "Learn", artifact: "Learning Signal", purpose: "Propose controlled changes to the factory from validated outcomes." },
+] as const;
+
+export const factoryControls = [
+  { name: "Govern", purpose: "Bound identity, delegated authority, policy, spend, approval, and accountability." },
+  { name: "Secure", purpose: "Protect data, secrets, tools, environments, and the capability supply chain." },
+  { name: "Observe", purpose: "Preserve state, traces, lineage, evidence, decisions, and incidents end to end." },
+  { name: "Measure", purpose: "Compare quality, cost, time, human effort, recovery, and risk with a baseline." },
+] as const;
 
 export const factorySystemComponents = [
   "Agents", "Models", "Skills", "Tools", "Context", "Runtime", "Policy", "Evals", "Observability", "Human control",
@@ -18,13 +35,12 @@ export const ecosystemRoles = [
 
 export const lifecycleStages = [
   { id: "discover", number: 1, name: "Discover", purpose: "Find work worth turning into a factory line and establish the baseline.", activities: ["Candidate workflows", "Cycle-time baseline", "Cost and human effort", "Defect and failure rates"], output: "A measured opportunity" },
-  { id: "design", number: 2, name: "Design", purpose: "Define the outcome, evidence, risk, and human control boundaries.", activities: ["Intended outcome", "Acceptance criteria", "Autonomy level", "Measurable success"], output: "A factory definition" },
+  { id: "design", number: 2, name: "Design", purpose: "Define the outcome, runtime flow, evidence contract, risk, and human control boundaries.", activities: ["Intended outcome", "Acceptance criteria", "Runtime lifecycle", "Autonomy and escalation"], output: "A factory definition" },
   { id: "assemble", number: 3, name: "Assemble", purpose: "Compose the capabilities and environment required to do the work.", activities: ["Agents and skills", "Tools and MCP", "Context services", "Models and evaluators"], output: "A runnable factory line" },
-  { id: "govern", number: 4, name: "Govern", purpose: "Bound identity, authority, policy, spend, and escalation before execution.", activities: ["Agent identity", "Delegated authority", "Budgets and policies", "Secrets and data boundaries"], output: "An execution envelope" },
-  { id: "operate", number: 5, name: "Operate", purpose: "Run durable work through isolated environments, checkpoints, and handoffs.", activities: ["Plans and Work Orders", "Leases and checkpoints", "Retries and recovery", "Observable handoffs"], output: "An exact candidate" },
-  { id: "verify", number: 6, name: "Verify", purpose: "Produce independent, attributable evidence against explicit criteria.", activities: ["Deterministic tests", "Independent evaluators", "Policy and security checks", "Human review where needed"], output: "A verification decision" },
-  { id: "release", number: 7, name: "Release", purpose: "Promote only outcomes that satisfy evidence, policy, and approval gates.", activities: ["Evidence currentness", "Required approvals", "Promotion controls", "Rollback readiness"], output: "An accepted release" },
-  { id: "learn", number: 8, name: "Learn & Scale", purpose: "Improve future factory runs from validated outcomes—not model confidence.", activities: ["Outcome signals", "Failure taxonomy", "Cost and recovery data", "Controlled promotion"], output: "A governed improvement" },
+  { id: "validate", number: 4, name: "Validate", purpose: "Prove that the factory line can operate safely, reliably, and measurably before promotion.", activities: ["Capability evals", "Policy and security tests", "Failure and recovery drills", "End-to-end acceptance"], output: "A release-ready factory version" },
+  { id: "deploy", number: 5, name: "Deploy", purpose: "Promote the exact validated factory version into its intended operating environment.", activities: ["Version promotion", "Environment binding", "Change approval", "Rollback readiness"], output: "An active factory line" },
+  { id: "operate", number: 6, name: "Operate", purpose: "Run the software-delivery lifecycle durably while managing exceptions and consequential decisions.", activities: ["Runtime orchestration", "State and recovery", "Evidence and decisions", "Human intervention"], output: "Verified software outcomes" },
+  { id: "improve", number: 7, name: "Improve", purpose: "Change the factory from validated outcomes, telemetry, incidents, and controlled experiments.", activities: ["Outcome signals", "Failure taxonomy", "Baseline comparison", "Governed promotion"], output: "A governed factory improvement" },
 ] as const;
 
 export const architectureAreas = [
@@ -97,15 +113,17 @@ export const architectureAreas = [
 ] as const;
 
 export const protocolSteps = [
-  { id: "goal", number: 1, name: "Goal", question: "What outcome matters?", requiredProof: "Named outcome, constraints, and owner", missionControlMapping: "Mission + Mission Spec" },
-  { id: "plan", number: 2, name: "Plan", question: "How should work proceed?", requiredProof: "Versioned decomposition and acceptance criteria", missionControlMapping: "Approved Plan" },
-  { id: "work-order", number: 3, name: "Work Order", question: "What bounded unit is authorized?", requiredProof: "Scope, risk, authority, and verification contract", missionControlMapping: "WorkOrder + Tasks" },
-  { id: "attempt", number: 4, name: "Attempt", question: "What exactly ran?", requiredProof: "Identity, lease, versions, environment, and trace", missionControlMapping: "WorkflowRun / Attempt" },
-  { id: "evidence", number: 5, name: "Evidence", question: "What was observed?", requiredProof: "Attributable artifacts bound to the candidate", missionControlMapping: "Evidence Envelopes + artifacts" },
-  { id: "verification", number: 6, name: "Verification", question: "Does the candidate satisfy the contract?", requiredProof: "Independent checks against exact criteria", missionControlMapping: "Verification Run + receipts + Quality Gate" },
-  { id: "approval", number: 7, name: "Approval", question: "May this consequence proceed?", requiredProof: "Authorized, reasoned decision", missionControlMapping: "Plan approval + WorkOrder acceptance" },
-  { id: "release", number: 8, name: "Release", question: "What was promoted?", requiredProof: "Exact artifact, policy, and rollback readiness", missionControlMapping: "PR currentness + separate release records" },
-  { id: "outcome", number: 9, name: "Outcome", question: "Did value hold in reality?", requiredProof: "Observed technical and user result", missionControlMapping: "Partial production-feedback model" },
+  { id: "intent", number: 1, name: "Intent", question: "What outcome matters?", requiredProof: "Named outcome, constraints, owner, and risk", missionControlMapping: "Mission" },
+  { id: "specification", number: 2, name: "Specification", question: "What must be true?", requiredProof: "Versioned requirements, boundaries, and acceptance criteria", missionControlMapping: "Mission Spec" },
+  { id: "plan", number: 3, name: "Plan", question: "How will the factory achieve it?", requiredProof: "Approved decomposition, sequence, risk, and verification strategy", missionControlMapping: "Approved Plan" },
+  { id: "work-order", number: 4, name: "Work Order", question: "What bounded unit is authorized?", requiredProof: "Scope, risk, authority, and verification contract", missionControlMapping: "WorkOrder + Tasks" },
+  { id: "attempt", number: 5, name: "Attempt", question: "What exactly ran?", requiredProof: "Identity, lease, versions, environment, and trace", missionControlMapping: "WorkflowRun / Attempt" },
+  { id: "evidence", number: 6, name: "Evidence", question: "What was observed?", requiredProof: "Attributable artifacts bound to the exact candidate", missionControlMapping: "Evidence Envelopes + artifacts" },
+  { id: "verification", number: 7, name: "Verification", question: "Does the evidence satisfy the specification?", requiredProof: "Independent checks against exact criteria", missionControlMapping: "Verification Run + receipts + Quality Gate" },
+  { id: "approval", number: 8, name: "Approval", question: "May this consequence proceed?", requiredProof: "Authorized, attributable, reasoned decision", missionControlMapping: "Plan approval + WorkOrder acceptance" },
+  { id: "release", number: 9, name: "Release", question: "What was promoted?", requiredProof: "Exact artifact, current policy, and rollback readiness", missionControlMapping: "PR currentness + separate release records" },
+  { id: "outcome", number: 10, name: "Outcome", question: "Did the intended result hold in reality?", requiredProof: "Observed technical, operational, and user result", missionControlMapping: "Production feedback + outcome records" },
+  { id: "learning-signal", number: 11, name: "Learning Signal", question: "What should change in the factory?", requiredProof: "Attributable outcome and a controlled improvement proposal", missionControlMapping: "LearningSignal + governed promotion" },
 ] as const;
 
 export const manifesto = [

@@ -4,10 +4,11 @@ import Link from "next/link";
 import { ArchitectureDiagram } from "./components/architecture-diagram";
 import { LifecycleDiagram } from "./components/lifecycle-diagram";
 import { ProtocolDiagram } from "./components/protocol-diagram";
+import { RuntimeLifecycleDiagram } from "./components/runtime-lifecycle-diagram";
 import { SectionHeader } from "./components/page-hero";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
-import { deliveryLoop, ecosystemRoles, factorySystemComponents, manifesto, maturityLevels } from "../data/fdlc";
+import { ecosystemRoles, factorySystemComponents, manifesto, maturityLevels } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "The Factory Development Lifecycle is the open operating model, engineering discipline, and reference architecture for designing, governing, and operating AI software factories.", "/");
@@ -50,27 +51,25 @@ export default function Home() {
         </section>
 
         <section className="content-section shift-section">
-          <SectionHeader eyebrow="The operating model" title="Coding agents are not software factories." description="Traditional SDLC tells humans how to develop software. FDLC defines how humans, agents, models, tools, policies, execution environments, and verification systems work together as a governed autonomous production system." />
-          <p className="orientation-label">Governed delivery loop</p>
-          <ol className="delivery-flow" aria-label="Governed delivery loop">
-            {deliveryLoop.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></li>)}
-          </ol>
-          <p className="orientation-note">An orientation layer for the end-to-end outcome. The canonical FDLC lifecycle and nine-artifact execution protocol appear below.</p>
+          <SectionHeader eyebrow="Inside the factory" title="One autonomous software-delivery lifecycle." description="An operating factory receives intent, coordinates bounded work, earns release through evidence, observes the result, and learns. These runtime steps are distinct from the lifecycle used to engineer the factory itself." />
+          <p className="orientation-label">Runtime lifecycle</p>
+          <RuntimeLifecycleDiagram />
+          <p className="orientation-note">This inner lifecycle produces software. The seven-stage FDLC lifecycle below evolves the factory that performs it.</p>
           <p className="orientation-label architecture-label">Factory architecture</p>
-          <div className="governance-grid" aria-label="Factory architecture components">
+          <div className="governance-grid" aria-label="Factory architecture components" role="group">
             {factorySystemComponents.map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</div>)}
           </div>
         </section>
 
         <section className="comparison-section">
           <div className="comparison-intro">
-            <p className="section-label">What is FDLC?</p>
-            <h2>Two lifecycles.<br />Different responsibilities.</h2>
-            <p>FDLC does not replace the software development lifecycle. It surrounds and governs the increasingly autonomous system that performs parts of it.</p>
+            <p className="section-label">The category boundary</p>
+            <h2>Agent participation is not factory engineering.</h2>
+            <p>As code generation becomes abundant, coordination, verification, and control become the constraint. FDLC addresses the production system around the agents.</p>
           </div>
           <div className="comparison-table">
-            <article><span>SDLC</span><h3>Manages the lifecycle of software.</h3><p>Requirements, design, implementation, testing, release, maintenance.</p></article>
-            <article><span>FDLC</span><h3>Manages the lifecycle of the factory that produces software.</h3><p>Intent, capabilities, authority, execution, evidence, outcomes, learning.</p></article>
+            <article><span>AI-native SDLC</span><h3>Changes who participates in software development.</h3><p>Agents increasingly contribute to planning, design, implementation, testing, deployment, and maintenance.</p></article>
+            <article><span>FDLC</span><h3>Defines how the factory around those agents is engineered.</h3><p>Design, capability, runtime, authority, evidence, operations, measurement, and controlled improvement.</p></article>
           </div>
         </section>
 
@@ -83,13 +82,13 @@ export default function Home() {
         </section>
 
         <section className="content-section lifecycle-section">
-          <SectionHeader eyebrow="Lifecycle" title="The factory is engineered, not installed." description="FDLC manages the factory as a living production system—from selecting the right work through governed improvement." />
+          <SectionHeader eyebrow="Factory lifecycle / Outer loop" title="The factory is engineered, not installed." description="FDLC evolves the production system from a measured opportunity to an operating factory line and then improves it from validated outcomes. Governance, security, observability, and measurement remain continuous throughout." />
           <LifecycleDiagram />
         </section>
 
         <section className="protocol-section">
           <div className="content-section">
-            <SectionHeader eyebrow="Governed execution" title="Every transition earns its state." description="One unit of autonomous software work advances through durable artifacts, not optimistic status labels." />
+            <SectionHeader eyebrow="Artifact protocol" title="Every transition earns its state." description="The runtime lifecycle is made inspectable by durable nouns: intent, specification, authorized work, attributable attempts, evidence, decisions, releases, outcomes, and learning signals." />
             <ProtocolDiagram />
             <div className="invariant-grid">
               <article><span>01</span><h3>The Plan is governed.</h3><p>Approval binds one exact, reviewable revision.</p></article>

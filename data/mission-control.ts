@@ -14,7 +14,7 @@ export const missionControlCapabilities = [
 ] as const;
 
 export const missionControlObjects = [
-  ["Mission", "The governed outcome and scope. This is Mission Control’s concrete realization of an FDLC Goal."],
+  ["Mission", "The governed outcome and scope. This is Mission Control’s concrete realization of FDLC Intent."],
   ["Mission Spec", "An immutable, attributable statement of requirements, non-goals, and acceptance expectations."],
   ["Plan", "A versioned artifact bound to exact Specification lineage and approved before WorkOrder release."],
   ["WorkOrder", "The governed delivery and acceptance contract for one bounded unit."],
@@ -25,4 +25,3 @@ export const missionControlObjects = [
 ] as const;
 
 export const missionControlTimeline = ["Mission", "Specification", "Approved Plan", "WorkOrders", "Tasks + Attempts", "Candidate", "Evidence", "Independent verification", "Human acceptance", "Release + outcome"] as const;
-

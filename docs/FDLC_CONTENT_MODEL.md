@@ -9,7 +9,9 @@ Date: 2026-09-03
 - Status is a property of a specific product capability, not a whole future product.
 - FDLC entities and Mission Control entities are mapped explicitly rather than forced into identical names.
 - FDLC is the discipline and architecture; FDLC.ai is the ecosystem that develops and applies it.
-- The seven-step delivery loop is a homepage orientation layer, not a replacement for the eight-stage lifecycle or nine-artifact execution protocol.
+- Four views stay distinct: the factory lifecycle, runtime lifecycle, architecture, and artifact protocol.
+- Lifecycle verbs describe what the system does. Protocol nouns preserve what existed, ran, was observed, and was decided.
+- Governance, security, observability, and measurement are continuous controls rather than sequential lifecycle stages.
 
 ## Core types
 
@@ -24,6 +26,19 @@ type LifecycleStage = {
   activities: string[];
   output: string;
   href: string;
+};
+
+type FactoryControl = {
+  name: "Govern" | "Secure" | "Observe" | "Measure";
+  purpose: string;
+};
+
+type RuntimeLifecycleStep = {
+  id: string;
+  number: number;
+  name: string;
+  artifact: string;
+  purpose: string;
 };
 
 type ArchitectureArea = {
@@ -90,9 +105,15 @@ type ProductCapability = {
 
 ### Lifecycle
 
-`Discover → Design → Assemble → Govern → Operate → Verify → Release → Learn & Scale`
+`Discover → Design → Assemble → Validate → Deploy → Operate → Improve`
 
-Each stage owns an output that becomes a governed input to later stages. The lifecycle describes evolution of the factory itself and can repeat at the factory, line, or capability level.
+Each stage owns an output that becomes a governed input to later stages. The lifecycle describes evolution of the factory itself and can repeat at the factory, line, or capability level. `Govern · Secure · Observe · Measure` span every stage as continuous controls.
+
+### Runtime lifecycle
+
+`Receive → Specify → Plan → Execute → Verify → Approve → Release → Observe → Learn`
+
+This inner lifecycle describes how software moves through an operating factory. `Deploy` belongs to the outer factory lifecycle; it promotes a validated factory version. `Release` belongs to the inner runtime lifecycle; it promotes an accepted software artifact.
 
 ### Architecture
 
@@ -100,11 +121,11 @@ Each stage owns an output that becomes a governed input to later stages. The lif
 
 The six areas are capabilities, not deployment tiers. Trust is cross-cutting even when displayed as one area; Learning consumes only validated signals and never self-authorizes promotion.
 
-### Execution Protocol
+### Artifact protocol
 
-`Goal → Plan → Work Order → Attempt → Evidence → Verification → Approval → Release → Outcome`
+`Intent → Specification → Plan → Work Order → Attempt → Evidence → Verification → Approval → Release → Outcome → Learning Signal`
 
-Associated objects include Acceptance Criterion, Agent Identity, Delegation, Execution Lease, and Learning Signal. Mission Control maps Goal to Mission and adds Specification, Task, candidate, pull request, and explicit human acceptance where its concrete contract requires them.
+Associated objects include Acceptance Criterion, Agent Identity, Delegation, Execution Lease, Task, and Candidate. Mission Control maps Intent to Mission and Specification to Mission Spec, then adds implementation records such as Tasks, candidates, pull requests, and explicit human acceptance where its concrete contract requires them.
 
 ### Manifesto
 
@@ -160,7 +181,7 @@ V0 generates a client-side conceptual record:
 type FactoryDefinition = {
   version: "0.1-draft";
   generatedAt: string;
-  goal: { outcome: string; workType: string };
+  intent: { outcome: string; workType: string };
   acceptanceCriteria: string[];
   planBoundaries: string[];
   candidateWorkOrders: Array<{ name: string; outcome: string }>;
