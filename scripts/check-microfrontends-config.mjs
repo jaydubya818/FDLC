@@ -4,43 +4,7 @@ import { resolve } from "node:path";
 import { validateSchema } from "@vercel/microfrontends/validation";
 
 const configPath = resolve(process.cwd(), "microfrontends.json");
-
-const expectedConfig = {
-  $schema: "https://openapi.vercel.sh/microfrontends.json",
-  version: "1",
-  applications: {
-    fdlc: {
-      packageName: "fdlc-site",
-      development: {
-        fallback: "https://www.fdlc.ai",
-      },
-    },
-    "ai-software-factory-mastery": {
-      packageName: "ai-software-factory-mastery-site",
-      development: {
-        fallback: "https://ai-software-factory-mastery.vercel.app",
-      },
-      routing: [
-        {
-          group: "guide",
-          paths: ["/guide", "/guide/:path*"],
-        },
-        {
-          group: "guide-legacy",
-          paths: [
-            "/docs/:path*",
-            "/visuals",
-            "/topics",
-            "/coverage",
-            "/search",
-            "/glossary",
-            "/atlas",
-          ],
-        },
-      ],
-    },
-  },
-};
+const expectedDigest = "e63f913563c1864feac38c7786e06d146892d34a4f0f74179999ff1d565e7e8b";
 
 function canonicalize(value) {
   if (Array.isArray(value)) return value.map(canonicalize);
@@ -65,12 +29,12 @@ try {
 
   const source = readFileSync(configPath, "utf8");
   const config = validateSchema(source);
+  const digest = createHash("sha256").update(canonicalJson(config)).digest("hex");
 
-  if (canonicalJson(config) !== canonicalJson(expectedConfig)) {
+  if (digest !== expectedDigest) {
     throw new Error("microfrontends.json does not match the approved FDLC routing contract");
   }
 
-  const digest = createHash("sha256").update(canonicalJson(config)).digest("hex");
   console.log(`[microfrontends:check] valid root configuration ${digest}`);
 } catch (error) {
   const message = error instanceof Error ? error.message : String(error);
