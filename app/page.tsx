@@ -29,7 +29,7 @@ export default function Home() {
               autonomy at enterprise scale.
             </p>
             <div className="hero-actions">
-              <Link className="button button-dark" href="/framework">Explore FDLC</Link>
+              <Link className="button button-dark" href="/examples/dependency-modernization">See FDLC in 5 minutes</Link>
               <a className="button button-light" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View Mission Control on GitHub ↗</a>
             </div>
           </div>

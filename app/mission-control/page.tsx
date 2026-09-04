@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
+import { StateBoundary } from "../components/state-boundary";
 import { StatusBadge } from "../components/status-badge";
 import { missionControlCapabilities, missionControlObjects, missionControlTimeline } from "../../data/mission-control";
 import { pageMetadata } from "../../lib/metadata";
@@ -33,7 +34,7 @@ export default function MissionControlPage() {
     <section className="mc-dark-section">
       <SectionHeader eyebrow="Core objects" title="One hierarchy. No optimistic shortcuts." description="Each record has a distinct owner and authority. Completion, verification, acceptance, merge, release, and production outcome are not aliases." />
       <div className="object-grid">{missionControlObjects.map(([name, summary], index) => <article key={name}><span>{String(index + 1).padStart(2, "0")}</span><h3>{name}</h3><p>{summary}</p></article>)}</div>
-      <p className="inequality">execution complete <b>≠</b> verification passed <b>≠</b> accepted <b>≠</b> released <b>≠</b> outcome proven</p>
+      <StateBoundary dark />
     </section>
 
     <section className="section-block mc-architecture">
@@ -56,7 +57,7 @@ export default function MissionControlPage() {
       </div>
     </section>
 
-    <section className="section-block capability-section">
+    <section className="section-block capability-section" id="capabilities">
       <SectionHeader eyebrow="Current capability" title="Status belongs to the capability—not the slogan." description="Available means the bounded behavior exists in the current source and is backed by the repository’s stated evidence. It does not imply general production certification." />
       <div className="capability-table" role="table" aria-label="Mission Control capability status">
         <div className="capability-row capability-head" role="row"><span role="columnheader">Capability</span><span role="columnheader">Status</span><span role="columnheader">What is supported</span><span role="columnheader">Current boundary</span></div>
@@ -67,7 +68,9 @@ export default function MissionControlPage() {
 
     <section className="quickstart-section" id="quickstart">
       <div><p className="section-label">Local quickstart</p><h2>Run the deterministic factory demo.</h2><p>Requires Node 20, pnpm 9, Git, and a Convex development deployment. Live providers are not required for the demo.</p></div>
-      <pre><code>{`git clone https://github.com/jaydubya818/MissionControl.git
+      <div className="quickstart-code" aria-label="Mission Control local quickstart commands" role="region">
+        <a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Mission Control repository ↗</a>
+        <pre><code>{`git clone https://github.com/jaydubya818/MissionControl.git
 cd MissionControl
 corepack enable && pnpm install
 cp .env.example .env.local
@@ -78,6 +81,7 @@ pnpm run dev:demo
 
 # Terminal 2
 pnpm run convex:seed:demo:force`}</code></pre>
+      </div>
       <p className="quickstart-note">Then open <code>http://localhost:5199/v2/command-center</code> and select <strong>Software Factory Demo</strong>.</p>
     </section>
 

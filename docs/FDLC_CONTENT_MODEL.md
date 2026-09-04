@@ -161,6 +161,19 @@ Primary outcome measures:
 
 Generated tokens, lines of code, prompt count, and agent count are operational telemetry only.
 
+### Worked examples
+
+Worked examples map one bounded workflow to every canonical model without creating a second taxonomy. Each example must include:
+
+- all seven factory lifecycle stages and four continuous controls;
+- all nine runtime lifecycle steps;
+- all six architecture areas;
+- all eleven artifact protocol objects;
+- one primary outcome metric and explicit guardrails;
+- a visible boundary between illustrative records and observed production evidence.
+
+The first example is dependency modernization at `/examples/dependency-modernization`. Its sample identifiers and targets are educational records, not benchmark results or customer proof.
+
 ### Product relationships
 
 ```text

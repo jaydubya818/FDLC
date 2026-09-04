@@ -46,6 +46,9 @@ No remote font dependency is required for V0.
 - Data table with responsive horizontal overflow and text alternative.
 - Documentation callouts for Principle, Implementation Note, Status, and Warning.
 - Form controls with persistent labels, visible focus, inline help, error text, and explicit success output.
+- Sticky page-contents rail on long reference pages; it becomes an in-flow disclosure on mobile.
+- State-boundary callout with a fixed semantic sequence: execution complete, verified, approved, released, outcome proven.
+- Worked-example ledger combining editorial narrative with attributable record IDs and evidence boundaries.
 
 ## Signature diagrams
 
@@ -56,6 +59,7 @@ Diagrams are semantic HTML/CSS components, not decorative raster art.
 3. **Runtime lifecycle:** nine verbs describe software moving through an operating factory; horizontal on wide screens and vertical on mobile.
 4. **Artifact protocol:** eleven durable objects preserve intent, work, proof, decisions, outcomes, and learning signals; horizontal on wide screens and vertical on mobile.
 5. **Factory Concept:** humans and intent enter the control plane; capability/model/context feed execution; evidence and verification gate outcomes; validated outcomes feed governed learning.
+6. **Worked Example:** one bounded workflow shown as a factory dossier across all four system views; concrete enough to inspect, explicitly labeled when illustrative.
 
 Every diagram includes an `aria-label` or adjacent accessible text list. No information depends on color alone.
 

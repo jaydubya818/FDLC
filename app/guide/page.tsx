@@ -11,7 +11,7 @@ export default function GuidePage() {
   const chapterCount = guideParts.reduce((count, part) => count + part.chapters.length, 0);
   return <SiteShell><div className="page-wrap guide-page">
     <PageHero eyebrow="The AI Software Factory Guide / 04" title="Build the system around the agent." description="A field guide to designing, building, proving, operating, and improving an engineering system in which evidence—not an agent saying done—decides what advances.">
-      <div className="guide-stats"><span><strong>{chapterCount}</strong> chapters</span><span><strong>6</strong> parts</span><span><strong>8</strong> lifecycle stages</span></div>
+      <div className="guide-stats"><span><strong>{chapterCount}</strong> chapters</span><span><strong>6</strong> parts</span><span><strong>7</strong> factory stages</span></div>
     </PageHero>
     <section className="guide-paths"><p className="section-label">Choose a reading path</p><div>
       <Link href="/guide/understand"><span>10 minutes</span><strong>Understand the model</strong><p>Start with the category, boundaries, and first principles.</p></Link>

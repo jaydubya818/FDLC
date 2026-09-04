@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { architectureAreas, ecosystemRoles, factoryControls, lifecycleStages, manifesto, protocolSteps, runtimeLifecycle } from "../../data/fdlc.ts";
+import { dependencyModernizationExample } from "../../data/dependency-modernization-example.ts";
 import { guideParts } from "../../data/guide.ts";
 
 test("keeps the four canonical system views stable", () => {
@@ -20,4 +21,11 @@ test("preserves the manifesto and complete guide map", () => {
   assert.equal(manifesto.length, 10);
   assert.equal(guideParts.length, 6);
   assert.equal(guideParts.reduce((count, part) => count + part.chapters.length, 0), 36);
+});
+
+test("maps the worked example to every canonical model", () => {
+  assert.deepEqual(dependencyModernizationExample.factoryStages.map((item) => item.stageId), lifecycleStages.map((item) => item.id));
+  assert.deepEqual(dependencyModernizationExample.runtimeSteps.map((item) => item.stepId), runtimeLifecycle.map((item) => item.id));
+  assert.deepEqual(dependencyModernizationExample.architecture.map((item) => item.areaId), architectureAreas.map((item) => item.id));
+  assert.deepEqual(dependencyModernizationExample.artifacts.map((item) => item.protocolId), protocolSteps.map((item) => item.id));
 });
