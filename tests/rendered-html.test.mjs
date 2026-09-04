@@ -152,6 +152,18 @@ test("core technical pages preserve distinct delivery states", async () => {
   }
 });
 
+test("mission control leads with the product and exposes an interactive governed path", async () => {
+  const html = await (await render("/mission-control")).text();
+  assert.match(html, /Governed autonomous delivery/i);
+  assert.match(html, /Mission Control is the reference implementation of the Factory Development Lifecycle/i);
+  assert.match(html, /Not another coding agent.*what agents may do.*what evidence must return/is);
+  assert.match(html, /Governed delivery trace.*Define.*Authorize.*Execute.*Verify.*Decide.*Observe/is);
+  assert.match(html, /What outcome is required.*what would prove success/is);
+  assert.match(html, /Command Center.*Work Orders.*Approvals &amp; Audit/is);
+  assert.match(html, /Inspect what is real.*where it stops/is);
+  assert.match(html, /Available.*Experimental.*Planned/is);
+});
+
 test("long technical pages expose the requested rail and tablet jump navigation", async () => {
   for (const route of ["/framework", "/architecture"]) {
     const html = await (await render(route)).text();

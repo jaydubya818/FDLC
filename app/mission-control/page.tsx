@@ -2,25 +2,15 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CopyButton } from "../components/copy-button";
-import { PageContentsNav } from "../components/page-contents-nav";
-import { PageHero, SectionHeader } from "../components/page-hero";
+import { MissionControlFlow, MissionControlProductTour } from "../components/mission-control-experience";
+import { SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
 import { StatusBadge } from "../components/status-badge";
-import { missionControlCapabilities, missionControlObjects, missionControlTimeline } from "../../data/mission-control";
+import { missionControlCapabilities, missionControlObjects } from "../../data/mission-control";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Mission Control", "The open-source reference implementation of the Factory Development Lifecycle.", "/mission-control");
-
-const contents = [
-  { label: "Golden path", href: "#golden-path" },
-  { label: "Core objects", href: "#core-objects" },
-  { label: "Architecture", href: "#architecture" },
-  { label: "Operator experience", href: "#operator-experience" },
-  { label: "Capabilities", href: "#capabilities" },
-  { label: "Quickstart", href: "#quickstart" },
-  { label: "Build next", href: "#build-next" },
-] as const;
 
 const quickstartCommands = `git clone https://github.com/jaydubya818/MissionControl.git
 cd MissionControl
@@ -36,58 +26,65 @@ pnpm run convex:seed:demo:force`;
 
 export default function MissionControlPage() {
   return <SiteShell><div className="page-wrap mission-page">
-    <PageHero eyebrow="Open-source reference implementation / 05" variant="compact" title="Mission Control" description="The open-source reference implementation of the Factory Development Lifecycle: a governed control plane for planning, executing, verifying, approving, and learning from autonomous software work." meta={[["License", "Open source"], ["Demo", "Deterministic"], ["Status", "Capability-specific"]]}>
-      <div className="hero-actions"><a className="button button-dark" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View on GitHub ↗</a><a className="button button-light" href="#quickstart">Local quickstart</a></div>
-    </PageHero>
-
-    <section className="mc-boundary"><strong>What it is</strong><p>A concrete control plane that demonstrates FDLC objects, gates, authority, evidence, and recovery.</p><strong>What it is not</strong><p>The definition of FDLC, every component of a complete factory, or a claim of fleet-scale autonomous production.</p></section>
-    <PageContentsNav items={contents} title="Mission Control sections" />
-
-    <section className="section-block" id="golden-path">
-      <SectionHeader eyebrow="Golden path" title="From governed intent to an evidence-backed decision." description="Mission Control expands the concise FDLC protocol with the concrete records needed to operate and audit one software delivery path." />
-      <ol className="mc-timeline">{missionControlTimeline.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></li>)}</ol>
-      <div className="golden-path-steps">
-        <p>Engineering work enters as a Mission with explicit scope and acceptance expectations.</p>
-        <p>A versioned Plan is reviewed before it releases bounded WorkOrders.</p>
-        <p>Tasks and Attempts execute against frozen configuration under worker admission and leases.</p>
-        <p>An exact candidate is verified by a logically separate verifier and current evidence.</p>
-        <p>A human accepts or requests revision at the consequential boundary; release remains separate.</p>
-        <p>Accepted evidence may become an advisory learning signal and a governed future proposal.</p>
+    <section className="mc-product-hero">
+      <div className="mc-product-hero-copy">
+        <p className="section-label">Mission Control / Open-source FDLC reference</p>
+        <h1>Governed autonomous delivery.</h1>
+        <p className="mc-product-hero-lede"><strong>Mission Control is the reference implementation of the Factory Development Lifecycle.</strong> It turns intent, execution, evidence, approval, and outcomes into durable operating records.</p>
+        <p className="mc-product-hero-proof"><strong>Not another coding agent.</strong> The system that decides what agents may do—and what evidence must return before work advances.</p>
+        <div className="hero-actions"><a className="button button-dark" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View source on GitHub ↗</a><a className="button button-light" href="#quickstart">Run the demo</a></div>
       </div>
+      <figure className="mc-hero-window">
+        <div className="mc-product-chrome"><span>Mission Control / Command Center</span><span>Demo view</span></div>
+        <Image alt="Mission Control command center showing ranked work requiring operator attention" height={1050} priority sizes="(max-width: 980px) 100vw, 720px" src="/mission-control/command-center.png" width={1600} />
+        <figcaption><strong>Operator-first by design.</strong><span>Decisions, blockers, risk, owners, and proof sources—not a stream of agent activity.</span></figcaption>
+      </figure>
+      <dl className="mc-product-facts"><div><dt>License</dt><dd>Open source</dd></div><div><dt>Demo</dt><dd>Deterministic</dd></div><div><dt>Truth model</dt><dd>Capability-specific</dd></div></dl>
     </section>
 
-    <section className="mc-dark-section" id="core-objects">
-      <SectionHeader eyebrow="Core objects" title="One hierarchy. No optimistic shortcuts." description="Each record has a distinct owner and authority. Completion, verification, acceptance, merge, release, and production outcome are not aliases." />
-      <div className="object-grid">{missionControlObjects.map(([name, summary], index) => <article key={name}><span>{String(index + 1).padStart(2, "0")}</span><h3>{name}</h3><p>{summary}</p></article>)}</div>
+    <section className="mc-purpose-strip" aria-label="Mission Control purpose">
+      <article><span>01 / Govern</span><strong>Bound authority before execution.</strong></article>
+      <article><span>02 / Verify</span><strong>Require evidence for every transition.</strong></article>
+      <article><span>03 / Decide</span><strong>Put human attention at consequential boundaries.</strong></article>
+    </section>
+
+    <nav aria-label="Mission Control page sections" className="mc-section-nav"><a href="#how-it-works">How it works</a><a href="#operator-experience">Operator views</a><a href="#architecture">Architecture</a><a href="#capabilities">Capabilities</a><a href="#quickstart">Run locally</a></nav>
+
+    <section className="section-block mc-how-section" id="how-it-works">
+      <SectionHeader eyebrow="Interactive governed path" title="Follow one mission through the control plane." description="Select a stage to see the governing question, the authority allowed to answer it, and the proof required before state can advance." />
+      <MissionControlFlow />
+      <div className="mc-object-heading"><div><p className="section-label">Durable record model</p><h3>Every claim has an owner, lineage, and boundary.</h3></div><p>Mission Control expands the FDLC Artifact Protocol with implementation records needed to dispatch, recover, verify, and audit real work.</p></div>
+      <ol className="mc-object-ledger">{missionControlObjects.map(([name, summary], index) => <li key={name}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{name}</strong><p>{summary}</p></div></li>)}</ol>
+    </section>
+
+    <section className="mc-boundary-section">
       <StateBoundary dark mode="mission-control" />
     </section>
 
-    <section className="section-block mc-architecture" id="architecture">
-      <SectionHeader eyebrow="Architecture" title="Authority stays in the control plane." description="The browser, agents, harnesses, and providers do not create their own permission to act or advance state." />
-      <div className="mc-layers">
-        <article><span>Operator surfaces</span><strong>React + TypeScript</strong><small>Exceptions, decisions, Plans, WorkOrders, traces, and evidence</small></article>
-        <article><span>Authoritative control plane</span><strong>Convex</strong><small>State, policy, identity, admission, decisions, and immutable lineage</small></article>
-        <article><span>Orchestration</span><strong>Hono + worker runtime</strong><small>Signed service commands, harness admission, leases, and recovery</small></article>
-        <article><span>Execution</span><strong>Codex / bounded backends</strong><small>Frozen manifest, isolated worktree or Preview Remote Sandbox, exact candidate</small></article>
-        <article><span>Verification + publication</span><strong>Independent Attempt + GitHub App</strong><small>Evidence receipts, currentness, Quality Gate, permit-gated publication</small></article>
-      </div>
+    <section className="screenshots-section mc-operator-section" id="operator-experience">
+      <SectionHeader eyebrow="Operator experience" title="Operate from exceptions, evidence, and decisions." description="Explore three real views from the deterministic Software Factory demo. Each surface is designed around the next responsible action—not activity for activity’s sake." />
+      <MissionControlProductTour />
+      <p className="mc-demo-disclaimer">These screens demonstrate product structure and the documented one-repository V1 path. They are not a claim of fleet-scale autonomous production.</p>
     </section>
 
-    <section className="screenshots-section" id="operator-experience">
-      <SectionHeader eyebrow="Operator experience" title="Exceptions and evidence before activity." description="These views are from Mission Control’s deterministic Software Factory demo. They show product structure, not fleet-scale production usage." />
-      <figure className="product-frame is-large"><div><span>COMMAND CENTER</span><span>DEMO VIEW</span></div><Image src="/mission-control/command-center.png" alt="Mission Control command center with delivery metrics and ranked work requiring attention" width={1600} height={1050} sizes="(max-width: 1240px) 100vw, 1120px" /><figcaption>Command Center: ranked decisions, blockers, risk, and proof sources.</figcaption></figure>
-      <div className="screenshot-grid">
-        <figure className="product-frame"><div><span>WORK ORDERS</span><span>DEMO VIEW</span></div><Image src="/mission-control/work-orders.png" alt="Mission Control Work Orders view" width={1600} height={1050} sizes="(max-width: 820px) 100vw, 50vw" /><figcaption>Governed WorkOrders and delivery state.</figcaption></figure>
-        <figure className="product-frame"><div><span>AUDIT</span><span>DEMO VIEW</span></div><Image src="/mission-control/audit.png" alt="Mission Control audit and approval history view" width={1600} height={1050} sizes="(max-width: 820px) 100vw, 50vw" /><figcaption>Approval and audit lineage.</figcaption></figure>
+    <section className="section-block mc-architecture" id="architecture">
+      <SectionHeader eyebrow="Implementation architecture" title="Intelligence can vary. Authority remains explicit." description="The browser, agents, harnesses, and providers do not create their own permission to act or advance state. The control plane remains the source of identity, policy, state, and decisions." />
+      <div className="mc-layers">
+        <article><span>01 / Operator surfaces</span><div><strong>React + TypeScript</strong><small>Exceptions, decisions, Plans, WorkOrders, traces, and evidence</small></div><b>Human attention</b></article>
+        <article className="is-control"><span>02 / Authoritative control plane</span><div><strong>Convex</strong><small>State, policy, identity, admission, decisions, and immutable lineage</small></div><b>Source of authority</b></article>
+        <article><span>03 / Orchestration</span><div><strong>Hono + worker runtime</strong><small>Signed service commands, harness admission, leases, checkpoints, and recovery</small></div><b>Bounded coordination</b></article>
+        <article><span>04 / Execution</span><div><strong>Codex + bounded backends</strong><small>Frozen manifest, isolated worktree or Preview Remote Sandbox, exact candidate</small></div><b>Replaceable intelligence</b></article>
+        <article><span>05 / Verification + publication</span><div><strong>Independent Attempt + GitHub App</strong><small>Evidence receipts, currentness, Quality Gate, and permit-gated publication</small></div><b>Proof before promotion</b></article>
       </div>
+      <p className="mc-architecture-rule"><span>Operating rule</span> Allow intelligence to change. Never allow authority to become implicit.</p>
     </section>
 
     <section className="section-block capability-section" id="capabilities">
-      <SectionHeader eyebrow="Current capability" title="Status belongs to the capability—not the slogan." description="Available means the bounded behavior exists in the current source and is backed by the repository’s stated evidence. It does not imply general production certification." />
-      <div className="capability-table" role="table" aria-label="Mission Control capability status">
-        <div className="capability-row capability-head" role="row"><span role="columnheader">Capability</span><span role="columnheader">Status</span><span role="columnheader">What is supported</span><span role="columnheader">Current boundary</span></div>
-        {missionControlCapabilities.map((capability) => <div className="capability-row" role="row" key={capability.name}><strong role="cell">{capability.name}</strong><span role="cell"><StatusBadge status={capability.status} /></span><p role="cell">{capability.summary}</p><p role="cell">{capability.limitation}</p></div>)}
-      </div>
+      <SectionHeader eyebrow="Current capability" title="Inspect what is real—and where it stops." description="Status belongs to each capability, not the product slogan. Open any item to see the implemented behavior and its current boundary." />
+      <div className="mc-capability-groups">{["Available", "Experimental", "Planned"].map((status) => {
+        const capabilities = missionControlCapabilities.filter((capability) => capability.status === status);
+        return <section className={`mc-capability-group is-${status.toLowerCase()}`} key={status}><header><StatusBadge status={status} /><span>{String(capabilities.length).padStart(2, "0")} capabilities</span></header><div>{capabilities.map((capability, index) => <details key={capability.name} open={status === "Available" && index === 0}><summary><strong>{capability.name}</strong><span aria-hidden="true">+</span></summary><div><p><b>Supported</b>{capability.summary}</p><p><b>Current boundary</b>{capability.limitation}</p></div></details>)}</div></section>;
+      })}</div>
       <a className="section-link" href="https://github.com/jaydubya818/MissionControl/blob/main/docs/product/software-factory-capability-maturity.md" rel="noreferrer" target="_blank">Read the canonical capability maturity ledger ↗</a>
     </section>
 
@@ -97,7 +94,7 @@ export default function MissionControlPage() {
         <div className="quickstart-code-toolbar"><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Mission Control repository ↗</a><CopyButton label="Copy commands" text={quickstartCommands} /></div>
         <pre><code>{quickstartCommands}</code></pre>
       </div>
-      <p className="quickstart-note">Then open <code>http://localhost:5199/v2/command-center</code> and select <strong>Software Factory Demo</strong>.</p>
+      <p className="quickstart-note">Then open <code>http://localhost:5199/v2/command-center</code> and select <strong>Software Factory Demo</strong>. The seeded path runs without live model providers.</p>
     </section>
 
     <section className="reading-next" id="build-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/spec">Preview the Specification →</Link></div></section>
