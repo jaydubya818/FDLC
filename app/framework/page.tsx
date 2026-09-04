@@ -12,7 +12,15 @@ import { StateBoundary } from "../components/state-boundary";
 import { canonicalDefinition, manifesto, metrics } from "../../data/fdlc";
 import { pageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Framework", "FDLC is the lifecycle for the factory itself: the operating model, architecture, execution protocol, and principles for AI software factories.", "/framework");
+export const metadata: Metadata = pageMetadata("Framework", canonicalDefinition, "/framework");
+
+const frameworkPieces = [
+  ["FDLC Framework", "Open methodology", "The operating model and engineering discipline defined on this page.", "/framework"],
+  ["FDLC Specification", "Proposed standard", "Formal definitions and invariants for portable artifacts and state transitions.", "/spec"],
+  ["AI Software Factory Guide", "Open field guide", "The detailed methodology from first principles through production.", "/guide"],
+  ["Mission Control", "Open-source reference", "The reference implementation that makes the FDLC protocol concrete.", "/mission-control"],
+  ["FDLC Enterprise", "Proposed product", "The commercial control plane for operating proven factories at organizational scale.", "/enterprise"],
+] as const;
 
 const contents = [
   { label: "Definition", href: "#definition" },
@@ -25,14 +33,16 @@ const contents = [
   { label: "Artifacts", href: "#protocol" },
   { label: "Principles", href: "#governance" },
   { label: "Measurement", href: "#measurement" },
+  { label: "How the pieces fit", href: "#ecosystem" },
   { label: "Mission Control", href: "#mission-control" },
+  { label: "Start here", href: "#start-here" },
 ] as const;
 
 export default function FrameworkPage() {
   return <SiteShell>
     <div className="page-wrap">
       <PageHero eyebrow="FDLC Framework / 01" title="The lifecycle for the factory itself." description={canonicalDefinition}>
-        <div className="hero-actions"><Link className="button button-dark" href="/in-5-minutes">See FDLC in 5 minutes</Link><Link className="button button-light" href="/architecture">Explore architecture</Link></div>
+        <div className="hero-actions"><Link className="button button-dark" href="/in-5-minutes">Understand FDLC in 5 minutes</Link><Link className="button button-light" href="/architecture">Explore the Architecture</Link><Link className="text-action" href="/manifesto">Read the Manifesto →</Link></div>
       </PageHero>
       <div className="longform-layout">
       <PageContentsNav items={contents} mobileTitle="Jump to section" title="Framework sections" variant="rail" />
@@ -45,12 +55,16 @@ export default function FrameworkPage() {
       </section>
 
       <section className="section-block framework-category" id="category">
-        <SectionHeader eyebrow="The category boundary" title="FDLC engineers the production system around the SDLC." description="Traditional SDLC defines how software is built. AI-Native SDLC adds agents to that work. FDLC defines how the resulting factory is designed, governed, operated, measured, and improved." />
+        <SectionHeader eyebrow="The category boundary" title="Two transitions, then a new discipline." description="First, agents participate across the software lifecycle. Then those workflows become a persistent, governed production system. FDLC is the engineering discipline for that factory." />
         <CategoryDistinction />
       </section>
 
       <section className="section-block" id="why">
-        <SectionHeader eyebrow="Why FDLC exists" title="When code stops being the bottleneck, factory maturity becomes the constraint." description="An agent can produce code. A factory must coordinate durable work, bound authority, require evidence, route consequential decisions, observe outcomes, and improve without silently weakening its controls." />
+        <SectionHeader eyebrow="Why FDLC exists" title="Code generation is no longer the bottleneck. Process is." description="Organizations can give every developer a powerful coding agent. They then encounter a different class of operating, authority, evidence, and learning problems." />
+        <div className="framework-why-copy">
+          <article><p>FDLC exists to answer these questions systematically:</p><ul><li>Who defines intent, and when is it complete?</li><li>What agent may act, with what authority, tools, and blast radius?</li><li>What evidence proves the work is correct?</li><li>Can the producing agent certify its own output?</li><li>When must a human intervene?</li><li>How does the system improve without learning the wrong thing?</li></ul></article>
+          <aside><strong>Not another coding agent. The control system around them.</strong><p>Your organization may use Codex, Claude Code, Cursor, GitHub Copilot, internal agents, or models that do not exist yet. FDLC provides the durable operating layer around them.</p></aside>
+        </div>
         <div className="reason-grid">
           <article><span>01</span><h3>Models are probabilistic.</h3><p>Authorization, state, and consequential decisions cannot be.</p></article>
           <article><span>02</span><h3>Sessions are temporary.</h3><p>Plans, work, evidence, decisions, and recovery must be durable.</p></article>
@@ -60,7 +74,7 @@ export default function FrameworkPage() {
       </section>
 
       <section className="section-block model-distinction" id="models">
-        <SectionHeader eyebrow="Four views of the system" title="Related models. Different responsibilities." />
+        <SectionHeader eyebrow="Four views of the system" title="Do not collapse these into one diagram." description="Each view answers a different question. Keeping them separate is what makes the operating model precise." />
         <div className="system-models">
           <article><span>01 / Factory lifecycle</span><h3>How the factory evolves.</h3><p>Discover, design, assemble, validate, deploy, operate, and improve.</p><a href="#lifecycle">View outer lifecycle ↓</a></article>
           <article><span>02 / Runtime lifecycle</span><h3>How software moves inside it.</h3><p>One autonomous delivery loop from received intent to governed learning.</p><a href="#runtime">View inner lifecycle ↓</a></article>
@@ -108,7 +122,18 @@ export default function FrameworkPage() {
         <div className="metric-grid">{metrics.slice(0, 8).map(([name, definition], index) => <article key={name}><span>{String(index + 1).padStart(2, "0")}</span><h3>{name}</h3><p>{definition}</p></article>)}</div>
       </section>
 
+      <section className="section-block" id="ecosystem">
+        <SectionHeader eyebrow="How the pieces fit" title="One open discipline. Distinct ways to define, teach, demonstrate, and scale it." description="The Framework remains the definition of FDLC. Specifications, teaching material, implementations, and commercial products support the discipline without becoming the category itself." />
+        <div className="framework-piece-grid">{frameworkPieces.map(([name, status, description, href], index) => <Link href={href} key={name}><span>{String(index + 1).padStart(2, "0")} / {status}</span><h3>{name}</h3><p>{description}</p><small>Explore →</small></Link>)}</div>
+      </section>
+
       <section className="reference-callout" id="mission-control"><div><p className="section-label">Reference implementation</p><h2>Mission Control makes the protocol concrete.</h2></div><div><p>Inspect how one open-source control plane models governed Plans, WorkOrders, Attempts, evidence, verification, and human acceptance—with current limitations visible.</p><div className="hero-actions"><Link className="button button-light" href="/mission-control">Explore Mission Control</Link><Link className="text-action light-link" href="/in-5-minutes">See the walkthrough →</Link></div></div></section>
+
+      <section className="framework-start" id="start-here">
+        <p className="section-label">Start here</p><h2>Choose the next depth you need.</h2>
+        <div className="framework-start-grid"><Link href="/in-5-minutes"><span>01</span><strong>FDLC in 5 Minutes</strong><small>One factory line end to end →</small></Link><Link href="/architecture"><span>02</span><strong>Architecture</strong><small>Six capability areas →</small></Link><Link href="/manifesto"><span>03</span><strong>Manifesto</strong><small>Ten governing principles →</small></Link><Link href="/mission-control"><span>04</span><strong>Mission Control</strong><small>Reference implementation →</small></Link><Link href="/maturity"><span>05</span><strong>Maturity</strong><small>Assess what is true today →</small></Link><Link href="/guide"><span>06</span><strong>Guide</strong><small>Full methodology →</small></Link></div>
+        <blockquote>Verified delivery, not merely generated code.</blockquote>
+      </section>
       </div>
       </div>
     </div>

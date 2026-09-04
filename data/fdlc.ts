@@ -27,12 +27,12 @@ export const categoryTransitions = [
   {
     from: "SDLC",
     to: "AI-Native SDLC",
-    meaning: "Agents participate across the software lifecycle.",
+    meaning: "Agents move beyond code generation and participate across planning, design, implementation, testing, deployment, and maintenance.",
   },
   {
     from: "AI-Native SDLC",
     to: "AI Software Factory",
-    meaning: "Those workflows become a persistent, governed production system.",
+    meaning: "Individual agent workflows become persistent, orchestrated production systems that transform intent into verified software with decreasing human intervention.",
   },
 ] as const;
 
