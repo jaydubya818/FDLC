@@ -22,7 +22,7 @@ FDLC defines the discipline. Mission Control demonstrates it. The Guide teaches 
 | `/` | Establish the category and route users within 60 seconds | Engineering leaders, platform leaders, developers | Explore FDLC | Brief + Guide whole-factory chapters | FDLC product/editorial |
 | `/framework` | Canonical definition and technical reference | Architects, engineering leaders | Study the architecture | Brief + Guide chapters 1–3 | FDLC framework |
 | `/architecture` | Explain six required capability areas and their relationships | Architects, platform engineers | Explore the Guide | Guide chapters 2, 10–19, 21–33 | FDLC architecture |
-| `/examples/dependency-modernization` | Show all four FDLC views through one bounded worked scenario | Builders, evaluators, engineering leaders | Inspect Mission Control | Framework + Guide + Mission Control capability model | FDLC education |
+| `/in-5-minutes` | Show all four FDLC views through one bounded worked scenario | Builders, evaluators, engineering leaders | Inspect Mission Control | Framework + Guide + Mission Control capability model | FDLC education |
 | `/manifesto` | State the ten governance principles clearly | All audiences | Read the Framework | Brief + Guide principles | FDLC framework |
 | `/guide` | Book home, reading paths, chapters, and documentation shell | Builders and operators | Start reading | Guide repository | Guide editorial |
 | `/guide/[slug]` | Long-form guide content with navigation and anchors | Builders and operators | Continue reading | Guide repository | Guide editorial |
@@ -50,7 +50,7 @@ Desktop primary navigation:
 
 `More` contains Manifesto, Specification, Benchmarks, Start, Enterprise, Deploy, and About. The primary utility CTA is GitHub and points to Mission Control until an FDLC organization repository exists.
 
-Mobile navigation uses one accessible disclosure containing the same hierarchy. The footer repeats Learn, Build, Adopt, and Project groups.
+Mobile navigation uses one accessible disclosure containing the same hierarchy. The footer repeats Learn, Build, Adopt, and Project groups. `/examples/dependency-modernization` is retained only as a permanent redirect to `/in-5-minutes`.
 
 ## Page-to-page narrative
 
@@ -126,4 +126,4 @@ V0 publishes the map and a high-quality documentation shell. The current 36-chap
 
 ## Documentation UX
 
-Guide detail pages use breadcrumbs, desktop sidebar, mobile section navigation, generated table of contents, heading anchors, previous/next links, responsive tables, callouts, and readable code blocks. Framework and Architecture use a compact sticky contents rail on desktop and an in-flow disclosure on mobile. Search is prepared through semantic structure and deterministic content metadata; lightweight search is P1 and must not block V0.
+Guide detail pages use breadcrumbs, desktop sidebar, mobile section navigation, generated table of contents, heading anchors, previous/next links, responsive tables, callouts, and readable code blocks. Framework and Architecture use an active sticky side rail on wide screens, a floating contents disclosure on narrower desktop, and an in-flow disclosure on mobile. Detailed factory stages, protocol artifacts, Architecture areas, failure modes, and maturity progressions progressively disclose on mobile. Search is prepared through semantic structure and deterministic content metadata; lightweight search is P1 and must not block V0.

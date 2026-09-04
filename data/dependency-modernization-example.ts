@@ -1,8 +1,15 @@
 export const dependencyModernizationExample = {
   title: "Dependency modernization",
   scope: "Upgrade the Acme Payments SDK from v3 to v4 in checkout-api without changing public API behavior.",
+  businessCase: "Major dependency upgrades recur across repositories, consume senior review time, and carry compatibility risk—making them a strong candidate for one reusable, evidence-gated factory line.",
   status: "Worked reference scenario",
   boundary: "Illustrative records and targets—not a production case study or benchmark result.",
+  baselineMetrics: [
+    ["Cycle time", "Median elapsed time from admitted upgrade to accepted change"],
+    ["Human minutes", "Review and intervention time per accepted upgrade"],
+    ["Reopen rate", "Accepted work that must re-enter governed execution"],
+    ["Escaped defects", "Compatibility failures found after the release boundary"],
+  ],
   acceptanceCriteria: [
     "All existing contract and integration tests pass against the exact candidate.",
     "No deprecated v3 imports or compatibility shims remain.",

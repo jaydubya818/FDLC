@@ -27,7 +27,7 @@ npm test
 
 - `app/` — routes, components, metadata, sitemap, robots, and presentation
 - `data/` — canonical FDLC, Guide, and Mission Control content models
-- `app/examples/` — bounded worked scenarios that connect the four system views without claiming unverified operating results
+- `app/in-5-minutes/` — the canonical worked scenario connecting the four system views without claiming unverified operating results
 - `lib/` — scoring and factory-definition logic
 - `docs/` — source audit, information architecture, content model, design system, implementation plan, capability matrix, and release checklist
 - `tests/` — unit and rendered-route checks

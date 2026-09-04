@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArchitectureDiagram } from "../components/architecture-diagram";
 import { PageContentsNav } from "../components/page-contents-nav";
 import { PageHero, SectionHeader } from "../components/page-hero";
+import { ResponsiveDetails } from "../components/responsive-details";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
 import { architectureAreas } from "../../data/fdlc";
@@ -12,37 +13,49 @@ export const metadata: Metadata = pageMetadata("Architecture", "Explore the six 
 
 const contents = [
   { label: "Overview", href: "#overview" },
-  { label: "Intent", href: "#intent" },
-  { label: "Harness", href: "#harness" },
-  { label: "Capability", href: "#capability" },
-  { label: "Model", href: "#model" },
-  { label: "Trust", href: "#trust" },
-  { label: "Learning", href: "#learning" },
+  { label: "01 Intent", href: "#intent" },
+  { label: "02 Harness", href: "#harness" },
+  { label: "03 Capability", href: "#capability" },
+  { label: "04 Model", href: "#model" },
+  { label: "05 Trust", href: "#trust" },
+  { label: "06 Learning", href: "#learning" },
   { label: "System flow", href: "#system-flow" },
 ] as const;
+
+const guideByArea = {
+  intent: "/guide/design",
+  harness: "/guide/build",
+  capability: "/guide/build",
+  model: "/guide/build",
+  trust: "/guide/prove",
+  learning: "/guide/improve",
+} as const;
 
 export default function ArchitecturePage() {
   return <SiteShell><div className="page-wrap">
     <PageHero eyebrow="Reference architecture / 02" title="Six areas. Explicit boundaries." description="An AI software factory is a system of responsibilities. The architecture makes each responsibility visible so teams can decide what to build, buy, govern, verify, and operate." />
-    <PageContentsNav items={contents} />
+    <PageContentsNav items={contents} title="Architecture areas" />
     <section className="architecture-overview" id="overview"><ArchitectureDiagram /><p>Trust constrains every area. Learning closes the loop only through governed promotion. The model is replaceable; the control contract is not.</p></section>
 
     <StateBoundary />
 
     <section className="section-block architecture-details">
       <SectionHeader eyebrow="Capability map" title="Inspect each area as an operating contract." description="Purpose describes why the area exists. Responsibilities and components describe what it owns. Decisions and failure modes reveal what must remain explicit." />
-      {architectureAreas.map((area) => <article id={area.id} key={area.id}>
-        <header><span>{String(area.number).padStart(2, "0")}</span><div><p>Architecture area</p><h2>{area.name}</h2><strong>{area.short}</strong></div><p>{area.purpose}</p></header>
-        <div className="architecture-detail-grid">
-          <section><h3>Responsibilities</h3><ul>{area.responsibilities.map((item) => <li key={item}>{item}</li>)}</ul></section>
-          <section><h3>Common components</h3><ul>{area.components.map((item) => <li key={item}>{item}</li>)}</ul></section>
-          <section><h3>Required decisions</h3><ul>{area.decisions.map((item) => <li key={item}>{item}</li>)}</ul></section>
-          <section><h3>Failure modes</h3><ul>{area.failureModes.map((item) => <li key={item}>{item}</li>)}</ul></section>
-          <section><h3>Maturity progression</h3><ol>{area.maturity.map((item, index) => <li key={item}><span>L{index + 1}</span>{item}</li>)}</ol></section>
-          <section><h3>Examples</h3><ul>{area.examples.map((item) => <li key={item}>{item}</li>)}</ul></section>
+      {architectureAreas.map((area) => <ResponsiveDetails className={`architecture-area area-${area.id}`} id={area.id} key={area.id}>
+        <summary><span>{String(area.number).padStart(2, "0")}</span><div><p>Architecture area</p><h2>{area.name}</h2><strong>{area.short}</strong></div><p>{area.purpose}</p><small>Expand area</small></summary>
+        <div className="architecture-area-body">
+          <div className="architecture-detail-grid">
+            <section><h3>Responsibilities</h3><ul>{area.responsibilities.map((item) => <li key={item}>{item}</li>)}</ul></section>
+            <section><h3>Common components</h3><ul>{area.components.map((item) => <li key={item}>{item}</li>)}</ul></section>
+            <section><h3>Required decisions</h3><ul>{area.decisions.map((item) => <li key={item}>{item}</li>)}</ul></section>
+            <ResponsiveDetails className="architecture-detail-disclosure"><summary><h3>Failure modes</h3><span>Expand</span></summary><ul>{area.failureModes.map((item) => <li key={item}>{item}</li>)}</ul></ResponsiveDetails>
+            <ResponsiveDetails className="architecture-detail-disclosure"><summary><h3>Maturity progression</h3><span>Expand</span></summary><ol>{area.maturity.map((item, index) => <li key={item}><span>L{index + 1}</span>{item}</li>)}</ol></ResponsiveDetails>
+            <section><h3>Examples</h3><ul>{area.examples.map((item) => <li key={item}>{item}</li>)}</ul></section>
+          </div>
+          <p className="relationship"><span>Relationship</span>{area.relationships}</p>
+          <div className="architecture-area-links"><Link href={guideByArea[area.id]}>Related Guide chapters →</Link><Link href="/mission-control#capabilities">See in Mission Control →</Link></div>
         </div>
-        <p className="relationship"><span>Relationship</span>{area.relationships}</p>
-      </article>)}
+      </ResponsiveDetails>)}
     </section>
 
     <section className="factory-system-diagram" id="system-flow">
