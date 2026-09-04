@@ -18,7 +18,7 @@ test("normalizes one acceptance criterion per line", () => {
 test("generates a bounded conceptual factory definition", () => {
   const definition = generateFactoryDefinition(completeForm);
   assert.equal(definition.version, "0.1-draft");
-  assert.equal(definition.goal.workType, "API migration");
+  assert.equal(definition.intent.workType, "API migration");
   assert.equal(definition.acceptanceCriteria.length, 2);
   assert.equal(definition.candidateWorkOrders.length, 3);
   assert.ok(definition.requiredCapabilities.includes("Independent verification"));
@@ -29,4 +29,3 @@ test("requires all five teaching boundaries", () => {
   const errors = factoryFormErrors({ workType: "", outcome: "", criteria: "", authority: [], verification: [], humanControls: [] });
   assert.equal(errors.length, 6);
 });
-

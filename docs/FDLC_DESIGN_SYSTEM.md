@@ -52,9 +52,10 @@ No remote font dependency is required for V0.
 Diagrams are semantic HTML/CSS components, not decorative raster art.
 
 1. **Architecture:** six connected capability areas with Trust visibly crossing execution and Learning closing the loop.
-2. **Lifecycle:** eight numbered stages rendered as a responsive track; mobile becomes a vertical sequence.
-3. **Execution Protocol:** nine artifacts separated by evidence gates; horizontal on wide screens and vertical on mobile.
-4. **Factory Concept:** humans and intent enter the control plane; capability/model/context feed execution; evidence and verification gate outcomes; validated outcomes feed governed learning.
+2. **Factory lifecycle:** seven numbered stages with a persistent band for governance, security, observability, and measurement; mobile becomes a vertical sequence.
+3. **Runtime lifecycle:** nine verbs describe software moving through an operating factory; horizontal on wide screens and vertical on mobile.
+4. **Artifact protocol:** eleven durable objects preserve intent, work, proof, decisions, outcomes, and learning signals; horizontal on wide screens and vertical on mobile.
+5. **Factory Concept:** humans and intent enter the control plane; capability/model/context feed execution; evidence and verification gate outcomes; validated outcomes feed governed learning.
 
 Every diagram includes an `aria-label` or adjacent accessible text list. No information depends on color alone.
 
@@ -70,7 +71,7 @@ Every diagram includes an `aria-label` or adjacent accessible text list. No info
 
 - Desktop: full navigation and horizontal diagrams.
 - Tablet: reduced columns, diagrams wrap into two rows, table of contents moves below article intro.
-- Mobile: navigation disclosure, single-column cards, vertical lifecycle/protocol, no clipped labels, 44px minimum interactive targets.
+- Mobile: navigation disclosure, single-column cards, vertical lifecycle/runtime/protocol diagrams, no clipped labels, 44px minimum interactive targets.
 - Documentation sidebars become an in-flow disclosure before the article.
 
 ## Theme
@@ -94,4 +95,3 @@ V0 uses one carefully tuned light editorial theme plus dark high-trust sections.
 - Forms announce errors and assessment completion.
 - Diagrams include text equivalents.
 - Status never relies on color alone.
-

@@ -5,6 +5,8 @@ topic: fdlc-site-v0
 
 # FDLC.ai V0 Site
 
+> Superseded model note: a later canonical reconciliation defines four views—Factory Lifecycle, Runtime Lifecycle, Architecture, and Artifact Protocol. Other V0 product and implementation decisions remain current.
+
 ## What We're Building
 
 A multi-route, repository-based publication and education site that defines the Factory Development Lifecycle, teaches it through the existing AI Software Factory Guide, and demonstrates it through the honestly scoped Mission Control reference implementation. Two client-side tools—the maturity assessment and Factory Definition builder—turn the framework into a useful first action without introducing backend complexity.
@@ -16,7 +18,7 @@ The brief is specific enough that no exploratory product questions are required.
 ## Key Decisions
 
 - Category before product: FDLC remains larger than Mission Control.
-- Three models, always distinct: Lifecycle, Architecture, Execution Protocol.
+- Four views, always distinct: Factory Lifecycle, Runtime Lifecycle, Architecture, and Artifact Protocol.
 - One canonical typed content layer for repeated concepts.
 - Editorial technical design with semantic HTML/CSS diagrams.
 - Full-depth Guide migration is staged; V0 ships the guide map and documentation shell without shallowly rewriting 36 chapters.
@@ -33,4 +35,3 @@ The brief is specific enough that no exploratory product questions are required.
 ## Next Steps
 
 Proceed to the documented implementation plan and build the P0 foundation, then P0 pages, interactions, previews, and release-quality pass.
-

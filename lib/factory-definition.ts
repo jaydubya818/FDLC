@@ -9,7 +9,7 @@ export type FactoryForm = {
 
 export type FactoryDefinition = {
   version: "0.1-draft";
-  goal: { outcome: string; workType: string };
+  intent: { outcome: string; workType: string };
   acceptanceCriteria: string[];
   planBoundaries: string[];
   candidateWorkOrders: Array<{ name: string; outcome: string }>;
@@ -45,7 +45,7 @@ export function generateFactoryDefinition(form: FactoryForm): FactoryDefinition 
 
   return {
     version: "0.1-draft",
-    goal: { outcome: form.outcome.trim(), workType: form.workType },
+    intent: { outcome: form.outcome.trim(), workType: form.workType },
     acceptanceCriteria,
     planBoundaries: [
       `Stay within the approved ${form.workType.toLowerCase()} outcome and named repositories.`,
@@ -71,4 +71,3 @@ export function factoryFormErrors(form: FactoryForm) {
   if (form.humanControls.length === 0) errors.push("Choose at least one human control boundary.");
   return errors;
 }
-

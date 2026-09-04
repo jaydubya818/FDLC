@@ -4,11 +4,14 @@ Date: 2026-09-03
 
 ## Organizing principle
 
-Every primary page reinforces three distinct mental models:
+Every primary page reinforces four distinct views of one system:
 
-1. **Lifecycle** — how the factory is designed, built, operated, verified, and improved.
-2. **Architecture** — what capabilities the factory contains.
-3. **Execution Protocol** — how one governed unit of work moves from intent to outcome.
+1. **Factory lifecycle** — how the factory is discovered, designed, assembled, validated, deployed, operated, and improved.
+2. **Runtime lifecycle** — how software moves through an operating factory from received intent to governed learning.
+3. **Architecture** — what capabilities the factory contains.
+4. **Artifact protocol** — the durable nouns that make one governed unit of work inspectable from intent to learning signal.
+
+Governance, security, observability, and measurement are continuous controls across the factory lifecycle. They are not sequential stages.
 
 FDLC defines the discipline. Mission Control demonstrates it. The Guide teaches it. FDLC Deploy implements it in bounded customer environments. FDLC Enterprise is intended to industrialize proven patterns. The Specification will formalize interoperability. None replaces the FDLC framework itself.
 
@@ -66,11 +69,11 @@ The homepage uses a scannable category-to-adoption sequence:
 
 1. Memorable category hero and two primary entry CTAs.
 2. Institutional category statement: the operating model and technical foundation for trusted autonomous software delivery.
-3. Seven-step governed delivery orientation plus the factory system components.
-4. FDLC versus SDLC.
+3. Nine-step runtime lifecycle plus the factory system components.
+4. AI-native SDLC versus FDLC.
 5. The six-area architecture diagram.
-6. The canonical eight-stage lifecycle.
-7. The canonical nine-artifact execution protocol and its three key invariants.
+6. The seven-stage factory lifecycle with four continuous controls.
+7. The eleven-object artifact protocol and its three key invariants.
 8. Manifesto preview.
 9. Mission Control as reference implementation, with capability caveat.
 10. Maturity model preview.

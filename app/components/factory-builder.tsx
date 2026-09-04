@@ -23,9 +23,9 @@ export function FactoryBuilder() {
   function setList(key: "authority" | "verification" | "humanControls", value: string) { setForm((current) => ({ ...current, [key]: toggle(current[key], value) })); }
 
   if (definition) return <section className="factory-result" aria-live="polite">
-    <header><div><p className="section-label">Factory Definition / v{definition.version}</p><h2>{definition.goal.workType}</h2></div><button className="button button-light" onClick={restart} type="button">Start over</button></header>
+    <header><div><p className="section-label">Factory Definition / v{definition.version}</p><h2>{definition.intent.workType}</h2></div><button className="button button-light" onClick={restart} type="button">Start over</button></header>
     <div className="factory-result-grid">
-      <article className="factory-goal"><span>Goal</span><p>{definition.goal.outcome}</p></article>
+      <article className="factory-goal"><span>Intent</span><p>{definition.intent.outcome}</p></article>
       <article><span>Acceptance criteria</span><ul>{definition.acceptanceCriteria.map((item) => <li key={item}>{item}</li>)}</ul></article>
       <article><span>Plan boundaries</span><ul>{definition.planBoundaries.map((item) => <li key={item}>{item}</li>)}</ul></article>
       <article><span>Candidate Work Orders</span><ol>{definition.candidateWorkOrders.map((item) => <li key={item.name}><strong>{item.name}</strong><small>{item.outcome}</small></li>)}</ol></article>
@@ -57,4 +57,3 @@ export function FactoryBuilder() {
 function Checklist({ legend, options, selected, onToggle }: { legend: string; options: string[]; selected: string[]; onToggle: (value: string) => void }) {
   return <fieldset className="builder-checklist"><legend>{legend}</legend><p>Select every boundary that applies.</p><div>{options.map((option) => <label className={selected.includes(option) ? "is-selected" : ""} key={option}><input checked={selected.includes(option)} onChange={() => onToggle(option)} type="checkbox" /><span aria-hidden="true">{selected.includes(option) ? "✓" : "+"}</span><strong>{option}</strong></label>)}</div></fieldset>;
 }
-

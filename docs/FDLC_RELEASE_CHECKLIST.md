@@ -9,13 +9,14 @@ This checklist separates what is verifiable in the repository from launch decisi
 ## Product and content
 
 - [x] Canonical FDLC definition is consistent across routes.
-- [x] The eight lifecycle stages, six architecture areas, nine-step agent protocol, ten principles, and maturity dimensions are sourced from the audited local repositories.
+- [x] The seven-stage factory lifecycle, four continuous controls, nine-step runtime lifecycle, six architecture areas, eleven-object artifact protocol, ten principles, and maturity dimensions are represented in the canonical content model.
 - [x] Mission Control capabilities are labeled Available, Experimental, or Planned.
 - [x] Private notes, Loom links, repository secrets, and unsupported performance claims are excluded from public pages.
 - [x] The 36-chapter Guide map is represented with stable public part routes.
 - [x] Every primary page has an explicit next action.
 - [x] Empty, partial, and completion states exist for the two interactive tools.
-- [ ] Product Owner approves final public terminology and manifesto language.
+- [x] Product Owner approves the reconciled lifecycle and protocol terminology for publication.
+- [ ] Product Owner approves any future changes to manifesto language.
 - [ ] Product Owner confirms whether the Guide repository should be public before launch; external links must not point visitors at a private or unavailable repository.
 
 ## Design and accessibility
@@ -48,8 +49,8 @@ This checklist separates what is verifiable in the repository from launch decisi
 - [x] A dedicated social card and favicon are present.
 - [x] `robots.txt` and `sitemap.xml` routes are present.
 - [x] Guide child routes have crawlable headings, descriptions, and stable URLs.
-- [ ] Point `fdlc.ai` DNS to the production host.
-- [ ] Reconfirm canonical, Open Graph, JSON-LD, robots host, and sitemap host after DNS cutover.
+- [x] Point `fdlc.ai` DNS to the production host.
+- [x] Reconfirm canonical, Open Graph, JSON-LD, robots host, and sitemap host after DNS cutover.
 - [ ] Submit the production sitemap to search engines after domain verification.
 
 ## Links, licensing, and policy
@@ -66,11 +67,11 @@ This checklist separates what is verifiable in the repository from launch decisi
 - [x] Site can run without external services, secrets, or mutable storage.
 - [x] Interactive assessments remain local to the browser and do not transmit answers.
 - [x] A hosted release can be rolled forward by deploying a new immutable source version.
-- [ ] Connect the final custom domain and verify HTTPS.
+- [x] Connect the final custom domain and verify HTTPS.
 - [ ] Define a named release owner and rollback contact.
 - [ ] Decide whether to add privacy-preserving analytics and which events are genuinely decision-useful.
 - [ ] After DNS cutover, smoke-test every route, both tools, external links, social previews, and mobile navigation on the public domain.
 
 ## Go / no-go
 
-The source is eligible for a hosted V0 release after all automated checks pass. A branded `fdlc.ai` launch remains **no-go** until the Product Owner approves public copy, confirms repository visibility, completes DNS/HTTPS, and decides the minimum legal/privacy posture.
+The source is eligible for a hosted V0 release after all automated checks pass. The branded `fdlc.ai` launch remains conditional on repository visibility/ownership and the minimum legal/privacy posture before the site collects analytics, contact details, accounts, or assessment submissions.

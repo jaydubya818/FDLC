@@ -28,10 +28,13 @@ test("homepage answers the category boundary and links to primary destinations",
   const html = await response.text();
   assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?<\/section>/i);
   assert.match(html, /Build the factory that builds your software/i);
-  assert.match(html, /Coding agents are not software factories/i);
-  assert.match(html, /Manages the lifecycle of software/i);
+  assert.match(html, /Agent participation is not factory engineering/i);
+  assert.match(html, /AI-native SDLC.*Changes who participates.*FDLC.*Defines how the factory/is);
   assert.match(html, /FDLC is the lifecycle for the factory itself/i);
-  assert.match(html, /Intent.*Plan.*Execute.*Verify.*Approve.*Deploy.*Learn/is);
+  assert.match(html, /Receive.*Specify.*Plan.*Execute.*Verify.*Approve.*Release.*Observe.*Learn/is);
+  assert.match(html, /Discover.*Design.*Assemble.*Validate.*Deploy.*Operate.*Improve/is);
+  assert.match(html, /Continuous controls.*Govern.*Secure.*Observe.*Measure/is);
+  assert.match(html, /Intent.*Specification.*Plan.*Work Order.*Attempt.*Evidence.*Verification.*Approval.*Release.*Outcome.*Learning Signal/is);
   assert.match(html, /FDLC.*Defines it.*Mission Control.*Demonstrates it.*The Guide.*Teaches it/is);
   for (const href of ["/framework", "/architecture", "/guide", "/mission-control", "/maturity", "/start"]) assert.match(html, new RegExp(`href=["']${href}["']`));
 });

@@ -4,6 +4,7 @@ import { ArchitectureDiagram } from "../components/architecture-diagram";
 import { LifecycleDiagram } from "../components/lifecycle-diagram";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { ProtocolDiagram } from "../components/protocol-diagram";
+import { RuntimeLifecycleDiagram } from "../components/runtime-lifecycle-diagram";
 import { SiteShell } from "../components/site-shell";
 import { canonicalDefinition, manifesto, metrics } from "../../data/fdlc";
 import { pageMetadata } from "../../lib/metadata";
@@ -24,7 +25,7 @@ export default function FrameworkPage() {
       </section>
 
       <section className="section-block">
-        <SectionHeader eyebrow="Why FDLC exists" title="The bottleneck moved from generation to confidence." description="An agent can produce code. A factory must decide what work is suitable, which capabilities may act, what evidence is required, when people must intervene, and whether the outcome should change the next run." />
+        <SectionHeader eyebrow="Why FDLC exists" title="When code stops being the bottleneck, factory maturity becomes the constraint." description="An agent can produce code. A factory must coordinate durable work, bound authority, require evidence, route consequential decisions, observe outcomes, and improve without silently weakening its controls." />
         <div className="reason-grid">
           <article><span>01</span><h3>Models are probabilistic.</h3><p>Authorization, state, and consequential decisions cannot be.</p></article>
           <article><span>02</span><h3>Sessions are temporary.</h3><p>Plans, work, evidence, decisions, and recovery must be durable.</p></article>
@@ -34,29 +35,36 @@ export default function FrameworkPage() {
       </section>
 
       <section className="section-block model-distinction">
-        <SectionHeader eyebrow="The three models" title="Do not collapse these into one diagram." />
-        <div className="three-models">
-          <article><span>01 / Lifecycle</span><h3>How the factory evolves.</h3><p>Design, build, operate, measure, and improve the production system.</p><a href="#lifecycle">View lifecycle ↓</a></article>
-          <article><span>02 / Architecture</span><h3>What the factory contains.</h3><p>Six capability areas that every implementation must address.</p><a href="#architecture">View architecture ↓</a></article>
-          <article><span>03 / Protocol</span><h3>How governed work flows.</h3><p>Durable artifacts and evidence gates from Goal to Outcome.</p><a href="#protocol">View protocol ↓</a></article>
+        <SectionHeader eyebrow="Four views of the system" title="Related models. Different responsibilities." />
+        <div className="system-models">
+          <article><span>01 / Factory lifecycle</span><h3>How the factory evolves.</h3><p>Discover, design, assemble, validate, deploy, operate, and improve.</p><a href="#lifecycle">View outer lifecycle ↓</a></article>
+          <article><span>02 / Runtime lifecycle</span><h3>How software moves inside it.</h3><p>One autonomous delivery loop from received intent to governed learning.</p><a href="#runtime">View inner lifecycle ↓</a></article>
+          <article><span>03 / Architecture</span><h3>What the factory contains.</h3><p>Six capability areas that every implementation must address.</p><a href="#architecture">View architecture ↓</a></article>
+          <article><span>04 / Artifact protocol</span><h3>What makes work durable.</h3><p>Eleven semantic objects from Intent to Learning Signal.</p><a href="#protocol">View protocol ↓</a></article>
         </div>
       </section>
 
       <section className="section-block" id="lifecycle">
-        <SectionHeader eyebrow="Model 01 / Lifecycle" title="How the factory evolves." description="The lifecycle applies when creating a new factory line and again whenever evidence says the existing line should change." />
+        <SectionHeader eyebrow="Model 01 / Factory lifecycle" title="How the factory evolves." description="The outer lifecycle applies when creating a factory line and whenever validated evidence says the existing line should change. Its continuous controls span every stage." />
         <LifecycleDiagram detailed />
       </section>
 
+      <section className="section-block" id="runtime">
+        <SectionHeader eyebrow="Model 02 / Runtime lifecycle" title="How software moves inside an operating factory." description="The inner lifecycle transforms intent into independently verified software under explicit policy and human authority, then returns production outcomes as controlled learning signals." />
+        <RuntimeLifecycleDiagram detailed />
+        <aside className="callout"><strong>Keep the boundaries clear</strong><p>Deploy promotes a validated factory version during the outer lifecycle. Release promotes an accepted software artifact during the inner lifecycle. Neither transition creates its own authority.</p></aside>
+      </section>
+
       <section className="section-block architecture-framework" id="architecture">
-        <SectionHeader eyebrow="Model 02 / Architecture" title="What the factory requires." description="The six areas are capability boundaries, not vendor product categories or deployment tiers." />
+        <SectionHeader eyebrow="Model 03 / Architecture" title="What the factory requires." description="The six areas are capability boundaries, not vendor product categories or deployment tiers." />
         <ArchitectureDiagram />
         <Link className="section-link" href="/architecture">Read the detailed architecture <span aria-hidden="true">→</span></Link>
       </section>
 
       <section className="section-block" id="protocol">
-        <SectionHeader eyebrow="Model 03 / Execution Protocol" title="How one unit of work earns its way forward." description="The public protocol is intentionally concise. Implementations may add concrete records without weakening these boundaries." />
+        <SectionHeader eyebrow="Model 04 / Artifact protocol" title="How one unit of work becomes durable and inspectable." description="Lifecycle verbs describe what the factory does. Protocol nouns preserve what existed, ran, was observed, was decided, and may improve next." />
         <ProtocolDiagram detailed />
-        <aside className="callout"><strong>Mission Control mapping</strong><p>Mission Control realizes Goal as a governed Mission and adds a Mission Spec, Task, candidate, pull request, and explicit WorkOrder acceptance to its concrete delivery contract.</p></aside>
+        <aside className="callout"><strong>Mission Control mapping</strong><p>Mission Control realizes Intent as a governed Mission, Specification as a Mission Spec, and expands bounded execution with Tasks, candidates, pull requests, and explicit WorkOrder acceptance.</p></aside>
       </section>
 
       <section className="section-block governance-principles">
