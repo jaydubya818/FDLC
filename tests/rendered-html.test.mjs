@@ -23,6 +23,17 @@ test("server-renders every public route with FDLC metadata and a heading", async
   }
 });
 
+test("robots explicitly permits search and AI fetch agents", async () => {
+  const response = await render("/robots.txt");
+  assert.equal(response.status, 200);
+  const body = await response.text();
+
+  for (const userAgent of ["Google-Extended", "GPTBot", "ChatGPT-User", "OAI-SearchBot", "*"]) {
+    assert.match(body, new RegExp(`User-Agent: ${userAgent.replace("*", "\\*")}\\nAllow: /`, "i"));
+  }
+  assert.doesNotMatch(body, /Disallow:\s*\//i);
+});
+
 test("homepage answers the category boundary and links to primary destinations", async () => {
   const response = await render("/");
   const html = await response.text();
