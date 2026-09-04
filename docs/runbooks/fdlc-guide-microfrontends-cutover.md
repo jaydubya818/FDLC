@@ -59,20 +59,24 @@ Operator:
 
 ## Preview procedure
 
-1. Push the same branch name to both repositories.
-2. Create the Microfrontends group with `fdlc` as default and
+1. Create the Microfrontends group with `fdlc` as default and
    `ai-software-factory-mastery` as child.
-3. Confirm both Preview deployments report the same Git branch name; Vercel
-   uses matching commit or branch metadata to pair group deployments.
-4. Set the Preview fallback environment to Production unless an explicit,
-   fully populated staging environment is available.
-5. Establish the stable FDLC branch/Preview origin that will be used for the
+2. Set the group's Fallback Environment to Production and explicitly enable
+   polyrepo branch routing. Confirm that the group contains only these two
+   projects before any Preview deployment.
+3. Push the FDLC branch first so the default application's
+   `microfrontends.json` produces the initial routed Preview.
+4. Establish the stable FDLC branch/Preview origin that will be used for the
    composed check.
-6. Before the evidence-candidate Guide build, set its branch-scoped Preview
-   `NEXT_PUBLIC_SITE_URL` to that FDLC origin so build-time canonicals and
-   cross-app links use the composed context. If the origin was learned from an
-   initial deployment, redeploy the Guide; the initial build is not evidence.
-7. Deploy the final matching-branch Preview candidates for both applications.
+5. Set the Guide's branch-scoped Preview `NEXT_PUBLIC_SITE_URL` to that FDLC
+   origin so build-time canonicals and cross-app links use the composed context.
+   Set branch-scoped `GUIDE_LEGACY_REDIRECTS_ENABLED=true` on both projects for
+   the evidence builds; the flag remains unset in Production.
+6. Push the Guide using the same branch name. If either Preview was built before
+   its branch-scoped variables were set, redeploy it; that initial build is not
+   evidence.
+7. Confirm both Preview deployments report the same Git branch name; Vercel
+   uses matching commit or branch metadata to pair group deployments.
 8. Confirm the Guide Preview is `noindex`.
 9. Enable deployed routing debug headers with the `VERCEL_MFE_DEBUG=1` browser
    cookie and record:
@@ -93,25 +97,30 @@ In the Guide repository, expose the default repository's configuration:
 ```sh
 export VC_MICROFRONTENDS_CONFIG=/absolute/path/to/FDLC/microfrontends.json
 export NEXT_PUBLIC_SITE_URL=http://localhost:3024
+export GUIDE_LEGACY_REDIRECTS_ENABLED=true
 ```
 
 Start the native Next.js development process for each application on the port
-assigned by `microfrontends port`. Then start one proxy for both package names:
+assigned by `microfrontends port`. Then start one proxy for both application
+keys:
 
 ```sh
-microfrontends proxy --local-apps fdlc-site ai-software-factory-mastery-site
+microfrontends proxy --local-apps fdlc ai-software-factory-mastery
 ```
 
 Use the proxy URL—not either application server URL—for composed checks. Set
-`MFE_DEBUG=1` when routing diagnostics are needed.
+`MFE_DEBUG=1` when routing diagnostics are needed. The `--local-apps` values are
+the application keys from `microfrontends.json`; the package names determine
+their local ports.
 
 ## Production procedure
 
 ### 1. Confirm the compatibility release
 
 Promote the Guide compatibility build first while its canonical origin still
-equals the standalone Guide origin. Confirm that the following work directly
-on that origin:
+equals the standalone Guide origin and
+`GUIDE_LEGACY_REDIRECTS_ENABLED` remains unset. Confirm that the following work
+directly on that origin:
 
 - `/guide`;
 - a deep `/guide/<chapter>` route;
@@ -125,7 +134,8 @@ If this step fails, stop. Do not promote FDLC routing.
 ### 2. Promote shared-domain routing
 
 With explicit Product Owner approval, promote the verified FDLC deployment
-containing `microfrontends.json`. Immediately check:
+containing `microfrontends.json` and the enabled retired-host guard. Immediately
+check:
 
 ```text
 https://www.fdlc.ai/
@@ -145,7 +155,8 @@ Only after shared routing is healthy:
 
 1. Set the Guide Production canonical-origin environment variable to
    `https://www.fdlc.ai`.
-2. Promote the pre-verified Guide canonical-cutover build.
+2. Set Guide Production `GUIDE_LEGACY_REDIRECTS_ENABLED=true` and promote the
+   pre-verified Guide canonical-cutover build.
 3. Verify that shared-domain Guide routes still return 200 and canonicalize to
    `https://www.fdlc.ai/guide/...`.
 4. Verify that every published Guide route and explicit legacy alias on the old

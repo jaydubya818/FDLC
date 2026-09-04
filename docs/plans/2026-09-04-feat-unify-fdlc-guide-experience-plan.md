@@ -346,19 +346,27 @@ Gate:
 
 Purpose: compose the already-valid applications without coupling releases.
 
-- [x] Keep `@vercel/microfrontends` pinned in both apps without activating it.
-- [ ] Add `withMicrofrontends` to both Next.js configurations after Product
-      Owner approval for persistent routing changes.
-- [ ] Add `microfrontends.json` with FDLC as default and Guide ownership of
+- [x] Keep `@vercel/microfrontends` pinned at the verified version in both apps.
+- [x] Add `withMicrofrontends` to both Next.js configurations after Product
+      Owner approval for Preview integration. The Guide activates the wrapper
+      only when the default application's shared configuration is available.
+- [x] Add `microfrontends.json` with FDLC as default and Guide ownership of
       `/guide` plus `/guide/:path*` and the non-conflicting legacy redirect
       surfaces.
-- [ ] Declare package names and production fallbacks explicitly.
+- [x] Declare package names and production fallbacks explicitly.
 - [x] Use hard, first-party navigation at the application boundary so the
       framework cannot accidentally intercept cross-application routes. Revisit
       Microfrontends-aware prefetch only if Preview evidence shows material
       value.
 - [x] Document the paired branch-preview workflow and production release order.
-- [ ] Add a deterministic route-contract checker covering both applications.
+- [x] Add a deterministic route-contract checker covering both applications.
+- [x] Keep retired-host redirects disabled by default behind the server-only
+      `GUIDE_LEGACY_REDIRECTS_ENABLED` cutover flag; enable them only in the
+      explicit Preview evidence build and the later approved retirement build.
+- [ ] Create the approved two-project Microfrontends group, set its Preview
+      fallback to Production, and enable matching polyrepo branch routing.
+- [ ] Push the paired `codex/fdlc-guide-consolidation` branches and record the
+      composed Preview evidence without promoting routing to Production.
 
 Gate:
 
@@ -399,8 +407,8 @@ separate approval after preview evidence is available.
 
 - [ ] Confirm the Vercel plan, Microfrontends allowance, routing-request quota,
       and expected operating cost.
-- [ ] Create/configure the Microfrontends group, choose its Fallback Environment,
-      and confirm automatic matching branch/commit Preview pairing.
+- [ ] Reconfirm the existing Microfrontends group, Fallback Environment, and
+      matching branch/commit Preview pairing immediately before Production.
 - [ ] Record both current production deployment IDs.
 - [ ] Promote the Guide compatibility release first.
 - [ ] Promote FDLC shared-domain routing second.
