@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const groups = [
   ["Learn", [["Framework", "/framework"], ["Architecture", "/architecture"], ["Guide", "/guide"], ["Manifesto", "/manifesto"]]],
@@ -12,7 +13,9 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="footer-inner">
         <div className="footer-brand">
-          <Link className="wordmark footer-wordmark" href="/"><span aria-hidden="true" className="wordmark-mark">F</span><span>FDLC<span className="wordmark-dot">.ai</span></span></Link>
+          <Link className="wordmark footer-wordmark" href="/" aria-label="FDLC.ai home">
+            <Image className="brand-logo" src="/fdlc-logo-updated.png" alt="FDLC.ai — Factory Development Lifecycle" width={2007} height={784} />
+          </Link>
           <p>The operating model and technical foundation for trusted autonomous software delivery.</p>
         </div>
         {groups.map(([title, links]) => (

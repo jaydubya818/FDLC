@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
@@ -42,8 +43,7 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="header-inner">
         <Link className="wordmark" href="/" aria-label="FDLC.ai home">
-          <span aria-hidden="true" className="wordmark-mark">F</span>
-          <span>FDLC<span className="wordmark-dot">.ai</span></span>
+          <Image className="brand-logo" src="/fdlc-logo-updated.png" alt="FDLC.ai — Factory Development Lifecycle" width={2007} height={784} priority />
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {primary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
