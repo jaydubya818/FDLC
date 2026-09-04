@@ -33,6 +33,7 @@ test("homepage answers the category boundary and links to primary destinations",
   assert.match(html, /Autonomy without evidence is just faster guessing/i);
   assert.match(html, /Traditional SDLC.*AI-Native SDLC.*FDLC.*Software \+ AI-assisted workflow.*The software factory/is);
   assert.match(html, /FDLC is the lifecycle for the factory itself/i);
+  assert.match(html, /Intelligence may vary.*Authority remains explicit.*Evidence must return/is);
   assert.match(html, /Receive.*Specify.*Plan.*Execute.*Verify.*Approve.*Release.*Observe.*Learn/is);
   assert.match(html, /Discover.*Design.*Assemble.*Validate.*Deploy.*Operate.*Improve/is);
   assert.match(html, /Continuous controls.*Govern.*Secure.*Observe.*Measure/is);
@@ -52,7 +53,18 @@ test("framework publishes the exact category definition and distinction", async 
   assert.match(html, /Who defines intent.*What agent may act.*What evidence proves.*producing agent certify.*When must a human intervene.*learning the wrong thing/is);
   assert.match(html, /Not another coding agent.*The control system around them/is);
   assert.match(html, /FDLC Framework.*FDLC Specification.*AI Software Factory Guide.*Mission Control.*FDLC Enterprise/is);
+  assert.match(html, /Six operating shifts.*Intent becomes the interface.*Intelligence becomes routable.*Harness becomes the control boundary.*Verification becomes the scarce resource.*Evidence becomes part of the deliverable.*Learning becomes governed promotion/is);
   assert.match(html, /Choose the next depth you need.*FDLC in 5 Minutes.*Architecture.*Manifesto.*Mission Control.*Maturity.*Guide/is);
+});
+
+test("architecture makes the control boundary and durable operating record explicit", async () => {
+  const html = await (await render("/architecture")).text();
+  assert.match(html, /Intelligence can change.*Authority cannot be implicit/is);
+  assert.match(html, /Intelligence supply.*Models reason.*Agents act.*Factory control plane.*factory governs.*Execution environment.*Effects stay bounded/is);
+  assert.match(html, /Authority flows down.*Allow intelligence to vary.*Always bound authority.*Evidence flows back/is);
+  assert.match(html, /Expected to change.*Models.*agents.*skills.*prompts.*tool adapters.*Required to persist.*Intent.*identity.*authority.*state.*evidence.*decisions.*outcomes/is);
+  assert.match(html, /Every Attempt returns attributable evidence.*No producing system may promote its own result/is);
+  assert.match(html, /href=["']#control-boundary["']/i);
 });
 
 test("guide is an accurate portal into the authoritative 44-chapter book", async () => {
