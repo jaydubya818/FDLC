@@ -18,9 +18,10 @@ production steps without Product Owner approval.
 | Default app | `fdlc` | `fdlc-site` | All routes except delegated Guide routes |
 | Child app | `ai-software-factory-mastery` | `ai-software-factory-mastery-site` | `/guide`, `/guide/:path*`, and temporary non-conflicting legacy redirect surfaces |
 
-The default app is the only repository that owns `microfrontends.json`. The
-Guide receives that configuration for local development with
-`VC_MICROFRONTENDS_CONFIG` or `vercel microfrontends pull`.
+The default app is the only repository that owns the authoritative
+`microfrontends.json`. The Guide commits a generated, schema-pure build snapshot
+at `site/config/microfrontends.generated.json` plus a provenance manifest. The
+snapshot is build input, never an independently edited routing authority.
 
 Do not add a Next.js `basePath`. Both applications use physical public routes,
 and `withMicrofrontends` owns their framework asset prefixes. Guide-owned
@@ -30,6 +31,13 @@ public files live below `/guide`.
 
 - Both repositories pass typecheck, lint, unit tests, route-contract tests, and
   native `next build`.
+- The Guide snapshot check records the FDLC config commit and semantic SHA-256,
+  and that digest exactly matches the Guide manifest and the branch-scoped
+  `FDLC_MFE_CONFIG_SHA256` value. The branch-scoped
+  `FDLC_MFE_SOURCE_COMMIT` must also equal the manifest's exact FDLC commit.
+- Guide Vercel builds fail when the snapshot, manifest, trusted digest, source
+  commit, exact Vercel target, or target-specific approval is missing or
+  mismatched. The build performs no network config fetch.
 - A paired Preview using branch `codex/fdlc-guide-consolidation` serves FDLC at
   `/` and the Guide at `/guide` plus a deep chapter.
 - Search JSON, one infographic, Mermaid rendering, breadcrumbs, previous/next,
@@ -57,55 +65,141 @@ Guide canonical-cutover deployment ID:
 Operator:
 ```
 
+## Preview evidence record
+
+Complete this record for each candidate. It does not authorize Production.
+
+```text
+Paired branch:
+FDLC Preview Git commit:
+FDLC config source commit:
+FDLC semantic config SHA-256 (`sha256-recursive-key-sort-json-v1`):
+Guide snapshot commit:
+Guide snapshot path: site/config/microfrontends.generated.json
+Guide snapshot check result:
+Guide Preview approval: GUIDE_MFE_PREVIEW_ENABLED=true
+Guide trusted source commit / scope:
+Guide trusted digest / scope:
+FDLC Preview deployment ID / URL:
+Guide Preview deployment ID / URL:
+Fallback Environment:
+Preview environment-scope confirmation:
+Production environment-scope confirmation:
+Operator / timestamp:
+```
+
 ## Preview procedure
 
-1. Create the Microfrontends group with `fdlc` as default and
+1. Commit and push the authoritative FDLC `microfrontends.json`. Fetch the FDLC
+   checkout and confirm its `origin` resolves to
+   `https://github.com/jaydubya818/FDLC.git`. Confirm the config source commit
+   is reachable from the approved `origin/*` branch. From the Guide's `site/`
+   directory, generate and immediately verify the tracked snapshot from that
+   exact checkout:
+
+   ```sh
+   npm run microfrontends:sync -- /absolute/path/to/FDLC/microfrontends.json
+   npm run microfrontends:check -- /absolute/path/to/FDLC/microfrontends.json
+   ```
+
+   Commit the snapshot and manifest in the Guide repository. The manifest's
+   source commit is the last FDLC commit that changed `microfrontends.json`, so
+   unrelated FDLC work does not stale the Guide snapshot. Record the separate
+   FDLC Preview Git commit in the evidence record. A dirty or uncommitted
+   authoritative config, a source-commit mismatch, or any digest mismatch is a
+   hard stop. Record the digest emitted by `microfrontends:check` using
+   `sha256-recursive-key-sort-json-v1`; never substitute a raw `shasum` of
+   either JSON file. The manifest is
+   `site/config/microfrontends.generated.manifest.json`.
+2. For only the matching Guide Preview branch, set
+   `FDLC_MFE_CONFIG_SHA256` to the recorded digest,
+   `FDLC_MFE_SOURCE_COMMIT` to the full FDLC commit recorded by the manifest,
+   and `GUIDE_MFE_PREVIEW_ENABLED=true`. Confirm all three are absent from
+   Production and confirm `GUIDE_MFE_PRODUCTION_ENABLED` is absent from the
+   Preview branch. These non-secret values bind the deployment to reviewed
+   input and explicitly authorize only a Preview build; changing any of them
+   requires a new deployment. Never configure `GUIDE_VERCEL_BUILD` in Vercel;
+   the repository-owned deployment script sets that marker.
+3. Create the Microfrontends group with `fdlc` as default and
    `ai-software-factory-mastery` as child.
-2. Set the group's Fallback Environment to Production and explicitly enable
+4. Set the group's Fallback Environment to Production and explicitly enable
    polyrepo branch routing. Confirm that the group contains only these two
    projects before any Preview deployment.
-3. Push the FDLC branch first so the default application's
-   `microfrontends.json` produces the initial routed Preview.
-4. Establish the stable FDLC branch/Preview origin that will be used for the
+5. Establish the stable FDLC branch/Preview origin that will be used for the
    composed check.
-5. Set the Guide's branch-scoped Preview `NEXT_PUBLIC_SITE_URL` to that FDLC
+6. Set the Guide's branch-scoped Preview `NEXT_PUBLIC_SITE_URL` to that FDLC
    origin so build-time canonicals and cross-app links use the composed context.
    Set branch-scoped `GUIDE_LEGACY_REDIRECTS_ENABLED=true` on both projects for
    the evidence builds; the flag remains unset in Production.
-6. Push the Guide using the same branch name. If either Preview was built before
-   its branch-scoped variables were set, redeploy it; that initial build is not
-   evidence.
-7. Confirm both Preview deployments report the same Git branch name; Vercel
+7. Before either candidate push, prove `FDLC_MFE_CONFIG_SHA256`,
+   `FDLC_MFE_SOURCE_COMMIT`, `GUIDE_MFE_PREVIEW_ENABLED`, and
+   `NEXT_PUBLIC_SITE_URL` are scoped only to the exact Guide Preview branch.
+   Prove `GUIDE_LEGACY_REDIRECTS_ENABLED` is scoped only to the exact Preview
+   branch on both projects. Prove all five variables plus
+   `GUIDE_MFE_PRODUCTION_ENABLED` are absent from Production. Do not proceed if
+   any scope is broader.
+8. Push the FDLC branch so the default application's `microfrontends.json`
+   produces the routed Preview.
+9. Check out or verify the exact FDLC Preview Git commit, rerun
+   `microfrontends:check` against it, and prove
+   `git show <FDLC Preview Git commit>:microfrontends.json` produces the
+   recorded semantic digest.
+10. Push the Guide using the same branch name. If either Preview was built
+   before its branch-scoped variables were set, redeploy it; that initial build
+   is not evidence.
+11. Confirm both Preview deployments report the same Git branch name; Vercel
    uses matching commit or branch metadata to pair group deployments.
-8. Confirm the Guide Preview is `noindex`.
-9. Enable deployed routing debug headers with the `VERCEL_MFE_DEBUG=1` browser
+12. Confirm the Guide Preview is `noindex`.
+13. Enable deployed routing debug headers with the `VERCEL_MFE_DEBUG=1` browser
    cookie and record:
    - `x-vercel-mfe-app`;
    - `x-vercel-mfe-target-deployment-id`;
    - `x-vercel-mfe-default-app-deployment-id`;
    - `x-vercel-mfe-matched-path`; and
    - `x-vercel-mfe-response-reason`.
-10. Run the route and browser acceptance checks against the FDLC Preview URL.
+   `x-vercel-mfe-default-app-deployment-id` must equal the recorded FDLC
+   Preview deployment ID. On Guide routes,
+   `x-vercel-mfe-target-deployment-id` must equal the recorded Guide Preview
+   deployment ID. Any mismatch invalidates the candidate.
+14. Run the route and browser acceptance checks against the FDLC Preview URL.
+
+Any later push to either branch or any Preview environment change invalidates
+the evidence candidate and restarts this gate.
 
 Creating the group alone must not be treated as a release. Production behavior
-changes only when the default app's routing configuration is promoted.
+changes only when the default app's routing configuration is deployed to
+Production.
 
 ## Local composed development
 
-In the Guide repository, expose the default repository's configuration:
+Refresh the Guide's tracked snapshot explicitly whenever the FDLC config
+changes:
 
 ```sh
-export VC_MICROFRONTENDS_CONFIG=/absolute/path/to/FDLC/microfrontends.json
+cd /absolute/path/to/Guide/site
+npm run microfrontends:sync -- /absolute/path/to/FDLC/microfrontends.json
+npm run microfrontends:check -- /absolute/path/to/FDLC/microfrontends.json
 export NEXT_PUBLIC_SITE_URL=http://localhost:3024
 export GUIDE_LEGACY_REDIRECTS_ENABLED=true
 ```
 
+Do not set `VC_MICROFRONTENDS_CONFIG`; the Guide configuration accepts only the
+tracked generated filename. Snapshot refresh is a deliberate release action,
+not a build hook or dynamic fetch.
+
 Start the native Next.js development process for each application on the port
-assigned by `microfrontends port`. Then start one proxy for both application
-keys:
+assigned by `microfrontends port`. In the Guide `site/` directory, use the
+reviewed wrapped entrypoint rather than direct `next dev` or standalone Vinext:
 
 ```sh
-microfrontends proxy --local-apps fdlc ai-software-factory-mastery
+npm run microfrontends:port
+npm run dev:next -- --port <printed-port>
+```
+
+Then start one proxy for both application keys:
+
+```sh
+npm run microfrontends:proxy
 ```
 
 Use the proxy URL—not either application server URL—for composed checks. Set
@@ -117,8 +211,19 @@ their local ports.
 
 ### 1. Confirm the compatibility release
 
-Promote the Guide compatibility build first while its canonical origin still
-equals the standalone Guide origin and
+Before creating that Production build, obtain separate Product Owner approval
+to add the already-proven `FDLC_MFE_CONFIG_SHA256` and
+`FDLC_MFE_SOURCE_COMMIT` values plus
+`GUIDE_MFE_PRODUCTION_ENABLED=true` to the Guide's Production environment.
+Confirm `GUIDE_MFE_PREVIEW_ENABLED` remains absent there. Until then, the
+missing trusted inputs and Production approval deliberately make Guide
+Production builds fail closed. Never promote a Preview artifact whose
+branch-only environment differs from Production; rebuild in Production after
+approval.
+
+Then create a fresh Guide Production-environment deployment from the recorded
+commit and approved Production environment matrix while its canonical origin
+still equals the standalone Guide origin and
 `GUIDE_LEGACY_REDIRECTS_ENABLED` remains unset. Confirm that the following work
 directly on that origin:
 
@@ -131,11 +236,14 @@ directly on that origin:
 
 If this step fails, stop. Do not promote FDLC routing.
 
-### 2. Promote shared-domain routing
+### 2. Deploy shared-domain routing
 
-With explicit Product Owner approval, promote the verified FDLC deployment
-containing `microfrontends.json` and the enabled retired-host guard. Immediately
-check:
+With explicit Product Owner approval, create a fresh FDLC
+Production-environment deployment from the recorded commit and approved
+Production environment matrix. Never promote a Preview deployment. The fresh
+deployment must contain `microfrontends.json`; explicitly set FDLC Production
+`GUIDE_LEGACY_REDIRECTS_ENABLED=true` so FDLC-owned requests on the retired
+Guide host are guarded too. Immediately check:
 
 ```text
 https://www.fdlc.ai/
@@ -155,8 +263,9 @@ Only after shared routing is healthy:
 
 1. Set the Guide Production canonical-origin environment variable to
    `https://www.fdlc.ai`.
-2. Set Guide Production `GUIDE_LEGACY_REDIRECTS_ENABLED=true` and promote the
-   pre-verified Guide canonical-cutover build.
+2. Set Guide Production `GUIDE_LEGACY_REDIRECTS_ENABLED=true`, then create a
+   fresh Guide Production-environment deployment from the recorded commit and
+   approved Production environment matrix. Never promote a Preview deployment.
 3. Verify that shared-domain Guide routes still return 200 and canonicalize to
    `https://www.fdlc.ai/guide/...`.
 4. Verify that every published Guide route and explicit legacy alias on the old
@@ -182,9 +291,13 @@ Check at minimum:
 - legacy: `/spec`, `/docs/<chapter>`, `/docs/guide`, `/visuals`, `/glossary`, and
   the six retired FDLC Guide summaries;
 - assets: Guide search JSON, one Open Graph image, favicon, and one infographic;
+- framework assets: every Guide JavaScript and CSS URL uses the generated
+  `/vc-ap-.../_next/` prefix and returns 200;
 - failure behavior: one unknown FDLC URL and one unknown Guide URL;
 - browser behavior: FDLC → Guide → FDLC, Back navigation, a hash target, and a
   same-origin route redirect carrying repeated and encoded query parameters;
+- hydration behavior: search updates results, theme state changes, Mermaid
+  renders to SVG, and the branded Guide 404 remains visible after hydration;
 - privacy behavior: allowlisted old-host routes reach their known canonical
   destination without a query; an unknown path is not forwarded.
 
@@ -210,9 +323,12 @@ routing deployment in place. Confirm `/guide`, one deep chapter,
 
 ### Canonical or old-origin redirect failure
 
-Restore the Guide compatibility deployment, which keeps the Guide reachable on
-both surfaces while canonicals are corrected. Do not change the FDLC routing
-deployment unless routing itself is failing.
+Use `x-vercel-mfe-app` and the matched path to identify the owner. For a Guide
+canonical or Guide-owned redirect failure, restore the Guide compatibility
+deployment, which keeps the Guide reachable on both surfaces while it is
+corrected. For an FDLC-owned retired-host failure such as `/` or
+`/architecture`, restore the recorded previous FDLC deployment. Do not roll
+back the other application when its routes are healthy.
 
 The recovery target is five minutes from the rollback decision to healthy
 responses for `/guide`, a deep chapter, search data, and one asset.

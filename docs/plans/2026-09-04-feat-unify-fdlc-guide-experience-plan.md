@@ -296,9 +296,9 @@ traffic to it.
       that links to the current public maturity ledger.
 - [x] Pin `@vercel/microfrontends` without activating routing and keep the Guide
       independently buildable.
-- [ ] Add the Guide's `withMicrofrontends` wrapper during the approved
-      integration phase, using the default app's pulled or
-      environment-provided configuration.
+- [x] Add the Guide's `withMicrofrontends` wrapper during the approved
+      integration phase, using a generated, validated snapshot of the default
+      app's authoritative configuration.
 - [x] Update route, link, rendered-HTML, accessibility, and generated-content
       tests.
 
@@ -349,7 +349,8 @@ Purpose: compose the already-valid applications without coupling releases.
 - [x] Keep `@vercel/microfrontends` pinned at the verified version in both apps.
 - [x] Add `withMicrofrontends` to both Next.js configurations after Product
       Owner approval for Preview integration. The Guide activates the wrapper
-      only when the default application's shared configuration is available.
+      only through an explicit native-local or fail-closed Vercel deployment
+      mode using the validated snapshot.
 - [x] Add `microfrontends.json` with FDLC as default and Guide ownership of
       `/guide` plus `/guide/:path*` and the non-conflicting legacy redirect
       surfaces.
@@ -360,16 +361,28 @@ Purpose: compose the already-valid applications without coupling releases.
       value.
 - [x] Document the paired branch-preview workflow and production release order.
 - [x] Add a deterministic route-contract checker covering both applications.
+- [x] Commit a schema-pure Guide build snapshot generated from FDLC's committed
+      `microfrontends.json`, with deterministic semantic SHA-256 provenance.
+- [x] Add explicit source-to-snapshot sync/check commands; no build dynamically
+      fetches configuration from Vercel or GitHub.
+- [x] Fail Guide Vercel builds closed when the snapshot, manifest, external
+      trusted digest, config source commit, exact Vercel target, or
+      target-specific approval is absent or mismatched; pin the child
+      application identity independently of ambient build metadata.
+- [x] Add native asset-prefix, asset-response, hydration, interactive search,
+      Mermaid, and hydrated branded-404 regression coverage.
 - [x] Keep retired-host redirects disabled by default behind the server-only
       `GUIDE_LEGACY_REDIRECTS_ENABLED` cutover flag; enable them only in the
       explicit Preview evidence build and the later approved retirement build.
-- [ ] Create the approved two-project Microfrontends group, set its Preview
+- [x] Create the approved two-project Microfrontends group, set its Preview
       fallback to Production, and enable matching polyrepo branch routing.
 - [ ] Push the paired `codex/fdlc-guide-consolidation` branches and record the
       composed Preview evidence without promoting routing to Production.
 
 Gate:
 
+- The recorded FDLC semantic config SHA-256 and config source commit equal the
+  Guide manifest, checked snapshot, and branch-scoped Preview trust values.
 - Matching branch previews resolve to the intended pair of deployments.
 - Unmatched child previews use the configured Production fallback.
 - Representative root routes resolve to FDLC; all `/guide` routes and
@@ -410,8 +423,10 @@ separate approval after preview evidence is available.
 - [ ] Reconfirm the existing Microfrontends group, Fallback Environment, and
       matching branch/commit Preview pairing immediately before Production.
 - [ ] Record both current production deployment IDs.
-- [ ] Promote the Guide compatibility release first.
-- [ ] Promote FDLC shared-domain routing second.
+- [ ] Create a fresh Guide Production-environment compatibility deployment
+      first; never promote a Preview artifact.
+- [ ] Create a fresh FDLC Production-environment shared-routing deployment
+      second; never promote a Preview artifact.
 - [ ] Run synthetic checks for `/`, `/framework`, `/guide`, a deep chapter,
       search data, one image, both 404 scopes, and old-origin redirects.
 - [ ] Change Guide canonicals to `www.fdlc.ai` only when shared-domain routing is
@@ -527,9 +542,10 @@ Rollback:
   footer, and document-layout components
 - `site/scripts/generate-content.mjs`
 - `site/next.config.ts` for the approval-gated `withMicrofrontends` wrapper;
-  `site/package.json` and lockfile for the pinned runtime dependency. The child
-  repository does not own a `microfrontends.json`; local and Preview builds use
-  the default app's pulled or `VC_MICROFRONTENDS_CONFIG` configuration.
+  `site/package.json` and lockfile for the pinned runtime dependency;
+  `site/config/microfrontends.generated.json` and its manifest as generated
+  build inputs; and the source-to-snapshot sync/check script. FDLC's root
+  `microfrontends.json` remains the only routing authority.
 - generated search/sitemap/robots/public assets
 - affected link, route, rendered-HTML, accessibility, and generation tests
 
@@ -545,6 +561,7 @@ Rollback:
 | FDLC `/guide/[slug]` shadowing | Guide owns the complete prefix and implements all retired-summary redirects. |
 | Group routing bypasses old-host Guide redirects | Route non-conflicting legacy paths to Guide; host-guard both apps for legacy-host requests that land on the default app. |
 | Independent releases drift | Compatibility-first order, matching branch names, production fallback, recorded deployment IDs. |
+| The Guide snapshot is missing or stale | Deterministic sync from committed FDLC authority, schema/contract validation, manifest fingerprint, independently managed Vercel digest, and a fail-closed build. |
 | Search/images break at new mount | One path helper, `/guide`-namespaced public files, exhaustive asset/search checks. |
 | SEO splits between origins | One canonical origin, exact sitemap manifests, redirect-only old host after cutover. |
 | Legacy deep links lose context | Direct 308s, preserved queries, tested fragment remapping. |
