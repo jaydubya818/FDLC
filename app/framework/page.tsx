@@ -22,6 +22,15 @@ const frameworkPieces = [
   ["FDLC Enterprise", "Proposed product", "The commercial control plane for operating proven factories at organizational scale.", "/enterprise"],
 ] as const;
 
+const operatingShifts = [
+  ["01", "Intent becomes the interface.", "Builders define the outcome, constraints, acceptance criteria, context, and success measures. The factory determines the governed how."],
+  ["02", "Intelligence becomes routable.", "Route models and agents by capability, risk, latency, availability, and cost per verified outcome—not provider loyalty."],
+  ["03", "The Harness becomes the control boundary.", "Identity, authority, budgets, state, policy, isolation, and audit remain outside the model and survive every model substitution."],
+  ["04", "Verification becomes the scarce resource.", "Generation can scale faster than human review. Independent, automated verification must scale trust without collapsing judgment into generation."],
+  ["05", "Evidence becomes part of the deliverable.", "The output is code plus attributable tests, traces, security results, decisions, and production outcomes bound to the exact candidate."],
+  ["06", "Learning becomes governed promotion.", "Runs may propose changes to routing, skills, evaluators, and policy. Nothing changes production until it is tested, reviewed, versioned, and reversible."],
+] as const;
+
 const contents = [
   { label: "Definition", href: "#definition" },
   { label: "Category boundary", href: "#category" },
@@ -65,11 +74,9 @@ export default function FrameworkPage() {
           <article><p>FDLC exists to answer these questions systematically:</p><ul><li>Who defines intent, and when is it complete?</li><li>What agent may act, with what authority, tools, and blast radius?</li><li>What evidence proves the work is correct?</li><li>Can the producing agent certify its own output?</li><li>When must a human intervene?</li><li>How does the system improve without learning the wrong thing?</li></ul></article>
           <aside><strong>Not another coding agent. The control system around them.</strong><p>Your organization may use Codex, Claude Code, Cursor, GitHub Copilot, internal agents, or models that do not exist yet. FDLC provides the durable operating layer around them.</p></aside>
         </div>
-        <div className="reason-grid">
-          <article><span>01</span><h3>Models are probabilistic.</h3><p>Authorization, state, and consequential decisions cannot be.</p></article>
-          <article><span>02</span><h3>Sessions are temporary.</h3><p>Plans, work, evidence, decisions, and recovery must be durable.</p></article>
-          <article><span>03</span><h3>Completion is a claim.</h3><p>Independent, exact-current evidence decides what advances.</p></article>
-          <article><span>04</span><h3>Learning can amplify error.</h3><p>Only validated outcomes should shape governed improvements.</p></article>
+        <p className="orientation-label">Six operating shifts</p>
+        <div className="operating-shifts">
+          {operatingShifts.map(([number, title, description]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{description}</p></article>)}
         </div>
       </section>
 

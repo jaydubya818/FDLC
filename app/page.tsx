@@ -75,7 +75,8 @@ export default function Home() {
 
         <section className="dark-section">
           <div className="content-section">
-            <SectionHeader eyebrow="Architecture" title="Six areas. One governed system." description="Every factory needs a way to understand intent, execute durably, assemble capability, route intelligence, establish trust, and improve from reality." />
+            <SectionHeader eyebrow="Architecture" title="Six areas. One governed system." description="Models, agents, and tools can change. The factory keeps intent, identity, authority, state, evidence, decisions, and outcomes durable across every substitution." />
+            <div className="home-control-thesis" aria-label="FDLC control-boundary thesis" role="group"><span>Intelligence may vary.</span><strong>Authority remains explicit.</strong><span>Evidence must return.</span></div>
             <ArchitectureDiagram />
             <Link className="section-link light-link" href="/architecture">Explore the reference architecture <span aria-hidden="true">→</span></Link>
           </div>

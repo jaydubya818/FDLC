@@ -13,6 +13,7 @@ export const metadata: Metadata = pageMetadata("Architecture", "Explore the six 
 
 const contents = [
   { label: "Overview", href: "#overview" },
+  { label: "Control boundary", href: "#control-boundary" },
   { label: "01 Intent", href: "#intent" },
   { label: "02 Harness", href: "#harness" },
   { label: "03 Capability", href: "#capability" },
@@ -38,6 +39,21 @@ export default function ArchitecturePage() {
     <PageContentsNav items={contents} mobileTitle="Jump to area" title="Architecture areas" variant="rail" />
     <div className="longform-content">
     <section className="architecture-overview" id="overview"><ArchitectureDiagram /><p>Trust constrains every area. Learning closes the loop only through governed promotion. The model is replaceable; the control contract is not.</p></section>
+
+    <section className="architecture-control-boundary" id="control-boundary">
+      <SectionHeader eyebrow="The control boundary" title="Intelligence can change. Authority cannot be implicit." description="Models reason and agents act, but neither should own identity, permission, authoritative state, release policy, or the evidence used to judge its work. Those responsibilities belong to the factory around them." />
+      <div className="control-boundary-map" aria-label="Intelligence supply, factory control plane, and bounded execution environment" role="group">
+        <article className="control-boundary-supply"><span>01 / Intelligence supply</span><h3>Models reason.<br />Agents act.</h3><p>Selected for the exact Work Order by capability and operating constraints.</p><ul><li>Task and complexity fit</li><li>Quality and risk profile</li><li>Latency and availability</li><li>Cost per verified outcome</li></ul><small>Replaceable by design</small></article>
+        <article className="control-boundary-plane"><span>02 / Factory control plane</span><h3>The factory governs.</h3><p>Durable controls remain outside the model and apply to every provider, agent, and tool.</p><ul><li>Identity and delegated authority</li><li>Policy, budget, and routing</li><li>State, leases, and recovery</li><li>Evidence, decisions, and audit</li></ul><small>Durable system of record</small></article>
+        <article className="control-boundary-execution"><span>03 / Execution environment</span><h3>Effects stay bounded.</h3><p>Every Attempt runs inside an explicit, observable, recoverable operating envelope.</p><ul><li>Isolated compute</li><li>Scoped tools and file access</li><li>Short-lived credentials</li><li>Network, time, and resource limits</li></ul><small>Constrained and recoverable</small></article>
+      </div>
+      <div className="control-boundary-rail" aria-label="Authority flows from the control plane into execution and evidence flows back for independent judgment" role="group"><span>Authority flows down →</span><strong>Allow intelligence to vary. Always bound authority.</strong><span>← Evidence flows back</span></div>
+      <div className="control-durability-map">
+        <article><span>Expected to change</span><strong>Models · agents · skills · prompts · tool adapters</strong><p>Capability supply should evolve as better options emerge.</p></article>
+        <article><span>Required to persist</span><strong>Intent · identity · authority · state · evidence · decisions · outcomes</strong><p>The operating record must survive every capability substitution.</p></article>
+      </div>
+      <p className="control-boundary-rule">Every Attempt returns attributable evidence. No producing system may promote its own result.</p>
+    </section>
 
     <StateBoundary />
 
