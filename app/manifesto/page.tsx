@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageContentsNav } from "../components/page-contents-nav";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
 import { manifesto } from "../../data/fdlc";
@@ -8,6 +9,7 @@ import { pageMetadata } from "../../lib/metadata";
 export const metadata: Metadata = pageMetadata("Manifesto", "Ten principles for designing AI software factories that are bounded, inspectable, recoverable, and accountable to real outcomes.", "/manifesto");
 
 const principleIndex = ["Explicit intent", "Governed plans", "Bounded authority", "Safe execution", "Independent verification", "Evidence gates", "Earned autonomy", "Human judgment", "Governed learning", "Verified outcomes"] as const;
+const contents = principleIndex.map((label, index) => ({ label: `${String(index + 1).padStart(2, "0")} ${label}`, href: `#principle-${index + 1}` as `#${string}` }));
 
 export default function ManifestoPage() {
   return <SiteShell><div className="page-wrap manifesto-page">
@@ -29,6 +31,7 @@ export default function ManifestoPage() {
       <p>These principles are the operating invariants of the Factory Development Lifecycle.</p>
       <p>They apply whether you use Mission Control, another control plane, or your own implementation.</p>
     </section>
+    <PageContentsNav items={contents} title="Manifesto principles" />
     <nav className="manifesto-index" aria-label="Manifesto principles">
       <div><p className="section-label">The ten principles</p><strong>Read in sequence or jump directly.</strong></div>
       <ol>{principleIndex.map((label, index) => <li key={label}><a href={`#principle-${index + 1}`}><span>{String(index + 1).padStart(2, "0")}</span><strong>{label}</strong></a></li>)}</ol>

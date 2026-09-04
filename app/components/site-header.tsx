@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 const primary = [
   ["Framework", "/framework"],
@@ -8,7 +12,32 @@ const primary = [
   ["Maturity", "/maturity"],
 ] as const;
 
+const secondary = [
+  ["FDLC in 5 Minutes", "/in-5-minutes"],
+  ["Manifesto", "/manifesto"],
+  ["Specification", "/spec"],
+  ["Benchmarks", "/benchmarks"],
+  ["Start", "/start"],
+  ["Enterprise", "/enterprise"],
+  ["Deploy", "/deploy"],
+  ["About", "/about"],
+] as const;
+
+function isCurrent(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function SiteHeader() {
+  const pathname = usePathname();
+  const secondaryActive = secondary.some(([, href]) => isCurrent(pathname, href));
+  const moreMenu = useRef<HTMLDetailsElement>(null);
+  const mobileMenu = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    if (moreMenu.current) moreMenu.current.open = false;
+    if (mobileMenu.current) mobileMenu.current.open = false;
+  }, [pathname]);
+
   return (
     <header className="site-header">
       <div className="header-inner">
@@ -17,34 +46,21 @@ export function SiteHeader() {
           <span>FDLC<span className="wordmark-dot">.ai</span></span>
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {primary.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
-          <details className="more-menu">
-            <summary>More <span aria-hidden="true">⌄</span></summary>
+          {primary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
+          <details className={`more-menu${secondaryActive ? " is-active" : ""}`} ref={moreMenu}>
+            <summary aria-current={secondaryActive ? "page" : undefined}>More <span aria-hidden="true">⌄</span></summary>
             <div>
-              <Link href="/in-5-minutes">FDLC in 5 Minutes</Link>
-              <Link href="/manifesto">Manifesto</Link>
-              <Link href="/spec">Specification</Link>
-              <Link href="/benchmarks">Benchmarks</Link>
-              <Link href="/start">Start</Link>
-              <Link href="/enterprise">Enterprise</Link>
-              <Link href="/deploy">Deploy</Link>
-              <Link href="/about">About</Link>
+              {secondary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
             </div>
           </details>
         </nav>
         <a className="header-github" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">GitHub <span aria-hidden="true">↗</span></a>
-        <details className="mobile-nav">
+        <details className="mobile-nav" ref={mobileMenu}>
           <summary aria-label="Open navigation">Menu</summary>
           <nav aria-label="Mobile navigation">
-            {primary.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
-            <Link href="/in-5-minutes">FDLC in 5 Minutes</Link>
-            <Link href="/manifesto">Manifesto</Link>
-            <Link href="/spec">Specification</Link>
-            <Link href="/benchmarks">Benchmarks</Link>
-            <Link href="/start">Start</Link>
-            <Link href="/enterprise">Enterprise</Link>
-            <Link href="/deploy">Deploy</Link>
-            <Link href="/about">About</Link>
+            {primary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
+            <span>More</span>
+            {secondary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
           </nav>
         </details>
       </div>

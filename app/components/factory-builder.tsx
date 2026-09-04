@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { factoryFormErrors, generateFactoryDefinition, type FactoryForm } from "../../lib/factory-definition";
 
 const workTypes = ["Dependency upgrade", "Vulnerability remediation", "Test repair", "API migration", "Feature implementation", "Documentation update"];
@@ -36,6 +37,7 @@ export function FactoryBuilder() {
       <article><span>Outcome metrics</span><ul>{definition.outcomeMetrics.map((item) => <li key={item}>{item}</li>)}</ul></article>
     </div>
     <aside className="callout"><strong>Conceptual output</strong><p>This teaches the FDLC mental model. It is not an executable Mission Control manifest or a formal FDLC Specification document.</p></aside>
+    <nav className="factory-result-actions" aria-label="Continue from Factory Definition"><Link className="button button-dark" href="/mission-control#quickstart">Run Mission Control</Link><Link className="button button-light" href="/spec">Review the proposed Specification</Link></nav>
   </section>;
 
   const panels = [
@@ -47,7 +49,7 @@ export function FactoryBuilder() {
   ];
 
   const stepValid = [form.workType && form.outcome.trim().length >= 12, form.criteria.trim().length > 0, form.authority.length > 0, form.verification.length > 0, form.humanControls.length > 0][step];
-  return <section className="factory-builder">
+  return <section className="factory-builder" id="factory-builder">
     <div className="builder-progress"><span>Step {step + 1} of 5</span><div aria-hidden="true"><i style={{ width: `${((step + 1) / 5) * 100}%` }} /></div></div>
     {panels[step]}
     <div className="builder-actions"><button className="button button-light" disabled={step === 0} onClick={() => setStep((value) => value - 1)} type="button">Previous</button>{step < 4 ? <button className="button button-dark" disabled={!stepValid} onClick={() => setStep((value) => value + 1)} type="button">Continue</button> : <button className="button button-dark" disabled={errors.length > 0} onClick={() => setSubmitted(true)} type="button">Generate Factory Definition</button>}</div>

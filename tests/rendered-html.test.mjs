@@ -26,9 +26,9 @@ test("server-renders every public route with FDLC metadata and a heading", async
 test("homepage answers the category boundary and links to primary destinations", async () => {
   const response = await render("/");
   const html = await response.text();
-  assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle[\s\S]*?FDLC is the open operating model[\s\S]*?<\/section>/i);
+  assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?is the process for designing, assembling, governing, operating, measuring, and continuously improving[\s\S]*?<\/section>/i);
   assert.match(html, /Build the factory that builds your software/i);
-  assert.match(html, /Not another coding agent.*The control system around them/is);
+  assert.match(html, /SDLC.*Governs the lifecycle of.*software.*FDLC.*Governs the lifecycle of the.*factory that builds it/is);
   assert.match(html, /Verified delivery, not merely generated code/i);
   assert.match(html, /Autonomy without evidence is just faster guessing/i);
   assert.match(html, /Traditional SDLC.*AI-Native SDLC.*FDLC.*Software \+ AI-assisted workflow.*The software factory/is);

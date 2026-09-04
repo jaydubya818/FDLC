@@ -34,7 +34,7 @@ const guideByArea = {
 
 export default function ArchitecturePage() {
   return <SiteShell><div className="page-wrap">
-    <PageHero eyebrow="Reference architecture / 02" title="Six areas. Explicit boundaries." description="An AI software factory is a system of responsibilities. The architecture makes each responsibility visible so teams can decide what to build, buy, govern, verify, and operate." />
+    <PageHero eyebrow="Reference architecture / 02" title="Six areas. Explicit boundaries." description="An AI software factory is a system of responsibilities. The architecture makes each responsibility visible so teams can decide what to build, buy, govern, verify, and operate." meta={[["Capability areas", "06"], ["System flow", "Authority ↘ Evidence ↖"], ["Reading time", "≈ 10 min"]]} />
     <div className="longform-layout">
     <PageContentsNav items={contents} mobileTitle="Jump to area" title="Architecture areas" variant="rail" />
     <div className="longform-content">

@@ -39,7 +39,7 @@ const missionControlViews = [
 
 export default function FiveMinuteWalkthroughPage() {
   return <SiteShell><div className="page-wrap example-page">
-    <PageHero eyebrow="FDLC in 5 Minutes" status="Illustrative" title="One workflow. Four views. Eleven artifacts. One measurable outcome." description={canonicalDefinition}>
+    <PageHero eyebrow="FDLC in 5 Minutes" status="Illustrative" variant="compact" title="One workflow. Four views. Eleven artifacts. One measurable outcome." description={canonicalDefinition} meta={[["Example", "Dependency modernization"], ["Views", "04"], ["Artifacts", "11"]]}>
       <div className="hero-actions"><a className="button button-dark" href="#the-factory-line">Follow the example</a><Link className="button button-light" href="/framework">Explore the Framework</Link><Link className="text-action" href="/mission-control#quickstart">Run Mission Control →</Link></div>
     </PageHero>
 

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { CopyButton } from "../components/copy-button";
+import { PageContentsNav } from "../components/page-contents-nav";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
@@ -10,15 +12,38 @@ import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Mission Control", "The open-source reference implementation of the Factory Development Lifecycle.", "/mission-control");
 
+const contents = [
+  { label: "Golden path", href: "#golden-path" },
+  { label: "Core objects", href: "#core-objects" },
+  { label: "Architecture", href: "#architecture" },
+  { label: "Operator experience", href: "#operator-experience" },
+  { label: "Capabilities", href: "#capabilities" },
+  { label: "Quickstart", href: "#quickstart" },
+  { label: "Build next", href: "#build-next" },
+] as const;
+
+const quickstartCommands = `git clone https://github.com/jaydubya818/MissionControl.git
+cd MissionControl
+corepack enable && pnpm install
+cp .env.example .env.local
+pnpm exec convex dev --once
+
+# Terminal 1
+pnpm run dev:demo
+
+# Terminal 2
+pnpm run convex:seed:demo:force`;
+
 export default function MissionControlPage() {
   return <SiteShell><div className="page-wrap mission-page">
-    <PageHero eyebrow="Open-source reference implementation / 05" title="Mission Control" description="The open-source reference implementation of the Factory Development Lifecycle: a governed control plane for planning, executing, verifying, approving, and learning from autonomous software work.">
+    <PageHero eyebrow="Open-source reference implementation / 05" variant="compact" title="Mission Control" description="The open-source reference implementation of the Factory Development Lifecycle: a governed control plane for planning, executing, verifying, approving, and learning from autonomous software work." meta={[["License", "Open source"], ["Demo", "Deterministic"], ["Status", "Capability-specific"]]}>
       <div className="hero-actions"><a className="button button-dark" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View on GitHub ↗</a><a className="button button-light" href="#quickstart">Local quickstart</a></div>
     </PageHero>
 
     <section className="mc-boundary"><strong>What it is</strong><p>A concrete control plane that demonstrates FDLC objects, gates, authority, evidence, and recovery.</p><strong>What it is not</strong><p>The definition of FDLC, every component of a complete factory, or a claim of fleet-scale autonomous production.</p></section>
+    <PageContentsNav items={contents} title="Mission Control sections" />
 
-    <section className="section-block">
+    <section className="section-block" id="golden-path">
       <SectionHeader eyebrow="Golden path" title="From governed intent to an evidence-backed decision." description="Mission Control expands the concise FDLC protocol with the concrete records needed to operate and audit one software delivery path." />
       <ol className="mc-timeline">{missionControlTimeline.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></li>)}</ol>
       <div className="golden-path-steps">
@@ -31,13 +56,13 @@ export default function MissionControlPage() {
       </div>
     </section>
 
-    <section className="mc-dark-section">
+    <section className="mc-dark-section" id="core-objects">
       <SectionHeader eyebrow="Core objects" title="One hierarchy. No optimistic shortcuts." description="Each record has a distinct owner and authority. Completion, verification, acceptance, merge, release, and production outcome are not aliases." />
       <div className="object-grid">{missionControlObjects.map(([name, summary], index) => <article key={name}><span>{String(index + 1).padStart(2, "0")}</span><h3>{name}</h3><p>{summary}</p></article>)}</div>
       <StateBoundary dark mode="mission-control" />
     </section>
 
-    <section className="section-block mc-architecture">
+    <section className="section-block mc-architecture" id="architecture">
       <SectionHeader eyebrow="Architecture" title="Authority stays in the control plane." description="The browser, agents, harnesses, and providers do not create their own permission to act or advance state." />
       <div className="mc-layers">
         <article><span>Operator surfaces</span><strong>React + TypeScript</strong><small>Exceptions, decisions, Plans, WorkOrders, traces, and evidence</small></article>
@@ -48,7 +73,7 @@ export default function MissionControlPage() {
       </div>
     </section>
 
-    <section className="screenshots-section">
+    <section className="screenshots-section" id="operator-experience">
       <SectionHeader eyebrow="Operator experience" title="Exceptions and evidence before activity." description="These views are from Mission Control’s deterministic Software Factory demo. They show product structure, not fleet-scale production usage." />
       <figure className="product-frame is-large"><div><span>COMMAND CENTER</span><span>DEMO VIEW</span></div><Image src="/mission-control/command-center.png" alt="Mission Control command center with delivery metrics and ranked work requiring attention" width={1600} height={1050} sizes="(max-width: 1240px) 100vw, 1120px" /><figcaption>Command Center: ranked decisions, blockers, risk, and proof sources.</figcaption></figure>
       <div className="screenshot-grid">
@@ -69,22 +94,12 @@ export default function MissionControlPage() {
     <section className="quickstart-section" id="quickstart">
       <div><p className="section-label">Local quickstart</p><h2>Run the deterministic factory demo.</h2><p>Requires Node 20, pnpm 9, Git, and a Convex development deployment. Live providers are not required for the demo.</p></div>
       <div className="quickstart-code" aria-label="Mission Control local quickstart commands" role="region">
-        <a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Mission Control repository ↗</a>
-        <pre><code>{`git clone https://github.com/jaydubya818/MissionControl.git
-cd MissionControl
-corepack enable && pnpm install
-cp .env.example .env.local
-pnpm exec convex dev --once
-
-# Terminal 1
-pnpm run dev:demo
-
-# Terminal 2
-pnpm run convex:seed:demo:force`}</code></pre>
+        <div className="quickstart-code-toolbar"><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Mission Control repository ↗</a><CopyButton label="Copy commands" text={quickstartCommands} /></div>
+        <pre><code>{quickstartCommands}</code></pre>
       </div>
       <p className="quickstart-note">Then open <code>http://localhost:5199/v2/command-center</code> and select <strong>Software Factory Demo</strong>.</p>
     </section>
 
-    <section className="reading-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/spec">Preview the Specification →</Link></div></section>
+    <section className="reading-next" id="build-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/spec">Preview the Specification →</Link></div></section>
   </div></SiteShell>;
 }

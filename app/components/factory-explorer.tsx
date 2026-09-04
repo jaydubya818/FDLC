@@ -7,6 +7,7 @@ import {
   factoryExplorerStages,
   type FactoryCapabilityId,
 } from "../../data/factory-explorer";
+import { dependencyModernizationExample } from "../../data/dependency-modernization-example";
 
 const defaultStageId = "verify";
 const defaultCapabilityId: FactoryCapabilityId = "evals";
@@ -21,8 +22,14 @@ export function FactoryExplorer() {
   const stageList = useRef<HTMLDivElement | null>(null);
   const stageButtons = useRef<Array<HTMLButtonElement | null>>([]);
   const selectedStage = factoryExplorerStages.find((stage) => stage.id === selectedStageId) ?? factoryExplorerStages[4];
+  const selectedStageIndex = factoryExplorerStages.findIndex((stage) => stage.id === selectedStage.id);
   const selectedCapability = factoryExplorerCapabilities.find((capability) => capability.id === selectedCapabilityId) ?? factoryExplorerCapabilities[7];
   const selectedCapabilityParticipates = stageHasCapability(selectedStage, selectedCapability.id);
+  const exampleStep = dependencyModernizationExample.runtimeSteps.find((step) => step.stepId === selectedStage.id);
+  const exampleRecords = exampleStep?.artifacts.flatMap((artifactId) => {
+    const artifact = dependencyModernizationExample.artifacts.find((item) => item.protocolId === artifactId);
+    return artifact ? [artifact.exampleId] : [];
+  }) ?? [];
 
   useEffect(() => {
     const container = stageList.current;
@@ -68,10 +75,31 @@ export function FactoryExplorer() {
           <p className="orientation-label" id="factory-explorer-title">Interactive factory explorer</p>
           <strong>Follow one unit of work</strong>
         </div>
-        <p id="factory-explorer-instructions">
-          Choose a stage. Then inspect the capabilities it activates.
-          <span className="factory-explorer-swipe-hint">Swipe the lifecycle <span aria-hidden="true">↔</span></span>
-        </p>
+        <div className="factory-explorer-controls">
+          <p id="factory-explorer-instructions">
+            Choose a stage. Then inspect the capabilities it activates.
+            <span className="factory-explorer-swipe-hint">Swipe the lifecycle <span aria-hidden="true">↔</span></span>
+          </p>
+          <div className="factory-explorer-progress" aria-label={`Stage ${selectedStage.number} of ${factoryExplorerStages.length}`} role="group">
+            <button
+              aria-label="View previous runtime stage"
+              disabled={selectedStageIndex === 0}
+              onClick={() => selectStage(selectedStageIndex - 1)}
+              type="button"
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+            <span>{String(selectedStage.number).padStart(2, "0")} / {String(factoryExplorerStages.length).padStart(2, "0")}</span>
+            <button
+              aria-label="View next runtime stage"
+              disabled={selectedStageIndex === factoryExplorerStages.length - 1}
+              onClick={() => selectStage(selectedStageIndex + 1)}
+              type="button"
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <div
@@ -134,6 +162,22 @@ export function FactoryExplorer() {
             <dd>{selectedStage.participation}</dd>
           </div>
         </dl>
+        <aside className="factory-explorer-example" aria-label={`Dependency modernization example at ${selectedStage.name}`}>
+          <div>
+            <span>Worked example</span>
+            <h4>{dependencyModernizationExample.title}</h4>
+          </div>
+          <div>
+            <p>{exampleStep?.action}</p>
+            <ul aria-label="Example records created at this stage">
+              {exampleRecords.map((record) => <li key={record}>{record}</li>)}
+            </ul>
+          </div>
+          <nav aria-label="Explore this stage in depth">
+            <Link href="/in-5-minutes">Full walkthrough <span aria-hidden="true">→</span></Link>
+            <a href={selectedStage.guideHref}>Guide deep dive <span aria-hidden="true">↗</span></a>
+          </nav>
+        </aside>
       </div>
 
       <div className="factory-explorer-capabilities">

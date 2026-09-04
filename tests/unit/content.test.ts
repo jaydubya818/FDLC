@@ -34,6 +34,8 @@ test("keeps the homepage factory explorer complete and internally linked", () =>
     assert.ok(stage.capabilities.some((capabilityId) => capabilityId === stage.focusCapability), stage.name);
     assert.ok(stage.question.endsWith("?"), stage.name);
     assert.ok(stage.proof.length > 20, stage.name);
+    assert.match(stage.guideHref, /^https:\/\/ai-software-factory-mastery\.vercel\.app\/docs\//, stage.name);
+    assert.ok(dependencyModernizationExample.runtimeSteps.some((step) => step.stepId === stage.id), stage.name);
   }
 
   for (const capability of factoryExplorerCapabilities) {

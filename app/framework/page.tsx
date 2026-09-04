@@ -50,7 +50,7 @@ const contents = [
 export default function FrameworkPage() {
   return <SiteShell>
     <div className="page-wrap">
-      <PageHero eyebrow="FDLC Framework / 01" title="The lifecycle for the factory itself." description={canonicalDefinition}>
+      <PageHero eyebrow="FDLC Framework / 01" title="The lifecycle for the factory itself." description={canonicalDefinition} meta={[["System views", "04"], ["Protocol artifacts", "11"], ["Reading time", "≈ 12 min"]]}>
         <div className="hero-actions"><Link className="button button-dark" href="/in-5-minutes">Understand FDLC in 5 minutes</Link><Link className="button button-light" href="/architecture">Explore the Architecture</Link><Link className="text-action" href="/manifesto">Read the Manifesto →</Link></div>
       </PageHero>
       <div className="longform-layout">

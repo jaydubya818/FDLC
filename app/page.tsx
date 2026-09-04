@@ -9,7 +9,7 @@ import { ProtocolDiagram } from "./components/protocol-diagram";
 import { SectionHeader } from "./components/page-hero";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
-import { ecosystemRoles, evidencePositioning, manifesto, maturityLevels, primaryPositioning } from "../data/fdlc";
+import { ecosystemRoles, evidencePositioning, lifecycleStages, manifesto, maturityLevels, primaryPositioning } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "FDLC is the open operating model and reference architecture for designing, governing, and continuously improving AI software factories.", "/");
@@ -21,15 +21,18 @@ export default function Home() {
       <main id="main-content">
         <section className="hero-shell">
           <div className="hero-copy">
-            <p className="eyebrow"><span>Factory Development Lifecycle</span><span>Open framework · v0.1</span></p>
+            <p className="eyebrow"><span>Factory Development Lifecycle (FDLC)</span><span>Open framework · v0.1</span></p>
             <h1>Build the factory that builds your software.</h1>
             <p className="hero-lede">
-              FDLC is the open operating model and reference architecture for designing,
-              governing, and continuously improving AI software factories. Turn engineering
-              intent into independently verified software using model-agnostic agents,
-              governed plans, isolated execution, policy gates, and evidence-backed delivery.
+              The Factory Development Lifecycle (FDLC) is the process for designing,
+              assembling, governing, operating, measuring, and continuously improving the
+              AI software factory that produces software.
             </p>
-            <p className="hero-contrast"><strong>Not another coding agent.</strong> The control system around them.</p>
+            <div className="hero-category-contrast" aria-label="Difference between SDLC and FDLC" role="group">
+              <div><span>SDLC</span><p>Governs the lifecycle of <strong>software.</strong></p></div>
+              <div><span>FDLC</span><p>Governs the lifecycle of the <strong>factory that builds it.</strong></p></div>
+            </div>
+            <p className="hero-proof"><strong>Verified delivery,</strong> not merely generated code.</p>
             <div className="hero-actions">
               <Link className="button button-dark" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
               <Link className="button button-light" href="/framework">Explore the Framework</Link>
@@ -37,8 +40,14 @@ export default function Home() {
             </div>
           </div>
           <aside className="hero-model" aria-labelledby="hero-model-title">
-            <div className="model-chrome"><span>FDLC / SYSTEM MAP</span><span>01—06</span></div>
-            <h2 id="hero-model-title">The system around the agent.</h2>
+            <div className="model-chrome"><span>FDLC / FACTORY IN ONE VIEW</span><span>01—07</span></div>
+            <h2 id="hero-model-title">Engineer the factory. Govern every run.</h2>
+            <ol className="hero-lifecycle" aria-label="Factory Development Lifecycle stages">
+              {lifecycleStages.map((stage) => (
+                <li key={stage.id}><span>{String(stage.number).padStart(2, "0")}</span><strong>{stage.name}</strong></li>
+              ))}
+            </ol>
+            <p className="model-section-label">Six capability areas</p>
             <ArchitectureDiagram compact />
             <div className="model-outcome">
               <span>Unit of value</span>

@@ -54,21 +54,28 @@ export function PageContentsNav({ items, title = "On this page", mobileTitle = "
     };
   }, [items]);
 
-  const links = items.map((item) => <a aria-current={activeHref === item.href ? "location" : undefined} href={item.href} key={item.href} onClick={() => setActiveHref(item.href)}>{item.label}</a>);
+  const activeIndex = Math.max(0, items.findIndex((item) => item.href === activeHref));
+  const progress = items.length ? ((activeIndex + 1) / items.length) * 100 : 0;
+  const position = `${String(activeIndex + 1).padStart(2, "0")} / ${String(items.length).padStart(2, "0")}`;
+  const links = (context: string) => items.map((item) => <a aria-current={activeHref === item.href ? "location" : undefined} href={item.href} key={`${context}-${item.href}`} onClick={(event) => {
+    setActiveHref(item.href);
+    event.currentTarget.closest("details")?.removeAttribute("open");
+  }}>{item.label}</a>);
+  const status = <div className="page-contents-status" aria-hidden="true"><span>{position}</span><i><b style={{ width: `${progress}%` }} /></i></div>;
 
   return (
     <aside className={`page-contents${variant === "rail" ? " is-rail" : ""}`} aria-label={title}>
       <nav aria-label={title} className="page-contents-desktop">
-        <span>{title}</span>
-        <div>{links}</div>
+        <span>{title}</span>{status}
+        <div>{links("desktop")}</div>
       </nav>
       <details className="page-contents-floating">
-        <summary>Contents <span aria-hidden="true">↑</span></summary>
-        <nav aria-label={title}>{links}</nav>
+        <summary>Contents <span aria-hidden="true">{position} ↑</span></summary>
+        <nav aria-label={title}>{links("floating")}</nav>
       </details>
       <details className="page-contents-mobile">
-        <summary>{mobileTitle} <span aria-hidden="true">Sections ↓</span></summary>
-        <nav aria-label={title}>{links}</nav>
+        <summary>{mobileTitle} <span aria-hidden="true">{position} · Sections ↓</span></summary>
+        {status}<nav aria-label={title}>{links("mobile")}</nav>
       </details>
     </aside>
   );
