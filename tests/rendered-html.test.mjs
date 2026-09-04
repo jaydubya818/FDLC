@@ -76,12 +76,15 @@ test("guide is an accurate portal into the authoritative 44-chapter book", async
 
 test("manifesto publishes the ten operating invariants and the state boundary", async () => {
   const html = await (await render("/manifesto")).text();
-  assert.match(html, /Autonomy is useful only when it can be trusted/i);
+  assert.match(html, /Autonomy is useful only when it can be .*trusted/i);
+  assert.match(html, /Operating principles.*10.*State boundaries.*05.*Unit of value.*Verified outcomes/is);
   assert.match(html, /operating invariants of the Factory Development Lifecycle/i);
   assert.match(html, /Mission Control, another control plane, or your own implementation/i);
+  assert.match(html, /The ten principles.*Read in sequence or jump directly.*Explicit intent.*Governed plans.*Bounded authority.*Safe execution.*Independent verification.*Evidence gates.*Earned autonomy.*Human judgment.*Governed learning.*Verified outcomes/is);
   assert.match(html, /Intent must be explicit.*Plan is a governed artifact.*Every agent has an identity.*Execution must be isolated.*Producers should not be their only verifier.*State transitions require evidence.*Autonomy must be earned.*Human attention belongs.*Learning must come from validated outcomes.*value of a factory is measured in verified outcomes/is);
   assert.match(html, /Execution complete.*Verified.*Approved.*Released.*Outcome proven/is);
   assert.match(html, /distinct states with distinct owners and evidence requirements.*faster guessing/is);
+  for (let principle = 1; principle <= 10; principle += 1) assert.match(html, new RegExp(`href=["']#principle-${principle}["']`));
   for (const href of ["/in-5-minutes", "/framework", "/architecture", "/mission-control"]) assert.match(html, new RegExp(`href=["']${href}["']`));
 });
 

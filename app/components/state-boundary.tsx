@@ -8,7 +8,7 @@ const stateMeanings = [
   ["Outcome", "The result observed in reality after release."],
 ] as const;
 
-export function StateBoundary({ dark = false, eyebrow, explanation, mode = "compact" }: { dark?: boolean; eyebrow?: string; explanation?: string; mode?: StateBoundaryMode }) {
+export function StateBoundary({ dark = false, eyebrow, explanation, mode = "compact", warning }: { dark?: boolean; eyebrow?: string; explanation?: string; mode?: StateBoundaryMode; warning?: string }) {
   if (mode === "mission-control") return (
     <aside className={dark ? "state-boundary is-dark is-mission-control" : "state-boundary is-mission-control"} aria-labelledby="mission-control-boundary-title">
       <div>
@@ -31,7 +31,7 @@ export function StateBoundary({ dark = false, eyebrow, explanation, mode = "comp
       <p className="state-boundary-explanation">{explanation ?? "Each transition answers a different question and requires distinct authority. Collapsing them creates false confidence and unauditable releases."}</p>
       {mode === "primary" ? <>
         <div className="state-boundary-meanings">{stateMeanings.map(([name, meaning]) => <article key={name}><strong>{name}</strong><p>{meaning}</p></article>)}</div>
-        <p className="state-boundary-warning">Collapsing any boundary turns a governed factory into optimistic automation.</p>
+        <p className="state-boundary-warning">{warning ?? "Collapsing any boundary turns a governed factory into optimistic automation."}</p>
       </> : <p className="state-boundary-sequence" aria-label="Execution complete is not verification passed, is not approved, is not released, and is not outcome proven." role="group">
         <strong>Execution complete</strong><span aria-hidden="true">≠</span><strong>Verified</strong><span aria-hidden="true">≠</span><strong>Approved</strong><span aria-hidden="true">≠</span><strong>Released</strong><span aria-hidden="true">≠</span><strong>Outcome proven</strong>
       </p>}
