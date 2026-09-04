@@ -139,7 +139,11 @@ Operator / timestamp:
    `GUIDE_MFE_PRODUCTION_ENABLED` are absent from Production. Do not proceed if
    any scope is broader.
 8. Push the FDLC branch so the default application's `microfrontends.json`
-   produces the routed Preview.
+   produces the routed Preview. `npm run build:vercel` must first run the
+   repository-root `microfrontends:check` preflight and print the recorded
+   semantic digest. Vercel can otherwise warn about a missing config, continue
+   an ordinary application build, and report a Ready deployment with
+   `mfeConfigUploadState=no_config`; that deployment is not a candidate.
 9. Check out or verify the exact FDLC Preview Git commit, rerun
    `microfrontends:check` against it, and prove
    `git show <FDLC Preview Git commit>:microfrontends.json` produces the
