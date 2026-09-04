@@ -7,7 +7,7 @@ import { PageHero, SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
 import { StatusBadge } from "../components/status-badge";
-import { missionControlCapabilities, missionControlObjects, missionControlTimeline } from "../../data/mission-control";
+import { missionControlCapabilities, missionControlMaturityLedgerUrl, missionControlObjects, missionControlTimeline } from "../../data/mission-control";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Mission Control", "The open-source reference implementation of the Factory Development Lifecycle.", "/mission-control");
@@ -24,27 +24,27 @@ const contents = [
 
 const quickstartCommands = `git clone https://github.com/jaydubya818/MissionControl.git
 cd MissionControl
-corepack enable && pnpm install
-cp .env.example .env.local
+corepack enable
+pnpm install
 pnpm exec convex dev --once
 
 # Terminal 1
 pnpm run dev:demo
 
-# Terminal 2
+# Terminal 2, after Convex reports ready
 pnpm run convex:seed:demo:force`;
 
 export default function MissionControlPage() {
   return <SiteShell><div className="page-wrap mission-page">
-    <PageHero eyebrow="Open-source reference implementation / 05" variant="compact" title="Mission Control" description="The open-source reference implementation of the Factory Development Lifecycle: a governed control plane for planning, executing, verifying, approving, and learning from autonomous software work." meta={[["License", "Open source"], ["Demo", "Deterministic"], ["Status", "Capability-specific"]]}>
+    <PageHero eyebrow="Open-source reference implementation / 05" variant="compact" title="Mission Control" description="The open-source reference implementation of the Factory Development Lifecycle: a bounded, human-governed delivery kernel from intent through verified pull-request publication and acceptance." meta={[["License", "Open source"], ["Demo", "Deterministic"], ["Status", "Capability-specific"]]}>
       <div className="hero-actions"><a className="button button-dark" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View on GitHub ↗</a><a className="button button-light" href="#quickstart">Local quickstart</a></div>
     </PageHero>
 
-    <section className="mc-boundary"><strong>What it is</strong><p>A concrete control plane that demonstrates FDLC objects, gates, authority, evidence, and recovery.</p><strong>What it is not</strong><p>The definition of FDLC, every component of a complete factory, or a claim of fleet-scale autonomous production.</p></section>
+    <section className="mc-boundary"><strong>What it is</strong><p>A concrete control plane that demonstrates FDLC objects, gates, authority, evidence, recovery, and permit-gated pull-request publication.</p><strong>What it is not</strong><p>The definition of FDLC, every component of a complete factory, or proof of generalized release, production learning, governed MCP, incident response, enterprise authorization, or fleet-scale autonomous delivery.</p></section>
     <PageContentsNav items={contents} title="Mission Control sections" />
 
     <section className="section-block" id="golden-path">
-      <SectionHeader eyebrow="Golden path" title="From governed intent to an evidence-backed decision." description="Mission Control expands the concise FDLC protocol with the concrete records needed to operate and audit one software delivery path." />
+      <SectionHeader eyebrow="Qualified golden path" title="From governed intent to an evidence-backed human decision." description="Mission Control expands the concise FDLC protocol with the concrete records needed to operate and audit one bounded, one-repository delivery path." />
       <ol className="mc-timeline">{missionControlTimeline.map((item, index) => <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></li>)}</ol>
       <div className="golden-path-steps">
         <p>Engineering work enters as a Mission with explicit scope and acceptance expectations.</p>
@@ -83,23 +83,23 @@ export default function MissionControlPage() {
     </section>
 
     <section className="section-block capability-section" id="capabilities">
-      <SectionHeader eyebrow="Current capability" title="Status belongs to the capability—not the slogan." description="Available means the bounded behavior exists in the current source and is backed by the repository’s stated evidence. It does not imply general production certification." />
+      <SectionHeader eyebrow="Current capability" title="Status belongs to the capability—not the slogan." description="These labels mirror the repository’s canonical maturity vocabulary. Qualified, gated, partial, preview, and missing capabilities are not interchangeable, and none imply general production certification." />
       <div className="capability-table" role="table" aria-label="Mission Control capability status">
         <div className="capability-row capability-head" role="row"><span role="columnheader">Capability</span><span role="columnheader">Status</span><span role="columnheader">What is supported</span><span role="columnheader">Current boundary</span></div>
         {missionControlCapabilities.map((capability) => <div className="capability-row" role="row" key={capability.name}><strong role="cell">{capability.name}</strong><span role="cell"><StatusBadge status={capability.status} /></span><p role="cell">{capability.summary}</p><p role="cell">{capability.limitation}</p></div>)}
       </div>
-      <a className="section-link" href="https://github.com/jaydubya818/MissionControl/blob/main/docs/product/software-factory-capability-maturity.md" rel="noreferrer" target="_blank">Read the canonical capability maturity ledger ↗</a>
+      <a className="section-link" href={missionControlMaturityLedgerUrl} rel="noreferrer" target="_blank">Read the current capability maturity ledger and evidence ↗</a>
     </section>
 
     <section className="quickstart-section" id="quickstart">
-      <div><p className="section-label">Local quickstart</p><h2>Run the deterministic factory demo.</h2><p>Requires Node 20, pnpm 9, Git, and a Convex development deployment. Live providers are not required for the demo.</p></div>
+      <div><p className="section-label">Local quickstart</p><h2>Run the deterministic factory demo.</h2><p>Requires Node 20, pnpm 9, Git, and a Convex development deployment. Copy the generated <code>CONVEX_URL</code> to <code>VITE_CONVEX_URL</code> in <code>.env.local</code>. Live providers are not required for the demo.</p></div>
       <div className="quickstart-code" aria-label="Mission Control local quickstart commands" role="region">
         <div className="quickstart-code-toolbar"><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Mission Control repository ↗</a><CopyButton label="Copy commands" text={quickstartCommands} /></div>
         <pre><code>{quickstartCommands}</code></pre>
       </div>
-      <p className="quickstart-note">Then open <code>http://localhost:5199/v2/command-center</code> and select <strong>Software Factory Demo</strong>.</p>
+      <p className="quickstart-note">Then open <code>http://localhost:5199/v2/command-center</code> and select <strong>Software Factory Demo</strong>. <code>pnpm run dev</code> starts Convex and the standard UI; <code>dev:demo</code> adds the deterministic workflow executor. Live-provider orchestration requires separate credentials and remains off by default.</p>
     </section>
 
-    <section className="reading-next" id="build-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/spec">Preview the Specification →</Link></div></section>
+    <section className="reading-next" id="build-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/specification">Preview the Specification →</Link></div></section>
   </div></SiteShell>;
 }

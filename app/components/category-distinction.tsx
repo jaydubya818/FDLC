@@ -13,7 +13,7 @@ export function CategoryDistinction() {
         </tbody>
       </table>
     </div>
-    <div className="category-transitions" aria-label="The two transitions from SDLC to an AI software factory" role="group">
+    <div className="category-transitions" aria-label="The three transitions from traditional SDLC to FDLC" role="group">
       {categoryTransitions.map((transition, index) => <article key={transition.to}>
         <span>{String(index + 1).padStart(2, "0")}</span>
         <strong>{transition.from} <i aria-hidden="true">→</i> {transition.to}</strong>

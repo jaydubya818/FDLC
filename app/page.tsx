@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,10 +10,10 @@ import { ProtocolDiagram } from "./components/protocol-diagram";
 import { SectionHeader } from "./components/page-hero";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
-import { ecosystemRoles, evidencePositioning, lifecycleStages, manifesto, maturityLevels, primaryPositioning } from "../data/fdlc";
+import { canonicalDefinition, ecosystemRoles, evidencePositioning, lifecycleStages, manifesto, maturityLevels, primaryPositioning } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "FDLC is the open operating model and reference architecture for designing, governing, and continuously improving AI software factories.", "/");
+export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", canonicalDefinition, "/");
 
 export default function Home() {
   return (
@@ -23,11 +24,7 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow"><span>Factory Development Lifecycle (FDLC)</span><span>Open framework · v0.1</span></p>
             <h1>Build the factory that builds your software.</h1>
-            <p className="hero-lede">
-              The Factory Development Lifecycle (FDLC) is the process for designing,
-              assembling, governing, operating, measuring, and continuously improving the
-              AI software factory that produces software.
-            </p>
+            <p className="hero-lede">{canonicalDefinition}</p>
             <div className="hero-category-contrast" aria-label="Difference between SDLC and FDLC" role="group">
               <div><span>SDLC</span><p>Governs the lifecycle of <strong>software.</strong></p></div>
               <div><span>FDLC</span><p>Governs the lifecycle of the <strong>factory that builds it.</strong></p></div>
@@ -63,16 +60,16 @@ export default function Home() {
         </section>
 
         <section className="content-section shift-section">
-          <SectionHeader eyebrow="Inside the factory" title="One autonomous software-delivery lifecycle." description="An operating factory receives intent, coordinates bounded work, earns release through evidence, observes the result, and learns. These runtime steps are distinct from the lifecycle used to engineer the factory itself." />
+          <SectionHeader eyebrow="Public execution shorthand" title="Intent. Plan. Execute. Prove. Release. Learn." description="This six-step path makes the operating idea easy to follow. It groups the exact eleven-artifact protocol without replacing it, and remains distinct from both the Factory Development Lifecycle and the Guide’s eight-stage value stream." />
           <FactoryExplorer />
-          <p className="orientation-note">This inner lifecycle produces software. The seven-stage FDLC lifecycle below evolves the factory that performs it.</p>
+          <p className="orientation-note">The shorthand explains one delivery run. The seven-stage Factory Development Lifecycle below evolves the factory; the full Guide teaches its eight-stage software value stream.</p>
         </section>
 
         <section className="comparison-section">
           <div className="comparison-intro">
             <p className="section-label">The category boundary</p>
-            <h2>Three categories. One critical distinction.</h2>
-            <p>FDLC does not replace the SDLC. It engineers the persistent production system that increasingly performs parts of it. FDLC is the lifecycle for the factory itself.</p>
+            <h2>Four categories. One critical progression.</h2>
+            <p>Traditional SDLC organizes human software production. AI-native SDLC puts agents throughout that lifecycle. An AI software factory makes those workflows persistent and governed. FDLC engineers the factory itself.</p>
           </div>
           <div><CategoryDistinction /></div>
         </section>
@@ -87,13 +84,13 @@ export default function Home() {
         </section>
 
         <section className="content-section lifecycle-section">
-          <SectionHeader eyebrow="Factory lifecycle / Outer loop" title="The factory is engineered, not installed." description="FDLC evolves the production system from a measured opportunity to an operating factory line and then improves it from validated outcomes. Governance, security, observability, and measurement remain continuous throughout." />
+          <SectionHeader eyebrow="Level 01 / Factory Development Lifecycle" title="The factory is engineered, not installed." description="FDLC evolves the production system from a measured opportunity to an operating factory line and then improves it from validated outcomes. Governance, Security, Observability, Measurement, and Human Authority remain continuous throughout." />
           <LifecycleDiagram />
         </section>
 
         <section className="protocol-section">
           <div className="content-section">
-            <SectionHeader eyebrow="Artifact protocol" title="Every transition earns its state." description="The runtime lifecycle is made inspectable by durable nouns: intent, specification, authorized work, attributable attempts, evidence, decisions, releases, outcomes, and learning signals." />
+            <SectionHeader eyebrow="Level 03 / Autonomous execution protocol" title="Every transition earns its state." description="A bounded unit of work becomes inspectable through durable nouns: Intent, Specification, Plan, Work Order, Attempt, Evidence, Verification, Approval, Release, Outcome, and Learning." />
             <ProtocolDiagram />
             <div className="invariant-grid">
               <article><span>01</span><h3>The Plan is governed.</h3><p>Approval binds one exact, reviewable revision.</p></article>
@@ -118,9 +115,9 @@ export default function Home() {
           <div className="mission-preview-copy">
             <p className="section-label">Open-source reference implementation</p>
             <h2>Mission Control</h2>
-            <p>A governed control plane for planning, executing, verifying, approving, and learning from autonomous software work.</p>
+            <p>A bounded, human-governed delivery kernel that makes FDLC intent, execution, evidence, verification, acceptance, and pull-request publication concrete.</p>
             <ol>
-              {["Intent becomes an approved Plan", "Plans release bounded WorkOrders", "Attempts run under explicit authority", "Independent evidence gates acceptance", "Outcomes become governed learning signals"].map((item, index) => <li key={item}><span>{index + 1}</span>{item}</li>)}
+              {["Intent becomes a governed Mission Spec", "Approved Plans release bounded WorkOrders", "Attempts run under frozen authority", "Independent evidence produces a Quality Gate", "Human acceptance governs publication; merge remains human-owned"].map((item, index) => <li key={item}><span>{index + 1}</span>{item}</li>)}
             </ol>
             <div className="hero-actions"><Link className="button button-dark" href="/mission-control">Learn more</Link><a className="button button-light" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">GitHub ↗</a></div>
           </div>
@@ -141,13 +138,15 @@ export default function Home() {
 
         <section className="guide-preview">
           <div><p className="section-label">The field guide</p><h2>Learn the discipline from first principles to production.</h2></div>
-          <div><p>The full 44-chapter AI Software Factory Guide covers architecture, governance, agents, harnesses, tools, context, models, verification, security, operations, and governed learning.</p><Link className="button button-light" href="/guide">Choose a reading path</Link></div>
+          <div><p><strong>Level 02 / Software factory value stream:</strong> Intent → Plan → Define Agent → Execute through Harness → Apply Skills → Evaluate → Improve → Deliver Software.</p><p>The practical Guide to the Factory Development Lifecycle develops this method across 44 chapters.</p><a className="button button-light" href="/guide">Open the full Guide</a></div>
         </section>
 
         <section className="content-section ecosystem-section">
           <SectionHeader eyebrow="The FDLC.ai ecosystem" title="One discipline. Five distinct roles." description="The open foundation defines the category. Products and services make it concrete without becoming the definition of FDLC itself." />
           <div className="ecosystem-cards">
-            {ecosystemRoles.map((item, index) => <Link href={item.href} key={item.name}><span>{String(index + 1).padStart(2, "0")} / {item.status}</span><h3>{item.name}</h3><strong>{item.role}</strong><p>{item.description}</p><small>Explore →</small></Link>)}
+            {ecosystemRoles.map((item, index) => item.href.startsWith("/guide")
+              ? <a href={item.href} key={item.name}><span>{String(index + 1).padStart(2, "0")} / {item.status}</span><h3>{item.name}</h3><strong>{item.role}</strong><p>{item.description}</p><small>Explore →</small></a>
+              : <Link href={item.href} key={item.name}><span>{String(index + 1).padStart(2, "0")} / {item.status}</span><h3>{item.name}</h3><strong>{item.role}</strong><p>{item.description}</p><small>Explore →</small></Link>)}
           </div>
         </section>
       </main>

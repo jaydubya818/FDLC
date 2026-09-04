@@ -9,12 +9,19 @@ This checklist separates what is verifiable in the repository from launch decisi
 ## Product and content
 
 - [x] Canonical FDLC definition is consistent across routes.
-- [x] The seven-stage factory lifecycle, four continuous controls, nine-step runtime lifecycle, six architecture areas, eleven-object artifact protocol, ten principles, and maturity dimensions are represented in the canonical content model.
-- [x] Mission Control capabilities are labeled Available, Experimental, or Planned.
+- [x] The seven-stage Factory Development Lifecycle, five cross-cutting
+  disciplines, eight-stage software factory value stream, six architecture
+  domains, eleven-object governed execution protocol, ten principles, and
+  maturity dimensions are represented in the canonical content model.
+- [x] Mission Control capabilities use the evidence-bounded vocabulary from its
+  current public maturity ledger.
 - [x] Private notes, Loom links, repository secrets, and unsupported performance claims are excluded from public pages.
-- [x] The Guide portal reflects the live 44-chapter, six-part, eight-stage edition and deep-links to its authoritative reading site.
+- [x] `/guide` reflects the live 44-chapter, six-part, eight-stage edition and
+  links directly into its canonical same-origin route tree.
 - [x] Every primary page has an explicit next action.
-- [x] The five-minute worked example connects all four views and distinguishes illustrative records from production evidence.
+- [x] The five-minute worked example connects all three abstraction levels and
+  the six-domain structural view while distinguishing illustrative records
+  from production evidence.
 - [x] The five-minute worked example includes a baseline contract, Mission Control reference views, measurable success criteria, and four concrete next steps.
 - [x] Framework, Architecture, and Mission Control repeat the non-collapsible delivery-state boundary.
 - [x] Empty, partial, and completion states exist for the two interactive tools.

@@ -1,6 +1,8 @@
 export const siteName = "FDLC.ai";
+export const officialLongDescription =
+  "FDLC.ai is an open framework, reference architecture, and enterprise platform for designing, governing, and operating AI software factories that deliver trusted autonomy at enterprise scale. It establishes the Factory Development Lifecycle as the end-to-end operating model, engineering discipline, and technical architecture for autonomous software delivery. FDLC defines how organizations design, assemble, orchestrate, operate, govern, verify, measure, and continuously improve the agents, models, skills, tools, context, workflows, execution environments, policies, and human decision points that transform business and engineering intent into secure, independently verified, production-ready software. Mission Control provides the open-source reference implementation, the AI Software Factory Guide defines the methodology, forward-deployed engineering converts real customer challenges into reusable factory capabilities, and the commercial control plane enables organizations to scale autonomous software delivery across teams, repositories, and delivery pipelines—without sacrificing quality, security, accountability, or human oversight.";
 export const canonicalDefinition =
-  "The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.";
+  "FDLC is the Factory Development Lifecycle—the open operating model, engineering framework, and reference architecture for designing, building, governing, operating, measuring, and continuously improving AI software factories.";
 
 export const primaryPositioning = "Verified delivery, not merely generated code.";
 export const evidencePositioning = "Autonomy without evidence is just faster guessing.";
@@ -15,6 +17,11 @@ export const categoryComparison = [
     name: "AI-Native SDLC",
     primaryObject: "Software + AI-assisted workflow",
     question: "How does AI change software development?",
+  },
+  {
+    name: "AI Software Factory",
+    primaryObject: "Persistent software production system",
+    question: "How do agentic workflows become a governed production system?",
   },
   {
     name: "FDLC",
@@ -34,25 +41,41 @@ export const categoryTransitions = [
     to: "AI Software Factory",
     meaning: "Individual agent workflows become persistent, orchestrated production systems that transform intent into verified software with decreasing human intervention.",
   },
+  {
+    from: "AI Software Factory",
+    to: "FDLC",
+    meaning: "Organizations apply an engineering lifecycle to design, build, govern, operate, measure, and continuously improve the factory itself.",
+  },
 ] as const;
 
-export const runtimeLifecycle = [
-  { id: "receive", number: 1, name: "Receive", artifact: "Intent", purpose: "Capture the desired outcome, constraints, owner, and initial risk." },
-  { id: "specify", number: 2, name: "Specify", artifact: "Specification", purpose: "Define what must be true and what evidence will establish it." },
-  { id: "plan", number: 3, name: "Plan", artifact: "Plan", purpose: "Choose the governed path, decomposition, and verification strategy." },
-  { id: "execute", number: 4, name: "Execute", artifact: "Work Order · Attempt", purpose: "Run bounded, authorized work as attributable attempts." },
-  { id: "verify", number: 5, name: "Verify", artifact: "Evidence · Verification", purpose: "Evaluate the exact candidate against the specification." },
-  { id: "approve", number: 6, name: "Approve", artifact: "Approval", purpose: "Apply policy and human authority at consequential boundaries." },
-  { id: "release", number: 7, name: "Release", artifact: "Release", purpose: "Promote the exact accepted software artifact with rollback readiness." },
-  { id: "observe", number: 8, name: "Observe", artifact: "Outcome", purpose: "Compare the production result with the intended outcome." },
-  { id: "learn", number: 9, name: "Learn", artifact: "Learning Signal", purpose: "Propose controlled changes to the factory from validated outcomes." },
+export const guideValueStream = [
+  { id: "intent", number: 1, name: "Intent", purpose: "Establish the desired software outcome and its operating context.", href: "/guide/stages/01-builder-intent" },
+  { id: "plan", number: 2, name: "Plan", purpose: "Turn intent into a governed path, decomposition, and proof strategy.", href: "/guide/stages/02-plan" },
+  { id: "define-agent", number: 3, name: "Define Agent", purpose: "Bind the role, model, context, authority, and capabilities required for the work.", href: "/guide/stages/03-define-agent" },
+  { id: "execute-through-harness", number: 4, name: "Execute through Harness", purpose: "Run bounded work in a durable, observable, and recoverable execution system.", href: "/guide/stages/04-execute-through-harness" },
+  { id: "apply-skills", number: 5, name: "Apply Skills", purpose: "Use versioned domain procedures and governed tools to produce the candidate.", href: "/guide/stages/05-apply-skills" },
+  { id: "evaluate", number: 6, name: "Evaluate", purpose: "Collect evidence and independently evaluate the exact candidate.", href: "/guide/stages/06-evaluate" },
+  { id: "improve", number: 7, name: "Improve", purpose: "Correct the work or propose a controlled factory change from validated evidence.", href: "/guide/stages/07-improve" },
+  { id: "deliver-software", number: 8, name: "Deliver Software", purpose: "Advance accepted software through the authorized delivery boundary.", href: "/guide/stages/08-deliver-software" },
 ] as const;
+
+export const publicExecutionStages = [
+  { id: "intent", number: 1, name: "Intent", artifact: "Intent · Specification", purpose: "State the desired result and freeze the contract before the factory spends authority or compute." },
+  { id: "plan", number: 2, name: "Plan", artifact: "Plan · Work Order", purpose: "Choose a reviewable path and release only the scoped work that has explicit authority." },
+  { id: "execute", number: 3, name: "Execute", artifact: "Attempt", purpose: "Run the approved work as attributable Attempts inside a governed execution boundary." },
+  { id: "prove", number: 4, name: "Prove", artifact: "Evidence · Verification · Approval", purpose: "Evaluate the candidate independently, then apply accountable authority at the consequential boundary." },
+  { id: "release", number: 5, name: "Release", artifact: "Release · Outcome", purpose: "Promote only the accepted candidate, then compare the observed result with the original intent." },
+  { id: "learn", number: 6, name: "Learn", artifact: "Learning", purpose: "Turn validated outcomes into controlled improvement proposals, never silent self-modification." },
+] as const;
+
+export type PublicExecutionStageId = (typeof publicExecutionStages)[number]["id"];
 
 export const factoryControls = [
-  { name: "Govern", purpose: "Bound identity, delegated authority, policy, spend, approval, and accountability." },
-  { name: "Secure", purpose: "Protect data, secrets, tools, environments, and the capability supply chain." },
-  { name: "Observe", purpose: "Preserve state, traces, lineage, evidence, decisions, and incidents end to end." },
-  { name: "Measure", purpose: "Compare quality, cost, time, human effort, recovery, and risk with a baseline." },
+  { name: "Governance", purpose: "Bound identity, delegated authority, policy, spend, approval, and accountability." },
+  { name: "Security", purpose: "Protect data, secrets, tools, environments, and the capability supply chain." },
+  { name: "Observability", purpose: "Preserve state, traces, lineage, evidence, decisions, and incidents end to end." },
+  { name: "Measurement", purpose: "Compare quality, cost, time, human effort, recovery, and risk with a baseline." },
+  { name: "Human Authority", purpose: "Keep accountable judgment at material, ambiguous, and irreversible boundaries." },
 ] as const;
 
 export const factorySystemComponents = [
@@ -61,7 +84,7 @@ export const factorySystemComponents = [
 
 export const ecosystemRoles = [
   { name: "FDLC", role: "Defines it.", description: "The open operating model, engineering discipline, and reference architecture.", status: "Open framework", href: "/framework" },
-  { name: "Mission Control", role: "Demonstrates it.", description: "The open-source reference implementation with current capability boundaries visible.", status: "Available reference", href: "/mission-control" },
+  { name: "Mission Control", role: "Demonstrates it.", description: "The open-source reference implementation with current capability boundaries visible.", status: "Bounded reference", href: "/mission-control" },
   { name: "The Guide", role: "Teaches it.", description: "The methodology and engineering practices from first principles through operation.", status: "Open methodology", href: "/guide" },
   { name: "FDLC Deploy", role: "Implements it.", description: "A forward-deployed path for proving one bounded factory line in a real environment.", status: "Design partner", href: "/deploy" },
   { name: "FDLC Enterprise", role: "Industrializes it.", description: "The proposed commercial control plane for organizational scale and reliability.", status: "Proposed", href: "/enterprise" },
@@ -69,7 +92,7 @@ export const ecosystemRoles = [
 
 export const lifecycleStages = [
   { id: "discover", number: 1, name: "Discover", purpose: "Find work worth turning into a factory line and establish the baseline.", activities: ["Candidate workflows", "Cycle-time baseline", "Cost and human effort", "Defect and failure rates"], output: "A measured opportunity" },
-  { id: "design", number: 2, name: "Design", purpose: "Define the outcome, runtime flow, evidence contract, risk, and human control boundaries.", activities: ["Intended outcome", "Acceptance criteria", "Runtime lifecycle", "Autonomy and escalation"], output: "A factory definition" },
+  { id: "design", number: 2, name: "Design", purpose: "Define the outcome, execution flow, evidence contract, risk, and human control boundaries.", activities: ["Intended outcome", "Acceptance criteria", "Execution and artifact flow", "Autonomy and escalation"], output: "A factory definition" },
   { id: "assemble", number: 3, name: "Assemble", purpose: "Compose the capabilities and environment required to do the work.", activities: ["Agents and skills", "Tools and MCP", "Context services", "Models and evaluators"], output: "A runnable factory line" },
   { id: "validate", number: 4, name: "Validate", purpose: "Prove that the factory line can operate safely, reliably, and measurably before promotion.", activities: ["Capability evals", "Policy and security tests", "Failure and recovery drills", "End-to-end acceptance"], output: "A release-ready factory version" },
   { id: "deploy", number: 5, name: "Deploy", purpose: "Promote the exact validated factory version into its intended operating environment.", activities: ["Version promotion", "Environment binding", "Change approval", "Rollback readiness"], output: "An active factory line" },
@@ -157,7 +180,7 @@ export const protocolSteps = [
   { id: "approval", number: 8, name: "Approval", question: "May this consequence proceed?", requiredProof: "Authorized, attributable, reasoned decision", missionControlMapping: "Plan approval + WorkOrder acceptance" },
   { id: "release", number: 9, name: "Release", question: "What was promoted?", requiredProof: "Exact artifact, current policy, and rollback readiness", missionControlMapping: "PR currentness + separate release records" },
   { id: "outcome", number: 10, name: "Outcome", question: "Did the intended result hold in reality?", requiredProof: "Observed technical, operational, and user result", missionControlMapping: "Production feedback + outcome records" },
-  { id: "learning-signal", number: 11, name: "Learning Signal", question: "What should change in the factory?", requiredProof: "Attributable outcome and a controlled improvement proposal", missionControlMapping: "LearningSignal + governed promotion" },
+  { id: "learning", number: 11, name: "Learning", question: "What should change in the factory?", requiredProof: "Attributable outcome and a controlled improvement proposal", missionControlMapping: "LearningSignal + governed promotion" },
 ] as const;
 
 export const manifesto = [

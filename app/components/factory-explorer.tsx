@@ -9,7 +9,7 @@ import {
 } from "../../data/factory-explorer";
 import { dependencyModernizationExample } from "../../data/dependency-modernization-example";
 
-const defaultStageId = "verify";
+const defaultStageId = "prove";
 const defaultCapabilityId: FactoryCapabilityId = "evals";
 
 function stageHasCapability(stage: (typeof factoryExplorerStages)[number], capabilityId: FactoryCapabilityId) {
@@ -21,7 +21,7 @@ export function FactoryExplorer() {
   const [selectedCapabilityId, setSelectedCapabilityId] = useState<FactoryCapabilityId>(defaultCapabilityId);
   const stageList = useRef<HTMLDivElement | null>(null);
   const stageButtons = useRef<Array<HTMLButtonElement | null>>([]);
-  const selectedStage = factoryExplorerStages.find((stage) => stage.id === selectedStageId) ?? factoryExplorerStages[4];
+  const selectedStage = factoryExplorerStages.find((stage) => stage.id === selectedStageId) ?? factoryExplorerStages[0];
   const selectedStageIndex = factoryExplorerStages.findIndex((stage) => stage.id === selectedStage.id);
   const selectedCapability = factoryExplorerCapabilities.find((capability) => capability.id === selectedCapabilityId) ?? factoryExplorerCapabilities[7];
   const selectedCapabilityParticipates = stageHasCapability(selectedStage, selectedCapability.id);
@@ -82,7 +82,7 @@ export function FactoryExplorer() {
           </p>
           <div className="factory-explorer-progress" aria-label={`Stage ${selectedStage.number} of ${factoryExplorerStages.length}`} role="group">
             <button
-              aria-label="View previous runtime stage"
+              aria-label="View previous execution stage"
               disabled={selectedStageIndex === 0}
               onClick={() => selectStage(selectedStageIndex - 1)}
               type="button"
@@ -91,7 +91,7 @@ export function FactoryExplorer() {
             </button>
             <span>{String(selectedStage.number).padStart(2, "0")} / {String(factoryExplorerStages.length).padStart(2, "0")}</span>
             <button
-              aria-label="View next runtime stage"
+              aria-label="View next execution stage"
               disabled={selectedStageIndex === factoryExplorerStages.length - 1}
               onClick={() => selectStage(selectedStageIndex + 1)}
               type="button"
@@ -105,7 +105,7 @@ export function FactoryExplorer() {
       <div
         className="factory-explorer-stages"
         aria-describedby="factory-explorer-instructions"
-        aria-label="Runtime lifecycle stages"
+        aria-label="Public execution shorthand stages"
         ref={stageList}
         role="tablist"
       >
@@ -175,7 +175,7 @@ export function FactoryExplorer() {
           </div>
           <nav aria-label="Explore this stage in depth">
             <Link href="/in-5-minutes">Full walkthrough <span aria-hidden="true">→</span></Link>
-            <a href={selectedStage.guideHref}>Guide deep dive <span aria-hidden="true">↗</span></a>
+            <a href={selectedStage.guideHref}>Guide deep dive <span aria-hidden="true">→</span></a>
           </nav>
         </aside>
       </div>

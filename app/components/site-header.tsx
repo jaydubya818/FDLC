@@ -15,7 +15,7 @@ const primary = [
 const secondary = [
   ["FDLC in 5 Minutes", "/in-5-minutes"],
   ["Manifesto", "/manifesto"],
-  ["Specification", "/spec"],
+  ["Specification", "/specification"],
   ["Benchmarks", "/benchmarks"],
   ["Start", "/start"],
   ["Enterprise", "/enterprise"],
@@ -46,7 +46,9 @@ export function SiteHeader() {
           <span>FDLC<span className="wordmark-dot">.ai</span></span>
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {primary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
+          {primary.map(([label, href]) => href.startsWith("/guide")
+            ? <a aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</a>
+            : <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
           <details className={`more-menu${secondaryActive ? " is-active" : ""}`} ref={moreMenu}>
             <summary aria-current={secondaryActive ? "page" : undefined}>More <span aria-hidden="true">⌄</span></summary>
             <div>
@@ -58,7 +60,9 @@ export function SiteHeader() {
         <details className="mobile-nav" ref={mobileMenu}>
           <summary aria-label="Open navigation">Menu</summary>
           <nav aria-label="Mobile navigation">
-            {primary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
+            {primary.map(([label, href]) => href.startsWith("/guide")
+              ? <a aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</a>
+              : <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
             <span>More</span>
             {secondary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
           </nav>
