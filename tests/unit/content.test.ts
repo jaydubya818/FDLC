@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { architectureAreas, canonicalDefinition, categoryComparison, ecosystemRoles, evidencePositioning, factoryControls, lifecycleStages, manifesto, primaryPositioning, protocolSteps, runtimeLifecycle } from "../../data/fdlc.ts";
 import { dependencyModernizationExample } from "../../data/dependency-modernization-example.ts";
-import { guideParts, guideRolePaths, guideStages, proposedGuideMap } from "../../data/guide.ts";
+import { guideEntryPaths, guideParts, guideStages, proposedGuideMap } from "../../data/guide.ts";
 
 test("keeps the canonical category positioning stable", () => {
   assert.equal(canonicalDefinition, "The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.");
@@ -29,7 +29,7 @@ test("preserves the manifesto and complete guide map", () => {
   assert.equal(guideParts.length, 6);
   assert.equal(guideParts.reduce((count, part) => count + part.chapters.length, 0), 44);
   assert.equal(guideStages.length, 8);
-  assert.equal(guideRolePaths.length, 4);
+  assert.equal(guideEntryPaths.length, 6);
   assert.equal(proposedGuideMap.length, 25);
 });
 

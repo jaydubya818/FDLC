@@ -577,13 +577,19 @@ button, input, textarea, select { font: inherit; }
 
 /* Manifesto */
 .manifesto-page { background: var(--paper); }
-.manifesto-list { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 60px 0 130px; list-style: none; }
+.manifesto-intro { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 42px 0 20px; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(36px, 8vw, 110px); border-bottom: 1px solid var(--line); }
+.manifesto-intro p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+.manifesto-intro p:first-child { color: var(--green); font-family: var(--serif); font-size: 24px; line-height: 1.3; }
+.manifesto-list-heading { width: min(1120px, calc(100% - 40px)); margin: 42px auto 0; }
+.manifesto-list { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 18px 0 72px; list-style: none; }
 .manifesto-list > li { padding: 62px 0; display: grid; grid-template-columns: 80px 1fr; border-bottom: 1px solid var(--line); }
 .manifesto-list > li > span { padding-top: 10px; color: var(--amber); font-family: var(--mono); font-size: 11px; }
 .manifesto-list h2 { max-width: 850px; margin: 0; font-family: var(--serif); font-size: clamp(38px, 5vw, 60px); font-weight: 500; letter-spacing: -.047em; line-height: 1.05; }
 .manifesto-list p { max-width: 680px; margin: 24px 0 0; color: var(--muted); font-size: 17px; line-height: 1.7; }
 .manifesto-list aside { max-width: 680px; margin-top: 26px; padding: 16px 18px; display: grid; grid-template-columns: 180px 1fr; gap: 20px; background: #e5e6df; border-left: 3px solid var(--green); color: var(--muted); font-size: 13px; line-height: 1.5; }
 .manifesto-list aside strong { color: var(--green); font-family: var(--mono); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; }
+.manifesto-invariant { padding: 0 0 120px; }
+.manifesto-invariant .state-boundary { margin-top: 0; margin-bottom: 0; }
 .manifesto-close { padding: 120px max(20px, calc((100vw - 1240px) / 2)); background: var(--ink); color: white; }
 .manifesto-close > p { color: #949c95; font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
 .manifesto-close h2 { max-width: 970px; margin: 24px 0 48px; font-family: var(--serif); font-size: clamp(58px, 9vw, 116px); font-weight: 500; letter-spacing: -.067em; line-height: .9; }
@@ -591,6 +597,10 @@ button, input, textarea, select { font: inherit; }
 .manifesto-close .button { color: white; border-color: #6c746d; }
 
 /* Guide */
+.guide-identity { margin-top: 28px; padding-top: 22px; display: grid; gap: 8px; border-top: 1px solid var(--line); }
+.guide-identity p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.guide-identity strong { color: var(--ink); }
+.page-hero-aside > .guide-hero-note { margin-top: 22px; font-size: 13px; line-height: 1.6; }
 .guide-stats { margin-top: 30px; display: flex; gap: 24px; }
 .guide-stats span { padding-right: 24px; display: flex; align-items: baseline; gap: 7px; border-right: 1px solid var(--line); color: var(--muted); font-family: var(--mono); font-size: 9px; text-transform: uppercase; }
 .guide-stats span:last-child { border-right: 0; }
@@ -599,17 +609,19 @@ button, input, textarea, select { font: inherit; }
 .guide-portal-note strong { font-family: var(--serif); font-size: 20px; font-weight: 500; }
 .guide-portal-note p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
 .guide-portal-note a { color: var(--green); font-size: 12px; font-weight: 700; }
+.guide-portal-actions { display: grid; gap: 7px; text-align: right; }
 .guide-paths { padding: 72px max(20px, calc((100vw - 1240px) / 2)); background: var(--green); color: white; }
 .guide-paths .section-label { color: var(--green-bright); }
+.guide-paths h2 { max-width: 760px; margin: 14px 0 34px; font-family: var(--serif); font-size: clamp(42px, 5vw, 66px); font-weight: 500; letter-spacing: -.05em; line-height: 1.02; }
 .guide-paths > div { margin-top: 26px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #668477; border-left: 1px solid #668477; }
-.guide-paths a { min-height: 230px; padding: 22px; display: flex; flex-direction: column; border-right: 1px solid #668477; border-bottom: 1px solid #668477; }
-.guide-paths a:hover { background: #194f3f; }
+.guide-paths article { min-height: 230px; padding: 22px; display: flex; flex-direction: column; border-right: 1px solid #668477; border-bottom: 1px solid #668477; }
+.guide-paths article:hover { background: #194f3f; }
 .guide-paths span { color: #a6c8b9; font-family: var(--mono); font-size: 9px; text-transform: uppercase; }
 .guide-paths strong { margin-top: auto; font-family: var(--serif); font-size: 28px; font-weight: 500; }
-.guide-paths p { margin: 10px 0 0; color: #b9cbc2; font-size: 13px; line-height: 1.55; }
-.guide-paths small { margin-top: 22px; color: var(--green-bright); font-family: var(--mono); font-size: 9px; font-weight: 700; text-transform: uppercase; }
+.guide-paths nav { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 7px 14px; }
+.guide-paths nav a { color: var(--green-bright); font-family: var(--mono); font-size: 9px; font-weight: 700; text-transform: uppercase; }
 .guide-model-bridge { border-bottom: 1px solid var(--line); }
-.model-bridge-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
+.model-bridge-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
 .model-bridge-grid article { min-height: 280px; padding: 22px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .model-bridge-grid span { color: var(--green); font-family: var(--mono); font-size: 9px; font-weight: 700; text-transform: uppercase; }
 .model-bridge-grid h3 { margin: auto 0 12px; font-family: var(--serif); font-size: 28px; font-weight: 500; letter-spacing: -.03em; line-height: 1.1; }
@@ -622,6 +634,7 @@ button, input, textarea, select { font: inherit; }
 .guide-stage-line a:hover { background: var(--surface); }
 .guide-stage-line span { color: var(--amber); font-family: var(--mono); font-size: 8px; }
 .guide-stage-line strong { font-size: 12px; }
+.guide-stage-summary { margin: -10px 0 38px; padding: 20px 22px; background: var(--green); color: white; font-family: var(--mono); font-size: clamp(11px, 1.3vw, 15px); font-weight: 700; letter-spacing: .025em; line-height: 1.8; text-align: center; }
 .guide-part-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
 .guide-part-list > li > a { min-height: 180px; padding: 24px 0; display: grid; grid-template-columns: 80px 1fr 150px; gap: 24px; border-bottom: 1px solid var(--line); }
 .guide-part-list > li > a:hover { padding-left: 14px; padding-right: 14px; background: var(--surface); }
@@ -630,15 +643,6 @@ button, input, textarea, select { font: inherit; }
 .guide-part-list h2 { margin: 10px 0 12px; font-family: var(--serif); font-size: 34px; font-weight: 500; letter-spacing: -.035em; }
 .guide-part-list strong { color: var(--muted); font-size: 14px; font-weight: 500; }
 .guide-part-list small { align-self: center; color: var(--green); font-family: var(--mono); font-size: 9px; line-height: 2; text-align: right; text-transform: uppercase; }
-.guide-role-section { padding: 112px max(20px, calc((100vw - 1240px) / 2)); background: var(--green); color: white; }
-.guide-role-section .section-label { color: var(--green-bright); }
-.guide-role-section .section-header > p { color: #b9cbc2; }
-.guide-role-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #668477; border-left: 1px solid #668477; }
-.guide-role-grid a { min-height: 230px; padding: 20px; display: flex; flex-direction: column; border-right: 1px solid #668477; border-bottom: 1px solid #668477; }
-.guide-role-grid a:hover { background: #194f3f; }
-.guide-role-grid span, .guide-role-grid small { color: var(--green-bright); font-family: var(--mono); font-size: 9px; text-transform: uppercase; }
-.guide-role-grid h3 { margin: auto 0 12px; font-family: var(--serif); font-size: 30px; font-weight: 500; }
-.guide-role-grid p { margin: 0 0 22px; color: #b9cbc2; font-size: 12px; line-height: 1.55; }
 .guide-map-section { padding: 112px max(20px, calc((100vw - 1240px) / 2)); background: #dedfd8; }
 .guide-map-section ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--ink); }
 .guide-map-section li { border-right: 1px solid #b9bcb5; border-bottom: 1px solid #b9bcb5; }
@@ -648,6 +652,8 @@ button, input, textarea, select { font: inherit; }
 .guide-map-section li span { color: var(--amber); font-family: var(--mono); font-size: 9px; }
 .guide-map-section li strong { font-size: 13px; }
 .guide-map-section li small { color: var(--green); font-family: var(--mono); font-size: 8px; text-transform: uppercase; }
+.guide-map-note { margin: 30px 0 0; color: var(--muted); font-size: 13px; text-align: right; }
+.guide-map-note a { color: var(--green); font-weight: 700; }
 
 .docs-layout { width: min(1440px, 100%); margin: 0 auto; display: grid; grid-template-columns: 220px minmax(0, 760px) 180px; justify-content: center; gap: clamp(34px, 5vw, 72px); padding: 70px 28px 120px; }
 .docs-sidebar, .docs-toc { position: sticky; top: 104px; align-self: start; }
@@ -928,7 +934,6 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
   .example-mission-grid { grid-template-columns: 1fr; }
   .example-mission-grid .product-frame figcaption { min-height: auto; }
   .model-bridge-grid { grid-template-columns: repeat(2, 1fr); }
-  .guide-role-grid { grid-template-columns: repeat(2, 1fr); }
   .framework-piece-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -943,6 +948,8 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
   .category-transitions { grid-template-columns: 1fr; }
   .category-conclusion { text-align: left; }
   .guide-portal-note { gap: 10px; }
+  .guide-portal-actions { text-align: left; }
+  .manifesto-intro { grid-template-columns: 1fr; gap: 16px; }
   .model-bridge-grid { grid-template-columns: 1fr; }
   .model-bridge-grid article { min-height: 230px; }
   .guide-stage-line { grid-template-columns: repeat(2, 1fr); }
@@ -1017,7 +1024,7 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 }
 
 @media (max-width: 560px) {
-  .page-hero, .content-section, .section-block, .manifesto-list, .maturity-overview, .factory-builder, .factory-result, .state-boundary { width: min(100% - 28px, 1240px); }
+  .page-hero, .content-section, .section-block, .manifesto-intro, .manifesto-list-heading, .manifesto-list, .maturity-overview, .factory-builder, .factory-result, .state-boundary { width: min(100% - 28px, 1240px); }
   .page-hero h1 { font-size: clamp(48px, 15vw, 70px); }
   .section-header h2 { font-size: clamp(38px, 12vw, 54px); }
   .governance-grid, .reason-grid, .dark-section .architecture-diagram, .architecture-overview .architecture-diagram, .architecture-framework .architecture-diagram, .metric-grid, .metric-grid.is-full, .object-grid, .maturity-overview { grid-template-columns: 1fr; }
@@ -1066,8 +1073,6 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
   .manifesto-list > li { grid-template-columns: 40px 1fr; }
   .manifesto-list h2 { font-size: 38px; }
   .guide-stats { flex-wrap: wrap; }
-  .guide-role-grid { grid-template-columns: 1fr; }
-  .guide-role-grid a { min-height: 200px; }
   .guide-part-list > li > a { grid-template-columns: 42px 1fr; }
   .guide-part-list small { grid-column: 2; text-align: left; }
   .guide-map-section ol { grid-template-columns: 1fr; }

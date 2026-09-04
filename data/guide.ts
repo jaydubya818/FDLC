@@ -100,11 +100,13 @@ export const guideStages = [
   ["08", "Deliver Software", `${fullGuideUrl}/docs/stages/08-deliver-software`],
 ] as const;
 
-export const guideRolePaths = [
-  ["Executive", "Understand the thesis, economics, and decisions.", `${fullGuideUrl}/docs/appendix/architecture-communication`],
-  ["Architect", "Start with authoritative records and system boundaries.", `${fullGuideUrl}/docs/02-design/05-authoritative-records`],
-  ["Builder", "Assemble governed, reusable factory capabilities.", `${fullGuideUrl}/docs/03-build/11-the-agent-factory`],
-  ["Operator", "Run the factory as a measurable internal platform.", `${fullGuideUrl}/docs/05-operate/34-the-factory-as-a-platform`],
+export const guideEntryPaths = [
+  { label: "10 minutes", need: "Grasp the whole model quickly", links: [["FDLC in 5 minutes", "/in-5-minutes"], ["The factory in one view", `${fullGuideUrl}/docs/01-understand/02-the-factory-in-one-view`]] },
+  { label: "Builder", need: "Assemble capabilities, harnesses, and workflows", links: [["Part III — Build", `${fullGuideUrl}/guide#build`]] },
+  { label: "Architect", need: "Draw boundaries, records, and authority", links: [["Part II — Design", `${fullGuideUrl}/guide#design`], ["FDLC Architecture", "/architecture"]] },
+  { label: "Operator", need: "Run the factory as a production platform", links: [["Part V — Operate", `${fullGuideUrl}/guide#operate`]] },
+  { label: "Executive / Fund", need: "Explain or justify the system", links: [["Architecture communication", `${fullGuideUrl}/docs/appendix/architecture-communication`]] },
+  { label: "Front to back", need: "Read the complete methodology", links: [["Full table of contents", `${fullGuideUrl}/guide`]] },
 ] as const;
 
 export const proposedGuideMap = [

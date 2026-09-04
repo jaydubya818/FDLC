@@ -8,7 +8,7 @@ const stateMeanings = [
   ["Outcome", "The result observed in reality after release."],
 ] as const;
 
-export function StateBoundary({ dark = false, eyebrow, mode = "compact" }: { dark?: boolean; eyebrow?: string; mode?: StateBoundaryMode }) {
+export function StateBoundary({ dark = false, eyebrow, explanation, mode = "compact" }: { dark?: boolean; eyebrow?: string; explanation?: string; mode?: StateBoundaryMode }) {
   if (mode === "mission-control") return (
     <aside className={dark ? "state-boundary is-dark is-mission-control" : "state-boundary is-mission-control"} aria-labelledby="mission-control-boundary-title">
       <div>
@@ -28,7 +28,7 @@ export function StateBoundary({ dark = false, eyebrow, mode = "compact" }: { dar
         <p className="section-label">{eyebrow ?? "Non-collapsible states"}</p>
         <h2 id="state-boundary-title">Execution complete ≠ Verified ≠ Approved ≠ Released ≠ Outcome proven</h2>
       </div>
-      <p className="state-boundary-explanation">Each transition answers a different question and requires distinct authority. Collapsing them creates false confidence and unauditable releases.</p>
+      <p className="state-boundary-explanation">{explanation ?? "Each transition answers a different question and requires distinct authority. Collapsing them creates false confidence and unauditable releases."}</p>
       {mode === "primary" ? <>
         <div className="state-boundary-meanings">{stateMeanings.map(([name, meaning]) => <article key={name}><strong>{name}</strong><p>{meaning}</p></article>)}</div>
         <p className="state-boundary-warning">Collapsing any boundary turns a governed factory into optimistic automation.</p>
