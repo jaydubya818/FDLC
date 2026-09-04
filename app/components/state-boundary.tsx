@@ -8,7 +8,7 @@ const stateMeanings = [
   ["Outcome", "The result observed in reality after release."],
 ] as const;
 
-export function StateBoundary({ dark = false, mode = "compact" }: { dark?: boolean; mode?: StateBoundaryMode }) {
+export function StateBoundary({ dark = false, eyebrow, mode = "compact" }: { dark?: boolean; eyebrow?: string; mode?: StateBoundaryMode }) {
   if (mode === "mission-control") return (
     <aside className={dark ? "state-boundary is-dark is-mission-control" : "state-boundary is-mission-control"} aria-labelledby="mission-control-boundary-title">
       <div>
@@ -25,7 +25,7 @@ export function StateBoundary({ dark = false, mode = "compact" }: { dark?: boole
   return (
     <aside className={`${dark ? "state-boundary is-dark" : "state-boundary"}${mode === "primary" ? " is-primary" : ""}`} aria-labelledby="state-boundary-title">
       <div>
-        <p className="section-label">Non-collapsible states</p>
+        <p className="section-label">{eyebrow ?? "Non-collapsible states"}</p>
         <h2 id="state-boundary-title">Execution complete ≠ Verified ≠ Approved ≠ Released ≠ Outcome proven</h2>
       </div>
       <p className="state-boundary-explanation">Each transition answers a different question and requires distinct authority. Collapsing them creates false confidence and unauditable releases.</p>

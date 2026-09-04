@@ -5,23 +5,23 @@ import { PageContentsNav } from "../components/page-contents-nav";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
-import { architectureAreas, factoryControls, lifecycleStages, protocolSteps, runtimeLifecycle } from "../../data/fdlc";
+import { architectureAreas, canonicalDefinition, factoryControls, lifecycleStages, protocolSteps, runtimeLifecycle } from "../../data/fdlc";
 import { dependencyModernizationExample as example } from "../../data/dependency-modernization-example";
 import { pageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("FDLC in 5 Minutes", "One workflow. Four system views. Eleven artifacts. One measurable outcome. See how a dependency-modernization factory line moves from opportunity to verified result.", "/in-5-minutes");
+export const metadata: Metadata = pageMetadata("FDLC in 5 Minutes", "One workflow. Four system views. Eleven artifacts. One measurable outcome. See how a dependency-modernization factory line moves from opportunity to verified result under the Factory Development Lifecycle.", "/in-5-minutes");
 
 const contents = [
   { label: "01 Factory line", href: "#the-factory-line" },
   { label: "02 Four views", href: "#views" },
   { label: "03 Factory lifecycle", href: "#factory-lifecycle" },
   { label: "04 Runtime", href: "#runtime" },
-  { label: "04 Artifacts", href: "#artifacts" },
-  { label: "05 Architecture", href: "#architecture" },
-  { label: "06 Mission Control", href: "#mission-control" },
-  { label: "07 Boundaries", href: "#boundaries" },
-  { label: "08 Measure", href: "#measure" },
-  { label: "09 Next steps", href: "#next-steps" },
+  { label: "05 Artifacts", href: "#artifacts" },
+  { label: "06 Architecture", href: "#architecture" },
+  { label: "07 Mission Control", href: "#mission-control" },
+  { label: "08 Boundaries", href: "#boundaries" },
+  { label: "09 Measure", href: "#measure" },
+  { label: "10 Next steps", href: "#next-steps" },
 ] as const;
 
 const views = [
@@ -39,11 +39,11 @@ const missionControlViews = [
 
 export default function FiveMinuteWalkthroughPage() {
   return <SiteShell><div className="page-wrap example-page">
-    <PageHero eyebrow="FDLC in 5 Minutes" status="Illustrative" title="One workflow. Four views. Eleven artifacts. One measurable outcome." description="Watch a dependency-upgrade factory line move from opportunity to verified outcome—and see exactly which records, gates, and architecture areas make it trustworthy.">
-      <div className="hero-actions"><a className="button button-dark" href="#the-factory-line">Follow the example</a><Link className="button button-light" href="/mission-control#quickstart">Run the Mission Control demo</Link></div>
+    <PageHero eyebrow="FDLC in 5 Minutes" status="Illustrative" title="One workflow. Four views. Eleven artifacts. One measurable outcome." description={canonicalDefinition}>
+      <div className="hero-actions"><a className="button button-dark" href="#the-factory-line">Follow the example</a><Link className="button button-light" href="/framework">Explore the Framework</Link><Link className="text-action" href="/mission-control#quickstart">Run Mission Control →</Link></div>
     </PageHero>
 
-    <div className="example-introduction"><p><strong>This is not a product tour.</strong> It is a concrete walkthrough of the Factory Development Lifecycle applied to one bounded, high-value class of work.</p></div>
+    <div className="example-introduction"><p>This page walks one concrete factory line—dependency modernization—through the full system so you can see how FDLC turns intent into independently verified software.</p><p><strong>This is not a product tour.</strong> It is a concrete walkthrough of the Factory Development Lifecycle applied to one bounded, high-value class of work.</p></div>
     <div className="example-thesis" aria-label="One workflow, four system views, eleven artifacts, and one measurable outcome" role="group">
       <span>One workflow</span><strong>Four system views</strong><strong>Eleven artifacts</strong><strong>One measurable outcome</strong>
     </div>
@@ -109,7 +109,7 @@ export default function FiveMinuteWalkthroughPage() {
 
     <section className="example-artifacts-section" id="artifacts">
       <div className="example-inner">
-        <SectionHeader eyebrow="04 / Eleven artifacts" title="The records freeze what happened and why." description="These are representative semantic records, not a finalized wire format. Tasks, candidates, pull requests, and evidence envelopes may expand an implementation, but they cannot collapse the eleven canonical authority and evidence boundaries." />
+        <SectionHeader eyebrow="05 / Eleven artifacts" title="The records freeze what happened and why." description="These are representative semantic records, not a finalized wire format. Tasks, candidates, pull requests, and evidence envelopes may expand an implementation, but they cannot collapse the eleven canonical authority and evidence boundaries." />
         <ol className="example-artifact-ledger">
           {example.artifacts.map((item) => {
             const artifact = protocolSteps.find((candidate) => candidate.id === item.protocolId);
@@ -121,7 +121,7 @@ export default function FiveMinuteWalkthroughPage() {
     </section>
 
     <section className="section-block" id="architecture">
-      <SectionHeader eyebrow="05 / Architecture participation" title="All six areas participate in the same run." description="No single agent owns the outcome. Each architectural area contributes a distinct responsibility and maps to concrete Mission Control records or decisions." />
+      <SectionHeader eyebrow="06 / Architecture participation" title="All six areas participate in the same run." description="No single agent owns the outcome. Each architectural area contributes a distinct responsibility and maps to concrete Mission Control records or decisions." />
       <div className="example-architecture-grid">
         {example.architecture.map((item) => {
           const area = architectureAreas.find((candidate) => candidate.id === item.areaId);
@@ -135,7 +135,7 @@ export default function FiveMinuteWalkthroughPage() {
 
     <section className="example-mission-section" id="mission-control">
       <div className="example-inner">
-        <SectionHeader eyebrow="06 / Mission Control in the loop" title="The control plane materializes the records, gates, and attention boundaries." description="These reference-implementation views show where governed work, evidence, and decisions become inspectable. They demonstrate the operating model; they do not claim fleet-scale production certification." />
+        <SectionHeader eyebrow="07 / Mission Control in the loop" title="The control plane materializes the records, gates, and attention boundaries." description="These reference-implementation views show where governed work, evidence, and decisions become inspectable. They demonstrate the operating model; they do not claim fleet-scale production certification." />
         <ul className="example-mission-ledger">
           <li><strong>Mission + Specification</strong><span>Define the governed outcome and proof contract.</span></li>
           <li><strong>Versioned Plan</strong><span>Must be approved before Work Orders are released.</span></li>
@@ -149,10 +149,10 @@ export default function FiveMinuteWalkthroughPage() {
       </div>
     </section>
 
-    <section className="example-boundary-section" id="boundaries"><StateBoundary dark mode="primary" /><p className="example-boundary-mapping">In Mission Control: Attempt completion → Quality Gate Decision → Human Acceptance → Release → Outcome. No single actor can advance more than one boundary without the required evidence and authority.</p></section>
+    <section className="example-boundary-section" id="boundaries"><StateBoundary dark eyebrow="08 / The non-collapsible boundaries" mode="primary" /><p className="example-boundary-mapping">In Mission Control: Attempt completion → Quality Gate Decision → Human Acceptance → Release → Outcome. No single actor can advance more than one boundary without the required evidence and authority.</p></section>
 
     <section className="section-block example-measure" id="measure">
-      <SectionHeader eyebrow="08 / How we know the factory improved" title="Measure verified completion—not generated activity." description="The first run does not get to claim improvement. Baseline the manual path, observe accepted outcomes, and protect quality with explicit guardrails." />
+      <SectionHeader eyebrow="09 / How we know the factory improved" title="Measure verified completion—not generated activity." description="The first run does not get to claim improvement. Baseline the manual path, observe accepted outcomes, and protect quality with explicit guardrails." />
       <div className="example-metric">
         <div><span>Primary measure</span><h3>{example.primaryMetric.name}</h3><code>{example.primaryMetric.formula}</code></div>
         <dl><div><dt>Baseline</dt><dd>{example.primaryMetric.baseline}</dd></div><div><dt>What success looks like</dt><dd>{example.primaryMetric.success}</dd></div></dl>
@@ -163,14 +163,14 @@ export default function FiveMinuteWalkthroughPage() {
     </section>
 
     <section className="example-next-section" id="next-steps">
-      <div className="example-inner"><SectionHeader eyebrow="09 / Next steps" title="Move from mental model to one bounded factory line." />
+      <div className="example-inner"><SectionHeader eyebrow="10 / Next steps" title="Move from mental model to one bounded factory line." />
         <div className="example-next-grid">
+          <Link href="/framework"><span>Understand</span><strong>Explore the full Framework.</strong><small>Read the lifecycle, protocol, and principles →</small></Link>
           <Link href="/maturity"><span>Assess</span><strong>Assess your factory maturity.</strong><small>Find the weakest operating boundary →</small></Link>
-          <Link href="/architecture"><span>Explore</span><strong>Study the full architecture.</strong><small>Inspect all six capability areas →</small></Link>
           <Link href="/mission-control#quickstart"><span>Run</span><strong>Run Mission Control locally.</strong><small>Use the deterministic demo →</small></Link>
           <Link href="/deploy"><span>Design partner</span><strong>Tell us about one workflow.</strong><small>Define a bounded proof path →</small></Link>
         </div>
-        <p className="example-footer-note">This is a canonical example, not a claim of fleet-scale production. Mission Control’s current capability boundaries are documented on the <Link href="/mission-control#capabilities">Mission Control page →</Link></p>
+        <p className="example-footer-note">This walkthrough is a canonical example, not a certification of production readiness. The discipline is open. The reference implementation shows its limits. The value is determined by verified outcomes. Mission Control’s current capability boundaries are documented on the <Link href="/mission-control#capabilities">Mission Control page →</Link></p>
       </div>
     </section>
   </div></SiteShell>;

@@ -46,8 +46,13 @@ test("framework publishes the exact category definition and distinction", async 
   assert.match(html, /The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory/i);
   assert.match(html, /factory operating system.*agents, models, tools, people, policies, evidence, and workflows/is);
   assert.match(html, /Traditional SDLC.*How do we build software.*AI-Native SDLC.*How does AI change software development.*FDLC.*How do we engineer the factory/is);
-  assert.match(html, /SDLC.*AI-Native SDLC.*Agents participate across the software lifecycle/is);
-  assert.match(html, /AI-Native SDLC.*AI Software Factory.*persistent, governed production system/is);
+  assert.match(html, /SDLC.*AI-Native SDLC.*Agents move beyond code generation.*planning, design, implementation, testing, deployment, and maintenance/is);
+  assert.match(html, /AI-Native SDLC.*AI Software Factory.*persistent, orchestrated production systems/is);
+  assert.match(html, /Code generation is no longer the bottleneck.*Process is/is);
+  assert.match(html, /Who defines intent.*What agent may act.*What evidence proves.*producing agent certify.*When must a human intervene.*learning the wrong thing/is);
+  assert.match(html, /Not another coding agent.*The control system around them/is);
+  assert.match(html, /FDLC Framework.*FDLC Specification.*AI Software Factory Guide.*Mission Control.*FDLC Enterprise/is);
+  assert.match(html, /Choose the next depth you need.*FDLC in 5 Minutes.*Architecture.*Manifesto.*Mission Control.*Maturity.*Guide/is);
 });
 
 test("guide is an accurate portal into the authoritative 44-chapter book", async () => {
@@ -67,6 +72,8 @@ test("guide is an accurate portal into the authoritative 44-chapter book", async
 test("worked example connects all four models without claiming production proof", async () => {
   const html = await (await render("/in-5-minutes")).text();
   assert.match(html, /FDLC in 5 Minutes/i);
+  assert.match(html, /The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory/i);
+  assert.match(html, /This page walks one concrete factory line.*dependency modernization.*turns intent into independently verified software/is);
   assert.match(html, /This is not a product tour.*concrete walkthrough of the Factory Development Lifecycle/is);
   assert.match(html, /Illustrative records and targets.*not a production case study or benchmark result/is);
   assert.match(html, /One workflow.*Four system views.*Eleven artifacts.*One measurable outcome/is);
@@ -78,7 +85,8 @@ test("worked example connects all four models without claiming production proof"
   assert.match(html, /Evidence Envelopes.*Independent verification.*Human acceptance/is);
   assert.match(html, /Cost per verified outcome.*First-pass verification rate.*Reopen.*rollback rate/is);
   assert.match(html, /accepted dependency upgrades.*eligible dependency-upgrade missions/is);
-  assert.match(html, /canonical example.*not a claim of fleet-scale production/is);
+  assert.match(html, /canonical example.*not a certification of production readiness.*discipline is open.*value is determined by verified outcomes/is);
+  for (const href of ["/framework", "/maturity", "/mission-control#quickstart", "/deploy"]) assert.match(html, new RegExp(`href=["']${href}["']`));
 });
 
 test("legacy worked-example route redirects to the canonical five-minute path", async () => {
