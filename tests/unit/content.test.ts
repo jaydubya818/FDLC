@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { factoryExplorerCapabilities, factoryExplorerStages } from "../../data/factory-explorer.ts";
 import { architectureAreas, canonicalDefinition, categoryComparison, ecosystemRoles, evidencePositioning, factoryControls, lifecycleStages, manifesto, primaryPositioning, protocolSteps, runtimeLifecycle } from "../../data/fdlc.ts";
 import { dependencyModernizationExample } from "../../data/dependency-modernization-example.ts";
 import { guideEntryPaths, guideParts, guideStages, proposedGuideMap } from "../../data/guide.ts";
@@ -17,6 +18,28 @@ test("keeps the four canonical system views stable", () => {
   assert.deepEqual(runtimeLifecycle.map((item) => item.name), ["Receive", "Specify", "Plan", "Execute", "Verify", "Approve", "Release", "Observe", "Learn"]);
   assert.deepEqual(architectureAreas.map((item) => item.name), ["Intent", "Harness", "Capability", "Model", "Trust", "Learning"]);
   assert.deepEqual(protocolSteps.map((item) => item.name), ["Intent", "Specification", "Plan", "Work Order", "Attempt", "Evidence", "Verification", "Approval", "Release", "Outcome", "Learning Signal"]);
+});
+
+test("keeps the homepage factory explorer complete and internally linked", () => {
+  assert.deepEqual(factoryExplorerStages.map((stage) => stage.id), runtimeLifecycle.map((stage) => stage.id));
+  assert.deepEqual(factoryExplorerStages.map((stage) => stage.artifact), runtimeLifecycle.map((stage) => stage.artifact));
+  assert.equal(factoryExplorerCapabilities.length, 10);
+
+  const capabilityIds = new Set(factoryExplorerCapabilities.map((capability) => capability.id));
+  const usedCapabilityIds = new Set(factoryExplorerStages.flatMap((stage) => stage.capabilities));
+  assert.deepEqual(usedCapabilityIds, capabilityIds);
+
+  for (const stage of factoryExplorerStages) {
+    assert.ok(stage.capabilities.length > 0, stage.name);
+    assert.ok(stage.capabilities.some((capabilityId) => capabilityId === stage.focusCapability), stage.name);
+    assert.ok(stage.question.endsWith("?"), stage.name);
+    assert.ok(stage.proof.length > 20, stage.name);
+  }
+
+  for (const capability of factoryExplorerCapabilities) {
+    assert.match(capability.architectureHref, /^\/architecture#(?:harness|capability|model|trust)$/);
+    assert.ok(capability.responsibility.length > 20, capability.name);
+  }
 });
 
 test("keeps ecosystem roles and status boundaries stable", () => {

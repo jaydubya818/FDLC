@@ -3,13 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArchitectureDiagram } from "./components/architecture-diagram";
 import { CategoryDistinction } from "./components/category-distinction";
+import { FactoryExplorer } from "./components/factory-explorer";
 import { LifecycleDiagram } from "./components/lifecycle-diagram";
 import { ProtocolDiagram } from "./components/protocol-diagram";
-import { RuntimeLifecycleDiagram } from "./components/runtime-lifecycle-diagram";
 import { SectionHeader } from "./components/page-hero";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
-import { ecosystemRoles, evidencePositioning, factorySystemComponents, manifesto, maturityLevels, primaryPositioning } from "../data/fdlc";
+import { ecosystemRoles, evidencePositioning, manifesto, maturityLevels, primaryPositioning } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "FDLC is the open operating model and reference architecture for designing, governing, and continuously improving AI software factories.", "/");
@@ -55,13 +55,8 @@ export default function Home() {
 
         <section className="content-section shift-section">
           <SectionHeader eyebrow="Inside the factory" title="One autonomous software-delivery lifecycle." description="An operating factory receives intent, coordinates bounded work, earns release through evidence, observes the result, and learns. These runtime steps are distinct from the lifecycle used to engineer the factory itself." />
-          <p className="orientation-label">Runtime lifecycle</p>
-          <RuntimeLifecycleDiagram />
+          <FactoryExplorer />
           <p className="orientation-note">This inner lifecycle produces software. The seven-stage FDLC lifecycle below evolves the factory that performs it.</p>
-          <p className="orientation-label architecture-label">Factory architecture</p>
-          <div className="governance-grid" aria-label="Factory architecture components" role="group">
-            {factorySystemComponents.map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span>{item}</div>)}
-          </div>
         </section>
 
         <section className="comparison-section">
