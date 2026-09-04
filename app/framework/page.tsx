@@ -2,29 +2,42 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArchitectureDiagram } from "../components/architecture-diagram";
 import { LifecycleDiagram } from "../components/lifecycle-diagram";
+import { PageContentsNav } from "../components/page-contents-nav";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { ProtocolDiagram } from "../components/protocol-diagram";
 import { RuntimeLifecycleDiagram } from "../components/runtime-lifecycle-diagram";
 import { SiteShell } from "../components/site-shell";
+import { StateBoundary } from "../components/state-boundary";
 import { canonicalDefinition, manifesto, metrics } from "../../data/fdlc";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Framework", "FDLC is the lifecycle for the factory itself: the operating model, architecture, execution protocol, and principles for AI software factories.", "/framework");
 
+const contents = [
+  { label: "Definition", href: "#definition" },
+  { label: "Why FDLC", href: "#why" },
+  { label: "Four views", href: "#models" },
+  { label: "Factory lifecycle", href: "#lifecycle" },
+  { label: "Runtime", href: "#runtime" },
+  { label: "Architecture", href: "#architecture" },
+  { label: "Artifacts", href: "#protocol" },
+] as const;
+
 export default function FrameworkPage() {
   return <SiteShell>
     <div className="page-wrap">
       <PageHero eyebrow="FDLC Framework / 01" title="The lifecycle for the factory itself." description={canonicalDefinition}>
-        <div className="hero-actions"><Link className="button button-dark" href="/architecture">Explore architecture</Link><Link className="button button-light" href="/guide">Read the Guide</Link></div>
+        <div className="hero-actions"><Link className="button button-dark" href="/examples/dependency-modernization">See FDLC in 5 minutes</Link><Link className="button button-light" href="/architecture">Explore architecture</Link></div>
       </PageHero>
+      <PageContentsNav items={contents} />
 
-      <section className="definition-block" aria-labelledby="definition-title">
+      <section className="definition-block" id="definition" aria-labelledby="definition-title">
         <p className="section-label">Canonical definition</p>
         <blockquote id="definition-title">“{canonicalDefinition}”</blockquote>
         <div><p>SDLC manages the lifecycle of software.</p><p><strong>FDLC manages the lifecycle of the factory that produces software.</strong></p></div>
       </section>
 
-      <section className="section-block">
+      <section className="section-block" id="why">
         <SectionHeader eyebrow="Why FDLC exists" title="When code stops being the bottleneck, factory maturity becomes the constraint." description="An agent can produce code. A factory must coordinate durable work, bound authority, require evidence, route consequential decisions, observe outcomes, and improve without silently weakening its controls." />
         <div className="reason-grid">
           <article><span>01</span><h3>Models are probabilistic.</h3><p>Authorization, state, and consequential decisions cannot be.</p></article>
@@ -34,7 +47,9 @@ export default function FrameworkPage() {
         </div>
       </section>
 
-      <section className="section-block model-distinction">
+      <StateBoundary />
+
+      <section className="section-block model-distinction" id="models">
         <SectionHeader eyebrow="Four views of the system" title="Related models. Different responsibilities." />
         <div className="system-models">
           <article><span>01 / Factory lifecycle</span><h3>How the factory evolves.</h3><p>Discover, design, assemble, validate, deploy, operate, and improve.</p><a href="#lifecycle">View outer lifecycle ↓</a></article>
@@ -67,13 +82,13 @@ export default function FrameworkPage() {
         <aside className="callout"><strong>Mission Control mapping</strong><p>Mission Control realizes Intent as a governed Mission, Specification as a Mission Spec, and expands bounded execution with Tasks, candidates, pull requests, and explicit WorkOrder acceptance.</p></aside>
       </section>
 
-      <section className="section-block governance-principles">
+      <section className="section-block governance-principles" id="governance">
         <SectionHeader eyebrow="Governance" title="Ten principles hold the system together." />
         <ol>{manifesto.map((item) => <li key={item.number}><span>{String(item.number).padStart(2, "0")}</span><p>{item.principle}</p></li>)}</ol>
         <Link className="section-link" href="/manifesto">Read the FDLC Manifesto <span aria-hidden="true">→</span></Link>
       </section>
 
-      <section className="section-block">
+      <section className="section-block" id="measurement">
         <SectionHeader eyebrow="Measurement" title="The unit of value is a verified outcome." description="Generation volume is operational telemetry. Factory value is accepted change with known quality, cost, effort, recovery, and risk." />
         <div className="metric-grid">{metrics.slice(0, 8).map(([name, definition], index) => <article key={name}><span>{String(index + 1).padStart(2, "0")}</span><h3>{name}</h3><p>{definition}</p></article>)}</div>
       </section>

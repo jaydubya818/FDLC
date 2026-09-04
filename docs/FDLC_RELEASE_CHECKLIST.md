@@ -14,6 +14,8 @@ This checklist separates what is verifiable in the repository from launch decisi
 - [x] Private notes, Loom links, repository secrets, and unsupported performance claims are excluded from public pages.
 - [x] The 36-chapter Guide map is represented with stable public part routes.
 - [x] Every primary page has an explicit next action.
+- [x] The five-minute worked example connects all four views and distinguishes illustrative records from production evidence.
+- [x] Framework, Architecture, and Mission Control repeat the non-collapsible delivery-state boundary.
 - [x] Empty, partial, and completion states exist for the two interactive tools.
 - [x] Product Owner approves the reconciled lifecycle and protocol terminology for publication.
 - [ ] Product Owner approves any future changes to manifesto language.

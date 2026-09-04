@@ -22,6 +22,7 @@ FDLC defines the discipline. Mission Control demonstrates it. The Guide teaches 
 | `/` | Establish the category and route users within 60 seconds | Engineering leaders, platform leaders, developers | Explore FDLC | Brief + Guide whole-factory chapters | FDLC product/editorial |
 | `/framework` | Canonical definition and technical reference | Architects, engineering leaders | Study the architecture | Brief + Guide chapters 1–3 | FDLC framework |
 | `/architecture` | Explain six required capability areas and their relationships | Architects, platform engineers | Explore the Guide | Guide chapters 2, 10–19, 21–33 | FDLC architecture |
+| `/examples/dependency-modernization` | Show all four FDLC views through one bounded worked scenario | Builders, evaluators, engineering leaders | Inspect Mission Control | Framework + Guide + Mission Control capability model | FDLC education |
 | `/manifesto` | State the ten governance principles clearly | All audiences | Read the Framework | Brief + Guide principles | FDLC framework |
 | `/guide` | Book home, reading paths, chapters, and documentation shell | Builders and operators | Start reading | Guide repository | Guide editorial |
 | `/guide/[slug]` | Long-form guide content with navigation and anchors | Builders and operators | Continue reading | Guide repository | Guide editorial |
@@ -56,6 +57,7 @@ Mobile navigation uses one accessible disclosure containing the same hierarchy. 
 ```text
 Homepage
   ├─ understand the category → Framework → Architecture → Manifesto
+  ├─ see one complete example → FDLC in 5 Minutes → Mission Control
   ├─ learn the discipline → Guide → chapter pages
   ├─ see implementation → Mission Control → GitHub / quickstart
   ├─ assess current state → Maturity → recommended next actions
@@ -67,7 +69,7 @@ Homepage
 
 The homepage uses a scannable category-to-adoption sequence:
 
-1. Memorable category hero and two primary entry CTAs.
+1. Memorable category hero and two primary entry CTAs, led by the five-minute worked example.
 2. Institutional category statement: the operating model and technical foundation for trusted autonomous software delivery.
 3. Nine-step runtime lifecycle plus the factory system components.
 4. AI-native SDLC versus FDLC.
@@ -110,7 +112,7 @@ The Guide remains a six-part book while FDLC adds topic-level routes and indexes
 | 22. Forward-Deployed Engineering | Chapter 31 |
 | 23. Build vs. Buy | Chapters 19, 27, 31 |
 | 24. Factory Maturity Model | Chapters 3, 31, 35 + coverage appendix |
-| 25. Implementation Playbook | Stages 1–8 + Chapters 27, 31, 35 |
+| 25. Implementation Playbook | Seven factory stages + Chapters 27, 31, 35 |
 
 V0 publishes the map and a high-quality documentation shell. The current 36-chapter book remains the canonical long-form source and should be migrated mechanically in a follow-on editorial pass rather than compressed into 25 shallow rewrites.
 
@@ -124,4 +126,4 @@ V0 publishes the map and a high-quality documentation shell. The current 36-chap
 
 ## Documentation UX
 
-Guide detail pages use breadcrumbs, desktop sidebar, mobile section navigation, generated table of contents, heading anchors, previous/next links, responsive tables, callouts, and readable code blocks. Search is prepared through semantic structure and deterministic content metadata; lightweight search is P1 and must not block V0.
+Guide detail pages use breadcrumbs, desktop sidebar, mobile section navigation, generated table of contents, heading anchors, previous/next links, responsive tables, callouts, and readable code blocks. Framework and Architecture use a compact sticky contents rail on desktop and an in-flow disclosure on mobile. Search is prepared through semantic structure and deterministic content metadata; lightweight search is P1 and must not block V0.

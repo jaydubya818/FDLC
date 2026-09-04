@@ -21,6 +21,7 @@ export function SiteHeader() {
           <details className="more-menu">
             <summary>More <span aria-hidden="true">⌄</span></summary>
             <div>
+              <Link href="/examples/dependency-modernization">FDLC in 5 Minutes</Link>
               <Link href="/manifesto">Manifesto</Link>
               <Link href="/spec">Specification</Link>
               <Link href="/benchmarks">Benchmarks</Link>
@@ -36,6 +37,7 @@ export function SiteHeader() {
           <summary aria-label="Open navigation">Menu</summary>
           <nav aria-label="Mobile navigation">
             {primary.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
+            <Link href="/examples/dependency-modernization">FDLC in 5 Minutes</Link>
             <Link href="/manifesto">Manifesto</Link>
             <Link href="/spec">Specification</Link>
             <Link href="/benchmarks">Benchmarks</Link>

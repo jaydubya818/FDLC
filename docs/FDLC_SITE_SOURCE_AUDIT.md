@@ -121,7 +121,7 @@ These are already used by the public README and can support the Mission Control 
 ## Recommendations
 
 1. Launch FDLC.ai as a repository-based static content site with a small client-side surface for the assessment and educational builder.
-2. Make Lifecycle, Architecture, and Execution Protocol the repeated orientation model across the site.
+2. Repeat the reconciled four-view model across the site: Factory Lifecycle, Runtime Lifecycle, Architecture, and Artifact Protocol.
 3. Preserve the Guide’s six-part book and 36-chapter source as the long-form body; add the FDLC taxonomy as an index and cross-link layer.
 4. Publish a capability matrix for Mission Control with status, limitation, and source evidence. Never collapse all status into a single “available” claim.
 5. Use three first-party public Mission Control screenshots and label them as product/demo views.
