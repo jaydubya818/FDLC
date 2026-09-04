@@ -15,6 +15,7 @@ This checklist separates what is verifiable in the repository from launch decisi
 - [x] The 36-chapter Guide map is represented with stable public part routes.
 - [x] Every primary page has an explicit next action.
 - [x] The five-minute worked example connects all four views and distinguishes illustrative records from production evidence.
+- [x] The five-minute worked example includes a baseline contract, Mission Control reference views, measurable success criteria, and four concrete next steps.
 - [x] Framework, Architecture, and Mission Control repeat the non-collapsible delivery-state boundary.
 - [x] Empty, partial, and completion states exist for the two interactive tools.
 - [x] Product Owner approves the reconciled lifecycle and protocol terminology for publication.
@@ -28,6 +29,8 @@ This checklist separates what is verifiable in the repository from launch decisi
 - [x] Semantic headings, labels, fieldsets, legends, and status regions are used.
 - [x] Reduced-motion preferences are respected.
 - [x] Desktop and mobile layouts are defined without horizontal page overflow.
+- [x] Long reference navigation adapts from an active side rail to floating and in-flow disclosures.
+- [x] Detailed lifecycle, protocol, and Architecture content progressively discloses on mobile.
 - [x] Images include useful alternative text and fixed dimensions.
 - [ ] Run a human screen-reader pass with VoiceOver or NVDA.
 - [ ] Confirm WCAG AA contrast with an independent automated scanner after final domain deployment.

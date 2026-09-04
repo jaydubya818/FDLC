@@ -34,7 +34,7 @@ export default function MissionControlPage() {
     <section className="mc-dark-section">
       <SectionHeader eyebrow="Core objects" title="One hierarchy. No optimistic shortcuts." description="Each record has a distinct owner and authority. Completion, verification, acceptance, merge, release, and production outcome are not aliases." />
       <div className="object-grid">{missionControlObjects.map(([name, summary], index) => <article key={name}><span>{String(index + 1).padStart(2, "0")}</span><h3>{name}</h3><p>{summary}</p></article>)}</div>
-      <StateBoundary dark />
+      <StateBoundary dark mode="mission-control" />
     </section>
 
     <section className="section-block mc-architecture">

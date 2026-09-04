@@ -21,15 +21,18 @@ const contents = [
   { label: "Runtime", href: "#runtime" },
   { label: "Architecture", href: "#architecture" },
   { label: "Artifacts", href: "#protocol" },
+  { label: "Principles", href: "#governance" },
+  { label: "Measurement", href: "#measurement" },
+  { label: "Mission Control", href: "#mission-control" },
 ] as const;
 
 export default function FrameworkPage() {
   return <SiteShell>
     <div className="page-wrap">
       <PageHero eyebrow="FDLC Framework / 01" title="The lifecycle for the factory itself." description={canonicalDefinition}>
-        <div className="hero-actions"><Link className="button button-dark" href="/examples/dependency-modernization">See FDLC in 5 minutes</Link><Link className="button button-light" href="/architecture">Explore architecture</Link></div>
+        <div className="hero-actions"><Link className="button button-dark" href="/in-5-minutes">See FDLC in 5 minutes</Link><Link className="button button-light" href="/architecture">Explore architecture</Link></div>
       </PageHero>
-      <PageContentsNav items={contents} />
+      <PageContentsNav items={contents} title="Framework sections" />
 
       <section className="definition-block" id="definition" aria-labelledby="definition-title">
         <p className="section-label">Canonical definition</p>
@@ -47,8 +50,6 @@ export default function FrameworkPage() {
         </div>
       </section>
 
-      <StateBoundary />
-
       <section className="section-block model-distinction" id="models">
         <SectionHeader eyebrow="Four views of the system" title="Related models. Different responsibilities." />
         <div className="system-models">
@@ -62,12 +63,14 @@ export default function FrameworkPage() {
       <section className="section-block" id="lifecycle">
         <SectionHeader eyebrow="Model 01 / Factory lifecycle" title="How the factory evolves." description="The outer lifecycle applies when creating a factory line and whenever validated evidence says the existing line should change. Its continuous controls span every stage." />
         <LifecycleDiagram detailed />
+        <div className="section-links"><Link href="/in-5-minutes#factory-lifecycle">See the lifecycle applied to one factory line →</Link></div>
       </section>
 
       <section className="section-block" id="runtime">
         <SectionHeader eyebrow="Model 02 / Runtime lifecycle" title="How software moves inside an operating factory." description="The inner lifecycle transforms intent into independently verified software under explicit policy and human authority, then returns production outcomes as controlled learning signals." />
         <RuntimeLifecycleDiagram detailed />
         <aside className="callout"><strong>Keep the boundaries clear</strong><p>Deploy promotes a validated factory version during the outer lifecycle. Release promotes an accepted software artifact during the inner lifecycle. Neither transition creates its own authority.</p></aside>
+        <div className="section-links"><Link href="/in-5-minutes#runtime">Follow one runtime walkthrough →</Link></div>
       </section>
 
       <section className="section-block architecture-framework" id="architecture">
@@ -80,7 +83,10 @@ export default function FrameworkPage() {
         <SectionHeader eyebrow="Model 04 / Artifact protocol" title="How one unit of work becomes durable and inspectable." description="Lifecycle verbs describe what the factory does. Protocol nouns preserve what existed, ran, was observed, was decided, and may improve next." />
         <ProtocolDiagram detailed />
         <aside className="callout"><strong>Mission Control mapping</strong><p>Mission Control realizes Intent as a governed Mission, Specification as a Mission Spec, and expands bounded execution with Tasks, candidates, pull requests, and explicit WorkOrder acceptance.</p></aside>
+        <div className="section-links"><Link href="/mission-control">See Mission Control objects →</Link><Link href="/in-5-minutes#artifacts">Inspect all eleven example records →</Link></div>
       </section>
+
+      <StateBoundary mode="primary" />
 
       <section className="section-block governance-principles" id="governance">
         <SectionHeader eyebrow="Governance" title="Ten principles hold the system together." />
@@ -93,7 +99,7 @@ export default function FrameworkPage() {
         <div className="metric-grid">{metrics.slice(0, 8).map(([name, definition], index) => <article key={name}><span>{String(index + 1).padStart(2, "0")}</span><h3>{name}</h3><p>{definition}</p></article>)}</div>
       </section>
 
-      <section className="reference-callout"><div><p className="section-label">Reference implementation</p><h2>Mission Control makes the protocol concrete.</h2></div><div><p>Inspect how one open-source control plane models governed Plans, WorkOrders, Attempts, evidence, verification, and human acceptance—with current limitations visible.</p><Link className="button button-light" href="/mission-control">Explore Mission Control</Link></div></section>
+      <section className="reference-callout" id="mission-control"><div><p className="section-label">Reference implementation</p><h2>Mission Control makes the protocol concrete.</h2></div><div><p>Inspect how one open-source control plane models governed Plans, WorkOrders, Attempts, evidence, verification, and human acceptance—with current limitations visible.</p><div className="hero-actions"><Link className="button button-light" href="/mission-control">Explore Mission Control</Link><Link className="text-action light-link" href="/in-5-minutes">See the walkthrough →</Link></div></div></section>
     </div>
   </SiteShell>;
 }

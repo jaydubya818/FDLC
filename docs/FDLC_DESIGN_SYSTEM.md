@@ -46,9 +46,10 @@ No remote font dependency is required for V0.
 - Data table with responsive horizontal overflow and text alternative.
 - Documentation callouts for Principle, Implementation Note, Status, and Warning.
 - Form controls with persistent labels, visible focus, inline help, error text, and explicit success output.
-- Sticky page-contents rail on long reference pages; it becomes an in-flow disclosure on mobile.
-- State-boundary callout with a fixed semantic sequence: execution complete, verified, approved, released, outcome proven.
-- Worked-example ledger combining editorial narrative with attributable record IDs and evidence boundaries.
+- Active sticky page-contents rail on wide reference pages; it becomes a floating disclosure on narrower desktop and an in-flow disclosure on mobile.
+- Progressive detail cards that remain fully visible on desktop and collapse secondary detail on mobile.
+- State-boundary callout with a fixed semantic sequence plus distinct completion, verification, judgment, promotion, and reality definitions.
+- Worked-example ledger combining editorial narrative, baseline contracts, Mission Control evidence views, attributable record IDs, and explicit evidence boundaries.
 
 ## Signature diagrams
 
@@ -65,7 +66,7 @@ Every diagram includes an `aria-label` or adjacent accessible text list. No info
 
 ## Navigation and documentation
 
-- Sticky header on site pages; sticky sidebars only where viewport height permits.
+- Sticky header on site pages; active side rails appear only where viewport width and height permit.
 - Current navigation state uses text weight, border, and `aria-current`.
 - Heading anchors appear on hover and keyboard focus.
 - Code blocks use high-contrast dark surfaces and preserve horizontal scrolling.
@@ -75,7 +76,7 @@ Every diagram includes an `aria-label` or adjacent accessible text list. No info
 
 - Desktop: full navigation and horizontal diagrams.
 - Tablet: reduced columns, diagrams wrap into two rows, table of contents moves below article intro.
-- Mobile: navigation disclosure, single-column cards, vertical lifecycle/runtime/protocol diagrams, no clipped labels, 44px minimum interactive targets.
+- Mobile: navigation disclosure, single-column cards, collapsed lifecycle/protocol detail, collapsed Architecture areas, no clipped labels, 44px minimum interactive targets.
 - Documentation sidebars become an in-flow disclosure before the article.
 
 ## Theme
