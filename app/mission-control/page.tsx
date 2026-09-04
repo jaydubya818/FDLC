@@ -7,7 +7,7 @@ import { SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
 import { StatusBadge } from "../components/status-badge";
-import { missionControlCapabilities, missionControlMaturityLedgerUrl, missionControlObjects } from "../../data/mission-control";
+import { missionControlCapabilities, missionControlMaturityLedgerUrl, missionControlObjects, type MissionControlCapabilityStatus } from "../../data/mission-control";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Mission Control", "The open-source reference implementation of the Factory Development Lifecycle.", "/mission-control");
@@ -24,24 +24,24 @@ pnpm run dev:demo
 # Terminal 2, after Convex reports ready
 pnpm run convex:seed:demo:force`;
 
+type CapabilityGroupId = "qualified" | "bounded" | "missing";
+
+const capabilityGroupByStatus = {
+  "Qualified": "qualified",
+  "Qualified; advisory": "qualified",
+  "Qualified diagnostic system": "qualified",
+  "Implemented, gated": "bounded",
+  "Production-pilot eligible; Preview": "bounded",
+  "Partial": "bounded",
+  "Missing": "missing",
+  "Missing canonical lifecycle": "missing",
+} as const satisfies Record<MissionControlCapabilityStatus, CapabilityGroupId>;
+
 const capabilityGroups = [
-  {
-    id: "qualified",
-    label: "Qualified",
-    matches: (status: string) => status.startsWith("Qualified"),
-  },
-  {
-    id: "bounded",
-    label: "Implemented, preview, or partial",
-    matches: (status: string) =>
-      status.startsWith("Implemented") || status.includes("Preview") || status === "Partial",
-  },
-  {
-    id: "missing",
-    label: "Missing",
-    matches: (status: string) => status.startsWith("Missing"),
-  },
-] as const;
+  { id: "qualified", label: "Qualified" },
+  { id: "bounded", label: "Implemented, preview, or partial" },
+  { id: "missing", label: "Missing" },
+] as const satisfies ReadonlyArray<{ id: CapabilityGroupId; label: string }>;
 
 export default function MissionControlPage() {
   return <SiteShell><div className="page-wrap mission-page">
@@ -103,7 +103,7 @@ export default function MissionControlPage() {
     <section className="section-block capability-section" id="capabilities">
       <SectionHeader eyebrow="Current capability" title="Inspect what is real—and where it stops." description="Status belongs to each capability, not the product slogan. Open any item to see the implemented behavior and its current boundary." />
       <div className="mc-capability-groups">{capabilityGroups.map((group) => {
-        const capabilities = missionControlCapabilities.filter((capability) => group.matches(capability.status));
+        const capabilities = missionControlCapabilities.filter((capability) => capabilityGroupByStatus[capability.status] === group.id);
         return <section aria-label={`${group.label} capabilities`} className={`mc-capability-group is-${group.id}`} data-capability-count={capabilities.length} key={group.id}><header><strong className="mc-capability-group-label">{group.label}</strong><span>{String(capabilities.length).padStart(2, "0")} capabilities</span></header><div>{capabilities.map((capability, index) => <details key={capability.name} open={group.id === "qualified" && index === 0}><summary><strong>{capability.name}</strong><StatusBadge status={capability.status} /><span aria-hidden="true" className="mc-disclosure-icon">+</span></summary><div><p><b>Supported</b>{capability.summary}</p><p><b>Current boundary</b>{capability.limitation}</p></div></details>)}</div></section>;
       })}</div>
       <a className="section-link" href={missionControlMaturityLedgerUrl} rel="noreferrer" target="_blank">Read the current capability maturity ledger and evidence ↗</a>

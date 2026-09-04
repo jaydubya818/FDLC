@@ -24,9 +24,11 @@ function runValidator(setup: (directory: string) => void) {
 
 test("runs the root Microfrontends guard before every Vercel build", () => {
   const packageJson = JSON.parse(readFileSync(join(projectRoot, "package.json"), "utf8"));
+  const vercelConfig = JSON.parse(readFileSync(join(projectRoot, "vercel.json"), "utf8"));
   assert.equal(packageJson.scripts["microfrontends:check"], "node scripts/check-microfrontends-config.mjs");
   assert.equal(packageJson.scripts["prebuild:vercel"], "npm run microfrontends:check");
   assert.equal(packageJson.scripts["build:vercel"], "next build");
+  assert.equal(vercelConfig.buildCommand, "npm run build:vercel");
 });
 
 test("accepts only the approved root Microfrontends configuration", () => {
