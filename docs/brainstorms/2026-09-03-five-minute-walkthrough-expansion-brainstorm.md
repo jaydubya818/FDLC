@@ -6,6 +6,11 @@ status: completed
 
 # Five-Minute Walkthrough Expansion
 
+> Superseded model note: the approved 2026-09-04 consolidation replaces the
+> four-view/runtime sequence below with three abstraction levels and the exact
+> eight-stage Guide value stream. The remaining UX decisions are historical
+> implementation context.
+
 ## What We're Building
 
 Expand the existing dependency-modernization reference into the complete nine-section teaching path: exact orientation hero, concrete factory line and baseline contract, four-view orientation, factory and runtime walkthroughs, eleven durable artifacts, six architecture areas, Mission Control screenshots, explicit state boundaries, measurement, and actionable next steps. Upgrade Framework and Architecture navigation for long-form reading and add mobile disclosure without hiding essential orientation.

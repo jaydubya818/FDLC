@@ -7,22 +7,41 @@ import { SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
 import { StatusBadge } from "../components/status-badge";
-import { missionControlCapabilities, missionControlObjects } from "../../data/mission-control";
+import { missionControlCapabilities, missionControlMaturityLedgerUrl, missionControlObjects } from "../../data/mission-control";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Mission Control", "The open-source reference implementation of the Factory Development Lifecycle.", "/mission-control");
 
 const quickstartCommands = `git clone https://github.com/jaydubya818/MissionControl.git
 cd MissionControl
-corepack enable && pnpm install
-cp .env.example .env.local
+corepack enable
+pnpm install
 pnpm exec convex dev --once
 
 # Terminal 1
 pnpm run dev:demo
 
-# Terminal 2
+# Terminal 2, after Convex reports ready
 pnpm run convex:seed:demo:force`;
+
+const capabilityGroups = [
+  {
+    id: "qualified",
+    label: "Qualified",
+    matches: (status: string) => status.startsWith("Qualified"),
+  },
+  {
+    id: "bounded",
+    label: "Implemented, preview, or partial",
+    matches: (status: string) =>
+      status.startsWith("Implemented") || status.includes("Preview") || status === "Partial",
+  },
+  {
+    id: "missing",
+    label: "Missing",
+    matches: (status: string) => status.startsWith("Missing"),
+  },
+] as const;
 
 export default function MissionControlPage() {
   return <SiteShell><div className="page-wrap mission-page">
@@ -30,7 +49,7 @@ export default function MissionControlPage() {
       <div className="mc-product-hero-copy">
         <p className="section-label">Mission Control / Open-source FDLC reference</p>
         <h1>Governed autonomous delivery.</h1>
-        <p className="mc-product-hero-lede"><strong>Mission Control is the reference implementation of the Factory Development Lifecycle.</strong> It turns intent, execution, evidence, approval, and outcomes into durable operating records.</p>
+        <p className="mc-product-hero-lede"><strong>Mission Control is the reference implementation of the Factory Development Lifecycle: a bounded, human-governed delivery kernel from intent through verified pull-request publication and acceptance.</strong> It turns intent, execution, evidence, approval, and outcomes into durable operating records.</p>
         <p className="mc-product-hero-proof"><strong>Not another coding agent.</strong> The system that decides what agents may do—and what evidence must return before work advances.</p>
         <div className="hero-actions"><a className="button button-dark" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View source on GitHub ↗</a><a className="button button-light" href="#quickstart">Run the demo</a></div>
       </div>
@@ -41,6 +60,8 @@ export default function MissionControlPage() {
       </figure>
       <dl className="mc-product-facts"><div><dt>License</dt><dd>Open source</dd></div><div><dt>Demo</dt><dd>Deterministic</dd></div><div><dt>Truth model</dt><dd>Capability-specific</dd></div></dl>
     </section>
+
+    <section className="mc-boundary"><strong>What it is</strong><p>A concrete control plane that demonstrates FDLC objects, gates, authority, evidence, recovery, and permit-gated pull-request publication.</p><strong>What it is not</strong><p>The definition of FDLC, every component of a complete factory, or proof of generalized release, production learning, governed MCP, incident response, enterprise authorization, or fleet-scale autonomous delivery.</p></section>
 
     <section className="mc-purpose-strip" aria-label="Mission Control purpose">
       <article><span>01 / Govern</span><strong>Bound authority before execution.</strong></article>
@@ -81,22 +102,22 @@ export default function MissionControlPage() {
 
     <section className="section-block capability-section" id="capabilities">
       <SectionHeader eyebrow="Current capability" title="Inspect what is real—and where it stops." description="Status belongs to each capability, not the product slogan. Open any item to see the implemented behavior and its current boundary." />
-      <div className="mc-capability-groups">{["Available", "Experimental", "Planned"].map((status) => {
-        const capabilities = missionControlCapabilities.filter((capability) => capability.status === status);
-        return <section className={`mc-capability-group is-${status.toLowerCase()}`} key={status}><header><StatusBadge status={status} /><span>{String(capabilities.length).padStart(2, "0")} capabilities</span></header><div>{capabilities.map((capability, index) => <details key={capability.name} open={status === "Available" && index === 0}><summary><strong>{capability.name}</strong><span aria-hidden="true">+</span></summary><div><p><b>Supported</b>{capability.summary}</p><p><b>Current boundary</b>{capability.limitation}</p></div></details>)}</div></section>;
+      <div className="mc-capability-groups">{capabilityGroups.map((group) => {
+        const capabilities = missionControlCapabilities.filter((capability) => group.matches(capability.status));
+        return <section aria-label={`${group.label} capabilities`} className={`mc-capability-group is-${group.id}`} data-capability-count={capabilities.length} key={group.id}><header><strong className="mc-capability-group-label">{group.label}</strong><span>{String(capabilities.length).padStart(2, "0")} capabilities</span></header><div>{capabilities.map((capability, index) => <details key={capability.name} open={group.id === "qualified" && index === 0}><summary><strong>{capability.name}</strong><StatusBadge status={capability.status} /><span aria-hidden="true" className="mc-disclosure-icon">+</span></summary><div><p><b>Supported</b>{capability.summary}</p><p><b>Current boundary</b>{capability.limitation}</p></div></details>)}</div></section>;
       })}</div>
-      <a className="section-link" href="https://github.com/jaydubya818/MissionControl/blob/main/docs/product/software-factory-capability-maturity.md" rel="noreferrer" target="_blank">Read the canonical capability maturity ledger ↗</a>
+      <a className="section-link" href={missionControlMaturityLedgerUrl} rel="noreferrer" target="_blank">Read the current capability maturity ledger and evidence ↗</a>
     </section>
 
     <section className="quickstart-section" id="quickstart">
-      <div><p className="section-label">Local quickstart</p><h2>Run the deterministic factory demo.</h2><p>Requires Node 20, pnpm 9, Git, and a Convex development deployment. Live providers are not required for the demo.</p></div>
+      <div><p className="section-label">Local quickstart</p><h2>Run the deterministic factory demo.</h2><p>Requires Node 20, pnpm 9, Git, and a Convex development deployment. Copy the generated <code>CONVEX_URL</code> to <code>VITE_CONVEX_URL</code> in <code>.env.local</code>. Live providers are not required for the demo.</p></div>
       <div className="quickstart-code" aria-label="Mission Control local quickstart commands" role="region">
         <div className="quickstart-code-toolbar"><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Mission Control repository ↗</a><CopyButton label="Copy commands" text={quickstartCommands} /></div>
         <pre><code>{quickstartCommands}</code></pre>
       </div>
-      <p className="quickstart-note">Then open <code>http://localhost:5199/v2/command-center</code> and select <strong>Software Factory Demo</strong>. The seeded path runs without live model providers.</p>
+      <p className="quickstart-note">Then open <code>http://localhost:5199/v2/command-center</code> and select <strong>Software Factory Demo</strong>. <code>pnpm run dev</code> starts Convex and the standard UI; <code>dev:demo</code> adds the deterministic workflow executor. Live-provider orchestration requires separate credentials and remains off by default.</p>
     </section>
 
-    <section className="reading-next" id="build-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/spec">Preview the Specification →</Link></div></section>
+    <section className="reading-next" id="build-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/specification">Preview the Specification →</Link></div></section>
   </div></SiteShell>;
 }

@@ -1,6 +1,6 @@
 # FDLC.ai Design System
 
-Date: 2026-09-03
+Date: 2026-09-04
 
 ## Direction
 
@@ -56,11 +56,19 @@ No remote font dependency is required for V0.
 Diagrams are semantic HTML/CSS components, not decorative raster art.
 
 1. **Architecture:** six connected capability areas with Trust visibly crossing execution and Learning closing the loop.
-2. **Factory lifecycle:** seven numbered stages with a persistent band for governance, security, observability, and measurement; mobile becomes a vertical sequence.
-3. **Runtime lifecycle:** nine verbs describe software moving through an operating factory; horizontal on wide screens and vertical on mobile.
-4. **Artifact protocol:** eleven durable objects preserve intent, work, proof, decisions, outcomes, and learning signals; horizontal on wide screens and vertical on mobile.
+2. **Factory Development Lifecycle:** seven numbered stages with a persistent
+   band for Governance, Security, Observability, Measurement, and Human
+   Authority; mobile becomes a vertical sequence.
+3. **Software factory value stream:** eight stages describe software work moving
+   through an operating factory; horizontal on wide screens and vertical on
+   mobile.
+4. **Governed execution protocol:** eleven durable artifacts preserve intent,
+   work, proof, decisions, outcomes, and Learning; horizontal on wide screens
+   and vertical on mobile.
 5. **Factory Concept:** humans and intent enter the control plane; capability/model/context feed execution; evidence and verification gate outcomes; validated outcomes feed governed learning.
-6. **Worked Example:** one bounded workflow shown as a factory dossier across all four system views; concrete enough to inspect, explicitly labeled when illustrative.
+6. **Worked Example:** one bounded workflow shown as a factory dossier across
+   all three abstraction levels and the six-domain structural view; concrete
+   enough to inspect, explicitly labeled when illustrative.
 
 Every diagram includes an `aria-label` or adjacent accessible text list. No information depends on color alone.
 

@@ -5,6 +5,10 @@ topic: interactive-factory-explorer
 
 # Interactive Factory Explorer
 
+> Superseded model note: the current explorer uses the six-step public shorthand
+> `Intent → Plan → Execute → Prove → Release → Learn`. References below to a
+> runtime lifecycle describe the earlier implementation.
+
 ## What We're Building
 
 Replace the homepage's static runtime and architecture grids with one interactive explorer. A visitor chooses a runtime stage and immediately sees the governing question, durable record, evidence required, and the factory capabilities participating at that point. Selecting a capability explains its responsibility and links to the corresponding architecture area.

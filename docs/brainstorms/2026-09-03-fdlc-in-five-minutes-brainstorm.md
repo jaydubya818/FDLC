@@ -6,6 +6,10 @@ status: completed
 
 # FDLC in Five Minutes
 
+> Superseded model note: the current walkthrough uses three abstraction levels
+> plus the six-domain structural view. References below to four views describe
+> the earlier implementation preserved by this historical brainstorm.
+
 ## What We're Building
 
 Publish one worked dependency-modernization scenario that shows the same bounded factory line through all four FDLC views: how the factory evolves, how software moves through it, what capabilities participate, and which durable artifacts preserve proof and decisions. Add the core state-boundary invariant to Framework, Architecture, and Mission Control, plus compact long-page navigation for Framework and Architecture.

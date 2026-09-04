@@ -1,6 +1,6 @@
 # FDLC.ai Canonical Content Model
 
-Date: 2026-09-03
+Date: 2026-09-04
 
 ## Principles
 
@@ -9,9 +9,13 @@ Date: 2026-09-03
 - Status is a property of a specific product capability, not a whole future product.
 - FDLC entities and Mission Control entities are mapped explicitly rather than forced into identical names.
 - FDLC is the discipline and architecture; FDLC.ai is the ecosystem that develops and applies it.
-- Four views stay distinct: the factory lifecycle, runtime lifecycle, architecture, and artifact protocol.
+- Three abstraction levels stay distinct: the Factory Development Lifecycle,
+  software factory value stream, and governed execution protocol. The
+  six-domain architecture is a structural view across those levels, not a
+  competing lifecycle.
 - Lifecycle verbs describe what the system does. Protocol nouns preserve what existed, ran, was observed, and was decided.
-- Governance, security, observability, and measurement are continuous controls rather than sequential lifecycle stages.
+- Governance, Security, Observability, Measurement, and Human Authority are
+  cross-cutting disciplines rather than sequential lifecycle stages.
 
 ## Core types
 
@@ -29,11 +33,11 @@ type LifecycleStage = {
 };
 
 type FactoryControl = {
-  name: "Govern" | "Secure" | "Observe" | "Measure";
+  name: "Governance" | "Security" | "Observability" | "Measurement" | "Human Authority";
   purpose: string;
 };
 
-type RuntimeLifecycleStep = {
+type ValueStreamStage = {
   id: string;
   number: number;
   name: string;
@@ -87,10 +91,17 @@ type MaturityDimension = {
 };
 
 type CapabilityStatus =
-  | "Available"
+  | "Qualified"
+  | "Qualified; advisory"
+  | "Qualified diagnostic system"
+  | "Implemented, gated"
+  | "Production-pilot eligible; Preview"
+  | "Partial"
+  | "Missing"
+  | "Missing canonical lifecycle"
   | "Experimental"
-  | "Planned"
-  | "Proposed";
+  | "Proposed"
+  | "Design partner";
 
 type ProductCapability = {
   name: string;
@@ -105,7 +116,10 @@ type ProductCapability = {
 
 ### Definition and category boundary
 
-> The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.
+> FDLC is the Factory Development Lifecycle—the open operating model,
+> engineering framework, and reference architecture for designing, building,
+> governing, operating, measuring, and continuously improving AI software
+> factories.
 
 Primary positioning: **Verified delivery, not merely generated code.**
 
@@ -115,6 +129,7 @@ Supporting thesis: **Autonomy without evidence is just faster guessing.**
 | --- | --- | --- |
 | Traditional SDLC | Software | How do we build software? |
 | AI-Native SDLC | Software + AI-assisted workflow | How does AI change software development? |
+| AI Software Factory | Persistent governed production system | How does intent become independently verified software? |
 | FDLC | The software factory | How do we engineer the factory that performs autonomous software delivery? |
 
 The first transition, SDLC → AI-Native SDLC, brings agents into the lifecycle. The second, AI-Native SDLC → AI Software Factory, makes those workflows a persistent, governed production system. FDLC is the engineering discipline for that factory.
@@ -123,13 +138,17 @@ The first transition, SDLC → AI-Native SDLC, brings agents into the lifecycle.
 
 `Discover → Design → Assemble → Validate → Deploy → Operate → Improve`
 
-Each stage owns an output that becomes a governed input to later stages. The lifecycle describes evolution of the factory itself and can repeat at the factory, line, or capability level. `Govern · Secure · Observe · Measure` span every stage as continuous controls.
+Each stage owns an output that becomes a governed input to later stages. The lifecycle describes evolution of the factory itself and can repeat at the factory, line, or capability level. `Governance · Security · Observability · Measurement · Human Authority` span every stage as cross-cutting disciplines.
 
-### Runtime lifecycle
+### Software factory value stream
 
-`Receive → Specify → Plan → Execute → Verify → Approve → Release → Observe → Learn`
+`Intent → Plan → Define Agent → Execute through Harness → Apply Skills → Evaluate → Improve → Deliver Software`
 
-This inner lifecycle describes how software moves through an operating factory. `Deploy` belongs to the outer factory lifecycle; it promotes a validated factory version. `Release` belongs to the inner runtime lifecycle; it promotes an accepted software artifact.
+This value stream describes how software work moves through an operating
+factory. It is not a second lifecycle for engineering the factory itself.
+`Deploy` belongs to the outer Factory Development Lifecycle; `Deliver Software`
+includes the governed decision, release, observation, and measured outcome for
+the software produced by a factory run.
 
 ### Architecture
 
@@ -139,7 +158,7 @@ The six areas are capabilities, not deployment tiers. Trust is cross-cutting eve
 
 ### Artifact protocol
 
-`Intent → Specification → Plan → Work Order → Attempt → Evidence → Verification → Approval → Release → Outcome → Learning Signal`
+`Intent → Specification → Plan → Work Order → Attempt → Evidence → Verification → Approval → Release → Outcome → Learning`
 
 Associated objects include Acceptance Criterion, Agent Identity, Delegation, Execution Lease, Task, and Candidate. Mission Control maps Intent to Mission and Specification to Mission Spec, then adds implementation records such as Tasks, candidates, pull requests, and explicit human acceptance where its concrete contract requires them.
 
@@ -181,8 +200,8 @@ Generated tokens, lines of code, prompt count, and agent count are operational t
 
 Worked examples map one bounded workflow to every canonical model without creating a second taxonomy. Each example must include:
 
-- all seven factory lifecycle stages and four continuous controls;
-- all nine runtime lifecycle steps;
+- all seven Factory Development Lifecycle stages and five cross-cutting disciplines;
+- all eight software factory value-stream stages;
 - all six architecture areas;
 - all eleven artifact protocol objects;
 - one primary outcome metric and explicit guardrails;

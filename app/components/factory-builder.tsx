@@ -37,7 +37,7 @@ export function FactoryBuilder() {
       <article><span>Outcome metrics</span><ul>{definition.outcomeMetrics.map((item) => <li key={item}>{item}</li>)}</ul></article>
     </div>
     <aside className="callout"><strong>Conceptual output</strong><p>This teaches the FDLC mental model. It is not an executable Mission Control manifest or a formal FDLC Specification document.</p></aside>
-    <nav className="factory-result-actions" aria-label="Continue from Factory Definition"><Link className="button button-dark" href="/mission-control#quickstart">Run Mission Control</Link><Link className="button button-light" href="/spec">Review the proposed Specification</Link></nav>
+    <nav className="factory-result-actions" aria-label="Continue from Factory Definition"><Link className="button button-dark" href="/mission-control#quickstart">Run Mission Control</Link><Link className="button button-light" href="/specification">Review the proposed Specification</Link></nav>
   </section>;
 
   const panels = [

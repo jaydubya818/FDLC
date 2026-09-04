@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArchitectureDiagram } from "../components/architecture-diagram";
@@ -24,12 +25,12 @@ const contents = [
 ] as const;
 
 const guideByArea = {
-  intent: "/guide/design",
-  harness: "/guide/build",
-  capability: "/guide/build",
-  model: "/guide/build",
-  trust: "/guide/prove",
-  learning: "/guide/improve",
+  intent: "/guide/02-design/06-intent-and-specification-engineering",
+  harness: "/guide/03-build/16-harness-engineering",
+  capability: "/guide/03-build/12-skills-as-packages",
+  model: "/guide/03-build/22-routing-and-the-escalation-ladder",
+  trust: "/guide/04-prove/27-quality-and-evidence-architecture",
+  learning: "/guide/06-improve/40-governed-learning",
 } as const;
 
 export default function ArchitecturePage() {
@@ -38,7 +39,7 @@ export default function ArchitecturePage() {
     <div className="longform-layout">
     <PageContentsNav items={contents} mobileTitle="Jump to area" title="Architecture areas" variant="rail" />
     <div className="longform-content">
-    <section className="architecture-overview" id="overview"><ArchitectureDiagram /><p>Trust constrains every area. Learning closes the loop only through governed promotion. The model is replaceable; the control contract is not.</p></section>
+    <section className="architecture-overview" id="overview"><ArchitectureDiagram /><p>These six domains are structural responsibilities that span all three abstraction levels: the seven-stage Factory Development Lifecycle, the Guide’s eight-stage software factory value stream, and the eleven-artifact autonomous execution protocol. Trust constrains every domain; Learning closes the loop only through governed promotion.</p></section>
 
     <section className="architecture-control-boundary" id="control-boundary">
       <SectionHeader eyebrow="The control boundary" title="Intelligence can change. Authority cannot be implicit." description="Models reason and agents act, but neither should own identity, permission, authoritative state, release policy, or the evidence used to judge its work. Those responsibilities belong to the factory around them." />
@@ -71,7 +72,7 @@ export default function ArchitecturePage() {
             <section><h3>Examples</h3><ul>{area.examples.map((item) => <li key={item}>{item}</li>)}</ul></section>
           </div>
           <p className="relationship"><span>Relationship</span>{area.relationships}</p>
-          <div className="architecture-area-links"><Link href={guideByArea[area.id]}>Related Guide chapters →</Link><Link href="/mission-control#capabilities">See in Mission Control →</Link></div>
+          <div className="architecture-area-links"><a href={guideByArea[area.id]}>Related Guide chapters →</a><Link href="/mission-control#capabilities">See in Mission Control →</Link></div>
         </div>
       </ResponsiveDetails>)}
     </section>
@@ -88,7 +89,7 @@ export default function ArchitecturePage() {
       </div>
     </section>
 
-    <section className="reading-next"><p className="section-label">Continue</p><h2>Move from architecture to implementation.</h2><div><Link href="/guide/build">Build the capability stack →</Link><Link href="/mission-control">Inspect Mission Control →</Link><Link href="/start">Design a factory line →</Link></div></section>
+    <section className="reading-next"><p className="section-label">Continue</p><h2>Move from architecture to implementation.</h2><div><a href="/guide/03-build/11-the-agent-factory">Build the capability stack →</a><Link href="/mission-control">Inspect Mission Control →</Link><Link href="/start">Design a factory line →</Link></div></section>
     </div>
     </div>
   </div></SiteShell>;

@@ -2,6 +2,14 @@
 
 Date: 2026-09-03
 
+> Historical audit note: this source snapshot predates the approved
+> 2026-09-04 consolidation. The final model is recorded in
+> `docs/plans/2026-09-04-feat-unify-fdlc-guide-experience-plan.md` and
+> `docs/FDLC_CONTENT_MODEL.md`: three abstraction levels, a six-domain
+> structural architecture, and five cross-cutting disciplines. Older
+> four-view and runtime-lifecycle language below is retained only as audit
+> provenance.
+
 ## Scope and baselines
 
 This audit covers the two authoritative local sources named in the product brief. No source files were changed.

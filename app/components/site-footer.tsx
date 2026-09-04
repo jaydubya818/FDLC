@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const groups = [
   ["Learn", [["Framework", "/framework"], ["Architecture", "/architecture"], ["Guide", "/guide"], ["Manifesto", "/manifesto"]]],
-  ["Build", [["FDLC in 5 Minutes", "/in-5-minutes"], ["Mission Control", "/mission-control"], ["Specification", "/spec"], ["Start", "/start"], ["GitHub", "https://github.com/jaydubya818/MissionControl"]]],
+  ["Build", [["FDLC in 5 Minutes", "/in-5-minutes"], ["Mission Control", "/mission-control"], ["Specification", "/specification"], ["Start", "/start"], ["GitHub", "https://github.com/jaydubya818/MissionControl"]]],
   ["Adopt", [["Maturity", "/maturity"], ["Benchmarks", "/benchmarks"], ["Enterprise", "/enterprise"], ["Deploy", "/deploy"]]],
   ["Project", [["About", "/about"], ["Source audit", "https://github.com/jaydubya818/ai-software-factory-mastery"], ["Mission Control status", "https://github.com/jaydubya818/MissionControl/blob/main/docs/product/software-factory-capability-maturity.md"]]],
 ] as const;
@@ -21,7 +21,9 @@ export function SiteFooter() {
         {groups.map(([title, links]) => (
           <nav aria-label={`${title} links`} className="footer-group" key={title}>
             <strong>{title}</strong>
-            {links.map(([label, href]) => <Link href={href} key={href}>{label}{href.startsWith("http") && <span aria-hidden="true"> ↗</span>}</Link>)}
+            {links.map(([label, href]) => href.startsWith("/guide")
+              ? <a href={href} key={href}>{label}</a>
+              : <Link href={href} key={href}>{label}{href.startsWith("http") && <span aria-hidden="true"> ↗</span>}</Link>)}
           </nav>
         ))}
       </div>

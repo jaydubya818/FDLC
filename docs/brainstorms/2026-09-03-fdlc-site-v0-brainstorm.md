@@ -5,7 +5,11 @@ topic: fdlc-site-v0
 
 # FDLC.ai V0 Site
 
-> Superseded model note: a later canonical reconciliation defines four views—Factory Lifecycle, Runtime Lifecycle, Architecture, and Artifact Protocol. Other V0 product and implementation decisions remain current.
+> Superseded model note: the approved 2026-09-04 consolidation defines three
+> abstraction levels—the Factory Development Lifecycle, software factory value
+> stream, and governed execution protocol—with the six-domain architecture as a
+> structural view. Other V0 product and implementation decisions remain
+> historical context.
 
 ## What We're Building
 
@@ -18,7 +22,7 @@ The brief is specific enough that no exploratory product questions are required.
 ## Key Decisions
 
 - Category before product: FDLC remains larger than Mission Control.
-- Four views, always distinct: Factory Lifecycle, Runtime Lifecycle, Architecture, and Artifact Protocol.
+- Three abstraction levels remain distinct; architecture cuts across them.
 - One canonical typed content layer for repeated concepts.
 - Editorial technical design with semantic HTML/CSS diagrams.
 - Full-depth Guide migration is staged; V0 ships the guide map and documentation shell without shallowly rewriting 36 chapters.
