@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArchitectureDiagram } from "./components/architecture-diagram";
+import { CategoryDistinction } from "./components/category-distinction";
 import { LifecycleDiagram } from "./components/lifecycle-diagram";
 import { ProtocolDiagram } from "./components/protocol-diagram";
 import { RuntimeLifecycleDiagram } from "./components/runtime-lifecycle-diagram";
 import { SectionHeader } from "./components/page-hero";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
-import { ecosystemRoles, factorySystemComponents, manifesto, maturityLevels } from "../data/fdlc";
+import { ecosystemRoles, evidencePositioning, factorySystemComponents, manifesto, maturityLevels, primaryPositioning } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "The Factory Development Lifecycle is the open operating model, engineering discipline, and reference architecture for designing, governing, and operating AI software factories.", "/");
+export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "FDLC is the open operating model and reference architecture for designing, governing, and continuously improving AI software factories.", "/");
 
 export default function Home() {
   return (
@@ -23,14 +24,16 @@ export default function Home() {
             <p className="eyebrow"><span>Factory Development Lifecycle</span><span>Open framework · v0.1</span></p>
             <h1>Build the factory that builds your software.</h1>
             <p className="hero-lede">
-              The Factory Development Lifecycle (FDLC) is the open operating model,
-              engineering discipline, and reference architecture for designing,
-              governing, and operating AI software factories that deliver trusted
-              autonomy at enterprise scale.
+              FDLC is the open operating model and reference architecture for designing,
+              governing, and continuously improving AI software factories. Turn engineering
+              intent into independently verified software using model-agnostic agents,
+              governed plans, isolated execution, policy gates, and evidence-backed delivery.
             </p>
+            <p className="hero-contrast"><strong>Not another coding agent.</strong> The control system around them.</p>
             <div className="hero-actions">
-              <Link className="button button-dark" href="/in-5-minutes">See FDLC in 5 minutes</Link>
-              <a className="button button-light" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View Mission Control on GitHub ↗</a>
+              <Link className="button button-dark" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
+              <Link className="button button-light" href="/framework">Explore the Framework</Link>
+              <Link className="text-action" href="/mission-control">Mission Control →</Link>
             </div>
           </div>
           <aside className="hero-model" aria-labelledby="hero-model-title">
@@ -45,9 +48,9 @@ export default function Home() {
         </section>
 
         <section className="statement-band" aria-label="FDLC category statement">
-          <p>Factory Development Lifecycle</p>
-          <strong>The operating model and technical foundation for trusted autonomous software delivery.</strong>
-          <span>FDLC is the lifecycle for the factory itself.</span>
+          <p>FDLC / Category promise</p>
+          <strong>{primaryPositioning}</strong>
+          <span>{evidencePositioning}</span>
         </section>
 
         <section className="content-section shift-section">
@@ -64,13 +67,10 @@ export default function Home() {
         <section className="comparison-section">
           <div className="comparison-intro">
             <p className="section-label">The category boundary</p>
-            <h2>Agent participation is not factory engineering.</h2>
-            <p>As code generation becomes abundant, coordination, verification, and control become the constraint. FDLC addresses the production system around the agents.</p>
+            <h2>Three categories. One critical distinction.</h2>
+            <p>FDLC does not replace the SDLC. It engineers the persistent production system that increasingly performs parts of it. FDLC is the lifecycle for the factory itself.</p>
           </div>
-          <div className="comparison-table">
-            <article><span>AI-native SDLC</span><h3>Changes who participates in software development.</h3><p>Agents increasingly contribute to planning, design, implementation, testing, deployment, and maintenance.</p></article>
-            <article><span>FDLC</span><h3>Defines how the factory around those agents is engineered.</h3><p>Design, capability, runtime, authority, evidence, operations, measurement, and controlled improvement.</p></article>
-          </div>
+          <div><CategoryDistinction /></div>
         </section>
 
         <section className="dark-section">
@@ -136,7 +136,7 @@ export default function Home() {
 
         <section className="guide-preview">
           <div><p className="section-label">The field guide</p><h2>Learn the discipline from first principles to production.</h2></div>
-          <div><p>The AI Software Factory Guide covers architecture, governance, agents, harnesses, tools, context, models, verification, security, operations, and governed learning across 36 chapters.</p><Link className="button button-light" href="/guide">Read the Guide</Link></div>
+          <div><p>The full 44-chapter AI Software Factory Guide covers architecture, governance, agents, harnesses, tools, context, models, verification, security, operations, and governed learning.</p><Link className="button button-light" href="/guide">Choose a reading path</Link></div>
         </section>
 
         <section className="content-section ecosystem-section">

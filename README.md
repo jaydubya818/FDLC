@@ -1,6 +1,10 @@
 # FDLC.ai
 
-The canonical public home of the Factory Development Lifecycle: an open framework for discovering, designing, assembling, validating, deploying, operating, and improving AI software factories under continuous governance, security, observability, and measurement.
+The canonical public home of the Factory Development Lifecycle.
+
+> The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.
+
+FDLC is the engineering discipline for the factory itself: the control system around agents, models, tools, people, policies, evidence, and workflows. Its standard is verified delivery, not merely generated code.
 
 ## Local development
 

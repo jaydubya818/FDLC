@@ -103,6 +103,22 @@ type ProductCapability = {
 
 ## Canonical records
 
+### Definition and category boundary
+
+> The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.
+
+Primary positioning: **Verified delivery, not merely generated code.**
+
+Supporting thesis: **Autonomy without evidence is just faster guessing.**
+
+| Category | Primary object | Question answered |
+| --- | --- | --- |
+| Traditional SDLC | Software | How do we build software? |
+| AI-Native SDLC | Software + AI-assisted workflow | How does AI change software development? |
+| FDLC | The software factory | How do we engineer the factory that performs autonomous software delivery? |
+
+The first transition, SDLC → AI-Native SDLC, brings agents into the lifecycle. The second, AI-Native SDLC → AI Software Factory, makes those workflows a persistent, governed production system. FDLC is the engineering discipline for that factory.
+
 ### Lifecycle
 
 `Discover → Design → Assemble → Validate → Deploy → Operate → Improve`

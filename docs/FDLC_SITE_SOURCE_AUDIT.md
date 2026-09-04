@@ -19,7 +19,7 @@ Both source repositories declare the MIT License. That allows reuse, but copied 
 ### AI Software Factory Guide
 
 - Root and guide READMEs, license, source-material index, current Git history, and repository structure.
-- The complete current guide map: eight stage pages, 36 chapters across Understand, Design, Build, Prove, Operate, and Improve, plus reference appendices.
+- The audited local source snapshot contained eight stage pages and 36 chapters. The current public Guide has since advanced to 44 chapters across Understand, Design, Build, Prove, Operate, and Improve, plus reference appendices.
 - Key canonical chapters covering the whole-factory model, authority and evidence, durable execution, verification, Mission Control, maturity, principles, and the glossary.
 - The current documentation site architecture, navigation, generated-content system, diagrams, search index, metadata, tests, and accessibility/link checks.
 - Existing diagram slots and Mermaid source. No finished reusable infographic assets exist in `guide/assets`; the existing visuals are primarily structured diagrams in Markdown.
@@ -46,7 +46,7 @@ The proposed FDLC category gives this body of knowledge a cleaner organizing lay
 
 ### Guide content ready to reorganize
 
-The current Guide is unusually deep and already structured for repository-based publishing. Its 36 chapters contain the authoritative material needed for all six FDLC architecture areas and the seven-stage factory lifecycle. The strongest V0 reuse strategy is to preserve the Guide’s six-part reading arc while adding the FDLC taxonomy as the primary orientation layer. Rewriting the entire Guide would create editorial drift without improving the category definition.
+The current Guide is unusually deep and already structured for repository-based publishing. Its public 44-chapter edition contains the authoritative material needed for all six FDLC architecture areas and the seven-stage factory lifecycle. The strongest reuse strategy is to preserve the Guide’s six-part reading arc, use FDLC.ai as the category-level portal, and deep-link to the full prose. Rewriting the entire Guide inside FDLC.ai would create editorial drift and a competing incomplete edition.
 
 ### Mission Control capabilities supported by source and evidence
 
@@ -90,7 +90,7 @@ These are already used by the public README and can support the Mission Control 
 | `Harness` can mean the inner model/tool loop, an outer supervisor, or the whole runtime. | On FDLC.ai, `Harness` is the architectural area for orchestration, durable state, lifecycle, recovery, scheduling, leases, and handoffs. Guide pages can preserve the narrower inner/outer distinction. |
 | Agent Factory vs. Capability area. | Treat the Agent Factory as an important implementation pattern inside the broader FDLC Capability area. |
 | Loom appears in technical status material. | Do not use Loom as a public product identity. Omit it from marketing and overview content; mention only in developer documentation if needed to explain an unsupported adapter identifier. |
-| “Operating system” and “control plane” both describe Mission Control. | Lead with “open-source reference implementation” and “governed control plane.” Reserve “operating system” for attributed product doctrine, not the category definition. |
+| “Operating system” and “control plane” can blur FDLC with Mission Control. | Use “factory operating system” for FDLC’s disciplined layer around the production system. Use “open-source reference implementation” and “governed control plane” for Mission Control. |
 
 ## Stale or superseded material
 
@@ -122,7 +122,7 @@ These are already used by the public README and can support the Mission Control 
 
 1. Launch FDLC.ai as a repository-based static content site with a small client-side surface for the assessment and educational builder.
 2. Repeat the reconciled four-view model across the site: Factory Lifecycle, Runtime Lifecycle, Architecture, and Artifact Protocol.
-3. Preserve the Guide’s six-part book and 36-chapter source as the long-form body; add the FDLC taxonomy as an index and cross-link layer.
+3. Preserve the Guide’s six-part, 44-chapter public edition as the authoritative long-form body; use FDLC.ai as its FDLC index, mapping, and reading-path layer.
 4. Publish a capability matrix for Mission Control with status, limitation, and source evidence. Never collapse all status into a single “available” claim.
 5. Use three first-party public Mission Control screenshots and label them as product/demo views.
 6. Keep Specification, Benchmarks, Enterprise, and Deploy transparent preview pages until their underlying programs exist.

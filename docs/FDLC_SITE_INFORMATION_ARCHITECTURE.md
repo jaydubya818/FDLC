@@ -69,10 +69,10 @@ Homepage
 
 The homepage uses a scannable category-to-adoption sequence:
 
-1. Memorable category hero and two primary entry CTAs, led by the five-minute worked example.
-2. Institutional category statement: the operating model and technical foundation for trusted autonomous software delivery.
+1. Memorable category hero and three entry points: the five-minute model, Framework, and Mission Control.
+2. Primary promise: verified delivery, not merely generated code; autonomy without evidence is just faster guessing.
 3. Nine-step runtime lifecycle plus the factory system components.
-4. AI-native SDLC versus FDLC.
+4. Traditional SDLC versus AI-Native SDLC versus FDLC, plus the two transitions from agent participation to a persistent factory.
 5. The six-area architecture diagram.
 6. The seven-stage factory lifecycle with four continuous controls.
 7. The eleven-object artifact protocol and its three key invariants.
@@ -82,39 +82,18 @@ The homepage uses a scannable category-to-adoption sequence:
 11. Guide preview.
 12. Five-part ecosystem model with Deploy and Enterprise status boundaries.
 
-## Guide content mapping
+## Guide portal contract
 
-The Guide remains a six-part book while FDLC adds topic-level routes and indexes.
+The full Guide is a six-part, 44-chapter book with an eight-stage implementation value stream. FDLC.ai is its category-level portal, not a second edition.
 
-| Proposed FDLC chapter | Existing Guide source |
-| --- | --- |
-| 1. What Is an AI Software Factory? | Chapters 1–2 |
-| 2. Coding Agents vs. Software Factories | Chapters 1–2 |
-| 3. Factory Development Lifecycle | Stage pages + Chapters 2–3 |
-| 4. Reference Architecture | Chapters 2, 11, 19 |
-| 5. Intent and Specification Engineering | Chapters 5–7 |
-| 6. Planning and Work Decomposition | Chapters 5–6, Stage 2 |
-| 7. Agent Harnesses | Chapters 11–14, 18 |
-| 8. Agents and Agent Definitions | Chapters 10, 15, 18 |
-| 9. Skills and Reusable Capabilities | Chapter 10, Stages 3 and 5 |
-| 10. Tools and MCP | Chapters 13, 15, 26 |
-| 11. Context and Enterprise Knowledge | Chapter 16 |
-| 12. Model Abstraction and Routing | Chapter 17 |
-| 13. Execution Environments and Sandboxes | Chapter 14 |
-| 14. State, Checkpoints, and Recovery | Chapters 11–12, 29–30 |
-| 15. Verification and Evaluation | Chapters 21–25 |
-| 16. Security and Delegated Authority | Chapters 3, 7, 26 |
-| 17. Human Oversight | Chapters 4, 7–8 |
-| 18. Observability and Cost | Chapters 8, 28 |
-| 19. Failure Taxonomy | Chapters 12, 18, 21, 29 |
-| 20. Continuous Learning | Chapters 32–33 |
-| 21. Organizational Operating Model | Chapters 4, 27, 31 |
-| 22. Forward-Deployed Engineering | Chapter 31 |
-| 23. Build vs. Buy | Chapters 19, 27, 31 |
-| 24. Factory Maturity Model | Chapters 3, 31, 35 + coverage appendix |
-| 25. Implementation Playbook | Seven factory stages + Chapters 27, 31, 35 |
+- The primary CTA opens the dedicated Guide reading site.
+- Three task-oriented paths cover a ten-minute introduction, architecture reference, and implementation.
+- Four role paths serve executives, architects, builders, and operators.
+- The six part cards open the first chapter of each part in the full Guide.
+- The 25-topic FDLC index resolves each topic to a specific Guide chapter, Guide stage, FDLC reference page, assessment, or offering.
+- The model bridge states explicitly that the Guide’s eight stages and FDLC’s four system views describe the same system at different levels of abstraction; they are not competing canonical lifecycles.
 
-V0 publishes the map and a high-quality documentation shell. The current 36-chapter book remains the canonical long-form source and should be migrated mechanically in a follow-on editorial pass rather than compressed into 25 shallow rewrites.
+The current route map and exact chapter links live in `data/guide.ts`, so chapter counts and public navigation are tested from one source.
 
 ## Cross-link rules
 

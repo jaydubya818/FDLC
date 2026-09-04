@@ -12,7 +12,7 @@ This checklist separates what is verifiable in the repository from launch decisi
 - [x] The seven-stage factory lifecycle, four continuous controls, nine-step runtime lifecycle, six architecture areas, eleven-object artifact protocol, ten principles, and maturity dimensions are represented in the canonical content model.
 - [x] Mission Control capabilities are labeled Available, Experimental, or Planned.
 - [x] Private notes, Loom links, repository secrets, and unsupported performance claims are excluded from public pages.
-- [x] The 36-chapter Guide map is represented with stable public part routes.
+- [x] The Guide portal reflects the live 44-chapter, six-part, eight-stage edition and deep-links to its authoritative reading site.
 - [x] Every primary page has an explicit next action.
 - [x] The five-minute worked example connects all four views and distinguishes illustrative records from production evidence.
 - [x] The five-minute worked example includes a baseline contract, Mission Control reference views, measurable success criteria, and four concrete next steps.
