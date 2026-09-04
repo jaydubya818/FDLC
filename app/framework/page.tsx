@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArchitectureDiagram } from "../components/architecture-diagram";
+import { CategoryDistinction } from "../components/category-distinction";
 import { LifecycleDiagram } from "../components/lifecycle-diagram";
 import { PageContentsNav } from "../components/page-contents-nav";
 import { PageHero, SectionHeader } from "../components/page-hero";
@@ -15,6 +16,7 @@ export const metadata: Metadata = pageMetadata("Framework", "FDLC is the lifecyc
 
 const contents = [
   { label: "Definition", href: "#definition" },
+  { label: "Category boundary", href: "#category" },
   { label: "Why FDLC", href: "#why" },
   { label: "Four views", href: "#models" },
   { label: "Factory lifecycle", href: "#lifecycle" },
@@ -39,7 +41,12 @@ export default function FrameworkPage() {
       <section className="definition-block" id="definition" aria-labelledby="definition-title">
         <p className="section-label">Canonical definition</p>
         <blockquote id="definition-title">“{canonicalDefinition}”</blockquote>
-        <div><p>SDLC manages the lifecycle of software.</p><p><strong>FDLC manages the lifecycle of the factory that produces software.</strong></p></div>
+        <div><p>SDLC manages the lifecycle of software.</p><p><strong>FDLC manages the lifecycle of the factory that produces software.</strong></p><p>It is the factory operating system: the disciplined layer around agents, models, tools, people, policies, evidence, and workflows.</p><p><strong>Verified delivery, not merely generated code.</strong></p></div>
+      </section>
+
+      <section className="section-block framework-category" id="category">
+        <SectionHeader eyebrow="The category boundary" title="FDLC engineers the production system around the SDLC." description="Traditional SDLC defines how software is built. AI-Native SDLC adds agents to that work. FDLC defines how the resulting factory is designed, governed, operated, measured, and improved." />
+        <CategoryDistinction />
       </section>
 
       <section className="section-block" id="why">

@@ -1,8 +1,15 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { architectureAreas, ecosystemRoles, factoryControls, lifecycleStages, manifesto, protocolSteps, runtimeLifecycle } from "../../data/fdlc.ts";
+import { architectureAreas, canonicalDefinition, categoryComparison, ecosystemRoles, evidencePositioning, factoryControls, lifecycleStages, manifesto, primaryPositioning, protocolSteps, runtimeLifecycle } from "../../data/fdlc.ts";
 import { dependencyModernizationExample } from "../../data/dependency-modernization-example.ts";
-import { guideParts } from "../../data/guide.ts";
+import { guideParts, guideRolePaths, guideStages, proposedGuideMap } from "../../data/guide.ts";
+
+test("keeps the canonical category positioning stable", () => {
+  assert.equal(canonicalDefinition, "The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.");
+  assert.equal(primaryPositioning, "Verified delivery, not merely generated code.");
+  assert.equal(evidencePositioning, "Autonomy without evidence is just faster guessing.");
+  assert.deepEqual(categoryComparison.map((item) => item.name), ["Traditional SDLC", "AI-Native SDLC", "FDLC"]);
+});
 
 test("keeps the four canonical system views stable", () => {
   assert.deepEqual(lifecycleStages.map((item) => item.name), ["Discover", "Design", "Assemble", "Validate", "Deploy", "Operate", "Improve"]);
@@ -20,7 +27,10 @@ test("keeps ecosystem roles and status boundaries stable", () => {
 test("preserves the manifesto and complete guide map", () => {
   assert.equal(manifesto.length, 10);
   assert.equal(guideParts.length, 6);
-  assert.equal(guideParts.reduce((count, part) => count + part.chapters.length, 0), 36);
+  assert.equal(guideParts.reduce((count, part) => count + part.chapters.length, 0), 44);
+  assert.equal(guideStages.length, 8);
+  assert.equal(guideRolePaths.length, 4);
+  assert.equal(proposedGuideMap.length, 25);
 });
 
 test("maps the worked example to every canonical model", () => {

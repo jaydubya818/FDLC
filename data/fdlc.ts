@@ -1,6 +1,40 @@
 export const siteName = "FDLC.ai";
 export const canonicalDefinition =
-  "The Factory Development Lifecycle is the engineering discipline for discovering, designing, assembling, validating, deploying, operating, and continuously improving AI software factories under pervasive governance, security, observability, and measurement.";
+  "The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.";
+
+export const primaryPositioning = "Verified delivery, not merely generated code.";
+export const evidencePositioning = "Autonomy without evidence is just faster guessing.";
+
+export const categoryComparison = [
+  {
+    name: "Traditional SDLC",
+    primaryObject: "Software",
+    question: "How do we build software?",
+  },
+  {
+    name: "AI-Native SDLC",
+    primaryObject: "Software + AI-assisted workflow",
+    question: "How does AI change software development?",
+  },
+  {
+    name: "FDLC",
+    primaryObject: "The software factory",
+    question: "How do we engineer the factory that performs autonomous software delivery?",
+  },
+] as const;
+
+export const categoryTransitions = [
+  {
+    from: "SDLC",
+    to: "AI-Native SDLC",
+    meaning: "Agents participate across the software lifecycle.",
+  },
+  {
+    from: "AI-Native SDLC",
+    to: "AI Software Factory",
+    meaning: "Those workflows become a persistent, governed production system.",
+  },
+] as const;
 
 export const runtimeLifecycle = [
   { id: "receive", number: 1, name: "Receive", artifact: "Intent", purpose: "Capture the desired outcome, constraints, owner, and initial risk." },
