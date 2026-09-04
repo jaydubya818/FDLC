@@ -10,7 +10,7 @@ import { SiteHeader } from "./components/site-header";
 import { deliveryLoop, ecosystemRoles, factorySystemComponents, manifesto, maturityLevels } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Build the factory that builds your software", "FDLC is the open operating model, engineering framework, and reference architecture for building and operating governed AI software factories.", "/");
+export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "The Factory Development Lifecycle is the open operating model, engineering discipline, and reference architecture for designing, governing, and operating AI software factories.", "/");
 
 export default function Home() {
   return (
@@ -19,13 +19,13 @@ export default function Home() {
       <main id="main-content">
         <section className="hero-shell">
           <div className="hero-copy">
-            <p className="eyebrow"><span>Open framework</span><span>v0.1</span></p>
+            <p className="eyebrow"><span>Factory Development Lifecycle</span><span>Open framework · v0.1</span></p>
             <h1>Build the factory that builds your software.</h1>
             <p className="hero-lede">
-              FDLC is the open operating model, engineering framework, and reference
-              architecture for building and operating AI software factories—from intent
-              and governed execution through independent verification, production
-              outcomes, and controlled learning.
+              The Factory Development Lifecycle (FDLC) is the open operating model,
+              engineering discipline, and reference architecture for designing,
+              governing, and operating AI software factories that deliver trusted
+              autonomy at enterprise scale.
             </p>
             <div className="hero-actions">
               <Link className="button button-dark" href="/framework">Explore FDLC</Link>

@@ -26,6 +26,7 @@ test("server-renders every public route with FDLC metadata and a heading", async
 test("homepage answers the category boundary and links to primary destinations", async () => {
   const response = await render("/");
   const html = await response.text();
+  assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?<\/section>/i);
   assert.match(html, /Build the factory that builds your software/i);
   assert.match(html, /Coding agents are not software factories/i);
   assert.match(html, /Manages the lifecycle of software/i);
