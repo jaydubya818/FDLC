@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { chromium } from "playwright";
+import { approvedBaselineFailure, validateBaselineException } from "../lib/migration-baseline-exception.ts";
 
 const options = Object.fromEntries(process.argv.slice(2).map((argument) => {
   const separator = argument.indexOf("=");
@@ -15,6 +16,7 @@ const fdlcOrigin = options.fdlc ? new URL(options.fdlc).origin : null;
 const canonicalOrigin = new URL(options.canonical).origin;
 const edition = options.edition;
 assert.ok(["old", "new"].includes(edition), "--edition must be old or new");
+const baselineException = validateBaselineException(options["baseline-exception"], edition, options.deployment);
 const output = resolve(options.output);
 await mkdir(output, { recursive: true });
 const prefix = edition === "old" ? "/_next/" : "/vc-ap-dd2962/_next/";
@@ -29,12 +31,15 @@ const result = {
   startedAt: new Date().toISOString(), edition, guideOrigin, fdlcOrigin, canonicalOrigin,
   expectedGuideDeployment: options.deployment ?? null,
   expectedAssetPrefix: prefix, anonymous: true, checks: [], pages: [], assets: [],
-  console: [], pageErrors: [], networkFailures: [], failures: [],
+  console: [], pageErrors: [], networkFailures: [], failures: [], acceptedBaselineExceptions: [],
   attributionLimit: "Public response bytes and asset hashes are recorded; deployment identity requires separate immutable deployment/config evidence.",
 };
 const check = (name, condition, actual) => {
-  result.checks.push({ name, pass: Boolean(condition), ...(actual === undefined ? {} : { actual }) });
-  if (!condition) result.failures.push({ name, actual });
+  const acceptedBaselineException = !condition && approvedBaselineFailure(baselineException, name, actual);
+  const entry = { name, pass: Boolean(condition), ...(actual === undefined ? {} : { actual }), ...(acceptedBaselineException ? { acceptedBaselineException } : {}) };
+  result.checks.push(entry);
+  if (acceptedBaselineException) result.acceptedBaselineExceptions.push(entry);
+  else if (!condition) result.failures.push({ name, actual });
 };
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 async function request(path, origin = guideOrigin) {
@@ -87,6 +92,7 @@ try {
       return {
         title: document.title, h1: document.querySelector("h1")?.textContent,
         mainCount: document.querySelectorAll("main").length, duplicateIds,
+        duplicateIdCounts: Object.fromEntries(duplicateIds.sort().map((id) => [id, ids.filter((value) => value === id).length])),
         width: window.innerWidth, scrollWidth: document.documentElement.scrollWidth,
         canonical: document.querySelector('link[rel="canonical"]')?.getAttribute("href"),
         description: document.querySelector('meta[name="description"]')?.getAttribute("content"),
@@ -96,7 +102,7 @@ try {
     });
     result.pages.push({ path, url: page.url(), reload, ...details });
     check(`${path} one main`, details.mainCount === 1, details.mainCount);
-    check(`${path} duplicate IDs`, details.duplicateIds.length === 0, details.duplicateIds);
+    check(`${path} duplicate IDs`, details.duplicateIds.length === 0, details.duplicateIdCounts);
     check(`${path} overflow ${details.width}`, details.scrollWidth <= details.width + 1, details.scrollWidth);
     check(`${path} Guide heading`, Boolean(details.h1), details.h1);
     check(`${path} header/footer`, details.headerCount >= 1 && details.footerCount === 1, [details.headerCount, details.footerCount]);
@@ -197,6 +203,8 @@ try {
   await browser.close();
   result.finishedAt = new Date().toISOString();
   result.pass = result.failures.length === 0;
+  result.disposition = !result.pass ? "FAIL" : result.acceptedBaselineExceptions.length
+    ? "PASS_WITH_APPROVED_OLD_GUIDE_BASELINE_EXCEPTIONS" : "PASS";
   await writeFile(resolve(output, "acceptance.json"), `${JSON.stringify(result, null, 2)}\n`);
   process.stdout.write(`${JSON.stringify({ pass: result.pass, checks: result.checks.length, pages: result.pages.length, failures: result.failures, output })}\n`);
   if (!result.pass) process.exitCode = 1;

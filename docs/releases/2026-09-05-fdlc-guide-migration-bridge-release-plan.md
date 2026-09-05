@@ -1,11 +1,23 @@
 # FDLC / Guide migration bridge release plan
 
-Status: **NO-GO — current-Guide acceptance contract requires a user decision.**
+Status: **QUALIFICATION IN PROGRESS — limited old-Guide exception approved.**
 
 No Production authorization. No promotion, alias movement, environment/protection
 change, remote branch push, PR creation or deployment has occurred in this task.
 
-## Blocking baseline evidence
+## Approved temporary baseline exception
+
+The user explicitly approved the requested exception on 2026-09-05. It applies
+only while the unchanged `dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur` is active, and only to
+the pre-existing defects enumerated below. It does not authorize Production
+promotion, settings changes, new regressions, or exceptions for repaired/new or
+final Guide candidates. Every accepted defect remains visible in the evidence.
+
+The browser harness requires the explicit `current-guide-2026-09-05` exception
+identifier, edition `old`, and that exact deployment ID. It bounds duplicate IDs
+to the existing changelog counts, mobile overflow to the five recorded paths and
+maximum widths at 390px, and hydration to the existing React #418 route/count.
+Network failures, asset ownership, new errors and larger regressions still fail.
 
 Cookie-free Chromium acceptance against the exact current public Guide made
 151 page visits across 73 unique paths, derived from its 66-document authoritative index. All
@@ -26,10 +38,9 @@ and hydration recovery. Repeated changelog headings generate repeated IDs.
 These are existing Guide output defects, not failures that a routing-only FDLC
 bridge can repair. The strict requirements "use unchanged current Guide artifact"
 and "zero hydration failures / duplicate IDs / overflow" cannot both be certified.
-No baseline exception has been assumed. A user must either authorize an explicit,
-narrow temporary baseline exception, or choose a separately qualified Guide repair
-sequence that changes the mandated starting artifact. Both choices retain the ban
-on Production changes until separately authorized.
+The approved temporary exception resolves that baseline conflict without altering
+the immutable artifact. It expires when the repaired Guide replaces the old Guide.
+The ban on Production changes remains in force until separately authorized.
 
 Durable, sanitized evidence is retained alongside this plan in
 `2026-09-05-migration-bridge-baseline-evidence.json` and
@@ -75,7 +86,7 @@ or canonical aliases. No Production deployment may be promoted during this task.
 | Current FDLC / rollback | `e4112bb06333b8244c18fc4a9736b1f3c807bc78` | `dpl_GvmTzMNUmpKt3825k69MUgL6YwTX` |
 | Current Guide / rollback | `87d3841f96353d03278311dfc7e7b2d25649a331` | `dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur` |
 | Final FDLC source | `8057d1fd2c9aafaad309488aaa6038bd61b61e57` | `dpl_3citBEKomhN1hhtDk9QR1CZqF4Ru` (not yet recertified) |
-| New Guide source | `7b9f00beda0eab41348c8650a61009c6ab630fbf` | Compatibility and final artifacts require separate qualification |
+| New Guide baseline source | `7b9f00beda0eab41348c8650a61009c6ab630fbf` | Corrective descendant and both build modes require separate qualification |
 
 MFE group: `mfe_1we4N3uLnAPIkT2Gpgv2T4NJ5PO4`.
 Final normalized configuration / Guide snapshot digest:
@@ -108,7 +119,7 @@ assets and unknown-page handling. FDLC-host requests remain FDLC-owned, except
 explicit Guide entry routes that temporarily redirect to the standalone Guide.
 No HTML/RSC rewriting or Guide chapter copies are introduced.
 
-New Guide source `7b9f00b…` needs two build configurations:
+The repaired Guide descendant of source `7b9f00b…` needs two build configurations:
 
 - **Guide-compatible:** standalone canonical origin, absolute FDLC navigation,
   legacy-host retirement disabled. The source default provides this mode.
@@ -124,8 +135,8 @@ configuration from resolving back to Guide while host isolation is active.
 
 | FDLC | Current Guide | Guide-compatible (new source) | Guide-final (new source) |
 | --- | --- | --- | --- |
-| Current | UNSAFE under the strict quality gate: confirmed existing hydration/ID/overflow defects | UNSAFE for target composition | UNSAFE: observed old FDLC fallback |
-| Bridge | UNSAFE under the strict quality gate: unchanged Guide output inherits baseline defects; routing qualification incomplete | UNPROVEN: standalone Guide ownership | UNSAFE: relative FDLC links conflict on Guide origin |
+| Current | Baseline with explicitly approved old-Guide exceptions; no composition change | UNSAFE for target composition | UNSAFE: observed old FDLC fallback |
+| Bridge | UNPROVEN: old-Guide exception is approved, but routing/asset/browser qualification must still pass | UNPROVEN: standalone Guide ownership | UNSAFE: relative FDLC links conflict on Guide origin |
 | Final | UNSAFE: old root-relative links and asset ownership | UNPROVEN: composed Guide with standalone canonical during bounded transition | UNPROVEN: intended final composed authority |
 
 For each intended state, qualification must record landing and all authoritative
@@ -163,7 +174,7 @@ FDLC remains the routing authority. The bridge configuration has its own exact
 semantic digest; the final digest is not reused. Bridge build validation must
 reject missing, modified, stale, ambiguous inline, or conflicting configuration.
 
-The unchanged new Guide continues consuming its committed sanitized final
+The repaired new Guide continues consuming its unchanged committed sanitized final
 snapshot. Its digest is not falsely changed to match the bridge. Compatibility
 requires the same child application identity and asset prefix, and functional
 proof under both root configurations. If that compatibility cannot be proven,
@@ -181,7 +192,7 @@ explicitly authorized with exact deployment IDs**:
 4. Final FDLC + Guide-compatible.
 5. Final FDLC + Guide-final.
 
-If the baseline-policy decision retains this topology, proposed forward order:
+With the baseline exception approved, the topology remains proposed until proven. Forward order:
 bridge FDLC, Guide-compatible, final FDLC, Guide-final.
 Rollback reverses the state graph: Guide-final → Guide-compatible **first**,
 then final FDLC → bridge FDLC, then Guide-compatible → current Guide, then
