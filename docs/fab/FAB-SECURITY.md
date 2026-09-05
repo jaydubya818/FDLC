@@ -30,7 +30,7 @@ Native filesystem tools are process-local guards, not protection against a malic
 
 ## Persistence and recovery
 
-Store local sessions outside readable repository scope, in owner-only directories with private atomic files. Persist references only. Prevent concurrent session writers; interrupted writes/commands must not be blindly replayed. Record intent before action and observation after; an interrupted action remains uncertain until repository state is reconciled. Preserve candidate changes on failure. Local hashes provide integrity checks, not immutable external authority. MC owns durable governed storage and retention.
+Store local sessions outside readable repository scope, in owner-only directories with private atomic files. Persist references only. Prevent concurrent session writers; interrupted writes/commands must not be blindly replayed. Record intent before action and observation after; an interrupted action remains uncertain until repository state is reconciled. A normally stopped failed/cancelled execution can resume only with the original consent digest, unchanged candidate content, and no unmatched tool call. Resume invalidates old checks. Hard crashes and uncertain locks remain manual reconciliation cases. Preserve candidate changes on failure. Local hashes provide integrity checks, not immutable external authority. MC owns durable governed storage and retention.
 
 ## Attack scenarios and required tests
 
@@ -42,7 +42,7 @@ Store local sessions outside readable repository scope, in owner-only directorie
 | Model rewrites config/`.git`/`.env` | Reserved path denial even if allowlisted |
 | Model invents shell/check ID | Strict dispatch denial; no shell interpolation |
 | Test script reads home or sends network traffic | OS boundary denies; test proves denial |
-| Test spawns daemon or floods output | Process group termination/output cap; no success |
+| Test spawns daemon or floods output | Child processes denied; process group termination/output cap; no success |
 | Secret in model text/error/tool output | Redacted before persistence/display; provider bodies discarded |
 | Changed HEAD/content/config after consent | Drift blocks execution or candidate status |
 | Tests pass before a later edit | Old test evidence invalidated; rerun current candidate |

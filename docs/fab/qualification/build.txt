@@ -1,0 +1,4 @@
+
+> @fdlc/fab@0.1.0-experimental.1 build
+> tsc -p tsconfig.build.json
+

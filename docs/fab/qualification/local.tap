@@ -1,0 +1,226 @@
+TAP version 13
+# Subtest: credentials require the exact owner/provider/repository binding and never fall back to ambient keys
+ok 1 - credentials require the exact owner/provider/repository binding and never fall back to ambient keys
+  ---
+  duration_ms: 171.810834
+  type: 'test'
+  ...
+# Subtest: redaction covers exact and encoded secrets, nested evidence and terminal escape sequences
+ok 2 - redaction covers exact and encoded secrets, nested evidence and terminal escape sequences
+  ---
+  duration_ms: 0.471583
+  type: 'test'
+  ...
+# Subtest: scope denies traversal, secrets, hidden paths, symlinks and hard links before writes
+ok 3 - scope denies traversal, secrets, hidden paths, symlinks and hard links before writes
+  ---
+  duration_ms: 223.259333
+  type: 'test'
+  ...
+# Subtest: configuration rejects extra authority, ambient credentials, duplicate checks and unsafe file scopes
+ok 4 - configuration rejects extra authority, ambient credentials, duplicate checks and unsafe file scopes
+  ---
+  duration_ms: 175.744959
+  type: 'test'
+  ...
+# Subtest: private session persistence redacts values, detects corruption, and excludes repository storage
+ok 5 - private session persistence redacts values, detects corruption, and excludes repository storage
+  ---
+  duration_ms: 210.430458
+  type: 'test'
+  ...
+# Subtest: built CLI: clean inspection, explicit auth, persisted plan, consent, execution, status and diff
+ok 6 - built CLI: clean inspection, explicit auth, persisted plan, consent, execution, status and diff
+  ---
+  duration_ms: 1849.251167
+  type: 'test'
+  ...
+# Subtest: OS containment denies outside reads/writes, environment secrets, network and other executables
+ok 7 - OS containment denies outside reads/writes, environment secrets, network and other executables
+  ---
+  duration_ms: 536.082584
+  type: 'test'
+  ...
+# Subtest: timeout, output overflow and cancellation cannot report check success
+ok 8 - timeout, output overflow and cancellation cannot report check success
+  ---
+  duration_ms: 992.38175
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: bug fix (mock model, real repository/check)
+ok 9 - openai shared evaluation: bug fix (mock model, real repository/check)
+  ---
+  duration_ms: 1065.174875
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: bounded feature (mock model, real repository/check)
+ok 10 - openai shared evaluation: bounded feature (mock model, real repository/check)
+  ---
+  duration_ms: 950.668083
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: behavior preserving refactor (mock model, real repository/check)
+ok 11 - openai shared evaluation: behavior preserving refactor (mock model, real repository/check)
+  ---
+  duration_ms: 966.746333
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: test repair (mock model, real repository/check)
+ok 12 - openai shared evaluation: test repair (mock model, real repository/check)
+  ---
+  duration_ms: 791.414291
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: new component (mock model, real repository/check)
+ok 13 - openai shared evaluation: new component (mock model, real repository/check)
+  ---
+  duration_ms: 783.886292
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: impossible task
+ok 14 - openai shared evaluation: impossible task
+  ---
+  duration_ms: 462.069625
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: scope attack
+ok 15 - openai shared evaluation: scope attack
+  ---
+  duration_ms: 464.270542
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: credential attack
+ok 16 - openai shared evaluation: credential attack
+  ---
+  duration_ms: 468.564833
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: unknown tool attack
+ok 17 - openai shared evaluation: unknown tool attack
+  ---
+  duration_ms: 472.053917
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: bug fix (mock model, real repository/check)
+ok 18 - anthropic shared evaluation: bug fix (mock model, real repository/check)
+  ---
+  duration_ms: 802.764083
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: bounded feature (mock model, real repository/check)
+ok 19 - anthropic shared evaluation: bounded feature (mock model, real repository/check)
+  ---
+  duration_ms: 797.872
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: behavior preserving refactor (mock model, real repository/check)
+ok 20 - anthropic shared evaluation: behavior preserving refactor (mock model, real repository/check)
+  ---
+  duration_ms: 832.922209
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: test repair (mock model, real repository/check)
+ok 21 - anthropic shared evaluation: test repair (mock model, real repository/check)
+  ---
+  duration_ms: 845.34725
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: new component (mock model, real repository/check)
+ok 22 - anthropic shared evaluation: new component (mock model, real repository/check)
+  ---
+  duration_ms: 869.207334
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: impossible task
+ok 23 - anthropic shared evaluation: impossible task
+  ---
+  duration_ms: 475.7985
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: scope attack
+ok 24 - anthropic shared evaluation: scope attack
+  ---
+  duration_ms: 492.161958
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: credential attack
+ok 25 - anthropic shared evaluation: credential attack
+  ---
+  duration_ms: 481.053125
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: unknown tool attack
+ok 26 - anthropic shared evaluation: unknown tool attack
+  ---
+  duration_ms: 482.188875
+  type: 'test'
+  ...
+# Subtest: plan consent is required and is invalidated by policy drift
+ok 27 - plan consent is required and is invalidated by policy drift
+  ---
+  duration_ms: 335.310125
+  type: 'test'
+  ...
+# Subtest: dirty repository, planning writes, false completion and interrupted replay fail closed
+ok 28 - dirty repository, planning writes, false completion and interrupted replay fail closed
+  ---
+  duration_ms: 584.781833
+  type: 'test'
+  ...
+# Subtest: cancellation is persisted and does not execute the next model tool
+ok 29 - cancellation is persisted and does not execute the next model tool
+  ---
+  duration_ms: 286.11425
+  type: 'test'
+  ...
+# Subtest: failed project checks can be repaired, and edits invalidate earlier successful evidence
+ok 30 - failed project checks can be repaired, and edits invalidate earlier successful evidence
+  ---
+  duration_ms: 1394.180958
+  type: 'test'
+  ...
+# Subtest: a completed stopped checkpoint resumes without replaying its write, and drift blocks resume
+ok 31 - a completed stopped checkpoint resumes without replaying its write, and drift blocks resume
+  ---
+  duration_ms: 1032.896792
+  type: 'test'
+  ...
+# Subtest: openai: real adapter maps tool calls/results and uses only bound authentication
+ok 32 - openai: real adapter maps tool calls/results and uses only bound authentication
+  ---
+  duration_ms: 237.152083
+  type: 'test'
+  ...
+# Subtest: openai: error bodies and network exceptions cannot leak credentials
+ok 33 - openai: error bodies and network exceptions cannot leak credentials
+  ---
+  duration_ms: 182.994083
+  type: 'test'
+  ...
+# Subtest: anthropic: real adapter maps tool calls/results and uses only bound authentication
+ok 34 - anthropic: real adapter maps tool calls/results and uses only bound authentication
+  ---
+  duration_ms: 118.254084
+  type: 'test'
+  ...
+# Subtest: anthropic: error bodies and network exceptions cannot leak credentials
+ok 35 - anthropic: error bodies and network exceptions cannot leak credentials
+  ---
+  duration_ms: 172.710333
+  type: 'test'
+  ...
+# Subtest: unknown usage stays null and malformed tool arguments fail closed
+ok 36 - unknown usage stays null and malformed tool arguments fail closed
+  ---
+  duration_ms: 0.216416
+  type: 'test'
+  ...
+1..36
+# tests 36
+# suites 0
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16265.630083

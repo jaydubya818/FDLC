@@ -41,7 +41,7 @@ A planning stage can read bounded context and emits an inspectable plan. Write e
 
 File access rejects traversal, absolute paths, symlinks, hard links, secret/config internals and oversized/binary inputs. Writes require exact allowed files and optimistic content hashes. Local Git operations are read-only with external diff/textconv/hooks/credential prompting disabled. Initial runs require a clean committed repository; worktree allocation remains a future developer convenience and an existing MC responsibility.
 
-Check execution must be OS-contained or fail closed. Use a disposable, secret-filtered repository snapshot with an empty home/environment; project check code never receives model credentials. Source and Git metadata in the user's repository remain unavailable for check writes. Snapshot/check result is bound to candidate content, and subsequent edits invalidate previous check success. External sandbox support is an explicit platform gate.
+Check execution must be OS-contained or fail closed. Use a disposable, secret-filtered repository snapshot with an empty home/environment; project check code never receives model credentials. Source and Git metadata in the user's repository remain unavailable for check writes. The pilot denies child processes entirely (Node tests use `--test-isolation=none`) to prevent detached daemons escaping process-group cleanup. Snapshot/check result is bound to candidate content, and subsequent edits invalidate previous check success. External sandbox support is an explicit platform gate.
 
 ## Model interface versus agent interface
 

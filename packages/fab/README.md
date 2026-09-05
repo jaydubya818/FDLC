@@ -16,7 +16,7 @@ The software engineering agent for the Factory Development Lifecycle.
 
 ## Requirements and installation
 
-Node.js 24+, Git at `/usr/bin/git`, macOS with `/usr/bin/sandbox-exec` for contained checks. The current proof uses Homebrew Node 24. Other OSes can inspect/plan but cannot complete checks; they fail closed. A nested sandbox may prohibit `sandbox-exec`. There is no unsafe fallback.
+Node.js 24+, Git at `/usr/bin/git`, macOS with `/usr/bin/sandbox-exec` for contained checks. The current proof uses Homebrew Node 24. This preview is qualified only on macOS; other platforms are unqualified and cannot complete checks. A nested sandbox may prohibit `sandbox-exec`. There is no unsafe fallback.
 
 From the FDLC checkout, using the already-installed development dependencies:
 

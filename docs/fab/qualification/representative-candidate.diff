@@ -1,0 +1,7 @@
+diff --git a/math.mjs b/math.mjs
+index dc1ead9..d0f87bf 100644
+--- a/math.mjs
++++ b/math.mjs
+@@ -1 +1 @@
+-export const add = (a, b) => a - b;
++export const add = (a, b) => a + b;
