@@ -44,7 +44,7 @@ function summary(session: Session): unknown {
     filesModified: session.filesModified, checks: session.checks.map(({ id, status, durationMs, candidateDigest }) => ({ id, status, durationMs, candidateDigest })),
     usage: session.usage, modelCalls: session.modelCalls, retries: session.retries,
     candidateDigest: session.candidateDigest, candidateRevision: session.candidateRevision, summary: session.summary, unresolved: session.unresolved,
-    independent: session.independent, acceptance: session.acceptance };
+    independent: session.independent, acceptance: session.acceptance, governed: session.governed ?? null };
 }
 
 export async function main(argv = process.argv.slice(2)): Promise<void> {

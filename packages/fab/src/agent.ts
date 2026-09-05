@@ -101,7 +101,7 @@ export class FabAgent {
         const reply = this.#redactor.value(await this.#model.invoke(session.messages, definitions, signal));
         signal.throwIfAborted();
         session.usage = addUsage(session.usage, reply.usage, session.modelCalls === 0); session.modelCalls++;
-        this.#event('model_completed', { call: session.modelCalls, durationMs: Date.now() - started, usage: reply.usage, finish: reply.finish });
+        this.#event('model_completed', { call: session.modelCalls, durationMs: Date.now() - started, usage: reply.usage, finish: reply.finish, returnedModel: reply.returnedModel ?? null });
         if (reply.finish === 'limited') fail('MODEL_LIMIT', 'Provider reached its output limit; no partial tool call was executed.');
         if (reply.calls.length === 0) fail('INCOMPLETE', 'Model stopped without a structured plan, candidate or blocked outcome.');
         if (reply.calls.length > 8) fail('TOOL_LIMIT', 'Too many tool calls in one model turn.');
