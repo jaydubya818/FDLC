@@ -1,7 +1,7 @@
 # Software Factory operating contracts — ecosystem integration
 
 Date: 2026-09-05
-Status: locally qualified; separate PRs in review
+Status: source content qualified; approved deployment guard undergoing PR and clean-main qualification
 
 ## Canonical meaning and scope
 
@@ -64,6 +64,8 @@ The existing Mission Control checkout was on another branch; changes use a dedic
 - Seven cross-repository chapter/framework/evidence links returned HTTP 200. New public links use existing chapter routes or revision-pinned evidence, so either documentation PR can land independently. The experimental tool claim relies on already-merged implementation evidence.
 
 Production remains unchanged. Dedicated branches and separate PRs preserve repository histories and existing local work. CI status and PR links are recorded below.
+
+The approved [source/release policy](./source-release-policy.md) adds only a main-branch Git deployment guard to four effective Vercel configurations across these repositories. Non-main Previews remain enabled. Production deployment, canonical aliases and the separate migration-bridge release process retain their existing authority. The guard persists after this integration; removal requires a separately reviewed deployment-policy decision. Updated exact-head and post-merge results are retained in the ecosystem review record.
 
 ## Remaining gaps
 
