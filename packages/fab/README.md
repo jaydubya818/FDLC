@@ -38,6 +38,8 @@ fab --help
 
 This is a private local package, not a published npm release. Do not install it from an unverified public package with a similar name. For standalone development after extraction, install this package's pinned dev dependencies and run the same scripts.
 
+For an immutable private artifact, commit the package source and run `npm --prefix packages/fab run package:private -- /absolute/output-directory`. The command refuses dirty package source or an existing archive at that destination. `dist/build-identity.json` records the exact source commit, source and dependency-lock hashes, Node/TypeScript/Clang identity and native helper hashes. Reproducibility comparisons must use the same platform and toolchain in separate output directories. MC additionally pins every installed package file and its actual Node executable. This build does not use an Apple Developer signing identity or notarize the package.
+
 ## Configure your own account
 
 Inside the repository you want Fab to work on:
@@ -93,6 +95,25 @@ For headless use, deliberately replace `credential.source` with `{"kind":"enviro
 OpenAI/Anthropic standard environment keys, `.env`, shell history, unrelated keychain entries, cloud profiles and browser logins are not discovered. No raw secret belongs in configuration. The keychain is a local OS-user store; hosted tenant storage and remote short-lived provider grants remain unimplemented.
 
 Qualification records authentication, inference, JSON tool arguments, continuation, requested/returned model IDs, usage and latency. Error/redaction/cancellation/timeout/context tests use separately labeled fault-injected transports. Streaming, native schema-response mode, reasoning controls and context-window discovery report NOT RUN. Passing protocol checks does not measure autonomous engineering quality or qualify a production release.
+
+Phase 3 qualification permits at most three external requests, each with at most 128 output tokens, and zero automatic retries. Every request has a local ID and a private, flushed request journal written before dispatch, then provider request/response IDs when available. A lost response remains UNKNOWN; a request ID alone does not prove success. Reports distinguish injected transport from LIVE and keep requested, returned and qualified identities separate. `latest` aliases are rejected. No live provider/model has been qualified in this repository yet.
+
+Usage preserves provider semantics: OpenAI prompt counts include cache reads and completion counts include reported reasoning; Anthropic input counts exclude its separately reported cache read/write counts. Missing fields and price/cost stay unknown. Sources: [OpenAI request IDs](https://platform.openai.com/docs/api-reference/introduction), [Claude Messages usage](https://platform.claude.com/docs/en/api/typescript/messages). The 200 KB context bound is a configured byte limit, not model context-window discovery.
+
+## Bounded live engineering evaluation
+
+`fab evaluate prepare FAMILY /new/absolute/repository` creates a new synthetic repository and prints its exact task, writable file, acceptance criterion and check. Families are `bug-fix`, `feature`, `refactor`, `test-repair` and `component`. It cannot replace an existing directory. Make a configuration outside that repository using the printed scope and explicitly enroll a credential for that exact root; credentials from another repository are never retargeted.
+
+After a successful live qualification for that provider/model/reference within the last 24 hours, authorize a bounded evaluation explicitly:
+
+```sh
+fab evaluate run bug-fix --config /absolute/operator-config.json --live \
+  --qualification /absolute/qualification-report.json --maximum-requests 12
+```
+
+This authorizes the fixed synthetic task's local planning and execution, including applying the resulting plan within the exact prepared scope. It permits at most the selected number of requests (1–24), 4,096 output tokens per request, no automatic retry and no publication. The model supplies all implementation choices; the runner has no scripted model answers. Do not run this paid evaluation without approving that budget and the public synthetic input classification. Prices remain unknown until an exact model and applicable pricing are confirmed.
+
+The report records actual requests, usage, elapsed time, first producer-check result, correction Attempts, human intervention during execution, final candidate identity and an additional contained reference check. Its reference check is a bounded local measurement, not MC's independent verifier Attempt or human acceptance. Sessions preserve failed and interrupted work. All five families need separate results, and five small tasks cannot establish general coding-agent quality. Tests of the runner inject transport and are labeled accordingly.
 
 ## Plan, implement and review
 

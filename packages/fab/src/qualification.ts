@@ -1,5 +1,5 @@
-import type { CredentialProvider, FabConfig, Message, ModelReply, ToolDefinition, Usage } from './types.ts';
-import { HttpModelProvider, addUsage } from './models.ts';
+import type { CredentialProvider, FabConfig, Message, ModelReply, ObserveProviderRequest, ProviderRequestReceipt, ToolDefinition, Usage } from './types.ts';
+import { HttpModelProvider, addUsage, providerProtocol } from './models.ts';
 import { EnvironmentCredentialProvider, Redactor } from './credentials.ts';
 import { FabError } from './validation.ts';
 
@@ -8,24 +8,43 @@ export interface QualificationReport {
   version: 1; maturity: 'Experimental'; provider: string; requestedModel: string; returnedModels: string[];
   credentialReference: string; startedAt: string; completedAt: string; latencyMs: number; usage: Usage;
   status: 'PASS' | 'FAIL' | 'NOT RUN'; checks: QualificationCheck[]; limitations: string[];
+  transport: 'LIVE' | 'INJECTED'; endpoint: string; protocol: string; qualifiedModels: string[];
+  requests: ProviderRequestReceipt[]; requestCount: number; maximumRequests: 3; retries: 0; maximumOutputTokensPerRequest: 128;
+  costClassification: 'UNKNOWN'; contextLimit: { kind: 'CONFIGURED_UTF8_BYTES'; maximum: 200000 };
+  usageSemantics: string;
 }
 const LIVE_CHECKS = ['authentication', 'basic inference', 'structured tool arguments', 'tool calling', 'tool-result continuation', 'model identity', 'usage reporting'];
 const PROBE: ToolDefinition = { name: 'qualification_echo', description: 'Return the integer 7 in value to qualify this tool protocol.', parameters: { type: 'object', properties: { value: { type: 'integer', enum: [7] } }, required: ['value'], additionalProperties: false } };
 
 /** Network is possible only when the caller explicitly selects live. Normal tests inject transport. */
-export async function qualifyProvider(input: { config: FabConfig; credentials: CredentialProvider; redactor: Redactor; live: boolean; signal: AbortSignal; fetchImpl?: typeof fetch }): Promise<QualificationReport> {
+export async function qualifyProvider(input: { config: FabConfig; credentials: CredentialProvider; redactor: Redactor; live: boolean; signal: AbortSignal; fetchImpl?: typeof fetch; observe?: ObserveProviderRequest }): Promise<QualificationReport> {
   const started = Date.now(); const { config, credentials, redactor } = input;
   const report: QualificationReport = { version: 1, maturity: 'Experimental', provider: config.provider, requestedModel: config.model, returnedModels: [], credentialReference: config.credential.id,
+    transport: input.fetchImpl ? 'INJECTED' : 'LIVE', ...providerProtocol(config.provider), qualifiedModels: [], requests: [], requestCount: 0, maximumRequests: 3, retries: 0, maximumOutputTokensPerRequest: 128,
+    costClassification: 'UNKNOWN', contextLimit: { kind: 'CONFIGURED_UTF8_BYTES', maximum: 200000 },
+    usageSemantics: config.provider === 'openai' ? 'Input includes cache reads; output includes reasoning tokens when reported. Missing values remain null.' : 'Input excludes separately reported cache reads and cache writes. Reasoning tokens are not separately exposed by this adapter. Missing values remain null.',
     startedAt: new Date(started).toISOString(), completedAt: '', latencyMs: 0, usage: { inputTokens: null, outputTokens: null, cachedTokens: null, costUsd: null }, status: 'NOT RUN', checks: [],
     limitations: ['No automatic provider/model fallback or retry.', 'This is protocol qualification, not autonomous engineering quality or production certification.', 'Token streaming and reasoning controls are unsupported; context window and cost remain unknown.', 'Provider error, cancellation, timeout and context limits are fault-injected contract tests; they do not deliberately spend on failing live requests.'] };
   const check = (name: string, pass: boolean, mode: QualificationCheck['mode'], detail = '') => report.checks.push({ name, status: pass ? 'PASS' : 'FAIL', mode, detail });
   if (!input.live || !credentials.metadata().configured) {
     for (const name of LIVE_CHECKS) report.checks.push({ name, status: 'NOT RUN', mode: 'live', detail: !credentials.metadata().configured ? 'NOT RUN — USER CREDENTIAL REQUIRED' : 'Explicit --live invocation required.' });
+  } else if (/(^|[-_:])latest($|[-_:])/i.test(config.model)) {
+    check('model identity', false, 'live', 'An exact configured model is required; latest aliases are prohibited. No provider call was made.');
+    report.status = 'FAIL';
   } else {
-    const model = new HttpModelProvider({ provider: config.provider, model: config.model, credentials, reference: config.credential, redactor, fetchImpl: input.fetchImpl });
+    const model = new HttpModelProvider({ provider: config.provider, model: config.model, credentials, reference: config.credential, redactor, maximumOutputTokens: 128,
+      fetchImpl: async (...args) => {
+        if (report.requestCount >= report.maximumRequests) throw new FabError('PROVIDER_BUDGET', 'Qualification call budget exhausted.');
+        report.requestCount++;
+        return (input.fetchImpl ?? fetch)(...args);
+      } });
     let requests = 0;
     const invoke = async (messages: Message[], tools: ToolDefinition[]): Promise<ModelReply> => {
-      const reply = await model.invoke(messages, tools, input.signal);
+      const reply = await model.invoke(messages, tools, input.signal, async receipt => {
+        const index = report.requests.findIndex(item => item.localRequestId === receipt.localRequestId);
+        if (index < 0) report.requests.push(receipt); else report.requests[index] = receipt;
+        await input.observe?.(receipt);
+      });
       report.usage = addUsage(report.usage, reply.usage, requests++ === 0);
       if (reply.returnedModel && !report.returnedModels.includes(reply.returnedModel)) report.returnedModels.push(reply.returnedModel);
       return reply;
@@ -51,6 +70,7 @@ export async function qualifyProvider(input: { config: FabConfig; credentials: C
       for (const name of LIVE_CHECKS) if (!report.checks.some(item => item.name === name)) check(name, false, 'live', error instanceof FabError ? error.code : 'REQUEST_STOPPED');
     }
     report.status = report.checks.some(item => item.status === 'FAIL') ? 'FAIL' : 'PASS';
+    if (report.status === 'PASS' && report.transport === 'LIVE') report.qualifiedModels = [...report.returnedModels];
   }
   for (const name of ['token streaming', 'reasoning controls', 'provider context-window discovery', 'native structured-response mode']) report.checks.push({ name, status: 'NOT RUN', mode: 'unsupported', detail: 'Not implemented; no support claim.' });
   report.checks.push(...await qualifyContracts(config));
@@ -80,6 +100,22 @@ async function qualifyContracts(config: FabConfig): Promise<QualificationCheck[]
     const keepAlive = setInterval(() => {}, 1000);
     try { return await rejectsSafely(model(async () => new Promise(() => {}), 10).invoke([], [], new AbortController().signal)); }
     finally { clearInterval(keepAlive); }
+  });
+  await exercise('rate limit with zero automatic retries', async () => {
+    let calls = 0;
+    try { await model(async () => { calls++; return new Response(key, { status: 429 }); }).invoke([], [], new AbortController().signal); }
+    catch (error) { return calls === 1 && error instanceof FabError && error.code === 'PROVIDER_RATE_LIMIT'; }
+    return false;
+  });
+  await exercise('malformed response with zero automatic retries', async () => {
+    let calls = 0;
+    const rejected = await rejectsSafely(model(async () => { calls++; return new Response('not-json'); }).invoke([], [], new AbortController().signal));
+    return rejected && calls === 1;
+  });
+  await exercise('in-flight cancellation with zero automatic retries', async () => {
+    let calls = 0; const controller = new AbortController();
+    const rejected = await rejectsSafely(model(async () => { calls++; controller.abort(); return new Promise(() => {}); }).invoke([], [], controller.signal));
+    return rejected && calls === 1;
   });
   await exercise('context byte budget', async () => {
     let called = false; const rejected = await rejectsSafely(model(async () => { called = true; throw new Error('Unexpected invocation'); }).invoke([{ role: 'user', content: 'x'.repeat(210000) }], [], new AbortController().signal)); return rejected && !called;

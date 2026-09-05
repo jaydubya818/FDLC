@@ -97,10 +97,15 @@ export class FabAgent {
         signal.throwIfAborted();
         if (this.#repository.revision() !== session.baseline) fail('REPOSITORY_DRIFT', 'Git revision changed during execution.');
         const started = Date.now();
-        this.#event('model_started', { call: session.modelCalls + 1 });
-        const reply = this.#redactor.value(await this.#model.invoke(session.messages, definitions, signal));
+        session.modelCalls++;
+        this.#event('model_started', { call: session.modelCalls });
+        await this.#checkpoint('model_intent_recorded');
+        const reply = this.#redactor.value(await this.#model.invoke(session.messages, definitions, signal, async receipt => {
+          this.#event('provider_request', receipt);
+          await this.#checkpoint('provider_request_recorded');
+        }));
         signal.throwIfAborted();
-        session.usage = addUsage(session.usage, reply.usage, session.modelCalls === 0); session.modelCalls++;
+        session.usage = addUsage(session.usage, reply.usage, session.modelCalls === 1);
         this.#event('model_completed', { call: session.modelCalls, durationMs: Date.now() - started, usage: reply.usage, finish: reply.finish, returnedModel: reply.returnedModel ?? null });
         if (reply.finish === 'limited') fail('MODEL_LIMIT', 'Provider reached its output limit; no partial tool call was executed.');
         if (reply.calls.length === 0) fail('INCOMPLETE', 'Model stopped without a structured plan, candidate or blocked outcome.');
@@ -113,6 +118,7 @@ export class FabAgent {
           signal.throwIfAborted();
           const toolStarted = Date.now();
           this.#event('tool_started', call);
+          await this.#checkpoint('tool_intent_recorded');
           let output: unknown; let error = false;
           try {
             if (!definitions.some(tool => tool.name === call.name)) fail('TOOL_DENIED', 'Tool is unavailable in this stage.');

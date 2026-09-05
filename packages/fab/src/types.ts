@@ -9,7 +9,20 @@ export interface ToolDefinition { name: string; description: string; parameters:
 export interface Usage {
   inputTokens: number | null; outputTokens: number | null;
   cachedTokens: number | null; costUsd: number | null;
+  cacheWriteTokens?: number | null; reasoningTokens?: number | null;
 }
+/** Bounded metadata only. A STARTED receipt is uncertain until a terminal receipt is durable. */
+export interface ProviderRequestReceipt {
+  version: 1; localRequestId: string; provider: ProviderId; requestedModel: string;
+  endpoint: string; protocol: string; credentialReference: string;
+  startedAt: string; completedAt: string | null; latencyMs: number;
+  phase: 'STARTED' | 'RESPONSE_HEADERS' | 'SUCCEEDED' | 'FAILED';
+  outcome: 'UNKNOWN' | 'RESPONSE_RECEIVED';
+  inputBytes: number; maximumOutputTokens: number; retries: 0;
+  httpStatus: number | null; requestId: string | null; responseId: string | null;
+  returnedModel: string | null; usage: Usage | null; costClassification: 'UNKNOWN'; errorCode: string | null;
+}
+export type ObserveProviderRequest = (receipt: ProviderRequestReceipt) => Promise<void> | void;
 export interface ModelReply {
   returnedModel?: string | null;
   content: string; calls: ToolCall[]; usage: Usage;
@@ -19,7 +32,7 @@ export interface ModelProvider {
   readonly provider: ProviderId;
   readonly model: string;
   readonly capabilities: { tools: true; streaming: false; reasoningControls: false; contextWindow: null };
-  invoke(messages: Message[], tools: ToolDefinition[], signal: AbortSignal): Promise<ModelReply>;
+  invoke(messages: Message[], tools: ToolDefinition[], signal: AbortSignal, observe?: ObserveProviderRequest): Promise<ModelReply>;
 }
 export interface CredentialReference {
   id: string; owner: string; provider: ProviderId;

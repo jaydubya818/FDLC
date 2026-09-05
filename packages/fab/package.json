@@ -1,6 +1,6 @@
 {
   "name": "@fdlc/fab",
-  "version": "0.1.0-experimental.1",
+  "version": "0.1.0-experimental.2",
   "private": true,
   "description": "Factory Agent Builder \u2014 bounded local engineering candidates",
   "type": "module",
@@ -30,7 +30,8 @@
     "globals": "16.4.0"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && node bin/build-native.mjs",
+    "build": "tsc -p tsconfig.build.json && node bin/build-native.mjs && node bin/build-identity.mjs",
+    "package:private": "node bin/package-private.mjs",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "eslint src test bin",
     "pretest": "npm run build",

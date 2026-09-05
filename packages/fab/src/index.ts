@@ -2,6 +2,7 @@ export { FabAgent, approvalDigest, newSession } from './agent.ts';
 export { EnvironmentCredentialProvider, Redactor, StoredCredentialProvider } from './credentials.ts';
 export { KeychainCredentialStore } from './keychain.ts';
 export { qualifyProvider } from './qualification.ts';
+export { prepareEvaluation, runEvaluation, evaluationScope } from './evaluation.ts';
 export { HttpModelProvider } from './models.ts';
 export { Repository } from './repository.ts';
 export { SessionStore } from './sessions.ts';
