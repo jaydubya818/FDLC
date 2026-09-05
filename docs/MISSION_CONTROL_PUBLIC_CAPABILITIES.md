@@ -2,7 +2,7 @@
 
 Date: 2026-09-03
 
-Baseline: local Mission Control checkout `07a96ac3623c8a6772455fcf4c9cdf4ca78e6d2f`. The current capability maturity ledger remains canonical. Website labels intentionally compress its detailed internal vocabulary into Available, Experimental, Planned, and Proposed.
+Original baseline: local Mission Control checkout `07a96ac3623c8a6772455fcf4c9cdf4ca78e6d2f`. The MCP row was reconciled against current main `0d1a090` on 2026-09-05. The current capability maturity ledger remains canonical. Website labels intentionally compress its detailed internal vocabulary into Available, Experimental, Planned, and Proposed.
 
 | Capability | Public status | Safe public claim | Limitation to disclose | Source evidence |
 | --- | --- | --- | --- | --- |
@@ -20,7 +20,7 @@ Baseline: local Mission Control checkout `07a96ac3623c8a6772455fcf4c9cdf4ca78e6d
 | GitHub App publication/currentness | Available | Publication can be permit-gated and reconciled to exact pull-request head and evidence lineage. | Demonstrated in a bounded path; merge remains human-owned. | `docs/testing/evidence/real-codex-github-pr-golden-path/README.md`; `convex/githubApp.ts` |
 | Remote Sandbox | Experimental | A bounded live Remote Sandbox cohort has been qualified for production-pilot evaluation. | Preview only; provider-enforced egress and sustained real-work evidence remain missing. | `docs/product/software-factory-capability-maturity.md`; remote sandbox qualification evidence |
 | Native tool authorization | Experimental | Some native allowlists and scope controls exist. | No canonical versioned tool-authority contract yet. | Harness manifests; maturity ledger |
-| MCP runtime | Planned | The architecture reserves a governed MCP boundary. | Current admitted harness manifests mark MCP unsupported. | Harness manifests; maturity ledger |
+| MCP runtime | Experimental | Exact Tool Version/Grant checks and attributable receipts exist for one host-brokered local read-only qualification fixture. | No real service is admitted; general harness-native MCP remains unsupported. | [Phase 3 completion record at 0d1a090](https://github.com/jaydubya818/MissionControl/blob/0d1a090/docs/testing/evidence/governed-mcp-phase3/completion-record.md) |
 | Release and production feedback | Experimental | Release records and some gating/feedback structures exist. | No complete production observation, rollback, and outcome proof. | `convex/factoryReleases.ts`; maturity ledger |
 | Multi-tenant enterprise operation | Experimental | Company/workspace scoping exists. | Cross-company production operation is not qualified. | `convex/schema.ts`; authorization tests; maturity ledger |
 | Factory incident response | Planned | Existing alerts and evidence can support a future incident lifecycle. | No canonical end-to-end incident aggregate and recovery lifecycle exists. | maturity ledger; convergence plan |
@@ -34,4 +34,3 @@ Baseline: local Mission Control checkout `07a96ac3623c8a6772455fcf4c9cdf4ca78e6d
 4. Keep Available statements narrow and pair them with their material limitation.
 5. Do not claim general production certification, fleet scale, zero-touch delivery, full MCP support, automatic self-improvement, or enterprise availability.
 6. Link the public page to the repository README, capability ledger, and exact quickstart.
-
