@@ -127,7 +127,7 @@ as an initial harness false positive; its exact URL/status have been verified,
 and the harness now classifies only that expected 404 separately. It does not
 explain or excuse the hydration, duplicate-ID or overflow failures.
 
-### New-Guide corrections implemented; review and requalification pending
+### New-Guide corrections implemented; full mixed-state/hosted requalification pending
 
 The exact `7b9f00beda0eab41348c8650a61009c6ab630fbf` local native build fixes the
 stack chapter's nested-anchor hydration error. Independent desktop/mobile,
@@ -172,10 +172,10 @@ candidate.
 - Architecture's page-alias and sitemap findings were fixed and re-reviewed.
   Prior bridge-source security and simplicity reviews are GO within scope; the
   earlier documentation review approved the bounded NO-GO record. Repaired-Guide
-  independent source reviews pass; updated release-record review remains pending. None of
+  independent source reviews and the updated bounded NO_GO release-record review pass. None of
   these reviews constitutes full release qualification.
 - Mission Control diff is empty. No credential or `.vercel` artifacts were added.
-- The 2026-09-05 20:05:46 UTC read-only Production verification maps FDLC to
+- The 2026-09-05 20:26:26–20:26:53 UTC read-only Production verification maps FDLC to
   `dpl_GvmTzMNUmpKt3825k69MUgL6YwTX` / `e4112bb06333b8244c18fc4a9736b1f3c807bc78`
   and Guide to `dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur` /
   `87d3841f96353d03278311dfc7e7b2d25649a331`. Reverification at qualification
@@ -429,5 +429,5 @@ official documentation.
 Do not report `READY_FOR_MIGRATION_BRIDGE_PRODUCTION_APPROVAL` until all intended
 forward and reverse states are SAFE, CI/Preview and independent reviews pass,
 exact source/deployment IDs are recorded, and Production is reconfirmed unchanged.
-The next authorization request must name the four promotions, every intermediate
+Any future Production authorization request must name the four promotions, every intermediate
 acceptance gate, and the reverse artifact sequence; not vague permission to deploy.
