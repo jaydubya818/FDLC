@@ -18,7 +18,7 @@ The software engineering agent for the Factory Development Lifecycle.
 
 ## Requirements and installation
 
-Node.js 24+, Git at `/usr/bin/git`, macOS with `/usr/bin/sandbox-exec` for contained checks. The current proof uses Homebrew Node 24 on macOS arm64. Building the native Keychain bridge also requires Apple Command Line Tools; installed packages contain the compiled bridge. This preview is qualified only on macOS; other platforms are unqualified and cannot complete checks. A nested sandbox may prohibit `sandbox-exec`. There is no unsafe fallback.
+Node.js 24+, Git at `/usr/bin/git`, macOS with `/usr/bin/sandbox-exec` for contained checks. The current proof uses Homebrew Node 24 on macOS arm64. Building the native Keychain bridge and check supervisor also requires Apple Command Line Tools; installed packages contain both compiled helpers. This preview is qualified only on macOS; other platforms are unqualified and cannot complete checks. A nested sandbox may prohibit `sandbox-exec`. There is no unsafe fallback.
 
 From the FDLC checkout, using the already-installed development dependencies:
 
@@ -108,6 +108,8 @@ Planning outputs the concrete plan and consent digest. Review the plan, exact fi
 Candidate means a nonempty scoped diff with every configured check passing on that exact captured content. It does not establish acceptance-criterion coverage, independent verification, human acceptance or production readiness. Review the tests themselves, diff and unresolved issues. Fab never commits, pushes, opens a PR or deploys.
 
 Ctrl-C cancels active work. A normally stopped failed/cancelled execution can be resumed explicitly with `fab resume SESSION_ID --config ... --approve PLAN_DIGEST` if the repository, configuration and complete tool checkpoint still match. Completed writes are not replayed. Abrupt process death, missing tool outcomes, uncertain locks, scope changes or drift block automatic resume. Inspect Git and session evidence before manually resolving an abandoned lock or creating a fresh plan. Existing changes are never auto-stashed or reset.
+
+A native supervisor watches each check's parent pipe. If Fab dies, including SIGKILL, it terminates the sandboxed check and removes its snapshot. Timeout, cancellation and output overflow use the same cleanup path. This is local process cleanup; it does not reconcile an uncertain governed Attempt or grant permission to replay it.
 
 Sessions live in `~/.local/state/fab` with private directory/file permissions, or an explicit `--state-dir` outside the repository. A session contains task/plan, references, events, observed checks, nullable usage/cost and a redacted diff. It is local user-owned evidence, not tamper-proof MC evidence. The stored diff is the captured candidate; inspect Git for subsequent external changes. Delete the selected session JSON after review to remove its retained task/code context; provider-side retention is separate.
 

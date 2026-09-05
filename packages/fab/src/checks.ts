@@ -1,6 +1,7 @@
 import { spawn } from 'node:child_process';
 import { lstatSync, mkdirSync, mkdtempSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { CheckDefinition, CheckResult } from './types.ts';
 import { Redactor } from './credentials.ts';
 import { Repository } from './repository.ts';
@@ -61,11 +62,13 @@ export async function runCheck(repository: Repository, check: CheckDefinition, t
     const output = await new Promise<{ code: number | null; signal: string | null; stdout: string; stderr: string; timedOut: boolean; cancelled: boolean; overflow: boolean; failedStart: boolean }>(resolve => {
       const stdout: Buffer[] = []; const stderr: Buffer[] = [];
       let bytes = 0; let timedOut = false; let cancelled = false; let overflow = false; let failedStart = false;
-      const child = spawn('/usr/bin/sandbox-exec', ['-f', profilePath, ...check.argv], {
-        cwd: snapshot, detached: true, stdio: ['ignore', 'pipe', 'pipe'],
+      const guard = fileURLToPath(new URL(import.meta.url.endsWith('.ts') ? '../dist/fab-check-guard' : './fab-check-guard', import.meta.url));
+      const child = spawn(guard, [directory, profilePath, ...check.argv], {
+        cwd: snapshot, detached: true, stdio: ['pipe', 'pipe', 'pipe'],
         env: { PATH: '/usr/bin:/bin:/opt/homebrew/bin', HOME: home, TMPDIR: scratch, TMP: scratch, TEMP: scratch, LC_ALL: 'C', CI: '1', NODE_OPTIONS: '', OPENSSL_CONF: '/dev/null', GIT_CONFIG_NOSYSTEM: '1', GIT_CONFIG_GLOBAL: '/dev/null', GIT_TERMINAL_PROMPT: '0' },
       });
-      const stop = () => { if (child.pid) { try { process.kill(-child.pid, 'SIGKILL'); } catch { /* Already exited. */ } } };
+      const stop = () => { child.kill('SIGTERM'); };
+      const reapGroup = () => { if (child.pid) { try { process.kill(-child.pid, 'SIGKILL'); } catch { /* Already terminated. */ } } };
       const abort = () => { cancelled = true; stop(); };
       const timer = setTimeout(() => { timedOut = true; stop(); }, timeoutMs);
       const capture = (target: Buffer[]) => (part: Buffer) => {
@@ -75,7 +78,8 @@ export async function runCheck(repository: Repository, check: CheckDefinition, t
       };
       child.stdout.on('data', capture(stdout)); child.stderr.on('data', capture(stderr));
       child.once('error', () => { failedStart = true; });
-      child.once('exit', stop); // Kill descendants even after the leader exits normally.
+      child.stdin.on('error', () => {});
+      child.once('exit', reapGroup); // Also fail closed if the trusted supervisor itself exits unexpectedly.
       child.once('close', (code, childSignal) => {
         clearTimeout(timer); signal.removeEventListener('abort', abort); stop();
         resolve({ code, signal: childSignal, stdout: Buffer.concat(stdout).toString('utf8'), stderr: Buffer.concat(stderr).toString('utf8'), timedOut, cancelled, overflow, failedStart });
@@ -86,8 +90,8 @@ export async function runCheck(repository: Repository, check: CheckDefinition, t
     result.exitCode = output.code; result.signal = output.signal;
     result.stdout = redactor.text(output.stdout).slice(0, 16000);
     result.stderr = redactor.text(output.stderr).slice(0, 16000);
-    result.status = output.cancelled ? 'cancelled' : output.timedOut ? 'timed_out'
-      : output.failedStart || output.stderr.includes('sandbox-exec:') ? 'blocked'
+    result.status = output.cancelled ? 'cancelled' : output.timedOut ? 'timed_out' : output.overflow ? 'failed'
+      : output.failedStart || output.code === 125 || output.stderr.includes('sandbox-exec:') ? 'blocked'
       : output.code === 0 && !output.overflow ? 'passed' : 'failed';
     if (output.overflow) { result.stdout = ''; result.stderr = 'Check output exceeded the byte limit; process group terminated and output withheld.'; }
     if (repository.candidate().digest !== candidate.digest) { result.status = 'blocked'; result.stderr = 'Repository changed while checks ran; result is stale.'; }
