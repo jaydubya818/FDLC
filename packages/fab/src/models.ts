@@ -45,6 +45,7 @@ export function parseReply(provider: ProviderId, value: unknown): ModelReply {
     if (!['stop', 'tool_calls', 'length'].includes(String(choice.finish_reason))) fail('PROVIDER_RESPONSE', 'Unsupported provider finish reason.');
     if ((choice.finish_reason === 'tool_calls') !== (calls.length > 0) && choice.finish_reason !== 'length') fail('PROVIDER_RESPONSE', 'Provider tool completion is inconsistent.');
     return {
+      returnedModel: typeof raw.model === 'string' ? string(raw.model, 150) : null,
       content: optionalText(message.content), calls,
       finish: choice.finish_reason === 'length' ? 'limited' : calls.length ? 'tools' : 'complete',
       usage: { inputTokens: nullableCount(usage.prompt_tokens), outputTokens: nullableCount(usage.completion_tokens), cachedTokens: nullableCount(usage.prompt_tokens_details ? object(usage.prompt_tokens_details).cached_tokens : null), costUsd: null },
@@ -56,6 +57,7 @@ export function parseReply(provider: ProviderId, value: unknown): ModelReply {
   if (!['end_turn', 'tool_use', 'max_tokens'].includes(String(raw.stop_reason))) fail('PROVIDER_RESPONSE', 'Unsupported provider finish reason.');
   if ((raw.stop_reason === 'tool_use') !== (calls.length > 0) && raw.stop_reason !== 'max_tokens') fail('PROVIDER_RESPONSE', 'Provider tool completion is inconsistent.');
   return {
+    returnedModel: typeof raw.model === 'string' ? string(raw.model, 150) : null,
     content: blocks.filter(block => block.type === 'text').map(block => optionalText(block.text)).join('\n'), calls,
     finish: raw.stop_reason === 'max_tokens' ? 'limited' : calls.length ? 'tools' : 'complete',
     usage: { inputTokens: nullableCount(usage.input_tokens), outputTokens: nullableCount(usage.output_tokens), cachedTokens: nullableCount(usage.cache_read_input_tokens), costUsd: null },
@@ -95,25 +97,32 @@ export class HttpModelProvider implements ModelProvider {
   #reference: CredentialReference;
   #redactor: Redactor;
   #fetch: typeof fetch;
-  constructor(input: { provider: ProviderId; model: string; credentials: CredentialProvider; reference: CredentialReference; redactor: Redactor; fetchImpl?: typeof fetch }) {
+  #timeoutMs: number;
+  constructor(input: { provider: ProviderId; model: string; credentials: CredentialProvider; reference: CredentialReference; redactor: Redactor; fetchImpl?: typeof fetch; timeoutMs?: number }) {
     this.provider = input.provider; this.model = input.model;
     this.#credentials = input.credentials; this.#reference = structuredClone(input.reference);
     this.#redactor = input.redactor; this.#fetch = input.fetchImpl ?? fetch;
+    this.#timeoutMs = input.timeoutMs ?? 60000;
+    if (!Number.isSafeInteger(this.#timeoutMs) || this.#timeoutMs < 1 || this.#timeoutMs > 60000) fail('PROVIDER_TIMEOUT', 'Provider timeout must be between 1 and 60000 milliseconds.');
   }
   async invoke(messages: Message[], tools: ToolDefinition[], signal: AbortSignal): Promise<ModelReply> {
-    const body = JSON.stringify(requestBody(this.provider, this.model, this.#redactor.value(messages), tools));
+    signal.throwIfAborted();
+    const body = JSON.stringify(requestBody(this.provider, this.model, this.#redactor.value(messages), this.#redactor.value(tools)));
     if (Buffer.byteLength(body) > 200000) fail('CONTEXT_LIMIT', 'Context byte budget reached; narrow the task or start a new plan.');
-    const deadline = AbortSignal.any([signal, AbortSignal.timeout(60000)]);
+    const deadline = AbortSignal.any([signal, AbortSignal.timeout(this.#timeoutMs)]);
     return this.#credentials.use(this.#reference, async secret => {
+      this.#redactor.register(secret);
+      const sanitizedBody = this.#redactor.text(body);
+      deadline.throwIfAborted();
       const url = this.provider === 'openai' ? 'https://api.openai.com/v1/chat/completions' : 'https://api.anthropic.com/v1/messages';
       let response: Response;
       try {
-        response = await this.#fetch(url, {
+        response = await abortable(this.#fetch(url, {
           method: 'POST', redirect: 'error', signal: deadline,
           headers: this.provider === 'openai'
             ? { 'content-type': 'application/json', authorization: `Bearer ${secret}` }
-            : { 'content-type': 'application/json', 'x-api-key': secret, 'anthropic-version': '2023-06-01' }, body,
-        });
+            : { 'content-type': 'application/json', 'x-api-key': secret, 'anthropic-version': '2023-06-01' }, body: sanitizedBody,
+        }), deadline);
       } catch { fail(deadline.aborted ? 'PROVIDER_CANCELLED' : 'PROVIDER_NETWORK', 'Provider request failed or was cancelled; no automatic retry was made.'); }
       if (!response.ok) {
         await response.body?.cancel();
@@ -125,7 +134,7 @@ export class HttpModelProvider implements ModelProvider {
         if (!reader) fail('PROVIDER_RESPONSE', 'Provider response was empty.');
         const chunks: Uint8Array[] = []; let bytes = 0;
         while (true) {
-          const part = await reader.read();
+          const part = await abortable(reader.read(), deadline);
           if (part.done) break;
           bytes += part.value.byteLength;
           if (bytes > 1000000) { await reader.cancel(); fail('PROVIDER_RESPONSE', 'Provider response exceeded the byte limit.'); }
@@ -136,6 +145,14 @@ export class HttpModelProvider implements ModelProvider {
       return this.#redactor.value(parseReply(this.provider, raw));
     });
   }
+}
+function abortable<T>(operation: Promise<T>, signal: AbortSignal): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const abort = () => reject(new Error('Provider operation stopped.'));
+    signal.addEventListener('abort', abort, { once: true });
+    if (signal.aborted) abort();
+    operation.then(resolve, reject).finally(() => signal.removeEventListener('abort', abort));
+  });
 }
 export function addUsage(total: Usage, next: Usage, first: boolean): Usage {
   const add = (a: number | null, b: number | null) => first ? b : a === null || b === null ? null : a + b;
