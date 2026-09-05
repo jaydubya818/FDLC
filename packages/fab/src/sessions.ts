@@ -30,6 +30,13 @@ export class SessionStore {
     writeFileSync(temporary, payload + '\n', { mode: 0o600, flag: 'wx' });
     renameSync(temporary, this.#path(session.id));
   }
+  reserve(session: Session): void {
+    const clean = this.#redactor.value(session);
+    const payload = JSON.stringify({ digest: digest(clean), session: clean });
+    if (Buffer.byteLength(payload) > 8000000) fail('SESSION_LIMIT', 'Session evidence exceeds the local storage limit.');
+    try { writeFileSync(this.#path(session.id), payload + '\n', { mode: 0o600, flag: 'wx' }); }
+    catch { fail('SESSION_EXISTS', 'This execution already has a session or uncertain prior outcome. MC must reconcile it; replay is denied.'); }
+  }
   load(id: string): Session {
     const fd = openSync(this.#path(id), constants.O_RDONLY | constants.O_NOFOLLOW);
     let raw: Record<string, unknown>;
