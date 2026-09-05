@@ -59,13 +59,20 @@ export interface Event {
   sequence: number; at: string; kind: string; data: unknown;
 }
 export interface Session {
+  governed?: GovernedLinkage;
   version: 1; id: string; config: FabConfig; baseline: string; branch: string;
   task: string; status: SessionStatus; createdAt: string; updatedAt: string;
   plan: Plan | null; approvalDigest: string | null;
   messages: Message[]; events: Event[]; checks: CheckResult[];
   usage: Usage; modelCalls: number; retries: number;
   filesRead: string[]; filesModified: string[];
-  candidateDigest: string | null; candidateRevision: null; diff: string;
+  candidateDigest: string | null; candidateRevision: string | null; diff: string;
   summary: string | null; unresolved: string[];
   independent: false; acceptance: 'not_evaluated';
+}
+/** Observation linkage supplied by MC; this record grants no authority. */
+export interface GovernedLinkage {
+  workOrderId: string; attemptId: string; executionId: string; executorIdentity: string;
+  environmentReference: string; credentialReference: string; sourceRevision: string;
+  candidateRevision: string | null; startedAt: string; completedAt: string | null;
 }

@@ -30,9 +30,12 @@ export class FabAgent {
   #store: SessionStore;
   #redactor: Redactor;
   #observe: (event: Event) => void;
-  constructor(input: { session: Session; model: ModelProvider; store: SessionStore; redactor: Redactor; observe?: (event: Event) => void }) {
+  #checkpoint: (operation: string) => Promise<void>;
+  constructor(input: { session: Session; model: ModelProvider; store: SessionStore; redactor: Redactor; observe?: (event: Event) => void; checkpoint?: (operation: string) => Promise<void> }) {
     this.#session = input.session; this.#model = input.model; this.#store = input.store; this.#redactor = input.redactor; this.#observe = input.observe ?? (() => {});
     this.#repository = new Repository(input.session.config.repository, input.session.config.writableFiles);
+    this.#checkpoint = input.checkpoint ?? (async () => {});
+    if (input.session.governed && !input.checkpoint) fail('GOVERNED_AUTHORITY', 'Governed sessions require their authority checkpoint; local execution/resume cannot bypass MC.');
     if (this.#model.model !== input.session.config.model || this.#model.provider !== input.session.config.provider) fail('MODEL_BINDING', 'Runtime model does not match the approved configuration.');
   }
   #event(kind: string, data: unknown): void {
@@ -90,6 +93,7 @@ export class FabAgent {
     try {
       this.#event('stage_started', { stage, provider: session.config.provider, model: session.config.model });
       for (let turn = 0; turn < session.config.maxTurns; turn++) {
+        await this.#checkpoint('inference');
         signal.throwIfAborted();
         if (this.#repository.revision() !== session.baseline) fail('REPOSITORY_DRIFT', 'Git revision changed during execution.');
         const started = Date.now();
@@ -105,6 +109,7 @@ export class FabAgent {
         if (terminal && reply.calls.length !== 1) fail('TOOL_ORDER', 'Completion must be the only tool call in its turn.');
         session.messages.push({ role: 'assistant', content: reply.content, calls: reply.calls });
         for (const call of reply.calls) {
+          await this.#checkpoint(call.name);
           signal.throwIfAborted();
           const toolStarted = Date.now();
           this.#event('tool_started', call);
@@ -112,6 +117,8 @@ export class FabAgent {
           try {
             if (!definitions.some(tool => tool.name === call.name)) fail('TOOL_DENIED', 'Tool is unavailable in this stage.');
             output = await this.#tool(call, stage, signal);
+            await this.#checkpoint('tool_observed');
+            signal.throwIfAborted();
           } catch (cause) {
             if (!(cause instanceof FabError)) throw cause;
             error = true; output = { code: cause.code, message: cause.message };
