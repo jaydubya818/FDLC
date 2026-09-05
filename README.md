@@ -41,3 +41,5 @@ Mission Control and the source Guide are separate open-source projects. This sit
 ## Fab local engineering pilot
 
 The independent [Fab package](packages/fab/README.md) is staged here for local review. It is an experimental CLI with its own build and qualification suite; the website does not import it. The [reuse audit and design](docs/fab/FAB-REUSE-AUDIT.md) explain the boundaries with Mission Control and Factory Engineer.
+
+Fab remains **Experimental**. See the [Phase 3 qualification record](docs/fab/FAB-PHASE3-QUALIFICATION.md) for exact package identities, offline evidence and the remaining live/deployed gates. Run `npm run test:browser` after `npm run build` to repeat the site browser, mobile, accessibility, link and interactive-flow checks (install Chromium with `npx --no-install playwright install chromium`).

@@ -1,0 +1,129 @@
+{
+  "schema": "fab-phase3-evidence/v1",
+  "classification": "OFFLINE_SYNTHETIC_AND_LOCAL_BUILD",
+  "packageSourceCommit": "1d1240c219d9bf3c1fa5fbb0a80ded96cf13df1f",
+  "siteImplementationCommit": "5e9a470",
+  "liveProviderRequests": 0,
+  "liveQualifiedModels": [],
+  "deployedMissionControl": "NOT_RUN",
+  "controlledPublication": "NOT_RUN",
+  "files": [
+    {
+      "path": "browser/home-1440.png",
+      "sha256": "ba7312b5fb04c93c045fc8feb90216849ed658d11a9c99f44ec967142afa2c42"
+    },
+    {
+      "path": "browser/mission-control-390.png",
+      "sha256": "af39f70f33e42632b619102505b151cf2f916956157f68f7d8f20a57bbb664e5"
+    },
+    {
+      "path": "browser/start-390.png",
+      "sha256": "3b878ec13d6a5f7641eb2cb231a8533b4aa0796d8e1757a50ab1ec7079978aae"
+    },
+    {
+      "path": "docker-canary.json",
+      "sha256": "82c5bf161a711a6ef1f1a8f5204a4dd5e0668f4a8aabd05544d22eb38a18829c"
+    },
+    {
+      "path": "fab-clean-install.txt",
+      "sha256": "562dea2ca9b27acc499d21f505f695b2b70bf2a572ee8cd08f489e60ce813bc5"
+    },
+    {
+      "path": "fab-package-build.txt",
+      "sha256": "c82f334db65cfc07f6af0596b2193f58448480ab7afe523dcb28b34d19d1354e"
+    },
+    {
+      "path": "fab-package-rebuild.txt",
+      "sha256": "b0fb4a5f9070fe999584c16106ce0189c398d86269b9e2407a6269afe2dff0fb"
+    },
+    {
+      "path": "fab-tests.txt",
+      "sha256": "8a9f834eb9e33bde9ac82a7c97bcefee6cc69d864f3e416ea2c7fce16e3ca112"
+    },
+    {
+      "path": "fresh-package-build.txt",
+      "sha256": "184dddf09757dd3af42b07c7ece8ed636f0ad2c4be49bdb13d0238ac71eabb2e"
+    },
+    {
+      "path": "fresh-package-install.txt",
+      "sha256": "4e54bbdf657f57311cfdc27aca1d8118047741be819a0dc4dec1ae8c1390529e"
+    },
+    {
+      "path": "mc-baseline-tests.txt",
+      "sha256": "46731dc7639c716425ff816ed08b401d82b714261af935e365896abab8ba1433"
+    },
+    {
+      "path": "mc-clean-install.txt",
+      "sha256": "69675ef0f7113ae4aa21281b079928cc49c8bee42f14bde908e58e086734b7c5"
+    },
+    {
+      "path": "mc-package-install.txt",
+      "sha256": "88529ade7e363f4e99d68afd593194276a8ee83420194427a9909e60331e5804"
+    },
+    {
+      "path": "mc-package-update.txt",
+      "sha256": "7aad810c62e0b2610807d3c1e9ef200ce8115883ce37d889911f7a5ebb6c4daa"
+    },
+    {
+      "path": "mc-prepare.txt",
+      "sha256": "c0710fa383d1288b40d61b9d84919e1aa759f77da98fedad0276221291d5a36f"
+    },
+    {
+      "path": "mc-reconciliation-tests.txt",
+      "sha256": "27ad497fde722cab24731122cff6c36a9a88aa2acf1614768fbee5af6335cf7d"
+    },
+    {
+      "path": "mc-runtime-tests.txt",
+      "sha256": "a26d43528e85644d67bf78c9e27ac42533a258359a00d236e548f59e008f8e94"
+    },
+    {
+      "path": "mc-source-authority-tests.txt",
+      "sha256": "bdf899265779e330f218ff408e878d000ee725ee679528e5477d805c4c615e02"
+    },
+    {
+      "path": "mc-typecheck-initial.txt",
+      "sha256": "cc0d0b3262876948e22233630e75208265b6492bff19a58fd120297c98872e81"
+    },
+    {
+      "path": "mc-typecheck.txt",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "offline-dependencies.json",
+      "sha256": "3fe0e37557b166b779dde50dd17fdb24c32dbf5dfa115bf26766b2d0020fa4b8"
+    },
+    {
+      "path": "package-identity.json",
+      "sha256": "18745f7692437ef5526e83817917819029846f2c3077657b58c42eaf2c87a761"
+    },
+    {
+      "path": "phase2-immutability.json",
+      "sha256": "c17c0e0f74e0d26cffff7c2861cbbba77f336881972147644be668258defb8e7"
+    },
+    {
+      "path": "site-browser.json",
+      "sha256": "e8cc3747d2ced3a53ed83f5ee19887438e3f0951f87c837ec4ad9c76442bf85d"
+    },
+    {
+      "path": "site-clean-install.txt",
+      "sha256": "1c51b1c06af40ba017ec364d7665d81d8f4abae3ce87b98b685907f711efb445"
+    },
+    {
+      "path": "site-lint.txt",
+      "sha256": "ec2df480a87330a39fc0f34da3cfe772a3fa16ca190c2f3b751d1e104d762157"
+    },
+    {
+      "path": "site-tests.txt",
+      "sha256": "532951cada9f1ef32ff0b41aa1c8ba1fd5c3cf1292aed7fbdf7334d714e2c776"
+    },
+    {
+      "path": "site-typecheck.txt",
+      "sha256": "ee20eee68bb9cfb34c19a44597c15bc4716f9ab12f8215ac289be069cfced865"
+    },
+    {
+      "path": "source-baseline.json",
+      "sha256": "ca7de1715764736714f0f16c34302d1a8e59c62cb7f0365a9da2c32812965540"
+    }
+  ],
+  "logNormalization": "ANSI color escapes and trailing whitespace removed; test outcomes preserved"
+}

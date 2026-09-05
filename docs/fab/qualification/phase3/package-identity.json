@@ -1,0 +1,44 @@
+{
+  "schema": "fab-phase3-package/v1",
+  "result": "PASS",
+  "build": {
+    "schema": "fab-build-identity/v1",
+    "packageVersion": "0.1.0-experimental.2",
+    "sourceCommit": "1d1240c219d9bf3c1fa5fbb0a80ded96cf13df1f",
+    "sourceDirty": false,
+    "sourceSha256": "e917e7853b20346dcc142da74ac7ec4c33559136bbc579dce34d058c01037e33",
+    "dependencyLockSha256": "84b16b13ed9a91a0fbf17816655d65598770019fb873ff4c64753c4777624e7a",
+    "toolchain": {
+      "node": "24.18.1",
+      "platform": "darwin",
+      "arch": "arm64",
+      "typescript": "5.9.3",
+      "clang": "Apple clang version 21.0.0 (clang-2100.1.1.101)"
+    },
+    "native": [
+      {
+        "name": "fab-keychain",
+        "sha256": "2f0be7ebb7b2ef5729c799914819e344068e48ccfd23391d7b8290497a8a7109"
+      },
+      {
+        "name": "fab-check-guard",
+        "sha256": "b5516cb74119b5d825f5b70379b06dfd1714ccaff5d0bce7368efd13cd490184"
+      }
+    ],
+    "distribution": "PRIVATE_EXPERIMENTAL",
+    "developerSigningIdentity": null,
+    "notarization": "NOT_PERFORMED"
+  },
+  "archiveSha256": "b3a1af223e246208c01745678cbe48a91786070b016b9a1ad7bdb0ad274d8a8d",
+  "installedClosureSha256": "121ef8e14b085f6dba6e7f5598070ad80e79f5c1bfa5c71b890871bf83214999",
+  "installedFileCount": 41,
+  "reproducibility": {
+    "sameCheckoutBuilds": 2,
+    "freshDetachedCheckoutBuilds": 1,
+    "allArchiveDigestsEqual": true
+  },
+  "nativeMinimumMacOS": "26.0",
+  "supportedArchitecture": "arm64",
+  "signature": "AD_HOC_ONLY_NO_DEVELOPER_ID",
+  "notarization": "NOT_PERFORMED"
+}

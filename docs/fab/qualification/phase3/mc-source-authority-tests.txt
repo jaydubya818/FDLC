@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 /private/tmp/fab-phase3-mission-control
+
+ ✓ convex/__tests__/factoryAttempt.test.ts (17 tests) 5ms
+ ✓ convex/__tests__/factoryCandidateBaseAuthority.test.ts (3 tests) 8ms
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  14:25:11
+   Duration  723ms (transform 260ms, setup 0ms, collect 455ms, tests 13ms, environment 0ms, prepare 97ms)

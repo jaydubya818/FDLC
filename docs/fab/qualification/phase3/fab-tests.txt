@@ -1,0 +1,75 @@
+
+> @fdlc/fab@0.1.0-experimental.2 test:contained
+> npm run build && FAB_TEST_CONTAINMENT=1 FAB_TEST_KEYCHAIN=1 node --test test/*.test.ts
+
+
+> @fdlc/fab@0.1.0-experimental.2 build
+> tsc -p tsconfig.build.json && node bin/build-native.mjs && node bin/build-identity.mjs
+
+✔ credentials require the exact owner/provider/repository binding and never fall back to ambient keys (341.922625ms)
+✔ redaction covers exact and encoded secrets, nested evidence and terminal escape sequences (0.486167ms)
+✔ scope denies traversal, secrets, hidden paths, symlinks and hard links before writes (305.120209ms)
+✔ configuration rejects extra authority, ambient credentials, duplicate checks and unsafe file scopes (194.264334ms)
+✔ private session persistence redacts values, detects corruption, and excludes repository storage (290.175417ms)
+✔ built CLI: clean inspection, explicit auth, persisted plan, consent, execution, status and diff (1854.487625ms)
+✔ OS containment denies outside reads/writes, environment secrets, network and other executables (877.13125ms)
+✔ timeout, output overflow and cancellation cannot report check success (990.843542ms)
+✔ SIGKILL of the Fab process terminates its active check and removes the snapshot (360.190958ms)
+✔ secure-store binding, rotation, deletion, metadata and explicit source precedence (362.4325ms)
+✔ adversarial redaction covers all persisted channels and provider-style partial echoes (274.195167ms)
+✔ real check stdout and stderr redact a credential reconstructed by project code (496.803458ms)
+✔ masked enrollment input never echoes a synthetic key in a real terminal (155.26975ms)
+✔ native macOS keychain stores, rotates and deletes only synthetic data in an isolated keychain (706.449834ms)
+✔ openai shared evaluation: bug fix (mock model, real repository/check) (1182.207125ms)
+✔ openai shared evaluation: bounded feature (mock model, real repository/check) (980.944125ms)
+✔ openai shared evaluation: behavior preserving refactor (mock model, real repository/check) (770.1835ms)
+✔ openai shared evaluation: test repair (mock model, real repository/check) (752.842167ms)
+✔ openai shared evaluation: new component (mock model, real repository/check) (739.955959ms)
+✔ openai shared evaluation: impossible task (393.082333ms)
+✔ openai shared evaluation: scope attack (410.3345ms)
+✔ openai shared evaluation: credential attack (424.488125ms)
+✔ openai shared evaluation: unknown tool attack (412.927ms)
+✔ anthropic shared evaluation: bug fix (mock model, real repository/check) (735.503792ms)
+✔ anthropic shared evaluation: bounded feature (mock model, real repository/check) (789.876833ms)
+✔ anthropic shared evaluation: behavior preserving refactor (mock model, real repository/check) (770.208083ms)
+✔ anthropic shared evaluation: test repair (mock model, real repository/check) (768.716375ms)
+✔ anthropic shared evaluation: new component (mock model, real repository/check) (755.371666ms)
+✔ anthropic shared evaluation: impossible task (420.826334ms)
+✔ anthropic shared evaluation: scope attack (426.608833ms)
+✔ anthropic shared evaluation: credential attack (526.85975ms)
+✔ anthropic shared evaluation: unknown tool attack (518.051583ms)
+✔ plan consent is required and is invalidated by policy drift (319.944583ms)
+✔ dirty repository, planning writes, false completion and interrupted replay fail closed (575.091292ms)
+✔ cancellation is persisted and does not execute the next model tool (264.592958ms)
+✔ failed project checks can be repaired, and edits invalidate earlier successful evidence (1503.584292ms)
+✔ a completed stopped checkpoint resumes without replaying its write, and drift blocks resume (1046.787292ms)
+✔ all five evaluation families prepare a fresh repository without replacing existing work (492.117583ms)
+✔ live evaluation requires matching scope, recent qualification and explicit authority before inference (295.945208ms)
+✔ live runner request cap stops before an additional model request and preserves the failed session (712.611292ms)
+✔ live runner measures a real candidate and an additional contained reference check with injected transport (1218.196375ms)
+✔ openai: real adapter maps tool calls/results and uses only bound authentication (374.496625ms)
+✔ openai: error bodies and network exceptions cannot leak credentials (140.440167ms)
+✔ anthropic: real adapter maps tool calls/results and uses only bound authentication (192.575833ms)
+✔ anthropic: error bodies and network exceptions cannot leak credentials (278.785583ms)
+✔ openai: request receipts retain attribution through response loss and prevent dispatch without a checkpoint (147.4415ms)
+✔ openai: response headers are recorded before the body and missing usage is never invented (138.139ms)
+✔ anthropic: request receipts retain attribution through response loss and prevent dispatch without a checkpoint (130.5495ms)
+✔ anthropic: response headers are recorded before the body and missing usage is never invented (146.218833ms)
+✔ provider usage fields preserve their distinct cache and reasoning semantics (0.108459ms)
+✔ unknown usage stays null and malformed tool arguments fail closed (0.167542ms)
+✔ openai: qualification requires explicit live opt-in and a selected credential (279.273083ms)
+✔ openai: mock qualification exercises exact model, inference and full tool continuation (150.161375ms)
+✔ openai: qualification refuses latest and does not retry failed calls (232.717625ms)
+✔ openai: cancellation, timeout, context limit and echoed HTTP/transport errors fail closed (141.555625ms)
+✔ anthropic: qualification requires explicit live opt-in and a selected credential (237.561375ms)
+✔ anthropic: mock qualification exercises exact model, inference and full tool continuation (156.598125ms)
+✔ anthropic: qualification refuses latest and does not retry failed calls (157.790292ms)
+✔ anthropic: cancellation, timeout, context limit and echoed HTTP/transport errors fail closed (141.283166ms)
+ℹ tests 59
+ℹ suites 0
+ℹ pass 59
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15633.827167

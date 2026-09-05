@@ -1,0 +1,57 @@
+{
+  "result": "PASS",
+  "files": [
+    {
+      "path": "docs/fab/qualification/phase2/mc-typecheck.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/mc-tests.txt",
+      "sha256": "4e8faac5ad5ea5b2d49e09538060185ce0ba33dfc1d4aa30ffbca560d7e527df"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/fab-tests.tap",
+      "sha256": "3070d520b48c5941f48472db812bb6beadd1769b8cfdabb4584bf2f970b64ca5"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/install.txt",
+      "sha256": "f1410dda7ea8a9d00b9f9f68ab0a5231b6e2d555b5a443dc988a485f8f0b1564"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/build.txt",
+      "sha256": "53390c2b625a409b678d4e2ef5faa1b5532693acf9988d85439c1b14dee7685b"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/anthropic-qualification.json",
+      "sha256": "df16cd5371c9a1d9ad371063b7019ae2c17c5a50efd83b2f8f5729b9cf97ffcf"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/mc-tests.json",
+      "sha256": "f7ff74da0a72385ed5aebe7ef197a768075325f9c39ee8666632e0f16e06d128"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/governed-golden-path.json",
+      "sha256": "f6f269b847e0d7acce73e5794fa09c5d71780fc71b2a9e5826727edb7e468f8a"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/lint.txt",
+      "sha256": "cc6a4ccfda20d5eaf9fd8e2a9c6f09d8db8788b1ff99c9425c23a3804f280317"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/manifest.json",
+      "sha256": "d1883c31263c952074e949085633296cbb425d91ce241a166ebb437ec7789504"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/typecheck.txt",
+      "sha256": "adf07e03410fe5e5a6d47543fd9468fab0580839f8daec78de989ff9681c1576"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/openai-qualification.json",
+      "sha256": "4735cf1fb6142566a02e5fb79eb19d5b6ec1f8481cd628e0542a8ea978c50bda"
+    },
+    {
+      "path": "docs/fab/qualification/phase2/site-unit.txt",
+      "sha256": "b7c6a316f5f2f9f5ba00f308cc97a7c336b6bcc2cb4378ce19c6e59b48a8bce2"
+    }
+  ]
+}
