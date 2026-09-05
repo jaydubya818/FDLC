@@ -1,7 +1,7 @@
 # Software Factory operating contracts — ecosystem integration
 
 Date: 2026-09-05
-Status: source content qualified; approved deployment guard undergoing PR and clean-main qualification
+Status: governed operating contracts and persistent source/release policy
 
 ## Canonical meaning and scope
 
@@ -65,7 +65,7 @@ The existing Mission Control checkout was on another branch; changes use a dedic
 - Review covered architecture ownership, authority/security, evidence integrity, simplicity and editorial consistency. No runtime or schema changes require a separate implementation review. Corrections included a broken source link, terminology distinctions and accessible formula presentation.
 - Seven cross-repository chapter/framework/evidence links returned HTTP 200. New public links use existing chapter routes or revision-pinned evidence, so either documentation PR can land independently. The experimental tool claim relies on already-merged implementation evidence.
 
-Production remains unchanged. Dedicated branches and separate PRs preserve repository histories and existing local work. CI status and PR links are recorded below.
+This integration authorizes no Production deployment. Dedicated branches and separate PRs preserve repository histories and existing local work. CI status and PR links are recorded below.
 
 The approved [source/release policy](./source-release-policy.md) adds only a main-branch Git deployment guard to four effective Vercel configurations across these repositories. Non-main Previews remain enabled. Production deployment, canonical aliases and the separate migration-bridge release process retain their existing authority. The guard persists after this integration; removal requires a separately reviewed deployment-policy decision. Updated exact-head and post-merge results are retained in the ecosystem review record.
 
@@ -78,3 +78,5 @@ Real-team adoption, complete outcome economics, general side-effecting tool reco
 - [Guide PR #13](https://github.com/jaydubya818/ai-software-factory-mastery/pull/13), commit `9d11c75`.
 - [Mission Control PR #173](https://github.com/jaydubya818/MissionControl/pull/173), documentation/evidence commit `2fc0048`; [qualification package](https://github.com/jaydubya818/MissionControl/blob/2fc0048/docs/testing/evidence/operating-contracts-5783e76/README.md).
 - FDLC: this integration record ships with the framework PR; CI and merge status remain separate from local qualification.
+
+Each PR's final disposition records its merge identity and clean-main qualification. The retained packages above remain evidence for their specific revisions; they do not claim qualification of an uncited future main or Production artifact.
