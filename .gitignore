@@ -36,7 +36,7 @@ yarn-error.log*
 
 /dist/
 /packages/fab/dist/
-/packages/fab/node_modules/
+/packages/fab/node_modules
 /packages/fab/*.tgz
 /.wrangler/
 /outputs/

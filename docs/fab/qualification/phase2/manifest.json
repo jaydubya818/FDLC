@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "timestamp": "2026-09-05T20:43:14.255282+00:00",
+  "scope": "Offline Experimental qualification only",
+  "runtimeSourceCommit": "6f27dbc8a1f4bc2891d0ef656299f9760864d108",
+  "mcSourceCommit": "0d64de5b2efce09525b5e83ccd3f7fa6dce589ce",
+  "branch": "codex/fab",
+  "providerLiveStatus": "NOT RUN \u2014 USER CREDENTIAL REQUIRED",
+  "fabTests": {
+    "passed": 48,
+    "failed": 0,
+    "skipped": 0
+  },
+  "mcTests": {
+    "passed": 164,
+    "failed": 0,
+    "skipped": 0,
+    "files": 22
+  },
+  "siteUnitTests": {
+    "passed": 12,
+    "failed": 0,
+    "skipped": 0
+  },
+  "credentialScan": "PASS for registered synthetic values and base64 encodings",
+  "archive": {
+    "path": "MissionControl/vendor/fab/fdlc-fab-0.1.0-experimental.1.tgz",
+    "sha256": "3140915e0188b57ce5718fcb4bfc598d2f3c5ebcd083cebcacc727cd82ab8d1f",
+    "integrity": "sha512-JDi8j4zekYpqIezrMwskh3+PGxCEldxWnnUhbv7BbLfLDJyV4VEMsW9xzoiro6ximNeaVfdAw2/ihJJKOo0rfw=="
+  },
+  "files": {
+    "anthropic-qualification.json": "df16cd5371c9a1d9ad371063b7019ae2c17c5a50efd83b2f8f5729b9cf97ffcf",
+    "build.txt": "53390c2b625a409b678d4e2ef5faa1b5532693acf9988d85439c1b14dee7685b",
+    "fab-tests.tap": "3070d520b48c5941f48472db812bb6beadd1769b8cfdabb4584bf2f970b64ca5",
+    "governed-golden-path.json": "f6f269b847e0d7acce73e5794fa09c5d71780fc71b2a9e5826727edb7e468f8a",
+    "install.txt": "f1410dda7ea8a9d00b9f9f68ab0a5231b6e2d555b5a443dc988a485f8f0b1564",
+    "lint.txt": "cc6a4ccfda20d5eaf9fd8e2a9c6f09d8db8788b1ff99c9425c23a3804f280317",
+    "mc-tests.json": "f7ff74da0a72385ed5aebe7ef197a768075325f9c39ee8666632e0f16e06d128",
+    "mc-tests.txt": "4e8faac5ad5ea5b2d49e09538060185ce0ba33dfc1d4aa30ffbca560d7e527df",
+    "mc-typecheck.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "openai-qualification.json": "4735cf1fb6142566a02e5fb79eb19d5b6ec1f8481cd628e0542a8ea978c50bda",
+    "site-unit.txt": "b7c6a316f5f2f9f5ba00f308cc97a7c336b6bcc2cb4378ce19c6e59b48a8bce2",
+    "typecheck.txt": "adf07e03410fe5e5a6d47543fd9468fab0580839f8daec78de989ff9681c1576"
+  }
+}

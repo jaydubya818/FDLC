@@ -33,3 +33,9 @@ Safety blockers: unavailable OS containment for project checks, no dedicated aut
 ## Rollback and release
 
 Incremental local commits: audit/design; runtime/CLI; qualification/hardening/docs. Package is private and unimported by the site. Revert the package addition to remove the pilot without changing MC/FDE services. Sessions/candidates remain local user data; no destructive automatic rollback. A public release requires separate repository/license decision, platform qualification, BYOK UX, live two-provider evidence and reviewed security limitations.
+
+## Phase 2 completion and remaining gates
+
+Secure local enrollment, adversarial redaction, deliberate provider qualification, generic MC adapter registration, Attempt linkage/checkpoints, exact candidate recording and deterministic separate-verifier/approval/publication fixtures are implemented. See `FAB-PHASE-2.md` for the isolated MC worktree and `FAB-QUALIFICATION.md` for source pins and measured results.
+
+M3 live model qualification remains NOT RUN — USER CREDENTIAL REQUIRED. M4 has offline integration evidence, but deployed MC authorization/persistence, a live model tuple, full runtime containment and controlled real publication remain release gates. Unsupported streaming/reasoning/native response schemas, other OSes, dependency-heavy repositories and remote/hosted credentials are separate future work. These limits do not prevent running or extending the offline suite.

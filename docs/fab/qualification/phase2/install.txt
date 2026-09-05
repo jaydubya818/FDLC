@@ -1,0 +1,25 @@
+
+added 1 package in 146ms
+PASS: all 30 installed dist files match the final build, including both native helpers.
+Fab — Factory Agent Builder (experimental local preview)
+From intent to review-ready software.
+
+fab inspect                         Inspect this repository without a model
+fab config                          Print a non-secret configuration example
+fab models                          Show adapter maturity and limitations
+fab auth --config /path/config.json  Show explicit credential metadata
+fab auth add|remove|test <provider> --config /path/config.json
+fab auth list                       List Fab keychain metadata only
+fab qualify provider <provider> --config /path/config.json [--live]
+fab plan "task" --config /path/config.json
+fab run <session-id> --config /path/config.json --approve <plan-digest>
+fab run "task" --config /path/config.json   Plan and ask for consent in a terminal
+fab status <session-id> --config /path/config.json
+fab diff <session-id> --config /path/config.json
+fab resume <session-id> --config /path/config.json --approve <plan-digest>
+
+Optional: --state-dir /private/path (outside repository, mode 0700)
+No remote execution, PR publication or independent acceptance in this preview.
+Select your own Fab keychain reference or explicit FAB_ environment credential.
+Enrollment input is hidden. Never put a key in argv. --live makes up to three paid requests.
+

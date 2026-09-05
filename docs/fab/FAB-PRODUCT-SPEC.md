@@ -35,7 +35,7 @@ CLI target: `fab`, `fab inspect`, `fab plan`, `fab run`, `fab diff`, `fab status
 
 ## BYOK and supported scope
 
-One local OS user, one writable repository, no platform-owned provider account. Explicit environment reference supports headless use; enrollment into OS secure storage follows its own qualification gate. Secrets never appear in config, session or commands. Rotation replaces the user-controlled credential behind the reference; removal unsets the chosen variable or deletes the future secure-store entry. Fab never enrolls source-control credentials implicitly. Initial Git use is offline/read-only; remote clone/authentication remain operator-owned.
+One local OS user, one writable repository, no platform-owned provider account. Explicit environment reference supports headless use; masked enrollment into macOS Keychain is implemented and tested with an isolated synthetic keychain. Secrets never appear in config, session or commands. Rotation replaces the user-controlled credential behind the reference; removal unsets the chosen variable or deletes the selected Fab keychain entry. Fab never enrolls source-control credentials implicitly. Initial Git use is offline/read-only; remote clone/authentication remain operator-owned.
 
 First adapters: OpenAI and Anthropic text/tool protocols with the same suite. Supported model list remains empty until live qualification is recorded; explicit model IDs are experimental. No claim of streaming tokens, special reasoning controls, current prices, Bedrock, Azure, Google, IDE, hosted UI, remote execution or multi-repository writes before implementation and testing.
 
@@ -48,3 +48,9 @@ Skills reuse MC package/version/lock/eval concepts. A skill declares purpose, in
 ## Release gates and outcome metrics
 
 The local preview must pass real filesystem/Git/check integration tests and deterministic protocol/attack tests. Live two-provider task success is a separate gate requiring dedicated user-supplied evaluation credentials. Record success, first-pass rate, regressions, review time, candidate/accepted latency, retries, token/cost completeness and blocked unauthorized actions. Fixture results are engineering conformance evidence, not measured autonomous model quality or accepted customer changes.
+
+## Phase 2 status
+
+`fab auth add|list|test|remove` and `fab qualify provider` are implemented. Provider/model configuration is explicit and changing it invalidates local plan consent. Qualification reports distinguish live checks, synthetic contract faults and unsupported capabilities. No live model is yet qualified.
+
+MC integration is an Experimental local adapter with canonical registration, guarded Attempt linkage and candidate handoff. Offline fixtures demonstrate separate verification and approval/publication handling. This is not deployed MC operation or whole-agent hostile-code containment. The standalone CLI still has no publication or acceptance command.

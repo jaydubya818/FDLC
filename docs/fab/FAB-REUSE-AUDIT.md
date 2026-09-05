@@ -104,3 +104,13 @@ Model adapters are narrow HTTP translations. MC's string-only message interface 
 ## Location recommendation
 
 Stage an independent, private `packages/fab` package here to keep the audit and review atomic. Do not turn the public site into a runtime dependency. Recommend eventual `jaydubya818/fdlc-fab` with an independent release lifecycle; publishing, repository creation, license selection and package-name availability remain separate decisions. MC later owns its integration adapter, importing the versioned Fab API and canonical MC contracts. This staging choice moves no existing code and changes no deployed system.
+
+## Phase 2 fresh MC audit and actual reuse
+
+Re-inspected current MC `07a96ac3623c8a6772455fcf4c9cdf4ca78e6d2f`; the previously audited contract remains current. The active MC branch is unrelated, so integration uses its isolated `codex/fab` worktree. No FDE/Guide runtime changes were required.
+
+Actual integration imports `HarnessExecutorAdapter`, `HarnessCapabilityManifest`, canonical manifest/request hashes, normalized-result validation and `NO_HARNESS_AUTHORITY`. It registers in `HarnessAdapterRegistry` through an explicit startup flag. The existing `FactoryAttemptWorker` supplies signed claim/renew/report commands, frozen model identity, worktree ownership, candidate commit/diff capture and publication permits. A generic context/linkage callback and candidate-observation hook are the only new worker/contract seams; no authority table or alternate workflow was added.
+
+Qualification reuses `factoryWorkerEligibility`, `factoryGitRuntime`, `executeIndependentVerification`, `createGitVerificationSubject`, `freezeVerificationPlan`, `deriveVerificationIndependence`, and the worker's separate verification Attempt path. Existing recovery, authentication, human review, currentness, verification-authority, sandbox broker and publisher tests are rerun. Native OpenAI/Anthropic BYOK remains Fab-owned; MC's OpenRouter remote broker is not silently repurposed or used with owner credentials. Fab remote-broker integration remains unavailable.
+
+The current policy-v2 Git subject requires a provider PR identity. The deterministic test uses a fixture identity and mocked external authority, and does not establish a deployed pre-publication verification flow. The existing canonical draft-publication policy remains intact. No live MC service or GitHub App account was contacted.

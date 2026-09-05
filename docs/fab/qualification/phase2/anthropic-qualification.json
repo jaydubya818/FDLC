@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "maturity": "Experimental",
+  "provider": "anthropic",
+  "requestedModel": "USER_MODEL_REQUIRED",
+  "returnedModels": [],
+  "credentialReference": "user-key-required",
+  "startedAt": "2026-09-05T20:42:09.271Z",
+  "completedAt": "2026-09-05T20:42:09.304Z",
+  "latencyMs": 33,
+  "usage": {
+    "inputTokens": null,
+    "outputTokens": null,
+    "cachedTokens": null,
+    "costUsd": null
+  },
+  "status": "NOT RUN",
+  "checks": [
+    {
+      "name": "authentication",
+      "status": "NOT RUN",
+      "mode": "live",
+      "detail": "NOT RUN — USER CREDENTIAL REQUIRED"
+    },
+    {
+      "name": "basic inference",
+      "status": "NOT RUN",
+      "mode": "live",
+      "detail": "NOT RUN — USER CREDENTIAL REQUIRED"
+    },
+    {
+      "name": "structured tool arguments",
+      "status": "NOT RUN",
+      "mode": "live",
+      "detail": "NOT RUN — USER CREDENTIAL REQUIRED"
+    },
+    {
+      "name": "tool calling",
+      "status": "NOT RUN",
+      "mode": "live",
+      "detail": "NOT RUN — USER CREDENTIAL REQUIRED"
+    },
+    {
+      "name": "tool-result continuation",
+      "status": "NOT RUN",
+      "mode": "live",
+      "detail": "NOT RUN — USER CREDENTIAL REQUIRED"
+    },
+    {
+      "name": "model identity",
+      "status": "NOT RUN",
+      "mode": "live",
+      "detail": "NOT RUN — USER CREDENTIAL REQUIRED"
+    },
+    {
+      "name": "usage reporting",
+      "status": "NOT RUN",
+      "mode": "live",
+      "detail": "NOT RUN — USER CREDENTIAL REQUIRED"
+    },
+    {
+      "name": "token streaming",
+      "status": "NOT RUN",
+      "mode": "unsupported",
+      "detail": "Not implemented; no support claim."
+    },
+    {
+      "name": "reasoning controls",
+      "status": "NOT RUN",
+      "mode": "unsupported",
+      "detail": "Not implemented; no support claim."
+    },
+    {
+      "name": "provider context-window discovery",
+      "status": "NOT RUN",
+      "mode": "unsupported",
+      "detail": "Not implemented; no support claim."
+    },
+    {
+      "name": "native structured-response mode",
+      "status": "NOT RUN",
+      "mode": "unsupported",
+      "detail": "Not implemented; no support claim."
+    },
+    {
+      "name": "provider error redaction",
+      "status": "PASS",
+      "mode": "contract",
+      "detail": "Synthetic credential and fault-injected transport; no live provider request."
+    },
+    {
+      "name": "transport exception redaction",
+      "status": "PASS",
+      "mode": "contract",
+      "detail": "Synthetic credential and fault-injected transport; no live provider request."
+    },
+    {
+      "name": "cancellation before inference",
+      "status": "PASS",
+      "mode": "contract",
+      "detail": "Synthetic credential and fault-injected transport; no live provider request."
+    },
+    {
+      "name": "request timeout",
+      "status": "PASS",
+      "mode": "contract",
+      "detail": "Synthetic credential and fault-injected transport; no live provider request."
+    },
+    {
+      "name": "context byte budget",
+      "status": "PASS",
+      "mode": "contract",
+      "detail": "Synthetic credential and fault-injected transport; no live provider request."
+    },
+    {
+      "name": "evidence and partial-echo redaction",
+      "status": "PASS",
+      "mode": "contract",
+      "detail": "Synthetic credential and fault-injected transport; no live provider request."
+    }
+  ],
+  "limitations": [
+    "No automatic provider/model fallback or retry.",
+    "This is protocol qualification, not autonomous engineering quality or production certification.",
+    "Token streaming and reasoning controls are unsupported; context window and cost remain unknown.",
+    "Provider error, cancellation, timeout and context limits are fault-injected contract tests; they do not deliberately spend on failing live requests."
+  ]
+}
