@@ -2,8 +2,8 @@ import { fail } from './validation.ts';
 
 export async function readMaskedCredential(): Promise<string> {
   if (!process.stdin.isTTY || !process.stderr.isTTY) fail('AUTH_TTY', 'Enrollment requires a terminal with masked input. For headless use, explicitly select an environment reference.');
-  process.stderr.write('Provider key (input hidden): ');
   const previous = process.stdin.isRaw; process.stdin.setRawMode(true); process.stdin.resume();
+  process.stderr.write('Provider key (input hidden): ');
   return new Promise((resolve, reject) => {
     let value = '';
     const done = (cancelled: boolean) => {

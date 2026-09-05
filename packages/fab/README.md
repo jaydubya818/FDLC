@@ -7,16 +7,18 @@ The software engineering agent for the Factory Development Lifecycle.
 ## What works
 
 - One clean, committed local Git repository; repository/language/build/test inspection.
-- Explicit user-owned environment credential reference, scoped to OS user, provider and repository.
+- Explicit user-owned macOS Keychain or environment credential reference, scoped to OS user, provider and repository.
 - Native read/plan/edit/check loop with OpenAI and Anthropic HTTP adapters.
 - Exact file allowlist, content-hash edits, plan consent, secret filtering and bounded context.
 - Real project commands in a disposable macOS sandbox snapshot, with no model credentials or network.
 - Private local sessions, ordered events, diff/check evidence, cancellation and guarded resume.
+- Opt-in provider qualification with exact model identity, usage and explicit PASS/FAIL/NOT RUN results.
+- Experimental MC harness adapter using its existing Attempt, candidate, verifier and publication lifecycle.
 - Deterministic two-provider protocol and engineering-flow qualification using **mock model responses and real local operations**. No live model is qualified yet.
 
 ## Requirements and installation
 
-Node.js 24+, Git at `/usr/bin/git`, macOS with `/usr/bin/sandbox-exec` for contained checks. The current proof uses Homebrew Node 24. This preview is qualified only on macOS; other platforms are unqualified and cannot complete checks. A nested sandbox may prohibit `sandbox-exec`. There is no unsafe fallback.
+Node.js 24+, Git at `/usr/bin/git`, macOS with `/usr/bin/sandbox-exec` for contained checks. The current proof uses Homebrew Node 24 on macOS arm64. Building the native Keychain bridge also requires Apple Command Line Tools; installed packages contain the compiled bridge. This preview is qualified only on macOS; other platforms are unqualified and cannot complete checks. A nested sandbox may prohibit `sandbox-exec`. There is no unsafe fallback.
 
 From the FDLC checkout, using the already-installed development dependencies:
 
@@ -58,7 +60,7 @@ Edit that JSON outside the repository. Choose an explicit model ID, exact writab
     "owner": "local:YOUR_OS_UID",
     "provider": "openai",
     "scope": { "kind": "repository", "root": "/absolute/path/to/my-project" },
-    "source": { "kind": "environment", "variable": "FAB_MODEL_KEY" }
+    "source": { "kind": "keychain" }
   },
   "writableFiles": ["src/math.mjs"],
   "checks": [{ "id": "test", "argv": ["/absolute/path/to/node", "--test", "--test-isolation=none"] }],
@@ -69,17 +71,28 @@ Edit that JSON outside the repository. Choose an explicit model ID, exact writab
 }
 ```
 
-`fab config` fills the actual root, OS UID and Node path. Set only the chosen environment variable in your own shell. For masked input in macOS's default zsh:
+`fab config` fills the actual root, OS UID and Node path, and creates a random opaque keychain reference. Choose your exact provider and model, then enroll your own key:
 
 ```sh
-read -rs 'FAB_MODEL_KEY?Your provider key: '
-export FAB_MODEL_KEY
+fab auth add openai --config "$HOME/fab-project.json"
+fab auth list
 fab auth --config "$HOME/fab-project.json"
+# Optional: one paid inference to test authentication with the configured model.
+fab auth test openai --config "$HOME/fab-project.json"
+# Offline contract checks and explicit NOT RUN live results:
+fab qualify provider openai --config "$HOME/fab-project.json"
+# Deliberate opt-in: up to three paid provider requests, with no repository context.
+fab qualify provider openai --config "$HOME/fab-project.json" --live
+fab auth remove openai --config "$HOME/fab-project.json"
 ```
 
-The value is never echoed by Fab or passed in argv. `fab auth` reports configured/missing metadata; it does **not** claim the provider accepted the credential. OpenAI/Anthropic standard environment keys, `.env`, shell history, keychain entries, cloud profiles and browser logins are not discovered. The provider and credential provider fields must agree. Changing to Anthropic requires that provider's own key and an explicit model ID.
+Enrollment input is hidden and travels to macOS Security.framework through stdin, never argv. `auth add` also rotates an existing reference. `auth list` reads only Fab's metadata; `auth remove` deletes the local entry and does not revoke the key at the provider. Authentication testing and qualification never run during ordinary tests or builds. Change both provider fields and the model explicitly for Anthropic.
 
-Environment storage is not encrypted storage. OS-native enrollment and a hosted encrypted secret store are designed follow-ups. Rotate the key in your provider account and replace the variable; remove it with `unset FAB_MODEL_KEY`. Revocation at the provider is separate from local removal. No raw secret belongs in this JSON.
+For headless use, deliberately replace `credential.source` with `{"kind":"environment","variable":"FAB_MODEL_KEY"}` and set that exact variable in your shell. There is no precedence chain: the configured source is the only source. A missing keychain entry never falls back to environment values. Environment storage is not encrypted storage.
+
+OpenAI/Anthropic standard environment keys, `.env`, shell history, unrelated keychain entries, cloud profiles and browser logins are not discovered. No raw secret belongs in configuration. The keychain is a local OS-user store; hosted tenant storage and remote short-lived provider grants remain unimplemented.
+
+Qualification records authentication, inference, JSON tool arguments, continuation, requested/returned model IDs, usage and latency. Error/redaction/cancellation/timeout/context tests use separately labeled fault-injected transports. Streaming, native schema-response mode, reasoning controls and context-window discovery report NOT RUN. Passing protocol checks does not measure autonomous engineering quality or qualify a production release.
 
 ## Plan, implement and review
 
@@ -105,7 +118,7 @@ Sessions live in `~/.local/state/fab` with private directory/file permissions, o
 - Model request context is capped at 200 KB; responses at 1 MB, output at 4,096 requested tokens; sessions at 8 MB. No RAG, compaction, token streaming, reasoning controls or model fallback. Automatic provider retries are zero; failed requests require deliberate resume/retry.
 - Cost and context-window metadata remain unknown, not zero. Model token usage is reported when supplied. No claim of current model support or prices merely because an adapter accepts an ID.
 - Local file guards assume an operator-controlled checkout without a concurrent same-user adversary. The macOS check sandbox is an experimental boundary with measured tests, not universal hostile-code containment certification. The entire agent process is not an MC-admitted sandbox.
-- No keychain enrollment, hosted secret store, Git authentication/clone, multi-repository writes, MC execution adapter, independent verifier, publication, IDE, browser, remote worker, MCP or skill registry in this preview.
+- No hosted secret store, Git authentication/clone, multi-repository writes, IDE, browser, remote worker, MCP or skill registry. The MC adapter is an opt-in local integration; it has no independent acceptance or publication authority and rejects whole-agent WORKSPACE_ONLY isolation. See the [Phase 2 record](../../docs/fab/FAB-PHASE-2.md).
 
 ## Reproduce qualification
 
@@ -118,6 +131,6 @@ npm --prefix packages/fab test
 npm --prefix packages/fab run test:contained
 ```
 
-The default suite explicitly skips containment-dependent cases. The full suite must report **zero skipped tests** to qualify local execution. It exercises actual source edits/Git diffs/process results, a built-CLI flow, failing-test repair, stale-evidence rejection, resume, impossible tasks, scope/credential attacks and OS-denial behavior. Mock transcripts are fixed fixtures, not autonomous model performance measurements. Tests never use your configured provider account.
+The default suite explicitly skips OS containment, terminal and native-keychain cases that require the full local qualification environment. The full suite must report **zero skipped tests** to qualify local execution. It exercises actual source edits/Git diffs/process results, a built-CLI flow, failing-test repair, stale-evidence rejection, resume, impossible tasks, scope/credential attacks and OS-denial behavior. Mock transcripts are fixed fixtures, not autonomous model performance measurements. Tests never use your configured provider account.
 
 See [the audit](../../docs/fab/FAB-REUSE-AUDIT.md), [architecture](../../docs/fab/FAB-ARCHITECTURE.md), [security design](../../docs/fab/FAB-SECURITY.md), [product specification](../../docs/fab/FAB-PRODUCT-SPEC.md), [implementation plan](../../docs/fab/FAB-IMPLEMENTATION-PLAN.md) and [qualification record](../../docs/fab/FAB-QUALIFICATION.md).

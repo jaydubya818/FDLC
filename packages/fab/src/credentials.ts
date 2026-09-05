@@ -21,11 +21,15 @@ export class Redactor {
       .replace(/((?:authorization|api[_-]?key|password|secret|access[_-]?token)\s*["']?\s*[:=]\s*["']?)(?:Bearer\s+)?[^\s,"';}]+/gi, '$1[REDACTED]')
       .replace(/https?:\/\/[^\s/@]+:[^\s/@]+@/g, 'https://[REDACTED]@');
   }
-  value<T>(value: T): T {
-    if (value instanceof Error) return this.value({ name: value.name, message: value.message, stack: value.stack, ...Object.fromEntries(Object.entries(value)), cause: value.cause }) as T;
+  value<T>(value: T, seen = new WeakSet<object>()): T {
+    if (value && typeof value === 'object') {
+      if (seen.has(value)) return '[Circular]' as T;
+      seen.add(value);
+    }
+    if (value instanceof Error) return this.value({ name: value.name, message: value.message, stack: value.stack, ...Object.fromEntries(Object.entries(value)), cause: value.cause }, seen) as T;
     if (typeof value === 'string') return this.text(value) as T;
-    if (Array.isArray(value)) return value.map(item => this.value(item)) as T;
-    if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([key, item]) => [this.text(key), this.value(item)])) as T;
+    if (Array.isArray(value)) return value.map(item => this.value(item, seen)) as T;
+    if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([key, item]) => [this.text(key), this.value(item, seen)])) as T;
     return value;
   }
   terminal(value: string): string {

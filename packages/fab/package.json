@@ -35,6 +35,7 @@
     "lint": "eslint src test bin",
     "pretest": "npm run build",
     "test": "node --test test/*.test.ts",
-    "test:contained": "npm run build && FAB_TEST_CONTAINMENT=1 node --test test/*.test.ts"
+    "test:contained": "npm run build && FAB_TEST_CONTAINMENT=1 FAB_TEST_KEYCHAIN=1 node --test test/*.test.ts",
+    "test:provider": "node --test test/models.test.ts test/qualification.test.ts"
   }
 }

@@ -72,7 +72,7 @@ export function requestBody(provider: ProviderId, model: string, messages: Messa
       if (message.role === 'user') return message;
       return { role: 'assistant', content: message.content || null, ...(message.calls.length ? { tool_calls: message.calls.map(call => ({ id: call.id, type: 'function', function: { name: call.name, arguments: JSON.stringify(call.arguments) } })) } : {}) };
     })],
-    tools: tools.map(tool => ({ type: 'function', function: tool })), parallel_tool_calls: false,
+    ...(tools.length ? { tools: tools.map(tool => ({ type: 'function', function: tool })), parallel_tool_calls: false } : {}),
   };
   return {
     model, max_tokens: 4096, system: SYSTEM, stream: false,
@@ -84,7 +84,7 @@ export function requestBody(provider: ProviderId, model: string, messages: Messa
         ...message.calls.map(call => ({ type: 'tool_use', id: call.id, name: call.name, input: call.arguments })),
       ] };
     }),
-    tools: tools.map(tool => ({ name: tool.name, description: tool.description, input_schema: tool.parameters })),
+    ...(tools.length ? { tools: tools.map(tool => ({ name: tool.name, description: tool.description, input_schema: tool.parameters })) } : {}),
   };
 }
 

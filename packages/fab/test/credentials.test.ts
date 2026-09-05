@@ -9,6 +9,8 @@ import { fixture, TEST_KEY } from './helpers.ts';
 import { SessionStore } from '../src/sessions.ts';
 import { newSession } from '../src/agent.ts';
 import { parseConfig } from '../src/validation.ts';
+import { runCheck } from '../src/checks.ts';
+import { Repository } from '../src/repository.ts';
 
 test('secure-store binding, rotation, deletion, metadata and explicit source precedence', async t => {
   const f = fixture({ 'index.js': '1\n' }); t.after(f.cleanup);
@@ -51,6 +53,48 @@ test('adversarial redaction covers all persisted channels and provider-style par
   const persisted = readFileSync(path.join(store.directory, session.id + '.json'), 'utf8');
   const terminal = redactor.terminal(JSON.stringify(redactor.value(session)));
   for (const variant of variants) { assert(!persisted.includes(variant)); assert(!terminal.includes(variant)); }
+  const circular = new Error(key); circular.cause = circular;
+  assert(!JSON.stringify(redactor.value(circular)).includes(key));
+});
+
+test('real check stdout and stderr redact a credential reconstructed by project code', { skip: process.env.FAB_TEST_CONTAINMENT !== '1' }, async t => {
+  const f = fixture({ 'index.js': '1\n' }); t.after(f.cleanup);
+  const redactor = new Redactor(); redactor.register(TEST_KEY);
+  const source = `const value = String.fromCharCode(${[...TEST_KEY].map(c => c.charCodeAt(0)).join(',')}); console.log(value); console.error(value);`;
+  const result = await runCheck(new Repository(f.root), { id: 'echo', argv: [process.execPath, '-e', source] }, 5000, redactor, new AbortController().signal);
+  assert.equal(result.status, 'passed'); assert.match(result.stdout, /REDACTED/); assert.match(result.stderr, /REDACTED/); assert(!JSON.stringify(result).includes(TEST_KEY));
+});
+
+test('masked enrollment input never echoes a synthetic key in a real terminal', { skip: process.env.FAB_TEST_CONTAINMENT !== '1' }, () => {
+  const script = `import os, pty, select, sys, json, time, signal
+request = json.load(sys.stdin)
+pid, terminal = pty.fork()
+if pid == 0:
+    code = 'import {readMaskedCredential} from ' + json.dumps(request['module']) + '; const key = await readMaskedCredential(); console.log("LENGTH=" + key.length);'
+    os.execve(request['node'], [request['node'], '--input-type=module', '-e', code], {'PATH':'/usr/bin:/bin','HOME':'/nonexistent'})
+output = b''
+sent = False
+try:
+    deadline = time.monotonic() + 5
+    while time.monotonic() < deadline:
+        if not select.select([terminal], [], [], 0.1)[0]: continue
+        try: chunk = os.read(terminal, 4096)
+        except OSError: break
+        if not chunk: break
+        output += chunk
+        if not sent and b'input hidden' in output:
+            os.write(terminal, request['key'].encode() + bytes([13]))
+            sent = True
+    else: os.kill(pid, signal.SIGKILL)
+    _, status = os.waitpid(pid, 0)
+    print(json.dumps({'exit':os.waitstatus_to_exitcode(status), 'echoed':request['key'].encode() in output, 'lengthObserved':('LENGTH='+str(len(request['key']))).encode() in output}))
+finally: os.close(terminal)
+`;
+  const result = JSON.parse(execFileSync('/usr/bin/python3', ['-c', script], {
+    input: JSON.stringify({ node: process.execPath, module: new URL('../dist/masked-input.js', import.meta.url).href, key: TEST_KEY }), encoding: 'utf8', timeout: 10000,
+    env: { PATH: '/usr/bin:/bin', HOME: '/nonexistent' },
+  }));
+  assert.deepEqual(result, { exit: 0, echoed: false, lengthObserved: true });
 });
 
 test('native macOS keychain stores, rotates and deletes only synthetic data in an isolated keychain', { skip: process.env.FAB_TEST_KEYCHAIN !== '1' }, async t => {

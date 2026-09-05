@@ -1,6 +1,6 @@
 import type { CredentialProvider, FabConfig, Message, ModelReply, ToolDefinition, Usage } from './types.ts';
 import { HttpModelProvider, addUsage } from './models.ts';
-import { Redactor } from './credentials.ts';
+import { EnvironmentCredentialProvider, Redactor } from './credentials.ts';
 import { FabError } from './validation.ts';
 
 export interface QualificationCheck { name: string; status: 'PASS' | 'FAIL' | 'NOT RUN'; mode: 'live' | 'contract' | 'unsupported'; detail: string }
@@ -53,6 +53,41 @@ export async function qualifyProvider(input: { config: FabConfig; credentials: C
     report.status = report.checks.some(item => item.status === 'FAIL') ? 'FAIL' : 'PASS';
   }
   for (const name of ['token streaming', 'reasoning controls', 'provider context-window discovery', 'native structured-response mode']) report.checks.push({ name, status: 'NOT RUN', mode: 'unsupported', detail: 'Not implemented; no support claim.' });
+  report.checks.push(...await qualifyContracts(config));
+  if (report.checks.some(item => item.status === 'FAIL')) report.status = 'FAIL';
   report.completedAt = new Date().toISOString(); report.latencyMs = Date.now() - started;
   return redactor.value(report);
+}
+
+/** Faults use a separate synthetic credential and transport, never the enrolled key or network. */
+async function qualifyContracts(config: FabConfig): Promise<QualificationCheck[]> {
+  const redactor = new Redactor(); const key = 'qualification-non-secret-fixture-729105';
+  const reference = { ...config.credential, id: 'qualification-fixture', source: { kind: 'environment' as const, variable: 'FAB_QUALIFICATION_FIXTURE' } };
+  const credentials = new EnvironmentCredentialProvider(reference, redactor, { FAB_QUALIFICATION_FIXTURE: key });
+  const checks: QualificationCheck[] = [];
+  const model = (fetchImpl: typeof fetch, timeoutMs = 60000) => new HttpModelProvider({ provider: config.provider, model: config.model, credentials, reference, redactor, fetchImpl, timeoutMs });
+  const exercise = async (name: string, run: () => Promise<boolean>) => {
+    let pass = false; try { pass = await run(); } catch { /* Failure is recorded without exception content. */ }
+    checks.push({ name, status: pass ? 'PASS' : 'FAIL', mode: 'contract', detail: 'Synthetic credential and fault-injected transport; no live provider request.' });
+  };
+  const rejectsSafely = async (operation: Promise<unknown>) => { try { await operation; return false; } catch (error) { return !JSON.stringify(redactor.value(error)).includes(key); } };
+  await exercise('provider error redaction', async () => rejectsSafely(model(async () => new Response(key, { status: 401 })).invoke([], [], new AbortController().signal)));
+  await exercise('transport exception redaction', async () => rejectsSafely(model(async () => { throw new Error(key, { cause: new Error(key) }); }).invoke([], [], new AbortController().signal)));
+  await exercise('cancellation before inference', async () => {
+    let called = false; const rejected = await rejectsSafely(model(async () => { called = true; throw new Error('Unexpected invocation'); }).invoke([], [], AbortSignal.abort())); return rejected && !called;
+  });
+  await exercise('request timeout', async () => {
+    const keepAlive = setInterval(() => {}, 1000);
+    try { return await rejectsSafely(model(async () => new Promise(() => {}), 10).invoke([], [], new AbortController().signal)); }
+    finally { clearInterval(keepAlive); }
+  });
+  await exercise('context byte budget', async () => {
+    let called = false; const rejected = await rejectsSafely(model(async () => { called = true; throw new Error('Unexpected invocation'); }).invoke([{ role: 'user', content: 'x'.repeat(210000) }], [], new AbortController().signal)); return rejected && !called;
+  });
+  await exercise('evidence and partial-echo redaction', async () => {
+    const variants = [key, key.slice(0, 8), key.slice(-8), Buffer.from(key).toString('base64')];
+    const serialized = JSON.stringify(redactor.value({ stdout: variants, stderr: variants, trace: variants, error: new Error(key) }));
+    return variants.every(value => !serialized.includes(value));
+  });
+  return checks;
 }
