@@ -2,7 +2,8 @@ import { categoryComparison, categoryTransitions } from "../../data/fdlc";
 
 export function CategoryDistinction() {
   return <>
-    <div className="category-table-shell">
+    {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- The scroll region needs focus for native keyboard scrolling. */}
+    <div className="category-table-shell" role="region" aria-label="Category comparison" tabIndex={0}>
       <table className="category-table">
         <thead>
           <tr><th scope="col">Category</th>{categoryComparison.map((item) => <th scope="col" key={item.name}>{item.name}</th>)}</tr>

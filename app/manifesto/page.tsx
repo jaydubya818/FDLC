@@ -38,7 +38,7 @@ export default function ManifestoPage() {
     </nav>
     <ol className="manifesto-list">{manifesto.map((item) => <li id={`principle-${item.number}`} key={item.number}>
       <span>{String(item.number).padStart(2, "0")}</span>
-      <div><p className="manifesto-principle-topic">{principleIndex[item.number - 1]}</p><h2>{item.principle}</h2><p>{item.explanation}</p><aside><strong>Implementation implication</strong><p>{item.implication}</p></aside></div>
+      <div><p className="manifesto-principle-topic">{principleIndex[item.number - 1]}</p><h2>{item.principle}</h2><p>{item.explanation}</p><aside aria-label={`Implementation implication for principle ${item.number}`}><strong>Implementation implication</strong><p>{item.implication}</p></aside></div>
     </li>)}</ol>
     <section className="manifesto-invariant">
       <StateBoundary eyebrow="The operational invariant" explanation="These are distinct states with distinct owners and evidence requirements. Collapsing them turns a governed factory into faster guessing." mode="primary" warning="Autonomy without evidence is just faster guessing." />
