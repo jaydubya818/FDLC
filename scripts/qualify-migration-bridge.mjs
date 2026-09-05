@@ -5,6 +5,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { chromium } from "playwright";
 import { approvedBaselineFailure, validateBaselineException } from "../lib/migration-baseline-exception.ts";
+import { isSuccessfulGuidePrefetchCancellation } from "../lib/migration-browser-network.ts";
 
 const options = Object.fromEntries(process.argv.slice(2).map((argument) => {
   const separator = argument.indexOf("=");
@@ -31,7 +32,7 @@ const result = {
   startedAt: new Date().toISOString(), edition, guideOrigin, fdlcOrigin, canonicalOrigin,
   expectedGuideDeployment: options.deployment ?? null,
   expectedAssetPrefix: prefix, anonymous: true, checks: [], pages: [], assets: [],
-  console: [], pageErrors: [], networkFailures: [], failures: [], acceptedBaselineExceptions: [],
+  console: [], pageErrors: [], networkFailures: [], successfulPrefetchCancellations: [], failures: [], acceptedBaselineExceptions: [],
   attributionLimit: "Public response bytes and asset hashes are recorded; deployment identity requires separate immutable deployment/config evidence.",
 };
 const check = (name, condition, actual) => {
@@ -54,15 +55,31 @@ try {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
   check("fresh browser context has no cookies", (await context.cookies()).length === 0);
   const page = await context.newPage();
+  const requestPages = new WeakMap();
+  page.on("request", (request) => requestPages.set(request, page.url()));
   const expected404 = new URL("/guide/bridge-qualification-no-such-page", guideOrigin).href;
   page.on("pageerror", (error) => result.pageErrors.push({ page: page.url(), message: error.message }));
   page.on("console", (message) => {
     if (!["error", "warning"].includes(message.type())) return;
     result.console.push({ type: message.type(), page: page.url(), message: message.text(), location: message.location() });
   });
-  page.on("requestfailed", (request) => result.networkFailures.push({
-    page: page.url(), url: request.url(), type: request.resourceType(), error: request.failure()?.errorText,
-  }));
+  page.on("requestfailed", (request) => {
+    const job = (async () => {
+      const response = await request.response();
+      const headers = request.headers();
+      const responseHeaders = response?.headers() ?? {};
+      const observation = {
+        pageUrl: requestPages.get(request) ?? "", url: request.url(), method: request.method(),
+        type: request.resourceType(), isNavigationRequest: request.isNavigationRequest(), error: request.failure()?.errorText,
+        requestHeaders: Object.fromEntries(["rsc", "next-router-prefetch", "next-router-segment-prefetch", "next-router-state-tree", "next-action"].filter((key) => headers[key] !== undefined).map((key) => [key, headers[key]])),
+        response: response ? { url: response.url(), status: response.status(), headers: Object.fromEntries(["content-type", "vary"].filter((key) => responseHeaders[key] !== undefined).map((key) => [key, responseHeaders[key]])) } : null,
+      };
+      if (isSuccessfulGuidePrefetchCancellation(observation, guideOrigin)) result.successfulPrefetchCancellations.push(observation);
+      else result.networkFailures.push(observation);
+    })().catch((error) => result.failures.push({ name: "failed request inspection", message: error.message }));
+    pendingResponses.add(job);
+    void job.finally(() => pendingResponses.delete(job));
+  });
   page.on("response", (response) => {
     const job = (async () => {
       const request = response.request();
@@ -130,6 +147,7 @@ try {
     : ["/guide/architecture", "/guide/atlas", "/guide/topics", "/guide/coverage", "/guide/glossary", "/guide/search"];
   for (const path of [...new Set([...paths, ...supplementary])]) {
     await inspect(path);
+    if (edition === "new") await inspect(path, { reload: true });
     process.stdout.write(`Checked desktop ${path}\n`);
   }
   await inspect(chapterPath);
@@ -147,7 +165,10 @@ try {
   await page.locator(".mermaid-diagram svg").first().waitFor({ timeout: 20_000 });
   check("Mermaid SVG rendered", await page.locator(".mermaid-diagram svg").count() > 0);
   check("no Mermaid fallback", await page.locator(".mermaid-fallback").count() === 0);
-  await page.getByRole("link", { name: /Guide home$/i }).first().click();
+  const guideHome = edition === "old"
+    ? page.getByRole("link", { name: /Guide home$/i }).first()
+    : page.getByRole("navigation", { name: "Primary navigation", exact: true }).getByRole("link", { name: "Guide", exact: true });
+  await guideHome.click();
   await page.waitForLoadState("networkidle");
   check("Guide home stays in Guide", new URL(page.url()).origin === guideOrigin && /guide/i.test(await page.title()), page.url());
 
@@ -159,6 +180,7 @@ try {
   await page.setViewportSize({ width: 390, height: 844 });
   for (const path of [...new Set([...paths, ...supplementary])]) {
     await inspect(path);
+    if (edition === "new") await inspect(path, { reload: true });
     process.stdout.write(`Checked mobile ${path}\n`);
   }
   await inspect("/guide");
@@ -177,8 +199,10 @@ try {
   // Evaluate Guide-only requests before visiting the other application.
   await Promise.all([...pendingResponses]);
   result.assets = [...managedAssets.values()];
+  result.guideAssets = [...managedAssets.values()];
   check("all Guide managed assets use expected namespace", result.assets.every((asset) => new URL(asset.url).pathname.startsWith(prefix)));
   check("all Guide managed assets successful", result.assets.every((asset) => asset.status === 200));
+  check("all Guide managed asset bodies hashed", result.assets.every((asset) => /^[a-f0-9]{64}$/.test(asset.sha256 ?? "") && !asset.bodyError));
 
   if (fdlcOrigin) {
     await page.goto(fdlcOrigin, { waitUntil: "networkidle" });

@@ -1,9 +1,40 @@
 # FDLC / Guide migration bridge release plan
 
-Status: **QUALIFICATION IN PROGRESS — limited old-Guide exception approved.**
+Status: **BLOCKED — additional immutable-old-Guide keyboard exception requires explicit approval.**
 
-No Production authorization. No promotion, alias movement, environment/protection
-change, remote branch push, PR creation or deployment has occurred in this task.
+No Production authorization. The dedicated non-main bridge branch has been
+pushed, and its Preview deployment is READY with MFE configuration success.
+Both dedicated PRs are open as drafts and remain unmerged. No Production promotion, canonical alias movement,
+Production environment change, protection change or QA bypass has occurred.
+Preview-scoped non-secret environment pins were added only to
+`codex/fdlc-guide-migration-bridge`: Guide Preview approval, trusted digest/source
+and standalone canonical; FDLC's origin override names the observed Guide branch
+alias. No Production-scoped environment entries were added.
+
+## New authority boundary: immutable old-Guide modal focus
+
+Additional keyboard testing found that the unchanged current Guide's search
+dialog does not contain focus. Four fresh cookie-free visits (1280px and 390×844,
+two rounds each) reproduced eight escapes: Shift+Tab reaches the background
+Search trigger and forward Tab reaches the background theme button while the
+dialog remains open with `aria-modal="true"`. Escape still closes the dialog and
+restores trigger focus. The exact old document identity and bare immutable asset
+URLs were retained in `2026-09-05-migration-bridge-old-guide-focus-evidence.json`.
+
+This is outside the previously approved hydration/ID/overflow exception. It must
+not be silently accepted by the harness or called SAFE. The requested additional
+decision is a temporary exception for this existing keyboard-focus defect only
+while `dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur` remains active behind the bridge. No such
+additional exception has been approved or implemented. All new/final Guide
+candidates still require correct modal focus and complete requalification.
+
+The repaired Guide has a local corrective checkpoint
+`221766d7b990ff8015244de516f6a081f770c17c`, after anchor/mobile repair
+`8cf00f9e1882fb01af58d22a95881d4833d39d06`. Independent source review, lint,
+typecheck and whitespace checks passed for the two-file keyboard repair. Its
+native/browser rebuild and hosted requalification remain pending; the keyboard
+checkpoint has not been pushed or deployed. Production approval is not requested
+at this boundary.
 
 ## Approved temporary baseline exception
 
@@ -50,41 +81,73 @@ as an initial harness false positive; its exact URL/status have been verified,
 and the harness now classifies only that expected 404 separately. It does not
 explain or excuse the hydration, duplicate-ID or overflow failures.
 
-### New-Guide corrective engineering remains outstanding
+### New-Guide corrections implemented; review and requalification pending
 
 The exact `7b9f00beda0eab41348c8650a61009c6ab630fbf` local native build fixes the
 stack chapter's nested-anchor hydration error. Independent desktop/mobile,
-direct/reload checks still reproduce the changelog IDs and chapter06's 572px
-document width at a 390px viewport. Unique document-wide heading IDs and wrapping
-of long inline code require source fixes and full requalification. These ordinary
-engineering fixes are already within the task's authorization; they are not a
-second permission request. They cannot repair the required immutable old artifact.
+direct/reload checks reproduced the remaining changelog IDs and chapter06's 572px
+document width at a 390px viewport. The isolated corrective source now uses one
+document-wide heading-ID allocator for rendering, TOC and search, preserving first
+anchors and avoiding suffix collisions. A targeted inline-code wrapping rule
+preserves preformatted-code and Mermaid scrolling. No Guide content, Mission
+Control source, snapshot, MFE prefix/configuration, gates or environment files were
+changed.
+
+The nine-file repair is in
+`/tmp/guide-bridge-compat-qualification.eO34aY/repo/.worktrees/codex/fdlc-guide-bridge-compat-source`.
+Its first corrective SHA is `8cf00f9e1882fb01af58d22a95881d4833d39d06`, with
+independent architecture/security/simplicity review PASS. The later two-file
+keyboard checkpoint and pending runtime gates are recorded above. Full
+bridge/new-Guide acceptance is not certified. Passing
+source checks do not certify that mixed-version state. These authorized fixes do
+not alter the immutable old Guide or extend its temporary exception to a new
+candidate.
 
 ### Completed source checks and independent review
 
-- Bridge unit tests: 33/33; rendered tests: 17/17; lint, typecheck, native Next
+- Bridge unit tests: 64/64 (including strict network-evidence tests); earlier
+  rendered tests: 17/17; lint, typecheck, native Next
   webpack build and whitespace checks passed. Local Turbopack encountered a host
-  process/port EPERM restriction; the ordinary Vercel compiler remains unqualified.
+  process/port EPERM restriction. The subsequent git-backed bridge Preview build
+  completed and reports READY/MFE success; full hosted-state qualification is
+  still pending.
 - Unchanged Guide standard checks: 62/62 unit tests; snapshot, links, editorial,
   lint, Vinext build, native build/smoke browser tests and typecheck passed. These
   narrower checks did not cover the newly reproduced ID/mobile defects.
+- Repaired Guide source: 66/66 tests passed, including collision cases,
+  corpus-wide duplicate-ID and search-anchor checks. Native Next webpack build
+  generated 81/81 pages. Native browser checks passed for duplicate headings,
+  chapter06 direct load/reload at 390×844, pre/Mermaid scrolling, hydration,
+  console/page/asset errors, search, theme persistence and custom 404. Vinext
+  build, lint, standalone typecheck, local links, editorial integrity, snapshot
+  validation and whitespace checks passed. The final standalone typecheck ran
+  after native generation, avoiding competing Vinext-generated `.next` types;
+  `next-env.d.ts` remains unchanged.
 - Architecture's page-alias and sitemap findings were fixed and re-reviewed.
-  Source security and simplicity are GO within scope; documentation is GO as a
-  NO-GO record. None of these reviews constitutes full release qualification.
+  Prior bridge-source security and simplicity reviews are GO within scope; the
+  earlier documentation review approved the bounded NO-GO record. Repaired-Guide
+  independent source reviews pass; updated release-record review remains pending. None of
+  these reviews constitutes full release qualification.
 - Mission Control diff is empty. No credential or `.vercel` artifacts were added.
-- Final read-only alias verification still maps FDLC to `dpl_GvmTzMNUmpKt3825k69MUgL6YwTX`
-  and Guide to `dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur`.
+- The 2026-09-05 19:19 UTC read-only Production verification maps FDLC to
+  `dpl_GvmTzMNUmpKt3825k69MUgL6YwTX` / `e4112bb06333b8244c18fc4a9736b1f3c807bc78`
+  and Guide to `dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur` /
+  `87d3841f96353d03278311dfc7e7b2d25649a331`. Reverification at qualification
+  completion remains required.
 
 ## Scope and immutable baseline
 
-This change is routing compatibility only. It does not change Guide content,
-FDLC presentation, Mission Control, Production settings, protection, credentials,
-or canonical aliases. No Production deployment may be promoted during this task.
+The FDLC bridge is routing compatibility only; the separate Guide repair is
+limited to heading-anchor correctness and inline-code wrapping. Neither changes
+Guide content, FDLC presentation, Mission Control, Production settings, protection,
+credentials, or canonical aliases. No Production deployment may be promoted during
+this task.
 
 | Role | Source SHA | Existing deployment |
 | --- | --- | --- |
 | Current FDLC / rollback | `e4112bb06333b8244c18fc4a9736b1f3c807bc78` | `dpl_GvmTzMNUmpKt3825k69MUgL6YwTX` |
 | Current Guide / rollback | `87d3841f96353d03278311dfc7e7b2d25649a331` | `dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur` |
+| Bridge Preview checkpoint | `982c5626a301792d00accf1d05d23327b6296067` | `dpl_7UcCC1vE5YScr3eMYZL1fPfWACft` — READY/MFE success, not full release qualification |
 | Final FDLC source | `8057d1fd2c9aafaad309488aaa6038bd61b61e57` | `dpl_3citBEKomhN1hhtDk9QR1CZqF4Ru` (not yet recertified) |
 | New Guide baseline source | `7b9f00beda0eab41348c8650a61009c6ab630fbf` | Corrective descendant and both build modes require separate qualification |
 
@@ -93,7 +156,9 @@ Final normalized configuration / Guide snapshot digest:
 `e63f913563c1864feac38c7786e06d146892d34a4f0f74179999ff1d565e7e8b`.
 Bridge normalized configuration digest:
 `794d525585a7f491e520b1332b3347e85f88cb580db6ef46883c918ed6e8458f`.
-Bridge source SHA and exact qualified deployments: pending, not approved.
+Bridge Preview URL: `https://fdlc-jm35xg5ma-jaydubya818.vercel.app`.
+The checkpoint source/deployment above is recorded, but exact fully qualified
+forward/reverse candidate pairs remain pending and are not approved.
 
 ## Why another sequential attempt is unsafe
 
@@ -136,7 +201,7 @@ configuration from resolving back to Guide while host isolation is active.
 | FDLC | Current Guide | Guide-compatible (new source) | Guide-final (new source) |
 | --- | --- | --- | --- |
 | Current | Baseline with explicitly approved old-Guide exceptions; no composition change | UNSAFE for target composition | UNSAFE: observed old FDLC fallback |
-| Bridge | UNPROVEN: old-Guide exception is approved, but routing/asset/browser qualification must still pass | UNPROVEN: standalone Guide ownership | UNSAFE: relative FDLC links conflict on Guide origin |
+| Bridge | BLOCKED / UNPROVEN: earlier suites passed approved exceptions, but expanded keyboard coverage found an additional unapproved old-artifact defect | UNPROVEN: initial repaired Preview composes correctly; keyboard repair runtime/full hosted requalification pending | UNSAFE: relative FDLC links conflict on Guide origin |
 | Final | UNSAFE: old root-relative links and asset ownership | UNPROVEN: composed Guide with standalone canonical during bounded transition | UNPROVEN: intended final composed authority |
 
 For each intended state, qualification must record landing and all authoritative
@@ -206,6 +271,32 @@ qualified artifacts; no ad hoc patch or rebuild is authorized during cutover.
 
 ## Qualification and evidence limits
 
+Completed native local evidence:
+
+- `/tmp/fdlc-migration-bridge.2CP43B/bridge-old-native/acceptance.json` reports
+  `PASS_WITH_APPROVED_OLD_GUIDE_BASELINE_EXCEPTIONS`: 1,531 checks, 151 visits,
+  eight exact accepted baseline exceptions and no unexpected failures. All 32/32
+  observed Guide JS/CSS assets are byte-identical to the exact old-Guide baseline.
+  The run finished at 19:22:34 UTC on 2026-09-05.
+- `/tmp/fdlc-migration-bridge.2CP43B/fdlc-regression-old-guide-qualified/fdlc-acceptance.json`
+  reports PASS: 4,061 checks and 84 visits across all 13 FDLC routes, including
+  Mission Control tabs/capabilities and full desktop/390×844 regression checks.
+  There were no unexpected errors; four preload warnings and two expected
+  custom-404 console responses remain recorded. The run finished at 19:31:26 UTC
+  on 2026-09-05.
+
+These runs used native local MFE routing. Asset bytes are evidence of agreement
+with the old baseline, not independent proof of Vercel's Production-current
+selector. Immutable deployment/config metadata, hosted mixed-state acceptance
+and recent runtime logs remain separate gates. The FDLC suite's old-Guide return
+check uses browser Back: the unchanged old Guide has no FDLC-home link, so it does
+not certify a nonexistent navigation control. Preview READY/MFE success proves
+the recorded Preview build/config state, not the full compatibility matrix or
+anonymous Production behavior. The new Guide full bridge run has no recorded
+passing result yet.
+
+Requirements that must be complete for each qualified candidate/state:
+
 - Run deterministic host, route, redirect privacy, assets and missing/stale-config
   tests; lint, typecheck, unit/rendered tests, native Next and Vercel-style builds.
 - Run cookie-free real-browser acceptance with error listeners retained across
@@ -227,7 +318,10 @@ qualified artifacts; no ad hoc patch or rebuild is authorized during cutover.
 ## PR and lifecycle
 
 Dedicated branch: `codex/fdlc-guide-migration-bridge`, based on current FDLC main.
-PR: pending. Keep unmerged: FDLC main autoassigns Production, and the Guide's
+PR: [FDLC #12](https://github.com/jaydubya818/FDLC/pull/12), draft.
+Guide repair: [Guide #12](https://github.com/jaydubya818/ai-software-factory-mastery/pull/12),
+draft stacked on the previously qualified `7b9f00b…` branch to isolate the repair.
+Keep unmerged: FDLC main autoassigns Production, and the Guide's
 companion documentation project also autoassigns Production on main. No merge
 can be treated as source-only under the current project policy.
 
@@ -240,11 +334,15 @@ for the release observation window. A later explicit cleanup release may retire
 them once rollback to this migration is no longer required. Do not leave the
 adapter on the final source branch or add permanent feature flags for it.
 
-The bridge branch contains a locally tested source checkpoint.
-It is not a qualified immutable release artifact. Preview/staged qualification,
-exact candidate SHAs/IDs, final-pair acceptance and a release-ready PR remain
-outstanding. Do not mistake implementation progress or source-security review
-for migration approval.
+The bridge branch contains the pushed source checkpoint
+`982c5626a301792d00accf1d05d23327b6296067` and its READY Preview
+`dpl_7UcCC1vE5YScr3eMYZL1fPfWACft`. It is not a fully qualified migration release.
+Full hosted/staged qualification, the repaired Guide's exact source/deployment
+IDs, final-pair and reverse-state acceptance, independent reviews, runtime logs,
+final Production reconfirmation and a release-ready PR remain outstanding.
+Do not mistake local passing suites, a READY Preview or source-security review
+for migration approval. The current blocked record and sanitized focus evidence
+are also retained in the main release workspace.
 
 ## Release gate
 

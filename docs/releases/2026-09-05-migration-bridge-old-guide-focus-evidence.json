@@ -1,0 +1,721 @@
+{
+  "startedAt": "2026-09-05T19:53:30.575Z",
+  "origin": "https://ai-software-factory-mastery.vercel.app",
+  "expectedDeployment": "dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur",
+  "expectedSource": "87d3841f96353d03278311dfc7e7b2d25649a331",
+  "identityLimit": "Expected deployment/source are from the separately verified current Production metadata; public page/asset URLs and hashes are recorded here, not an independently exposed deployment-ID header.",
+  "visits": [
+    {
+      "width": 1280,
+      "round": 1,
+      "cookiesBefore": 0,
+      "url": "https://ai-software-factory-mastery.vercel.app/",
+      "status": 200,
+      "title": "The AI Software Factory Guide",
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "htmlSha256": "2eaff0adcaa7b096d7540b37b9463cb03982d302984003074e13b43ca8b80c66",
+      "publicHeaders": {
+        "x-matched-path": "/",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "sfo1::c8d8r-1788638010843-6d35b3590ad7"
+      },
+      "assetUrls": [
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/20-q9ua8x_std.css",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2trvcokof4iy6.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/turbopack-1s9e9p9-awa-3.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1sizbqpwhzwhd.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3swe6s5dnteh_.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/21en880woklcv.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2-oi_vs57vxss.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1620fi2lrpdvr.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1hm2w4pqx6nzd.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1muyq8-z-_iwm.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/137ummfue5qox.js"
+      ],
+      "ariaModal": "true",
+      "optionCount": 12,
+      "backward": {
+        "dialogStillOpen": true,
+        "focusInsideDialog": false,
+        "focusedElement": "<button aria-controls=\"command-palette\" aria-expanded=\"true\" aria-haspopup=\"dialog\" class=\"command-trigger\" type=\"button\"><span>Search</span><kbd>⌘K</kbd></button>"
+      },
+      "escapeAfterBackwardRestoresTrigger": true,
+      "forward": [
+        {
+          "step": 1,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": "is-active"
+        },
+        {
+          "step": 2,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 3,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 4,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 5,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 6,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 7,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 8,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 9,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 10,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 11,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 12,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 13,
+          "dialogStillOpen": true,
+          "focusInsideDialog": false,
+          "focusedTag": "BUTTON",
+          "focusedRole": null,
+          "focusedName": "Use dark theme",
+          "focusedClass": "icon-button theme-toggle"
+        }
+      ],
+      "escapeAfterForwardRestoresTrigger": true
+    },
+    {
+      "width": 1280,
+      "round": 2,
+      "cookiesBefore": 0,
+      "url": "https://ai-software-factory-mastery.vercel.app/",
+      "status": 200,
+      "title": "The AI Software Factory Guide",
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "htmlSha256": "2eaff0adcaa7b096d7540b37b9463cb03982d302984003074e13b43ca8b80c66",
+      "publicHeaders": {
+        "x-matched-path": "/",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "sfo1::2xqdx-1788638012050-8b3362260760"
+      },
+      "assetUrls": [
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/20-q9ua8x_std.css",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2trvcokof4iy6.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/turbopack-1s9e9p9-awa-3.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1sizbqpwhzwhd.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3swe6s5dnteh_.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/21en880woklcv.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2-oi_vs57vxss.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1620fi2lrpdvr.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1hm2w4pqx6nzd.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1muyq8-z-_iwm.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/137ummfue5qox.js"
+      ],
+      "ariaModal": "true",
+      "optionCount": 12,
+      "backward": {
+        "dialogStillOpen": true,
+        "focusInsideDialog": false,
+        "focusedElement": "<button aria-controls=\"command-palette\" aria-expanded=\"true\" aria-haspopup=\"dialog\" class=\"command-trigger\" type=\"button\"><span>Search</span><kbd>⌘K</kbd></button>"
+      },
+      "escapeAfterBackwardRestoresTrigger": true,
+      "forward": [
+        {
+          "step": 1,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": "is-active"
+        },
+        {
+          "step": 2,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 3,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 4,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 5,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 6,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 7,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 8,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 9,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 10,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 11,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 12,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 13,
+          "dialogStillOpen": true,
+          "focusInsideDialog": false,
+          "focusedTag": "BUTTON",
+          "focusedRole": null,
+          "focusedName": "Use dark theme",
+          "focusedClass": "icon-button theme-toggle"
+        }
+      ],
+      "escapeAfterForwardRestoresTrigger": true
+    },
+    {
+      "width": 390,
+      "round": 1,
+      "cookiesBefore": 0,
+      "url": "https://ai-software-factory-mastery.vercel.app/",
+      "status": 200,
+      "title": "The AI Software Factory Guide",
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "htmlSha256": "2eaff0adcaa7b096d7540b37b9463cb03982d302984003074e13b43ca8b80c66",
+      "publicHeaders": {
+        "x-matched-path": "/",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "sfo1::qnvg4-1788638013079-7e1a64ae3f41"
+      },
+      "assetUrls": [
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/20-q9ua8x_std.css",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2trvcokof4iy6.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/turbopack-1s9e9p9-awa-3.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1sizbqpwhzwhd.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3swe6s5dnteh_.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/21en880woklcv.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1hm2w4pqx6nzd.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1muyq8-z-_iwm.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/137ummfue5qox.js"
+      ],
+      "ariaModal": "true",
+      "optionCount": 12,
+      "backward": {
+        "dialogStillOpen": true,
+        "focusInsideDialog": false,
+        "focusedElement": "<button aria-controls=\"command-palette\" aria-expanded=\"true\" aria-haspopup=\"dialog\" class=\"command-trigger\" type=\"button\"><span>Search</span><kbd>⌘K</kbd></button>"
+      },
+      "escapeAfterBackwardRestoresTrigger": true,
+      "forward": [
+        {
+          "step": 1,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": "is-active"
+        },
+        {
+          "step": 2,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 3,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 4,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 5,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 6,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 7,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 8,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 9,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 10,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 11,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 12,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 13,
+          "dialogStillOpen": true,
+          "focusInsideDialog": false,
+          "focusedTag": "BUTTON",
+          "focusedRole": null,
+          "focusedName": "Use dark theme",
+          "focusedClass": "icon-button theme-toggle"
+        }
+      ],
+      "escapeAfterForwardRestoresTrigger": true
+    },
+    {
+      "width": 390,
+      "round": 2,
+      "cookiesBefore": 0,
+      "url": "https://ai-software-factory-mastery.vercel.app/",
+      "status": 200,
+      "title": "The AI Software Factory Guide",
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "htmlSha256": "2eaff0adcaa7b096d7540b37b9463cb03982d302984003074e13b43ca8b80c66",
+      "publicHeaders": {
+        "x-matched-path": "/",
+        "x-vercel-cache": "HIT",
+        "x-vercel-id": "sfo1::mslvj-1788638014155-8f3a0a580a73"
+      },
+      "assetUrls": [
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/20-q9ua8x_std.css",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2trvcokof4iy6.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/turbopack-1s9e9p9-awa-3.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1sizbqpwhzwhd.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3swe6s5dnteh_.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/21en880woklcv.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1hm2w4pqx6nzd.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1muyq8-z-_iwm.js",
+        "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/137ummfue5qox.js"
+      ],
+      "ariaModal": "true",
+      "optionCount": 12,
+      "backward": {
+        "dialogStillOpen": true,
+        "focusInsideDialog": false,
+        "focusedElement": "<button aria-controls=\"command-palette\" aria-expanded=\"true\" aria-haspopup=\"dialog\" class=\"command-trigger\" type=\"button\"><span>Search</span><kbd>⌘K</kbd></button>"
+      },
+      "escapeAfterBackwardRestoresTrigger": true,
+      "forward": [
+        {
+          "step": 1,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": "is-active"
+        },
+        {
+          "step": 2,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 3,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 4,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 5,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 6,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 7,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 8,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 9,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 10,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 11,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 12,
+          "dialogStillOpen": true,
+          "focusInsideDialog": true,
+          "focusedTag": "BUTTON",
+          "focusedRole": "option",
+          "focusedName": null,
+          "focusedClass": ""
+        },
+        {
+          "step": 13,
+          "dialogStillOpen": true,
+          "focusInsideDialog": false,
+          "focusedTag": "BUTTON",
+          "focusedRole": null,
+          "focusedName": "Use dark theme",
+          "focusedClass": "icon-button theme-toggle"
+        }
+      ],
+      "escapeAfterForwardRestoresTrigger": true
+    }
+  ],
+  "errors": [],
+  "finishedAt": "2026-09-05T19:53:34.986Z",
+  "focusEscapes": [
+    {
+      "width": 1280,
+      "round": 1,
+      "direction": "backward",
+      "dialogStillOpen": true,
+      "focusInsideDialog": false,
+      "focusedElement": "<button aria-controls=\"command-palette\" aria-expanded=\"true\" aria-haspopup=\"dialog\" class=\"command-trigger\" type=\"button\"><span>Search</span><kbd>⌘K</kbd></button>"
+    },
+    {
+      "width": 1280,
+      "round": 1,
+      "direction": "forward",
+      "step": 13,
+      "dialogStillOpen": true,
+      "focusInsideDialog": false,
+      "focusedTag": "BUTTON",
+      "focusedRole": null,
+      "focusedName": "Use dark theme",
+      "focusedClass": "icon-button theme-toggle"
+    },
+    {
+      "width": 1280,
+      "round": 2,
+      "direction": "backward",
+      "dialogStillOpen": true,
+      "focusInsideDialog": false,
+      "focusedElement": "<button aria-controls=\"command-palette\" aria-expanded=\"true\" aria-haspopup=\"dialog\" class=\"command-trigger\" type=\"button\"><span>Search</span><kbd>⌘K</kbd></button>"
+    },
+    {
+      "width": 1280,
+      "round": 2,
+      "direction": "forward",
+      "step": 13,
+      "dialogStillOpen": true,
+      "focusInsideDialog": false,
+      "focusedTag": "BUTTON",
+      "focusedRole": null,
+      "focusedName": "Use dark theme",
+      "focusedClass": "icon-button theme-toggle"
+    },
+    {
+      "width": 390,
+      "round": 1,
+      "direction": "backward",
+      "dialogStillOpen": true,
+      "focusInsideDialog": false,
+      "focusedElement": "<button aria-controls=\"command-palette\" aria-expanded=\"true\" aria-haspopup=\"dialog\" class=\"command-trigger\" type=\"button\"><span>Search</span><kbd>⌘K</kbd></button>"
+    },
+    {
+      "width": 390,
+      "round": 1,
+      "direction": "forward",
+      "step": 13,
+      "dialogStillOpen": true,
+      "focusInsideDialog": false,
+      "focusedTag": "BUTTON",
+      "focusedRole": null,
+      "focusedName": "Use dark theme",
+      "focusedClass": "icon-button theme-toggle"
+    },
+    {
+      "width": 390,
+      "round": 2,
+      "direction": "backward",
+      "dialogStillOpen": true,
+      "focusInsideDialog": false,
+      "focusedElement": "<button aria-controls=\"command-palette\" aria-expanded=\"true\" aria-haspopup=\"dialog\" class=\"command-trigger\" type=\"button\"><span>Search</span><kbd>⌘K</kbd></button>"
+    },
+    {
+      "width": 390,
+      "round": 2,
+      "direction": "forward",
+      "step": 13,
+      "dialogStillOpen": true,
+      "focusInsideDialog": false,
+      "focusedTag": "BUTTON",
+      "focusedRole": null,
+      "focusedName": "Use dark theme",
+      "focusedClass": "icon-button theme-toggle"
+    }
+  ]
+}
