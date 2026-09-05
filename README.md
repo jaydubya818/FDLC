@@ -37,3 +37,7 @@ npm test
 - `tests/` — unit and rendered-route checks
 
 Mission Control and the source Guide are separate open-source projects. This site links to them without importing their runtime systems or private material.
+
+## Fab local engineering pilot
+
+The independent [Fab package](packages/fab/README.md) is staged here for local review. It is an experimental CLI with its own build and qualification suite; the website does not import it. The [reuse audit and design](docs/fab/FAB-REUSE-AUDIT.md) explain the boundaries with Mission Control and Factory Engineer.

@@ -35,6 +35,9 @@ yarn-error.log*
 .vercel
 
 /dist/
+/packages/fab/dist/
+/packages/fab/node_modules/
+/packages/fab/*.tgz
 /.wrangler/
 /outputs/
 /work/
