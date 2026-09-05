@@ -68,8 +68,15 @@ const footerLinks = [
 ];
 const routes = ["/", ...primaryLinks.filter(([, path]) => path !== "/guide").map(([, path]) => path), ...secondaryLinks.map(([, path]) => path)];
 const expected404 = new URL("/fdlc-regression-no-such-page", fdlcOrigin).href;
+// Independent, edition-specific source oracle. The frozen final FDLC public
+// capability ledger already differs from the current/bridge publication; never
+// derive expectations from the browser's observed counts or edit that ledger.
+const capabilityContract = mode === "final"
+  ? { source: "8057d1fd2c9aafaad309488aaa6038bd61b61e57", total: 13, groups: [["qualified", 7], ["bounded", 4], ["missing", 2]] }
+  : { source: "e4112bb06333b8244c18fc4a9736b1f3c807bc78", total: 12, groups: [["available", 6], ["experimental", 4], ["planned", 2]] };
 const result = {
   startedAt: new Date().toISOString(), mode, guideEdition, fdlcOrigin, guideOrigin, canonicalOrigin, returnOrigin, resolvedReturnOrigin,
+  capabilityContract,
   expectedFdlcDeployment: options.deployment ?? null, anonymous: true, routes,
   checks: [], pages: [], interactions: [], navigation: [], assets: [], console: [], pageErrors: [], networkFailures: [], speculativeRscCancellations: [], failures: [],
   evidenceLimits: [
@@ -269,8 +276,8 @@ async function missionControl(device) {
   }
   check(`${device}: views render distinct captions`, viewHeadings.size === 3);
   const capabilities = page.locator("#capabilities .mc-capability-group details");
-  check(`${device}: twelve bounded capability disclosures`, await capabilities.count() === 12, await capabilities.count());
-  for (const [status, count] of [["available", 6], ["experimental", 4], ["planned", 2]]) {
+  check(`${device}: ${capabilityContract.total} source-qualified capability disclosures`, await capabilities.count() === capabilityContract.total, await capabilities.count());
+  for (const [status, count] of capabilityContract.groups) {
     check(`${device}: ${status} capability group`, await page.locator(`#capabilities .is-${status} details`).count() === count);
   }
   for (let index = 0; index < await capabilities.count(); index++) {

@@ -35,6 +35,39 @@ export const TRANSITION_STATES = ["current-old", "bridge-old", "bridge-new", "fi
 const identityKeys = ["checkpoint", "state", "guideOrigin", "fdlcOrigin", "guideSource", "fdlcSource", "guideDeployment", "fdlcDeployment"];
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const managedPath = (path) => /^\/(?:_next|vc-ap-dd2962\/_next)\/static\/.+\.(?:js|css)$/.test(path);
+export const TRANSITION_SEARCH_SELECTOR = '.search-experience input[type="search"]';
+const isSearchDocument = (url) => ["/search", "/guide/search"].includes(new URL(url).pathname);
+
+/** Browser callback: a layout rectangle alone does not expose closed details content. */
+export function transitionLinkSnapshots(elements) {
+  return elements.map((element, index) => ({
+    index, href: element.href, raw: element.getAttribute("href"), text: element.textContent?.trim(),
+    inMain: Boolean(element.closest("main")),
+    inArticle: Boolean(element.closest("article.document-article")),
+    visible: !element.closest("details:not([open])") && element.getClientRects().length > 0
+      && typeof element.checkVisibility === "function"
+      && element.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true, contentVisibilityAuto: true }),
+  }));
+}
+
+/** Never serialize arbitrary exception names/messages or user-supplied stage text. */
+export function safeTransitionFailure(error, stage) {
+  const errorNames = ["AssertionError", "TimeoutError", "TypeError", "SyntaxError", "RangeError", "Error"];
+  const stages = ["command", "capture", "retained-identity", "retained-link-visibility", "retained-link-click", "retained-navigation", "direct-load", "reload", "asset-verification"];
+  return { errorName: errorNames.includes(error?.name) ? error.name : "UnknownError", stage: stages.includes(stage) ? stage : "command" };
+}
+
+/**
+ * Compare observed UI state, not a query inferred from the URL.
+ * @param {{url: string, searchInputCount: number, searchInputValue: string | null}} observed
+ * @param {{url: string, searchInputCount: number, searchInputValue: string | null} | null} [baseline]
+ */
+export function transitionSearchStateMatches(observed, baseline = null) {
+  if (!isSearchDocument(observed.url) && !(baseline && isSearchDocument(baseline.url))) return true;
+  return isSearchDocument(observed.url) && observed.searchInputCount === 1 && typeof observed.searchInputValue === "string"
+    && (!baseline || (isSearchDocument(baseline.url) && baseline.searchInputCount === 1
+      && typeof baseline.searchInputValue === "string" && observed.searchInputValue === baseline.searchInputValue));
+}
 
 export function transitionOrigin(value, scope) {
   const url = new URL(value);
@@ -134,6 +167,7 @@ async function main() {
       "An inaccessible protected Preview remains unqualified. No cookies, storage state, bypass, authentication, custom Host or response rewriting are imported.",
       "Historical defects have no generic waiver in this focused transition harness. Full-state acceptance, four-ID exception policy, accessibility, route coverage and runtime logs are separate gates.",
       "Exact observed asset URLs are fetched again without URL rewriting or cache-busting; returned bodies must match their captured SHA-256. Browser caches are retained, not cleared.",
+      "Search URL q values and actual input values are separate observations. Matching input state does not prove that URL q initializes search or loads corresponding results.",
     ],
     phases: [], checks: [], failures: [], console: [], pageErrors: [], networkFailures: [], successfulPrefetchCancellations: [], assets: [],
   };
@@ -141,6 +175,7 @@ async function main() {
   let current = null;
   let finished = false;
   let stopped = false;
+  let currentStage = "command";
   const tabs = [];
   const contexts = [];
   const assetHistory = new Map();
@@ -203,31 +238,42 @@ async function main() {
   }
   async function drainAssets() { while (pendingBodies.size) await Promise.all([...pendingBodies]); }
   async function snapshot(page) {
-    return page.evaluate(() => {
-      const links = [...document.querySelectorAll("a[href]")];
+    const data = await page.evaluate((searchSelector) => {
+      const searchInputs = [...document.querySelectorAll(searchSelector)];
       return {
         url: location.href, title: document.title, h1: document.querySelector("h1")?.textContent?.trim() ?? "",
         theme: document.documentElement.dataset.theme, timeOrigin: performance.timeOrigin,
         mainCount: document.querySelectorAll("main").length,
         fragmentExists: !location.hash || Boolean(document.getElementById(decodeURIComponent(location.hash.slice(1)))),
-        search: document.querySelector("#guide-search")?.value ?? null,
-        links: links.map((element, index) => ({ index, href: element.href, raw: element.getAttribute("href"), text: element.textContent?.trim(), visible: Boolean(element.getClientRects().length) })),
+        urlSearchQ: new URLSearchParams(location.search).getAll("q"),
+        searchInputCount: searchInputs.length,
+        searchInputValue: searchInputs.length === 1 ? searchInputs[0].value : null,
         assets: [...document.querySelectorAll('script[src]:not([nomodule]),link[rel="stylesheet"]')].map((element) => new URL(element.getAttribute("src") ?? element.getAttribute("href"), location.href).href),
       };
+    }, TRANSITION_SEARCH_SELECTOR);
+    return { ...data, links: await page.locator("a[href]").evaluateAll(transitionLinkSnapshots) };
+  }
+  function checkSearchState(tab, data, baseline, stage) {
+    if (!isSearchDocument(data.url) && !(baseline && isSearchDocument(baseline.url))) return;
+    const requirement = baseline ? "search input equals captured actual value" : "exactly one actual search input";
+    check(`${tab.label}: ${stage} ${requirement}`, transitionSearchStateMatches(data, baseline), {
+      urlSearchQ: data.urlSearchQ, searchInputCount: data.searchInputCount,
+      searchInputValue: data.searchInputValue, baselineInputValue: baseline?.searchInputValue ?? null,
     });
   }
   function assertPage(tab, data, expectedUrl) {
     check(`${tab.label}: exact persisted URL`, data.url === expectedUrl, { expected: expectedUrl, actual: data.url });
     check(`${tab.label}: theme survived`, data.theme === tab.theme, data.theme);
     check(`${tab.label}: Guide document identity and fragment`, data.mainCount === 1 && data.h1 === tab.captured.h1 && data.fragmentExists, { h1: data.h1, expectedH1: tab.captured.h1, mainCount: data.mainCount, fragmentExists: data.fragmentExists });
-    if (tab.captured.search !== null) check(`${tab.label}: search input state matches saved public query`, data.search === tab.captured.search, { before: tab.captured.search, after: data.search });
+    checkSearchState(tab, data, tab.captured, "direct/reload");
   }
   async function captureTab(tab) {
     const data = await snapshot(tab.page);
+    checkSearchState(tab, data, null, "capture");
     await drainAssets();
     check(`${tab.label}: declared managed dependencies have body evidence`, data.assets.length > 0 && data.assets.every((url) => assetHistory.has(url)), data.assets);
-    const link = data.links.find((link) => link.visible && new URL(link.href).origin === new URL(data.url).origin && /^\/(?:docs|guide)\/(?:\d|appendix)/.test(new URL(link.href).pathname) && new URL(link.href).pathname !== new URL(data.url).pathname);
-    if (tab.navigate) check(`${tab.label}: actual visible chapter link available`, Boolean(link));
+    const link = data.links.find((link) => link.inMain && link.inArticle && link.visible && new URL(link.href).origin === new URL(data.url).origin && /^\/(?:docs|guide)\/(?:\d|appendix)/.test(new URL(link.href).pathname) && new URL(link.href).pathname !== new URL(data.url).pathname);
+    if (tab.navigate) check(`${tab.label}: actual visible article chapter link available`, Boolean(link));
     if (tab.navigate && link) {
       const newTab = await tab.page.context().newPage();
       observe(newTab);
@@ -262,6 +308,7 @@ async function main() {
     return assets;
   }
   async function execute(command) {
+    currentStage = "command";
     validateTransitionCommand(command, options.scope, current?.state ?? null);
     if (command.phase === "finish") { finished = true; return; }
     assert.ok(!stopped, "A failed transition stopped this session; preserve evidence and start a separately qualified run");
@@ -273,6 +320,7 @@ async function main() {
     const phase = { ...command, assertedAt: new Date().toISOString(), previousState: prior?.state ?? null, observations: [] };
     record.phases.push(phase);
     if (command.phase === "capture") {
+      currentStage = "capture";
       for (const width of [1440, 390]) for (const theme of ["light", "dark"]) {
         const context = await browser.newContext({ viewport: { width, height: 844 }, colorScheme: "light" });
         contexts.push(context);
@@ -294,28 +342,40 @@ async function main() {
       assert.deepEqual(Object.keys(command.expectedUrls).sort(), [...new Set(tabs.map((tab) => tab.key))].sort(), "Every captured page needs an explicit post-switch URL");
       assert.deepEqual(Object.keys(command.expectedNavigationUrls).sort(), [...new Set(tabs.filter((tab) => tab.navigate).map((tab) => tab.key))].sort(), "Every retained navigation needs an explicit post-switch URL");
       for (const tab of tabs) {
+        currentStage = "retained-identity";
         const retained = tab.captured;
         const before = await snapshot(tab.page);
         check(`${tab.label}: actual document and browser session retained through switch`, before.url === retained.url && before.timeOrigin === retained.timeOrigin && before.theme === tab.theme, { before: before.timeOrigin, captured: retained.timeOrigin });
+        checkSearchState(tab, before, retained, "retained before navigation");
         if (tab.navigate && retained.link) {
           const links = tab.page.locator("a[href]");
           const link = links.nth(retained.link.index);
           check(`${tab.label}: retained link unchanged`, await link.getAttribute("href") === retained.link.raw);
           pageUrl(retained.link.href, [command.guideOrigin, command.fdlcOrigin]);
+          currentStage = "retained-link-visibility";
+          const observedLink = (await links.evaluateAll(transitionLinkSnapshots))[retained.link.index];
+          const visible = observedLink?.inMain === true && observedLink.inArticle === true && observedLink.visible === true && await link.isVisible();
+          check(`${tab.label}: retained link is actually visible before normal click`, visible);
+          assert.ok(visible, "Retained link must remain visibly available before clicking");
+          currentStage = "retained-link-click";
           await link.click();
+          currentStage = "retained-navigation";
           await tab.page.waitForLoadState("networkidle");
           const navigated = await snapshot(tab.page);
           check(`${tab.label}: retained UI navigation reaches the exact Guide chapter`, navigated.url === command.expectedNavigationUrls[tab.key] && navigated.h1 === retained.link.h1 && navigated.mainCount === 1 && navigated.theme === tab.theme, { url: navigated.url, expected: command.expectedNavigationUrls[tab.key], title: navigated.title, kind: navigated.timeOrigin === retained.timeOrigin ? "client" : "document" });
         }
+        currentStage = "direct-load";
         const response = await tab.page.goto(retained.url, { waitUntil: "networkidle" });
         check(`${tab.label}: saved URL direct load HTTP 200`, response?.status() === 200, response?.status());
         assertPage(tab, await snapshot(tab.page), command.expectedUrls[tab.key]);
+        currentStage = "reload";
         const reload = await tab.page.reload({ waitUntil: "networkidle" });
         check(`${tab.label}: saved page reload HTTP 200`, reload?.status() === 200, reload?.status());
         assertPage(tab, await snapshot(tab.page), command.expectedUrls[tab.key]);
         phase.observations.push(await captureTab(tab));
       }
     }
+    currentStage = "asset-verification";
     phase.savedAssets = await refetchAssets();
     phase.observedAssetUrls = [...phaseAssets];
     phase.observedAssetDeploymentParameters = [...new Set([...phaseAssets].map((url) => new URL(url).searchParams.get("dpl")).filter(Boolean))];
@@ -335,8 +395,8 @@ async function main() {
     process.stdout.write(`${JSON.stringify({ event: "AWAITING_CAPTURE", scope: options.scope, output })}\n`);
     for await (const line of commands) {
       if (!line.trim()) continue;
-      try { await execute(JSON.parse(line)); }
-      catch { stopped = true; check("phase command or transition failed", false, "Validation/navigation failed; inspect the last sanitized checkpoint and browser observations"); await save(); process.stdout.write(`${JSON.stringify({ event: "PHASE_FAILED", checkpoint, output })}\n`); }
+      try { currentStage = "command"; await execute(JSON.parse(line)); }
+      catch (error) { stopped = true; const diagnostic = safeTransitionFailure(error, currentStage); check("phase command or transition failed", false, diagnostic); await save(); process.stdout.write(`${JSON.stringify({ event: "PHASE_FAILED", checkpoint, output, ...diagnostic })}\n`); }
       if (finished) break;
     }
     if (!finished) check("explicit finish received", false, "EOF is not a completed transition qualification");

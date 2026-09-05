@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { TRANSITION_STATES, transitionOrigin, validateTransitionCommand, verifyTransitionAsset, verifyDocumentDeploymentParameters } from "../../scripts/qualify-migration-transitions.mjs";
+import { TRANSITION_STATES, TRANSITION_SEARCH_SELECTOR, transitionOrigin, validateTransitionCommand, verifyTransitionAsset, verifyDocumentDeploymentParameters, transitionSearchStateMatches, transitionLinkSnapshots, safeTransitionFailure } from "../../scripts/qualify-migration-transitions.mjs";
 
 const identity = {
   checkpoint: "qualified-transition", state: "bridge-new",
@@ -10,6 +10,31 @@ const identity = {
 };
 const capture = { phase: "capture", ...identity, pages: [{ key: "chapter", path: "/docs/01-understand/chapter#overview", navigate: true }] };
 const check = { phase: "check", ...identity, state: "bridge-old", expectedUrls: { chapter: "http://127.0.0.1:3024/docs/01-understand/chapter#overview" }, expectedNavigationUrls: { chapter: "http://127.0.0.1:3024/docs/01-understand/next" } };
+
+test("transition visibility rejects concealed disclosure contents despite nonempty layout rectangles", () => {
+  const options: unknown[] = [];
+  const visible = { href: `${identity.guideOrigin}/docs/chapter`, textContent: "Chapter", getAttribute: () => "/docs/chapter", closest: () => null, getClientRects: () => [{}], checkVisibility: (value: unknown) => { options.push(value); return true; } };
+  const outside = transitionLinkSnapshots([visible])[0];
+  assert.equal(outside.visible, true);
+  assert.equal(outside.inMain, false);
+  assert.equal(outside.inArticle, false);
+  const article = transitionLinkSnapshots([{ ...visible, closest: (selector: string) => ["main", "article.document-article"].includes(selector) ? {} : null }])[0];
+  assert.equal(article.inMain, true);
+  assert.equal(article.inArticle, true);
+  const sidebar = transitionLinkSnapshots([{ ...visible, closest: (selector: string) => selector === "main" ? {} : null }])[0];
+  assert.equal(sidebar.inMain, true);
+  assert.equal(sidebar.inArticle, false);
+  assert.deepEqual(options, Array(3).fill({ checkOpacity: true, checkVisibilityCSS: true, contentVisibilityAuto: true }));
+  for (const change of [{ closest: () => ({ open: false }) }, { getClientRects: () => [] }, { checkVisibility: () => false }, { checkVisibility: undefined }]) {
+    assert.equal(transitionLinkSnapshots([{ ...visible, ...change }])[0].visible, false);
+  }
+});
+
+test("phase diagnostics only expose allowlisted error names and internal stages", () => {
+  assert.deepEqual(safeTransitionFailure({ name: "TimeoutError", message: "sensitive payload" }, "retained-link-click"), { errorName: "TimeoutError", stage: "retained-link-click" });
+  assert.deepEqual(safeTransitionFailure({ name: "credential-like-payload", message: "sensitive payload" }, "user supplied secret"), { errorName: "UnknownError", stage: "command" });
+  assert.deepEqual(safeTransitionFailure(null, "reload"), { errorName: "UnknownError", stage: "reload" });
+});
 
 test("transition graph accepts every adjacent forward/reverse edge, not a cold matrix or unsafe skip", () => {
   validateTransitionCommand(capture, "local");
@@ -67,4 +92,29 @@ test("current-document identity is separate from retained-client skew pins and a
   verifyTransitionAsset(asset, asset); // Original URL/bytes remain valid retained-session evidence.
   assert.throws(() => verifyDocumentDeploymentParameters([retained], "dpl_Current"));
   assert.deepEqual(verifyDocumentDeploymentParameters([current.split("?")[0]], "dpl_Current"), []);
+});
+
+test("search capture requires exactly one actual Guide search input, never the obsolete ID", () => {
+  assert.equal(TRANSITION_SEARCH_SELECTOR, '.search-experience input[type="search"]');
+  for (const path of ["/search", "/guide/search"]) {
+    const data = { url: `${identity.guideOrigin}${path}?q=evidence`, searchInputCount: 1, searchInputValue: "" };
+    assert.equal(transitionSearchStateMatches(data), true);
+    for (const searchInputCount of [0, 2]) assert.equal(transitionSearchStateMatches({ ...data, searchInputCount }), false);
+    assert.equal(transitionSearchStateMatches({ ...data, searchInputValue: null }), false);
+  }
+  assert.equal(transitionSearchStateMatches({ url: `${identity.guideOrigin}/guide`, searchInputCount: 0, searchInputValue: null }), true);
+});
+
+test("retained and reloaded search state compares actual values separately from URL q", () => {
+  const baseline = { url: `${identity.guideOrigin}/search?q=evidence`, urlSearchQ: ["evidence"], searchInputCount: 1, searchInputValue: "" };
+  assert.equal(transitionSearchStateMatches({ ...baseline }, baseline), true);
+  assert.equal(transitionSearchStateMatches({ ...baseline, url: `${identity.guideOrigin}/guide/search?q=evidence` }, baseline), true);
+  assert.equal(transitionSearchStateMatches({ ...baseline, searchInputValue: "evidence" }, baseline), false);
+  assert.equal(transitionSearchStateMatches({ ...baseline, searchInputCount: 0, searchInputValue: null }, baseline), false);
+  assert.equal(transitionSearchStateMatches({ ...baseline, searchInputCount: 2 }, baseline), false);
+  assert.equal(transitionSearchStateMatches({ ...baseline, url: `${identity.guideOrigin}/guide` }, baseline), false);
+  const typed = { ...baseline, searchInputValue: "actual typed value" };
+  assert.equal(transitionSearchStateMatches({ ...typed }, typed), true);
+  assert.equal(transitionSearchStateMatches(baseline, typed), false);
+  assert.equal(transitionSearchStateMatches(baseline, { ...baseline, searchInputCount: 0 }), false);
 });

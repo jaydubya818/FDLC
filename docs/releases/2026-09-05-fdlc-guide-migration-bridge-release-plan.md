@@ -7,6 +7,126 @@ Status: **QUALIFICATION IN PROGRESS — four exact old-Guide keyboard exceptions
 This section supersedes the older checkpoint descriptions below, which retain
 their original source/evidence identities. It is not release readiness.
 
+### Completed native cold-state matrix; retained asset gate remains NO_GO
+
+The repaired Guide source is frozen at
+`efd23059007cf2050170a3653bfe3a831c9f245b`. The final-mode native build is
+`M3uvKwkz2yBQZr40WMlEa`; compatible mode is `Qgs5YFZpmCGXA3Ue1DJwx`.
+Frozen final FDLC remains `8057d1fd2c9aafaad309488aaa6038bd61b61e57`,
+build `VeM0Vohi4DVXXJl7Q4F-7`. No application changes accompanied this
+qualification continuation.
+
+| Native composition | Full Guide | Keyboard | FDLC | Discovery | Exception policy |
+| --- | --- | --- | --- | --- | --- |
+| Bridge + repaired compatible | 3,222 checks / 291 visits PASS | 2,660 / 16 PASS | 4,068 / 84 PASS | 2,381 PASS | None |
+| Final + repaired compatible | 3,222 / 291 PASS | 2,660 / 16 PASS | 4,072 / 84 PASS | 1,545 PASS | None |
+| Final + repaired final | 3,222 / 291 PASS | 2,660 / 16 PASS | 4,072 / 84 PASS | 1,545 PASS | None |
+
+These are cold-state native results, not SAFE labels for the complete migration
+graph. Final/final evidence: `final-final-efd-full`,
+`final-final-efd-focus`, `efd2305-fdlc-final-final-full`,
+and `discovery-final-final-efd2305`. Exact clean source/build/HTML attestation
+and 28/28 captured final Guide asset hashes match. Its discovery pass includes
+832 GET/HEAD responses, 71 SEO routes, 144 anchors and 207 diagrams. Twenty
+strict axe audits retain 40 incomplete entries; separately recorded manual
+checks close the identified classes without claiming blanket accessibility
+certification. No new-Guide keyboard or historical exception applies.
+
+The corrected retained-browser harness uses actual visible article links,
+normal unforced clicks, real search inputs, unchanged browser contexts and
+exact saved asset URL/body hashes. Its SHA-256 is
+`149249e3cfdfb74a4795b43a1770259119a9edcb9305147d4b7f9be7a0271248`.
+A real native final-FDLC → bridge-FDLC → final-FDLC switch passed in both
+directions with compatible Guide unchanged: eight retained page observations
+per phase, 23 saved assets resolving 200 with identical bytes, no failed checks
+or unexpected browser errors. The bounded intermediate record is
+`efd2305-native-article-transitions/middle-edge-qualified-before-guide-switch.json`.
+
+The subsequent compatible → final Guide build switch is **NO_GO**:
+22 exact previously captured JavaScript URLs returned 404. All eight retained
+document/navigation/direct/reload observations passed; CSS remained 200 with
+identical bytes. The asset failures are not waived, ignored or rewritten as
+PASS. Full preserved evidence is
+`efd2305-native-article-transitions/transitions.json`. One local Next server
+was replaced by another build; local asset URLs have no deployment parameter.
+That observation does not establish Vercel's deployed-asset retention behavior.
+No custom asset copying, synthetic proxy, URL rewriting or cache-busting
+workaround is authorized or used.
+
+The independently repeated final → compatible native Guide switch also
+remains **NO_GO**, with exactly 22 saved final JavaScript URLs returning 404.
+All eight retained page observations pass the correct compatible `/docs` and
+`/search` contract, including hashes/query, H1, theme, navigation and reload;
+there are zero browser-console, page-error or unexpected network events.
+Evidence: `efd2305-native-guide-reverse-correct-contract/transitions.json`
+(SHA-256 `6767e1fbb0cafabc251dc20a7b03a0b48f94633491944788c4cd8135174ec80c`).
+The initial reverse run incorrectly expected the final namespace after rollback;
+its 20 URL-fixture failures plus 22 asset failures remain preserved separately
+at `efd2305-native-guide-reverse-transition`. Only command expectations were
+corrected after source review; no application/harness waiver was added.
+Independent physical build comparison confirms that the missing saved JS paths
+are absent from the replacement build while the shared CSS is byte-identical.
+
+Final independent QA-only review is GO: 113/113 unit tests, lint, compiler,
+configuration validation, both harness syntax checks and diff checks pass.
+An incidental Next type-generation import was restored exactly; the initial
+source-guard failure is preserved and the restored-source run passes with all
+reviewed hashes unchanged. Evidence: `efd2305-final-qa-checks/review.md` and
+`efd2305-final-qa-checks/restored-source-checks/summary.json`.
+
+
+The complete forward/reverse graph remains unqualified. Supported hosted
+retained-session transitions and exact old/new asset resolution are required.
+Native flagged standalone-host normalization also remains NOT_EXPOSED;
+bounded authenticated Preview navigation does prove actual chapter and
+architecture normalization, but is not a substitute for full hosted acceptance.
+Production-target staging remains a separate unresolved platform mechanism.
+
+The prior rejected branch-scoped Preview environment additions remain a real
+permission gate. No new pins or protection changes were made. Explicit
+Preview-only settings authority is still required for the two final
+qualification branch pairs. Production, canonical aliases and both Draft PR
+merge states remain unchanged; no Production approval is requested.
+
+
+### Final/compatible native checkpoint and fresh bridge Preview
+
+The reviewed QA/docs checkpoint was published on the existing non-main bridge
+branch at `9aacb5d69206d91efe48f34b5766017aab782fbb`. Application/configuration
+behavior remains unchanged from bridge `982c562`. Its exact Preview is READY:
+`dpl_G8oVD1R3t1oFWB4NbGnVN7uFNdDK`. Actual browser navigation from that FDLC
+Preview's Guide header anchor reaches Guide `dpl_4z6cLFMLHqtgW3fL9tApJYFChZsy`
+at `/guide`; all nine observed DOM managed references name that Guide deployment.
+This does not replace full hosted asset-body/route/transition qualification.
+Provider/CI readback at 22:21 UTC confirms unchanged Production, aliases,
+settings, protection and environment metadata, both PRs Draft/unmerged, and
+successful Vercel checks. Exact report:
+`9aacb5d-provider-ci-readback-2026-09-05T22-21-16-021Z.json`.
+
+The native intermediate final-FDLC `8057d1f` + Guide-compatible `efd2305` now
+passes cold-state qualification: Guide 3,222 checks / 291 visits, keyboard
+2,660 / 16, and FDLC 4,072 / 84. All 32 Guide managed body hashes match the
+running clean Guide build. Discovery passes 1,545 checks, 832 GET/HEAD responses,
+71 SEO routes, 144 moved anchors, and all 207 diagrams; manual review separately
+closes retained accessibility incomplete classes. No old exceptions apply.
+Evidence: `final-compatible-efd-full`, `final-compatible-efd-focus`,
+`efd2305-fdlc-final-compatible-source-oracle`, and
+`discovery-final-compatible-efd2305` under the existing temporary evidence root.
+
+Two harness defects were found and preserved, not relabeled as passes. The
+initial FDLC/final fixture expected the bridge's 12 public capability disclosures;
+independent source review verifies frozen final `8057d1f` already contains 13
+(7 qualified / 4 bounded / 2 missing). Only the edition-specific QA oracle was
+corrected. No Mission Control or frozen FDLC application source was changed.
+The first warm transition completed both desktop contexts but selected a mobile
+link inside a closed disclosure: a layout rectangle alone was not visibility.
+Two independent normal-click reproductions establish that opening the disclosure
+makes the link work; the harness is being tightened and actual transitions must
+be rerun. An earlier capture-only run is NOT_RUN. Search capture now checks the
+actual input and records URL `q` separately; the existing input does not initialize
+from `q`, and no such behavior is claimed. Warm graph/hosted/final-final gates
+remain open. No Production authorization is requested.
+
 ### Repaired-source checkpoint: `efd23059007cf2050170a3653bfe3a831c9f245b`
 
 The later source checkpoint supersedes the in-progress `17ebd6e` description
