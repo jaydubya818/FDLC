@@ -60,11 +60,11 @@ export function parseConfig(value: unknown): FabConfig {
   const provider = providerId(raw.provider);
   const credential = object(raw.credential);
   keys(credential, ['id', 'owner', 'provider', 'scope', 'source']);
-  const source = object(credential.source); keys(source, ['kind', 'variable']);
+  const source = object(credential.source); keys(source, source.kind === 'keychain' ? ['kind'] : ['kind', 'variable']);
   const scope = object(credential.scope); keys(scope, ['kind', 'root']);
-  if (credential.provider !== provider || source.kind !== 'environment' || scope.kind !== 'repository' || scope.root !== repository) fail('CREDENTIAL_SCOPE', 'Credential must match the selected provider and repository.');
-  const variable = string(source.variable, 100);
-  if (!/^FAB_[A-Z][A-Z0-9_]*$/.test(variable)) fail('CREDENTIAL_SOURCE', 'Choose an explicit FAB_ environment variable; ambient provider keys are not loaded.');
+  if (credential.provider !== provider || !['environment', 'keychain'].includes(String(source.kind)) || scope.kind !== 'repository' || scope.root !== repository) fail('CREDENTIAL_SCOPE', 'Credential must match the selected provider and repository.');
+  const variable = source.kind === 'environment' ? string(source.variable, 100) : '';
+  if (source.kind === 'environment' && !/^FAB_[A-Z][A-Z0-9_]*$/.test(variable)) fail('CREDENTIAL_SOURCE', 'Choose an explicit FAB_ environment variable; ambient provider keys are not loaded.');
   const id = string(credential.id, 100);
   if (!/^[a-zA-Z0-9:_-]+$/.test(id)) fail('CREDENTIAL_REFERENCE', 'Credential reference is invalid.');
   if (!Array.isArray(raw.checks) || raw.checks.length < 1 || raw.checks.length > 8) fail('CONFIG_CHECKS', 'Configure one to eight fixed project checks.');
@@ -83,7 +83,7 @@ export function parseConfig(value: unknown): FabConfig {
   if (!/^[a-zA-Z0-9][a-zA-Z0-9._:/-]*$/.test(model)) fail('CONFIG_MODEL', 'Model identifier is invalid.');
   return {
     version: 1, repository, provider, model,
-    credential: { id, owner: string(credential.owner, 100), provider, scope: { kind: 'repository', root: repository }, source: { kind: 'environment', variable } },
+    credential: { id, owner: string(credential.owner, 100), provider, scope: { kind: 'repository', root: repository }, source: source.kind === 'keychain' ? { kind: 'keychain' } : { kind: 'environment', variable } },
     writableFiles, checks, acceptanceCriteria: texts(raw.acceptanceCriteria, 20),
     maxTurns: integer(raw.maxTurns ?? 16, 1, 50), timeoutMs: integer(raw.timeoutMs ?? 300000, 1000, 900000),
     checkTimeoutMs: integer(raw.checkTimeoutMs ?? 30000, 100, 120000),

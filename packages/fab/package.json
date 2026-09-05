@@ -2,18 +2,35 @@
   "name": "@fdlc/fab",
   "version": "0.1.0-experimental.1",
   "private": true,
-  "description": "Factory Agent Builder — bounded local engineering candidates",
+  "description": "Factory Agent Builder \u2014 bounded local engineering candidates",
   "type": "module",
-  "engines": { "node": ">=24.0.0" },
-  "bin": { "fab": "bin/fab.mjs" },
-  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
-  "files": ["bin", "dist", "README.md"],
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "bin": {
+    "fab": "bin/fab.mjs"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "bin",
+    "dist",
+    "README.md",
+    "native"
+  ],
   "devDependencies": {
-    "typescript": "5.9.3", "@types/node": "22.19.19",
-    "eslint": "9.39.4", "typescript-eslint": "8.59.3", "globals": "16.4.0"
+    "typescript": "5.9.3",
+    "@types/node": "22.19.19",
+    "eslint": "9.39.4",
+    "typescript-eslint": "8.59.3",
+    "globals": "16.4.0"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && node bin/build-native.mjs",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "eslint src test bin",
     "pretest": "npm run build",

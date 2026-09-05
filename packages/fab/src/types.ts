@@ -11,6 +11,7 @@ export interface Usage {
   cachedTokens: number | null; costUsd: number | null;
 }
 export interface ModelReply {
+  returnedModel?: string | null;
   content: string; calls: ToolCall[]; usage: Usage;
   finish: 'complete' | 'tools' | 'limited';
 }
@@ -23,9 +24,16 @@ export interface ModelProvider {
 export interface CredentialReference {
   id: string; owner: string; provider: ProviderId;
   scope: { kind: 'repository'; root: string };
-  source: { kind: 'environment'; variable: string };
+  source: { kind: 'environment'; variable: string } | { kind: 'keychain' };
 }
-export interface CredentialMetadata { reference: string; configured: boolean; storage: 'environment' }
+export interface CredentialMetadata { reference: string; configured: boolean; storage: 'environment' | 'keychain' }
+export interface CredentialStore {
+  set(reference: CredentialReference, secret: string): Promise<void>;
+  get(reference: CredentialReference): Promise<string | null>;
+  delete(reference: CredentialReference): Promise<void>;
+  has(reference: CredentialReference): Promise<boolean>;
+  listMetadata(): Promise<CredentialReference[]>;
+}
 export interface CredentialProvider {
   metadata(): CredentialMetadata;
   use<T>(reference: CredentialReference, operation: (value: string) => Promise<T>): Promise<T>;
