@@ -9,7 +9,7 @@ export const missionControlCapabilities = [
   { name: "Model and backend routing", status: "Experimental", summary: "Policy-aware routing and recorded routing decisions exist behind gates.", limitation: "Outcome evidence and complete cost coverage remain limited." },
   { name: "Remote Sandbox", status: "Experimental", summary: "A bounded live cohort is qualified for production-pilot evaluation.", limitation: "Preview only; provider-enforced egress and sustained real-work evidence remain open." },
   { name: "Factory Learning", status: "Experimental", summary: "Evidence can produce bounded learning signals and human-reviewed proposals.", limitation: "No automatic promotion; real production signals are limited." },
-  { name: "Governed MCP runtime", status: "Experimental", summary: "A host broker enforces exact Tool Version and Tool Grant identity and retains receipts for one local read-only qualification fixture.", limitation: "No real service is admitted. General MCP support in admitted harnesses remains unsupported." },
+  { name: "Governed MCP runtime", status: "Experimental", summary: "A host broker enforces exact Tool Version and Tool Grant identity for a local fixture and one qualified Context7 read-only operation.", limitation: "The real operation is limited to one fixed public React query. General harness MCP, write tools, and broader connector authority remain unsupported." },
   { name: "Factory incident lifecycle", status: "Planned", summary: "A canonical incident aggregate can unify existing alerts, events, evidence, and recovery.", limitation: "The end-to-end lifecycle is not implemented." },
 ] as const;
 

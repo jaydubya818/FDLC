@@ -19,7 +19,7 @@ The supplied material largely corroborates existing coverage. This integration i
 | Dependency graph, bounded parallelism, capacity | EXISTING / REFINE | Architecture: Harness; Benchmarks | Chapters 9, 23, 34 | Workflow engine, execution routing, budgets; fleet fairness and full work amplification accounting remain partial |
 | Context, state, memory, knowledge and conflict resolution | REFINE | Architecture: Capability, Trust | Chapter 20; glossary | Factory Memory and frozen Context Packages exist; general authority-aware retrieval quality remains partial |
 | Unknown external outcome and safe reconciliation | REFINE | Architecture: Harness | Chapter 14; glossary | Recovery and PR reconciliation exist; generic side-effecting tool reconciliation is PLANNED |
-| Schema, semantic and policy validation of tool results | EXISTING / REFINE | Mission Control capability claim | Chapters 18, 29 | Governed MCP broker and Convex receipts; experimental local read-only fixture only |
+| Schema, semantic and policy validation of tool results | EXISTING / REFINE | Mission Control capability claim | Chapters 18, 29 | Governed MCP broker and Convex receipts; experimental local fixture plus one fixed read-only Context7 query qualified separately |
 | Criterion-level verification; independent failure modes | EXISTING / REFINE | Architecture: Intent, Trust | Chapters 27, 29, 31 | Verification Subjects, verifier Attempts and Quality Gates; passing evidence does not accept or release |
 | Trajectory diagnosis, hard gates and evaluator uncertainty | REFINE | Architecture: Trust; Benchmarks | Chapter 29 | Diagnostic traces/evals exist; full production trajectory scorecard is not qualified |
 | Verified versus accepted cost; missing-data semantics | CONFLICT / REFINE | `data/fdlc.ts`; Benchmarks | Chapter 9; glossary | Cost coverage is partial; actual provider and human costs cannot be invented |
@@ -50,7 +50,9 @@ The file count reflects separate chapter ownership and cross-repository evidence
 
 ## Evidence baseline
 
-Mission Control current main inspected: `0d1a090`. Its Phase 3 completion record cites the qualified implementation `37953e4d2879` and clean-main qualification `6611a03c6025`. Those records prove one local stdio read-only qualification fixture, not a network service or general harness-native MCP support. Earlier evidence and Guide study revision `d902fae` remain historical.
+Mission Control initial main inspected: `0d1a090`. Its Phase 3 completion record cites the qualified implementation `37953e4d2879` and clean-main qualification `6611a03c6025`. Those records prove one local stdio read-only qualification fixture, not a network service or general harness-native MCP support. Earlier evidence and Guide study revision `d902fae` remain historical.
+
+During final review, the separately qualified [Mission Control #174](https://github.com/jaydubya818/MissionControl/pull/174) landed at `aa8c12b1d4907589b71cef3cb421ef2a2c380676`. Its [Phase 4 evidence](https://github.com/jaydubya818/MissionControl/blob/aa8c12b1d4907589b71cef3cb421ef2a2c380676/docs/testing/evidence/governed-mcp-phase4-recovery/README.md) qualifies exact Context7 `query-docs` for one fixed public React query. FDLC, Guide Chapter 29 and the implementation map were reconciled to that evidence, retaining Experimental status and the prohibition on generalized connector/write authority. This integration adds no service or model calls and preserves the separately landed runtime.
 
 The existing Mission Control checkout was on another branch; changes use a dedicated checkout from current main. The Guide's cloud-backed files required a clean checkout. Existing local work is preserved.
 
