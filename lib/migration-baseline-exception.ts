@@ -40,3 +40,52 @@ export function approvedBaselineFailure(enabled: boolean, name: string, actual: 
   }
   return false;
 }
+
+export const OLD_GUIDE_SEARCH_FOCUS_TRAP = "OLD_GUIDE_SEARCH_FOCUS_TRAP";
+
+export type SearchFocusExceptionContext = {
+  exception?: string;
+  edition: string;
+  deployment?: string;
+  state: string;
+};
+
+export type SearchFocusObservation = {
+  issue: string;
+  dialogId: string | null;
+  dialogName: string | null;
+  key: string;
+  dialogOpen: boolean;
+  focusInside: boolean;
+};
+
+export function validateSearchFocusException(option: string | undefined, edition: string, deployment: string | undefined, state: string) {
+  if (!option) return false;
+  assert.equal(option, OLD_GUIDE_SEARCH_FOCUS_TRAP, "Only the explicitly approved search-focus exception is available");
+  assert.equal(edition, "old", "New Guide never receives the old search-focus exception");
+  assert.equal(deployment, OLD_GUIDE_DEPLOYMENT, "The search-focus exception is pinned to the unchanged old artifact");
+  assert.equal(state, "bridge-old", "The search-focus exception expires immediately outside bridge/old");
+  return true;
+}
+
+/** Recheck identity and state on every observation; an enabled flag cannot outlive bridge/old. */
+export function classifyOldGuideSearchFocusException(context: SearchFocusExceptionContext, observation: SearchFocusObservation) {
+  if (
+    context.exception !== OLD_GUIDE_SEARCH_FOCUS_TRAP || context.edition !== "old"
+    || context.deployment !== OLD_GUIDE_DEPLOYMENT || context.state !== "bridge-old"
+    || observation.issue !== "focus-escaped" || observation.dialogId !== "command-palette"
+    || observation.dialogName !== "Command palette" || observation.dialogOpen !== true
+    || observation.focusInside !== false || !["Tab", "Shift+Tab"].includes(observation.key)
+  ) return null;
+  return {
+    exceptionId: OLD_GUIDE_SEARCH_FOCUS_TRAP,
+    affectedDeployment: OLD_GUIDE_DEPLOYMENT,
+    classification: "PRE_EXISTING / IMMUTABLE ARTIFACT",
+    status: "KNOWN_EXCEPTION",
+    disposition: "ACCEPTED_TEMPORARILY",
+    allowedState: "bridge-old",
+    expiration: "Immediately when the migration leaves bridge/old or the old Guide artifact changes",
+    finalStateAcceptance: "NOT EXEMPT",
+    productionPromotionAuthorized: false,
+  } as const;
+}

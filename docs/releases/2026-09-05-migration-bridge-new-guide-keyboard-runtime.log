@@ -1,0 +1,79 @@
+
+> ai-software-factory-mastery-site@0.1.0 test:next
+> node scripts/run-native-next-test.mjs
+
+Generated 66 guide documents.
+▲ Next.js 16.3.3 (webpack)
+✓ Running next.config.ts took 87ms
+- Experiments (use with caution):
+  ✓ multiZoneDraftMode
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 1104ms ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/81) ...
+  Generating static pages using 15 workers (20/81) 
+  Generating static pages using 15 workers (40/81) 
+  Generating static pages using 15 workers (60/81) 
+✓ Generating static pages using 15 workers (81/81) in 253ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /architecture
+├ ƒ /atlas
+├ ƒ /coverage
+├ ƒ /docs/[...slug]
+├ ƒ /glossary
+├ ○ /guide
+├ ƒ /guide/[...slug]
+├ ○ /guide/architecture
+├ ○ /guide/atlas
+├ ○ /guide/coverage
+├ ○ /guide/glossary
+├ ○ /guide/search
+├ ○ /guide/topics
+├ ƒ /search
+├ ƒ /topics
+└ ƒ /visuals
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+Verified compiled application CSS (124837 bytes across 1 file).
+Palette focus/mouse PASS: 1280×844 light direct round 1
+Palette focus/mouse PASS: 1280×844 light reload round 1
+Palette focus/mouse PASS: 1280×844 light direct round 2
+Palette focus/mouse PASS: 1280×844 light reload round 2
+Palette focus/mouse PASS: 1280×844 dark direct round 1
+Palette focus/mouse PASS: 1280×844 dark reload round 1
+Palette focus/mouse PASS: 1280×844 dark direct round 2
+Palette focus/mouse PASS: 1280×844 dark reload round 2
+Palette focus/mouse PASS: 390×844 light direct round 1
+Palette focus/mouse PASS: 390×844 light reload round 1
+Palette focus/mouse PASS: 390×844 light direct round 2
+Palette focus/mouse PASS: 390×844 light reload round 2
+Palette focus/mouse PASS: 390×844 dark direct round 1
+Palette focus/mouse PASS: 390×844 dark reload round 1
+Palette focus/mouse PASS: 390×844 dark direct round 2
+Palette focus/mouse PASS: 390×844 dark reload round 2
+Native compatibility runtime log:
+▲ Next.js 16.3.3
+- Local:         http://127.0.0.1:53883
+- Network:       http://127.0.0.1:53883
+✓ Ready in 85ms
+✓ Running next.config.ts took 85ms
+Native retirement runtime log:
+▲ Next.js 16.3.3
+- Local:         http://127.0.0.1:53946
+- Network:       http://127.0.0.1:53946
+✓ Ready in 82ms
+✓ Running next.config.ts took 95ms
+Native Next runtime smoke passed (prefixed assets, hydration, unique heading IDs, desktop/mobile palette focus containment, 390×844 inline-code wrapping, pre/Mermaid scrolling, search, compatibility serving, opt-in retirement, redirects, and 404s).

@@ -1,0 +1,1693 @@
+{
+  "recordedAt": "2026-09-05T20:21:49.154Z",
+  "disposition": "NO_GO",
+  "productionPromotionAuthorized": false,
+  "oldGuide": {
+    "deployment": "dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur",
+    "state": "bridge-old",
+    "anonymous": true,
+    "startedAt": "2026-09-05T20:09:07.777Z",
+    "finishedAt": "2026-09-05T20:09:34.380Z",
+    "visits": [
+      {
+        "checkpoint": "1440/light/round-1/direct",
+        "width": 1440,
+        "theme": "light",
+        "round": 1,
+        "action": "direct",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "1440/light/round-1/reload",
+        "width": 1440,
+        "theme": "light",
+        "round": 1,
+        "action": "reload",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "1440/light/round-2/direct",
+        "width": 1440,
+        "theme": "light",
+        "round": 2,
+        "action": "direct",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "1440/light/round-2/reload",
+        "width": 1440,
+        "theme": "light",
+        "round": 2,
+        "action": "reload",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "1440/dark/round-1/direct",
+        "width": 1440,
+        "theme": "dark",
+        "round": 1,
+        "action": "direct",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "1440/dark/round-1/reload",
+        "width": 1440,
+        "theme": "dark",
+        "round": 1,
+        "action": "reload",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "1440/dark/round-2/direct",
+        "width": 1440,
+        "theme": "dark",
+        "round": 2,
+        "action": "direct",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "1440/dark/round-2/reload",
+        "width": 1440,
+        "theme": "dark",
+        "round": 2,
+        "action": "reload",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "390/light/round-1/direct",
+        "width": 390,
+        "theme": "light",
+        "round": 1,
+        "action": "direct",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "390/light/round-1/reload",
+        "width": 390,
+        "theme": "light",
+        "round": 1,
+        "action": "reload",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "390/light/round-2/direct",
+        "width": 390,
+        "theme": "light",
+        "round": 2,
+        "action": "direct",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "390/light/round-2/reload",
+        "width": 390,
+        "theme": "light",
+        "round": 2,
+        "action": "reload",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "390/dark/round-1/direct",
+        "width": 390,
+        "theme": "dark",
+        "round": 1,
+        "action": "direct",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "390/dark/round-1/reload",
+        "width": 390,
+        "theme": "dark",
+        "round": 1,
+        "action": "reload",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "390/dark/round-2/direct",
+        "width": 390,
+        "theme": "dark",
+        "round": 2,
+        "action": "direct",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      },
+      {
+        "checkpoint": "390/dark/round-2/reload",
+        "width": 390,
+        "theme": "dark",
+        "round": 2,
+        "action": "reload",
+        "url": "http://127.0.0.1:3024/guide",
+        "title": "Table of Contents · The AI Software Factory Guide",
+        "deploymentIds": []
+      }
+    ],
+    "checkCount": 1604,
+    "approvedException": "OLD_GUIDE_SEARCH_FOCUS_TRAP",
+    "approvedEscapeCount": 64,
+    "approvedEscapeClassification": {
+      "checkpoint": "1440/light/round-1/direct",
+      "name": "forward wrap: Tab step 13 contains and orders focus",
+      "pass": false,
+      "status": "KNOWN_EXCEPTION",
+      "actual": {
+        "issue": "focus-escaped",
+        "dialogId": "command-palette",
+        "dialogName": "Command palette",
+        "dialogOpen": true,
+        "focusInside": false,
+        "activeIndex": -1,
+        "activeTag": "BUTTON",
+        "activeClass": "icon-button theme-toggle",
+        "activeName": "Use dark theme",
+        "expectedIndex": 0
+      },
+      "exceptionId": "OLD_GUIDE_SEARCH_FOCUS_TRAP",
+      "affectedDeployment": "dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur",
+      "classification": "PRE_EXISTING / IMMUTABLE ARTIFACT",
+      "disposition": "ACCEPTED_TEMPORARILY",
+      "allowedState": "bridge-old",
+      "expiration": "Immediately when the migration leaves bridge/old or the old Guide artifact changes",
+      "finalStateAcceptance": "NOT EXEMPT",
+      "productionPromotionAuthorized": false
+    },
+    "unapprovedFailureCount": 112,
+    "failures": [
+      {
+        "checkpoint": "1440/light/round-1/direct",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/direct",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/direct",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/direct",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/direct",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/direct",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/direct",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/reload",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/reload",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/reload",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/reload",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/reload",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/reload",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-1/reload",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/direct",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/direct",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/direct",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/direct",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/direct",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/direct",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/direct",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/reload",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/reload",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/reload",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/reload",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/reload",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/reload",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/light/round-2/reload",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/direct",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/direct",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/direct",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/direct",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/direct",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/direct",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/direct",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/reload",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/reload",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/reload",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/reload",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/reload",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/reload",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-1/reload",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/direct",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/direct",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/direct",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/direct",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/direct",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/direct",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/direct",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/reload",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/reload",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/reload",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/reload",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/reload",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/reload",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "1440/dark/round-2/reload",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/direct",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/direct",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/direct",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/direct",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/direct",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/direct",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/direct",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/reload",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/reload",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/reload",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/reload",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/reload",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/reload",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-1/reload",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/direct",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/direct",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/direct",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/direct",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/direct",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/direct",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/direct",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/reload",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/reload",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/reload",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/reload",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/reload",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/reload",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/light/round-2/reload",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/direct",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/direct",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/direct",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/direct",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/direct",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/direct",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/direct",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/reload",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/reload",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/reload",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/reload",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/reload",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/reload",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-1/reload",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/direct",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/direct",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/direct",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/direct",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/direct",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/direct",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/direct",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/reload",
+        "name": "Control+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/reload",
+        "name": "Meta+k toggle from search trigger: restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/reload",
+        "name": "Control+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/reload",
+        "name": "Escape after Control+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/reload",
+        "name": "Meta+k toggle from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/reload",
+        "name": "Escape after Meta+k from different control (theme): restores invoking control",
+        "pass": false,
+        "status": "FAIL"
+      },
+      {
+        "checkpoint": "390/dark/round-2/reload",
+        "name": "Escape with search closed does not steal focus",
+        "pass": false,
+        "status": "FAIL"
+      }
+    ],
+    "console": [],
+    "pageErrors": [],
+    "networkFailures": [],
+    "evidenceLimits": [
+      "Deployment/state arguments bind the requested qualification; actual deployment identity and bridge routing need separate platform evidence.",
+      "Runtime logs require separate review. This harness records browser console, page errors, network failures and observed DOM behavior.",
+      "Only open-search Tab/Shift+Tab escape on exact old bridge/old may be KNOWN_EXCEPTION / ACCEPTED_TEMPORARILY. Every other defect remains NO_GO."
+    ]
+  },
+  "oldGuideRouteRefresh": {
+    "disposition": "PASS_WITH_APPROVED_OLD_GUIDE_BASELINE_EXCEPTIONS",
+    "checkCount": 1532,
+    "visitCount": 151,
+    "finishedAt": "2026-09-05T20:07:39.862Z",
+    "acceptedBaselineCount": 8,
+    "guideAssets": [
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/20-q9ua8x_std.css",
+        "page": "http://127.0.0.1:3024/guide",
+        "type": "stylesheet",
+        "status": 200,
+        "sha256": "153366ec0ddc2851194576d63b0c5e269cb24b78ce5b60ed2e6bc2f9d0eff6c7"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/1sizbqpwhzwhd.js",
+        "page": "http://127.0.0.1:3024/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "1001a84e2a1a6c4573088d988226ef443428416b924577c0682630957977991d"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/turbopack-1s9e9p9-awa-3.js",
+        "page": "http://127.0.0.1:3024/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "c581798d3f0346970bce92811b1f26d5a7d19aa0f1fc6245b41560c265eb88ee"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/137ummfue5qox.js",
+        "page": "http://127.0.0.1:3024/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "1627b1b0be0b5d54fdc7e9985970be8528144ee0da6190c58c81296759233ad4"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/2trvcokof4iy6.js",
+        "page": "http://127.0.0.1:3024/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "3a8782ddcbb73b031d732c87ddb7832118d51ccc3f23413023d1135994e26bb9"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/2m7o5wpek9-l7.js",
+        "page": "http://127.0.0.1:3024/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "f11234aa7940f1ca807e656464f28769507a80554abb4296b789d45583dc40fd"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/21en880woklcv.js",
+        "page": "http://127.0.0.1:3024/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "8067b6383fb2167c71f1969cdce399dcd550fe0f6089bb370011a12e837a8a01"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/3swe6s5dnteh_.js",
+        "page": "http://127.0.0.1:3024/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "848e435b1fca13ba593225e59560e448556e836fb90a12315b516beef30d9b6e"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/1620fi2lrpdvr.js",
+        "page": "http://127.0.0.1:3024/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "d5d2a095fb4fb179b6c861cfe23851cc8234de01974e0a7ad9aa1b17cbda5891"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/2-oi_vs57vxss.js",
+        "page": "http://127.0.0.1:3024/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "960b422ff12611c0087006f2c5ad85600ed12d06efa8cd65b2807583cfe93939"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/1hm2w4pqx6nzd.js",
+        "page": "http://127.0.0.1:3024/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "3c7b2e3d6839d865aa506973a102ce84e8aef5ae9556bd3a3987795458063e1e"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/0zvv47ixu2edh.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "7a74da9f59a103ef5b7b2fc95372d88b8bcc32f0192e3d77fc99ebb544118b14"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/3yhr034v6_if6.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "0fec0ecdef3ebaaf7bc56e5ea7e3ec59892ce5d1e34058ea0fcedbf6ec6542d3"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/2e1qop7e87lwg.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "e76a5a210610ab3ff143a8e1048e3162301fc6a00967912398aa68c919c27675"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/1cjscrcr4hzd4.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "00a37de727df45b77a828b2058ef06182872578caf912837b20d49fbbcd35c7f"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/1qp_6s-z4p--q.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "b5383feaeb7cc19712f890b79d26c6a819c9c6fa770ca483f3a05dbf853dd82e"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/1w5f3xuxsp9eb.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "dbfc7ccf28183003b9069d54905e8ec399d6fd553194344ec4e49d4b1985062f"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/3iqh9ew9zxk82.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "7cd1f4450d93348dc4fefb2556cb8bf7f1752c230a2b6dbb96ef2eae74f1ebd9"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/1toahr56km-92.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "62fe20bde2a6aac5527f5d129d2bcd858c61ef995c23daec70a0e26b1b4de2f0"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/43m2hpj8hp395.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "bbcca2867b2f6f47722f7327732913af962593cbb9c9e1815472d2016cd9076b"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/39sp-or8slczm.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "0cae88942df2c3da779bada5ba9478d27daaba8ff8b8eb2aa992022749d2d81b"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/3x18-szlysc25.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "437ccde9430098da2a6875f642469047426012beb87916700fdce70774d1a686"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/211e8js16vwdf.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "38b8092b60044c792e0996d3f2e8c30d64b83459307e69f00c5d7ec1044d76f1"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/2ndrccv_r_lh7.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "7f8065c7d8d8f456c52a3ae463d7e6498d35b268e989f724add92caa69895877"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/10ama26dcc5m1.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "45a95aa05b304ee45e1f8e7e0f9f274368950b147cf569ffeff2e4de2b5581bd"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/28igtwdkc0l4f.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "b0c1e8d8564ab78c1d18bb9dca1c046f377867e1c5f4c89b3cbf0010f5af73b6"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/276n_veq8t6w9.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/03-first-principles-trust-evidence-and-authority",
+        "type": "script",
+        "status": 200,
+        "sha256": "4768a29b9d25618f14b0e807ee9cfd5731bc563ba311c39ea608a068e4b058b6"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/3b5rr270s63jq.js",
+        "page": "http://127.0.0.1:3024/docs/01-understand/03-first-principles-trust-evidence-and-authority",
+        "type": "script",
+        "status": 200,
+        "sha256": "6a45ab3e491a4eca0c46e052319f0189ee20bf28541190e861facb9540bd0166"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/3quh5c6a8m762.js",
+        "page": "http://127.0.0.1:3024/docs/03-build/13-control-plane-orchestrator-and-execution-plane",
+        "type": "script",
+        "status": 200,
+        "sha256": "47ab22340bb31b2943c0d0b4ae8e6a365abe1cdce02975c2e30448a8375799cc"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/32s0c3rwpb1ji.js",
+        "page": "http://127.0.0.1:3024/docs/03-build/13-control-plane-orchestrator-and-execution-plane",
+        "type": "script",
+        "status": 200,
+        "sha256": "a7a5cf2ad5783519c1f10c19e25424d088cb9984e4b796e47becf7b93d7b2d1c"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/0i9mjog05_aby.js",
+        "page": "http://127.0.0.1:3024/architecture",
+        "type": "script",
+        "status": 200,
+        "sha256": "6607870d6bdabefe8715eb45e2a701fcb46b26c83e7ca80cd5ff11c39de361d0"
+      },
+      {
+        "url": "http://127.0.0.1:3024/_next/static/immutable/chunks/1muyq8-z-_iwm.js",
+        "page": "http://127.0.0.1:3024/search",
+        "type": "script",
+        "status": 200,
+        "sha256": "36c56b6adccdf06bb113a2d76521eef9aa18beb93e5234db15b2586bfdd584c1"
+      }
+    ],
+    "qualificationLimit": "Does not cover complete search lifecycle; separate NO_GO takes precedence. Asset bytes agree with old baseline, not independent proof of Production-current routing.",
+    "baselineGuideAssets": [
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/20-q9ua8x_std.css",
+        "page": "https://ai-software-factory-mastery.vercel.app/guide",
+        "type": "stylesheet",
+        "status": 200,
+        "sha256": "153366ec0ddc2851194576d63b0c5e269cb24b78ce5b60ed2e6bc2f9d0eff6c7"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/turbopack-1s9e9p9-awa-3.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "c581798d3f0346970bce92811b1f26d5a7d19aa0f1fc6245b41560c265eb88ee"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "f11234aa7940f1ca807e656464f28769507a80554abb4296b789d45583dc40fd"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2trvcokof4iy6.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "3a8782ddcbb73b031d732c87ddb7832118d51ccc3f23413023d1135994e26bb9"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1sizbqpwhzwhd.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "1001a84e2a1a6c4573088d988226ef443428416b924577c0682630957977991d"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/21en880woklcv.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "8067b6383fb2167c71f1969cdce399dcd550fe0f6089bb370011a12e837a8a01"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/137ummfue5qox.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "1627b1b0be0b5d54fdc7e9985970be8528144ee0da6190c58c81296759233ad4"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3swe6s5dnteh_.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "848e435b1fca13ba593225e59560e448556e836fb90a12315b516beef30d9b6e"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2-oi_vs57vxss.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "960b422ff12611c0087006f2c5ad85600ed12d06efa8cd65b2807583cfe93939"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1hm2w4pqx6nzd.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "3c7b2e3d6839d865aa506973a102ce84e8aef5ae9556bd3a3987795458063e1e"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1620fi2lrpdvr.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/guide",
+        "type": "script",
+        "status": 200,
+        "sha256": "d5d2a095fb4fb179b6c861cfe23851cc8234de01974e0a7ad9aa1b17cbda5891"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/0zvv47ixu2edh.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "7a74da9f59a103ef5b7b2fc95372d88b8bcc32f0192e3d77fc99ebb544118b14"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3iqh9ew9zxk82.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "7cd1f4450d93348dc4fefb2556cb8bf7f1752c230a2b6dbb96ef2eae74f1ebd9"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2e1qop7e87lwg.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "e76a5a210610ab3ff143a8e1048e3162301fc6a00967912398aa68c919c27675"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1w5f3xuxsp9eb.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "dbfc7ccf28183003b9069d54905e8ec399d6fd553194344ec4e49d4b1985062f"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3yhr034v6_if6.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "0fec0ecdef3ebaaf7bc56e5ea7e3ec59892ce5d1e34058ea0fcedbf6ec6542d3"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1qp_6s-z4p--q.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "b5383feaeb7cc19712f890b79d26c6a819c9c6fa770ca483f3a05dbf853dd82e"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1toahr56km-92.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "62fe20bde2a6aac5527f5d129d2bcd858c61ef995c23daec70a0e26b1b4de2f0"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3x18-szlysc25.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "437ccde9430098da2a6875f642469047426012beb87916700fdce70774d1a686"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/43m2hpj8hp395.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "bbcca2867b2f6f47722f7327732913af962593cbb9c9e1815472d2016cd9076b"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1cjscrcr4hzd4.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "00a37de727df45b77a828b2058ef06182872578caf912837b20d49fbbcd35c7f"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/39sp-or8slczm.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "0cae88942df2c3da779bada5ba9478d27daaba8ff8b8eb2aa992022749d2d81b"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/211e8js16vwdf.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "38b8092b60044c792e0996d3f2e8c30d64b83459307e69f00c5d7ec1044d76f1"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2ndrccv_r_lh7.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "7f8065c7d8d8f456c52a3ae463d7e6498d35b268e989f724add92caa69895877"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/10ama26dcc5m1.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "45a95aa05b304ee45e1f8e7e0f9f274368950b147cf569ffeff2e4de2b5581bd"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/28igtwdkc0l4f.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+        "type": "script",
+        "status": 200,
+        "sha256": "b0c1e8d8564ab78c1d18bb9dca1c046f377867e1c5f4c89b3cbf0010f5af73b6"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/276n_veq8t6w9.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/03-first-principles-trust-evidence-and-authority",
+        "type": "script",
+        "status": 200,
+        "sha256": "4768a29b9d25618f14b0e807ee9cfd5731bc563ba311c39ea608a068e4b058b6"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3b5rr270s63jq.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/03-first-principles-trust-evidence-and-authority",
+        "type": "script",
+        "status": 200,
+        "sha256": "6a45ab3e491a4eca0c46e052319f0189ee20bf28541190e861facb9540bd0166"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3quh5c6a8m762.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/03-build/13-control-plane-orchestrator-and-execution-plane",
+        "type": "script",
+        "status": 200,
+        "sha256": "47ab22340bb31b2943c0d0b4ae8e6a365abe1cdce02975c2e30448a8375799cc"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/32s0c3rwpb1ji.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/docs/03-build/13-control-plane-orchestrator-and-execution-plane",
+        "type": "script",
+        "status": 200,
+        "sha256": "a7a5cf2ad5783519c1f10c19e25424d088cb9984e4b796e47becf7b93d7b2d1c"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/0i9mjog05_aby.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/architecture",
+        "type": "script",
+        "status": 200,
+        "sha256": "6607870d6bdabefe8715eb45e2a701fcb46b26c83e7ca80cd5ff11c39de361d0"
+      },
+      {
+        "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1muyq8-z-_iwm.js",
+        "page": "https://ai-software-factory-mastery.vercel.app/search",
+        "type": "script",
+        "status": 200,
+        "sha256": "36c56b6adccdf06bb113a2d76521eef9aa18beb93e5234db15b2586bfdd584c1"
+      }
+    ],
+    "assetComparison": [
+      {
+        "path": "/_next/static/immutable/chunks/20-q9ua8x_std.css",
+        "status": 200,
+        "sha256": "153366ec0ddc2851194576d63b0c5e269cb24b78ce5b60ed2e6bc2f9d0eff6c7",
+        "baselineSha256": "153366ec0ddc2851194576d63b0c5e269cb24b78ce5b60ed2e6bc2f9d0eff6c7",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/1sizbqpwhzwhd.js",
+        "status": 200,
+        "sha256": "1001a84e2a1a6c4573088d988226ef443428416b924577c0682630957977991d",
+        "baselineSha256": "1001a84e2a1a6c4573088d988226ef443428416b924577c0682630957977991d",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/turbopack-1s9e9p9-awa-3.js",
+        "status": 200,
+        "sha256": "c581798d3f0346970bce92811b1f26d5a7d19aa0f1fc6245b41560c265eb88ee",
+        "baselineSha256": "c581798d3f0346970bce92811b1f26d5a7d19aa0f1fc6245b41560c265eb88ee",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/137ummfue5qox.js",
+        "status": 200,
+        "sha256": "1627b1b0be0b5d54fdc7e9985970be8528144ee0da6190c58c81296759233ad4",
+        "baselineSha256": "1627b1b0be0b5d54fdc7e9985970be8528144ee0da6190c58c81296759233ad4",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/2trvcokof4iy6.js",
+        "status": 200,
+        "sha256": "3a8782ddcbb73b031d732c87ddb7832118d51ccc3f23413023d1135994e26bb9",
+        "baselineSha256": "3a8782ddcbb73b031d732c87ddb7832118d51ccc3f23413023d1135994e26bb9",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/2m7o5wpek9-l7.js",
+        "status": 200,
+        "sha256": "f11234aa7940f1ca807e656464f28769507a80554abb4296b789d45583dc40fd",
+        "baselineSha256": "f11234aa7940f1ca807e656464f28769507a80554abb4296b789d45583dc40fd",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/21en880woklcv.js",
+        "status": 200,
+        "sha256": "8067b6383fb2167c71f1969cdce399dcd550fe0f6089bb370011a12e837a8a01",
+        "baselineSha256": "8067b6383fb2167c71f1969cdce399dcd550fe0f6089bb370011a12e837a8a01",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/3swe6s5dnteh_.js",
+        "status": 200,
+        "sha256": "848e435b1fca13ba593225e59560e448556e836fb90a12315b516beef30d9b6e",
+        "baselineSha256": "848e435b1fca13ba593225e59560e448556e836fb90a12315b516beef30d9b6e",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/1620fi2lrpdvr.js",
+        "status": 200,
+        "sha256": "d5d2a095fb4fb179b6c861cfe23851cc8234de01974e0a7ad9aa1b17cbda5891",
+        "baselineSha256": "d5d2a095fb4fb179b6c861cfe23851cc8234de01974e0a7ad9aa1b17cbda5891",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/2-oi_vs57vxss.js",
+        "status": 200,
+        "sha256": "960b422ff12611c0087006f2c5ad85600ed12d06efa8cd65b2807583cfe93939",
+        "baselineSha256": "960b422ff12611c0087006f2c5ad85600ed12d06efa8cd65b2807583cfe93939",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/1hm2w4pqx6nzd.js",
+        "status": 200,
+        "sha256": "3c7b2e3d6839d865aa506973a102ce84e8aef5ae9556bd3a3987795458063e1e",
+        "baselineSha256": "3c7b2e3d6839d865aa506973a102ce84e8aef5ae9556bd3a3987795458063e1e",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/0zvv47ixu2edh.js",
+        "status": 200,
+        "sha256": "7a74da9f59a103ef5b7b2fc95372d88b8bcc32f0192e3d77fc99ebb544118b14",
+        "baselineSha256": "7a74da9f59a103ef5b7b2fc95372d88b8bcc32f0192e3d77fc99ebb544118b14",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/3yhr034v6_if6.js",
+        "status": 200,
+        "sha256": "0fec0ecdef3ebaaf7bc56e5ea7e3ec59892ce5d1e34058ea0fcedbf6ec6542d3",
+        "baselineSha256": "0fec0ecdef3ebaaf7bc56e5ea7e3ec59892ce5d1e34058ea0fcedbf6ec6542d3",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/2e1qop7e87lwg.js",
+        "status": 200,
+        "sha256": "e76a5a210610ab3ff143a8e1048e3162301fc6a00967912398aa68c919c27675",
+        "baselineSha256": "e76a5a210610ab3ff143a8e1048e3162301fc6a00967912398aa68c919c27675",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/1cjscrcr4hzd4.js",
+        "status": 200,
+        "sha256": "00a37de727df45b77a828b2058ef06182872578caf912837b20d49fbbcd35c7f",
+        "baselineSha256": "00a37de727df45b77a828b2058ef06182872578caf912837b20d49fbbcd35c7f",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/1qp_6s-z4p--q.js",
+        "status": 200,
+        "sha256": "b5383feaeb7cc19712f890b79d26c6a819c9c6fa770ca483f3a05dbf853dd82e",
+        "baselineSha256": "b5383feaeb7cc19712f890b79d26c6a819c9c6fa770ca483f3a05dbf853dd82e",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/1w5f3xuxsp9eb.js",
+        "status": 200,
+        "sha256": "dbfc7ccf28183003b9069d54905e8ec399d6fd553194344ec4e49d4b1985062f",
+        "baselineSha256": "dbfc7ccf28183003b9069d54905e8ec399d6fd553194344ec4e49d4b1985062f",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/3iqh9ew9zxk82.js",
+        "status": 200,
+        "sha256": "7cd1f4450d93348dc4fefb2556cb8bf7f1752c230a2b6dbb96ef2eae74f1ebd9",
+        "baselineSha256": "7cd1f4450d93348dc4fefb2556cb8bf7f1752c230a2b6dbb96ef2eae74f1ebd9",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/1toahr56km-92.js",
+        "status": 200,
+        "sha256": "62fe20bde2a6aac5527f5d129d2bcd858c61ef995c23daec70a0e26b1b4de2f0",
+        "baselineSha256": "62fe20bde2a6aac5527f5d129d2bcd858c61ef995c23daec70a0e26b1b4de2f0",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/43m2hpj8hp395.js",
+        "status": 200,
+        "sha256": "bbcca2867b2f6f47722f7327732913af962593cbb9c9e1815472d2016cd9076b",
+        "baselineSha256": "bbcca2867b2f6f47722f7327732913af962593cbb9c9e1815472d2016cd9076b",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/39sp-or8slczm.js",
+        "status": 200,
+        "sha256": "0cae88942df2c3da779bada5ba9478d27daaba8ff8b8eb2aa992022749d2d81b",
+        "baselineSha256": "0cae88942df2c3da779bada5ba9478d27daaba8ff8b8eb2aa992022749d2d81b",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/3x18-szlysc25.js",
+        "status": 200,
+        "sha256": "437ccde9430098da2a6875f642469047426012beb87916700fdce70774d1a686",
+        "baselineSha256": "437ccde9430098da2a6875f642469047426012beb87916700fdce70774d1a686",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/211e8js16vwdf.js",
+        "status": 200,
+        "sha256": "38b8092b60044c792e0996d3f2e8c30d64b83459307e69f00c5d7ec1044d76f1",
+        "baselineSha256": "38b8092b60044c792e0996d3f2e8c30d64b83459307e69f00c5d7ec1044d76f1",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/2ndrccv_r_lh7.js",
+        "status": 200,
+        "sha256": "7f8065c7d8d8f456c52a3ae463d7e6498d35b268e989f724add92caa69895877",
+        "baselineSha256": "7f8065c7d8d8f456c52a3ae463d7e6498d35b268e989f724add92caa69895877",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/10ama26dcc5m1.js",
+        "status": 200,
+        "sha256": "45a95aa05b304ee45e1f8e7e0f9f274368950b147cf569ffeff2e4de2b5581bd",
+        "baselineSha256": "45a95aa05b304ee45e1f8e7e0f9f274368950b147cf569ffeff2e4de2b5581bd",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/28igtwdkc0l4f.js",
+        "status": 200,
+        "sha256": "b0c1e8d8564ab78c1d18bb9dca1c046f377867e1c5f4c89b3cbf0010f5af73b6",
+        "baselineSha256": "b0c1e8d8564ab78c1d18bb9dca1c046f377867e1c5f4c89b3cbf0010f5af73b6",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/276n_veq8t6w9.js",
+        "status": 200,
+        "sha256": "4768a29b9d25618f14b0e807ee9cfd5731bc563ba311c39ea608a068e4b058b6",
+        "baselineSha256": "4768a29b9d25618f14b0e807ee9cfd5731bc563ba311c39ea608a068e4b058b6",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/3b5rr270s63jq.js",
+        "status": 200,
+        "sha256": "6a45ab3e491a4eca0c46e052319f0189ee20bf28541190e861facb9540bd0166",
+        "baselineSha256": "6a45ab3e491a4eca0c46e052319f0189ee20bf28541190e861facb9540bd0166",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/3quh5c6a8m762.js",
+        "status": 200,
+        "sha256": "47ab22340bb31b2943c0d0b4ae8e6a365abe1cdce02975c2e30448a8375799cc",
+        "baselineSha256": "47ab22340bb31b2943c0d0b4ae8e6a365abe1cdce02975c2e30448a8375799cc",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/32s0c3rwpb1ji.js",
+        "status": 200,
+        "sha256": "a7a5cf2ad5783519c1f10c19e25424d088cb9984e4b796e47becf7b93d7b2d1c",
+        "baselineSha256": "a7a5cf2ad5783519c1f10c19e25424d088cb9984e4b796e47becf7b93d7b2d1c",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/0i9mjog05_aby.js",
+        "status": 200,
+        "sha256": "6607870d6bdabefe8715eb45e2a701fcb46b26c83e7ca80cd5ff11c39de361d0",
+        "baselineSha256": "6607870d6bdabefe8715eb45e2a701fcb46b26c83e7ca80cd5ff11c39de361d0",
+        "match": true
+      },
+      {
+        "path": "/_next/static/immutable/chunks/1muyq8-z-_iwm.js",
+        "status": 200,
+        "sha256": "36c56b6adccdf06bb113a2d76521eef9aa18beb93e5234db15b2586bfdd584c1",
+        "baselineSha256": "36c56b6adccdf06bb113a2d76521eef9aa18beb93e5234db15b2586bfdd584c1",
+        "match": true
+      }
+    ]
+  },
+  "newGuide": {
+    "commit": "016a6e6b45f40745c54c8a71858a78e2008fa6b3",
+    "qualification": {
+      "startedAt": "2026-09-05T20:09:45.407Z",
+      "source": "221766d7b990ff8015244de516f6a081f770c17c",
+      "sourceDiffSha256": "fba0071e951857489710f1bfe30be7d553fdb999a4e92b3cf9948f3919593e90",
+      "checks": [
+        {
+          "name": "vinext-build",
+          "startedAt": "2026-09-05T20:09:45.408Z",
+          "finishedAt": "2026-09-05T20:09:53.856Z",
+          "exitCode": 0,
+          "log": "/tmp/fdlc-migration-bridge.2CP43B/new-guide-focus-qualification/verified/vinext-build.log"
+        },
+        {
+          "name": "tests",
+          "startedAt": "2026-09-05T20:09:53.856Z",
+          "finishedAt": "2026-09-05T20:10:00.336Z",
+          "exitCode": 0,
+          "log": "/tmp/fdlc-migration-bridge.2CP43B/new-guide-focus-qualification/verified/tests.log"
+        },
+        {
+          "name": "lint",
+          "startedAt": "2026-09-05T20:10:00.336Z",
+          "finishedAt": "2026-09-05T20:10:04.652Z",
+          "exitCode": 0,
+          "log": "/tmp/fdlc-migration-bridge.2CP43B/new-guide-focus-qualification/verified/lint.log"
+        },
+        {
+          "name": "links",
+          "startedAt": "2026-09-05T20:10:04.652Z",
+          "finishedAt": "2026-09-05T20:10:04.877Z",
+          "exitCode": 0,
+          "log": "/tmp/fdlc-migration-bridge.2CP43B/new-guide-focus-qualification/verified/links.log"
+        },
+        {
+          "name": "editorial",
+          "startedAt": "2026-09-05T20:10:04.877Z",
+          "finishedAt": "2026-09-05T20:10:05.118Z",
+          "exitCode": 0,
+          "log": "/tmp/fdlc-migration-bridge.2CP43B/new-guide-focus-qualification/verified/editorial.log"
+        },
+        {
+          "name": "snapshot",
+          "startedAt": "2026-09-05T20:10:05.118Z",
+          "finishedAt": "2026-09-05T20:10:05.420Z",
+          "exitCode": 0,
+          "log": "/tmp/fdlc-migration-bridge.2CP43B/new-guide-focus-qualification/verified/snapshot.log"
+        },
+        {
+          "name": "native-build-runtime",
+          "startedAt": "2026-09-05T20:10:05.420Z",
+          "finishedAt": "2026-09-05T20:10:51.258Z",
+          "exitCode": 0,
+          "log": "/tmp/fdlc-migration-bridge.2CP43B/new-guide-focus-qualification/verified/native-build-runtime.log"
+        },
+        {
+          "name": "typecheck",
+          "startedAt": "2026-09-05T20:10:51.260Z",
+          "finishedAt": "2026-09-05T20:10:52.148Z",
+          "exitCode": 0,
+          "log": "/tmp/fdlc-migration-bridge.2CP43B/new-guide-focus-qualification/verified/typecheck.log"
+        },
+        {
+          "name": "whitespace",
+          "startedAt": "2026-09-05T20:10:52.148Z",
+          "finishedAt": "2026-09-05T20:10:52.159Z",
+          "exitCode": 0,
+          "log": "/tmp/fdlc-migration-bridge.2CP43B/new-guide-focus-qualification/verified/whitespace.log"
+        },
+        {
+          "name": "next-env-unchanged",
+          "startedAt": "2026-09-05T20:10:52.159Z",
+          "finishedAt": "2026-09-05T20:10:52.164Z",
+          "exitCode": 0,
+          "log": "/tmp/fdlc-migration-bridge.2CP43B/new-guide-focus-qualification/verified/next-env-unchanged.log"
+        }
+      ],
+      "pass": true,
+      "finishedAt": "2026-09-05T20:10:52.164Z",
+      "runtimeServers": [
+        {
+          "origin": "http://127.0.0.1:53883",
+          "stopped": true
+        },
+        {
+          "origin": "http://127.0.0.1:53946",
+          "stopped": true
+        }
+      ],
+      "app/components/CommandPalette.tsx": "f3e22bbed08cecbf41f9b5e3c74209723262749f4b4eb7d61fe5ede1a8dd2e53",
+      "scripts/check-next-runtime.mjs": "5d7330ab02b5da39cd59eb43a2aca81149a1601718c5c8c152f4799310c192b6",
+      "config/microfrontends.generated.json": "f40f364af052f57a8ea37602fa78dcbd0b6f24e77d7163faca8f2b84a7f89c9e"
+    },
+    "independentSourceReview": "PASS: architecture/security/simplicity, targeted ESLint/syntax/diff checks",
+    "releaseQualification": "PENDING: full mixed-state/final-pair/hosted acceptance; local keyboard repair not pushed or deployed"
+  },
+  "exceptionWindow": {
+    "start": null,
+    "end": null,
+    "duration": null,
+    "note": "No bridge/old Production window has begun"
+  },
+  "rawEvidence": {
+    "focus": {
+      "path": "/tmp/fdlc-migration-bridge.2CP43B/bridge-old-search-lifecycle-complete/search-focus-acceptance.json",
+      "sha256": "678724de4be91e195fd7a49d29591e47abf58c65f72b14dbeeb89b5f76f58ed7"
+    },
+    "refresh": {
+      "path": "/tmp/fdlc-migration-bridge.2CP43B/bridge-old-approved-refresh/acceptance.json",
+      "sha256": "63783d4f6d7bba522c33197edc7ebc442f4b4b71b9a107ffb2355cc3630fb551"
+    },
+    "baseline": {
+      "path": "/tmp/fdlc-migration-bridge.2CP43B/old-guide-baseline-complete/acceptance.json",
+      "sha256": "9ceeaa7135b1837009aff2d81638374d7d3d11eb67157de61d6dfe796ed6e466"
+    },
+    "newGuide": {
+      "path": "/tmp/fdlc-migration-bridge.2CP43B/new-guide-focus-qualification/verified/summary.json",
+      "sha256": "8e4f6716276ec64c401699ea1700ff228c262edf5a6e3ab158f5ad817a31896d"
+    }
+  }
+}

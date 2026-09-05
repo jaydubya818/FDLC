@@ -1,6 +1,6 @@
 # FDLC / Guide migration bridge release plan
 
-Status: **BLOCKED — additional immutable-old-Guide keyboard exception requires explicit approval.**
+Status: **NO_GO — three additional immutable old-Guide focus defects require a separate decision.**
 
 No Production authorization. The dedicated non-main bridge branch has been
 pushed, and its Preview deployment is READY with MFE configuration success.
@@ -11,7 +11,7 @@ Preview-scoped non-secret environment pins were added only to
 and standalone canonical; FDLC's origin override names the observed Guide branch
 alias. No Production-scoped environment entries were added.
 
-## New authority boundary: immutable old-Guide modal focus
+## Approved exception: OLD_GUIDE_SEARCH_FOCUS_TRAP
 
 Additional keyboard testing found that the unchanged current Guide's search
 dialog does not contain focus. Four fresh cookie-free visits (1280px and 390×844,
@@ -21,20 +21,66 @@ dialog remains open with `aria-modal="true"`. Escape still closes the dialog and
 restores trigger focus. The exact old document identity and bare immutable asset
 URLs were retained in `2026-09-05-migration-bridge-old-guide-focus-evidence.json`.
 
-This is outside the previously approved hydration/ID/overflow exception. It must
-not be silently accepted by the harness or called SAFE. The requested additional
-decision is a temporary exception for this existing keyboard-focus defect only
-while `dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur` remains active behind the bridge. No such
-additional exception has been approved or implemented. All new/final Guide
-candidates still require correct modal focus and complete requalification.
+The user subsequently approved this separately and explicitly. Its ID is
+`OLD_GUIDE_SEARCH_FOCUS_TRAP`; classification is `PRE_EXISTING / IMMUTABLE ARTIFACT`;
+reproduction is 8/8. The only allowed state is bridge FDLC + old Guide
+`dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur`. Record the test as
+`KNOWN_EXCEPTION / ACCEPTED_TEMPORARILY`, never PASS or IGNORED. This does not
+cover another dialog or any other accessibility defect. It expires immediately
+when migration leaves bridge/old or old Guide is no longer active. All new/final
+Guide candidates and future releases are NOT EXEMPT and require correct modal
+focus and complete requalification.
 
-The repaired Guide has a local corrective checkpoint
-`221766d7b990ff8015244de516f6a081f770c17c`, after anchor/mobile repair
-`8cf00f9e1882fb01af58d22a95881d4833d39d06`. Independent source review, lint,
-typecheck and whitespace checks passed for the two-file keyboard repair. Its
-native/browser rebuild and hosted requalification remain pending; the keyboard
-checkpoint has not been pushed or deployed. Production approval is not requested
-at this boundary.
+If a later exact Production release is authorized, record bridge/old start,
+bridge/old end and exception active duration, keeping the window as short as
+operationally practical. Those timestamps and duration are currently not
+applicable: no bridge Production window has begun. This exception authorizes
+neither merge nor Production deployment/promotion, aliases or settings changes.
+
+The complete follow-up search lifecycle sweep made 16 visits: desktop 1440px and
+390×844, light/dark, direct/reload, two rounds. Of 1,604 checks, 64 open-dialog
+Tab/Shift+Tab escapes are explicitly `KNOWN_EXCEPTION / ACCEPTED_TEMPORARILY` with
+`pass: false`. It also found 112 failures across three behaviors NOT covered by
+the approved exception:
+
+| Additional old-artifact defect | Reproduction | Disposition |
+| --- | --- | --- |
+| Cmd/Ctrl+K closes search without restoring focus to the invoking control | 64/64 | FAIL — not approved |
+| Escape after shortcut opening from the theme button restores Search, not the invoking theme control | 32/32 | FAIL — not approved |
+| Escape with search already closed steals focus from the theme button | 16/16 | FAIL — not approved |
+
+These are separate focus-restoration/noninterference contract failures. An
+independent reviewer reproduced shortcut-close leaving focus on BODY and the
+wrong return target after Escape; the closed-dialog Escape defect is independently
+source/harness-confirmed, not separately browser-reproduced. Returning a shortcut
+user to Search can be an intentional policy in another product, but it does not
+meet this release's explicit actual-invoker contract or expand the Tab-only waiver.
+The
+immutable old source toggles search without its close helper, hard-codes the
+Search trigger as the return target, and handles Escape even while closed. The
+earlier observation that Escape restores Search remains true for Search-trigger
+invocation; it did not establish correct behavior for another invoker. No broader
+exception has been inferred, no old artifact has been patched or rebuilt, and
+bridge/old remains NO_GO pending the user's separate disposition. The record is
+`2026-09-05-migration-bridge-keyboard-lifecycle-evidence.json`; its complete raw
+run remains at `/tmp/fdlc-migration-bridge.2CP43B/bridge-old-search-lifecycle-complete/search-focus-acceptance.json`.
+
+The repaired new Guide is now checkpointed locally at
+`016a6e6b45f40745c54c8a71858a78e2008fa6b3`, after keyboard checkpoint
+`221766d7b990ff8015244de516f6a081f770c17c` and anchor/mobile repair
+`8cf00f9e1882fb01af58d22a95881d4833d39d06`. It restores the actual keyboard invoker,
+contains modal focus, and does not intercept Escape while closed. All 16 native
+focus/mouse cases passed: desktop 1280px and 390×844, light/dark, direct/reload,
+two rounds, with browser/page/managed-asset and runtime-log checks retained.
+All ten source/build/runtime commands passed, including 66 tests, native Next
+81-page build, Vinext, lint, links, editorial, unchanged snapshot and final
+typecheck. Independent architecture/security/simplicity review passed on the
+exact two-file delta (SHA-256
+`fba0071e951857489710f1bfe30be7d553fdb999a4e92b3cf9948f3919593e90`).
+This is native focus-fix qualification, not full bridge/new or final/new release
+acceptance. The keyboard repair has not been pushed or deployed. Hosted and
+complete final-pair requalification remain pending. Production approval is not
+requested at this boundary.
 
 ## Approved temporary baseline exception
 
@@ -97,7 +143,7 @@ The nine-file repair is in
 `/tmp/guide-bridge-compat-qualification.eO34aY/repo/.worktrees/codex/fdlc-guide-bridge-compat-source`.
 Its first corrective SHA is `8cf00f9e1882fb01af58d22a95881d4833d39d06`, with
 independent architecture/security/simplicity review PASS. The later two-file
-keyboard checkpoint and pending runtime gates are recorded above. Full
+keyboard repair's native runtime pass and pending hosted gates are recorded above. Full
 bridge/new-Guide acceptance is not certified. Passing
 source checks do not certify that mixed-version state. These authorized fixes do
 not alter the immutable old Guide or extend its temporary exception to a new
@@ -105,7 +151,7 @@ candidate.
 
 ### Completed source checks and independent review
 
-- Bridge unit tests: 64/64 (including strict network-evidence tests); earlier
+- Bridge unit tests: 68/68 (including strict network-evidence and exception-scope tests); earlier
   rendered tests: 17/17; lint, typecheck, native Next
   webpack build and whitespace checks passed. Local Turbopack encountered a host
   process/port EPERM restriction. The subsequent git-backed bridge Preview build
@@ -129,7 +175,7 @@ candidate.
   independent source reviews pass; updated release-record review remains pending. None of
   these reviews constitutes full release qualification.
 - Mission Control diff is empty. No credential or `.vercel` artifacts were added.
-- The 2026-09-05 19:19 UTC read-only Production verification maps FDLC to
+- The 2026-09-05 20:05:46 UTC read-only Production verification maps FDLC to
   `dpl_GvmTzMNUmpKt3825k69MUgL6YwTX` / `e4112bb06333b8244c18fc4a9736b1f3c807bc78`
   and Guide to `dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur` /
   `87d3841f96353d03278311dfc7e7b2d25649a331`. Reverification at qualification
@@ -138,7 +184,8 @@ candidate.
 ## Scope and immutable baseline
 
 The FDLC bridge is routing compatibility only; the separate Guide repair is
-limited to heading-anchor correctness and inline-code wrapping. Neither changes
+limited to heading-anchor correctness, inline-code wrapping and search keyboard
+focus correctness with regression coverage. Neither changes
 Guide content, FDLC presentation, Mission Control, Production settings, protection,
 credentials, or canonical aliases. No Production deployment may be promoted during
 this task.
@@ -200,8 +247,8 @@ configuration from resolving back to Guide while host isolation is active.
 
 | FDLC | Current Guide | Guide-compatible (new source) | Guide-final (new source) |
 | --- | --- | --- | --- |
-| Current | Baseline with explicitly approved old-Guide exceptions; no composition change | UNSAFE for target composition | UNSAFE: observed old FDLC fallback |
-| Bridge | BLOCKED / UNPROVEN: earlier suites passed approved exceptions, but expanded keyboard coverage found an additional unapproved old-artifact defect | UNPROVEN: initial repaired Preview composes correctly; keyboard repair runtime/full hosted requalification pending | UNSAFE: relative FDLC links conflict on Guide origin |
+| Current | Unchanged baseline with historical defects; three additional focus failures now recorded | UNSAFE for target composition | UNSAFE: observed old FDLC fallback |
+| Bridge | NO_GO: Tab escapes are KNOWN_EXCEPTION / ACCEPTED_TEMPORARILY, but three other focus defects are not approved | UNPROVEN: repaired keyboard native matrix passes without exceptions; complete mixed-state/hosted requalification pending | UNSAFE: relative FDLC links conflict on Guide origin |
 | Final | UNSAFE: old root-relative links and asset ownership | UNPROVEN: composed Guide with standalone canonical during bounded transition | UNPROVEN: intended final composed authority |
 
 For each intended state, qualification must record landing and all authoritative
@@ -273,6 +320,12 @@ qualified artifacts; no ad hoc patch or rebuild is authorized during cutover.
 
 Completed native local evidence:
 
+- The refreshed old-Guide full run at
+  `/tmp/fdlc-migration-bridge.2CP43B/bridge-old-approved-refresh/acceptance.json`
+  completed at 20:07:39 UTC with 1,532 checks, 151 visits, eight approved baseline
+  entries, no unexpected network failures and 32/32 Guide JS/CSS hashes matching
+  the immutable baseline. This suite does not cover the complete search lifecycle.
+  The separate lifecycle NO_GO above takes precedence over this narrower pass.
 - `/tmp/fdlc-migration-bridge.2CP43B/bridge-old-native/acceptance.json` reports
   `PASS_WITH_APPROVED_OLD_GUIDE_BASELINE_EXCEPTIONS`: 1,531 checks, 151 visits,
   eight exact accepted baseline exceptions and no unexpected failures. All 32/32
@@ -343,6 +396,33 @@ final Production reconfirmation and a release-ready PR remain outstanding.
 Do not mistake local passing suites, a READY Preview or source-security review
 for migration approval. The current blocked record and sanitized focus evidence
 are also retained in the main release workspace.
+
+The current paired hosted checkpoint is FDLC
+`dpl_GYsajDzvwdN52HkApSK12SmUkA7A` at `982c5626a301792d00accf1d05d23327b6296067`
+and Guide `dpl_EYYQaUg7BAcUhVVtQTzxMjFCJgLN` at
+`8cf00f9e1882fb01af58d22a95881d4833d39d06`. Both are READY; the observed composed
+Guide DOM names the expected prefixed assets and Guide deployment. This is not
+qualification of the later local keyboard repair. Both PRs remain Draft and
+unmerged. The remote checks at these published SHAs are green Vercel statuses;
+no GitHub Actions runs were returned. All local checkpoint SHAs, full-suite and
+hosted evidence must be reconciled before any readiness declaration.
+
+Read-only protection review found unchanged SSO, zero FDLC automation-bypass
+entries and one pre-existing Guide automation-bypass entry. No bypass was created,
+read, used or revoked during this qualification; do not claim all project-wide
+bypasses are revoked. No Production environment entries or settings changes were
+introduced. No credentials or `.vercel` artifacts were added to either changeset.
+
+Future Production-target staging also has an unresolved platform constraint,
+separate from the current keyboard decision. Installed CLI 50.35.0 sends persisted
+`projectSettings` even with `--skip-domain`; that flag only avoids domain
+promotion. The public deployment API does not document the proposed per-deployment
+environment/no-alias fields. Do not execute the earlier CLI staging recipe or
+invent API fields. A supported no-settings-change procedure or separately
+enumerated user authorization is required before future Production staging.
+This is not a reason to change the approved Preview workflow. See
+`2026-09-05-migration-bridge-platform-boundary.md` for the read-only evidence and
+official documentation.
 
 ## Release gate
 
