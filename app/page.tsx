@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross an application boundary during migration. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -141,13 +142,13 @@ export default function Home() {
 
         <section className="guide-preview">
           <div><p className="section-label">The field guide</p><h2>Learn the discipline from first principles to production.</h2></div>
-          <div><p>The full 44-chapter AI Software Factory Guide covers architecture, governance, agents, harnesses, tools, context, models, verification, security, operations, and governed learning.</p><Link className="button button-light" href="/guide">Choose a reading path</Link></div>
+          <div><p>The full 44-chapter AI Software Factory Guide covers architecture, governance, agents, harnesses, tools, context, models, verification, security, operations, and governed learning.</p><a className="button button-light" href="/guide">Choose a reading path</a></div>
         </section>
 
         <section className="content-section ecosystem-section">
           <SectionHeader eyebrow="The FDLC.ai ecosystem" title="One discipline. Five distinct roles." description="The open foundation defines the category. Products and services make it concrete without becoming the definition of FDLC itself." />
           <div className="ecosystem-cards">
-            {ecosystemRoles.map((item, index) => <Link href={item.href} key={item.name}><span>{String(index + 1).padStart(2, "0")} / {item.status}</span><h3>{item.name}</h3><strong>{item.role}</strong><p>{item.description}</p><small>Explore →</small></Link>)}
+            {ecosystemRoles.map((item, index) => { const NavigationLink = item.href === "/guide" ? "a" : Link; return <NavigationLink href={item.href} key={item.name}><span>{String(index + 1).padStart(2, "0")} / {item.status}</span><h3>{item.name}</h3><strong>{item.role}</strong><p>{item.description}</p><small>Explore →</small></NavigationLink>; })}
           </div>
         </section>
       </main>

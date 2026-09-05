@@ -1,0 +1,1997 @@
+{
+  "status": "NO_GO",
+  "oldGuide": {
+    "startedAt": "2026-09-05T18:53:15.975Z",
+    "origin": "https://ai-software-factory-mastery.vercel.app",
+    "expectedDeployment": "dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur",
+    "expectedCommit": "87d3841f96353d03278311dfc7e7b2d25649a331",
+    "authentication": "Fresh isolated contexts; no storage state, credentials, extra headers, bypass, or network interception",
+    "results": [
+      {
+        "check": "1-desktop-stack-direct",
+        "round": 1,
+        "device": "desktop",
+        "action": "direct",
+        "route": "/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [],
+          "h1": [
+            "25. The 12-layer production AI agent stack"
+          ],
+          "linkedHeadings": [
+            "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>"
+          ],
+          "cookieCount": 0
+        },
+        "htmlSha256": "83c36e634612645c3bc042adc1ab8b8a4d9a43691a40831f93ba4152fbf921e2",
+        "nestedAnchorServerExample": "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>",
+        "errors": [
+          {
+            "kind": "pageerror",
+            "check": "1-desktop-stack-direct",
+            "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+            "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+          }
+        ],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "1-desktop-stack-reload",
+        "round": 1,
+        "device": "desktop",
+        "action": "reload",
+        "route": "/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [],
+          "h1": [
+            "25. The 12-layer production AI agent stack"
+          ],
+          "linkedHeadings": [
+            "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>"
+          ],
+          "cookieCount": 0
+        },
+        "htmlSha256": "83c36e634612645c3bc042adc1ab8b8a4d9a43691a40831f93ba4152fbf921e2",
+        "nestedAnchorServerExample": "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>",
+        "errors": [
+          {
+            "kind": "pageerror",
+            "check": "1-desktop-stack-reload",
+            "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+            "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+          }
+        ],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "1-desktop-changelog-direct",
+        "round": 1,
+        "device": "desktop",
+        "action": "direct",
+        "route": "/docs/appendix/changelog",
+        "status": 200,
+        "state": {
+          "title": "Guide Changelog · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/appendix/changelog",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                }
+              ]
+            },
+            {
+              "id": "changed",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                }
+              ]
+            }
+          ],
+          "h1": [
+            "Guide Changelog"
+          ],
+          "linkedHeadings": [],
+          "cookieCount": 0
+        },
+        "htmlSha256": "0e5a5fc08cba966169a81819bc001c5309097eebcd8f98ff2b7c31890d3bae08",
+        "nestedAnchorServerExample": null,
+        "errors": [],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "1-desktop-changelog-reload",
+        "round": 1,
+        "device": "desktop",
+        "action": "reload",
+        "route": "/docs/appendix/changelog",
+        "status": 200,
+        "state": {
+          "title": "Guide Changelog · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/appendix/changelog",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                }
+              ]
+            },
+            {
+              "id": "changed",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                }
+              ]
+            }
+          ],
+          "h1": [
+            "Guide Changelog"
+          ],
+          "linkedHeadings": [],
+          "cookieCount": 0
+        },
+        "htmlSha256": "0e5a5fc08cba966169a81819bc001c5309097eebcd8f98ff2b7c31890d3bae08",
+        "nestedAnchorServerExample": null,
+        "errors": [],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "1-mobile-stack-direct",
+        "round": 1,
+        "device": "mobile",
+        "action": "direct",
+        "route": "/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [],
+          "h1": [
+            "25. The 12-layer production AI agent stack"
+          ],
+          "linkedHeadings": [
+            "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>"
+          ],
+          "cookieCount": 0
+        },
+        "htmlSha256": "83c36e634612645c3bc042adc1ab8b8a4d9a43691a40831f93ba4152fbf921e2",
+        "nestedAnchorServerExample": "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>",
+        "errors": [
+          {
+            "kind": "pageerror",
+            "check": "1-mobile-stack-direct",
+            "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+            "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+          }
+        ],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "1-mobile-stack-reload",
+        "round": 1,
+        "device": "mobile",
+        "action": "reload",
+        "route": "/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [],
+          "h1": [
+            "25. The 12-layer production AI agent stack"
+          ],
+          "linkedHeadings": [
+            "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>"
+          ],
+          "cookieCount": 0
+        },
+        "htmlSha256": "83c36e634612645c3bc042adc1ab8b8a4d9a43691a40831f93ba4152fbf921e2",
+        "nestedAnchorServerExample": "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>",
+        "errors": [
+          {
+            "kind": "pageerror",
+            "check": "1-mobile-stack-reload",
+            "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+            "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+          }
+        ],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "1-mobile-changelog-direct",
+        "round": 1,
+        "device": "mobile",
+        "action": "direct",
+        "route": "/docs/appendix/changelog",
+        "status": 200,
+        "state": {
+          "title": "Guide Changelog · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/appendix/changelog",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                }
+              ]
+            },
+            {
+              "id": "changed",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                }
+              ]
+            }
+          ],
+          "h1": [
+            "Guide Changelog"
+          ],
+          "linkedHeadings": [],
+          "cookieCount": 0
+        },
+        "htmlSha256": "0e5a5fc08cba966169a81819bc001c5309097eebcd8f98ff2b7c31890d3bae08",
+        "nestedAnchorServerExample": null,
+        "errors": [],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "1-mobile-changelog-reload",
+        "round": 1,
+        "device": "mobile",
+        "action": "reload",
+        "route": "/docs/appendix/changelog",
+        "status": 200,
+        "state": {
+          "title": "Guide Changelog · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/appendix/changelog",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                }
+              ]
+            },
+            {
+              "id": "changed",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                }
+              ]
+            }
+          ],
+          "h1": [
+            "Guide Changelog"
+          ],
+          "linkedHeadings": [],
+          "cookieCount": 0
+        },
+        "htmlSha256": "0e5a5fc08cba966169a81819bc001c5309097eebcd8f98ff2b7c31890d3bae08",
+        "nestedAnchorServerExample": null,
+        "errors": [],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "2-desktop-stack-direct",
+        "round": 2,
+        "device": "desktop",
+        "action": "direct",
+        "route": "/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [],
+          "h1": [
+            "25. The 12-layer production AI agent stack"
+          ],
+          "linkedHeadings": [
+            "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>"
+          ],
+          "cookieCount": 0
+        },
+        "htmlSha256": "83c36e634612645c3bc042adc1ab8b8a4d9a43691a40831f93ba4152fbf921e2",
+        "nestedAnchorServerExample": "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>",
+        "errors": [
+          {
+            "kind": "pageerror",
+            "check": "2-desktop-stack-direct",
+            "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+            "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+          }
+        ],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "2-desktop-stack-reload",
+        "round": 2,
+        "device": "desktop",
+        "action": "reload",
+        "route": "/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [],
+          "h1": [
+            "25. The 12-layer production AI agent stack"
+          ],
+          "linkedHeadings": [
+            "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>"
+          ],
+          "cookieCount": 0
+        },
+        "htmlSha256": "83c36e634612645c3bc042adc1ab8b8a4d9a43691a40831f93ba4152fbf921e2",
+        "nestedAnchorServerExample": "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>",
+        "errors": [
+          {
+            "kind": "pageerror",
+            "check": "2-desktop-stack-reload",
+            "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+            "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+          }
+        ],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "2-desktop-changelog-direct",
+        "round": 2,
+        "device": "desktop",
+        "action": "direct",
+        "route": "/docs/appendix/changelog",
+        "status": 200,
+        "state": {
+          "title": "Guide Changelog · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/appendix/changelog",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                }
+              ]
+            },
+            {
+              "id": "changed",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                }
+              ]
+            }
+          ],
+          "h1": [
+            "Guide Changelog"
+          ],
+          "linkedHeadings": [],
+          "cookieCount": 0
+        },
+        "htmlSha256": "0e5a5fc08cba966169a81819bc001c5309097eebcd8f98ff2b7c31890d3bae08",
+        "nestedAnchorServerExample": null,
+        "errors": [],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "2-desktop-changelog-reload",
+        "round": 2,
+        "device": "desktop",
+        "action": "reload",
+        "route": "/docs/appendix/changelog",
+        "status": 200,
+        "state": {
+          "title": "Guide Changelog · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/appendix/changelog",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                }
+              ]
+            },
+            {
+              "id": "changed",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                }
+              ]
+            }
+          ],
+          "h1": [
+            "Guide Changelog"
+          ],
+          "linkedHeadings": [],
+          "cookieCount": 0
+        },
+        "htmlSha256": "0e5a5fc08cba966169a81819bc001c5309097eebcd8f98ff2b7c31890d3bae08",
+        "nestedAnchorServerExample": null,
+        "errors": [],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "2-mobile-stack-direct",
+        "round": 2,
+        "device": "mobile",
+        "action": "direct",
+        "route": "/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [],
+          "h1": [
+            "25. The 12-layer production AI agent stack"
+          ],
+          "linkedHeadings": [
+            "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>"
+          ],
+          "cookieCount": 0
+        },
+        "htmlSha256": "83c36e634612645c3bc042adc1ab8b8a4d9a43691a40831f93ba4152fbf921e2",
+        "nestedAnchorServerExample": "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>",
+        "errors": [
+          {
+            "kind": "pageerror",
+            "check": "2-mobile-stack-direct",
+            "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+            "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+          }
+        ],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "2-mobile-stack-reload",
+        "round": 2,
+        "device": "mobile",
+        "action": "reload",
+        "route": "/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [],
+          "h1": [
+            "25. The 12-layer production AI agent stack"
+          ],
+          "linkedHeadings": [
+            "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>"
+          ],
+          "cookieCount": 0
+        },
+        "htmlSha256": "83c36e634612645c3bc042adc1ab8b8a4d9a43691a40831f93ba4152fbf921e2",
+        "nestedAnchorServerExample": "<h3 id=\"1-business-understanding-chapter-6\"><a class=\"heading-anchor\" href=\"#1-business-understanding-chapter-6\">1. Business Understanding — <a href=\"/docs/02-design/06-intent-and-specification-engineering\">Chapter 6</a></a></h3>",
+        "errors": [
+          {
+            "kind": "pageerror",
+            "check": "2-mobile-stack-reload",
+            "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+            "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+          }
+        ],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "2-mobile-changelog-direct",
+        "round": 2,
+        "device": "mobile",
+        "action": "direct",
+        "route": "/docs/appendix/changelog",
+        "status": 200,
+        "state": {
+          "title": "Guide Changelog · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/appendix/changelog",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                }
+              ]
+            },
+            {
+              "id": "changed",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                }
+              ]
+            }
+          ],
+          "h1": [
+            "Guide Changelog"
+          ],
+          "linkedHeadings": [],
+          "cookieCount": 0
+        },
+        "htmlSha256": "0e5a5fc08cba966169a81819bc001c5309097eebcd8f98ff2b7c31890d3bae08",
+        "nestedAnchorServerExample": null,
+        "errors": [],
+        "cookieCountInContext": 0
+      },
+      {
+        "check": "2-mobile-changelog-reload",
+        "round": 2,
+        "device": "mobile",
+        "action": "reload",
+        "route": "/docs/appendix/changelog",
+        "status": 200,
+        "state": {
+          "title": "Guide Changelog · The AI Software Factory Guide",
+          "url": "https://ai-software-factory-mastery.vercel.app/docs/appendix/changelog",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "horizontalOverflow": false,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Added",
+                  "outerHTML": "<h3 id=\"added\"><a class=\"heading-anchor\" href=\"#added\">Added</a></h3>"
+                }
+              ]
+            },
+            {
+              "id": "changed",
+              "elements": [
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                },
+                {
+                  "tag": "h3",
+                  "text": "Changed",
+                  "outerHTML": "<h3 id=\"changed\"><a class=\"heading-anchor\" href=\"#changed\">Changed</a></h3>"
+                }
+              ]
+            }
+          ],
+          "h1": [
+            "Guide Changelog"
+          ],
+          "linkedHeadings": [],
+          "cookieCount": 0
+        },
+        "htmlSha256": "0e5a5fc08cba966169a81819bc001c5309097eebcd8f98ff2b7c31890d3bae08",
+        "nestedAnchorServerExample": null,
+        "errors": [],
+        "cookieCountInContext": 0
+      }
+    ],
+    "errors": [
+      {
+        "kind": "pageerror",
+        "check": "1-desktop-stack-direct",
+        "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+      },
+      {
+        "kind": "pageerror",
+        "check": "1-desktop-stack-reload",
+        "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+      },
+      {
+        "kind": "pageerror",
+        "check": "1-mobile-stack-direct",
+        "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+      },
+      {
+        "kind": "pageerror",
+        "check": "1-mobile-stack-reload",
+        "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+      },
+      {
+        "kind": "pageerror",
+        "check": "2-desktop-stack-direct",
+        "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+      },
+      {
+        "kind": "pageerror",
+        "check": "2-desktop-stack-reload",
+        "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+      },
+      {
+        "kind": "pageerror",
+        "check": "2-mobile-stack-direct",
+        "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+      },
+      {
+        "kind": "pageerror",
+        "check": "2-mobile-stack-reload",
+        "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.",
+        "stack": "Error: Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\n    at rJ (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:62607)\n    at id (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:113855)\n    at sh (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:154684)\n    at https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149563\n    at sr (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:149664)\n    at sq (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:176245)\n    at MessagePort.O (https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js:1:3356)"
+      }
+    ],
+    "metadata": {
+      "id": "dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur",
+      "projectId": "prj_KZQBsEEmJMnEpCx3DHW4mfzIOAuO",
+      "target": "production",
+      "readyState": "READY",
+      "url": "ai-software-factory-mastery-m9hawsnky-jaydubya818.vercel.app",
+      "commit": "87d3841f96353d03278311dfc7e7b2d25649a331",
+      "aliases": [
+        "ai-software-factory-mastery.vercel.app",
+        "ai-software-factory-mastery-jaydubya818.vercel.app",
+        "ai-software-factory-mastery-git-main-jaydubya818.vercel.app"
+      ]
+    },
+    "finishedAt": "2026-09-05T18:53:48.778Z",
+    "summary": {
+      "checks": 16,
+      "hydrationChecks": 8,
+      "duplicateIdChecks": 8,
+      "unexpectedRequestHeaders": 0
+    }
+  },
+  "mobileOverflow": {
+    "url": "https://ai-software-factory-mastery.vercel.app/docs/02-design/06-intent-and-specification-engineering",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "startedAt": "2026-09-05T18:56:38.896Z",
+    "visits": [
+      {
+        "round": 1,
+        "action": "direct",
+        "status": 200,
+        "measurement": {
+          "width": 390,
+          "documentWidth": 572,
+          "bodyWidth": 572,
+          "svgCount": 5,
+          "overflowingElements": [
+            {
+              "selector": "code",
+              "left": 16,
+              "right": 565.6875,
+              "width": 549.6875,
+              "position": "static",
+              "overflowX": "visible",
+              "whiteSpace": "normal",
+              "wordBreak": "normal",
+              "overflowWrap": "normal",
+              "text": "31e3f6fc44824b643ef5bfa3389ba3da1e0e6b1f6827f66fdb63efcbb4c9313b",
+              "parent": "p"
+            },
+            {
+              "selector": "code",
+              "left": 44,
+              "right": 394.46875,
+              "width": 350.46875,
+              "position": "static",
+              "overflowX": "visible",
+              "whiteSpace": "normal",
+              "wordBreak": "normal",
+              "overflowWrap": "normal",
+              "text": "apps/mission-control-ui/src/eos/views/MissionPlanWorkspace.tsx",
+              "parent": "li"
+            }
+          ]
+        },
+        "pageErrors": [],
+        "cookieCount": 0
+      },
+      {
+        "round": 1,
+        "action": "reload",
+        "status": 200,
+        "measurement": {
+          "width": 390,
+          "documentWidth": 572,
+          "bodyWidth": 572,
+          "svgCount": 5,
+          "overflowingElements": [
+            {
+              "selector": "code",
+              "left": 0,
+              "right": 549.6875,
+              "width": 549.6875,
+              "position": "static",
+              "overflowX": "visible",
+              "whiteSpace": "normal",
+              "wordBreak": "normal",
+              "overflowWrap": "normal",
+              "text": "31e3f6fc44824b643ef5bfa3389ba3da1e0e6b1f6827f66fdb63efcbb4c9313b",
+              "parent": "p"
+            }
+          ]
+        },
+        "pageErrors": [],
+        "cookieCount": 0
+      },
+      {
+        "round": 2,
+        "action": "direct",
+        "status": 200,
+        "measurement": {
+          "width": 390,
+          "documentWidth": 572,
+          "bodyWidth": 572,
+          "svgCount": 5,
+          "overflowingElements": [
+            {
+              "selector": "code",
+              "left": 16,
+              "right": 565.6875,
+              "width": 549.6875,
+              "position": "static",
+              "overflowX": "visible",
+              "whiteSpace": "normal",
+              "wordBreak": "normal",
+              "overflowWrap": "normal",
+              "text": "31e3f6fc44824b643ef5bfa3389ba3da1e0e6b1f6827f66fdb63efcbb4c9313b",
+              "parent": "p"
+            },
+            {
+              "selector": "code",
+              "left": 44,
+              "right": 394.46875,
+              "width": 350.46875,
+              "position": "static",
+              "overflowX": "visible",
+              "whiteSpace": "normal",
+              "wordBreak": "normal",
+              "overflowWrap": "normal",
+              "text": "apps/mission-control-ui/src/eos/views/MissionPlanWorkspace.tsx",
+              "parent": "li"
+            }
+          ]
+        },
+        "pageErrors": [],
+        "cookieCount": 0
+      },
+      {
+        "round": 2,
+        "action": "reload",
+        "status": 200,
+        "measurement": {
+          "width": 390,
+          "documentWidth": 572,
+          "bodyWidth": 572,
+          "svgCount": 5,
+          "overflowingElements": [
+            {
+              "selector": "code",
+              "left": 16,
+              "right": 565.6875,
+              "width": 549.6875,
+              "position": "static",
+              "overflowX": "visible",
+              "whiteSpace": "normal",
+              "wordBreak": "normal",
+              "overflowWrap": "normal",
+              "text": "31e3f6fc44824b643ef5bfa3389ba3da1e0e6b1f6827f66fdb63efcbb4c9313b",
+              "parent": "p"
+            },
+            {
+              "selector": "code",
+              "left": 44,
+              "right": 394.46875,
+              "width": 350.46875,
+              "position": "static",
+              "overflowX": "visible",
+              "whiteSpace": "normal",
+              "wordBreak": "normal",
+              "overflowWrap": "normal",
+              "text": "apps/mission-control-ui/src/eos/views/MissionPlanWorkspace.tsx",
+              "parent": "li"
+            }
+          ]
+        },
+        "pageErrors": [],
+        "cookieCount": 0
+      }
+    ],
+    "finishedAt": "2026-09-05T18:56:52.421Z"
+  },
+  "unchangedNewGuide": {
+    "origin": "http://127.0.0.1:4342",
+    "sourceSha": "7b9f00beda0eab41348c8650a61009c6ab630fbf",
+    "mode": "Root-provided local native build, standalone canonical configuration; not cloud deployment qualification",
+    "startedAt": "2026-09-05T18:56:34.092Z",
+    "visits": [
+      {
+        "device": "desktop",
+        "action": "direct",
+        "route": "/guide/appendix/changelog",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/appendix/changelog",
+          "title": "Guide Changelog · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "documentWidth": 1440,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "count": 8
+            },
+            {
+              "id": "changed",
+              "count": 8
+            }
+          ],
+          "overflowingElements": []
+        },
+        "errors": []
+      },
+      {
+        "device": "desktop",
+        "action": "reload",
+        "route": "/guide/appendix/changelog",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/appendix/changelog",
+          "title": "Guide Changelog · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "documentWidth": 1440,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "count": 8
+            },
+            {
+              "id": "changed",
+              "count": 8
+            }
+          ],
+          "overflowingElements": []
+        },
+        "errors": []
+      },
+      {
+        "device": "desktop",
+        "action": "direct",
+        "route": "/guide/02-design/06-intent-and-specification-engineering",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/02-design/06-intent-and-specification-engineering",
+          "title": "Intent and specification engineering · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "documentWidth": 1440,
+          "duplicateIds": [],
+          "overflowingElements": []
+        },
+        "errors": []
+      },
+      {
+        "device": "desktop",
+        "action": "reload",
+        "route": "/guide/02-design/06-intent-and-specification-engineering",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/02-design/06-intent-and-specification-engineering",
+          "title": "Intent and specification engineering · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "documentWidth": 1440,
+          "duplicateIds": [],
+          "overflowingElements": []
+        },
+        "errors": []
+      },
+      {
+        "device": "desktop",
+        "action": "direct",
+        "route": "/guide/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/03-build/25-the-12-layer-production-ai-agent-stack",
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "documentWidth": 1440,
+          "duplicateIds": [],
+          "overflowingElements": []
+        },
+        "errors": []
+      },
+      {
+        "device": "desktop",
+        "action": "reload",
+        "route": "/guide/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/03-build/25-the-12-layer-production-ai-agent-stack",
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          },
+          "documentWidth": 1440,
+          "duplicateIds": [],
+          "overflowingElements": []
+        },
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "action": "direct",
+        "route": "/guide/appendix/changelog",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/appendix/changelog",
+          "title": "Guide Changelog · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "count": 8
+            },
+            {
+              "id": "changed",
+              "count": 8
+            }
+          ],
+          "overflowingElements": []
+        },
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "action": "reload",
+        "route": "/guide/appendix/changelog",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/appendix/changelog",
+          "title": "Guide Changelog · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "duplicateIds": [
+            {
+              "id": "added",
+              "count": 8
+            },
+            {
+              "id": "changed",
+              "count": 8
+            }
+          ],
+          "overflowingElements": []
+        },
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "action": "direct",
+        "route": "/guide/02-design/06-intent-and-specification-engineering",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/02-design/06-intent-and-specification-engineering",
+          "title": "Intent and specification engineering · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 572,
+          "duplicateIds": [],
+          "overflowingElements": [
+            {
+              "tag": "svg",
+              "id": "mermaid-R5d2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-R5d2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-R5d2npfivb .edge"
+            },
+            {
+              "tag": "svg",
+              "id": "mermaid-R9d2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-R9d2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-R9d2npfivb .edge"
+            },
+            {
+              "tag": "svg",
+              "id": "mermaid-Rdd2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-Rdd2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-Rdd2npfivb .edge"
+            },
+            {
+              "tag": "svg",
+              "id": "mermaid-Rhd2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-Rhd2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-Rhd2npfivb .edge"
+            },
+            {
+              "tag": "svg",
+              "id": "mermaid-Rld2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-Rld2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-Rld2npfivb .edge"
+            },
+            {
+              "tag": "g",
+              "id": "mermaid-R5d2npfivb-flowchart-Human-19",
+              "className": null,
+              "right": 663.34521484375,
+              "width": 44.55322265625,
+              "text": "Human decision owner"
+            },
+            {
+              "tag": "rect",
+              "id": "",
+              "className": null,
+              "right": 663.34521484375,
+              "width": 44.55322265625,
+              "text": ""
+            },
+            {
+              "tag": "g",
+              "id": "",
+              "className": null,
+              "right": 663.3451957702637,
+              "width": 616.6904296875,
+              "text": "approved, version frozenrevision requiredexception requiredInputsProduct objectivesBugs and incidentsSecurity findingsReliability and debt targetsIntent recognition + goal interpretationConstraint ide"
+            }
+          ]
+        },
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "action": "reload",
+        "route": "/guide/02-design/06-intent-and-specification-engineering",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/02-design/06-intent-and-specification-engineering",
+          "title": "Intent and specification engineering · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 572,
+          "duplicateIds": [],
+          "overflowingElements": [
+            {
+              "tag": "svg",
+              "id": "mermaid-R5d2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-R5d2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-R5d2npfivb .edge"
+            },
+            {
+              "tag": "svg",
+              "id": "mermaid-R9d2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-R9d2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-R9d2npfivb .edge"
+            },
+            {
+              "tag": "svg",
+              "id": "mermaid-Rdd2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-Rdd2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-Rdd2npfivb .edge"
+            },
+            {
+              "tag": "svg",
+              "id": "mermaid-Rhd2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-Rhd2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-Rhd2npfivb .edge"
+            },
+            {
+              "tag": "svg",
+              "id": "mermaid-Rld2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-Rld2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-Rld2npfivb .edge"
+            },
+            {
+              "tag": "g",
+              "id": "mermaid-R5d2npfivb-flowchart-Human-19",
+              "className": null,
+              "right": 663.34521484375,
+              "width": 44.55322265625,
+              "text": "Human decision owner"
+            },
+            {
+              "tag": "rect",
+              "id": "",
+              "className": null,
+              "right": 663.34521484375,
+              "width": 44.55322265625,
+              "text": ""
+            },
+            {
+              "tag": "g",
+              "id": "",
+              "className": null,
+              "right": 663.3451957702637,
+              "width": 616.6904296875,
+              "text": "approved, version frozenrevision requiredexception requiredInputsProduct objectivesBugs and incidentsSecurity findingsReliability and debt targetsIntent recognition + goal interpretationConstraint ide"
+            }
+          ]
+        },
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "action": "direct",
+        "route": "/guide/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/03-build/25-the-12-layer-production-ai-agent-stack",
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "duplicateIds": [],
+          "overflowingElements": [
+            {
+              "tag": "svg",
+              "id": "mermaid-R5d2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-R5d2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-R5d2npfivb .edge"
+            },
+            {
+              "tag": "svg",
+              "id": "mermaid-R9d2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-R9d2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-R9d2npfivb .edge"
+            },
+            {
+              "tag": "g",
+              "id": "",
+              "className": null,
+              "right": 663.0558738708496,
+              "width": 616.1116943359375,
+              "text": "Business understandingData understandingKnowledge engineeringContext engineeringSemantic engineeringModel engineeringAgent engineeringLoop engineeringEvaluation engineeringHarness engineeringInfrastru"
+            },
+            {
+              "tag": "g",
+              "id": "",
+              "className": null,
+              "right": 663.0558738708496,
+              "width": 616.1116943359375,
+              "text": "Business understandingData understandingKnowledge engineeringContext engineeringSemantic engineeringModel engineeringAgent engineeringLoop engineeringEvaluation engineeringHarness engineeringInfrastru"
+            },
+            {
+              "tag": "g",
+              "id": "",
+              "className": null,
+              "right": 663.0558738708496,
+              "width": 616.1116943359375,
+              "text": "Business understandingData understandingKnowledge engineeringContext engineeringSemantic engineeringModel engineeringAgent engineeringLoop engineeringEvaluation engineeringHarness engineeringInfrastru"
+            },
+            {
+              "tag": "g",
+              "id": "mermaid-R9d2npfivb-flowchart-M-10",
+              "className": null,
+              "right": 663.0558471679688,
+              "width": 45.614501953125,
+              "text": "Model engineering"
+            },
+            {
+              "tag": "rect",
+              "id": "",
+              "className": null,
+              "right": 663.0558471679688,
+              "width": 45.614501953125,
+              "text": ""
+            },
+            {
+              "tag": "g",
+              "id": "",
+              "className": null,
+              "right": 655.9511108398438,
+              "width": 31.405029296875,
+              "text": "Model engineering"
+            }
+          ]
+        },
+        "errors": []
+      },
+      {
+        "device": "mobile",
+        "action": "reload",
+        "route": "/guide/03-build/25-the-12-layer-production-ai-agent-stack",
+        "status": 200,
+        "state": {
+          "url": "http://127.0.0.1:4342/guide/03-build/25-the-12-layer-production-ai-agent-stack",
+          "title": "The 12-layer production AI agent stack · The AI Software Factory Guide · FDLC",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "documentWidth": 390,
+          "duplicateIds": [],
+          "overflowingElements": [
+            {
+              "tag": "svg",
+              "id": "mermaid-R5d2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-R5d2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-R5d2npfivb .edge"
+            },
+            {
+              "tag": "svg",
+              "id": "mermaid-R9d2npfivb",
+              "className": null,
+              "right": 665,
+              "width": 620,
+              "text": "#mermaid-R9d2npfivb{font-family:Georgia,serif;font-size:16px;fill:#12201b;}@keyframes edge-animation-frame{from{stroke-dashoffset:0;}}@keyframes dash{to{stroke-dashoffset:0;}}#mermaid-R9d2npfivb .edge"
+            },
+            {
+              "tag": "g",
+              "id": "",
+              "className": null,
+              "right": 663.0558738708496,
+              "width": 616.1116943359375,
+              "text": "Business understandingData understandingKnowledge engineeringContext engineeringSemantic engineeringModel engineeringAgent engineeringLoop engineeringEvaluation engineeringHarness engineeringInfrastru"
+            },
+            {
+              "tag": "g",
+              "id": "",
+              "className": null,
+              "right": 663.0558738708496,
+              "width": 616.1116943359375,
+              "text": "Business understandingData understandingKnowledge engineeringContext engineeringSemantic engineeringModel engineeringAgent engineeringLoop engineeringEvaluation engineeringHarness engineeringInfrastru"
+            },
+            {
+              "tag": "g",
+              "id": "",
+              "className": null,
+              "right": 663.0558738708496,
+              "width": 616.1116943359375,
+              "text": "Business understandingData understandingKnowledge engineeringContext engineeringSemantic engineeringModel engineeringAgent engineeringLoop engineeringEvaluation engineeringHarness engineeringInfrastru"
+            },
+            {
+              "tag": "g",
+              "id": "mermaid-R9d2npfivb-flowchart-M-10",
+              "className": null,
+              "right": 663.0558471679688,
+              "width": 45.614501953125,
+              "text": "Model engineering"
+            },
+            {
+              "tag": "rect",
+              "id": "",
+              "className": null,
+              "right": 663.0558471679688,
+              "width": 45.614501953125,
+              "text": ""
+            },
+            {
+              "tag": "g",
+              "id": "",
+              "className": null,
+              "right": 655.9511108398438,
+              "width": 31.405029296875,
+              "text": "Model engineering"
+            }
+          ]
+        },
+        "errors": []
+      }
+    ],
+    "finishedAt": "2026-09-05T18:57:12.096Z"
+  }
+}
