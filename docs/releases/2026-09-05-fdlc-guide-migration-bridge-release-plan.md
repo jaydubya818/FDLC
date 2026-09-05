@@ -1,6 +1,138 @@
 # FDLC / Guide migration bridge release plan
 
-Status: **NO_GO — three additional immutable old-Guide focus defects require a separate decision.**
+Status: **QUALIFICATION IN PROGRESS — four exact old-Guide keyboard exceptions approved.**
+
+## Latest continuation checkpoint (2026-09-05)
+
+This section supersedes the older checkpoint descriptions below, which retain
+their original source/evidence identities. It is not release readiness.
+
+### Repaired-source checkpoint: `efd23059007cf2050170a3653bfe3a831c9f245b`
+
+The later source checkpoint supersedes the in-progress `17ebd6e` description
+below. Compatible URL repairs and six minimal CSS declarations are committed in
+`b1982e81360ddeef6b6e0f3a0a45a9056f73e741`; `efd2305` only corrects two runtime
+test assertions to accept valid relative Location headers while retaining exact
+origin/path expectations. Both isolated Guide worktrees are clean.
+
+- Compatible source/build qualification: all ten checks passed, including
+  74 unit tests, native 81-page build and the 16-context keyboard lifecycle.
+  Build ID: `Qgs5YFZpmCGXA3Ue1DJwx`. Evidence:
+  `guide-efd2305-compatible-source-checks/summary.json`.
+- Final www/legacy-enabled native build: seven qualification steps passed;
+  build ID `M3uvKwkz2yBQZr40WMlEa`. Evidence:
+  `guide-efd2305-final-native/qualification-summary.json`. This is not yet full
+  composed final-state or rollback qualification.
+- Exact compatible Preview: `dpl_4z6cLFMLHqtgW3fL9tApJYFChZsy`, source `efd2305`.
+  Authenticated browser inspection confirmed namespace chapter navigation
+  normalizes to the same Guide Preview host's `/docs/*` URL, then follows the
+  next relative chapter link correctly. All ten observed DOM JS/CSS references
+  carry this deployment ID and `/vc-ap-dd2962/_next/`. This bounded hosted check
+  is not full route, asset-body, anonymous or transition acceptance.
+- Independent source/security/simplicity and runtime-harness reviews are GO.
+  Reviewed 45-file source digest:
+  `d96346a5224966144b26cb207fcfcb60052e0104280bda249b6ecffa4700c2e6`.
+  CSS digest:
+  `03c069ce21a59e03557cf8204c7768f7fa6f2ab566a61d5c78225c1790e03283`.
+- Initial fresh composed runs retain their original NO_GO evidence: all route,
+  keyboard and FDLC assertions passed except successful `/docs/*` speculative
+  Flight-response cancellations, outside the test classifier's prior path scope.
+  Independent stationary desktop/mobile reproduction established both exact
+  prefetch-header shapes, successful response headers, fixed URL/timeOrigin and
+  working real navigation/reload. Only nonempty safe `/docs/<slug>` paths were
+  added to the classifier. All 26 original negative guards were preserved and
+  repeated for compatible paths; full unit suite is 109/109. No navigation,
+  asset, HTTP, accessibility or old-artifact exception was broadened. Fresh
+  full suites are running in new evidence directories; prior failures stay intact.
+- Native flagged-host diagnosis: 48 repeated GET/HEAD responses confirm that
+  SDK 2.4 rewrites the flagged Guide hop to `localhost:3024`. Native composed
+  standalone normalization is therefore `NOT_EXPOSED`, never PASS. Raw Guide
+  307/no-store checks and actual hosted normalization remain separate required
+  gates. Evidence: `native-flag-hop-diagnosis/findings.md` and `observations.json`.
+  No forwarded-host trust, custom headers or topology workaround was added.
+
+The branch-scoped Preview environment authorization and local Convex rotation
+coordination requests remain unanswered. Neither was inferred from a generic
+instruction to continue. Unaffected engineering proceeds; Production is not
+authorized and no release-readiness disposition is claimed.
+
+Fresh repaired bridge/new results (22:10–22:15 UTC): Guide 3,222 checks / 291
+visits, FDLC 4,068 / 84, keyboard 2,660 / 16, all PASS without exceptions.
+Guide managed assets: 32 successful body hashes; keyboard restoration and
+containment pass for every invoker. Discovery: 2,381 checks / 1,250 GET/HEAD
+responses, 71 SEO pages, 144 moved anchors and 207 SVGs across 47 diagram pages,
+zero failures. Twenty strict axe audits retain their incomplete entries; separate
+manual evidence closes the identified contrast, link-cue and conditional-popup
+classes. Native transport NOT_EXPOSED and hosted transition gates remain open.
+Evidence directories: `efd2305-bridge-compatible-full-fresh`,
+`efd2305-fdlc-bridge-compatible-reviewed`,
+`efd2305-bridge-compatible-focus-fresh`, and
+`discovery-bridge-new-efd2305-native-scoped`. Full bridge unit/config/lint/types
+checks also passed (109 unit tests). Production/settings/aliases reconfirmed
+unchanged at 22:14 UTC; both current PR heads report successful Vercel checks.
+
+- The four-ID old keyboard gate now independently verifies live immutable
+  deployment/project/alias identity and managed-asset hashes before every accepted
+  exception. Fresh evidence at `approved-four-old-search-identity-v2/search-focus-acceptance.json`
+  records 1,620 checks / 16 visits, 176 explicit non-PASS known entries
+  (64 containment, 64 shortcut close, 32 wrong Escape invoker, 16 closed Escape),
+  and zero unapproved errors. Independent security/simplicity review and 73 bridge
+  unit tests passed. Each exception still expires outside exact bridge/old.
+- Fresh old route/asset acceptance: 1,532 checks / 151 visits, eight narrowly
+  approved non-keyboard baseline entries, 32 immutable JS/CSS hashes and no
+  unexpected failures. FDLC/old regression: 4,062 checks / 84 visits. Full suite
+  results are combined with the separate live identity gate; a CLI deployment
+  argument alone is not identity evidence.
+- Published new Guide keyboard checkpoint:
+  `17ebd6e32deb2ef53b99dee9489aaca0c8c9d6ae`, Preview
+  `dpl_ATbgSMiRTB4gXXAM3bHtunPCwd85`. Native bridge/new route suite passed
+  3,222 checks / 291 visits with 27 Guide JS/CSS hashes; FDLC/new regression
+  4,068 checks / 84 visits; new keyboard lifecycle 2,660 checks / 16 visits,
+  all without exceptions. Ten source/build/runtime checks passed.
+- The broader discovery/manual audit nevertheless found ordinary new-candidate
+  defects. Six minimal CSS declaration changes repair link identification and
+  theme contrast. Compatible standalone page URLs are being corrected to remain
+  valid when rolled back to old Guide: relative old `/docs/*` and tool paths,
+  reused repaired components, with the architecture alias temporarily normalized
+  only on verified standalone hosts. Final `/guide/*` behavior is retained. No
+  new environment flags, dynamic configuration fetch, asset-prefix change or
+  topology change is introduced. The source is not frozen; the next exact SHA
+  must be built and fully requalified. Earlier passes do not certify these edits.
+- The single compatible architecture navigation href remains
+  `/guide/architecture` to avoid colliding with FDLC's own `/architecture`.
+  Standalone navigation/new-tab resolution must reach `/architecture` before its
+  actual page URL is persisted. An unvisited copied alias is not promised to
+  work on the immutable old Guide. Retained-session/asset transition evidence
+  remains a separate required gate, not inferred from cold page checks.
+- Exact unchanged final FDLC `8057d1fd2c9aafaad309488aaa6038bd61b61e57` was
+  published to two non-main Preview qualification refs:
+  `codex/fdlc-guide-migration-final-compat` and
+  `codex/fdlc-guide-migration-final`. No merge or Production deployment occurred.
+  Auto-review rejected adding a branch-scoped Preview environment pin as a
+  project-settings mutation. No pin was added. Explicit authority for these
+  Preview-only pins was requested; native/source work continues. Do not bypass
+  that rejection or use the unsupported Production staging recipe.
+- Production/settings reconfirmation at 21:35:17–21:35:36 UTC still maps FDLC to
+  `dpl_GvmTzMNUmpKt3825k69MUgL6YwTX` / `e4112bb06333b8244c18fc4a9736b1f3c807bc78`
+  and Guide to `dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur` /
+  `87d3841f96353d03278311dfc7e7b2d25649a331`. Existing old FDLC still reports
+  `no_config`; bridge Preview reports config success. No claim is made that
+  unchanged old Production has already acquired the migration configuration.
+  SSO/settings are unchanged, with zero FDLC and one pre-existing Guide bypass
+  entry. None was created/read/used/revoked. Both PRs are Draft and unmerged;
+  remote checks are green at their published checkpoints, not yet at future edits.
+- Local MissionControl secret rotation remains separately required before reuse.
+  The safe incident record is `2026-09-05-migration-bridge-secret-hygiene.md` in
+  the main release workspace. Scoped scanning found zero exact matches across
+  5,106 units / 670,520,381 bytes, and zero structural OCR candidates in 825
+  rasters. Skipped dataless files, incomplete main history and transcript retention
+  are explicitly recorded; do not overstate coverage. No backend reuse occurred.
+
+The native evidence directories above live under
+`/tmp/fdlc-migration-bridge.2CP43B/`. Full supported hosted/final/reverse
+qualification, source freeze, fresh CI/reviews, asset identity/runtime logs and
+final Production reconfirmation remain outstanding. No state is upgraded to SAFE
+solely from this progress checkpoint. No Production approval is requested yet.
 
 No Production authorization. The dedicated non-main bridge branch has been
 pushed, and its Preview deployment is READY with MFE configuration success.
@@ -37,50 +169,59 @@ operationally practical. Those timestamps and duration are currently not
 applicable: no bridge Production window has begun. This exception authorizes
 neither merge nor Production deployment/promotion, aliases or settings changes.
 
-The complete follow-up search lifecycle sweep made 16 visits: desktop 1440px and
-390×844, light/dark, direct/reload, two rounds. Of 1,604 checks, 64 open-dialog
-Tab/Shift+Tab escapes are explicitly `KNOWN_EXCEPTION / ACCEPTED_TEMPORARILY` with
-`pass: false`. It also found 112 failures across three behaviors NOT covered by
-the approved exception:
+The user separately approved the three additional historical behaviors on
+2026-09-05 in decision `7650fc66-d297-4617-9754-b0f597fb0511`. The four exceptions
+remain distinct:
 
-| Additional old-artifact defect | Reproduction | Disposition |
+| Exception ID | Behavior | Reproduction |
 | --- | --- | --- |
-| Cmd/Ctrl+K closes search without restoring focus to the invoking control | 64/64 | FAIL — not approved |
-| Escape after shortcut opening from the theme button restores Search, not the invoking theme control | 32/32 | FAIL — not approved |
-| Escape with search already closed steals focus from the theme button | 16/16 | FAIL — not approved |
+| `OLD_GUIDE_SEARCH_FOCUS_TRAP` | Tab/Shift+Tab escapes the open search dialog | Original 8/8; complete lifecycle sweep 64/64 |
+| `OLD_GUIDE_SHORTCUT_CLOSE_FOCUS_RESTORE` | Cmd/Ctrl+K closes without restoring the actual invoker | 64/64 |
+| `OLD_GUIDE_ESCAPE_WRONG_INVOKER_RESTORE` | Escape after shortcut opening from another control restores Search instead | 32/32 |
+| `OLD_GUIDE_CLOSED_ESCAPE_FOCUS_INTERFERENCE` | Escape moves focus when search is already closed | 16/16 |
 
-These are separate focus-restoration/noninterference contract failures. An
-independent reviewer reproduced shortcut-close leaving focus on BODY and the
-wrong return target after Escape; the closed-dialog Escape defect is independently
-source/harness-confirmed, not separately browser-reproduced. Returning a shortcut
-user to Search can be an intentional policy in another product, but it does not
-meet this release's explicit actual-invoker contract or expand the Tab-only waiver.
-The
-immutable old source toggles search without its close helper, hard-codes the
-Search trigger as the return target, and handles Escape even while closed. The
-earlier observation that Escape restores Search remains true for Search-trigger
-invocation; it did not establish correct behavior for another invoker. No broader
-exception has been inferred, no old artifact has been patched or rebuilt, and
-bridge/old remains NO_GO pending the user's separate disposition. The record is
-`2026-09-05-migration-bridge-keyboard-lifecycle-evidence.json`; its complete raw
-run remains at `/tmp/fdlc-migration-bridge.2CP43B/bridge-old-search-lifecycle-complete/search-focus-acceptance.json`.
+Each applies ONLY to bridge FDLC + old Guide
+`dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur`, source
+`87d3841f96353d03278311dfc7e7b2d25649a331`. The three newly approved behaviors are
+classified `PRE_EXISTING / IMMUTABLE OLD ARTIFACT`; the original focus-trap
+classification remains `PRE_EXISTING / IMMUTABLE ARTIFACT`. Every observed
+exception is `KNOWN_EXCEPTION / ACCEPTED_TEMPORARILY`, with `pass: false`;
+none may be PASS, IGNORED or a generic keyboard waiver.
 
-The repaired new Guide is now checkpointed locally at
-`016a6e6b45f40745c54c8a71858a78e2008fa6b3`, after keyboard checkpoint
-`221766d7b990ff8015244de516f6a081f770c17c` and anchor/mobile repair
-`8cf00f9e1882fb01af58d22a95881d4833d39d06`. It restores the actual keyboard invoker,
-contains modal focus, and does not intercept Escape while closed. All 16 native
-focus/mouse cases passed: desktop 1280px and 390×844, light/dark, direct/reload,
-two rounds, with browser/page/managed-asset and runtime-log checks retained.
-All ten source/build/runtime commands passed, including 66 tests, native Next
-81-page build, Vinext, lint, links, editorial, unchanged snapshot and final
-typecheck. Independent architecture/security/simplicity review passed on the
-exact two-file delta (SHA-256
-`fba0071e951857489710f1bfe30be7d553fdb999a4e92b3cf9948f3919593e90`).
-This is native focus-fix qualification, not full bridge/new or final/new release
-acceptance. The keyboard repair has not been pushed or deployed. Hosted and
-complete final-pair requalification remain pending. Production approval is not
-requested at this boundary.
+Start condition: bridge FDLC is active with that exact old Guide and identity is
+verified. Expiration: immediately when the migration leaves bridge/old or that
+Guide artifact changes. Production activation/deactivation/duration are currently
+N/A; no bridge/old Production window exists. New, Guide-compatible, Guide-final
+and future Guide releases are NOT EXEMPT. No other dialog, accessibility behavior,
+network/asset/identity failure or new regression is covered.
+
+Before accepting any keyboard exception, the browser harness must independently
+verify live authenticated Guide project/alias/deployment identity and browser
+managed-asset body hashes against the pinned immutable baseline. A deployment
+argument alone is insufficient. Missing/stale/mismatched identity fails closed;
+a changed identity invalidates the exception classification.
+
+Historical raw evidence remains unchanged in
+`2026-09-05-migration-bridge-keyboard-lifecycle-evidence.json` and
+`2026-09-05-migration-bridge-old-guide-focus-evidence.json`. The historical 112
+FAIL records describe the pre-approval decision; they are not rewritten into
+passes. A fresh identity-gated run is required for the new four-ID acceptance.
+
+The repaired new Guide's last clean checkpoint at the start of this continuation
+is `016a6e6b45f40745c54c8a71858a78e2008fa6b3`, after
+`221766d7b990ff8015244de516f6a081f770c17c` and
+`8cf00f9e1882fb01af58d22a95881d4833d39d06`. It passed 16 native keyboard/mouse
+cases and all ten source/build/runtime commands, including 66 tests and the native
+81-page build, with independent architecture/security/simplicity review. The
+permanent regression is being expanded to explicitly cover Search-trigger,
+theme-control and another stable control as shortcut invokers. Determine the
+exact final SHA after that change; do not qualify an assumed checkpoint.
+
+Full bridge/new, final/compatible, final/final, reverse-state and supported hosted
+qualification remain required. No old-artifact exception applies to those new
+Guide candidates. Source fixes and Preview qualification are authorized; merge,
+Production deployment/promotion, canonical aliases, project settings, protection
+and QA bypasses are not authorized.
 
 ## Approved temporary baseline exception
 
@@ -172,7 +313,8 @@ candidate.
 - Architecture's page-alias and sitemap findings were fixed and re-reviewed.
   Prior bridge-source security and simplicity reviews are GO within scope; the
   earlier documentation review approved the bounded NO-GO record. Repaired-Guide
-  independent source reviews and the updated bounded NO_GO release-record review pass. None of
+  independent source reviews and the prior bounded NO_GO release-record review pass;
+  the newly approved exception policy and final matrix require updated review. None of
   these reviews constitutes full release qualification.
 - Mission Control diff is empty. No credential or `.vercel` artifacts were added.
 - The 2026-09-05 20:26:26–20:26:53 UTC read-only Production verification maps FDLC to
@@ -248,7 +390,7 @@ configuration from resolving back to Guide while host isolation is active.
 | FDLC | Current Guide | Guide-compatible (new source) | Guide-final (new source) |
 | --- | --- | --- | --- |
 | Current | Unchanged baseline with historical defects; three additional focus failures now recorded | UNSAFE for target composition | UNSAFE: observed old FDLC fallback |
-| Bridge | NO_GO: Tab escapes are KNOWN_EXCEPTION / ACCEPTED_TEMPORARILY, but three other focus defects are not approved | UNPROVEN: repaired keyboard native matrix passes without exceptions; complete mixed-state/hosted requalification pending | UNSAFE: relative FDLC links conflict on Guide origin |
+| Bridge | QUALIFICATION IN PROGRESS: four explicit keyboard exceptions plus exact historical baseline exceptions; every other gate and verified identity must pass | UNPROVEN: repaired keyboard native matrix passes without exceptions; complete mixed-state/hosted requalification pending | UNSAFE: relative FDLC links conflict on Guide origin |
 | Final | UNSAFE: old root-relative links and asset ownership | UNPROVEN: composed Guide with standalone canonical during bounded transition | UNPROVEN: intended final composed authority |
 
 For each intended state, qualification must record landing and all authoritative
@@ -325,7 +467,8 @@ Completed native local evidence:
   completed at 20:07:39 UTC with 1,532 checks, 151 visits, eight approved baseline
   entries, no unexpected network failures and 32/32 Guide JS/CSS hashes matching
   the immutable baseline. This suite does not cover the complete search lifecycle.
-  The separate lifecycle NO_GO above takes precedence over this narrower pass.
+  The earlier separate lifecycle NO_GO is historical; a fresh identity-gated run
+  must apply the newly approved four-ID policy before bridge/old is qualified.
 - `/tmp/fdlc-migration-bridge.2CP43B/bridge-old-native/acceptance.json` reports
   `PASS_WITH_APPROVED_OLD_GUIDE_BASELINE_EXCEPTIONS`: 1,531 checks, 151 visits,
   eight exact accepted baseline exceptions and no unexpected failures. All 32/32

@@ -25,9 +25,13 @@ function lowerCaseHeaders(headers: Record<string, string>) {
 /**
  * Narrow class independently reproduced with Next 16.3.3 on a stationary Guide
  * page: low-priority tree/metadata prefetches receive 200 Flight responses, then
- * Chromium reports cancellation. This does not establish a JS abort call or a
- * fully consumed response body. User-navigation RSC and all other failures stay
- * failures, even if their destination eventually renders.
+ * Chromium reports cancellation. The compatible /docs paths reproduced both
+ * exact header shapes on 2026-09-05: 8 desktop and 5 mobile cancellations while
+ * URL/timeOrigin stayed fixed; real chapter navigation and reload then passed.
+ * Evidence: compatible-prefetch-independent/reproduction.json. This does not
+ * establish a JS abort call, a fully consumed body, or published-route validity.
+ * User-navigation RSC and all other failures stay failures, even if their
+ * destination eventually renders. This is not an accessibility exception.
  */
 export function isSuccessfulGuidePrefetchCancellation(
   observation: MigrationNetworkObservation,
@@ -51,7 +55,8 @@ export function isSuccessfulGuidePrefetchCancellation(
   if (
     !["http:", "https:"].includes(url.protocol) || url.origin !== guideOrigin
     || pageUrl.origin !== guideOrigin || url.username || url.password || url.hash
-    || !(url.pathname === "/guide" || url.pathname.startsWith("/guide/"))
+    || !(url.pathname === "/guide" || url.pathname.startsWith("/guide/")
+      || /^\/docs\/[a-z0-9-]+(?:\/[a-z0-9-]+)*$/.test(url.pathname))
     || url.pathname.includes(".") || url.pathname.includes("%")
     || [...url.searchParams.keys()].length !== 1
     || !url.searchParams.get("_rsc")

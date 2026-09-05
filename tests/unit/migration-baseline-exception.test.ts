@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { approvedBaselineFailure, BASELINE_EXCEPTION, OLD_GUIDE_DEPLOYMENT, validateBaselineException, OLD_GUIDE_SEARCH_FOCUS_TRAP, classifyOldGuideSearchFocusException, validateSearchFocusException, type SearchFocusExceptionContext, type SearchFocusObservation } from "../../lib/migration-baseline-exception.ts";
+import { approvedBaselineFailure, BASELINE_EXCEPTION, OLD_GUIDE_DEPLOYMENT, validateBaselineException, OLD_GUIDE_SEARCH_FOCUS_TRAP, classifyOldGuideSearchFocusException, validateSearchFocusException, type SearchFocusExceptionContext, type SearchFocusObservation, OLD_GUIDE_KEYBOARD_EXCEPTIONS, OLD_GUIDE_SHORTCUT_CLOSE_FOCUS_RESTORE, OLD_GUIDE_ESCAPE_WRONG_INVOKER_RESTORE, OLD_GUIDE_CLOSED_ESCAPE_FOCUS_INTERFERENCE, OLD_GUIDE_SOURCE, OLD_GUIDE_BASELINE_DIGEST, verifyOldGuideMetadata, verifyOldGuideIdentity } from "../../lib/migration-baseline-exception.ts";
 
 test("baseline exception requires explicit approval identifier, old edition and exact old deployment", () => {
   assert.equal(validateBaselineException(undefined, "new", "anything"), false);
@@ -39,8 +39,20 @@ test("hydration exception is bounded to the existing route, error and visit coun
   assert.equal(approvedBaselineFailure(true, "zero unexpected network failures", [error]), false);
 });
 
+const metadata = {
+  checkedAt: Date.now(), projectId: "prj_KZQBsEEmJMnEpCx3DHW4mfzIOAuO",
+  projectDeployment: OLD_GUIDE_DEPLOYMENT, projectSource: OLD_GUIDE_SOURCE, projectReadyState: "READY",
+  alias: "ai-software-factory-mastery.vercel.app", aliasProjectId: "prj_KZQBsEEmJMnEpCx3DHW4mfzIOAuO", aliasDeployment: OLD_GUIDE_DEPLOYMENT,
+  immutableDeployment: OLD_GUIDE_DEPLOYMENT, immutableSource: OLD_GUIDE_SOURCE, immutableProjectId: "prj_KZQBsEEmJMnEpCx3DHW4mfzIOAuO", immutableReadyState: "READY",
+};
+const assets = [
+  { path: "/_next/static/immutable/chunks/test.js", type: "script", status: 200, sha256: "a".repeat(64) },
+  { path: "/_next/static/immutable/chunks/test.css", type: "stylesheet", status: 200, sha256: "b".repeat(64) },
+];
+const identity = verifyOldGuideIdentity(metadata, assets, assets, assets.map((asset) => asset.path), OLD_GUIDE_BASELINE_DIGEST);
 const focusContext: SearchFocusExceptionContext = {
   exception: OLD_GUIDE_SEARCH_FOCUS_TRAP, edition: "old", deployment: OLD_GUIDE_DEPLOYMENT, state: "bridge-old",
+  identity,
 };
 const escapedFocus: SearchFocusObservation = {
   issue: "focus-escaped", dialogId: "command-palette", dialogName: "Command palette",
@@ -85,4 +97,67 @@ test("search-focus exception cannot cover another modal, Escape, restoration, or
     { dialogOpen: false }, { focusInside: true }, { key: "Escape" }, { key: "Enter" },
   ]) assert.equal(classifyOldGuideSearchFocusException(focusContext, { ...escapedFocus, ...change }), null);
   assert.equal(approvedBaselineFailure(true, OLD_GUIDE_SEARCH_FOCUS_TRAP, escapedFocus), false);
+});
+
+const approvedCases: [string, SearchFocusObservation][] = [
+  [OLD_GUIDE_SEARCH_FOCUS_TRAP, escapedFocus],
+  [OLD_GUIDE_SHORTCUT_CLOSE_FOCUS_RESTORE, { ...escapedFocus, issue: "shortcut-close-focus-loss", key: "Control+k", openedBy: "Control+k", wasOpen: true, dialogOpen: false, focusReturned: false, activeIsBody: true }],
+  [OLD_GUIDE_ESCAPE_WRONG_INVOKER_RESTORE, { ...escapedFocus, issue: "escape-wrong-invoker", key: "Escape", openedBy: "Meta+k", wasOpen: true, dialogOpen: false, invokerIsSearchTrigger: false, focusReturned: false, activeIsSearchTrigger: true }],
+  [OLD_GUIDE_CLOSED_ESCAPE_FOCUS_INTERFERENCE, { ...escapedFocus, issue: "closed-escape-interference", key: "Escape", wasOpen: false, dialogOpen: false, invokerIsSearchTrigger: false, focusReturned: false, activeIsSearchTrigger: true }],
+];
+
+test("each historical behavior requires its own explicit ID and remains a visible non-PASS", () => {
+  for (const [id, observation] of approvedCases) {
+    validateSearchFocusException(id, "old", OLD_GUIDE_DEPLOYMENT, "bridge-old");
+    const result = classifyOldGuideSearchFocusException({ ...focusContext, exception: undefined, exceptions: [id] }, observation);
+    assert.equal(result?.exceptionId, id);
+    assert.equal(result?.status, "KNOWN_EXCEPTION");
+    assert.equal(result?.disposition, "ACCEPTED_TEMPORARILY");
+    assert.equal(result?.finalStateAcceptance, "NOT EXEMPT");
+    assert.equal(result?.productionPromotionAuthorized, false);
+    for (const otherId of OLD_GUIDE_KEYBOARD_EXCEPTIONS.filter((value) => value !== id)) {
+      assert.equal(classifyOldGuideSearchFocusException({ ...focusContext, exception: otherId }, observation), null);
+    }
+  }
+});
+
+test("all four exceptions fail closed without verified identity or outside exact bridge/old", () => {
+  for (const [id, observation] of approvedCases) for (const change of [
+    { identity: undefined }, { edition: "new" }, { deployment: "dpl_other" },
+    { state: "current-old" }, { state: "bridge-new" }, { state: "final-new" }, { state: "future" },
+    { identity: { ...identity, verifiedAt: Date.now() - 60_001 } },
+  ]) assert.equal(classifyOldGuideSearchFocusException({ ...focusContext, exception: id, ...change }, observation), null);
+});
+
+test("historical close exceptions do not waive other outcomes, inputs, modals or restoration regressions", () => {
+  for (const [id, observation] of approvedCases.slice(1)) for (const change of [
+    { issue: "other-accessibility-defect" }, { dialogId: "another-modal" }, { dialogName: "Another dialog" },
+    { key: "Enter" }, { dialogOpen: true }, { focusReturned: true },
+    { activeIsSearchTrigger: false, activeIsBody: false },
+  ]) assert.equal(classifyOldGuideSearchFocusException({ ...focusContext, exception: id }, { ...observation, ...change }), null);
+  assert.equal(classifyOldGuideSearchFocusException({ ...focusContext, exception: OLD_GUIDE_ESCAPE_WRONG_INVOKER_RESTORE }, { ...approvedCases[2][1], openedBy: "Enter" }), null);
+  assert.equal(classifyOldGuideSearchFocusException({ ...focusContext, exception: OLD_GUIDE_CLOSED_ESCAPE_FOCUS_INTERFERENCE }, { ...approvedCases[3][1], wasOpen: true }), null);
+});
+
+test("live identity rejects stale metadata or any changed active alias/project/deployment/source", () => {
+  for (const change of [
+    { checkedAt: Date.now() - 60_001 }, { checkedAt: Date.now() + 60_000 },
+    { projectDeployment: "dpl_other" }, { aliasDeployment: "dpl_other" }, { immutableDeployment: "dpl_other" },
+    { projectSource: "other" }, { immutableSource: "other" }, { alias: "other.vercel.app" },
+    { projectId: "prj_other" }, { aliasProjectId: "prj_other" }, { immutableProjectId: "prj_other" },
+    { projectReadyState: "ERROR" }, { immutableReadyState: "BUILDING" },
+  ]) assert.throws(() => verifyOldGuideMetadata({ ...metadata, ...change }));
+});
+
+test("asset identity rejects absent, unknown, changed, unprefixed, unhashed or non-200 managed assets", () => {
+  const required = assets.map((asset) => asset.path);
+  for (const observed of [
+    [], [assets[0]], assets.map((asset) => ({ ...asset, status: 404 })),
+    assets.map((asset) => ({ ...asset, sha256: "c".repeat(64) })),
+    assets.map((asset) => ({ ...asset, sha256: "" })),
+    [...assets, { ...assets[0], path: "/_next/static/immutable/unknown.js" }],
+    assets.map((asset) => ({ ...asset, path: "/other.js" })),
+    assets.map((asset) => ({ ...asset, type: "fetch" })),
+  ]) assert.throws(() => verifyOldGuideIdentity(metadata, observed, assets, required, OLD_GUIDE_BASELINE_DIGEST));
+  assert.throws(() => verifyOldGuideIdentity(metadata, assets, assets, required, "wrong-baseline-digest"));
 });

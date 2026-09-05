@@ -3,8 +3,8 @@ import test from "node:test";
 import { isSuccessfulGuidePrefetchCancellation, type MigrationNetworkObservation } from "../../lib/migration-browser-network.ts";
 
 const guideOrigin = "http://127.0.0.1:3024";
-function observation(): MigrationNetworkObservation {
-  const url = `${guideOrigin}/guide/01-understand/01-why-software-engineering-is-changing?_rsc=fixture`;
+function observation(path = "/guide/01-understand/01-why-software-engineering-is-changing"): MigrationNetworkObservation {
+  const url = `${guideOrigin}${path}?_rsc=fixture`;
   return {
     url, pageUrl: `${guideOrigin}/guide`, method: "GET", type: "fetch",
     isNavigationRequest: false, error: "net::ERR_ABORTED",
@@ -62,3 +62,37 @@ for (const [name, mutate] of rejectionCases) {
     assert.equal(isSuccessfulGuidePrefetchCancellation(value, guideOrigin), false);
   });
 }
+
+const compatibleChapter = "/docs/01-understand/01-why-software-engineering-is-changing";
+for (const path of [compatibleChapter, "/docs/appendix/architecture-communication"]) {
+  for (const shape of ["tree", "metadata-only"]) {
+    test(`recognizes the evidenced ${shape} prefetch cancellation on ${path}`, () => {
+      const value = observation(path);
+      if (shape === "metadata-only") {
+        delete value.requestHeaders["next-router-segment-prefetch"];
+        value.requestHeaders["next-router-state-tree"] = encodeURIComponent(JSON.stringify(["", {}, null, "metadata-only"]));
+      }
+      assert.equal(isSuccessfulGuidePrefetchCancellation(value, guideOrigin), true);
+    });
+  }
+}
+
+for (const [name, mutate] of rejectionCases) {
+  test(`compatible chapter path still does not excuse ${name}`, () => {
+    const value = observation(compatibleChapter);
+    mutate(value);
+    assert.equal(isSuccessfulGuidePrefetchCancellation(value, guideOrigin), false);
+  });
+}
+
+test("compatible path addition does not include FDLC routes, tools, assets or unsafe path forms", () => {
+  for (const path of [
+    "/", "/architecture", "/visuals", "/search", "/topics", "/coverage", "/glossary",
+    "/docs", "/docs/", "/docs//chapter", "/docs/appendix//chapter", "/docs/chapter/",
+    "/docs/search-index.json", "/docs/chunk.js", "/docs/style.css", "/docs/image.svg",
+    "/docs/_next/chunk", "/docs/%61ppendix/chapter", "/docs/appendix%2fchapter",
+    "/docs/appendix%5cchapter", "/docs/chapter%20name",
+  ]) {
+    assert.equal(isSuccessfulGuidePrefetchCancellation(observation(path), guideOrigin), false, path);
+  }
+});

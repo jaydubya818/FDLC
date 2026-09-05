@@ -17,6 +17,9 @@ const fdlcOrigin = options.fdlc ? new URL(options.fdlc).origin : null;
 const canonicalOrigin = new URL(options.canonical).origin;
 const edition = options.edition;
 assert.ok(["old", "new"].includes(edition), "--edition must be old or new");
+const guideMode = edition === "new" ? options["guide-mode"] : null;
+assert.ok(edition === "old" ? options["guide-mode"] === undefined : ["compatible", "final"].includes(guideMode), "New Guide requires explicit --guide-mode=compatible|final; old Guide has no build mode");
+assert.equal(canonicalOrigin, guideMode === "final" ? "https://www.fdlc.ai" : "https://ai-software-factory-mastery.vercel.app", "Canonical authority must match the declared artifact mode");
 const baselineException = validateBaselineException(options["baseline-exception"], edition, options.deployment);
 const output = resolve(options.output);
 await mkdir(output, { recursive: true });
@@ -29,7 +32,7 @@ const indexPath = edition === "old" ? "/search-index.json" : "/guide/search-inde
 const mermaidPath = guidePath("02-design/07-governance-policy-and-risk-proportional-approval");
 const chapterPath = guidePath("01-understand/02-the-factory-in-one-view");
 const result = {
-  startedAt: new Date().toISOString(), edition, guideOrigin, fdlcOrigin, canonicalOrigin,
+  startedAt: new Date().toISOString(), edition, guideMode, guideOrigin, fdlcOrigin, canonicalOrigin,
   expectedGuideDeployment: options.deployment ?? null,
   expectedAssetPrefix: prefix, anonymous: true, checks: [], pages: [], assets: [],
   console: [], pageErrors: [], networkFailures: [], successfulPrefetchCancellations: [], failures: [], acceptedBaselineExceptions: [],
@@ -43,6 +46,18 @@ const check = (name, condition, actual) => {
   else if (!condition) result.failures.push({ name, actual });
 };
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
+// Independent acceptance oracle: physical composed paths are not necessarily
+// the compatible artifact's rollback-stable standalone canonical paths.
+function expectedCanonicalPath(pathname) {
+  if (guideMode !== "compatible") return pathname;
+  const tools = {
+    "/guide/architecture": "/architecture", "/guide/atlas": "/visuals",
+    "/guide/topics": "/topics", "/guide/coverage": "/coverage",
+    "/guide/glossary": "/glossary", "/guide/search": "/search",
+    "/guide/appendix/glossary": "/glossary",
+  };
+  return tools[pathname] ?? (pathname.startsWith("/guide/") ? `/docs/${pathname.slice(7)}` : pathname);
+}
 async function request(path, origin = guideOrigin) {
   const response = await fetch(new URL(path, origin), { redirect: "manual", signal: AbortSignal.timeout(30_000) });
   return { response, body: await response.text() };
@@ -126,7 +141,7 @@ try {
     if (canonical && expectStatus === 200) {
       check(`${path} canonical origin`, details.canonical && new URL(details.canonical).origin === canonicalOrigin, details.canonical);
       if (edition === "new") {
-        check(`${path} exact canonical path`, details.canonical === new URL(new URL(page.url()).pathname, canonicalOrigin).href, details.canonical);
+        check(`${path} exact canonical path`, details.canonical === new URL(expectedCanonicalPath(new URL(page.url()).pathname), canonicalOrigin).href, details.canonical);
       }
       check(`${path} description`, Boolean(details.description));
     }
