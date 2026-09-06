@@ -17,9 +17,15 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with:
-          node-version: '24'
+      # Fab permits Cellar/system check executables; setup-node's tool cache is outside that boundary.
+      - name: Select Homebrew Node 24 for contained checks
+        env:
+          HOMEBREW_NO_AUTO_UPDATE: '1'
+          HOMEBREW_NO_INSTALL_CLEANUP: '1'
+        run: |
+          brew install node@24
+          echo /opt/homebrew/opt/node@24/bin >> "$GITHUB_PATH"
+          /opt/homebrew/opt/node@24/bin/node -e 'const fs = require("node:fs"); const p = fs.realpathSync(process.execPath); if (process.platform !== "darwin" || process.arch !== "arm64" || !process.version.startsWith("v24.") || !p.startsWith("/opt/homebrew/Cellar/")) process.exit(1); console.log(JSON.stringify({version:process.version, path:p, sha256:require("node:crypto").createHash("sha256").update(fs.readFileSync(p)).digest("hex")}));'
       - run: npm ci
       - run: npm ci --prefix packages/fab
       - run: npm run typecheck
