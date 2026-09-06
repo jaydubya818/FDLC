@@ -1,5 +1,6 @@
 import type { CredentialProvider, FabConfig, Message, ModelReply, ObserveProviderRequest, ProviderRequestReceipt, ToolDefinition, Usage } from './types.ts';
 import { HttpModelProvider, addUsage, providerProtocol } from './models.ts';
+import { BedrockModelProvider, type BedrockBrokerRequest, type BedrockBrokerResponse, type BedrockBrokerTransport } from './bedrock.ts';
 import { EnvironmentCredentialProvider, Redactor } from './credentials.ts';
 import { FabError } from './validation.ts';
 
@@ -17,10 +18,16 @@ const LIVE_CHECKS = ['authentication', 'basic inference', 'structured tool argum
 const PROBE: ToolDefinition = { name: 'qualification_echo', description: 'Return the integer 7 in value to qualify this tool protocol.', parameters: { type: 'object', properties: { value: { type: 'integer', enum: [7] } }, required: ['value'], additionalProperties: false } };
 
 /** Network is possible only when the caller explicitly selects live. Normal tests inject transport. */
-export async function qualifyProvider(input: { config: FabConfig; credentials: CredentialProvider; redactor: Redactor; live: boolean; signal: AbortSignal; fetchImpl?: typeof fetch; observe?: ObserveProviderRequest }): Promise<QualificationReport> {
+export async function qualifyProvider(input: { config: FabConfig; credentials: CredentialProvider; redactor: Redactor; live: boolean; signal: AbortSignal; fetchImpl?: typeof fetch; bedrockTransport?: BedrockBrokerTransport; observe?: ObserveProviderRequest }): Promise<QualificationReport> {
   const started = Date.now(); const { config, credentials, redactor } = input;
+  if (config.provider === 'bedrock' ? !input.bedrockTransport || input.fetchImpl : Boolean(input.bedrockTransport)) {
+    throw new FabError('BROKER_REQUIRED', 'Bedrock qualification requires exactly one host-supplied broker transport.');
+  }
+  const protocol = config.provider === 'bedrock'
+    ? { endpoint: 'https://bedrock-runtime.us-east-1.amazonaws.com', protocol: 'bedrock-invoke-model/anthropic-messages/bedrock-2023-05-31' }
+    : providerProtocol(config.provider);
   const report: QualificationReport = { version: 1, maturity: 'Experimental', provider: config.provider, requestedModel: config.model, returnedModels: [], credentialReference: config.credential.id,
-    transport: input.fetchImpl ? 'INJECTED' : 'LIVE', ...providerProtocol(config.provider), qualifiedModels: [], requests: [], requestCount: 0, maximumRequests: 3, retries: 0, maximumOutputTokensPerRequest: 128,
+    transport: input.fetchImpl ? 'INJECTED' : 'LIVE', ...protocol, qualifiedModels: [], requests: [], requestCount: 0, maximumRequests: 3, retries: 0, maximumOutputTokensPerRequest: 128,
     costClassification: 'UNKNOWN', contextLimit: { kind: 'CONFIGURED_UTF8_BYTES', maximum: 200000 },
     usageSemantics: config.provider === 'openai' ? 'Input includes cache reads; output includes reasoning tokens when reported. Missing values remain null.' : 'Input excludes separately reported cache reads and cache writes. Reasoning tokens are not separately exposed by this adapter. Missing values remain null.',
     startedAt: new Date(started).toISOString(), completedAt: '', latencyMs: 0, usage: { inputTokens: null, outputTokens: null, cachedTokens: null, costUsd: null }, status: 'NOT RUN', checks: [],
@@ -32,12 +39,17 @@ export async function qualifyProvider(input: { config: FabConfig; credentials: C
     check('model identity', false, 'live', 'An exact configured model is required; latest aliases are prohibited. No provider call was made.');
     report.status = 'FAIL';
   } else {
-    const model = new HttpModelProvider({ provider: config.provider, model: config.model, credentials, reference: config.credential, redactor, maximumOutputTokens: 128,
-      fetchImpl: async (...args) => {
-        if (report.requestCount >= report.maximumRequests) throw new FabError('PROVIDER_BUDGET', 'Qualification call budget exhausted.');
-        report.requestCount++;
-        return (input.fetchImpl ?? fetch)(...args);
-      } });
+    const reserveRequest = () => {
+      if (report.requestCount >= report.maximumRequests) throw new FabError('PROVIDER_BUDGET', 'Qualification call budget exhausted.');
+      report.requestCount++;
+    };
+    const model = config.provider === 'bedrock'
+      ? new BedrockModelProvider({ config, redactor, maximumOutputTokens: 128, transport: {
+          identity: () => input.bedrockTransport!.identity(),
+          invoke: async (request, signal) => { reserveRequest(); return await input.bedrockTransport!.invoke(request, signal); },
+        } })
+      : new HttpModelProvider({ provider: config.provider, model: config.model, credentials, reference: config.credential, redactor, maximumOutputTokens: 128,
+          fetchImpl: async (...args) => { reserveRequest(); return (input.fetchImpl ?? fetch)(...args); } });
     let requests = 0;
     const invoke = async (messages: Message[], tools: ToolDefinition[]): Promise<ModelReply> => {
       const reply = await model.invoke(messages, tools, input.signal, async receipt => {
@@ -81,6 +93,7 @@ export async function qualifyProvider(input: { config: FabConfig; credentials: C
 
 /** Faults use a separate synthetic credential and transport, never the enrolled key or network. */
 async function qualifyContracts(config: FabConfig): Promise<QualificationCheck[]> {
+  if (config.provider === 'bedrock') return qualifyBedrockContracts(config);
   const redactor = new Redactor(); const key = 'qualification-non-secret-fixture-729105';
   const reference = { ...config.credential, id: 'qualification-fixture', source: { kind: 'environment' as const, variable: 'FAB_QUALIFICATION_FIXTURE' } };
   const credentials = new EnvironmentCredentialProvider(reference, redactor, { FAB_QUALIFICATION_FIXTURE: key });
@@ -125,5 +138,30 @@ async function qualifyContracts(config: FabConfig): Promise<QualificationCheck[]
     const serialized = JSON.stringify(redactor.value({ stdout: variants, stderr: variants, trace: variants, error: new Error(key) }));
     return variants.every(value => !serialized.includes(value));
   });
+  return checks;
+}
+
+async function qualifyBedrockContracts(config: FabConfig): Promise<QualificationCheck[]> {
+  const redactor = new Redactor(); const secret = 'qualification-non-secret-fixture-729105'; redactor.register(secret);
+  const checks: QualificationCheck[] = [];
+  const exercise = async (name: string, run: () => Promise<boolean>) => {
+    let pass = false; try { pass = await run(); } catch { /* Safe failure becomes a failed contract check. */ }
+    checks.push({ name, status: pass ? 'PASS' : 'FAIL', mode: 'contract', detail: 'Synthetic broker and fault-injected transport; no live provider request.' });
+  };
+  const response = { id: 'msg-contract', model: 'claude-sonnet-4-6', content: [{ type: 'text', text: 'FAB_OK' }], stop_reason: 'end_turn', usage: { input_tokens: 3, output_tokens: 2 } };
+  const model = (invoke: (request: BedrockBrokerRequest, signal: AbortSignal) => Promise<BedrockBrokerResponse>, timeoutMs = 60000) => new BedrockModelProvider({
+    config, redactor, timeoutMs, transport: { identity: () => ({ route: structuredClone(config.bedrockRoute!), credentialReference: config.credential.id, maximumAttempts: 1 }), invoke },
+  });
+  const rejectedSafely = async (operation: Promise<unknown>) => { try { await operation; return false; } catch (error) { return !JSON.stringify(redactor.value(error)).includes(secret); } };
+  const success = (request: BedrockBrokerRequest) => ({ requestDigest: request.requestDigest, providerRequestId: 'aws-contract-request', httpStatus: 200, attempts: 1, body: JSON.stringify(response) });
+  await exercise('provider error redaction', async () => rejectedSafely(model(async request => ({ ...success(request), httpStatus: 401, body: secret })).invoke([{ role: 'user', content: 'probe' }], [], new AbortController().signal)));
+  await exercise('transport exception redaction', async () => rejectedSafely(model(async () => { throw new Error(secret); }).invoke([{ role: 'user', content: 'probe' }], [], new AbortController().signal)));
+  await exercise('cancellation before inference', async () => { let calls = 0; const rejected = await rejectedSafely(model(async request => { calls++; return success(request); }).invoke([{ role: 'user', content: 'probe' }], [], AbortSignal.abort())); return rejected && calls === 0; });
+  await exercise('request timeout', async () => { const keepAlive = setInterval(() => {}, 1000); try { return await rejectedSafely(model(async () => new Promise(() => {}), 10).invoke([{ role: 'user', content: 'probe' }], [], new AbortController().signal)); } finally { clearInterval(keepAlive); } });
+  await exercise('rate limit with zero automatic retries', async () => { let calls = 0; try { await model(async () => { calls++; const error = new Error(secret); error.name = 'ThrottlingException'; throw error; }).invoke([{ role: 'user', content: 'probe' }], [], new AbortController().signal); } catch (error) { return calls === 1 && error instanceof FabError && error.code === 'PROVIDER_RATE_LIMIT'; } return false; });
+  await exercise('malformed response with zero automatic retries', async () => { let calls = 0; const rejected = await rejectedSafely(model(async request => { calls++; return { ...success(request), body: 'not-json' }; }).invoke([{ role: 'user', content: 'probe' }], [], new AbortController().signal)); return rejected && calls === 1; });
+  await exercise('in-flight cancellation with zero automatic retries', async () => { let calls = 0; const controller = new AbortController(); const rejected = await rejectedSafely(model(async () => { calls++; controller.abort(); return new Promise(() => {}); }).invoke([{ role: 'user', content: 'probe' }], [], controller.signal)); return rejected && calls === 1; });
+  await exercise('context byte budget', async () => { let calls = 0; const rejected = await rejectedSafely(model(async request => { calls++; return success(request); }).invoke([{ role: 'user', content: 'x'.repeat(210000) }], [], new AbortController().signal)); return rejected && calls === 0; });
+  await exercise('evidence and partial-echo redaction', async () => { const variants = [secret, secret.slice(0, 8), secret.slice(-8), Buffer.from(secret).toString('base64')]; const serialized = JSON.stringify(redactor.value({ values: variants, error: new Error(secret) })); return variants.every(value => !serialized.includes(value)); });
   return checks;
 }
