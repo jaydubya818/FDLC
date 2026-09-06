@@ -5,6 +5,7 @@ import { FabAgent, newSession } from './agent.ts';
 import { runCheck } from './checks.ts';
 import { Redactor } from './credentials.ts';
 import { HttpModelProvider } from './models.ts';
+import { BedrockModelProvider, type BedrockBrokerTransport } from './bedrock.ts';
 import { Repository } from './repository.ts';
 import { SessionStore } from './sessions.ts';
 import { digest, fail, integer } from './validation.ts';
@@ -72,6 +73,7 @@ export function prepareEvaluation(family: string, directory: string) {
 export async function runEvaluation(input: {
   family: string; config: FabConfig; qualification: QualificationReport; credentials: CredentialProvider;
   redactor: Redactor; store: SessionStore; signal: AbortSignal; live: boolean; maximumRequests: number; fetchImpl?: typeof fetch;
+  bedrockTransport?: BedrockBrokerTransport;
 }) {
   const { config, qualification, redactor } = input;
   if (!input.live) fail('EVALUATION_AUTHORIZATION', 'Live evaluation requires explicit --live authorization and a request budget.');
@@ -90,12 +92,20 @@ export async function runEvaluation(input: {
     fail('EVALUATION_QUALIFICATION', 'A matching successful provider qualification from the last 24 hours is required.');
   }
   let requestCount = 0;
-  const model = new HttpModelProvider({ provider: config.provider, model: config.model, credentials: input.credentials, reference: config.credential, redactor,
-    fetchImpl: async (...args) => {
-      if (requestCount >= input.maximumRequests) fail('PROVIDER_BUDGET', 'Authorized evaluation request budget exhausted.');
-      requestCount++;
-      return (input.fetchImpl ?? fetch)(...args);
-    } });
+  if (config.provider === 'bedrock' ? !input.bedrockTransport || input.fetchImpl : Boolean(input.bedrockTransport)) {
+    fail('BROKER_REQUIRED', 'Bedrock evaluation requires exactly one host-supplied broker transport.');
+  }
+  const reserveRequest = () => {
+    if (requestCount >= input.maximumRequests) fail('PROVIDER_BUDGET', 'Authorized evaluation request budget exhausted.');
+    requestCount++;
+  };
+  const model = config.provider === 'bedrock'
+    ? new BedrockModelProvider({ config, redactor, maximumOutputTokens: 4096, transport: {
+        identity: () => input.bedrockTransport!.identity(),
+        invoke: async (request, signal) => { reserveRequest(); return await input.bedrockTransport!.invoke(request, signal); },
+      } })
+    : new HttpModelProvider({ provider: config.provider, model: config.model, credentials: input.credentials, reference: config.credential, redactor,
+        fetchImpl: async (...args) => { reserveRequest(); return (input.fetchImpl ?? fetch)(...args); } });
   const session = newSession(config, scope.task); input.store.reserve(session);
   const agent = new FabAgent({ session, model, store: input.store, redactor,
     checkpoint: async operation => {
