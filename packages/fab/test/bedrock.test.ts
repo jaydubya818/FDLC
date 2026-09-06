@@ -4,6 +4,7 @@ import { BedrockModelProvider, bedrockRequestBody, type BedrockBrokerIdentity, t
 import { HttpModelProvider, parseReply, providerProtocol, requestBody } from '../src/models.ts';
 import { Redactor } from '../src/credentials.ts';
 import { FabError, parseConfig } from '../src/validation.ts';
+import { qualifyProvider } from '../src/qualification.ts';
 import type { FabConfig, Message, ProviderRequestReceipt, ToolDefinition } from '../src/types.ts';
 
 const route = { accountId: '123456789012', region: 'us-east-1', modelId: 'anthropic.claude-sonnet-4-6', inferenceProfileId: 'us.anthropic.claude-sonnet-4-6', inferenceProfileArn: 'arn:aws:bedrock:us-east-1:123456789012:inference-profile/us.anthropic.claude-sonnet-4-6' } as const;
@@ -204,4 +205,39 @@ test('post-response persistence rejection cannot return a successful model resul
     if (r.phase === 'RESPONSE_HEADERS') throw new Error('storage failure');
   }), code('PROVIDER_OBSERVATION'));
   assert.equal(f.calls(), 1);
+});
+
+test('live qualification uses only the explicit Bedrock broker for all three bounded calls', async () => {
+  let calls = 0;
+  const transport: BedrockBrokerTransport = {
+    identity: () => ({ route: structuredClone(route), credentialReference: 'mc-fixture-broker', maximumAttempts: 1 }),
+    invoke: async request => {
+      calls++;
+      const body = JSON.parse(request.body);
+      assert.equal(body.max_tokens, 128);
+      const content = calls === 2
+        ? [{ type: 'tool_use', id: 'echo_qualification', name: 'qualification_echo', input: { value: 7 } }]
+        : [{ type: 'text', text: calls === 1 ? 'FAB_OK' : 'FAB_CONTINUATION_OK' }];
+      return {
+        requestDigest: request.requestDigest,
+        providerRequestId: `aws-qualification-${calls}`,
+        httpStatus: 200,
+        attempts: 1,
+        body: JSON.stringify({ id: `msg-${calls}`, model: 'claude-sonnet-4-6', content,
+          stop_reason: calls === 2 ? 'tool_use' : 'end_turn', usage: { input_tokens: 12, output_tokens: 3 } }),
+      };
+    },
+  };
+  const credentials = {
+    metadata: () => ({ configured: true, reference: 'mc-fixture-broker', storage: 'environment' as const }),
+    use: async () => { throw new Error('Bedrock must not request a local credential'); },
+  };
+  const report = await qualifyProvider({ config: config(), credentials, redactor: new Redactor(), live: true,
+    signal: new AbortController().signal, bedrockTransport: transport });
+  assert.equal(calls, 3);
+  assert.equal(report.status, 'PASS');
+  assert.equal(report.transport, 'LIVE');
+  assert.equal(report.requestCount, 3);
+  assert.deepEqual(report.qualifiedModels, ['claude-sonnet-4-6']);
+  assert(report.checks.filter(item => item.mode === 'contract').every(item => item.status === 'PASS'));
 });
