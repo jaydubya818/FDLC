@@ -8,10 +8,13 @@ import { chromium } from "playwright";
 
 // A local production build, a new browser profile and synthetic form inputs only.
 const require = createRequire(import.meta.url);
+const runtime = process.argv[2] ?? "vinext";
+assert.ok(["vinext", "next"].includes(runtime), "Browser runtime must be vinext or next");
 const origin = "http://127.0.0.1:4186";
-const output = new URL("../output/playwright/site/", import.meta.url);
+const output = new URL(runtime === "next" ? "../output/playwright/site-next/" : "../output/playwright/site/", import.meta.url);
 await mkdir(output, { recursive: true });
-const server = spawn(process.execPath, [new URL("../node_modules/vinext/dist/cli.js", import.meta.url).pathname, "start", "--hostname", "127.0.0.1", "--port", "4186"], {
+const serverCli = runtime === "next" ? "../node_modules/next/dist/bin/next" : "../node_modules/vinext/dist/cli.js";
+const server = spawn(process.execPath, [new URL(serverCli, import.meta.url).pathname, "start", "--hostname", "127.0.0.1", "--port", "4186"], {
   cwd: new URL("..", import.meta.url),
   env: { ...process.env, WRANGLER_LOG_PATH: ".wrangler/browser.log" },
   stdio: ["ignore", "pipe", "pipe"],
@@ -19,7 +22,7 @@ const server = spawn(process.execPath, [new URL("../node_modules/vinext/dist/cli
 let serverLog = "";
 server.stdout.on("data", chunk => { serverLog += chunk; });
 server.stderr.on("data", chunk => { serverLog += chunk; });
-const report = { schema: "fdlc-browser/v1", environment: "LOCAL_PRODUCTION_BUILD", results: [], links: [], flows: [], errors: [], result: "FAIL" };
+const report = { schema: "fdlc-browser/v1", environment: "LOCAL_PRODUCTION_BUILD", runtime, results: [], links: [], flows: [], errors: [], result: "FAIL" };
 let browser;
 try {
   let ready = false;
@@ -147,6 +150,7 @@ try {
     assert.equal(response.status(), 200, route);
   }
   assert.deepEqual(report.errors, []);
+  assert.equal(server.exitCode, null, `The owned production preview exited during qualification: ${serverLog}`);
   report.result = "PASS";
 } finally {
   await browser?.close();
