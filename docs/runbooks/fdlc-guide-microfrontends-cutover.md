@@ -1,5 +1,30 @@
 # FDLC + Guide Microfrontends Cutover
 
+## Superseded execution sequence — migration bridge release
+
+For the September 2026 migration, the
+[FDLC / Guide migration bridge release plan](../releases/2026-09-05-fdlc-guide-migration-bridge-release-plan.md)
+is the active authority and state-aware execution/rollback contract. The older
+three-step instructions and application-specific rollback recipes below are
+historical context, not independently executable release instructions.
+
+The required forward sequence is current/current → bridge/current →
+bridge/Guide-compatible → final/Guide-compatible → final/Guide-final. On a failed
+gate, restore the immediately preceding qualified state using its exact recorded
+immutable artifacts. A complete rollback reverses those edges: restore
+Guide-compatible before replacing final FDLC with bridge; restore current Guide
+before replacing bridge FDLC with current FDLC. Never put Guide-final behind
+bridge FDLC or a new Guide behind current FDLC as a composed state. Verify every
+rollback; HTTP 200 alone does not prove route or asset ownership.
+
+Preserve the seven-day stabilization window below. Immediate acceptance and
+runtime-log observation are required after every transition and after final
+public cutover. Record their actual timestamps and elapsed time separately from
+the remaining seven-day observation obligation. Keep every required immutable
+rollback deployment and saved asset inventory for that window; do not claim
+seven days have elapsed or retire a rollback dependency before the window and
+its release-owner disposition are complete.
+
 ## Purpose
 
 Move the AI Software Factory Guide under `https://www.fdlc.ai/guide` without
@@ -339,11 +364,16 @@ responses for `/guide`, a deep chapter, search data, and one asset.
 
 ## Seven-day stabilization
 
+This observation obligation carries forward into the active migration bridge
+plan; it does not reinstate the superseded execution or rollback recipes above.
+
 Monitor Microfrontends routing, 404s, redirect traffic, search-index failures,
-asset failures, Core Web Vitals, and application errors for seven days. Keep the
-FDLC shadow Guide code and the standalone rollback deployment during this
-window. Remove shadows only after traffic and error evidence show that rollback
-no longer depends on them.
+asset failures, Core Web Vitals, and application errors for seven days. Retain
+the exact recorded starting, bridge, Guide-compatible and final deployment
+artifacts and their saved asset inventories during this window. Do not add or
+restore shadow Guide code to the final source. Retire rollback dependencies only
+after the window, traffic/error evidence and release-owner disposition establish
+that rollback no longer depends on them.
 
 ## References
 

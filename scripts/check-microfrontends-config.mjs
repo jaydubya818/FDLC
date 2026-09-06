@@ -23,6 +23,9 @@ function canonicalJson(value) {
 }
 
 try {
+  if (process.env.VC_MICROFRONTENDS_CONFIG !== undefined || process.env.VC_MICROFRONTENDS_CONFIG_FILE_NAME !== undefined) {
+    throw new Error("Only the checked-in root microfrontends.json may configure this FDLC deployment");
+  }
   if (!existsSync(configPath)) {
     throw new Error("microfrontends.json must exist at the repository root");
   }

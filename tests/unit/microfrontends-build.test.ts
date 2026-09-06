@@ -9,13 +9,14 @@ const projectRoot = resolve(import.meta.dirname, "../..");
 const validatorPath = join(projectRoot, "scripts/check-microfrontends-config.mjs");
 const validConfig = readFileSync(join(projectRoot, "microfrontends.json"), "utf8");
 
-function runValidator(setup: (directory: string) => void) {
+function runValidator(setup: (directory: string) => void, environment: Record<string, string> = {}) {
   const directory = mkdtempSync(join(tmpdir(), "fdlc-microfrontends-check-"));
   try {
     setup(directory);
     return spawnSync(process.execPath, [validatorPath], {
       cwd: directory,
       encoding: "utf8",
+      env: { ...process.env, ...environment },
     });
   } finally {
     rmSync(directory, { force: true, recursive: true });
@@ -64,5 +65,22 @@ test("fails closed when the Microfrontends configuration is invalid or modified"
     });
     assert.notEqual(result.status, 0);
     assert.match(result.stderr, /microfrontends:check/);
+  }
+});
+
+test("rejects config-source overrides even when the checked-in root is valid", () => {
+  for (const name of ["VC_MICROFRONTENDS_CONFIG", "VC_MICROFRONTENDS_CONFIG_FILE_NAME"]) {
+    for (const value of ["alternate.json", ""]) {
+      const result = runValidator((directory) => {
+        writeFileSync(join(directory, "microfrontends.json"), validConfig);
+        const alternate = JSON.parse(validConfig);
+        alternate.applications["ai-software-factory-mastery"].routing[0].paths = ["/unexpected-guide"];
+        writeFileSync(join(directory, "alternate.json"), JSON.stringify(alternate));
+      }, { [name]: value });
+      assert.notEqual(result.status, 0);
+      assert.match(result.stderr, /Only the checked-in root microfrontends\.json may configure this FDLC deployment/);
+      assert.doesNotMatch(result.stdout, /valid root configuration/);
+      assert.doesNotMatch(result.stderr, /alternate\.json/);
+    }
   }
 });
