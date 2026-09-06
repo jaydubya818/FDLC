@@ -118,8 +118,10 @@ try {
     report.flows.push({ name: "mission-control-delivery-and-operator-tabs", width, result: "PASS" });
 
     await page.goto(origin);
-    await page.waitForLoadState("networkidle");
     const stages = page.getByRole("tablist", { name: "Runtime lifecycle stages" }).getByRole("tab");
+    // Prove hydration through an observable state change; prefetch may stay active.
+    await stages.first().click();
+    await page.waitForFunction(() => document.querySelector('.factory-explorer-stages button:first-child').getAttribute("aria-selected") === "true");
     await stages.first().focus();
     await page.keyboard.press("End");
     await page.waitForFunction(() => document.querySelector('.factory-explorer-stages button:last-child') === document.activeElement && document.activeElement.getAttribute("aria-selected") === "true");
