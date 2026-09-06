@@ -72,6 +72,24 @@ try {
       }
     }
 
+    if (width === 1440) {
+      await page.goto(origin);
+      const guideTrigger = page.getByRole("navigation", { name: "Primary navigation" }).getByRole("button", { name: "Guide", exact: true });
+      await guideTrigger.focus();
+      await page.keyboard.press("Enter");
+      assert.equal(await guideTrigger.getAttribute("aria-expanded"), "true");
+      await page.keyboard.press("ArrowDown");
+      await page.waitForFunction(() => document.activeElement?.textContent === "Guide Home");
+      assert.equal(await page.evaluate(() => document.activeElement?.textContent), "Guide Home");
+      await page.keyboard.press("End");
+      await page.waitForFunction(() => document.activeElement?.textContent === "Search");
+      assert.equal(await page.evaluate(() => document.activeElement?.textContent), "Search");
+      await page.keyboard.press("Escape");
+      assert.equal(await guideTrigger.getAttribute("aria-expanded"), "false");
+      assert.ok(await guideTrigger.evaluate(node => node === document.activeElement));
+      report.flows.push({ name: "guide-dropdown-keyboard-and-focus-return", width, result: "PASS" });
+    }
+
     await page.goto(`${origin}/start`);
     assert.ok(await page.getByRole("button", { name: "Continue", exact: true }).isDisabled());
     await page.getByRole("combobox").selectOption("Test repair");
@@ -141,7 +159,7 @@ try {
       await page.getByLabel("Open navigation", { exact: true }).click();
       await page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("link", { name: "Framework", exact: true }).click();
       await page.waitForURL(`${origin}/framework`);
-      await page.waitForFunction(() => !document.querySelector("details.mobile-nav").open);
+      await page.waitForFunction(() => document.querySelector(".mobile-nav > button")?.getAttribute("aria-expanded") === "false");
       const comparison = page.getByRole("region", { name: "Category comparison" });
       await comparison.focus();
       assert.ok(await comparison.evaluate(node => node === document.activeElement));
