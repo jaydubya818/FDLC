@@ -65,7 +65,7 @@ export const dependencyModernizationExample = {
   },
   outcomeMetrics: [
     ["Verified completion rate", "Share of admitted Work Orders that satisfy their verification contract."],
-    ["Cost per verified outcome", "Model, compute, tooling, and human-attention cost divided by accepted upgrades."],
+    ["Cost per verified outcome", "Total cohort cost, including failed upgrades and retries, divided by independently verified upgrades; report missing cost coverage."],
     ["Human review minutes", "Judgment time required per accepted change."],
     ["Cycle time", "Elapsed time from approved intent to accepted outcome."],
     ["First-pass verification rate", "Candidates that satisfy required checks without corrective rework."],
