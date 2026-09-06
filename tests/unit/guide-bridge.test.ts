@@ -180,9 +180,9 @@ test("Guide Host routes pages, old/new assets and custom 404 paths through the n
   }
 });
 
-test("new Guide's own host never runs FDLC page normalization or creates redirect loops", async () => {
+test("new Guide's other host paths dispatch without FDLC normalization or redirect loops", async () => {
   for (const path of [
-    "/guide/search", "/search", "/guide/architecture", "/architecture",
+    "/guide/search", "/search", "/architecture",
     "/guide/atlas", "/visuals", "/guide/01-understand/01-why-software-engineering-is-changing",
     "/docs/01-understand/01-why-software-engineering-is-changing",
   ]) {
@@ -192,6 +192,25 @@ test("new Guide's own host never runs FDLC page normalization or creates redirec
     assert.equal(response.headers.get("x-middleware-request-x-vercel-mfe-zone"), "ai-software-factory-mastery", path);
     assert.equal(request.nextUrl.pathname, path);
   }
+});
+
+test("only the bridge's verified Guide host normalizes architecture before child dispatch", async () => {
+  for (const method of ["GET", "HEAD"]) for (const path of ["/guide/architecture", "/guide/architecture/"]) {
+    const request = new NextRequest(`${STANDALONE_GUIDE_ORIGIN}${path}?ref=first&ref=second&q=a%2Fb`, { method });
+    const response = await proxy(request);
+    assert.equal(response.status, 307);
+    assert.equal(response.headers.get("location"), `${STANDALONE_GUIDE_ORIGIN}/architecture?ref=first&ref=second&q=a%2Fb`);
+    assert.equal(response.headers.get("cache-control"), "private, no-store");
+    assert.equal(response.headers.has("x-middleware-request-x-vercel-mfe-zone"), false);
+    assert.equal(request.nextUrl.pathname, path);
+  }
+  for (const method of ["POST", "PUT", "PATCH", "DELETE", "OPTIONS"]) {
+    const response = await proxy(new NextRequest(`${STANDALONE_GUIDE_ORIGIN}/guide/architecture`, { method }));
+    assert.equal(response.headers.has("location"), false, method);
+    assert.equal(response.headers.get("x-middleware-request-x-vercel-mfe-zone"), "ai-software-factory-mastery", method);
+  }
+  const fdlc = await proxy(new NextRequest("https://www.fdlc.ai/guide/architecture?ref=private", { headers: { "x-forwarded-host": new URL(STANDALONE_GUIDE_ORIGIN).host } }));
+  assert.equal(fdlc.headers.get("location"), `${STANDALONE_GUIDE_ORIGIN}/architecture`);
 });
 
 test("FDLC Host preserves root, architecture, assets and Mission Control despite forwarded-host input", async () => {
