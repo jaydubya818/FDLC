@@ -23,6 +23,20 @@ test("server-renders every public route with FDLC metadata and a heading", async
   }
 });
 
+test("benchmarks publishes the incoming measurement contract and mode-correct Guide links", async () => {
+  const response = await render("/benchmarks");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /id="comparable-results"/);
+  assert.match(html, /Verification and acceptance use separate denominators/);
+  assert.match(html, /Missing cost is not zero; no successful outcomes means the ratio is undefined/);
+  assert.match(html, /A failed authority or security gate cannot be averaged away/);
+  for (const href of [
+    "/guide/02-design/09-tokenomics-and-factory-economics",
+    "/guide/04-prove/29-evaluation-engineering",
+  ]) assert.ok(html.includes(`<a href="${href}">`), href);
+});
+
 test("robots explicitly permits search and AI fetch agents", async () => {
   const response = await render("/robots.txt");
   assert.equal(response.status, 200);
