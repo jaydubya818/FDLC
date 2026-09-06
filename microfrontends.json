@@ -15,10 +15,22 @@
       },
       "routing": [
         {
-          "group": "guide-standalone",
-          "flag": "guide-standalone-host",
+          "group": "guide",
           "paths": [
-            "/:path*"
+            "/guide",
+            "/guide/:path*"
+          ]
+        },
+        {
+          "group": "guide-legacy",
+          "paths": [
+            "/docs/:path*",
+            "/visuals",
+            "/topics",
+            "/coverage",
+            "/search",
+            "/glossary",
+            "/atlas"
           ]
         }
       ]

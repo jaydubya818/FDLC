@@ -9,7 +9,7 @@ function render(pathname = "/", method = "GET") {
   return worker.fetch(new Request(`http://localhost${pathname}`, { method, headers: { accept: "text/html" } }), { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
 }
 
-const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/about"];
+const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/specification", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/about"];
 
 test("server-renders every public route with FDLC metadata and a heading", async () => {
   for (const route of routes) {
@@ -32,8 +32,8 @@ test("benchmarks publishes the incoming measurement contract and mode-correct Gu
   assert.match(html, /Missing cost is not zero; no successful outcomes means the ratio is undefined/);
   assert.match(html, /A failed authority or security gate cannot be averaged away/);
   for (const href of [
-    "https://ai-software-factory-mastery.vercel.app/docs/02-design/09-tokenomics-and-factory-economics",
-    "https://ai-software-factory-mastery.vercel.app/docs/04-prove/29-evaluation-engineering",
+    "/guide/02-design/09-tokenomics-and-factory-economics",
+    "/guide/04-prove/29-evaluation-engineering",
   ]) assert.ok(html.includes(`<a href="${href}">`), href);
 });
 
@@ -100,60 +100,14 @@ test("architecture makes the control boundary and durable operating record expli
   assert.match(html, /href=["']#control-boundary["']/i);
 });
 
-test("Guide entries temporarily redirect to the authoritative application instead of rendering FDLC shadows", async () => {
-  const targets = [
-    ["/guide", "/guide"],
-    ["/guide/understand", "/docs/01-understand/01-why-software-engineering-is-changing"],
-    ["/guide/design", "/docs/02-design/04-the-human-agent-operating-model"],
-    ["/guide/build", "/docs/03-build/11-the-agent-factory"],
-    ["/guide/prove", "/docs/04-prove/27-quality-and-evidence-architecture"],
-    ["/guide/operate", "/docs/05-operate/34-the-factory-as-a-platform"],
-    ["/guide/improve", "/docs/06-improve/39-production-feedback-review-and-the-agentic-merge-queue"],
-    ["/guide/not-a-published-page", "/docs/not-a-published-page"],
-    ["/guide/01-understand/01-why-software-engineering-is-changing", "/docs/01-understand/01-why-software-engineering-is-changing"],
-    ["/guide/search", "/search"],
-    ["/guide/architecture", "/architecture"],
-    ["/guide/atlas", "/visuals"],
-    ["/guide/topics", "/topics"],
-    ["/guide/coverage", "/coverage"],
-    ["/guide/glossary", "/glossary"],
-  ];
-  for (const [path, target] of targets) {
-    const response = await render(`${path}?token=private`);
-    assert.equal(response.status, 307, path);
-    assert.equal(response.headers.get("location"), `https://ai-software-factory-mastery.vercel.app${target}`, path);
-    assert.equal(response.headers.get("cache-control"), "private, no-store", path);
-    assert.doesNotMatch(await response.text(), /Build the system around the agent|<main|<script|FDLC\.ai/i, path);
-  }
-});
-
-test("FDLC sitemap excludes Guide URLs that now redirect to another origin", async () => {
-  const response = await render("/sitemap.xml");
-  assert.equal(response.status, 200);
-  const body = await response.text();
-  assert.match(body, /<loc>https:\/\/fdlc\.ai\/framework<\/loc>/);
-  assert.match(body, /<loc>https:\/\/fdlc\.ai\/mission-control<\/loc>/);
-  assert.doesNotMatch(body, /<loc>[^<]*\/guide(?:\/|<)/);
-});
-
-test("FDLC public asset requests do not become cross-origin Guide redirects", async () => {
-  for (const path of ["/og.png", "/fdlc-logo-updated.png", "/favicon.svg", "/search-index.json", "/infographics/diagram.svg"]) {
-    const response = await render(path);
-    // This worker harness has a synthetic 404 ASSETS binding. The invariant here
-    // is ownership/no redirect; native browser qualification verifies real files.
-    assert.equal(response.headers.has("location"), false, path);
-    assert.notEqual(response.status, 307, path);
-  }
-});
-
-test("Guide entry rejects unsafe methods without rendering a local Guide shadow", async () => {
-  for (const path of ["/guide", "/guide/design", "/docs/chapter", "/guide/search"]) {
-    const response = await render(path, "POST");
-    assert.equal(response.status, 405, path);
-    assert.equal(response.headers.get("allow"), "GET, HEAD");
-    assert.equal(response.headers.has("location"), false);
-    assert.equal(await response.text(), "Method not allowed");
-  }
+test("Guide rollback shadow points only to the canonical same-origin Guide", async () => {
+  const html = await (await render("/guide")).text();
+  assert.match(html, /Build the system around the agent/i);
+  assert.match(html, /44<\/strong> chapters.*6<\/strong> parts.*8<\/strong> Guide stages/is);
+  assert.match(html, /complete 44-chapter Guide is part of FDLC\.ai.*owns every route under.*\/guide/is);
+  assert.match(html, /href=["']\/guide\/01-understand\/02-the-factory-in-one-view["']/i);
+  assert.match(html, /href=["']\/guide\/search["']/i);
+  assert.doesNotMatch(html, /ai-software-factory-mastery\.vercel\.app|href=["']\/docs\//i);
 });
 
 test("manifesto publishes the ten operating invariants and the state boundary", async () => {
@@ -194,6 +148,24 @@ test("legacy worked-example route redirects to the canonical five-minute path", 
   const response = await render("/examples/dependency-modernization");
   assert.equal(response.status, 308);
   assert.equal(new URL(response.headers.get("location"), "http://localhost").pathname, "/in-5-minutes");
+});
+
+test("legacy specification route redirects to the canonical path", async () => {
+  const response = await render("/spec?source=old&tag=one&tag=two");
+  assert.equal(response.status, 308);
+  const location = new URL(response.headers.get("location"), "http://localhost");
+  assert.equal(location.pathname, "/specification");
+  assert.equal(location.searchParams.get("source"), "old");
+  assert.deepEqual(location.searchParams.getAll("tag"), ["one", "two"]);
+});
+
+test("discovery metadata separates the composed Guide sitemap", async () => {
+  const sitemap = await (await render("/sitemap.xml")).text();
+  assert.match(sitemap, /https:\/\/www\.fdlc\.ai\/specification/);
+  assert.doesNotMatch(sitemap, /https:\/\/www\.fdlc\.ai\/guide|https:\/\/www\.fdlc\.ai\/spec<\/loc>/);
+  const robots = await (await render("/robots.txt")).text();
+  assert.match(robots, /Sitemap: https:\/\/www\.fdlc\.ai\/sitemap\.xml/i);
+  assert.match(robots, /Sitemap: https:\/\/www\.fdlc\.ai\/guide\/sitemap\.xml/i);
 });
 
 test("core technical pages preserve distinct delivery states", async () => {
@@ -237,7 +209,7 @@ test("interactive routes have complete server-rendered entry states", async () =
 });
 
 test("preview products are explicitly labeled", async () => {
-  for (const route of ["/spec", "/benchmarks", "/enterprise", "/deploy"]) {
+  for (const route of ["/specification", "/benchmarks", "/enterprise", "/deploy"]) {
     const html = await (await render(route)).text();
     assert.match(html, /Proposed|Design partner/i, route);
   }

@@ -48,6 +48,17 @@ export const runtimeLifecycle = [
   { id: "learn", number: 9, name: "Learn", artifact: "Learning Signal", purpose: "Propose controlled changes to the factory from validated outcomes." },
 ] as const;
 
+export const guideValueStream = [
+  { id: "intent", number: 1, name: "Intent", purpose: "Establish the desired software outcome and its operating context.", href: "/guide/stages/01-builder-intent" },
+  { id: "plan", number: 2, name: "Plan", purpose: "Turn intent into a governed path, decomposition, and proof strategy.", href: "/guide/stages/02-plan" },
+  { id: "define-agent", number: 3, name: "Define Agent", purpose: "Bind the role, model, context, authority, and capabilities required for the work.", href: "/guide/stages/03-define-agent" },
+  { id: "execute-through-harness", number: 4, name: "Execute through Harness", purpose: "Run bounded work in a durable, observable, and recoverable execution system.", href: "/guide/stages/04-execute-through-harness" },
+  { id: "apply-skills", number: 5, name: "Apply Skills", purpose: "Use versioned domain procedures and governed tools to produce the candidate.", href: "/guide/stages/05-apply-skills" },
+  { id: "evaluate", number: 6, name: "Evaluate", purpose: "Collect evidence and independently evaluate the exact candidate.", href: "/guide/stages/06-evaluate" },
+  { id: "improve", number: 7, name: "Improve", purpose: "Correct the work or propose a controlled factory change from validated evidence.", href: "/guide/stages/07-improve" },
+  { id: "deliver-software", number: 8, name: "Deliver Software", purpose: "Advance accepted software through the authorized delivery boundary.", href: "/guide/stages/08-deliver-software" },
+] as const;
+
 export const factoryControls = [
   { name: "Govern", purpose: "Bound identity, delegated authority, policy, spend, approval, and accountability." },
   { name: "Secure", purpose: "Protect data, secrets, tools, environments, and the capability supply chain." },

@@ -21,10 +21,9 @@ export function SiteFooter() {
         {groups.map(([title, links]) => (
           <nav aria-label={`${title} links`} className="footer-group" key={title}>
             <strong>{title}</strong>
-            {links.map(([label, href]) => {
-              const NavigationLink = href === "/guide" ? "a" : Link;
-              return <NavigationLink href={href} key={href}>{label}{href.startsWith("http") && <span aria-hidden="true"> ↗</span>}</NavigationLink>;
-            })}
+            {links.map(([label, href]) => href.startsWith("/guide")
+              ? <a href={href} key={href}>{label}</a>
+              : <Link href={href} key={href}>{label}{href.startsWith("http") && <span aria-hidden="true"> ↗</span>}</Link>)}
           </nav>
         ))}
       </div>

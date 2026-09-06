@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "OAI-SearchBot", allow: "/" },
       { userAgent: "*", allow: "/" },
     ],
-    sitemap: `${siteUrl}/sitemap.xml`,
+    sitemap: [`${siteUrl}/sitemap.xml`, `${siteUrl}/guide/sitemap.xml`],
     host: siteUrl,
   };
 }
