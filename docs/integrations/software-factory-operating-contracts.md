@@ -69,6 +69,8 @@ This integration authorizes no Production deployment. Dedicated branches and sep
 
 The approved [source/release policy](./source-release-policy.md) adds only a main-branch Git deployment guard to four effective Vercel configurations across these repositories. Non-main Previews remain enabled. Production deployment, canonical aliases and the separate migration-bridge release process retain their existing authority. The guard persists after this integration; removal requires a separately reviewed deployment-policy decision. Updated exact-head and post-merge results are retained in the ecosystem review record.
 
+Subsequent closure records are reconciled at Mission Control `f90c50f5b4191467b2117bb8762754f697b1cefd`. They preserve one exact experimental read and keep Phase 5 implementation unstarted. Guide [PR #15](https://github.com/jaydubya818/ai-software-factory-mastery/pull/15) corrects keyboard access to scrolling code examples and mobile inline-code overflow found by the expanded browser audit. FDLC main `7a184b52a21bac207c0d7cfab99b46f40a880af8` independently landed the same guard and narrow capability claim; the integration preserves both. The [repository release policy](../FDLC_SOURCE_RELEASE_POLICY.md) and four-project policy express the same persistent source/release boundary.
+
 ## Remaining gaps
 
 Real-team adoption, complete outcome economics, general side-effecting tool recovery, production retrieval quality, fleet failure operation and automatic rollout remain evidence-gated work. This integration does not upgrade those capabilities.
