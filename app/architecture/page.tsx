@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross an application boundary during migration. */
+/* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArchitectureDiagram } from "../components/architecture-diagram";
@@ -89,7 +89,7 @@ export default function ArchitecturePage() {
       </div>
     </section>
 
-    <section className="reading-next"><p className="section-label">Continue</p><h2>Move from architecture to implementation.</h2><div><a href="/guide/build">Build the capability stack →</a><Link href="/mission-control">Inspect Mission Control →</Link><Link href="/start">Design a factory line →</Link></div></section>
+    <section className="reading-next"><p className="section-label">Continue</p><h2>Move from architecture to implementation.</h2><div><a href="/guide/03-build/11-the-agent-factory">Build the capability stack →</a><Link href="/mission-control">Inspect Mission Control →</Link><Link href="/start">Design a factory line →</Link></div></section>
     </div>
     </div>
   </div></SiteShell>;

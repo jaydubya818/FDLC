@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross an application boundary during migration. */
+/* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArchitectureDiagram } from "../components/architecture-diagram";
@@ -132,7 +132,9 @@ export default function FrameworkPage() {
 
       <section className="section-block" id="ecosystem">
         <SectionHeader eyebrow="How the pieces fit" title="One open discipline. Distinct ways to define, teach, demonstrate, and scale it." description="The Framework remains the definition of FDLC. Specifications, teaching material, implementations, and commercial products support the discipline without becoming the category itself." />
-        <div className="framework-piece-grid">{frameworkPieces.map(([name, status, description, href], index) => { const NavigationLink = href === "/guide" ? "a" : Link; return <NavigationLink href={href} key={name}><span>{String(index + 1).padStart(2, "0")} / {status}</span><h3>{name}</h3><p>{description}</p><small>Explore →</small></NavigationLink>; })}</div>
+        <div className="framework-piece-grid">{frameworkPieces.map(([name, status, description, href], index) => href.startsWith("/guide")
+          ? <a href={href} key={name}><span>{String(index + 1).padStart(2, "0")} / {status}</span><h3>{name}</h3><p>{description}</p><small>Explore →</small></a>
+          : <Link href={href} key={name}><span>{String(index + 1).padStart(2, "0")} / {status}</span><h3>{name}</h3><p>{description}</p><small>Explore →</small></Link>)}</div>
       </section>
 
       <section className="reference-callout" id="mission-control"><div><p className="section-label">Reference implementation</p><h2>Mission Control makes the protocol concrete.</h2></div><div><p>Inspect how one open-source control plane models governed Plans, WorkOrders, Attempts, evidence, verification, and human acceptance—with current limitations visible.</p><div className="hero-actions"><Link className="button button-light" href="/mission-control">Explore Mission Control</Link><Link className="text-action light-link" href="/in-5-minutes">See the walkthrough →</Link></div></div></section>

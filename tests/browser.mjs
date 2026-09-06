@@ -65,7 +65,7 @@ try {
       await page.getByRole("heading", { level: 1 }).waitFor();
       await audit(route);
       for (const href of await page.locator("a[href]").evaluateAll(nodes => nodes.map(n => n.getAttribute("href")))) {
-        if (href.startsWith("/") && !href.startsWith("//")) links.add(href.split("#")[0]);
+        if (href.startsWith("/") && !href.startsWith("//") && !href.startsWith("/guide")) links.add(href.split("#")[0]);
       }
       if (["/", "/start", "/mission-control"].includes(route)) {
         await page.screenshot({ path: new URL(`${route === "/" ? "home" : route.slice(1)}-${width}.png`, output).pathname, fullPage: true });

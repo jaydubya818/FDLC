@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { metrics } from "../../data/fdlc";
-import { fullGuideUrl } from "../../data/guide";
+import { guideRoot } from "../../data/guide";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Benchmarks", "How FDLC measures AI software factory effectiveness through verified outcomes.", "/benchmarks");
@@ -23,8 +23,8 @@ export default function BenchmarksPage() {
         <article><span>02</span><h3>Show cost coverage</h3><p>Label model, tools, retrieval, compute, storage, verification, and human effort as ACTUAL, ESTIMATED, or UNKNOWN. Missing cost is not zero; no successful outcomes means the ratio is undefined.</p></article>
         <article><span>03</span><h3>Keep guardrails visible</h3><p>Compare quality, recovery, cost, latency, and human intervention together. Trace the critical path and downstream operations per admitted Mission. A failed authority or security gate cannot be averaged away.</p></article>
       </div>
-      <p><a href={`${fullGuideUrl}/docs/02-design/09-tokenomics-and-factory-economics`}>Read the Guide’s economics contract →</a></p>
-      <p><a href={`${fullGuideUrl}/docs/04-prove/29-evaluation-engineering`}>Evaluate the execution path and the outcome →</a></p>
+      <p><a href={`${guideRoot}/02-design/09-tokenomics-and-factory-economics`}>Read the Guide’s economics contract →</a></p>
+      <p><a href={`${guideRoot}/04-prove/29-evaluation-engineering`}>Evaluate the execution path and the outcome →</a></p>
     </section>
     <section className="reading-next"><p className="section-label">Start with your baseline</p><h2>Know what improves before automating it.</h2><div><Link href="/maturity">Assess maturity →</Link><Link href="/start">Define a factory line →</Link></div></section>
   </div></SiteShell>;

@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { factoryExplorerCapabilities, factoryExplorerStages } from "../../data/factory-explorer.ts";
-import { architectureAreas, canonicalDefinition, categoryComparison, ecosystemRoles, evidencePositioning, factoryControls, lifecycleStages, manifesto, primaryPositioning, protocolSteps, runtimeLifecycle } from "../../data/fdlc.ts";
+import { architectureAreas, canonicalDefinition, categoryComparison, ecosystemRoles, evidencePositioning, factoryControls, guideValueStream, lifecycleStages, manifesto, primaryPositioning, protocolSteps, runtimeLifecycle } from "../../data/fdlc.ts";
 import { dependencyModernizationExample } from "../../data/dependency-modernization-example.ts";
-import { guideEntryPaths, guideParts, guideStages, proposedGuideMap } from "../../data/guide.ts";
+import { guideEntryPaths, guideParts, proposedGuideMap } from "../../data/guide.ts";
 
 test("keeps the canonical category positioning stable", () => {
   assert.equal(canonicalDefinition, "The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.");
@@ -34,7 +34,7 @@ test("keeps the homepage factory explorer complete and internally linked", () =>
     assert.ok(stage.capabilities.some((capabilityId) => capabilityId === stage.focusCapability), stage.name);
     assert.ok(stage.question.endsWith("?"), stage.name);
     assert.ok(stage.proof.length > 20, stage.name);
-    assert.match(stage.guideHref, /^https:\/\/ai-software-factory-mastery\.vercel\.app\/docs\//, stage.name);
+    assert.match(stage.guideHref, /^\/guide\//, stage.name);
     assert.ok(dependencyModernizationExample.runtimeSteps.some((step) => step.stepId === stage.id), stage.name);
   }
 
@@ -53,7 +53,7 @@ test("preserves the manifesto and complete guide map", () => {
   assert.equal(manifesto.length, 10);
   assert.equal(guideParts.length, 6);
   assert.equal(guideParts.reduce((count, part) => count + part.chapters.length, 0), 44);
-  assert.equal(guideStages.length, 8);
+  assert.equal(guideValueStream.length, 8);
   assert.equal(guideEntryPaths.length, 6);
   assert.equal(proposedGuideMap.length, 25);
 });
