@@ -1,0 +1,134 @@
+{
+  "scope": "Local preview, desktop/mobile browser and accessibility checks",
+  "date": "2026-09-05",
+  "cases": [
+    {
+      "name": "fdlc-benchmarks",
+      "url": "http://localhost:3012/benchmarks",
+      "width": 1440,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "fdlc-architecture",
+      "url": "http://localhost:3012/architecture",
+      "width": 1440,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "guide-recovery",
+      "url": "http://localhost:3013/docs/03-build/14-durable-execution",
+      "width": 1440,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "guide-context",
+      "url": "http://localhost:3013/docs/03-build/20-context-engineering",
+      "width": 1440,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "guide-evaluation",
+      "url": "http://localhost:3013/docs/04-prove/29-evaluation-engineering",
+      "width": 1440,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "guide-glossary",
+      "url": "http://localhost:3013/docs/appendix/glossary",
+      "width": 1440,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "fdlc-benchmarks",
+      "url": "http://localhost:3012/benchmarks",
+      "width": 390,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "fdlc-architecture",
+      "url": "http://localhost:3012/architecture",
+      "width": 390,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "guide-recovery",
+      "url": "http://localhost:3013/docs/03-build/14-durable-execution",
+      "width": 390,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "guide-context",
+      "url": "http://localhost:3013/docs/03-build/20-context-engineering",
+      "width": 390,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "guide-evaluation",
+      "url": "http://localhost:3013/docs/04-prove/29-evaluation-engineering",
+      "width": 390,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "guide-glossary",
+      "url": "http://localhost:3013/docs/appendix/glossary",
+      "width": 390,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "guide-economics",
+      "url": "http://localhost:3013/docs/02-design/09-tokenomics-and-factory-economics",
+      "width": 1440,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "guide-economics",
+      "url": "http://localhost:3013/docs/02-design/09-tokenomics-and-factory-economics",
+      "width": 390,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "fdlc-mission-control",
+      "url": "http://localhost:3012/mission-control",
+      "width": 1440,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    },
+    {
+      "name": "fdlc-mission-control",
+      "url": "http://localhost:3012/mission-control",
+      "width": 390,
+      "overflow": false,
+      "errors": [],
+      "violations": []
+    }
+  ]
+}
