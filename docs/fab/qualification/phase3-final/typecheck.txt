@@ -5,4 +5,3 @@
 
 > @fdlc/fab@0.1.0-experimental.2 typecheck
 > tsc -p tsconfig.json
-

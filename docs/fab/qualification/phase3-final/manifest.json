@@ -32,9 +32,23 @@
     "browser.txt": "41408c6582f243f7f8de822f96d6d9e0db3065f44f5c5b4380147206481a4519",
     "clean-install.txt": "71ece9391360c123038fa30b76941a6079d02e354e724a7dc1c03433ee335d7a",
     "fab-tests.txt": "538948050fa4c81a619c36f767762cd657479ab1b2446a1711ee7cb1ed08b9cd",
-    "lint.txt": "a80b449394620017c40c1384f53168168b288e4fe838433cdb17197352376120",
+    "lint.txt": "ec2df480a87330a39fc0f34da3cfe772a3fa16ca190c2f3b751d1e104d762157",
     "site-browser.json": "e8cc3747d2ced3a53ed83f5ee19887438e3f0951f87c837ec4ad9c76442bf85d",
     "site-tests.txt": "03bc7b45476826ba8b5a91fc2045efd0e65aeb17403aa413c7d8f1ea8bab04f9",
-    "typecheck.txt": "bcc400e156d4a4139a43efeace20a9a3a911c8517eddf6c1aff1c9e6614b06d6"
+    "typecheck.txt": "ee20eee68bb9cfb34c19a44597c15bc4716f9ab12f8215ac289be069cfced865"
+  },
+  "historicalWhitespace": {
+    "result": "PRESERVED_IMMUTABLE_EVIDENCE",
+    "detail": "Full branch range contains terminal blank-line warnings only in these unchanged pre-Phase3 evidence files. They are preserved instead of rewriting historical hashes.",
+    "files": [
+      "docs/fab/qualification/build.txt",
+      "docs/fab/qualification/install.txt",
+      "docs/fab/qualification/lint.txt",
+      "docs/fab/qualification/phase2/build.txt",
+      "docs/fab/qualification/phase2/install.txt",
+      "docs/fab/qualification/phase2/lint.txt",
+      "docs/fab/qualification/phase2/typecheck.txt",
+      "docs/fab/qualification/typecheck.txt"
+    ]
   }
 }
