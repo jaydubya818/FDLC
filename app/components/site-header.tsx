@@ -1,19 +1,31 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEventHandler, type ReactNode } from "react";
 
-const primary = [
+type NavLink = readonly [label: string, href: string];
+
+const primary: readonly NavLink[] = [
   ["Framework", "/framework"],
   ["Architecture", "/architecture"],
-  ["Guide", "/guide"],
+];
+
+const guide: readonly NavLink[] = [
+  ["Guide Home", "/guide"],
+  ["Atlas", "/guide/atlas"],
+  ["Reference", "/guide/topics"],
+  ["Glossary", "/guide/glossary"],
+  ["Search", "/guide/search"],
+];
+
+const afterGuide: readonly NavLink[] = [
   ["Mission Control", "/mission-control"],
   ["Maturity", "/maturity"],
-] as const;
+];
 
-const secondary = [
+const secondary: readonly NavLink[] = [
   ["FDLC in 5 Minutes", "/in-5-minutes"],
   ["Manifesto", "/manifesto"],
   ["Specification", "/spec"],
@@ -22,22 +34,121 @@ const secondary = [
   ["Enterprise", "/enterprise"],
   ["Deploy", "/deploy"],
   ["About", "/about"],
-] as const;
+];
 
 function isCurrent(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-export function SiteHeader() {
-  const pathname = usePathname();
-  const secondaryActive = secondary.some(([, href]) => isCurrent(pathname, href));
-  const moreMenu = useRef<HTMLDetailsElement>(null);
-  const mobileMenu = useRef<HTMLDetailsElement>(null);
+function focusAt(container: HTMLElement | null, index: number) {
+  const links = Array.from(container?.querySelectorAll<HTMLAnchorElement>("a[href]") ?? []);
+  links.at((index + links.length) % links.length)?.focus();
+}
+
+function onMenuKeyDown(event: globalThis.KeyboardEvent, container: HTMLElement | null, close: () => void, returnFocus: () => void) {
+  if (!container?.contains(document.activeElement)) return;
+  const links = Array.from(container.querySelectorAll<HTMLAnchorElement>("a[href]"));
+  const index = links.indexOf(document.activeElement as HTMLAnchorElement);
+  if (event.key === "Escape") {
+    event.preventDefault();
+    close();
+    returnFocus();
+  } else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+    event.preventDefault();
+    const step = event.key === "ArrowDown" ? 1 : -1;
+    const next = index < 0 ? (step > 0 ? 0 : links.length - 1) : (index + step + links.length) % links.length;
+    links[next]?.focus();
+  } else if (event.key === "Home" || event.key === "End") {
+    event.preventDefault();
+    links.at(event.key === "Home" ? 0 : -1)?.focus();
+  } else if (event.key === "Tab" && links.length) {
+    if (!event.shiftKey && document.activeElement === links.at(-1)) {
+      event.preventDefault();
+      links[0].focus();
+    } else if (event.shiftKey && document.activeElement === links[0]) {
+      event.preventDefault();
+      links.at(-1)?.focus();
+    }
+  }
+}
+
+function NavDropdown({ active, id, label, links }: { active: boolean; id: string; label: string; links: readonly NavLink[] }) {
+  const pathname = usePathname() ?? "";
+  const [open, setOpen] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const panel = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (moreMenu.current) moreMenu.current.open = false;
-    if (mobileMenu.current) mobileMenu.current.open = false;
-  }, [pathname]);
+    if (!open) return;
+    const dismiss = (event: PointerEvent) => {
+      if (!root.current?.contains(event.target as Node)) setOpen(false);
+    };
+    const navigate = (event: globalThis.KeyboardEvent) => onMenuKeyDown(event, panel.current, () => setOpen(false), () => trigger.current?.focus());
+    document.addEventListener("pointerdown", dismiss);
+    document.addEventListener("keydown", navigate);
+    return () => {
+      document.removeEventListener("pointerdown", dismiss);
+      document.removeEventListener("keydown", navigate);
+    };
+  }, [open]);
+
+  function openAndFocus(index: number) {
+    setOpen(true);
+    requestAnimationFrame(() => focusAt(panel.current, index));
+  }
+
+  function handleTriggerKeyDown(event: ReactKeyboardEvent<HTMLButtonElement>) {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      openAndFocus(0);
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      openAndFocus(-1);
+    } else if (event.key === "Escape" && open) {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  return (
+    <div className={`nav-dropdown${active ? " is-active" : ""}${open ? " is-open" : ""}`} ref={root}>
+      <button aria-controls={id} aria-expanded={open} onClick={() => setOpen((value) => !value)} onKeyDown={handleTriggerKeyDown} ref={trigger} type="button">
+        {label} <span aria-hidden="true">⌄</span>
+      </button>
+      <div className="nav-dropdown-panel" hidden={!open} id={id} ref={panel}>
+        {links.map(([itemLabel, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href} onClick={() => setOpen(false)}>{itemLabel}</Link>)}
+      </div>
+    </div>
+  );
+}
+
+function GlobalLink({ children, current, href, onClick }: { children: ReactNode; current: boolean; href: string; onClick?: MouseEventHandler<HTMLAnchorElement> }) {
+  return <Link aria-current={current ? "page" : undefined} href={href} onClick={onClick}>{children}</Link>;
+}
+
+export function SiteHeader() {
+  const pathname = usePathname() ?? "";
+  const guideActive = isCurrent(pathname, "/guide");
+  const secondaryActive = secondary.some(([, href]) => isCurrent(pathname, href));
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileGuideOpen, setMobileGuideOpen] = useState(guideActive);
+  const mobileRoot = useRef<HTMLDivElement>(null);
+  const mobileTrigger = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const dismiss = (event: PointerEvent) => {
+      if (!mobileRoot.current?.contains(event.target as Node)) setMobileOpen(false);
+    };
+    const navigate = (event: globalThis.KeyboardEvent) => onMenuKeyDown(event, mobileRoot.current?.querySelector("nav") ?? null, () => setMobileOpen(false), () => mobileTrigger.current?.focus());
+    document.addEventListener("pointerdown", dismiss);
+    document.addEventListener("keydown", navigate);
+    return () => {
+      document.removeEventListener("pointerdown", dismiss);
+      document.removeEventListener("keydown", navigate);
+    };
+  }, [mobileOpen]);
 
   return (
     <header className="site-header">
@@ -46,27 +157,25 @@ export function SiteHeader() {
           <Image className="brand-logo" src="/fdlc-logo-updated.png" alt="FDLC.ai — Factory Development Lifecycle" width={2007} height={784} priority />
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {primary.map(([label, href]) => href.startsWith("/guide")
-            ? <a aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</a>
-            : <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
-          <details className={`more-menu${secondaryActive ? " is-active" : ""}`} ref={moreMenu}>
-            <summary aria-current={secondaryActive ? "page" : undefined}>More <span aria-hidden="true">⌄</span></summary>
-            <div>
-              {secondary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
-            </div>
-          </details>
+          {primary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
+          <NavDropdown active={guideActive} id="guide-navigation" label="Guide" links={guide} />
+          {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
+          <NavDropdown active={secondaryActive} id="more-navigation" label="More" links={secondary} />
         </nav>
         <a className="header-github" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">GitHub <span aria-hidden="true">↗</span></a>
-        <details className="mobile-nav" ref={mobileMenu}>
-          <summary aria-label="Open navigation">Menu</summary>
-          <nav aria-label="Mobile navigation">
-            {primary.map(([label, href]) => href.startsWith("/guide")
-              ? <a aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</a>
-              : <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
+        <div className={`mobile-nav${mobileOpen ? " is-open" : ""}`} ref={mobileRoot}>
+          <button aria-controls="mobile-navigation" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)} type="button" ref={mobileTrigger}>Menu</button>
+          <nav aria-label="Mobile navigation" hidden={!mobileOpen} id="mobile-navigation">
+            {primary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
+            <button aria-controls="mobile-guide-navigation" aria-expanded={mobileGuideOpen} className={guideActive ? "is-active" : ""} onClick={() => setMobileGuideOpen((value) => !value)} type="button">Guide <span aria-hidden="true">⌄</span></button>
+            <div className="mobile-guide-links" hidden={!mobileGuideOpen} id="mobile-guide-navigation">
+              {guide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
+            </div>
+            {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
             <span>More</span>
-            {secondary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
+            {secondary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
           </nav>
-        </details>
+        </div>
       </div>
     </header>
   );
