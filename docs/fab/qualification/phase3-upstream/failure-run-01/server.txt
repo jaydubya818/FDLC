@@ -1,0 +1,18 @@
+
+  vinext start  (port 4186)
+
+[vinext] Production server running at http://127.0.0.1:4186
+[vinext] Server error: Error [ERR_STREAM_UNABLE_TO_PIPE]: Cannot pipe to a closed or destroyed stream
+    at pipelineImpl (node:internal/streams/pipeline:264:15)
+    at pipeline (node:internal/streams/pipeline:183:10)
+    at sendWebResponse (file:///private/tmp/fab-phase3-fdlc-validation-2/node_modules/vinext/dist/server/prod-server.js:798:22)
+    at handleRequest (file:///private/tmp/fab-phase3-fdlc-validation-2/node_modules/vinext/dist/server/prod-server.js:1089:10) {
+  code: 'ERR_STREAM_UNABLE_TO_PIPE'
+}
+[vinext] Server error: Error [ERR_STREAM_UNABLE_TO_PIPE]: Cannot pipe to a closed or destroyed stream
+    at pipelineImpl (node:internal/streams/pipeline:264:15)
+    at pipeline (node:internal/streams/pipeline:183:10)
+    at sendWebResponse (file:///private/tmp/fab-phase3-fdlc-validation-2/node_modules/vinext/dist/server/prod-server.js:799:7)
+    at handleRequest (file:///private/tmp/fab-phase3-fdlc-validation-2/node_modules/vinext/dist/server/prod-server.js:1089:10) {
+  code: 'ERR_STREAM_UNABLE_TO_PIPE'
+}

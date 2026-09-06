@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "fab-phase3-evidence-index/v1",
+  "classification": "OFFLINE_SYNTHETIC_AND_LOCAL_BUILD",
+  "normalization": "Terminal text and the illustrative generated-file diff omit ANSI/trailing whitespace; raw local outputs retained.",
+  "files": {
+    "README.md": "94574c02a0e08449b7e56c0f9329df294fb5184a0fce5388cabdb2efadae2744",
+    "browser-lint.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "clean-install.txt": "f0e778b30b19a276f91f4b0dd82af6dda5d3cec6fb1a484e731ff71ecdd57dfe",
+    "diagnostic-run-02/browser-report.json": "08b299b90b3df9b0ad39fedb7621c2b1025483959d94211e5560a2e593cc4e43",
+    "diagnostic-run-02/browser.txt": "0ff456a5eff63434c98c16aca0f55e835d7f0b0e9842936dc14615546a273ad7",
+    "diagnostic-run-02/classification.json": "d56a0eb389804b1bf17be35d2beade31377eea755f502f7fca29436045d008c4",
+    "fab-install.txt": "c631697e1d74f6d00533af1827789ac450ae7f4a5779a814cb5fafd60d4d6915",
+    "failure-run-01/browser-report.json": "fd8599c0e5814edb293fc313cce612ab37541b44c28352bb61b2852753e225e9",
+    "failure-run-01/browser.txt": "551519049783000db45bff0a893e506a10720f887a5da90a737caa752085d949",
+    "failure-run-01/server.txt": "8386573bd1e2af093235a9fc20a4d669137c381b48b27b5f5603000ab95d4b37",
+    "lint.txt": "ec2df480a87330a39fc0f34da3cfe772a3fa16ca190c2f3b751d1e104d762157",
+    "mission-control-next-390.png": "c0f97df59c74f70dc9f745b3f79ec7eb46eb3fe71c97bd2425ff3006ab5d6ef1",
+    "next-browser.json": "20f4bd9456e1d959043f2ba8f14ad1d4fb128c95635c779febcd2153ab45f5c6",
+    "next-browser.txt": "16b3155aa21f35b85bdc08ee8b8974a4f5236188e2c0f97d76b3ff9fb8aec296",
+    "next-build.txt": "a9f8a201422bd072ef8401f86cc4e9a499639c5b4ffe5c66ea5b3627563d8da1",
+    "next-generated-types.diff": "a5e97f20e14d36a23e9cbf9b6faafd949f293b1d350e63c97f079cc2fc17ed75",
+    "public-link-checks.json": "e392688a6d074a5a8f14416ecf3157d51e745fa372a5e80027f22b58174dd8a0",
+    "qualification.json": "ff8d52b9efc1d5303677b4b7a7811cac49ec573da1c66466c138669e29172299",
+    "site-tests.txt": "15d56f7e5d92390264a8bd6c5847d9b9d1f218ecd05ad9d917fd81e9bb56e064",
+    "typecheck-no-generated.txt": "ee20eee68bb9cfb34c19a44597c15bc4716f9ab12f8215ac289be069cfced865",
+    "typecheck.txt": "ee20eee68bb9cfb34c19a44597c15bc4716f9ab12f8215ac289be069cfced865",
+    "vinext-browser.json": "08b299b90b3df9b0ad39fedb7621c2b1025483959d94211e5560a2e593cc4e43",
+    "vinext-browser.txt": "0ff456a5eff63434c98c16aca0f55e835d7f0b0e9842936dc14615546a273ad7"
+  }
+}

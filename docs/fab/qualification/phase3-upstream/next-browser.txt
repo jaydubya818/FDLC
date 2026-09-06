@@ -1,0 +1,5 @@
+
+> fdlc-site@0.1.0 test:browser:vercel
+> node tests/browser.mjs next
+
+{"result":"PASS","browserChecks":62,"flows":9,"links":20,"report":"/private/tmp/fab-phase3-fdlc-validation-2/output/playwright/site-next/report.json"}

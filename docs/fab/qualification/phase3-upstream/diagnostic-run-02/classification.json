@@ -1,0 +1,6 @@
+{
+  "classification": "DIAGNOSTIC_ONLY",
+  "result": "EXCLUDED_FROM_FINAL_QUALIFICATION",
+  "reason": "Browser command started before the checkout operation was confirmed terminal. A separate rerun after checkout completion is required to bind the corrected harness source.",
+  "observedHeadAfterRun": "6de8ca033250eaa5ee8c07df47fa669a1b3cb016"
+}
