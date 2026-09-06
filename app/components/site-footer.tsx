@@ -4,7 +4,7 @@ import Image from "next/image";
 const groups = [
   ["Learn", [["Framework", "/framework"], ["Architecture", "/architecture"], ["Guide", "/guide"], ["Manifesto", "/manifesto"]]],
   ["Build", [["FDLC in 5 Minutes", "/in-5-minutes"], ["Mission Control", "/mission-control"], ["Specification", "/spec"], ["Start", "/start"], ["GitHub", "https://github.com/jaydubya818/MissionControl"]]],
-  ["Adopt", [["Maturity", "/maturity"], ["Benchmarks", "/benchmarks"], ["Enterprise", "/enterprise"], ["Deploy", "/deploy"]]],
+  ["Adopt", [["Maturity", "/maturity"], ["Benchmarks", "/benchmarks"], ["Enterprise", "/enterprise"], ["FDE", "/deploy"]]],
   ["Project", [["About", "/about"], ["Source audit", "https://github.com/jaydubya818/ai-software-factory-mastery"], ["Mission Control status", "https://github.com/jaydubya818/MissionControl/blob/main/docs/product/software-factory-capability-maturity.md"]]],
 ] as const;
 

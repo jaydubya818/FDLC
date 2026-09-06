@@ -22,6 +22,7 @@ const guide: readonly NavLink[] = [
 
 const afterGuide: readonly NavLink[] = [
   ["Mission Control", "/mission-control"],
+  ["FDE", "/deploy"],
   ["Maturity", "/maturity"],
 ];
 
@@ -32,7 +33,6 @@ const secondary: readonly NavLink[] = [
   ["Benchmarks", "/benchmarks"],
   ["Start", "/start"],
   ["Enterprise", "/enterprise"],
-  ["Deploy", "/deploy"],
   ["About", "/about"],
 ];
 
