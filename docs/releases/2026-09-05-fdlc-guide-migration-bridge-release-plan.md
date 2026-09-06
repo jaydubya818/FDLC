@@ -1,8 +1,148 @@
 # FDLC / Guide migration bridge release plan
 
-Status: **QUALIFICATION IN PROGRESS — four exact old-Guide keyboard exceptions approved.**
+Status: **RELEASE AUTHORIZED — qualification in progress; Production unchanged.**
+
+## Active release authority and reconciliation (2026-09-05)
+
+The user's “FDLC + AI Software Factory Guide — Finish the Migration and Release
+to Production” instruction supersedes earlier permission checkpoints in this
+record. It authorizes the documented branch-scoped Preview pins, isolated fixes,
+qualification, exact-candidate PR merges, manual Production deployment/promotion,
+canonical transitions, and immediate verified rollback on a failed gate. No
+further generic Production approval is required. Qualification is not waived.
+The graph remains current/old → bridge/old → bridge/compatible →
+final/compatible → final/final. Complete each gate before advancing.
+
+The 23:39:27–23:39:38 UTC readback reconfirmed unchanged starting Production:
+FDLC `dpl_GvmTzMNUmpKt3825k69MUgL6YwTX` at
+`e4112bb06333b8244c18fc4a9736b1f3c807bc78`; Guide
+`dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur` at
+`87d3841f96353d03278311dfc7e7b2d25649a331`. Settings, protection metadata,
+environment metadata, aliases and MFE group matched the preserved baseline.
+This is a timestamped readback, not a promise that external state cannot change.
+
+Fresh source reconciliation found FDLC main
+`7a184b52a21bac207c0d7cfab99b46f40a880af8` and Guide main
+`29c709d78311a4d20757b4a0d3c9d16e909dee9b`. A subsequent readback found
+Guide main `4149884ead436bb11962ba80b87d7416af71989a`; its ordinary code-block
+keyboard-focus improvement must also be reconciled without replacing the
+candidate's Mermaid-aware renderer. The added inline-code wrapping rule is
+already present in the candidate and must not be duplicated. Preserve the
+already-merged
+public documentation/status content and `git.deploymentEnabled.main = false`
+guards. Reconcile both FDLC editions and Guide semantically, then qualify the
+new exact heads; the older local matrices below do not qualify those new heads.
+Preserving FDLC's public Mission Control status does not authorize or require a
+Mission Control application/backend deployment. That workstream remains excluded.
+The affected local Convex backend remains out of use; credential rotation is
+required before reuse, independently of this release.
+
+### Approved Preview-only pins
+
+These entries are authorized only on the two named qualification branches in
+the stated projects. They are nonsecret build inputs, not Production-scoped
+configuration. Preserve all unrelated entries and protection settings.
+
+| Project / branch | Entries |
+| --- | --- |
+| FDLC / `codex/fdlc-guide-migration-final-compat` | `NEXT_PUBLIC_SITE_URL=https://www.fdlc.ai`; `GUIDE_LEGACY_REDIRECTS_ENABLED=true` |
+| FDLC / `codex/fdlc-guide-migration-final` | Same two FDLC entries |
+| Guide / `codex/fdlc-guide-migration-final-compat` | `GUIDE_MFE_PREVIEW_ENABLED=true`; `FDLC_MFE_CONFIG_SHA256=e63f913563c1864feac38c7786e06d146892d34a4f0f74179999ff1d565e7e8b`; `FDLC_MFE_SOURCE_COMMIT=9e0f913c83d3a9fddfe0fffaae6a53d46c62b5ab`; `NEXT_PUBLIC_SITE_URL=https://ai-software-factory-mastery.vercel.app`; legacy-retirement flag absent |
+| Guide / `codex/fdlc-guide-migration-final` | Same three Guide validation entries; `NEXT_PUBLIC_SITE_URL=https://www.fdlc.ai`; `GUIDE_LEGACY_REDIRECTS_ENABLED=true` |
+
+The first apply attempt at 2026-09-06 00:06:28 UTC failed at the first Guide
+create request after creating two FDLC entries. The script removed only those
+two positively acknowledged, unchanged entry IDs and verified restoration of
+the complete preflight metadata state. Production, protection, aliases and
+settings remained unchanged. The unknown Guide write was not guessed as owned
+or retried. Its exact target was absent in the final reconciliation readback.
+The two approved Guide qualification refs were absent at that time; this is a
+possible cause, not a confirmed provider error (raw error text was intentionally
+discarded). Preserve the failed journal and confirm exact branch heads and
+fresh environment absence before any reviewed retry. No pin is considered
+applied until the complete thirteen-entry readback passes.
+
+### Observation and rollback-artifact retention
+
+Preserve the existing cutover runbook's seven-day stabilization requirement.
+After final public acceptance, perform immediate browser, saved-asset,
+configuration, alias and runtime-log checks; record their actual timestamps and
+query windows. Seven days of observation cannot be claimed at initial release.
+Record any remaining ongoing observation separately, as authorized by the
+current release instruction section 33. Retain the exact bridge, compatible,
+starting and final deployment artifacts and their saved asset inventories for
+at least this stabilization window, and do not remove Preview configuration
+still needed for rollback reproduction. Existing provider retention settings
+must not be shortened by this release.
+
+### Local versus hosted retention contract
+
+Independent inventory classified all 44 failed URLs: 22 compatible-build JS
+assets in the forward test and 22 final-build JS assets in the reverse test.
+Every file remains byte-identical in its owning build and is absent by path and
+SHA-256 from the opposite build. Both original build directories remain intact.
+The shared CSS is byte-identical. All URLs have the correct asset prefix and
+none has a deployment selector. No immutable-old-Guide asset appears in these
+two failure sets. Inventory SHA-256:
+`4058abefec258c840ed49bfd86e9fbdacf731a81b170544cc12823aa05f1b883`.
+
+A local Next build directory is not Vercel's immutable deployment store. Keep
+both raw native records as NO_GO. Their local cross-build retention failures
+may cease to block release only after the following hosted evidence passes:
+
+- Before switching state N, bind its complete required JS/CSS inventory to the
+  exact Guide deployment and immutable origin, with observed URL, prefix, MIME
+  type, byte hash and exposed deployment identity. Verify that mapping before
+  the switch; do not substitute an origin afterward to manufacture a pass.
+- After each supported transition, retrieve the saved N inventory from that
+  recorded immutable deployment/origin. Require HTTP 200, correct prefix/type,
+  attributable ownership and identical bytes, including rollback inventories.
+- Separately test actual retained clients and navigation through supported
+  platform version routing. Immutable-origin availability cannot excuse a
+  broken retained client. No cache-clearing, forced URL substitution, protection
+  weakening or FDLC fallback is an acceptable repair to this test.
+- Retain qualified rollback artifacts for their supported observation window;
+  recheck saved inventories after transitions and during observation. Record
+  actual elapsed time. A hosted retention or retained-client failure remains a
+  release blocker requiring isolated repair and exact-candidate requalification.
+
+This contract correction does not itself pass the hosted gate. Detailed evidence
+is in `/tmp/fdlc-migration-bridge.2CP43B/efd2305-retention-inventory-independent/`.
+Current provider evidence is in `/tmp/fdlc-production-release.8oaMuW/` and source
+reconciliation evidence in `/tmp/fdlc-release-continuation-reconciliation.JPAWfK/`.
+
+## Historical qualification checkpoints
+
+The sections below preserve their original evidence and contemporaneous
+dispositions. Earlier requests for Preview/Production authority are superseded
+by the active authority above; incomplete acceptance gates remain binding.
 
 ## Latest continuation checkpoint (2026-09-05)
+
+Final published QA checkpoint: bridge `438f773688476414761aefabc005fce1133442a7`,
+Preview `dpl_4RD39SFBPgyN8JzqpzaN9Q7n7Fmn`; Guide remains
+`efd23059007cf2050170a3653bfe3a831c9f245b`, Preview
+`dpl_4z6cLFMLHqtgW3fL9tApJYFChZsy`. Both PR descriptions now reflect this
+checkpoint and remain Draft/unmerged. All four isolated worktrees are clean.
+The 23:04:07–23:04:16 UTC provider readback confirms exact READY previews,
+green Vercel checks (no GitHub workflow runs), unchanged Production aliases,
+identities/settings/environment/protection metadata, and zero returned recent
+Preview error/fatal or 5xx rows (30-minute window, limit 100 per query).
+No Production action or new Preview settings authorization occurred.
+
+Durable source bundles, the 165-file selected evidence archive and its
+byte-verified hash manifest are recorded in
+`2026-09-05-migration-native-qualification-checkpoint.md`. This remains
+**NO_GO / HOSTED TRANSITION QUALIFICATION INCOMPLETE**, not a request for
+Production approval. All local qualification browsers and servers were closed.
+
+Post-scan metadata: frozen hygiene checks found zero exact credential matches
+in 7,190 inspected units and zero structural OCR candidates/errors in 1,331
+images. Two text-pattern detections are existing synthetic test fixtures;
+history/dataless/symlink gaps remain explicit. The durable sanitized-report
+archive and safe incident record retain those limits. Rotation remains
+`LOCAL_CONVEX_SECRET_ROTATION_REQUIRED` before backend reuse. This paragraph
+was generated after the scan and is not itself claimed as frozen scan input.
 
 This section supersedes the older checkpoint descriptions below, which retain
 their original source/evidence identities. It is not release readiness.
