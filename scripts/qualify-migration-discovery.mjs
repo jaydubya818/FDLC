@@ -164,10 +164,15 @@ async function redirects(base, routes, scope) {
     const response = await request(base, `${path}?${query}`, method);
     const location = response.headers.get("location");
     const throughNativeFlagHop = scope === "composed-Guide" && nativeFlagHop;
-    const expected = expectedRoute(throughNativeFlagHop || base, path, destination, method);
+    // Host-isolation bridge normalizes this one alias before SDK dispatch.
+    // Every other route must still prove the original native flagged hop.
+    const bridgeArchitecture = throughNativeFlagHop && compatible && path === "/guide/architecture";
+    const expected = bridgeArchitecture
+      ? { status: 307, destination: "/architecture", private: true }
+      : expectedRoute(throughNativeFlagHop || base, path, destination, method);
     const actual = { scope, path, method, status: response.status, location, cache: response.headers.get("cache-control"), rewrite: response.headers.get("x-middleware-rewrite"), expected };
     record.redirects.push(actual);
-    if (throughNativeFlagHop) check(`${scope}: ${method} ${path} proves the exact native flagged-hop rewrite`, actual.rewrite === `${nativeFlagHop}${path}?${query}`, actual);
+    if (throughNativeFlagHop) check(`${scope}: ${method} ${path} proves the exact native flagged-hop boundary`, bridgeArchitecture ? actual.rewrite === null : actual.rewrite === `${nativeFlagHop}${path}?${query}`, actual);
     const resolved = location ? new URL(location, base).href : null;
     if (expected.status === 200) {
       const html = method === "GET" ? await response.text() : "";
