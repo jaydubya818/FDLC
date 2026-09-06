@@ -288,7 +288,7 @@ async function missionControl(device) {
     const disclosureText = (await detail.innerText()).toLowerCase();
     check(`${checkpoint}: supported behavior and current boundary`, await detail.locator("p").count() === 2 && disclosureText.includes("current boundary") && disclosureText.includes("supported"), name);
     if (await summary.locator("strong").innerText() === capabilityContract.mcp.name) {
-      const paragraphs = await detail.locator("p").allInnerTexts();
+      const paragraphs = await detail.locator("p").allTextContents();
       const normalize = (value) => value.replace(/\s+/g, " ").trim();
       check(`${device}: exact narrow MCP supported behavior`, normalize(paragraphs[0] ?? "").replace(/^Supported\s*/, "") === capabilityContract.mcp.summary);
       check(`${device}: exact MCP authority exclusions`, normalize(paragraphs[1] ?? "").replace(/^Current boundary\s*/, "") === capabilityContract.mcp.limitation);
