@@ -217,9 +217,10 @@ test("mission control leads with the product and exposes an interactive governed
   assert.match(html, /Command Center.*Work Orders.*Approvals &amp; Audit/is);
   assert.match(html, /Inspect what is real.*where it stops/is);
   assert.match(html, /aria-label=["']Qualified capabilities["'][^>]*data-capability-count=["']7["']/i);
-  assert.match(html, /aria-label=["']Implemented, preview, or partial capabilities["'][^>]*data-capability-count=["']4["']/i);
-  assert.match(html, /aria-label=["']Missing capabilities["'][^>]*data-capability-count=["']2["']/i);
+  assert.match(html, /aria-label=["']Implemented, preview, or partial capabilities["'][^>]*data-capability-count=["']5["']/i);
+  assert.match(html, /aria-label=["']Missing capabilities["'][^>]*data-capability-count=["']1["']/i);
   assert.equal(html.match(/class=["']capability-status status-/g)?.length, 13);
+  assert.match(html, /One exact Context7 query-docs read.*One fixed public React query only.*harness-native MCP remain unsupported/is);
   assert.ok((html.match(/fdlc-logo-updated\.png/g) ?? []).length >= 2);
 });
 

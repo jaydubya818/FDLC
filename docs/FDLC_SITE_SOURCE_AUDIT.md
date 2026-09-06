@@ -63,7 +63,7 @@ The most defensible public claims are:
 - Governed Mission intake, immutable/versioned planning artifacts, human Plan approval, and WorkOrder release are implemented and qualified for the documented V1 path.
 - WorkOrders, Tasks, Attempts/workflow runs, frozen execution manifests, worker admission, fenced leases, immutable candidates, and recovery records are implemented.
 - Independent verification, evidence envelopes and receipts, exact-subject currentness, Quality Gate decisions, and a separate human acceptance boundary are implemented and qualified.
-- Codex is the production-admitted harness adapter. DeepSeek is experimental and disabled by default. MCP execution is not yet an admitted production capability.
+- Codex is the production-admitted harness adapter. DeepSeek is experimental and disabled by default. Mission Control has qualified one exact Context7 `query-docs` read through a Tool Version, Tool Grant, broker, durable receipt, currentness/schema checks, and independent verification. That narrow proof does not admit general, write-capable, arbitrary-server, or harness-native MCP.
 - Factory Memory, observability/evals, and Factory Learning exist as advisory systems; they do not grant acceptance or promotion authority.
 - Remote Sandbox is Preview and production-pilot eligible under documented constraints, not generally production-certified.
 - GitHub App publication/currentness is implemented for the bounded V1 path. Merge remains human-owned.

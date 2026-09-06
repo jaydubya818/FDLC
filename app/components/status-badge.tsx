@@ -7,7 +7,6 @@ const statusTones = {
   "Implemented, gated": "implemented",
   "Production-pilot eligible; Preview": "preview",
   "Partial": "partial",
-  "Missing": "missing",
   "Missing canonical lifecycle": "missing",
 } as const satisfies Record<MissionControlCapabilityStatus, string>;
 

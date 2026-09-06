@@ -33,7 +33,6 @@ const capabilityGroupByStatus = {
   "Implemented, gated": "bounded",
   "Production-pilot eligible; Preview": "bounded",
   "Partial": "bounded",
-  "Missing": "missing",
   "Missing canonical lifecycle": "missing",
 } as const satisfies Record<MissionControlCapabilityStatus, CapabilityGroupId>;
 
