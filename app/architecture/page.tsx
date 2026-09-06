@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
+import { contextSkillsPractices } from "../../data/context-skills-practices";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArchitectureDiagram } from "../components/architecture-diagram";
@@ -21,6 +22,7 @@ const contents = [
   { label: "04 Model", href: "#model" },
   { label: "05 Trust", href: "#trust" },
   { label: "06 Learning", href: "#learning" },
+  { label: "Context & skills", href: "#context-skills" },
   { label: "System flow", href: "#system-flow" },
 ] as const;
 
@@ -75,6 +77,16 @@ export default function ArchitecturePage() {
           <div className="architecture-area-links"><a href={guideByArea[area.id]}>Related Guide chapters →</a><Link href="/mission-control#capabilities">See in Mission Control →</Link></div>
         </div>
       </ResponsiveDetails>)}
+    </section>
+
+    <section className="section-block" id="context-skills">
+      <SectionHeader eyebrow="Five operating practices" title="Engineer the context. Prove the behavior." description="Skills are production dependencies. Version them, evaluate them, and govern their use. These practices connect Capability, Trust, and Learning across the existing factory lifecycle." />
+      <p>Author → Package → Evaluate → Admit → Activate → Observe → Compare → Promote or roll back → Improve. Approval selects a package for a defined use; runtime admission, work acceptance, and release remain separate decisions.</p>
+      <div className="architecture-areas">
+        {contextSkillsPractices.map((practice) => <ResponsiveDetails key={practice.number} className="architecture-area" collapseAt="tablet"><summary><span>{practice.number}</span><div><p>Operating practice</p><h3>{practice.title}</h3></div><p>{practice.purpose}</p><small className="disclosure-status"><span className="when-closed">Read practice</span><span className="when-open">Collapse practice</span></small></summary><div className="architecture-area-body"><p>{practice.practice}</p><p><strong>Evidence required: </strong>{practice.evidence}</p><p><strong>Failure to watch: </strong>{practice.failure}</p></div></ResponsiveDetails>)}
+      </div>
+      <p><a href="/guide/appendix/context-skills-engineering">Read the complete practices and worked playbook in the Guide →</a></p>
+      <p>The worked local example records a harness-version mismatch and zero executed trials. It demonstrates an honest stop condition, not improved performance or production qualification.</p>
     </section>
 
     <section className="factory-system-diagram" id="system-flow">
