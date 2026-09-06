@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import path from 'node:path';
-import type { FabConfig, JsonObject, Plan, ProviderId } from './types.ts';
+import type { BedrockRoute, FabConfig, JsonObject, Plan, ProviderId } from './types.ts';
 
 export class FabError extends Error {
   readonly code: string;
@@ -27,7 +27,7 @@ export function integer(value: unknown, min: number, max: number): number {
   return value;
 }
 export function providerId(value: unknown): ProviderId {
-  if (value !== 'openai' && value !== 'anthropic') fail('INVALID_PROVIDER', 'Select openai or anthropic.');
+  if (value !== 'openai' && value !== 'anthropic' && value !== 'bedrock') fail('INVALID_PROVIDER', 'Select openai, anthropic, or the Mission Control Bedrock broker.');
   return value;
 }
 export function digest(value: unknown): string {
@@ -51,18 +51,32 @@ export function parsePlan(value: unknown): Plan {
   const raw = object(value); keys(raw, ['summary', 'steps']);
   return { summary: string(raw.summary, 4000), steps: texts(raw.steps, 20) };
 }
+export function parseBedrockRoute(value: unknown): BedrockRoute {
+  const raw = object(value);
+  keys(raw, ['accountId', 'region', 'modelId', 'inferenceProfileId', 'inferenceProfileArn']);
+  const accountId = string(raw.accountId, 12);
+  if (!/^\d{12}$/.test(accountId) || raw.region !== 'us-east-1'
+    || raw.modelId !== 'anthropic.claude-sonnet-4-6' || raw.inferenceProfileId !== 'us.anthropic.claude-sonnet-4-6'
+    || raw.inferenceProfileArn !== `arn:aws:bedrock:us-east-1:${accountId}:inference-profile/us.anthropic.claude-sonnet-4-6`) {
+    fail('BEDROCK_ROUTE', 'Bedrock requires the exact account-bound US Sonnet 4.6 profile in us-east-1.');
+  }
+  return { accountId, region: 'us-east-1', modelId: 'anthropic.claude-sonnet-4-6', inferenceProfileId: 'us.anthropic.claude-sonnet-4-6', inferenceProfileArn: raw.inferenceProfileArn };
+}
 export function parseConfig(value: unknown): FabConfig {
   const raw = object(value);
-  keys(raw, ['version', 'repository', 'provider', 'model', 'credential', 'writableFiles', 'checks', 'acceptanceCriteria', 'maxTurns', 'timeoutMs', 'checkTimeoutMs']);
+  keys(raw, ['version', 'repository', 'provider', 'model', 'credential', 'bedrockRoute', 'writableFiles', 'checks', 'acceptanceCriteria', 'maxTurns', 'timeoutMs', 'checkTimeoutMs']);
   if (raw.version !== 1) fail('CONFIG_VERSION', 'Configuration must use version 1.');
   const repository = string(raw.repository, 1000);
   if (!path.isAbsolute(repository)) fail('CONFIG_ROOT', 'Configuration repository must be absolute.');
   const provider = providerId(raw.provider);
   const credential = object(raw.credential);
   keys(credential, ['id', 'owner', 'provider', 'scope', 'source']);
-  const source = object(credential.source); keys(source, source.kind === 'keychain' ? ['kind'] : ['kind', 'variable']);
+  const source = object(credential.source); keys(source, source.kind === 'environment' ? ['kind', 'variable'] : ['kind']);
   const scope = object(credential.scope); keys(scope, ['kind', 'root']);
-  if (credential.provider !== provider || !['environment', 'keychain'].includes(String(source.kind)) || scope.kind !== 'repository' || scope.root !== repository) fail('CREDENTIAL_SCOPE', 'Credential must match the selected provider and repository.');
+  if (credential.provider !== provider || !['environment', 'keychain', 'broker'].includes(String(source.kind)) || scope.kind !== 'repository' || scope.root !== repository) fail('CREDENTIAL_SCOPE', 'Credential must match the selected provider and repository.');
+  if ((provider === 'bedrock') !== (source.kind === 'broker')) fail('CREDENTIAL_SOURCE', 'Bedrock requires an explicitly bound Mission Control broker; HTTP providers require their enrolled local credential.');
+  if (provider !== 'bedrock' && raw.bedrockRoute !== undefined) fail('BEDROCK_ROUTE', 'A Bedrock route cannot be attached to another provider.');
+  const bedrockRoute = provider === 'bedrock' ? parseBedrockRoute(raw.bedrockRoute) : undefined;
   const variable = source.kind === 'environment' ? string(source.variable, 100) : '';
   if (source.kind === 'environment' && !/^FAB_[A-Z][A-Z0-9_]*$/.test(variable)) fail('CREDENTIAL_SOURCE', 'Choose an explicit FAB_ environment variable; ambient provider keys are not loaded.');
   const id = string(credential.id, 100);
@@ -80,10 +94,12 @@ export function parseConfig(value: unknown): FabConfig {
   const writableFiles = texts(raw.writableFiles, 30).map(fileName);
   if (new Set(writableFiles).size !== writableFiles.length) fail('CONFIG_FILES', 'Writable files must be unique.');
   const model = string(raw.model, 150);
+  if (bedrockRoute && model !== bedrockRoute.modelId) fail('BEDROCK_ROUTE', 'Configured model differs from the exact Bedrock route.');
   if (!/^[a-zA-Z0-9][a-zA-Z0-9._:/-]*$/.test(model)) fail('CONFIG_MODEL', 'Model identifier is invalid.');
   return {
     version: 1, repository, provider, model,
-    credential: { id, owner: string(credential.owner, 100), provider, scope: { kind: 'repository', root: repository }, source: source.kind === 'keychain' ? { kind: 'keychain' } : { kind: 'environment', variable } },
+    credential: { id, owner: string(credential.owner, 100), provider, scope: { kind: 'repository', root: repository }, source: source.kind === 'broker' ? { kind: 'broker' } : source.kind === 'keychain' ? { kind: 'keychain' } : { kind: 'environment', variable } },
+    ...(bedrockRoute ? { bedrockRoute } : {}),
     writableFiles, checks, acceptanceCriteria: texts(raw.acceptanceCriteria, 20),
     maxTurns: integer(raw.maxTurns ?? 16, 1, 50), timeoutMs: integer(raw.timeoutMs ?? 300000, 1000, 900000),
     checkTimeoutMs: integer(raw.checkTimeoutMs ?? 30000, 100, 120000),

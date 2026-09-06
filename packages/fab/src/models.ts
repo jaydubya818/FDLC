@@ -29,6 +29,7 @@ function checkedCalls(calls: ToolCall[]): ToolCall[] {
   return calls;
 }
 export function parseReply(provider: ProviderId, value: unknown): ModelReply {
+  assertHttpProvider(provider);
   const raw = object(value);
   const usage = raw.usage ? object(raw.usage) : {};
   if (provider === 'openai') {
@@ -66,6 +67,7 @@ export function parseReply(provider: ProviderId, value: unknown): ModelReply {
 }
 
 export function requestBody(provider: ProviderId, model: string, messages: Message[], tools: ToolDefinition[], maximumOutputTokens = 4096): JsonObject {
+  assertHttpProvider(provider);
   if (!Number.isSafeInteger(maximumOutputTokens) || maximumOutputTokens < 1 || maximumOutputTokens > 4096) fail('PROVIDER_BUDGET', 'Output token budget must be between 1 and 4096.');
   if (provider === 'openai') return {
     model, max_completion_tokens: maximumOutputTokens, store: false, stream: false,
@@ -102,6 +104,7 @@ export class HttpModelProvider implements ModelProvider {
   #timeoutMs: number;
   #maximumOutputTokens: number;
   constructor(input: { provider: ProviderId; model: string; credentials: CredentialProvider; reference: CredentialReference; redactor: Redactor; fetchImpl?: typeof fetch; timeoutMs?: number; maximumOutputTokens?: number }) {
+    assertHttpProvider(input.provider);
     this.provider = input.provider; this.model = input.model;
     this.#credentials = input.credentials; this.#reference = structuredClone(input.reference);
     this.#redactor = input.redactor; this.#fetch = input.fetchImpl ?? fetch;
@@ -184,6 +187,7 @@ export class HttpModelProvider implements ModelProvider {
   }
 }
 export function providerProtocol(provider: ProviderId) {
+  assertHttpProvider(provider);
   return provider === 'openai'
     ? { endpoint: 'https://api.openai.com/v1/chat/completions', protocol: 'openai-chat-completions/non-streaming' }
     : { endpoint: 'https://api.anthropic.com/v1/messages', protocol: 'anthropic-messages/2023-06-01/non-streaming' };
@@ -191,13 +195,16 @@ export function providerProtocol(provider: ProviderId) {
 function providerIdentifier(value: unknown): string | null {
   return typeof value === 'string' && /^[A-Za-z0-9_.:-]{1,200}$/.test(value) ? value : null;
 }
-function abortable<T>(operation: Promise<T>, signal: AbortSignal): Promise<T> {
+export function abortable<T>(operation: Promise<T>, signal: AbortSignal): Promise<T> {
   return new Promise((resolve, reject) => {
     const abort = () => reject(new Error('Provider operation stopped.'));
     signal.addEventListener('abort', abort, { once: true });
     if (signal.aborted) abort();
     operation.then(resolve, reject).finally(() => signal.removeEventListener('abort', abort));
   });
+}
+function assertHttpProvider(provider: ProviderId): void {
+  if (provider !== 'openai' && provider !== 'anthropic') fail('BROKER_REQUIRED', 'Bedrock requires its explicitly bound Mission Control broker; HTTP fallback is prohibited.');
 }
 export function addUsage(total: Usage, next: Usage, first: boolean): Usage {
   const add = (a: number | null, b: number | null) => first ? b : a === null || b === null ? null : a + b;

@@ -80,9 +80,19 @@ export async function main(argv = process.argv.slice(2)): Promise<void> {
     const configText = readFileSync(values.config, 'utf8');
     if (Buffer.byteLength(configText) > 32000) fail('CONFIG_LIMIT', 'Configuration exceeds 32 KB.');
     const config = parseConfig(JSON.parse(configText));
+    if (config.provider === 'bedrock' && !['status', 'diff'].includes(command)) fail('BROKER_REQUIRED', 'Run Bedrock through the enrolled Mission Control broker. Fab CLI does not load AWS profiles or credentials.');
     const configPath = realpathSync(values.config);
     if (configPath === config.repository || configPath.startsWith(config.repository + path.sep)) fail('CONFIG_AUTHORITY', 'Operator configuration must be outside the repository. Repository content cannot grant authority.');
     if (config.credential.owner !== `local:${process.getuid?.() ?? 'user'}`) fail('CREDENTIAL_OWNER', 'Local credential owner must match this OS user. Use fab config for an example.');
+    if (command === 'status' || command === 'diff') {
+      if (redactor.containsSecret(configText)) fail('CONFIG_SECRET', 'Configuration must contain credential references only.');
+      const sessionId = positionals.slice(1).join(' ');
+      if (!sessionId) fail('INPUT_REQUIRED', 'Supply a session ID. Run fab --help.');
+      const store = new SessionStore(values['state-dir'] ?? path.join(os.homedir(), '.local', 'state', 'fab'), config.repository, redactor);
+      const session = store.load(sessionId);
+      if (digest(config) !== digest(session.config)) fail('CONFIG_DRIFT', 'Configuration differs from this session. Use its original configuration.');
+      print(command === 'diff' ? session.diff || '(No captured diff. For an interrupted execution, inspect Git locally.)' : summary(session)); return;
+    }
     if (command === 'auth' && positionals.length > 1) {
       const operation = positionals[1];
       if (!['add', 'remove', 'test'].includes(operation ?? '') || positionals[2] !== config.provider || positionals.length !== 3) fail('AUTH_COMMAND', 'Use fab auth add|remove|test with the exact configured provider.');
@@ -144,11 +154,6 @@ export async function main(argv = process.argv.slice(2)): Promise<void> {
     }
     const input = positionals.slice(1).join(' ');
     if (!input) fail('INPUT_REQUIRED', 'Supply a task or session ID. Run fab --help.');
-    if (command === 'status' || command === 'diff') {
-      const session = store.load(input);
-      if (digest(config) !== digest(session.config)) fail('CONFIG_DRIFT', 'Configuration differs from this session. Use its original configuration.');
-      print(command === 'diff' ? session.diff || '(No captured diff. For an interrupted execution, inspect Git locally.)' : summary(session)); return;
-    }
     if (!credentials.metadata().configured) fail('CREDENTIAL_MISSING', 'Enroll your configured keychain reference, or set the explicitly selected FAB_ environment variable.');
     const model = new HttpModelProvider({ provider: config.provider, model: config.model, credentials, reference: config.credential, redactor });
     const controller = new AbortController();
