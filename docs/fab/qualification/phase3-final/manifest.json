@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "fab-phase3-clean-validation/v1",
+  "recordedAt": "2026-09-06T00:04:49.577516+00:00",
+  "sourceCommit": "484b02b2dc49a14128ea98b1e4c8c3be6df070a0",
+  "environment": "fresh detached local checkout; standard npm ci in root and packages/fab; no other worktree node_modules links",
+  "result": "PASS",
+  "checks": {
+    "siteUnit": 12,
+    "renderedRoutes": 14,
+    "fabNativeTests": 59,
+    "fabSkipped": 0,
+    "browserChecks": 62,
+    "browserFlows": 9,
+    "browserRoutes": 20,
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "build": "PASS"
+  },
+  "classification": "OFFLINE_SYNTHETIC_AND_LOCAL_BUILD",
+  "liveProviderRequests": 0,
+  "deployedMissionControl": "NOT_RUN",
+  "implementationPRs": "GITHUB_PUBLICATION_AUTHORIZATION_REQUIRED",
+  "CI": "NOT_RUN",
+  "postMergeMain": "NOT_RUN",
+  "runtimePackage": {
+    "version": "0.1.0-experimental.2",
+    "sourceCommit": "1d1240c219d9bf3c1fa5fbb0a80ded96cf13df1f",
+    "archiveSha256": "b3a1af223e246208c01745678cbe48a91786070b016b9a1ad7bdb0ad274d8a8d"
+  },
+  "terminalNormalization": "ANSI control sequences and trailing whitespace removed; raw local logs preserved",
+  "files": {
+    "browser.txt": "41408c6582f243f7f8de822f96d6d9e0db3065f44f5c5b4380147206481a4519",
+    "clean-install.txt": "71ece9391360c123038fa30b76941a6079d02e354e724a7dc1c03433ee335d7a",
+    "fab-tests.txt": "538948050fa4c81a619c36f767762cd657479ab1b2446a1711ee7cb1ed08b9cd",
+    "lint.txt": "a80b449394620017c40c1384f53168168b288e4fe838433cdb17197352376120",
+    "site-browser.json": "e8cc3747d2ced3a53ed83f5ee19887438e3f0951f87c837ec4ad9c76442bf85d",
+    "site-tests.txt": "03bc7b45476826ba8b5a91fc2045efd0e65aeb17403aa413c7d8f1ea8bab04f9",
+    "typecheck.txt": "bcc400e156d4a4139a43efeace20a9a3a911c8517eddf6c1aff1c9e6614b06d6"
+  }
+}

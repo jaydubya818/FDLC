@@ -1,0 +1,112 @@
+
+> fdlc-site@0.1.0 test
+> npm run test:unit && npm run build && node --test tests/rendered-html.test.mjs
+
+
+> fdlc-site@0.1.0 test:unit
+> node --experimental-strip-types --test tests/unit/**/*.test.ts
+
+✔ keeps the canonical category positioning stable (1.221167ms)
+✔ keeps the four canonical system views stable (0.096ms)
+✔ keeps the homepage factory explorer complete and internally linked (0.316584ms)
+✔ keeps ecosystem roles and status boundaries stable (0.05525ms)
+✔ preserves the manifesto and complete guide map (0.060375ms)
+✔ maps the worked example to every canonical model (0.0905ms)
+✔ normalizes one acceptance criterion per line (1.186625ms)
+✔ generates a bounded conceptual factory definition (0.150209ms)
+✔ requires all five teaching boundaries (0.049708ms)
+✔ scores an all-level-four factory as Level 4 (6.577042ms)
+✔ rounds down and identifies the lowest-scoring gaps (0.683833ms)
+✔ does not treat a partial assessment as complete (0.062292ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 125.48875
+
+> fdlc-site@0.1.0 build
+> WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build
+
+
+  vinext build  (Vite 8.2.2)
+
+[1/5] analyze client references...
+transforming...
+✓ 294 modules transformed.
+rendering chunks...
+✓ built in 554ms
+[2/5] analyze server references...
+transforming...
+✓ 199 modules transformed.
+rendering chunks...
+✓ built in 127ms
+[3/5] build rsc environment...
+transforming...
+✓ 285 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 316ms
+[4/5] build client environment...
+transforming...
+✓ 204 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 250ms
+[5/5] build ssr environment...
+transforming...
+✓ 197 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 229ms
+
+  Route (app)
+  ┌ ? /
+  ├ ? /about
+  ├ ? /architecture
+  ├ ? /benchmarks
+  ├ ? /deploy
+  ├ ? /enterprise
+  ├ ? /examples/dependency-modernization
+  ├ ? /framework
+  ├ ? /guide
+  ├ ƒ /guide/:slug
+  ├ ? /in-5-minutes
+  ├ ? /manifesto
+  ├ ? /maturity
+  ├ ? /mission-control
+  ├ ? /spec
+  └ ? /start
+
+  ƒ Dynamic  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+
+✔ server-renders every public route with FDLC metadata and a heading (208.964584ms)
+✔ robots explicitly permits search and AI fetch agents (1.089916ms)
+✔ homepage answers the category boundary and links to primary destinations (41.886125ms)
+✔ framework publishes the exact category definition and distinction (12.394083ms)
+✔ architecture makes the control boundary and durable operating record explicit (10.379667ms)
+✔ guide is an accurate portal into the authoritative 44-chapter book (9.569375ms)
+✔ manifesto publishes the ten operating invariants and the state boundary (6.216ms)
+✔ worked example connects all four models without claiming production proof (11.113667ms)
+✔ legacy worked-example route redirects to the canonical five-minute path (2.61725ms)
+✔ core technical pages preserve distinct delivery states (21.913667ms)
+✔ mission control leads with the product and exposes an interactive governed path (8.7075ms)
+✔ long technical pages expose the requested rail and tablet jump navigation (23.673667ms)
+✔ interactive routes have complete server-rendered entry states (9.104625ms)
+✔ preview products are explicitly labeled (20.680417ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 485.468709
