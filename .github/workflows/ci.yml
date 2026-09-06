@@ -32,7 +32,10 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run test:contained --prefix packages/fab
-      - run: npm run package:private --prefix packages/fab
+      - name: Build an ephemeral package without replacing the pinned archive
+        run: |
+          mkdir -p "$RUNNER_TEMP/fab-package"
+          npm run package:private --prefix packages/fab -- "$RUNNER_TEMP/fab-package"
       - run: npx --no-install playwright install chromium
       - run: npm run test:browser
       - run: npm run build:vercel
