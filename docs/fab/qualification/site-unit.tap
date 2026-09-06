@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: keeps the canonical category positioning stable
+ok 1 - keeps the canonical category positioning stable
+  ---
+  duration_ms: 1.202667
+  type: 'test'
+  ...
+# Subtest: keeps the four canonical system views stable
+ok 2 - keeps the four canonical system views stable
+  ---
+  duration_ms: 0.099375
+  type: 'test'
+  ...
+# Subtest: keeps the homepage factory explorer complete and internally linked
+ok 3 - keeps the homepage factory explorer complete and internally linked
+  ---
+  duration_ms: 0.322417
+  type: 'test'
+  ...
+# Subtest: keeps ecosystem roles and status boundaries stable
+ok 4 - keeps ecosystem roles and status boundaries stable
+  ---
+  duration_ms: 0.05575
+  type: 'test'
+  ...
+# Subtest: preserves the manifesto and complete guide map
+ok 5 - preserves the manifesto and complete guide map
+  ---
+  duration_ms: 0.057
+  type: 'test'
+  ...
+# Subtest: maps the worked example to every canonical model
+ok 6 - maps the worked example to every canonical model
+  ---
+  duration_ms: 0.095917
+  type: 'test'
+  ...
+# Subtest: normalizes one acceptance criterion per line
+ok 7 - normalizes one acceptance criterion per line
+  ---
+  duration_ms: 1.265375
+  type: 'test'
+  ...
+# Subtest: generates a bounded conceptual factory definition
+ok 8 - generates a bounded conceptual factory definition
+  ---
+  duration_ms: 0.160833
+  type: 'test'
+  ...
+# Subtest: requires all five teaching boundaries
+ok 9 - requires all five teaching boundaries
+  ---
+  duration_ms: 0.050625
+  type: 'test'
+  ...
+# Subtest: scores an all-level-four factory as Level 4
+ok 10 - scores an all-level-four factory as Level 4
+  ---
+  duration_ms: 6.988
+  type: 'test'
+  ...
+# Subtest: rounds down and identifies the lowest-scoring gaps
+ok 11 - rounds down and identifies the lowest-scoring gaps
+  ---
+  duration_ms: 0.753333
+  type: 'test'
+  ...
+# Subtest: does not treat a partial assessment as complete
+ok 12 - does not treat a partial assessment as complete
+  ---
+  duration_ms: 0.071542
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 138.93625

@@ -1,0 +1,53 @@
+{
+  "schema": "fab-local-qualification/v1",
+  "sourceCommit": "6c40f41",
+  "runtime": "v24.18.1",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "models": "scripted mock transport; no live qualification",
+  "fabTests": {
+    "passed": 36,
+    "failed": 0,
+    "skipped": 0
+  },
+  "siteUnitTests": {
+    "passed": 12,
+    "failed": 0
+  },
+  "independent": false,
+  "hashes": {
+    "docs/fab/qualification/build.txt": "9478a6ee3c9b0f03a780e11f4894f40d3504b35b8d60f4014bfd23065ee6b331",
+    "docs/fab/qualification/install.txt": "96f690db63ed33559e87ad68e3fc07d1c6387017e4e28bc06504b54bd2367270",
+    "docs/fab/qualification/lint.txt": "cc6a4ccfda20d5eaf9fd8e2a9c6f09d8db8788b1ff99c9425c23a3804f280317",
+    "docs/fab/qualification/local.tap": "65e589d9639c280d23391d8ed070caa13ae832a6d1f79124d371bfba1aec0f34",
+    "docs/fab/qualification/package.json": "d59f956d2f9d1f2087d5525b15ce4d9f6f587c9d6eb5ab4eb6515cf33dbae0ef",
+    "docs/fab/qualification/representative-candidate.diff": "59b03d32007e0be6f397a4ec2474044ec4655f2fe1186668524ad2a46bbfcb36",
+    "docs/fab/qualification/representative-session.json": "1a7447eae82dddfd15a45709c5c909108ed6e36eb5fd474815607c7ecc78ac66",
+    "docs/fab/qualification/site-unit.tap": "124460d33c3295336aeceded4a268a9b2abbfe8e129ba3e0c67f700e68969bc0",
+    "docs/fab/qualification/typecheck.txt": "adf07e03410fe5e5a6d47543fd9468fab0580839f8daec78de989ff9681c1576",
+    "packages/fab/bin/fab.mjs": "8bc59eb5cb71cfc3cb0e6f1f463de3aa88fb14753cbcb06cd3ebda2eea2f4ab8",
+    "packages/fab/eslint.config.mjs": "763a875bbbb17624f001d04a415abfb5ce7d7525d86ef2a87ff0bcf8af1c320a",
+    "packages/fab/package-lock.json": "aab31d4394e61148bc8794aa0bc20295e4615581ec330b70d9e3ab6ba2da5a29",
+    "packages/fab/package.json": "7f9a90e56f3a7766633359ffd7a48c1f8a37bf52190d818f13a16a7f0134de76",
+    "packages/fab/src/agent.ts": "eeb27c0bb901eed198cf8cfd4e75092fbe193f22e89f97d73df6ec2763554d2b",
+    "packages/fab/src/checks.ts": "ae195e1ce6b458f1fd27c6ad015d467ada3c068feb7dd23e97157ea99c6248d5",
+    "packages/fab/src/cli.ts": "eb6b4015ed3f96928f27ff2b49ddce17e0726062064d6798fcd2d9f12ae38f22",
+    "packages/fab/src/credentials.ts": "3b985a9453b72be55eb2270041558637e46012f7400329f269f6769581f21d1d",
+    "packages/fab/src/index.ts": "0b997b4d3273d58db17a6640edf04c8dd2d49d25ef19c4a04dfd635c9d947ade",
+    "packages/fab/src/models.ts": "77cd5e9a8f43b65cb366c73fc4bb75bda5c6170c2b259105419dc343dec19a9a",
+    "packages/fab/src/repository.ts": "101274d8df757007c32da99ec3fd496e434c0829f08adb29e20997a40c209cb6",
+    "packages/fab/src/sessions.ts": "aec4bb3e7e6f7052dd417155f593e25ef2352441fdc71dbf636984894d5adde5",
+    "packages/fab/src/tools.ts": "0da3e876f963622774991905e2773126bcf11cd16cfa11f033919c10d99c4ec2",
+    "packages/fab/src/types.ts": "3963e84bc367514dedd9ab06c99816e8ddc430b65be5f818639a530693131216",
+    "packages/fab/src/validation.ts": "2f47c8fb340f8fb94a3bd6b13586a58788ca45ac31147b20c666269c59e2fcd5",
+    "packages/fab/test/boundaries.test.ts": "bcad2ecaf10d5c2f92326ab1026b237ff6909a9e529f8080b8f6f5d1973ef47e",
+    "packages/fab/test/cli.test.ts": "f950d38f01b3cb3a8642323ac820d1b0b29b8f71781e80be7e6ee6b1008f56e2",
+    "packages/fab/test/containment.test.ts": "4db698107ceca78472c987dc98c4db4d44ca73887eee11f4fbd83f4722e9c3a1",
+    "packages/fab/test/evaluation.test.ts": "13e2391df29878515d1c750971e1e90dd47cb437b1fcb25706581b99e70cf96a",
+    "packages/fab/test/fixture-transport.mjs": "d76bbb6d11a641dbc289c4ce8e2d3d367d1d5ec4edb546212be0f8e44196a976",
+    "packages/fab/test/helpers.ts": "fb3fc5dfb80bdbcacbb9ca7a4f700af78135fa5cf64958e29c71c22d0f9dc88a",
+    "packages/fab/test/models.test.ts": "1435577debd6a426026f224e08c308e83f7fb983a56e08e46ed51245e5b556a7",
+    "packages/fab/tsconfig.build.json": "04cadfa5a1978fed4587c348613e24148305088df26bc361c98f270f7fa5efe2",
+    "packages/fab/tsconfig.json": "f39ebfbf82ad79c7997868a5d6b81823026e4367392a8f651958e58c484427a3"
+  }
+}

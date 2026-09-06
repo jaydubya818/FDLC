@@ -1,0 +1,510 @@
+{
+  "qualification": "Non-secret fixture conformance; scripted mock model transport, real Git/file/check execution. Not autonomous model-quality or independent-verification evidence.",
+  "envelope": {
+    "digest": "8f097eea28471f95a74367fb385bd8262070a3dbc68969d5a5d3f9c3c79d4f68",
+    "session": {
+      "version": 1,
+      "id": "6627b415-5323-4447-8805-c4ae74de5a5b",
+      "config": {
+        "version": 1,
+        "repository": "/private/tmp/fab-evaluation-xcaxZl/repo",
+        "provider": "openai",
+        "model": "fixture-model",
+        "credential": {
+          "id": "fixture:model",
+          "owner": "local:501",
+          "provider": "openai",
+          "scope": {
+            "kind": "repository",
+            "root": "/private/tmp/fab-evaluation-xcaxZl/repo"
+          },
+          "source": {
+            "kind": "environment",
+            "variable": "FAB_TEST_MODEL_KEY"
+          }
+        },
+        "writableFiles": [
+          "math.mjs"
+        ],
+        "checks": [
+          {
+            "id": "test",
+            "argv": [
+              "/opt/homebrew/Cellar/node@24/24.18.1/bin/node",
+              "--test",
+              "--test-isolation=none"
+            ]
+          }
+        ],
+        "acceptanceCriteria": [
+          "The fixture behavior passes its actual project tests."
+        ],
+        "maxTurns": 12,
+        "timeoutMs": 20000,
+        "checkTimeoutMs": 5000
+      },
+      "baseline": "bd6db674b5cccde8cd54e26e93accee2ff4c7b11",
+      "branch": "master",
+      "task": "Execute the bounded evaluation task.",
+      "status": "candidate",
+      "createdAt": "2026-09-05T19:16:37.266Z",
+      "updatedAt": "2026-09-05T19:16:37.906Z",
+      "plan": {
+        "summary": "Apply the bounded change and run project tests.",
+        "steps": [
+          "Inspect source",
+          "Change only approved files",
+          "Run actual checks",
+          "Present candidate"
+        ]
+      },
+      "approvalDigest": "89a83a41b4461eb62d921db37c707ce9922d9902137139d003d2d1252dba26c7",
+      "messages": [
+        {
+          "role": "user",
+          "content": "{\"task\":\"Execute the bounded evaluation task.\",\"plan\":{\"summary\":\"Apply the bounded change and run project tests.\",\"steps\":[\"Inspect source\",\"Change only approved files\",\"Run actual checks\",\"Present candidate\"]},\"acceptanceCriteria\":[\"The fixture behavior passes its actual project tests.\"],\"writableFiles\":[\"math.mjs\"],\"checks\":[{\"id\":\"test\",\"argv\":[\"/opt/homebrew/Cellar/node@24/24.18.1/bin/node\",\"--test\",\"--test-isolation=none\"]}],\"instruction\":\"Implement the approved plan, run all configured checks on final content, and finish_candidate. You have no publication or acceptance authority.\"}"
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "calls": [
+            {
+              "id": "call_read_file",
+              "name": "read_file",
+              "arguments": {
+                "path": "math.mjs"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "content": "{\"path\":\"math.mjs\",\"content\":\"export const add = (a, b) => a - b;\\n\",\"hash\":\"33a5a81349f3940bb66bd78fa2a9fc507a4c2346d61e4bd6ad0a915e506dd53a\"}",
+          "callId": "call_read_file",
+          "error": false
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "calls": [
+            {
+              "id": "call_write_file",
+              "name": "write_file",
+              "arguments": {
+                "path": "math.mjs",
+                "content": "export const add = (a, b) => a + b;\n",
+                "expectedHash": "33a5a81349f3940bb66bd78fa2a9fc507a4c2346d61e4bd6ad0a915e506dd53a"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "content": "{\"path\":\"math.mjs\",\"hash\":\"4a381860447226426a116b024081641b32f9b6c4f7c2c5d3cb86987e85c8ae33\"}",
+          "callId": "call_write_file",
+          "error": false
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "calls": [
+            {
+              "id": "call_run_check",
+              "name": "run_check",
+              "arguments": {
+                "id": "test"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "content": "{\"id\":\"test\",\"argv\":[\"/opt/homebrew/Cellar/node@24/24.18.1/bin/node\",\"--test\",\"--test-isolation=none\"],\"candidateDigest\":\"822b125da5cd8ab513215b851ea2d0e8744d1cfdaac0a5cbdca50eeb4f26ea93\",\"status\":\"passed\",\"exitCode\":0,\"signal\":null,\"stdout\":\"✔ project.test.mjs (0.602ms)\\nℹ tests 1\\nℹ suites 0\\nℹ pass 1\\nℹ fail 0\\nℹ cancelled 0\\nℹ skipped 0\\nℹ todo 0\\nℹ duration_ms 10.801417\\n\",\"stderr\":\"\",\"durationMs\":170,\"isolation\":\"macos-seatbelt-snapshot\",\"independent\":false}",
+          "callId": "call_run_check",
+          "error": false
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "calls": [
+            {
+              "id": "call_finish_candidate",
+              "name": "finish_candidate",
+              "arguments": {
+                "summary": "Implemented the fixture change; actual project tests passed.",
+                "unresolved": []
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "content": "{\"status\":\"candidate\",\"independent\":false,\"acceptance\":\"not_evaluated\",\"acceptanceCriteria\":[{\"criterion\":\"The fixture behavior passes its actual project tests.\",\"checks\":[\"test\"],\"assessment\":\"Human review required; passing checks alone do not establish coverage.\"}]}",
+          "callId": "call_finish_candidate",
+          "error": false
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "at": "2026-09-05T19:16:37.405Z",
+          "kind": "stage_started",
+          "data": {
+            "stage": "plan",
+            "provider": "openai",
+            "model": "fixture-model"
+          }
+        },
+        {
+          "sequence": 2,
+          "at": "2026-09-05T19:16:37.421Z",
+          "kind": "model_started",
+          "data": {
+            "call": 1
+          }
+        },
+        {
+          "sequence": 3,
+          "at": "2026-09-05T19:16:37.442Z",
+          "kind": "model_completed",
+          "data": {
+            "call": 1,
+            "durationMs": 21,
+            "usage": {
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "cachedTokens": 0,
+              "costUsd": null
+            },
+            "finish": "tools"
+          }
+        },
+        {
+          "sequence": 4,
+          "at": "2026-09-05T19:16:37.442Z",
+          "kind": "tool_started",
+          "data": {
+            "id": "call_submit_plan",
+            "name": "submit_plan",
+            "arguments": {
+              "summary": "Apply the bounded change and run project tests.",
+              "steps": [
+                "Inspect source",
+                "Change only approved files",
+                "Run actual checks",
+                "Present candidate"
+              ]
+            }
+          }
+        },
+        {
+          "sequence": 5,
+          "at": "2026-09-05T19:16:37.470Z",
+          "kind": "tool_completed",
+          "data": {
+            "id": "call_submit_plan",
+            "name": "submit_plan",
+            "output": {
+              "plan": {
+                "summary": "Apply the bounded change and run project tests.",
+                "steps": [
+                  "Inspect source",
+                  "Change only approved files",
+                  "Run actual checks",
+                  "Present candidate"
+                ]
+              },
+              "approvalDigest": "89a83a41b4461eb62d921db37c707ce9922d9902137139d003d2d1252dba26c7"
+            },
+            "durationMs": 28
+          }
+        },
+        {
+          "sequence": 6,
+          "at": "2026-09-05T19:16:37.513Z",
+          "kind": "plan_approved",
+          "data": {
+            "digest": "89a83a41b4461eb62d921db37c707ce9922d9902137139d003d2d1252dba26c7"
+          }
+        },
+        {
+          "sequence": 7,
+          "at": "2026-09-05T19:16:37.514Z",
+          "kind": "stage_started",
+          "data": {
+            "stage": "build",
+            "provider": "openai",
+            "model": "fixture-model"
+          }
+        },
+        {
+          "sequence": 8,
+          "at": "2026-09-05T19:16:37.531Z",
+          "kind": "model_started",
+          "data": {
+            "call": 2
+          }
+        },
+        {
+          "sequence": 9,
+          "at": "2026-09-05T19:16:37.532Z",
+          "kind": "model_completed",
+          "data": {
+            "call": 2,
+            "durationMs": 1,
+            "usage": {
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "cachedTokens": 0,
+              "costUsd": null
+            },
+            "finish": "tools"
+          }
+        },
+        {
+          "sequence": 10,
+          "at": "2026-09-05T19:16:37.533Z",
+          "kind": "tool_started",
+          "data": {
+            "id": "call_read_file",
+            "name": "read_file",
+            "arguments": {
+              "path": "math.mjs"
+            }
+          }
+        },
+        {
+          "sequence": 11,
+          "at": "2026-09-05T19:16:37.533Z",
+          "kind": "tool_completed",
+          "data": {
+            "id": "call_read_file",
+            "name": "read_file",
+            "output": {
+              "path": "math.mjs",
+              "content": "export const add = (a, b) => a - b;\n",
+              "hash": "33a5a81349f3940bb66bd78fa2a9fc507a4c2346d61e4bd6ad0a915e506dd53a"
+            },
+            "durationMs": 0
+          }
+        },
+        {
+          "sequence": 12,
+          "at": "2026-09-05T19:16:37.548Z",
+          "kind": "model_started",
+          "data": {
+            "call": 3
+          }
+        },
+        {
+          "sequence": 13,
+          "at": "2026-09-05T19:16:37.549Z",
+          "kind": "model_completed",
+          "data": {
+            "call": 3,
+            "durationMs": 1,
+            "usage": {
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "cachedTokens": 0,
+              "costUsd": null
+            },
+            "finish": "tools"
+          }
+        },
+        {
+          "sequence": 14,
+          "at": "2026-09-05T19:16:37.550Z",
+          "kind": "tool_started",
+          "data": {
+            "id": "call_write_file",
+            "name": "write_file",
+            "arguments": {
+              "path": "math.mjs",
+              "content": "export const add = (a, b) => a + b;\n",
+              "expectedHash": "33a5a81349f3940bb66bd78fa2a9fc507a4c2346d61e4bd6ad0a915e506dd53a"
+            }
+          }
+        },
+        {
+          "sequence": 15,
+          "at": "2026-09-05T19:16:37.552Z",
+          "kind": "tool_completed",
+          "data": {
+            "id": "call_write_file",
+            "name": "write_file",
+            "output": {
+              "path": "math.mjs",
+              "hash": "4a381860447226426a116b024081641b32f9b6c4f7c2c5d3cb86987e85c8ae33"
+            },
+            "durationMs": 2
+          }
+        },
+        {
+          "sequence": 16,
+          "at": "2026-09-05T19:16:37.567Z",
+          "kind": "model_started",
+          "data": {
+            "call": 4
+          }
+        },
+        {
+          "sequence": 17,
+          "at": "2026-09-05T19:16:37.568Z",
+          "kind": "model_completed",
+          "data": {
+            "call": 4,
+            "durationMs": 1,
+            "usage": {
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "cachedTokens": 0,
+              "costUsd": null
+            },
+            "finish": "tools"
+          }
+        },
+        {
+          "sequence": 18,
+          "at": "2026-09-05T19:16:37.568Z",
+          "kind": "tool_started",
+          "data": {
+            "id": "call_run_check",
+            "name": "run_check",
+            "arguments": {
+              "id": "test"
+            }
+          }
+        },
+        {
+          "sequence": 19,
+          "at": "2026-09-05T19:16:37.815Z",
+          "kind": "tool_completed",
+          "data": {
+            "id": "call_run_check",
+            "name": "run_check",
+            "output": {
+              "id": "test",
+              "argv": [
+                "/opt/homebrew/Cellar/node@24/24.18.1/bin/node",
+                "--test",
+                "--test-isolation=none"
+              ],
+              "candidateDigest": "822b125da5cd8ab513215b851ea2d0e8744d1cfdaac0a5cbdca50eeb4f26ea93",
+              "status": "passed",
+              "exitCode": 0,
+              "signal": null,
+              "stdout": "✔ project.test.mjs (0.602ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 10.801417\n",
+              "stderr": "",
+              "durationMs": 170,
+              "isolation": "macos-seatbelt-snapshot",
+              "independent": false
+            },
+            "durationMs": 247
+          }
+        },
+        {
+          "sequence": 20,
+          "at": "2026-09-05T19:16:37.829Z",
+          "kind": "model_started",
+          "data": {
+            "call": 5
+          }
+        },
+        {
+          "sequence": 21,
+          "at": "2026-09-05T19:16:37.830Z",
+          "kind": "model_completed",
+          "data": {
+            "call": 5,
+            "durationMs": 1,
+            "usage": {
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "cachedTokens": 0,
+              "costUsd": null
+            },
+            "finish": "tools"
+          }
+        },
+        {
+          "sequence": 22,
+          "at": "2026-09-05T19:16:37.830Z",
+          "kind": "tool_started",
+          "data": {
+            "id": "call_finish_candidate",
+            "name": "finish_candidate",
+            "arguments": {
+              "summary": "Implemented the fixture change; actual project tests passed.",
+              "unresolved": []
+            }
+          }
+        },
+        {
+          "sequence": 23,
+          "at": "2026-09-05T19:16:37.906Z",
+          "kind": "tool_completed",
+          "data": {
+            "id": "call_finish_candidate",
+            "name": "finish_candidate",
+            "output": {
+              "status": "candidate",
+              "independent": false,
+              "acceptance": "not_evaluated",
+              "acceptanceCriteria": [
+                {
+                  "criterion": "The fixture behavior passes its actual project tests.",
+                  "checks": [
+                    "test"
+                  ],
+                  "assessment": "Human review required; passing checks alone do not establish coverage."
+                }
+              ]
+            },
+            "durationMs": 76
+          }
+        }
+      ],
+      "checks": [
+        {
+          "id": "test",
+          "argv": [
+            "/opt/homebrew/Cellar/node@24/24.18.1/bin/node",
+            "--test",
+            "--test-isolation=none"
+          ],
+          "candidateDigest": "822b125da5cd8ab513215b851ea2d0e8744d1cfdaac0a5cbdca50eeb4f26ea93",
+          "status": "passed",
+          "exitCode": 0,
+          "signal": null,
+          "stdout": "✔ project.test.mjs (0.602ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 10.801417\n",
+          "stderr": "",
+          "durationMs": 170,
+          "isolation": "macos-seatbelt-snapshot",
+          "independent": false
+        }
+      ],
+      "usage": {
+        "inputTokens": 50,
+        "outputTokens": 25,
+        "cachedTokens": 0,
+        "costUsd": null
+      },
+      "modelCalls": 5,
+      "retries": 0,
+      "filesRead": [
+        "math.mjs"
+      ],
+      "filesModified": [
+        "math.mjs"
+      ],
+      "candidateDigest": "822b125da5cd8ab513215b851ea2d0e8744d1cfdaac0a5cbdca50eeb4f26ea93",
+      "candidateRevision": null,
+      "diff": "diff --git a/math.mjs b/math.mjs\nindex dc1ead9..d0f87bf 100644\n--- a/math.mjs\n+++ b/math.mjs\n@@ -1 +1 @@\n-export const add = (a, b) => a - b;\n+export const add = (a, b) => a + b;\n",
+      "summary": "Implemented the fixture change; actual project tests passed.",
+      "unresolved": [],
+      "independent": false,
+      "acceptance": "not_evaluated"
+    }
+  }
+}

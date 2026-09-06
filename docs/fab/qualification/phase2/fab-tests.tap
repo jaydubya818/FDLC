@@ -1,0 +1,298 @@
+TAP version 13
+# Subtest: credentials require the exact owner/provider/repository binding and never fall back to ambient keys
+ok 1 - credentials require the exact owner/provider/repository binding and never fall back to ambient keys
+  ---
+  duration_ms: 229.77925
+  type: 'test'
+  ...
+# Subtest: redaction covers exact and encoded secrets, nested evidence and terminal escape sequences
+ok 2 - redaction covers exact and encoded secrets, nested evidence and terminal escape sequences
+  ---
+  duration_ms: 0.61025
+  type: 'test'
+  ...
+# Subtest: scope denies traversal, secrets, hidden paths, symlinks and hard links before writes
+ok 3 - scope denies traversal, secrets, hidden paths, symlinks and hard links before writes
+  ---
+  duration_ms: 159.941875
+  type: 'test'
+  ...
+# Subtest: configuration rejects extra authority, ambient credentials, duplicate checks and unsafe file scopes
+ok 4 - configuration rejects extra authority, ambient credentials, duplicate checks and unsafe file scopes
+  ---
+  duration_ms: 171.135584
+  type: 'test'
+  ...
+# Subtest: private session persistence redacts values, detects corruption, and excludes repository storage
+ok 5 - private session persistence redacts values, detects corruption, and excludes repository storage
+  ---
+  duration_ms: 325.032625
+  type: 'test'
+  ...
+# Subtest: built CLI: clean inspection, explicit auth, persisted plan, consent, execution, status and diff
+ok 6 - built CLI: clean inspection, explicit auth, persisted plan, consent, execution, status and diff
+  ---
+  duration_ms: 1717.394291
+  type: 'test'
+  ...
+# Subtest: OS containment denies outside reads/writes, environment secrets, network and other executables
+ok 7 - OS containment denies outside reads/writes, environment secrets, network and other executables
+  ---
+  duration_ms: 634.328833
+  type: 'test'
+  ...
+# Subtest: timeout, output overflow and cancellation cannot report check success
+ok 8 - timeout, output overflow and cancellation cannot report check success
+  ---
+  duration_ms: 926.566583
+  type: 'test'
+  ...
+# Subtest: SIGKILL of the Fab process terminates its active check and removes the snapshot
+ok 9 - SIGKILL of the Fab process terminates its active check and removes the snapshot
+  ---
+  duration_ms: 388.026542
+  type: 'test'
+  ...
+# Subtest: secure-store binding, rotation, deletion, metadata and explicit source precedence
+ok 10 - secure-store binding, rotation, deletion, metadata and explicit source precedence
+  ---
+  duration_ms: 308.289542
+  type: 'test'
+  ...
+# Subtest: adversarial redaction covers all persisted channels and provider-style partial echoes
+ok 11 - adversarial redaction covers all persisted channels and provider-style partial echoes
+  ---
+  duration_ms: 258.950208
+  type: 'test'
+  ...
+# Subtest: real check stdout and stderr redact a credential reconstructed by project code
+ok 12 - real check stdout and stderr redact a credential reconstructed by project code
+  ---
+  duration_ms: 405.613334
+  type: 'test'
+  ...
+# Subtest: masked enrollment input never echoes a synthetic key in a real terminal
+ok 13 - masked enrollment input never echoes a synthetic key in a real terminal
+  ---
+  duration_ms: 154.52925
+  type: 'test'
+  ...
+# Subtest: native macOS keychain stores, rotates and deletes only synthetic data in an isolated keychain
+ok 14 - native macOS keychain stores, rotates and deletes only synthetic data in an isolated keychain
+  ---
+  duration_ms: 674.9505
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: bug fix (mock model, real repository/check)
+ok 15 - openai shared evaluation: bug fix (mock model, real repository/check)
+  ---
+  duration_ms: 1073.398584
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: bounded feature (mock model, real repository/check)
+ok 16 - openai shared evaluation: bounded feature (mock model, real repository/check)
+  ---
+  duration_ms: 851.6005
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: behavior preserving refactor (mock model, real repository/check)
+ok 17 - openai shared evaluation: behavior preserving refactor (mock model, real repository/check)
+  ---
+  duration_ms: 748.951458
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: test repair (mock model, real repository/check)
+ok 18 - openai shared evaluation: test repair (mock model, real repository/check)
+  ---
+  duration_ms: 742.328208
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: new component (mock model, real repository/check)
+ok 19 - openai shared evaluation: new component (mock model, real repository/check)
+  ---
+  duration_ms: 750.059208
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: impossible task
+ok 20 - openai shared evaluation: impossible task
+  ---
+  duration_ms: 418.474583
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: scope attack
+ok 21 - openai shared evaluation: scope attack
+  ---
+  duration_ms: 431.573416
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: credential attack
+ok 22 - openai shared evaluation: credential attack
+  ---
+  duration_ms: 414.64575
+  type: 'test'
+  ...
+# Subtest: openai shared evaluation: unknown tool attack
+ok 23 - openai shared evaluation: unknown tool attack
+  ---
+  duration_ms: 425.71875
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: bug fix (mock model, real repository/check)
+ok 24 - anthropic shared evaluation: bug fix (mock model, real repository/check)
+  ---
+  duration_ms: 754.890709
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: bounded feature (mock model, real repository/check)
+ok 25 - anthropic shared evaluation: bounded feature (mock model, real repository/check)
+  ---
+  duration_ms: 741.199209
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: behavior preserving refactor (mock model, real repository/check)
+ok 26 - anthropic shared evaluation: behavior preserving refactor (mock model, real repository/check)
+  ---
+  duration_ms: 763.07825
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: test repair (mock model, real repository/check)
+ok 27 - anthropic shared evaluation: test repair (mock model, real repository/check)
+  ---
+  duration_ms: 843.716167
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: new component (mock model, real repository/check)
+ok 28 - anthropic shared evaluation: new component (mock model, real repository/check)
+  ---
+  duration_ms: 833.43925
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: impossible task
+ok 29 - anthropic shared evaluation: impossible task
+  ---
+  duration_ms: 554.151208
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: scope attack
+ok 30 - anthropic shared evaluation: scope attack
+  ---
+  duration_ms: 468.77975
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: credential attack
+ok 31 - anthropic shared evaluation: credential attack
+  ---
+  duration_ms: 467.736042
+  type: 'test'
+  ...
+# Subtest: anthropic shared evaluation: unknown tool attack
+ok 32 - anthropic shared evaluation: unknown tool attack
+  ---
+  duration_ms: 469.176291
+  type: 'test'
+  ...
+# Subtest: plan consent is required and is invalidated by policy drift
+ok 33 - plan consent is required and is invalidated by policy drift
+  ---
+  duration_ms: 323.030625
+  type: 'test'
+  ...
+# Subtest: dirty repository, planning writes, false completion and interrupted replay fail closed
+ok 34 - dirty repository, planning writes, false completion and interrupted replay fail closed
+  ---
+  duration_ms: 581.681625
+  type: 'test'
+  ...
+# Subtest: cancellation is persisted and does not execute the next model tool
+ok 35 - cancellation is persisted and does not execute the next model tool
+  ---
+  duration_ms: 277.662709
+  type: 'test'
+  ...
+# Subtest: failed project checks can be repaired, and edits invalidate earlier successful evidence
+ok 36 - failed project checks can be repaired, and edits invalidate earlier successful evidence
+  ---
+  duration_ms: 1439.030917
+  type: 'test'
+  ...
+# Subtest: a completed stopped checkpoint resumes without replaying its write, and drift blocks resume
+ok 37 - a completed stopped checkpoint resumes without replaying its write, and drift blocks resume
+  ---
+  duration_ms: 1053.590334
+  type: 'test'
+  ...
+# Subtest: openai: real adapter maps tool calls/results and uses only bound authentication
+ok 38 - openai: real adapter maps tool calls/results and uses only bound authentication
+  ---
+  duration_ms: 341.6765
+  type: 'test'
+  ...
+# Subtest: openai: error bodies and network exceptions cannot leak credentials
+ok 39 - openai: error bodies and network exceptions cannot leak credentials
+  ---
+  duration_ms: 183.777583
+  type: 'test'
+  ...
+# Subtest: anthropic: real adapter maps tool calls/results and uses only bound authentication
+ok 40 - anthropic: real adapter maps tool calls/results and uses only bound authentication
+  ---
+  duration_ms: 138.743167
+  type: 'test'
+  ...
+# Subtest: anthropic: error bodies and network exceptions cannot leak credentials
+ok 41 - anthropic: error bodies and network exceptions cannot leak credentials
+  ---
+  duration_ms: 129.187667
+  type: 'test'
+  ...
+# Subtest: unknown usage stays null and malformed tool arguments fail closed
+ok 42 - unknown usage stays null and malformed tool arguments fail closed
+  ---
+  duration_ms: 0.196791
+  type: 'test'
+  ...
+# Subtest: openai: qualification requires explicit live opt-in and a selected credential
+ok 43 - openai: qualification requires explicit live opt-in and a selected credential
+  ---
+  duration_ms: 355.638958
+  type: 'test'
+  ...
+# Subtest: openai: mock qualification exercises exact model, inference and full tool continuation
+ok 44 - openai: mock qualification exercises exact model, inference and full tool continuation
+  ---
+  duration_ms: 199.696375
+  type: 'test'
+  ...
+# Subtest: openai: cancellation, timeout, context limit and echoed HTTP/transport errors fail closed
+ok 45 - openai: cancellation, timeout, context limit and echoed HTTP/transport errors fail closed
+  ---
+  duration_ms: 269.112958
+  type: 'test'
+  ...
+# Subtest: anthropic: qualification requires explicit live opt-in and a selected credential
+ok 46 - anthropic: qualification requires explicit live opt-in and a selected credential
+  ---
+  duration_ms: 148.807667
+  type: 'test'
+  ...
+# Subtest: anthropic: mock qualification exercises exact model, inference and full tool continuation
+ok 47 - anthropic: mock qualification exercises exact model, inference and full tool continuation
+  ---
+  duration_ms: 137.792708
+  type: 'test'
+  ...
+# Subtest: anthropic: cancellation, timeout, context limit and echoed HTTP/transport errors fail closed
+ok 48 - anthropic: cancellation, timeout, context limit and echoed HTTP/transport errors fail closed
+  ---
+  duration_ms: 172.156417
+  type: 'test'
+  ...
+1..48
+# tests 48
+# suites 0
+# pass 48
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 15564.374125

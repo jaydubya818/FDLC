@@ -1,0 +1,234 @@
+
+> @fdlc/fab@0.1.0-experimental.2 package:private
+> node bin/package-private.mjs /private/tmp/fab-phase3-pack-a
+
+git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
+
+> @fdlc/fab@0.1.0-experimental.2 build
+> tsc -p tsconfig.build.json && node bin/build-native.mjs && node bin/build-identity.mjs
+
+git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
+git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
+xcrun: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
+git: warning: confstr() failed with code 5: couldn't get path of DARWIN_USER_TEMP_DIR; using /tmp instead
+[
+  {
+    "id": "@fdlc/fab@0.1.0-experimental.2",
+    "name": "@fdlc/fab",
+    "version": "0.1.0-experimental.2",
+    "size": 53620,
+    "unpackedSize": 252536,
+    "shasum": "36870886ded65ac2b56ee1d5cb5d249e4e8c1472",
+    "integrity": "sha512-JqVCa4uPUUDVSXXT1+ubWYFDMRs+mFfeyghDXsQ5+uUWdrEkzxiWvpGbM9pp3N6gC/NxAo88x3CX51XmzAzd6Q==",
+    "filename": "fdlc-fab-0.1.0-experimental.2.tgz",
+    "files": [
+      {
+        "path": "README.md",
+        "size": 14941,
+        "mode": 420
+      },
+      {
+        "path": "bin/build-identity.mjs",
+        "size": 2256,
+        "mode": 420
+      },
+      {
+        "path": "bin/build-native.mjs",
+        "size": 889,
+        "mode": 420
+      },
+      {
+        "path": "bin/fab.mjs",
+        "size": 73,
+        "mode": 493
+      },
+      {
+        "path": "bin/package-private.mjs",
+        "size": 1555,
+        "mode": 420
+      },
+      {
+        "path": "dist/agent.d.ts",
+        "size": 793,
+        "mode": 420
+      },
+      {
+        "path": "dist/agent.js",
+        "size": 19415,
+        "mode": 420
+      },
+      {
+        "path": "dist/build-identity.json",
+        "size": 918,
+        "mode": 420
+      },
+      {
+        "path": "dist/checks.d.ts",
+        "size": 507,
+        "mode": 420
+      },
+      {
+        "path": "dist/checks.js",
+        "size": 6927,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.d.ts",
+        "size": 62,
+        "mode": 420
+      },
+      {
+        "path": "dist/cli.js",
+        "size": 17201,
+        "mode": 420
+      },
+      {
+        "path": "dist/credentials.d.ts",
+        "size": 1269,
+        "mode": 420
+      },
+      {
+        "path": "dist/credentials.js",
+        "size": 4943,
+        "mode": 420
+      },
+      {
+        "path": "dist/evaluation.d.ts",
+        "size": 8162,
+        "mode": 420
+      },
+      {
+        "path": "dist/evaluation.js",
+        "size": 10392,
+        "mode": 420
+      },
+      {
+        "path": "dist/fab-check-guard",
+        "size": 34464,
+        "mode": 493
+      },
+      {
+        "path": "dist/fab-keychain",
+        "size": 53568,
+        "mode": 493
+      },
+      {
+        "path": "dist/index.d.ts",
+        "size": 596,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js",
+        "size": 563,
+        "mode": 420
+      },
+      {
+        "path": "dist/keychain.d.ts",
+        "size": 661,
+        "mode": 420
+      },
+      {
+        "path": "dist/keychain.js",
+        "size": 3587,
+        "mode": 420
+      },
+      {
+        "path": "dist/masked-input.d.ts",
+        "size": 65,
+        "mode": 420
+      },
+      {
+        "path": "dist/masked-input.js",
+        "size": 1721,
+        "mode": 420
+      },
+      {
+        "path": "dist/models.d.ts",
+        "size": 1525,
+        "mode": 420
+      },
+      {
+        "path": "dist/models.js",
+        "size": 15371,
+        "mode": 420
+      },
+      {
+        "path": "dist/qualification.d.ts",
+        "size": 1516,
+        "mode": 420
+      },
+      {
+        "path": "dist/qualification.js",
+        "size": 11550,
+        "mode": 420
+      },
+      {
+        "path": "dist/repository.d.ts",
+        "size": 704,
+        "mode": 420
+      },
+      {
+        "path": "dist/repository.js",
+        "size": 9121,
+        "mode": 420
+      },
+      {
+        "path": "dist/sessions.d.ts",
+        "size": 418,
+        "mode": 420
+      },
+      {
+        "path": "dist/sessions.js",
+        "size": 4119,
+        "mode": 420
+      },
+      {
+        "path": "dist/tools.d.ts",
+        "size": 204,
+        "mode": 420
+      },
+      {
+        "path": "dist/tools.js",
+        "size": 1948,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.d.ts",
+        "size": 5278,
+        "mode": 420
+      },
+      {
+        "path": "dist/types.js",
+        "size": 11,
+        "mode": 420
+      },
+      {
+        "path": "dist/validation.d.ts",
+        "size": 991,
+        "mode": 420
+      },
+      {
+        "path": "dist/validation.js",
+        "size": 5961,
+        "mode": 420
+      },
+      {
+        "path": "native/check-guard.c",
+        "size": 2838,
+        "mode": 420
+      },
+      {
+        "path": "native/keychain.m",
+        "size": 4312,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 1141,
+        "mode": 420
+      }
+    ],
+    "entryCount": 41,
+    "bundled": []
+  }
+]

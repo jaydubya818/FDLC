@@ -1,0 +1,59 @@
+
+ RUN  v3.2.7 /private/tmp/fab-phase3-mission-control
+
+stderr | apps/orchestration-server/src/__tests__/factoryAttemptWorker.test.ts > FactoryAttemptWorker verification-first lifecycle > fails before adapter construction when V3 profile bytes are substituted after admission
+[factory-worker] Attempt factory-run-1 failed: Claimed Factory V3 Execution Profile binding is invalid (profile or admission lease mismatch).
+
+stderr | apps/orchestration-server/src/__tests__/factoryAttemptWorker.test.ts > FactoryAttemptWorker verification-first lifecycle > fails before adapter construction when V3 claim evidence is missing or substituted
+[factory-worker] Attempt factory-run-1 failed: Claimed Factory V3 Execution Profile binding is invalid (profile or admission lease mismatch).
+
+stderr | apps/orchestration-server/src/__tests__/factoryAttemptWorker.test.ts > FactoryAttemptWorker verification-first lifecycle > rejects a V3 qualification already stale at the server claim instant
+[factory-worker] Attempt factory-run-1 failed: Claimed Factory V3 Execution Profile binding is invalid (profile or admission lease mismatch).
+
+stderr | apps/orchestration-server/src/__tests__/factoryAttemptWorker.test.ts > FactoryAttemptWorker verification-first lifecycle > fails closed when V2 normalized provenance reports a different runtime executable
+[factory-worker] Attempt factory-run-1 failed: Harness normalized result does not match the frozen Attempt identity.
+
+stderr | apps/orchestration-server/src/__tests__/factoryAttemptWorker.test.ts > FactoryAttemptWorker verification-first lifecycle > fails closed when legacy V1 normalized provenance reports a different runtime executable
+[factory-worker] Attempt factory-run-1 failed: Harness normalized result does not match the frozen Attempt identity.
+
+stderr | apps/orchestration-server/src/__tests__/factoryAttemptWorker.test.ts > FactoryAttemptWorker verification-first lifecycle > fails closed when V2 normalized provenance reports a different provider route
+[factory-worker] Attempt factory-run-1 failed: Harness normalized result does not match the frozen Attempt identity.
+
+ ✓ apps/orchestration-server/src/__tests__/fabExecutorAdapter.test.ts (12 tests) 6446ms
+   ✓ Fab canonical MC harness conformance > produces real checked edits, canonical evidence and candidate linkage without acceptance authority  1041ms
+   ✓ Fab canonical MC harness conformance > rejects injected path or authority ../escape.mjs  704ms
+   ✓ Fab canonical MC harness conformance > rejects injected path or authority .env  698ms
+   ✓ Fab canonical MC harness conformance > rejects injected path or authority src/credentials.json  686ms
+   ✓ Fab canonical MC harness conformance > rejects injected path or authority self-approval  697ms
+   ✓ Fab canonical MC harness conformance > preserves an actual killed worker's uncertain model request and refuses its replay  604ms
+   ✓ Fab canonical MC harness conformance > cancels during model execution and prevents successful handoff  316ms
+   ✓ Fab canonical MC harness conformance > cancels during check execution and prevents successful handoff  650ms
+   ✓ Fab canonical MC harness conformance > fails closed when lease authority is lost after an observed tool  486ms
+stderr | apps/orchestration-server/src/__tests__/factoryAttemptWorker.test.ts > Fab governed golden path using the canonical MC worker > denies publication when MC's final authority check rejects the lease
+[factory-worker] Attempt factory-run-1 failed: Control plane did not authorize pull-request publication.
+
+stderr | apps/orchestration-server/src/__tests__/factoryAttemptWorker.test.ts > Fab governed golden path using the canonical MC worker > preserves uncertain publication and refuses duplicate build/publication on reconnect
+[factory-worker] Attempt factory-run-1 failed: Fixture provider outcome uncertain after request
+
+stderr | apps/orchestration-server/src/__tests__/factoryAttemptWorker.test.ts > Fab governed golden path using the canonical MC worker > preserves uncertain publication and refuses duplicate build/publication on reconnect
+[factory-worker] Attempt factory-run-1 failed: Workspace ownership tuple mismatch; workspace was preserved.
+
+ ✓ apps/orchestration-server/src/__tests__/factoryAttemptWorker.test.ts (26 tests) 8802ms
+   ✓ FactoryAttemptWorker verification-first lifecycle > turns governed issue intent into a verified, evidence-linked pull request  331ms
+   ✓ FactoryAttemptWorker verification-first lifecycle > injects profile-bound governed MCP output as untrusted pre-harness context  483ms
+   ✓ FactoryAttemptWorker verification-first lifecycle > executes an independently registered harness identity through the unchanged governed lifecycle  325ms
+   ✓ FactoryAttemptWorker verification-first lifecycle > uses only the frozen V2 provider/model route and ignores a mutable claim model override  322ms
+   ✓ FactoryAttemptWorker verification-first lifecycle > constructs the worker from the exact frozen V3 Execution Profile  326ms
+   ✓ FactoryAttemptWorker verification-first lifecycle > uses the server claim instant for V3 expiry so an admitted lease may finish  327ms
+   ✓ FactoryAttemptWorker verification-first lifecycle > completes the durable worker golden path and cleans only its proven worktree  322ms
+   ✓ FactoryAttemptWorker verification-first lifecycle > does not create a pull request when the control plane rejects the verification packet  320ms
+   ✓ FactoryAttemptWorker verification-first lifecycle > pauses for human review and resumes publication without rerunning Codex or verification  422ms
+   ✓ FactoryAttemptWorker verification-first lifecycle > persists a verification mismatch, blocks publication, and recovers with a new immutable Attempt  662ms
+   ✓ Fab governed golden path using the canonical MC worker > links a real Fab candidate to a separate exact-subject verifier, approval and fixture publication  1280ms
+   ✓ Fab governed golden path using the canonical MC worker > denies publication when MC's final authority check rejects the lease  1100ms
+   ✓ Fab governed golden path using the canonical MC worker > preserves uncertain publication and refuses duplicate build/publication on reconnect  1152ms
+
+ Test Files  2 passed (2)
+      Tests  38 passed (38)
+   Start at  14:26:34
+   Duration  9.45s (transform 295ms, setup 0ms, collect 620ms, tests 15.25s, environment 0ms, prepare 82ms)

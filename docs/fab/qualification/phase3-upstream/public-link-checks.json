@@ -1,0 +1,13 @@
+{
+  "method": "HEAD with redirects; no authentication",
+  "results": [
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/docs/02-design/09-tokenomics-and-factory-economics",
+      "status": 200
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/29-evaluation-engineering",
+      "status": 200
+    }
+  ]
+}

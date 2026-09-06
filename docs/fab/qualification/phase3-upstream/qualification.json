@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "fab-phase3-upstream-site-qualification/v1",
+  "recordedAt": "2026-09-06T01:44:09.034452+00:00",
+  "mainBaseline": "d954370a232174d2ad60561fbc720381a4791e97",
+  "mergeCommit": "1947904c3f741091a63cee0f517297d382a73a4c",
+  "finalSource": "42711d7f94ca769b93605fb3ff012091f70b24c2",
+  "vinextBuildAndRootChecksSource": "6de8ca033250eaa5ee8c07df47fa669a1b3cb016",
+  "subsequentExecutableChange": "Only tests/browser.mjs readiness changed; application/build/dependency source identical. Corrected browser harness lint and both browser runtime gates ran at finalSource.",
+  "environment": "fresh task-owned validation worktree; standard npm ci root and Fab; no other worktree dependency links",
+  "dependencyLockSha256": "e0e2cdca2ead847ba35077d44f60c42edbd4c93f4df43bc272b5700ccc1ce67c",
+  "packageManifestSha256": "d3c241093329560ffcd4462e82a23efeb3d421a947ab9282f7b94f8653e00964",
+  "result": "PASS",
+  "checks": {
+    "unitTests": 12,
+    "renderedRouteTests": 14,
+    "typecheck": "PASS",
+    "lint": "PASS",
+    "browserHarnessLint": "PASS",
+    "vinextBuild": "PASS",
+    "nextBuild": "PASS",
+    "vinextBrowser": {
+      "checks": 62,
+      "flows": 9,
+      "routes": 20,
+      "result": "PASS"
+    },
+    "nextBrowser": {
+      "checks": 62,
+      "flows": 9,
+      "routes": 20,
+      "result": "PASS"
+    },
+    "incomingPublicLinks": 2,
+    "typecheckWithoutGeneratedNextDirectory": "PASS"
+  },
+  "releaseConfiguration": {
+    "upstreamConfigPreserved": true,
+    "mainAutomaticDeployment": false,
+    "productionDeployment": "NOT_PERFORMED",
+    "generatedNextTypeDeclaration": "expected framework output; diff preserved and tracked source restored"
+  },
+  "microfrontendComposition": "DEPLOYED_COMPOSITION_NOT_RUN",
+  "fabRuntimePackage": {
+    "version": "0.1.0-experimental.2",
+    "sourceCommit": "1d1240c219d9bf3c1fa5fbb0a80ded96cf13df1f",
+    "sourceUnchanged": true,
+    "native59TestEvidence": "preserved earlier exact package qualification; not repeated for site-only changes"
+  },
+  "maturity": "Experimental",
+  "liveProviderRequests": 0,
+  "classification": "OFFLINE_SYNTHETIC_AND_LOCAL_BUILD",
+  "delivery": "GITHUB_PUBLICATION_AUTHORIZATION_REQUIRED",
+  "terminalNormalization": "ANSI sequences and trailing whitespace removed; raw local logs preserved"
+}

@@ -1,0 +1,1934 @@
+{
+  "kind": "DETERMINISTIC_FIXTURE_ONLY",
+  "session": {
+    "version": 1,
+    "id": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+    "config": {
+      "version": 1,
+      "repository": "/private/tmp/mc-verification-first-worker-nq6mc2/.mission-control/worktrees/attempt-1",
+      "provider": "openai",
+      "model": "fixture-explicit-model",
+      "credential": {
+        "id": "fab-governed-fixture",
+        "owner": "local:501",
+        "provider": "openai",
+        "scope": {
+          "kind": "repository",
+          "root": "/private/tmp/mc-verification-first-worker-nq6mc2/.mission-control/worktrees/attempt-1"
+        },
+        "source": {
+          "kind": "environment",
+          "variable": "FAB_GOVERNED_TEST_KEY"
+        }
+      },
+      "writableFiles": [
+        "src/feature.ts"
+      ],
+      "checks": [
+        {
+          "id": "test",
+          "argv": [
+            "/opt/homebrew/Cellar/node@24/24.18.1/bin/node",
+            "--input-type=module",
+            "-e",
+            "import {verified} from './src/feature.ts'; if(!verified) throw new Error('incorrect candidate')"
+          ]
+        }
+      ],
+      "acceptanceCriteria": [
+        "Candidate change is independently verified"
+      ],
+      "maxTurns": 8,
+      "timeoutMs": 20000,
+      "checkTimeoutMs": 5000
+    },
+    "baseline": "0be73566e3e75582ac4a39dcc303a1f87a053097",
+    "branch": "mc/verification-first-fixture-1",
+    "task": "Implement the approved issue intent within the frozen Work Order contract.",
+    "status": "candidate",
+    "createdAt": "2026-09-05T20:41:55.426Z",
+    "updatedAt": "2026-09-05T20:41:56.172Z",
+    "plan": {
+      "summary": "Correct the bounded feature",
+      "steps": [
+        "Edit",
+        "Check"
+      ]
+    },
+    "approvalDigest": "6bc7c0d8d7d28c4d3146635b5025684795d6107a30d98ad293df7c37be1ceaf7",
+    "messages": [
+      {
+        "role": "user",
+        "content": "{\"task\":\"Implement the approved issue intent within the frozen Work Order contract.\",\"plan\":{\"summary\":\"Correct the bounded feature\",\"steps\":[\"Edit\",\"Check\"]},\"acceptanceCriteria\":[\"Candidate change is independently verified\"],\"writableFiles\":[\"src/feature.ts\"],\"checks\":[{\"id\":\"test\",\"argv\":[\"/opt/homebrew/Cellar/node@24/24.18.1/bin/node\",\"--input-type=module\",\"-e\",\"import {verified} from './src/feature.ts'; if(!verified) throw new Error('incorrect candidate')\"]}],\"instruction\":\"Implement the approved plan, run all configured checks on final content, and finish_candidate. You have no publication or acceptance authority.\"}"
+      },
+      {
+        "role": "assistant",
+        "content": "[REDACTED]",
+        "calls": [
+          {
+            "id": "call_2",
+            "name": "write_file",
+            "arguments": {
+              "path": "src/feature.ts",
+              "content": "export const verified = true;\n",
+              "expectedHash": "de8eb9467fde5df4021babc5850c4132e6ce7507aa186691570f242c6194334a"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "content": "{\"path\":\"src/feature.ts\",\"hash\":\"d7aee096456b20d71afb9bdf92ebb3901927fc725c52e5ebc2e9560a1920c695\"}",
+        "callId": "call_2",
+        "error": false
+      },
+      {
+        "role": "assistant",
+        "content": "[REDACTED]",
+        "calls": [
+          {
+            "id": "call_3",
+            "name": "run_check",
+            "arguments": {
+              "id": "test"
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "content": "{\"id\":\"test\",\"argv\":[\"/opt/homebrew/Cellar/node@24/24.18.1/bin/node\",\"--input-type=module\",\"-e\",\"import {verified} from './src/feature.ts'; if(!verified) throw new Error('incorrect candidate')\"],\"candidateDigest\":\"f182c397ea741478ea78554f90eb0f82d28151de0cf32b7a9398c96bfdd32cdf\",\"status\":\"passed\",\"exitCode\":0,\"signal\":null,\"stdout\":\"\",\"stderr\":\"\",\"durationMs\":184,\"isolation\":\"macos-seatbelt-snapshot\",\"independent\":false}",
+        "callId": "call_3",
+        "error": false
+      },
+      {
+        "role": "assistant",
+        "content": "[REDACTED]",
+        "calls": [
+          {
+            "id": "call_4",
+            "name": "finish_candidate",
+            "arguments": {
+              "summary": "Feature corrected",
+              "unresolved": []
+            }
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "content": "{\"status\":\"candidate\",\"independent\":false,\"acceptance\":\"not_evaluated\",\"acceptanceCriteria\":[{\"criterion\":\"Candidate change is independently verified\",\"checks\":[\"test\"],\"assessment\":\"Human review required; passing checks alone do not establish coverage.\"}]}",
+        "callId": "call_4",
+        "error": false
+      }
+    ],
+    "events": [
+      {
+        "sequence": 1,
+        "at": "2026-09-05T20:41:55.534Z",
+        "kind": "stage_started",
+        "data": {
+          "stage": "plan",
+          "provider": "openai",
+          "model": "fixture-explicit-model"
+        }
+      },
+      {
+        "sequence": 2,
+        "at": "2026-09-05T20:41:55.546Z",
+        "kind": "model_started",
+        "data": {
+          "call": 1
+        }
+      },
+      {
+        "sequence": 3,
+        "at": "2026-09-05T20:41:55.548Z",
+        "kind": "model_completed",
+        "data": {
+          "call": 1,
+          "durationMs": 2,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 5,
+            "cachedTokens": null,
+            "costUsd": null
+          },
+          "finish": "tools",
+          "returnedModel": "fixture-explicit-model"
+        }
+      },
+      {
+        "sequence": 4,
+        "at": "2026-09-05T20:41:55.549Z",
+        "kind": "tool_started",
+        "data": {
+          "id": "call_1",
+          "name": "submit_plan",
+          "arguments": {
+            "summary": "Correct the bounded feature",
+            "steps": [
+              "Edit",
+              "Check"
+            ]
+          }
+        }
+      },
+      {
+        "sequence": 5,
+        "at": "2026-09-05T20:41:55.575Z",
+        "kind": "tool_completed",
+        "data": {
+          "id": "call_1",
+          "name": "submit_plan",
+          "output": {
+            "plan": {
+              "summary": "Correct the bounded feature",
+              "steps": [
+                "Edit",
+                "Check"
+              ]
+            },
+            "approvalDigest": "6bc7c0d8d7d28c4d3146635b5025684795d6107a30d98ad293df7c37be1ceaf7"
+          },
+          "durationMs": 26
+        }
+      },
+      {
+        "sequence": 6,
+        "at": "2026-09-05T20:41:55.612Z",
+        "kind": "plan_approved",
+        "data": {
+          "digest": "6bc7c0d8d7d28c4d3146635b5025684795d6107a30d98ad293df7c37be1ceaf7"
+        }
+      },
+      {
+        "sequence": 7,
+        "at": "2026-09-05T20:41:55.612Z",
+        "kind": "stage_started",
+        "data": {
+          "stage": "build",
+          "provider": "openai",
+          "model": "fixture-explicit-model"
+        }
+      },
+      {
+        "sequence": 8,
+        "at": "2026-09-05T20:41:55.625Z",
+        "kind": "model_started",
+        "data": {
+          "call": 2
+        }
+      },
+      {
+        "sequence": 9,
+        "at": "2026-09-05T20:41:55.626Z",
+        "kind": "model_completed",
+        "data": {
+          "call": 2,
+          "durationMs": 1,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 5,
+            "cachedTokens": null,
+            "costUsd": null
+          },
+          "finish": "tools",
+          "returnedModel": "fixture-explicit-model"
+        }
+      },
+      {
+        "sequence": 10,
+        "at": "2026-09-05T20:41:55.626Z",
+        "kind": "tool_started",
+        "data": {
+          "id": "call_2",
+          "name": "write_file",
+          "arguments": {
+            "path": "src/feature.ts",
+            "content": "export const verified = true;\n",
+            "expectedHash": "de8eb9467fde5df4021babc5850c4132e6ce7507aa186691570f242c6194334a"
+          }
+        }
+      },
+      {
+        "sequence": 11,
+        "at": "2026-09-05T20:41:55.627Z",
+        "kind": "tool_completed",
+        "data": {
+          "id": "call_2",
+          "name": "write_file",
+          "output": {
+            "path": "src/feature.ts",
+            "hash": "d7aee096456b20d71afb9bdf92ebb3901927fc725c52e5ebc2e9560a1920c695"
+          },
+          "durationMs": 1
+        }
+      },
+      {
+        "sequence": 12,
+        "at": "2026-09-05T20:41:55.639Z",
+        "kind": "model_started",
+        "data": {
+          "call": 3
+        }
+      },
+      {
+        "sequence": 13,
+        "at": "2026-09-05T20:41:55.640Z",
+        "kind": "model_completed",
+        "data": {
+          "call": 3,
+          "durationMs": 1,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 5,
+            "cachedTokens": null,
+            "costUsd": null
+          },
+          "finish": "tools",
+          "returnedModel": "fixture-explicit-model"
+        }
+      },
+      {
+        "sequence": 14,
+        "at": "2026-09-05T20:41:55.641Z",
+        "kind": "tool_started",
+        "data": {
+          "id": "call_3",
+          "name": "run_check",
+          "arguments": {
+            "id": "test"
+          }
+        }
+      },
+      {
+        "sequence": 15,
+        "at": "2026-09-05T20:41:55.885Z",
+        "kind": "tool_completed",
+        "data": {
+          "id": "call_3",
+          "name": "run_check",
+          "output": {
+            "id": "test",
+            "argv": [
+              "/opt/homebrew/Cellar/node@24/24.18.1/bin/node",
+              "--input-type=module",
+              "-e",
+              "import {verified} from './src/feature.ts'; if(!verified) throw new Error('incorrect candidate')"
+            ],
+            "candidateDigest": "f182c397ea741478ea78554f90eb0f82d28151de0cf32b7a9398c96bfdd32cdf",
+            "status": "passed",
+            "exitCode": 0,
+            "signal": null,
+            "stdout": "",
+            "stderr": "",
+            "durationMs": 184,
+            "isolation": "macos-seatbelt-snapshot",
+            "independent": false
+          },
+          "durationMs": 244
+        }
+      },
+      {
+        "sequence": 16,
+        "at": "2026-09-05T20:41:55.898Z",
+        "kind": "model_started",
+        "data": {
+          "call": 4
+        }
+      },
+      {
+        "sequence": 17,
+        "at": "2026-09-05T20:41:55.899Z",
+        "kind": "model_completed",
+        "data": {
+          "call": 4,
+          "durationMs": 1,
+          "usage": {
+            "inputTokens": 10,
+            "outputTokens": 5,
+            "cachedTokens": null,
+            "costUsd": null
+          },
+          "finish": "tools",
+          "returnedModel": "fixture-explicit-model"
+        }
+      },
+      {
+        "sequence": 18,
+        "at": "2026-09-05T20:41:55.900Z",
+        "kind": "tool_started",
+        "data": {
+          "id": "call_4",
+          "name": "finish_candidate",
+          "arguments": {
+            "summary": "Feature corrected",
+            "unresolved": []
+          }
+        }
+      },
+      {
+        "sequence": 19,
+        "at": "2026-09-05T20:41:55.963Z",
+        "kind": "tool_completed",
+        "data": {
+          "id": "call_4",
+          "name": "finish_candidate",
+          "output": {
+            "status": "candidate",
+            "independent": false,
+            "acceptance": "not_evaluated",
+            "acceptanceCriteria": [
+              {
+                "criterion": "Candidate change is independently verified",
+                "checks": [
+                  "test"
+                ],
+                "assessment": "Human review required; passing checks alone do not establish coverage."
+              }
+            ]
+          },
+          "durationMs": 63
+        }
+      }
+    ],
+    "checks": [
+      {
+        "id": "test",
+        "argv": "[Circular]",
+        "candidateDigest": "f182c397ea741478ea78554f90eb0f82d28151de0cf32b7a9398c96bfdd32cdf",
+        "status": "passed",
+        "exitCode": 0,
+        "signal": null,
+        "stdout": "",
+        "stderr": "",
+        "durationMs": 184,
+        "isolation": "macos-seatbelt-snapshot",
+        "independent": false
+      }
+    ],
+    "usage": {
+      "inputTokens": 40,
+      "outputTokens": 20,
+      "cachedTokens": null,
+      "costUsd": null
+    },
+    "modelCalls": 4,
+    "retries": 0,
+    "filesRead": [],
+    "filesModified": [
+      "src/feature.ts"
+    ],
+    "candidateDigest": "f182c397ea741478ea78554f90eb0f82d28151de0cf32b7a9398c96bfdd32cdf",
+    "candidateRevision": "77f03f5984c492159138958d07535caa2fd267c1",
+    "diff": "diff --git a/src/feature.ts b/src/feature.ts\nindex 66e2326..a9880aa 100644\n--- a/src/feature.ts\n+++ b/src/feature.ts\n@@ -1 +1 @@\n-export const verified = false;\n+export const verified = true;\n",
+    "summary": "Feature corrected",
+    "unresolved": [],
+    "independent": false,
+    "acceptance": "not_evaluated",
+    "governed": {
+      "workOrderId": "work-order-1",
+      "attemptId": "factory-run-1",
+      "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+      "executorIdentity": "worker-1:session-1:1",
+      "environmentReference": "local-worktree:factory-run-1",
+      "credentialReference": "fab-governed-fixture",
+      "sourceRevision": "0be73566e3e75582ac4a39dcc303a1f87a053097",
+      "candidateRevision": "77f03f5984c492159138958d07535caa2fd267c1",
+      "startedAt": "2026-09-05T20:41:55.426Z",
+      "completedAt": "2026-09-05T20:41:56.040Z"
+    }
+  },
+  "reports": [
+    {
+      "events": [
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:1",
+          "eventType": "STEP_STARTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "MC-authorized Fab planning and bounded execution",
+          "status": "RECORDED",
+          "startedAt": 1788640915451,
+          "metadata": {
+            "executorEventType": "EXECUTION_STARTED",
+            "executorSequence": 1,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "workOrderId": "work-order-1",
+            "attemptId": "factory-run-1",
+            "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+            "executorIdentity": "worker-1:session-1:1",
+            "environmentReference": "local-worktree:factory-run-1",
+            "credentialReference": "fab-governed-fixture",
+            "sourceRevision": "0be73566e3e75582ac4a39dcc303a1f87a053097",
+            "candidateRevision": null,
+            "startedAt": "2026-09-05T20:41:55.426Z",
+            "completedAt": null
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:2",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "stage_started",
+          "status": "RECORDED",
+          "startedAt": 1788640915534,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 2,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 1,
+            "producerOnly": true
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:3",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "model_started",
+          "status": "RECORDED",
+          "startedAt": 1788640915547,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 3,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 2,
+            "producerOnly": true
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:4",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "model_completed",
+          "status": "RECORDED",
+          "startedAt": 1788640915549,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 4,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 3,
+            "producerOnly": true,
+            "durationMs": 2,
+            "usage": {
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "cachedTokens": null,
+              "costUsd": null
+            },
+            "finish": "tools",
+            "returnedModel": "fixture-explicit-model"
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:5",
+          "eventType": "TOOL_CALLED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "tool_started",
+          "status": "RECORDED",
+          "startedAt": 1788640915549,
+          "metadata": {
+            "executorEventType": "TOOL_CALLED",
+            "executorSequence": 5,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 4,
+            "producerOnly": true,
+            "tool": "submit_plan",
+            "toolCallId": "call_1"
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:6",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "tool_completed",
+          "status": "RECORDED",
+          "startedAt": 1788640915575,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 6,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 5,
+            "producerOnly": true,
+            "tool": "submit_plan",
+            "toolCallId": "call_1",
+            "durationMs": 26
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:7",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "plan_approved",
+          "status": "RECORDED",
+          "startedAt": 1788640915612,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 7,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 6,
+            "producerOnly": true
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:8",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "stage_started",
+          "status": "RECORDED",
+          "startedAt": 1788640915613,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 8,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 7,
+            "producerOnly": true
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:9",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "model_started",
+          "status": "RECORDED",
+          "startedAt": 1788640915625,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 9,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 8,
+            "producerOnly": true
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:10",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "model_completed",
+          "status": "RECORDED",
+          "startedAt": 1788640915626,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 10,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 9,
+            "producerOnly": true,
+            "durationMs": 1,
+            "usage": {
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "cachedTokens": null,
+              "costUsd": null
+            },
+            "finish": "tools",
+            "returnedModel": "fixture-explicit-model"
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:11",
+          "eventType": "TOOL_CALLED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "tool_started",
+          "status": "RECORDED",
+          "startedAt": 1788640915626,
+          "metadata": {
+            "executorEventType": "TOOL_CALLED",
+            "executorSequence": 11,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 10,
+            "producerOnly": true,
+            "tool": "write_file",
+            "toolCallId": "call_2"
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:12",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "tool_completed",
+          "status": "RECORDED",
+          "startedAt": 1788640915628,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 12,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 11,
+            "producerOnly": true,
+            "tool": "write_file",
+            "toolCallId": "call_2",
+            "durationMs": 1
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:13",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "model_started",
+          "status": "RECORDED",
+          "startedAt": 1788640915639,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 13,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 12,
+            "producerOnly": true
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:14",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "model_completed",
+          "status": "RECORDED",
+          "startedAt": 1788640915641,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 14,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 13,
+            "producerOnly": true,
+            "durationMs": 1,
+            "usage": {
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "cachedTokens": null,
+              "costUsd": null
+            },
+            "finish": "tools",
+            "returnedModel": "fixture-explicit-model"
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:15",
+          "eventType": "TOOL_CALLED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "tool_started",
+          "status": "RECORDED",
+          "startedAt": 1788640915641,
+          "metadata": {
+            "executorEventType": "TOOL_CALLED",
+            "executorSequence": 15,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 14,
+            "producerOnly": true,
+            "tool": "run_check",
+            "toolCallId": "call_3"
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:16",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "tool_completed",
+          "status": "RECORDED",
+          "startedAt": 1788640915886,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 16,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 15,
+            "producerOnly": true,
+            "tool": "run_check",
+            "toolCallId": "call_3",
+            "durationMs": 244,
+            "observedStatus": "passed",
+            "candidateDigest": "f182c397ea741478ea78554f90eb0f82d28151de0cf32b7a9398c96bfdd32cdf"
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:17",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "model_started",
+          "status": "RECORDED",
+          "startedAt": 1788640915899,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 17,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 16,
+            "producerOnly": true
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:18",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "model_completed",
+          "status": "RECORDED",
+          "startedAt": 1788640915899,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 18,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 17,
+            "producerOnly": true,
+            "durationMs": 1,
+            "usage": {
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "cachedTokens": null,
+              "costUsd": null
+            },
+            "finish": "tools",
+            "returnedModel": "fixture-explicit-model"
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:19",
+          "eventType": "TOOL_CALLED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "tool_started",
+          "status": "RECORDED",
+          "startedAt": 1788640915900,
+          "metadata": {
+            "executorEventType": "TOOL_CALLED",
+            "executorSequence": 19,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 18,
+            "producerOnly": true,
+            "tool": "finish_candidate",
+            "toolCallId": "call_4"
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:20",
+          "eventType": "COMMAND_EXECUTED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "tool_completed",
+          "status": "RECORDED",
+          "startedAt": 1788640915964,
+          "metadata": {
+            "executorEventType": "ARTIFACT_PRODUCED",
+            "executorSequence": 20,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+            "fabSequence": 19,
+            "producerOnly": true,
+            "tool": "finish_candidate",
+            "toolCallId": "call_4",
+            "durationMs": 63,
+            "observedStatus": "candidate"
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:executor:21",
+          "eventType": "STEP_COMPLETED",
+          "workflowStep": "factory-execution",
+          "commandSummary": "Fab completed",
+          "status": "RECORDED",
+          "startedAt": 1788640916041,
+          "metadata": {
+            "executorEventType": "EXECUTION_COMPLETED",
+            "executorSequence": 21,
+            "harnessAdapter": "fab",
+            "harnessAdapterVersion": "v1",
+            "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39"
+          }
+        }
+      ],
+      "observations": [
+        {
+          "idempotencyKey": "harness-agent:factory-run-1",
+          "type": "AGENT",
+          "name": "Fab (Experimental) implementation agent",
+          "startedAt": 1788640915451,
+          "endedAt": 1788640916041,
+          "status": "SUCCESS",
+          "model": "fixture-explicit-model",
+          "provider": "openai",
+          "input": {
+            "promptDigest": "sha256:be22114a864bf2ebb1a6f207672d29b02730a1679947eff2219d8db91883c76c"
+          },
+          "output": {
+            "summary": "Fab completed"
+          },
+          "metadata": {
+            "adapter": "fab",
+            "adapterVersion": "v1"
+          }
+        },
+        {
+          "idempotencyKey": "harness-generation:factory-run-1:primary",
+          "parentIdempotencyKey": "harness-agent:factory-run-1",
+          "type": "GENERATION",
+          "name": "fixture-explicit-model execution",
+          "startedAt": 1788640915451,
+          "endedAt": 1788640916041,
+          "status": "SUCCESS",
+          "model": "fixture-explicit-model",
+          "provider": "openai",
+          "input": {
+            "promptDigest": "sha256:be22114a864bf2ebb1a6f207672d29b02730a1679947eff2219d8db91883c76c"
+          },
+          "output": {
+            "summary": "Fab completed"
+          }
+        }
+      ],
+      "artifacts": [
+        {
+          "idempotencyKey": "factory:factory-run-1:structured-result",
+          "artifactType": "STRUCTURED_OUTPUT",
+          "name": "Execution harness factory-result/v1",
+          "description": "Feature corrected",
+          "contentHash": "sha256:a7c11b12062e9f493297e70450e06825eca2303d9eb43bfc4d2714759aa75637",
+          "metadata": {
+            "schema": "factory-result/v1",
+            "acceptanceAuthority": false,
+            "result": {
+              "schema": "factory-result/v1",
+              "status": "COMPLETED",
+              "summary": "Feature corrected",
+              "completedAcceptanceCriterionIds": [],
+              "incompleteAcceptanceCriterionIds": [],
+              "unknownAcceptanceCriterionIds": [
+                "ac-1"
+              ],
+              "verificationCommands": [
+                "/opt/homebrew/Cellar/node@24/24.18.1/bin/node --input-type=module -e import {verified} from './src/feature.ts'; if(!verified) throw new Error('incorrect candidate')"
+              ],
+              "knownRisks": [
+                "Fab producer checks are not independent acceptance evidence."
+              ],
+              "nextAction": "MC must capture and independently verify the exact candidate, then apply its approval/publication policy."
+            }
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:harness-result:sha256:5c20563be9f892b6294cb0156e3bf1e0fa2f8320e940a0021743b1b335188597",
+          "artifactType": "STRUCTURED_OUTPUT",
+          "name": "fab normalized harness-result/v1",
+          "description": "Untrusted execution result: COMPLETED. Independent verification remains authoritative.",
+          "contentHash": "sha256:ab72515549f92628ba3f2d6cd5928f710efb37c60dc3bef738f81959341c4c7c",
+          "retentionPolicy": "ATTEMPT_EVIDENCE",
+          "sensitivity": "INTERNAL",
+          "metadata": {
+            "schema": "harness-result/v1",
+            "acceptanceAuthority": false,
+            "result": {
+              "schemaVersion": "harness-result/v1",
+              "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+              "status": "COMPLETED",
+              "harness": {
+                "harnessId": "fab",
+                "harnessVersion": "0.1.0-experimental.1",
+                "harnessCommit": "6f27dbc8a1f4bc2891d0ef656299f9760864d108",
+                "adapterId": "fab",
+                "adapterVersion": "v1"
+              },
+              "provenance": {
+                "provider": "openai",
+                "model": "fixture-explicit-model",
+                "capabilityManifestSha256": "sha256:59e5317a81fba899e9c0133eb608f27ca224994688d570c5198cb41c5914ca2a",
+                "effectiveConfigSha256": "151b42c6f5da2770ce3254f6db0b86f4fb90b40d9b02a6186af9b1e8db0795de",
+                "executableSha256": null,
+                "requestSha256": "sha256:5c20563be9f892b6294cb0156e3bf1e0fa2f8320e940a0021743b1b335188597",
+                "providerMetadata": {
+                  "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                  "workOrderId": "work-order-1",
+                  "attemptId": "factory-run-1",
+                  "credentialReference": "fab-governed-fixture",
+                  "environmentReference": "local-worktree:factory-run-1"
+                }
+              },
+              "timing": {
+                "startedAt": 1788640915450,
+                "finishedAt": 1788640916041,
+                "wallClockMs": 591
+              },
+              "repository": {
+                "root": "/private/tmp/mc-verification-first-worker-nq6mc2/.mission-control/worktrees/attempt-1",
+                "workingDirectory": "/private/tmp/mc-verification-first-worker-nq6mc2/.mission-control/worktrees/attempt-1",
+                "baselineCommit": "0be73566e3e75582ac4a39dcc303a1f87a053097",
+                "headCommit": "0be73566e3e75582ac4a39dcc303a1f87a053097",
+                "headChanged": false,
+                "changedFiles": [
+                  {
+                    "path": "src/feature.ts",
+                    "status": "M",
+                    "additions": null,
+                    "deletions": null
+                  }
+                ],
+                "scopeViolations": []
+              },
+              "events": {
+                "items": [
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 1,
+                    "type": "EXECUTION_STARTED",
+                    "occurredAt": 1788640915451,
+                    "summary": "MC-authorized Fab planning and bounded execution",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "workOrderId": "work-order-1",
+                      "attemptId": "factory-run-1",
+                      "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                      "executorIdentity": "worker-1:session-1:1",
+                      "environmentReference": "local-worktree:factory-run-1",
+                      "credentialReference": "fab-governed-fixture",
+                      "sourceRevision": "0be73566e3e75582ac4a39dcc303a1f87a053097",
+                      "candidateRevision": null,
+                      "startedAt": "2026-09-05T20:41:55.426Z",
+                      "completedAt": null
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 2,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915534,
+                    "summary": "stage_started",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 1,
+                      "producerOnly": true
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 3,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915547,
+                    "summary": "model_started",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 2,
+                      "producerOnly": true
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 4,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915549,
+                    "summary": "model_completed",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 3,
+                      "producerOnly": true,
+                      "durationMs": 2,
+                      "usage": {
+                        "inputTokens": "[REDACTED]",
+                        "outputTokens": "[REDACTED]",
+                        "cachedTokens": "[REDACTED]",
+                        "costUsd": null
+                      },
+                      "finish": "tools",
+                      "returnedModel": "fixture-explicit-model"
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 5,
+                    "type": "TOOL_CALLED",
+                    "occurredAt": 1788640915549,
+                    "summary": "tool_started",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 4,
+                      "producerOnly": true,
+                      "tool": "submit_plan",
+                      "toolCallId": "call_1"
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 6,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915575,
+                    "summary": "tool_completed",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 5,
+                      "producerOnly": true,
+                      "tool": "submit_plan",
+                      "toolCallId": "call_1",
+                      "durationMs": 26
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 7,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915612,
+                    "summary": "plan_approved",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 6,
+                      "producerOnly": true
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 8,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915613,
+                    "summary": "stage_started",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 7,
+                      "producerOnly": true
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 9,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915625,
+                    "summary": "model_started",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 8,
+                      "producerOnly": true
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 10,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915626,
+                    "summary": "model_completed",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 9,
+                      "producerOnly": true,
+                      "durationMs": 1,
+                      "usage": {
+                        "inputTokens": "[REDACTED]",
+                        "outputTokens": "[REDACTED]",
+                        "cachedTokens": "[REDACTED]",
+                        "costUsd": null
+                      },
+                      "finish": "tools",
+                      "returnedModel": "fixture-explicit-model"
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 11,
+                    "type": "TOOL_CALLED",
+                    "occurredAt": 1788640915626,
+                    "summary": "tool_started",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 10,
+                      "producerOnly": true,
+                      "tool": "write_file",
+                      "toolCallId": "call_2"
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 12,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915628,
+                    "summary": "tool_completed",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 11,
+                      "producerOnly": true,
+                      "tool": "write_file",
+                      "toolCallId": "call_2",
+                      "durationMs": 1
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 13,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915639,
+                    "summary": "model_started",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 12,
+                      "producerOnly": true
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 14,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915641,
+                    "summary": "model_completed",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 13,
+                      "producerOnly": true,
+                      "durationMs": 1,
+                      "usage": {
+                        "inputTokens": "[REDACTED]",
+                        "outputTokens": "[REDACTED]",
+                        "cachedTokens": "[REDACTED]",
+                        "costUsd": null
+                      },
+                      "finish": "tools",
+                      "returnedModel": "fixture-explicit-model"
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 15,
+                    "type": "TOOL_CALLED",
+                    "occurredAt": 1788640915641,
+                    "summary": "tool_started",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 14,
+                      "producerOnly": true,
+                      "tool": "run_check",
+                      "toolCallId": "call_3"
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 16,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915886,
+                    "summary": "tool_completed",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 15,
+                      "producerOnly": true,
+                      "tool": "run_check",
+                      "toolCallId": "call_3",
+                      "durationMs": 244,
+                      "observedStatus": "passed",
+                      "candidateDigest": "f182c397ea741478ea78554f90eb0f82d28151de0cf32b7a9398c96bfdd32cdf"
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 17,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915899,
+                    "summary": "model_started",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 16,
+                      "producerOnly": true
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 18,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915899,
+                    "summary": "model_completed",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 17,
+                      "producerOnly": true,
+                      "durationMs": 1,
+                      "usage": {
+                        "inputTokens": "[REDACTED]",
+                        "outputTokens": "[REDACTED]",
+                        "cachedTokens": "[REDACTED]",
+                        "costUsd": null
+                      },
+                      "finish": "tools",
+                      "returnedModel": "fixture-explicit-model"
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 19,
+                    "type": "TOOL_CALLED",
+                    "occurredAt": 1788640915900,
+                    "summary": "tool_started",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 18,
+                      "producerOnly": true,
+                      "tool": "finish_candidate",
+                      "toolCallId": "call_4"
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 20,
+                    "type": "ARTIFACT_PRODUCED",
+                    "occurredAt": 1788640915964,
+                    "summary": "tool_completed",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39",
+                      "fabSequence": 19,
+                      "producerOnly": true,
+                      "tool": "finish_candidate",
+                      "toolCallId": "call_4",
+                      "durationMs": 63,
+                      "observedStatus": "candidate"
+                    }
+                  },
+                  {
+                    "executionId": "factory-run-1:sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+                    "sequence": 21,
+                    "type": "EXECUTION_COMPLETED",
+                    "occurredAt": 1788640916041,
+                    "summary": "Fab completed",
+                    "metadata": {
+                      "fabSessionId": "049dba0e-6c8b-2b07-4fe2-8297ad203a39"
+                    }
+                  }
+                ],
+                "toolCalls": 4,
+                "modelRequests": 4,
+                "retries": 0,
+                "sessionCount": 1
+              },
+              "usage": {
+                "inputTokens": 40,
+                "outputTokens": 20,
+                "cacheReadTokens": null,
+                "cacheWriteTokens": null,
+                "costUsd": null
+              },
+              "exitCode": null,
+              "signal": null,
+              "output": "{\"schema\":\"factory-result/v1\",\"status\":\"COMPLETED\",\"summary\":\"Feature corrected\",\"completedAcceptanceCriterionIds\":[],\"incompleteAcceptanceCriterionIds\":[],\"unknownAcceptanceCriterionIds\":[\"ac-1\"],\"verificationCommands\":[\"/opt/homebrew/Cellar/node@24/24.18.1/bin/node --input-type=module -e import {verified} from './src/feature.ts'; if(!verified) throw new Error('incorrect candidate')\"],\"knownRisks\":[\"Fab producer checks are not independent acceptance evidence.\"],\"nextAction\":\"MC must capture and independently verify the exact candidate, then apply its approval/publication policy.\"}",
+              "structuredOutput": {
+                "schema": "factory-result/v1",
+                "summary": "Feature corrected"
+              },
+              "error": null,
+              "cancellation": {
+                "requested": false,
+                "mode": "IN_PROCESS_AGENT"
+              },
+              "cleanup": {
+                "status": "COMPLETED",
+                "completedAt": 1788640916041,
+                "error": null
+              }
+            }
+          }
+        },
+        {
+          "idempotencyKey": "factory:factory-run-1:code-diff:77f03f5984c492159138958d07535caa2fd267c1",
+          "artifactType": "CODE_DIFF",
+          "name": "Reviewable code change 77f03f5984c4",
+          "contentHash": "git:77f03f5984c492159138958d07535caa2fd267c1",
+          "metadata": {
+            "changedFiles": [
+              "src/feature.ts"
+            ],
+            "deletedFiles": [],
+            "linesAdded": 1,
+            "linesDeleted": 1,
+            "branch": "mc/verification-first-fixture-1",
+            "sourceRevision": "0be73566e3e75582ac4a39dcc303a1f87a053097",
+            "headSha": "77f03f5984c492159138958d07535caa2fd267c1",
+            "treeSha": "d44d6e0b256fa6a5c9be4806b6468ffa513df4f0"
+          }
+        }
+      ],
+      "verification": {
+        "engineVersion": "verification-engine/v1",
+        "startedAt": 1788640916232,
+        "completedAt": 1788640916276,
+        "sourceRevision": "0be73566e3e75582ac4a39dcc303a1f87a053097",
+        "candidateRevision": "77f03f5984c492159138958d07535caa2fd267c1",
+        "checks": [
+          {
+            "checkId": "factory-negative-constraints",
+            "name": "Negative-space constraints",
+            "category": "POLICY",
+            "verifierId": "factory-negative-constraints",
+            "mandatory": true,
+            "status": "PASS",
+            "summary": "All negative-space constraints were satisfied.",
+            "acceptanceCriterionIds": [],
+            "startedAt": 1788640916232,
+            "completedAt": 1788640916232,
+            "durationMs": 0,
+            "violations": [],
+            "evidence": [
+              {
+                "evidenceKey": "fab-verification-attempt-1:factory-negative-constraints",
+                "category": "POLICY_RESULT",
+                "result": "PASS",
+                "summary": "Negative-space constraints satisfied.",
+                "acceptanceCriterionIds": [],
+                "producer": {
+                  "id": "factory-negative-constraints",
+                  "role": "FACTORY_POLICY",
+                  "independent": true,
+                  "definitionAuthority": "INDEPENDENT"
+                },
+                "metadata": {
+                  "evaluatedConstraintIds": [
+                    "no-test-removal"
+                  ]
+                }
+              }
+            ],
+            "metadata": {
+              "blocking": false
+            }
+          },
+          {
+            "checkId": "factory-verification-authority",
+            "name": "Verification authority",
+            "category": "POLICY",
+            "verifierId": "factory-verification-authority",
+            "mandatory": true,
+            "status": "PASS",
+            "summary": "The candidate did not modify any file that determines a verification verdict.",
+            "acceptanceCriterionIds": [],
+            "startedAt": 1788640916232,
+            "completedAt": 1788640916232,
+            "durationMs": 0,
+            "violations": [],
+            "evidence": [
+              {
+                "evidenceKey": "fab-verification-attempt-1:factory-verification-authority",
+                "category": "POLICY_RESULT",
+                "result": "PASS",
+                "summary": "The candidate did not modify any file that determines a verification verdict.",
+                "acceptanceCriterionIds": [],
+                "producer": {
+                  "id": "factory-verification-authority",
+                  "role": "FACTORY_POLICY",
+                  "independent": true,
+                  "definitionAuthority": "INDEPENDENT"
+                },
+                "metadata": {
+                  "findings": [],
+                  "allowedMutations": [],
+                  "commandAuthority": [
+                    {
+                      "checkId": "deterministic-test",
+                      "executable": "node",
+                      "authority": "CANDIDATE_DEFINED",
+                      "definedBy": [
+                        "PACKAGE_MANIFEST",
+                        "TEST_CONFIG",
+                        "TEST_SOURCE"
+                      ]
+                    }
+                  ],
+                  "authorityDigestInput": "{\"v\":1,\"status\":\"PASS\",\"blocked\":[],\"allowed\":[],\"observed\":[],\"commands\":[{\"c\":\"deterministic-test\",\"e\":\"node\",\"a\":\"CANDIDATE_DEFINED\"}]}"
+                }
+              }
+            ],
+            "metadata": {
+              "blocking": false
+            }
+          },
+          {
+            "checkId": "factory-change-budget",
+            "name": "Change budget",
+            "category": "CHANGE_BUDGET",
+            "verifierId": "factory-change-budget",
+            "mandatory": true,
+            "status": "PASS",
+            "summary": "Change stayed within 1 files and 2 changed lines.",
+            "acceptanceCriterionIds": [],
+            "startedAt": 1788640916232,
+            "completedAt": 1788640916232,
+            "durationMs": 0,
+            "violations": [],
+            "evidence": [
+              {
+                "evidenceKey": "fab-verification-attempt-1:factory-change-budget",
+                "category": "POLICY_RESULT",
+                "result": "PASS",
+                "summary": "Change budget satisfied.",
+                "acceptanceCriterionIds": [],
+                "producer": {
+                  "id": "factory-change-budget",
+                  "role": "FACTORY_POLICY",
+                  "independent": true,
+                  "definitionAuthority": "INDEPENDENT"
+                },
+                "metadata": {
+                  "changedFiles": [
+                    "src/feature.ts"
+                  ],
+                  "linesAdded": 1,
+                  "linesDeleted": 1,
+                  "maximumFiles": 1,
+                  "maximumLines": 2
+                }
+              }
+            ],
+            "metadata": {
+              "blocking": false
+            }
+          },
+          {
+            "checkId": "deterministic-test",
+            "name": "Deterministic independent test",
+            "category": "UNIT_TEST",
+            "verifierId": "factory-command/v1",
+            "mandatory": true,
+            "status": "PASS",
+            "summary": "Command completed successfully.",
+            "acceptanceCriterionIds": [
+              "ac-1"
+            ],
+            "startedAt": 1788640916232,
+            "completedAt": 1788640916276,
+            "durationMs": 44,
+            "violations": [],
+            "evidence": [
+              {
+                "evidenceKey": "deterministic-test:command-output",
+                "category": "TEST_RESULT",
+                "result": "PASS",
+                "summary": "Command completed successfully.",
+                "acceptanceCriterionIds": [
+                  "ac-1"
+                ],
+                "producer": {
+                  "id": "factory-command/v1",
+                  "role": "INDEPENDENT_VERIFIER",
+                  "independent": true,
+                  "definitionAuthority": "CANDIDATE_DEPENDENT"
+                },
+                "contentHash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                "metadata": {
+                  "executable": "node",
+                  "args": [
+                    "-e",
+                    "if(!require('fs').readFileSync('src/feature.ts','utf8').includes('verified = true')) throw new Error('incorrect candidate')"
+                  ],
+                  "commandClass": "TEST",
+                  "output": "",
+                  "outputTruncated": false,
+                  "independenceReason": "node resolves its behaviour from PACKAGE_MANIFEST, TEST_CONFIG, TEST_SOURCE inside the candidate repository. The candidate did not change them for this candidate, so the result is trustworthy as a repository-defined check — but it is candidate-dependent, not independent."
+                }
+              }
+            ],
+            "metadata": {
+              "command": [
+                "node",
+                "-e",
+                "if(!require('fs').readFileSync('src/feature.ts','utf8').includes('verified = true')) throw new Error('incorrect candidate')"
+              ],
+              "commandClass": "TEST",
+              "policyDecision": "APPROVED"
+            }
+          }
+        ],
+        "coverage": [
+          {
+            "criterionId": "ac-1",
+            "title": "Candidate change is independently verified",
+            "status": "EVIDENCED",
+            "requiredEvidenceCount": 1,
+            "usableEvidenceCount": 1,
+            "missingEvidence": [],
+            "evidenceKeys": [
+              "deterministic-test:command-output"
+            ]
+          }
+        ],
+        "requirementsPassed": 1,
+        "requirementsFailed": 0,
+        "violations": [],
+        "approvalRequirements": [],
+        "riskLevel": "MEDIUM",
+        "riskReasons": [
+          "Bounded source change"
+        ],
+        "verdict": "VERIFIED",
+        "verdictReasons": [
+          "All mandatory checks passed and every acceptance criterion has usable evidence."
+        ]
+      }
+    },
+    {
+      "events": [],
+      "observations": [],
+      "artifacts": [
+        {
+          "idempotencyKey": "factory:factory-run-1:pull-request",
+          "artifactType": "PULL_REQUEST",
+          "name": "Pull request #42",
+          "description": "Review-ready pull request created by the governed GitHub App boundary. Human merge remains required.",
+          "externalLocation": "https://github.com/sellerfi/mission-control-fixture/pull/42",
+          "contentHash": "sha256:a8c7519109d61688cf4cc55a6c783b89e55f999d9dcf01f9bff18ec81520155c",
+          "metadata": {
+            "workflowRunId": "workflow-run-1",
+            "workOrderRevisionNumber": 1,
+            "sourceIssue": "sellerfi/mission-control-fixture#17",
+            "repositoryId": "repository-1",
+            "repository": "sellerfi/mission-control-fixture",
+            "installationId": "303",
+            "branch": "mc/verification-first-fixture-1",
+            "sourceRevision": "0be73566e3e75582ac4a39dcc303a1f87a053097",
+            "headSha": "77f03f5984c492159138958d07535caa2fd267c1",
+            "pullRequestNumber": 42,
+            "pullRequestUrl": "https://github.com/sellerfi/mission-control-fixture/pull/42",
+            "providerPullRequestId": "PR_fixture",
+            "draftAtPublication": false,
+            "changedFiles": [
+              "src/feature.ts"
+            ],
+            "executionManifestDigest": "sha256:9cff34a0fc8edaae60bdad33adc0fc420b6ae5a9ddbfcc90a9b3b19c7962ce93",
+            "publicationPermitId": "permit:396f5beb-0214-41fa-a513-d7337ec55a70"
+          }
+        }
+      ],
+      "terminal": {
+        "status": "COMPLETED"
+      }
+    }
+  ],
+  "verifierAttempts": [
+    {
+      "capability": "verification:report",
+      "packet": {
+        "verification": {
+          "engineVersion": "verification-engine/v1",
+          "startedAt": 1788640916232,
+          "completedAt": 1788640916276,
+          "sourceRevision": "0be73566e3e75582ac4a39dcc303a1f87a053097",
+          "candidateRevision": "77f03f5984c492159138958d07535caa2fd267c1",
+          "checks": [
+            {
+              "checkId": "factory-negative-constraints",
+              "name": "Negative-space constraints",
+              "category": "POLICY",
+              "verifierId": "factory-negative-constraints",
+              "mandatory": true,
+              "status": "PASS",
+              "summary": "All negative-space constraints were satisfied.",
+              "acceptanceCriterionIds": [],
+              "startedAt": 1788640916232,
+              "completedAt": 1788640916232,
+              "durationMs": 0,
+              "violations": [],
+              "evidence": [
+                {
+                  "evidenceKey": "fab-verification-attempt-1:factory-negative-constraints",
+                  "category": "POLICY_RESULT",
+                  "result": "PASS",
+                  "summary": "Negative-space constraints satisfied.",
+                  "acceptanceCriterionIds": [],
+                  "producer": {
+                    "id": "factory-negative-constraints",
+                    "role": "FACTORY_POLICY",
+                    "independent": true,
+                    "definitionAuthority": "INDEPENDENT"
+                  },
+                  "metadata": {
+                    "evaluatedConstraintIds": [
+                      "no-test-removal"
+                    ]
+                  }
+                }
+              ],
+              "metadata": {
+                "blocking": false
+              }
+            },
+            {
+              "checkId": "factory-verification-authority",
+              "name": "Verification authority",
+              "category": "POLICY",
+              "verifierId": "factory-verification-authority",
+              "mandatory": true,
+              "status": "PASS",
+              "summary": "The candidate did not modify any file that determines a verification verdict.",
+              "acceptanceCriterionIds": [],
+              "startedAt": 1788640916232,
+              "completedAt": 1788640916232,
+              "durationMs": 0,
+              "violations": [],
+              "evidence": [
+                {
+                  "evidenceKey": "fab-verification-attempt-1:factory-verification-authority",
+                  "category": "POLICY_RESULT",
+                  "result": "PASS",
+                  "summary": "The candidate did not modify any file that determines a verification verdict.",
+                  "acceptanceCriterionIds": [],
+                  "producer": {
+                    "id": "factory-verification-authority",
+                    "role": "FACTORY_POLICY",
+                    "independent": true,
+                    "definitionAuthority": "INDEPENDENT"
+                  },
+                  "metadata": {
+                    "findings": [],
+                    "allowedMutations": [],
+                    "commandAuthority": [
+                      {
+                        "checkId": "deterministic-test",
+                        "executable": "node",
+                        "authority": "CANDIDATE_DEFINED",
+                        "definedBy": [
+                          "PACKAGE_MANIFEST",
+                          "TEST_CONFIG",
+                          "TEST_SOURCE"
+                        ]
+                      }
+                    ],
+                    "authorityDigestInput": "{\"v\":1,\"status\":\"PASS\",\"blocked\":[],\"allowed\":[],\"observed\":[],\"commands\":[{\"c\":\"deterministic-test\",\"e\":\"node\",\"a\":\"CANDIDATE_DEFINED\"}]}"
+                  }
+                }
+              ],
+              "metadata": {
+                "blocking": false
+              }
+            },
+            {
+              "checkId": "factory-change-budget",
+              "name": "Change budget",
+              "category": "CHANGE_BUDGET",
+              "verifierId": "factory-change-budget",
+              "mandatory": true,
+              "status": "PASS",
+              "summary": "Change stayed within 1 files and 2 changed lines.",
+              "acceptanceCriterionIds": [],
+              "startedAt": 1788640916232,
+              "completedAt": 1788640916232,
+              "durationMs": 0,
+              "violations": [],
+              "evidence": [
+                {
+                  "evidenceKey": "fab-verification-attempt-1:factory-change-budget",
+                  "category": "POLICY_RESULT",
+                  "result": "PASS",
+                  "summary": "Change budget satisfied.",
+                  "acceptanceCriterionIds": [],
+                  "producer": {
+                    "id": "factory-change-budget",
+                    "role": "FACTORY_POLICY",
+                    "independent": true,
+                    "definitionAuthority": "INDEPENDENT"
+                  },
+                  "metadata": {
+                    "changedFiles": [
+                      "src/feature.ts"
+                    ],
+                    "linesAdded": 1,
+                    "linesDeleted": 1,
+                    "maximumFiles": 1,
+                    "maximumLines": 2
+                  }
+                }
+              ],
+              "metadata": {
+                "blocking": false
+              }
+            },
+            {
+              "checkId": "deterministic-test",
+              "name": "Deterministic independent test",
+              "category": "UNIT_TEST",
+              "verifierId": "factory-command/v1",
+              "mandatory": true,
+              "status": "PASS",
+              "summary": "Command completed successfully.",
+              "acceptanceCriterionIds": [
+                "ac-1"
+              ],
+              "startedAt": 1788640916232,
+              "completedAt": 1788640916276,
+              "durationMs": 44,
+              "violations": [],
+              "evidence": [
+                {
+                  "evidenceKey": "deterministic-test:command-output",
+                  "category": "TEST_RESULT",
+                  "result": "PASS",
+                  "summary": "Command completed successfully.",
+                  "acceptanceCriterionIds": [
+                    "ac-1"
+                  ],
+                  "producer": {
+                    "id": "factory-command/v1",
+                    "role": "INDEPENDENT_VERIFIER",
+                    "independent": true,
+                    "definitionAuthority": "CANDIDATE_DEPENDENT"
+                  },
+                  "contentHash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "metadata": {
+                    "executable": "node",
+                    "args": [
+                      "-e",
+                      "if(!require('fs').readFileSync('src/feature.ts','utf8').includes('verified = true')) throw new Error('incorrect candidate')"
+                    ],
+                    "commandClass": "TEST",
+                    "output": "",
+                    "outputTruncated": false,
+                    "independenceReason": "node resolves its behaviour from PACKAGE_MANIFEST, TEST_CONFIG, TEST_SOURCE inside the candidate repository. The candidate did not change them for this candidate, so the result is trustworthy as a repository-defined check — but it is candidate-dependent, not independent."
+                  }
+                }
+              ],
+              "metadata": {
+                "command": [
+                  "node",
+                  "-e",
+                  "if(!require('fs').readFileSync('src/feature.ts','utf8').includes('verified = true')) throw new Error('incorrect candidate')"
+                ],
+                "commandClass": "TEST",
+                "policyDecision": "APPROVED"
+              }
+            }
+          ],
+          "coverage": [
+            {
+              "criterionId": "ac-1",
+              "title": "Candidate change is independently verified",
+              "status": "EVIDENCED",
+              "requiredEvidenceCount": 1,
+              "usableEvidenceCount": 1,
+              "missingEvidence": [],
+              "evidenceKeys": [
+                "deterministic-test:command-output"
+              ]
+            }
+          ],
+          "requirementsPassed": 1,
+          "requirementsFailed": 0,
+          "violations": [],
+          "approvalRequirements": [],
+          "riskLevel": "MEDIUM",
+          "riskReasons": [
+            "Bounded source change"
+          ],
+          "verdict": "VERIFIED",
+          "verdictReasons": [
+            "All mandatory checks passed and every acceptance criterion has usable evidence."
+          ]
+        },
+        "isolation": {
+          "mode": "DETACHED_GIT_WORKTREE",
+          "sandboxId": "local-worktree:fab-verification-attempt-1",
+          "subjectDigest": "sha256:0ebeff356f169f5581e2f12bedb2cc0086f692d88be99b35b1a6bbc042740032",
+          "verifierRoot": "/private/tmp/mc-verification-first-worker-nq6mc2/.mission-control/worktrees/fab-independent-verifier",
+          "sourceRoot": "/private/tmp/mc-verification-first-worker-nq6mc2/.mission-control/worktrees/attempt-1",
+          "initialClean": true,
+          "finalSubjectMatch": true,
+          "repositoryId": "repository-1",
+          "headSha": "77f03f5984c492159138958d07535caa2fd267c1",
+          "treeSha": "d44d6e0b256fa6a5c9be4806b6468ffa513df4f0",
+          "attestedAt": 1788640916286,
+          "rootBindingDigest": "sha256:4a014e52506a4c2521b6f6d1c6b3f9cb2ff487e0618e250c40a65d96e4737e6e"
+        },
+        "terminal": {
+          "status": "COMPLETED"
+        }
+      },
+      "independence": {
+        "policyVersion": "verification-independence/v1",
+        "sourceAttemptId": "factory-run-1",
+        "verificationAttemptId": "fab-verification-attempt-1",
+        "passed": true,
+        "reasons": [
+          "Mission Control proved separate Attempt, FactoryVersion, invocation, lease, capability, isolated subject lineage, and verification-definition authority."
+        ]
+      },
+      "plan": {
+        "planVersion": 1,
+        "workOrderId": "work-order-1",
+        "workOrderRevisionNumber": 1,
+        "verificationContractDigest": "sha256:a74e9408c0e14f5e9fccd9b9cb420cc98247a65026df2247ce71dd473b93b5aa",
+        "sourceAttemptId": "factory-run-1",
+        "verificationSubjectDigest": "sha256:0ebeff356f169f5581e2f12bedb2cc0086f692d88be99b35b1a6bbc042740032",
+        "verificationAttemptId": "fab-verification-attempt-1",
+        "verificationSubject": {
+          "version": 1,
+          "kind": "GIT_CANDIDATE",
+          "workOrderId": "work-order-1",
+          "workOrderRevisionNumber": 1,
+          "verificationContractDigest": "sha256:a74e9408c0e14f5e9fccd9b9cb420cc98247a65026df2247ce71dd473b93b5aa",
+          "sourceAttemptId": "factory-run-1",
+          "repositoryId": "repository-1",
+          "provider": "GITHUB",
+          "providerRepositoryId": "101",
+          "candidateSha": "77f03f5984c492159138958d07535caa2fd267c1",
+          "treeSha": "d44d6e0b256fa6a5c9be4806b6468ffa513df4f0",
+          "pullRequest": {
+            "providerPullRequestId": "PR_controlled_fixture",
+            "number": 42,
+            "url": "https://github.com/sellerfi/mission-control-fixture/pull/42",
+            "baseRef": "main",
+            "headRef": "mc/fixture",
+            "headSha": "77f03f5984c492159138958d07535caa2fd267c1",
+            "draftAtPublication": true
+          },
+          "subjectId": "verification-subject:0ebeff356f169f5581e2f12bedb2cc0086f692d88be99b35b1a6bbc042740032",
+          "digest": "sha256:0ebeff356f169f5581e2f12bedb2cc0086f692d88be99b35b1a6bbc042740032"
+        },
+        "generatedBy": {
+          "factoryDefinitionId": "verifier",
+          "factoryDefinitionVersionId": "verifier-v1",
+          "attemptId": "fab-verification-attempt-1",
+          "executorInvocationId": "verifier-invocation-1"
+        },
+        "requirements": [
+          {
+            "id": "ac-1",
+            "description": "Candidate feature is true",
+            "source": "ACCEPTANCE_CRITERION",
+            "criticality": "REQUIRED"
+          }
+        ],
+        "requiredRisks": [],
+        "discoveredRisks": [],
+        "requiredEvidence": [
+          {
+            "id": "test-proof",
+            "requirementIds": [
+              "ac-1"
+            ],
+            "requiredRiskIds": [],
+            "description": "Read and assert candidate feature",
+            "evidenceType": "UNIT_TEST",
+            "required": true
+          }
+        ],
+        "createdAt": 1788640916181,
+        "planId": "verification-plan:a3dda05acfe7392bdb69ce365342328a60b29b588cc2ccd86ccb366c0b30402e",
+        "planDigest": "sha256:a3dda05acfe7392bdb69ce365342328a60b29b588cc2ccd86ccb366c0b30402e"
+      }
+    }
+  ],
+  "modelCalls": 4,
+  "externalPublication": "MOCK ONLY"
+}

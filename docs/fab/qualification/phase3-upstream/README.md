@@ -1,0 +1,17 @@
+# Fab Phase 3 later upstream qualification
+
+Status: **PASS for the inspected local scope; Fab remains Experimental.** This record supplements the earlier Phase 3 receipts after both remote mains advanced while GitHub export authorization was pending.
+
+FDLC main `d954370a232174d2ad60561fbc720381a4791e97` is preserved through local merge `1947904`. Incoming operating-contract and benchmark content, exact governed-MCP maturity wording and the automatic Production deployment guard are retained. Two overlapping contrast changes use main's existing accessible palette values; keyboard focus and landmark fixes remain intact. No unrelated site redesign was introduced.
+
+Fresh standard installs, 12 site unit tests, 14 rendered-route tests, typecheck, lint and Vinext build pass. The local Vercel/Next production build also passes. Both actual production servers independently pass **62 browser/accessibility checks, nine interactive flows and 20 routes**, including the merged content and desktop/mobile layouts. There are no reported axe violations, page errors or page overflow. Two incoming public Guide links return HTTP 200. The Next mobile Mission Control screenshot was visually inspected.
+
+Build/root-check source is `6de8ca033250eaa5ee8c07df47fa669a1b3cb016`; final browser-harness/Next-build source is `42711d7f94ca769b93605fb3ff012091f70b24c2`. Their sole executable difference is the browser readiness correction. Application, build configuration, dependencies and Fab package source are identical between those sources. The [receipt](qualification.json) names exact inputs and scopes. Next's normal generated type-declaration change is recorded and was restored to tracked source after the build; it is not a product-source change.
+
+The first browser run passed its 62 accessibility/layout checks but failed waiting for network inactivity before a keyboard flow. It remains in `failure-run-01/`. Readiness now requires an actual explorer selection change, preserving the keyboard assertions while avoiding a global prefetch-idle assumption. An intervening run started before a checkout completed; `diagnostic-run-02/` is explicitly excluded from final qualification. Final browser passes ran only after the exact checkout was confirmed terminal. The owned preview must also remain alive before a PASS is recorded.
+
+CI now runs the same browser gate against both configured build runtimes, with separate runtime-labeled reports. No upload workflow, Vercel deployment, production mutation, provider call or GitHub export was performed. `vercel.json` exactly preserves main's `git.deploymentEnabled.main = false` guard. Deployed cross-project Microfrontend composition is **NOT RUN**; local browser passes do not establish it.
+
+Mission Control separately preserves main `6d7146d5205aef729aee2960aed2a4ed8e8ab95c` through documentation-only merge `4b95edd9`. Its executable tree remains identical to clean-qualified `f5ed5d1`; affected documentation and runtime-contract checks pass. Fab's private `.2` archive and its source remain unchanged. Earlier native, System Qualification, review and Phase 2 evidence retain their original scope and hashes.
+
+GitHub implementation export, PRs, CI, merge and post-merge main qualification remain pending explicit destination/data authorization. Live provider/model selection and paid-call authorization, a non-production MC environment and a dedicated controlled publication target are still required for real Phase 3 qualification. No maturity promotion is supported by this local record.

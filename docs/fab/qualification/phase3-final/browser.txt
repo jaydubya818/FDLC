@@ -1,0 +1,5 @@
+
+> fdlc-site@0.1.0 test:browser
+> node tests/browser.mjs
+
+{"result":"PASS","browserChecks":62,"flows":9,"links":20,"report":"/private/tmp/fab-phase3-fdlc-validation/output/playwright/site/report.json"}

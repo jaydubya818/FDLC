@@ -1,0 +1,20 @@
+✔ keeps the canonical category positioning stable (1.257ms)
+✔ keeps the four canonical system views stable (0.115083ms)
+✔ keeps the homepage factory explorer complete and internally linked (0.34425ms)
+✔ keeps ecosystem roles and status boundaries stable (0.062459ms)
+✔ preserves the manifesto and complete guide map (0.062292ms)
+✔ maps the worked example to every canonical model (0.147667ms)
+✔ normalizes one acceptance criterion per line (1.155667ms)
+✔ generates a bounded conceptual factory definition (0.149667ms)
+✔ requires all five teaching boundaries (0.050792ms)
+✔ scores an all-level-four factory as Level 4 (6.356833ms)
+✔ rounds down and identifies the lowest-scoring gaps (0.678375ms)
+✔ does not treat a partial assessment as complete (0.055709ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 122.566125

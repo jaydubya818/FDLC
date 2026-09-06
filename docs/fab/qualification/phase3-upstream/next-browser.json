@@ -1,0 +1,510 @@
+{
+  "schema": "fdlc-browser/v1",
+  "environment": "LOCAL_PRODUCTION_BUILD",
+  "runtime": "next",
+  "results": [
+    {
+      "label": "/",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/framework",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/architecture",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/in-5-minutes",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/manifesto",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/understand",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/design",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/build",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/prove",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/operate",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/improve",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/mission-control",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/spec",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/maturity",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/benchmarks",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/enterprise",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/deploy",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/start",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/about",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "factory-definition-result",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "maturity-result",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-0",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-1",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-2",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-3",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-4",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-5",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control operator views-0",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control operator views-1",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control operator views-2",
+      "width": 1440,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/framework",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/architecture",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/in-5-minutes",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/manifesto",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/understand",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/design",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/build",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/prove",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/operate",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/guide/improve",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/mission-control",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/spec",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/maturity",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/benchmarks",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/enterprise",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/deploy",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/start",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "/about",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "factory-definition-result",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "maturity-result",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-0",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-1",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-2",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-3",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-4",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control delivery stages-5",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control operator views-0",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control operator views-1",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    },
+    {
+      "label": "Mission Control operator views-2",
+      "width": 390,
+      "overflow": false,
+      "violations": []
+    }
+  ],
+  "links": [
+    {
+      "route": "/",
+      "status": 200
+    },
+    {
+      "route": "/about",
+      "status": 200
+    },
+    {
+      "route": "/architecture",
+      "status": 200
+    },
+    {
+      "route": "/benchmarks",
+      "status": 200
+    },
+    {
+      "route": "/deploy",
+      "status": 200
+    },
+    {
+      "route": "/enterprise",
+      "status": 200
+    },
+    {
+      "route": "/framework",
+      "status": 200
+    },
+    {
+      "route": "/guide",
+      "status": 200
+    },
+    {
+      "route": "/guide/build",
+      "status": 200
+    },
+    {
+      "route": "/guide/design",
+      "status": 200
+    },
+    {
+      "route": "/guide/improve",
+      "status": 200
+    },
+    {
+      "route": "/guide/operate",
+      "status": 200
+    },
+    {
+      "route": "/guide/prove",
+      "status": 200
+    },
+    {
+      "route": "/guide/understand",
+      "status": 200
+    },
+    {
+      "route": "/in-5-minutes",
+      "status": 200
+    },
+    {
+      "route": "/manifesto",
+      "status": 200
+    },
+    {
+      "route": "/maturity",
+      "status": 200
+    },
+    {
+      "route": "/mission-control",
+      "status": 200
+    },
+    {
+      "route": "/spec",
+      "status": 200
+    },
+    {
+      "route": "/start",
+      "status": 200
+    }
+  ],
+  "flows": [
+    {
+      "name": "factory-builder-validation-generate-reset",
+      "width": 1440,
+      "result": "PASS"
+    },
+    {
+      "name": "eleven-dimension-assessment-result-reset",
+      "width": 1440,
+      "result": "PASS"
+    },
+    {
+      "name": "mission-control-delivery-and-operator-tabs",
+      "width": 1440,
+      "result": "PASS"
+    },
+    {
+      "name": "factory-explorer-keyboard",
+      "width": 1440,
+      "result": "PASS"
+    },
+    {
+      "name": "factory-builder-validation-generate-reset",
+      "width": 390,
+      "result": "PASS"
+    },
+    {
+      "name": "eleven-dimension-assessment-result-reset",
+      "width": 390,
+      "result": "PASS"
+    },
+    {
+      "name": "mission-control-delivery-and-operator-tabs",
+      "width": 390,
+      "result": "PASS"
+    },
+    {
+      "name": "factory-explorer-keyboard",
+      "width": 390,
+      "result": "PASS"
+    },
+    {
+      "name": "mobile-navigation-and-keyboard-table-scroll",
+      "width": 390,
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "result": "PASS"
+}

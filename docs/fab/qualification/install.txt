@@ -1,0 +1,18 @@
+Fab — Factory Agent Builder (experimental local preview)
+From intent to review-ready software.
+
+fab inspect                         Inspect this repository without a model
+fab config                          Print a non-secret configuration example
+fab models                          Show adapter maturity and limitations
+fab auth --config /path/config.json  Show explicit credential metadata
+fab plan "task" --config /path/config.json
+fab run <session-id> --config /path/config.json --approve <plan-digest>
+fab run "task" --config /path/config.json   Plan and ask for consent in a terminal
+fab status <session-id> --config /path/config.json
+fab diff <session-id> --config /path/config.json
+fab resume <session-id> --config /path/config.json --approve <plan-digest>
+
+Optional: --state-dir /private/path (outside repository, mode 0700)
+No remote execution, PR publication or independent acceptance in this preview.
+Use your own explicit FAB_ environment credential. Never put the value in argv.
+

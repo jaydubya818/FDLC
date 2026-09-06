@@ -1,0 +1,15 @@
+
+> fdlc-site@0.1.0 test:browser
+> node tests/browser.mjs
+
+{"result":"FAIL","browserChecks":62,"flows":7,"links":0,"report":"/private/tmp/fab-phase3-fdlc-validation-2/output/playwright/site/report.json"}
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForLoadState: Timeout 30000ms exceeded.
+    at /private/tmp/fab-phase3-fdlc-validation-2/tests/browser.mjs:121:16 {
+  name: 'TimeoutError'
+}
+
+Node.js v24.18.1
