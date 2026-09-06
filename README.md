@@ -38,6 +38,14 @@ npm test
 
 Mission Control and the source Guide are separate open-source projects. This site links to them without importing their runtime systems or private material.
 
+## FDLC Deploy and Factory Deployed Engineer status
+
+The public [FDE status page](https://fdlc.ai/deploy) records the safe, current state of FDLC Deploy and the Factory Deployed Engineer qualification environment.
+
+The AWS qualification environment in account `083665737366` (`us-east-1`) and the Mission Control qualification deployment `calm-buffalo-854` are ready for controlled activation. FDLC.ai Production is qualified and healthy. Runtime images are pinned by immutable digest, runtime services remain scaled to zero, and no secret values are published.
+
+**Phase 3 is dormant and has not been activated. No Factory Engineer workload or Bedrock model call has occurred.** Qualification readiness is not evidence of live workload execution, sustained customer operation, or fleet-scale reliability.
+
 ## Fab local engineering pilot
 
 The independent [Fab package](packages/fab/README.md) is staged here for local review. It is an experimental CLI with its own build and qualification suite; the website does not import it. The [reuse audit and design](docs/fab/FAB-REUSE-AUDIT.md) explain the boundaries with Mission Control and Factory Engineer.

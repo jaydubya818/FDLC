@@ -10,6 +10,7 @@ const primary = [
   ["Architecture", "/architecture"],
   ["Guide", "/guide"],
   ["Mission Control", "/mission-control"],
+  ["FDE", "/deploy"],
   ["Maturity", "/maturity"],
 ] as const;
 
@@ -20,7 +21,6 @@ const secondary = [
   ["Benchmarks", "/benchmarks"],
   ["Start", "/start"],
   ["Enterprise", "/enterprise"],
-  ["Deploy", "/deploy"],
   ["About", "/about"],
 ] as const;
 

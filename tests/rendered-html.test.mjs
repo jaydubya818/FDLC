@@ -208,6 +208,22 @@ test("interactive routes have complete server-rendered entry states", async () =
   assert.match(start, /Factory Definition/i);
 });
 
+test("FDE publishes the qualification state and its dormant live boundary", async () => {
+  const html = await (await render("/deploy")).text();
+  assert.match(html, /FDLC Deploy \/ FDE/i);
+  assert.match(html, /Production.*Qualified \/ Healthy/is);
+  assert.match(html, /Qualification environment.*Ready/is);
+  assert.match(html, /083665737366.*us-east-1.*qual\.factory-engineer\.fdlc\.ai/is);
+  assert.match(html, /calm-buffalo-854.*mission-control:\/\/qualification\/fdlc-phase-3/is);
+  assert.match(html, /dpl_BHi24iX4NmZZ8WNyuspDHaYg5DX2/is);
+  assert.match(html, /dpl_3dH5VgLN9abgG9B8L9vdGKNnHiCn/is);
+  assert.match(html, /Immutable ECR image digests.*secret-version references are pinned/is);
+  assert.match(html, /Phase 3.*Dormant \/ Not activated/is);
+  assert.match(html, /Bedrock live calls.*0/is);
+  assert.match(html, /Qualification-ready infrastructure is not live qualification/is);
+  assert.match(html, /href=["']\/deploy["'][^>]*>FDE</i);
+});
+
 test("preview products are explicitly labeled", async () => {
   for (const route of ["/specification", "/benchmarks", "/enterprise", "/deploy"]) {
     const html = await (await render(route)).text();
