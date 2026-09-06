@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross an application boundary during migration. */
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArchitectureDiagram } from "../components/architecture-diagram";
@@ -71,7 +72,7 @@ export default function ArchitecturePage() {
             <section><h3>Examples</h3><ul>{area.examples.map((item) => <li key={item}>{item}</li>)}</ul></section>
           </div>
           <p className="relationship"><span>Relationship</span>{area.relationships}</p>
-          <div className="architecture-area-links"><Link href={guideByArea[area.id]}>Related Guide chapters →</Link><Link href="/mission-control#capabilities">See in Mission Control →</Link></div>
+          <div className="architecture-area-links"><a href={guideByArea[area.id]}>Related Guide chapters →</a><Link href="/mission-control#capabilities">See in Mission Control →</Link></div>
         </div>
       </ResponsiveDetails>)}
     </section>
@@ -88,7 +89,7 @@ export default function ArchitecturePage() {
       </div>
     </section>
 
-    <section className="reading-next"><p className="section-label">Continue</p><h2>Move from architecture to implementation.</h2><div><Link href="/guide/build">Build the capability stack →</Link><Link href="/mission-control">Inspect Mission Control →</Link><Link href="/start">Design a factory line →</Link></div></section>
+    <section className="reading-next"><p className="section-label">Continue</p><h2>Move from architecture to implementation.</h2><div><a href="/guide/build">Build the capability stack →</a><Link href="/mission-control">Inspect Mission Control →</Link><Link href="/start">Design a factory line →</Link></div></section>
     </div>
     </div>
   </div></SiteShell>;

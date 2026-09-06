@@ -126,7 +126,7 @@ export default function FiveMinuteWalkthroughPage() {
         {example.architecture.map((item) => {
           const area = architectureAreas.find((candidate) => candidate.id === item.areaId);
           if (!area) return null;
-          return <article key={item.areaId}><span>{String(area.number).padStart(2, "0")} / {area.name}</span><h3>{area.short}</h3><p>{item.contribution}</p><dl><dt>Mission Control</dt><dd>{item.missionControl}</dd></dl><div><Link href={`/architecture#${area.id}`}>Architecture →</Link><Link href={item.guideHref}>Guide →</Link></div></article>;
+          return <article key={item.areaId}><span>{String(area.number).padStart(2, "0")} / {area.name}</span><h3>{area.short}</h3><p>{item.contribution}</p><dl><dt>Mission Control</dt><dd>{item.missionControl}</dd></dl><div><Link href={`/architecture#${area.id}`}>Architecture →</Link><a href={item.guideHref}>Guide →</a></div></article>;
         })}
       </div>
       <p className="example-architecture-invariant"><strong>Trust constrains every area.</strong> Learning captures validated outcomes and failures, but it never writes directly to production.</p>

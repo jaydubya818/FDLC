@@ -5,11 +5,11 @@ const workerUrl = new URL("../dist/server/index.js", import.meta.url);
 workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
 const { default: worker } = await import(workerUrl.href);
 
-function render(pathname = "/") {
-  return worker.fetch(new Request(`http://localhost${pathname}`, { headers: { accept: "text/html" } }), { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
+function render(pathname = "/", method = "GET") {
+  return worker.fetch(new Request(`http://localhost${pathname}`, { method, headers: { accept: "text/html" } }), { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
 }
 
-const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/guide", "/guide/understand", "/guide/design", "/guide/build", "/guide/prove", "/guide/operate", "/guide/improve", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/about"];
+const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/about"];
 
 test("server-renders every public route with FDLC metadata and a heading", async () => {
   for (const route of routes) {
@@ -21,6 +21,20 @@ test("server-renders every public route with FDLC metadata and a heading", async
     assert.match(html, /<h1[\s>]/i, route);
     assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i, route);
   }
+});
+
+test("benchmarks publishes the incoming measurement contract and mode-correct Guide links", async () => {
+  const response = await render("/benchmarks");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /id="comparable-results"/);
+  assert.match(html, /Verification and acceptance use separate denominators/);
+  assert.match(html, /Missing cost is not zero; no successful outcomes means the ratio is undefined/);
+  assert.match(html, /A failed authority or security gate cannot be averaged away/);
+  for (const href of [
+    "https://ai-software-factory-mastery.vercel.app/docs/02-design/09-tokenomics-and-factory-economics",
+    "https://ai-software-factory-mastery.vercel.app/docs/04-prove/29-evaluation-engineering",
+  ]) assert.ok(html.includes(`<a href="${href}">`), href);
 });
 
 test("robots explicitly permits search and AI fetch agents", async () => {
@@ -86,23 +100,60 @@ test("architecture makes the control boundary and durable operating record expli
   assert.match(html, /href=["']#control-boundary["']/i);
 });
 
-test("guide is an accurate portal into the authoritative 44-chapter book", async () => {
-  const html = await (await render("/guide")).text();
-  assert.match(html, /Build the system around the agent/i);
-  assert.match(html, /evidence.*not an agent saying done.*decides what advances/is);
-  assert.match(html, /FDLC.*operating model and category definition.*AI Software Factory Guide.*detailed methodology/is);
-  assert.match(html, /44<\/strong> chapters.*6<\/strong> parts.*8<\/strong> Guide stages/is);
-  assert.match(html, /not a second, incomplete edition/i);
-  assert.match(html, /10 minutes.*Builder.*Architect.*Operator.*Executive \/ Fund.*Front to back/is);
-  assert.match(html, /same system described at different levels of abstraction/i);
-  assert.match(html, /eight stages are not a competing FDLC lifecycle/i);
-  assert.match(html, /Runtime Lifecycle and Artifact Protocol.*not a second lifecycle or a one-to-one artifact list/is);
-  assert.match(html, /Twenty-five entry points into the same source/i);
-  assert.match(html, /Mission Control and the Guide.*living implementation.*boundaries visible/is);
-  assert.match(html, /Next steps on FDLC.ai.*FDLC in 5 Minutes.*Framework.*Architecture.*Manifesto.*Maturity.*Mission Control/is);
-  assert.match(html, /Verified delivery, not merely generated code/i);
-  assert.match(html, /https:\/\/ai-software-factory-mastery\.vercel\.app\/docs\/01-understand\/02-the-factory-in-one-view/i);
-  assert.match(html, /https:\/\/ai-software-factory-mastery\.vercel\.app\/search/i);
+test("Guide entries temporarily redirect to the authoritative application instead of rendering FDLC shadows", async () => {
+  const targets = [
+    ["/guide", "/guide"],
+    ["/guide/understand", "/docs/01-understand/01-why-software-engineering-is-changing"],
+    ["/guide/design", "/docs/02-design/04-the-human-agent-operating-model"],
+    ["/guide/build", "/docs/03-build/11-the-agent-factory"],
+    ["/guide/prove", "/docs/04-prove/27-quality-and-evidence-architecture"],
+    ["/guide/operate", "/docs/05-operate/34-the-factory-as-a-platform"],
+    ["/guide/improve", "/docs/06-improve/39-production-feedback-review-and-the-agentic-merge-queue"],
+    ["/guide/not-a-published-page", "/docs/not-a-published-page"],
+    ["/guide/01-understand/01-why-software-engineering-is-changing", "/docs/01-understand/01-why-software-engineering-is-changing"],
+    ["/guide/search", "/search"],
+    ["/guide/architecture", "/architecture"],
+    ["/guide/atlas", "/visuals"],
+    ["/guide/topics", "/topics"],
+    ["/guide/coverage", "/coverage"],
+    ["/guide/glossary", "/glossary"],
+  ];
+  for (const [path, target] of targets) {
+    const response = await render(`${path}?token=private`);
+    assert.equal(response.status, 307, path);
+    assert.equal(response.headers.get("location"), `https://ai-software-factory-mastery.vercel.app${target}`, path);
+    assert.equal(response.headers.get("cache-control"), "private, no-store", path);
+    assert.doesNotMatch(await response.text(), /Build the system around the agent|<main|<script|FDLC\.ai/i, path);
+  }
+});
+
+test("FDLC sitemap excludes Guide URLs that now redirect to another origin", async () => {
+  const response = await render("/sitemap.xml");
+  assert.equal(response.status, 200);
+  const body = await response.text();
+  assert.match(body, /<loc>https:\/\/fdlc\.ai\/framework<\/loc>/);
+  assert.match(body, /<loc>https:\/\/fdlc\.ai\/mission-control<\/loc>/);
+  assert.doesNotMatch(body, /<loc>[^<]*\/guide(?:\/|<)/);
+});
+
+test("FDLC public asset requests do not become cross-origin Guide redirects", async () => {
+  for (const path of ["/og.png", "/fdlc-logo-updated.png", "/favicon.svg", "/search-index.json", "/infographics/diagram.svg"]) {
+    const response = await render(path);
+    // This worker harness has a synthetic 404 ASSETS binding. The invariant here
+    // is ownership/no redirect; native browser qualification verifies real files.
+    assert.equal(response.headers.has("location"), false, path);
+    assert.notEqual(response.status, 307, path);
+  }
+});
+
+test("Guide entry rejects unsafe methods without rendering a local Guide shadow", async () => {
+  for (const path of ["/guide", "/guide/design", "/docs/chapter", "/guide/search"]) {
+    const response = await render(path, "POST");
+    assert.equal(response.status, 405, path);
+    assert.equal(response.headers.get("allow"), "GET, HEAD");
+    assert.equal(response.headers.has("location"), false);
+    assert.equal(await response.text(), "Method not allowed");
+  }
 });
 
 test("manifesto publishes the ten operating invariants and the state boundary", async () => {
@@ -162,6 +213,7 @@ test("mission control leads with the product and exposes an interactive governed
   assert.match(html, /Command Center.*Work Orders.*Approvals &amp; Audit/is);
   assert.match(html, /Inspect what is real.*where it stops/is);
   assert.match(html, /Available.*Experimental.*Planned/is);
+  assert.match(html, /One exact Context7 query-docs read.*One fixed public React query only.*harness-native MCP remain unsupported/is);
 });
 
 test("long technical pages expose the requested rail and tablet jump navigation", async () => {

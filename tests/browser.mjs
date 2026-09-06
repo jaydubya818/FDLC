@@ -36,7 +36,11 @@ try {
   browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || undefined });
   const page = await browser.newPage();
   page.on("pageerror", error => report.errors.push({ url: page.url(), message: error.message }));
-  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/guide", "/guide/understand", "/guide/design", "/guide/build", "/guide/prove", "/guide/operate", "/guide/improve", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/about"];
+  // This suite owns the FDLC artifact. Composed /guide routes belong to the
+  // independently built Guide artifact and are covered by the migration's
+  // exact-deployment composition suites, not by a mutable remote dependency
+  // during the FDLC local-build gate.
+  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/about"];
   const links = new Set();
   async function audit(label) {
     // Measure settled styles; entry fades are deliberately below final contrast.

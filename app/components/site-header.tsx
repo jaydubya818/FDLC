@@ -46,7 +46,10 @@ export function SiteHeader() {
           <Image className="brand-logo" src="/fdlc-logo-updated.png" alt="FDLC.ai — Factory Development Lifecycle" width={2007} height={784} priority />
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {primary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
+          {primary.map(([label, href]) => {
+            const NavigationLink = href === "/guide" ? "a" : Link;
+            return <NavigationLink aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</NavigationLink>;
+          })}
           <details className={`more-menu${secondaryActive ? " is-active" : ""}`} ref={moreMenu}>
             <summary aria-current={secondaryActive ? "page" : undefined}>More <span aria-hidden="true">⌄</span></summary>
             <div>
@@ -58,7 +61,10 @@ export function SiteHeader() {
         <details className="mobile-nav" ref={mobileMenu}>
           <summary aria-label="Open navigation">Menu</summary>
           <nav aria-label="Mobile navigation">
-            {primary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
+            {primary.map(([label, href]) => {
+              const NavigationLink = href === "/guide" ? "a" : Link;
+              return <NavigationLink aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</NavigationLink>;
+            })}
             <span>More</span>
             {secondary.map(([label, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href}>{label}</Link>)}
           </nav>

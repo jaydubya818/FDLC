@@ -1,0 +1,1685 @@
+{
+  "status": "NO_GO",
+  "startedAt": "2026-09-05T18:51:34.676Z",
+  "finishedAt": "2026-09-05T18:53:23.171Z",
+  "edition": "old",
+  "origin": "https://ai-software-factory-mastery.vercel.app",
+  "expectedDeployment": "dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur",
+  "anonymous": true,
+  "documents": 66,
+  "pageVisits": 151,
+  "uniquePaths": 73,
+  "checks": 1529,
+  "pages": [
+    {
+      "path": "/guide",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/00-front-matter/00-how-to-read-this-guide",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/00-front-matter/00-how-to-read-this-guide",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/00-front-matter/01-what-this-guide-covers",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/00-front-matter/01-what-this-guide-covers",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/01-builder-intent",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/01-builder-intent",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/02-plan",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/02-plan",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/03-define-agent",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/03-define-agent",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/04-execute-through-harness",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/04-execute-through-harness",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/05-apply-skills",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/05-apply-skills",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/06-evaluate",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/06-evaluate",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/07-improve",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/07-improve",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/08-deliver-software",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/08-deliver-software",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/01-understand/01-why-software-engineering-is-changing",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/01-understand/02-the-factory-in-one-view",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/02-the-factory-in-one-view",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/01-understand/03-first-principles-trust-evidence-and-authority",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/03-first-principles-trust-evidence-and-authority",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/04-the-human-agent-operating-model",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/04-the-human-agent-operating-model",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/05-authoritative-records",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/05-authoritative-records",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/06-intent-and-specification-engineering",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/06-intent-and-specification-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/07-governance-policy-and-risk-proportional-approval",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/07-governance-policy-and-risk-proportional-approval",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/08-economics-metrics-and-human-attention",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/08-economics-metrics-and-human-attention",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/09-tokenomics-and-factory-economics",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/09-tokenomics-and-factory-economics",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/10-multi-repository-design",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/10-multi-repository-design",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/11-the-agent-factory",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/11-the-agent-factory",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/12-skills-as-packages",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/12-skills-as-packages",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/13-control-plane-orchestrator-and-execution-plane",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/13-control-plane-orchestrator-and-execution-plane",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/14-durable-execution",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/14-durable-execution",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/15-coding-harnesses-and-agent-protocols",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/15-coding-harnesses-and-agent-protocols",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/16-harness-engineering",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/16-harness-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/17-development-environments-sandboxes-and-compute",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/17-development-environments-sandboxes-and-compute",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/18-agent-architecture",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/18-agent-architecture",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/19-data-knowledge-and-semantic-engineering",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/19-data-knowledge-and-semantic-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/20-context-engineering",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/20-context-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/21-models-and-capability-selection",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/21-models-and-capability-selection",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/22-routing-and-the-escalation-ladder",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/22-routing-and-the-escalation-ladder",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/23-agent-and-loop-engineering",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/23-agent-and-loop-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/24-loop-engineering-patterns-and-defaults",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/24-loop-engineering-patterns-and-defaults",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/26-autonomous-engineering-workflows",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/26-autonomous-engineering-workflows",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/27-quality-and-evidence-architecture",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/27-quality-and-evidence-architecture",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/28-testing-strategy-for-agentic-change",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/28-testing-strategy-for-agentic-change",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/29-evaluation-engineering",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/29-evaluation-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/30-evals-as-factory-assets",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/30-evals-as-factory-assets",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/31-quality-contracts-proof-packages-and-certificates",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/31-quality-contracts-proof-packages-and-certificates",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/32-cicd-progressive-delivery-and-production-verification",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/32-cicd-progressive-delivery-and-production-verification",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/33-security",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/33-security",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/05-operate/34-the-factory-as-a-platform",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/05-operate/34-the-factory-as-a-platform",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/05-operate/35-observability-telemetry-and-forensics",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/05-operate/35-observability-telemetry-and-forensics",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/05-operate/36-resilience-incidents-and-the-control-tower",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/05-operate/36-resilience-incidents-and-the-control-tower",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/05-operate/37-control-surfaces-event-contracts-and-storage",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/05-operate/37-control-surfaces-event-contracts-and-storage",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/39-production-feedback-review-and-the-agentic-merge-queue",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/39-production-feedback-review-and-the-agentic-merge-queue",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/40-governed-learning",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/40-governed-learning",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/41-meta-loops-and-the-closed-loop-factory",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/41-meta-loops-and-the-closed-loop-factory",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/42-mission-control-as-a-living-case-study",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/42-mission-control-as-a-living-case-study",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/43-mastering-the-factory",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/43-mastering-the-factory",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/44-where-this-is-going",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/44-where-this-is-going",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/architecture-communication",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/architecture-communication",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/changelog",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [
+        "added",
+        "changed"
+      ],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/changelog",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/coverage-and-maturity",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/coverage-and-maturity",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/glossary",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/glossary",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/operator-surfaces",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/operator-surfaces",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/principles",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/principles",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/reviewer-guide",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/reviewer-guide",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/mission-control/01-implementation-maturity-and-evidence-map",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/mission-control/01-implementation-maturity-and-evidence-map",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/mission-control/02-verification-first-software-factory",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/mission-control/02-verification-first-software-factory",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/mission-control/03-capability-workflow-and-admission-map",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/mission-control/03-capability-workflow-and-admission-map",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/research/initial-canon",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/research/initial-canon",
+      "mainCount": 1
+    },
+    {
+      "path": "/architecture",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/visuals",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/topics",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/coverage",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/glossary",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/glossary",
+      "mainCount": 1
+    },
+    {
+      "path": "/search",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/01-understand/02-the-factory-in-one-view",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/02-the-factory-in-one-view",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/01-understand/02-the-factory-in-one-view",
+      "reload": true,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/02-the-factory-in-one-view",
+      "mainCount": 1
+    },
+    {
+      "path": "/search",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/07-governance-policy-and-risk-proportional-approval",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/07-governance-policy-and-risk-proportional-approval",
+      "mainCount": 1
+    },
+    {
+      "path": "/guide/bridge-qualification-no-such-page",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/guide",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/00-front-matter/00-how-to-read-this-guide",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/00-front-matter/00-how-to-read-this-guide",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/00-front-matter/01-what-this-guide-covers",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/00-front-matter/01-what-this-guide-covers",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/01-builder-intent",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/01-builder-intent",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/02-plan",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/02-plan",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/03-define-agent",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/03-define-agent",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/04-execute-through-harness",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/04-execute-through-harness",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/05-apply-skills",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/05-apply-skills",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/06-evaluate",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/06-evaluate",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/07-improve",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/07-improve",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/stages/08-deliver-software",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/stages/08-deliver-software",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/01-understand/01-why-software-engineering-is-changing",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/01-understand/02-the-factory-in-one-view",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/02-the-factory-in-one-view",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/01-understand/03-first-principles-trust-evidence-and-authority",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/03-first-principles-trust-evidence-and-authority",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/04-the-human-agent-operating-model",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/04-the-human-agent-operating-model",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/05-authoritative-records",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/05-authoritative-records",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/06-intent-and-specification-engineering",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 572,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/06-intent-and-specification-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/07-governance-policy-and-risk-proportional-approval",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/07-governance-policy-and-risk-proportional-approval",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/08-economics-metrics-and-human-attention",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/08-economics-metrics-and-human-attention",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/09-tokenomics-and-factory-economics",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/09-tokenomics-and-factory-economics",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/02-design/10-multi-repository-design",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/02-design/10-multi-repository-design",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/11-the-agent-factory",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/11-the-agent-factory",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/12-skills-as-packages",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/12-skills-as-packages",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/13-control-plane-orchestrator-and-execution-plane",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/13-control-plane-orchestrator-and-execution-plane",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/14-durable-execution",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/14-durable-execution",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/15-coding-harnesses-and-agent-protocols",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/15-coding-harnesses-and-agent-protocols",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/16-harness-engineering",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/16-harness-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/17-development-environments-sandboxes-and-compute",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/17-development-environments-sandboxes-and-compute",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/18-agent-architecture",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/18-agent-architecture",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/19-data-knowledge-and-semantic-engineering",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/19-data-knowledge-and-semantic-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/20-context-engineering",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/20-context-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/21-models-and-capability-selection",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/21-models-and-capability-selection",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/22-routing-and-the-escalation-ladder",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/22-routing-and-the-escalation-ladder",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/23-agent-and-loop-engineering",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/23-agent-and-loop-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/24-loop-engineering-patterns-and-defaults",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/24-loop-engineering-patterns-and-defaults",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/03-build/26-autonomous-engineering-workflows",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/03-build/26-autonomous-engineering-workflows",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/27-quality-and-evidence-architecture",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/27-quality-and-evidence-architecture",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/28-testing-strategy-for-agentic-change",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/28-testing-strategy-for-agentic-change",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/29-evaluation-engineering",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/29-evaluation-engineering",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/30-evals-as-factory-assets",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/30-evals-as-factory-assets",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/31-quality-contracts-proof-packages-and-certificates",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 572,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/31-quality-contracts-proof-packages-and-certificates",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/32-cicd-progressive-delivery-and-production-verification",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/32-cicd-progressive-delivery-and-production-verification",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/04-prove/33-security",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/04-prove/33-security",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/05-operate/34-the-factory-as-a-platform",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/05-operate/34-the-factory-as-a-platform",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/05-operate/35-observability-telemetry-and-forensics",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 416,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/05-operate/35-observability-telemetry-and-forensics",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/05-operate/36-resilience-incidents-and-the-control-tower",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/05-operate/36-resilience-incidents-and-the-control-tower",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/05-operate/37-control-surfaces-event-contracts-and-storage",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/05-operate/37-control-surfaces-event-contracts-and-storage",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/39-production-feedback-review-and-the-agentic-merge-queue",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/39-production-feedback-review-and-the-agentic-merge-queue",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/40-governed-learning",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/40-governed-learning",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/41-meta-loops-and-the-closed-loop-factory",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/41-meta-loops-and-the-closed-loop-factory",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/42-mission-control-as-a-living-case-study",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/42-mission-control-as-a-living-case-study",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/43-mastering-the-factory",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/43-mastering-the-factory",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/06-improve/44-where-this-is-going",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/06-improve/44-where-this-is-going",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/architecture-communication",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 495,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/architecture-communication",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/changelog",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [
+        "added",
+        "changed"
+      ],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/changelog",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/coverage-and-maturity",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/coverage-and-maturity",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/glossary",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/glossary",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/operator-surfaces",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/operator-surfaces",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/principles",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/principles",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/reviewer-guide",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/reviewer-guide",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/mission-control/01-implementation-maturity-and-evidence-map",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/mission-control/01-implementation-maturity-and-evidence-map",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/mission-control/02-verification-first-software-factory",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/mission-control/02-verification-first-software-factory",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/mission-control/03-capability-workflow-and-admission-map",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 393,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/mission-control/03-capability-workflow-and-admission-map",
+      "mainCount": 1
+    },
+    {
+      "path": "/docs/appendix/research/initial-canon",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/research/initial-canon",
+      "mainCount": 1
+    },
+    {
+      "path": "/architecture",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/visuals",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/topics",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/coverage",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/glossary",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app/docs/appendix/glossary",
+      "mainCount": 1
+    },
+    {
+      "path": "/search",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/guide",
+      "reload": false,
+      "width": 390,
+      "scrollWidth": 390,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    },
+    {
+      "path": "/guide",
+      "reload": false,
+      "width": 1440,
+      "scrollWidth": 1440,
+      "duplicateIds": [],
+      "canonical": "https://ai-software-factory-mastery.vercel.app",
+      "mainCount": 1
+    }
+  ],
+  "assets": [
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/20-q9ua8x_std.css",
+      "page": "https://ai-software-factory-mastery.vercel.app/guide",
+      "type": "stylesheet",
+      "status": 200,
+      "sha256": "153366ec0ddc2851194576d63b0c5e269cb24b78ce5b60ed2e6bc2f9d0eff6c7"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/turbopack-1s9e9p9-awa-3.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/guide",
+      "type": "script",
+      "status": 200,
+      "sha256": "c581798d3f0346970bce92811b1f26d5a7d19aa0f1fc6245b41560c265eb88ee"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2m7o5wpek9-l7.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/guide",
+      "type": "script",
+      "status": 200,
+      "sha256": "f11234aa7940f1ca807e656464f28769507a80554abb4296b789d45583dc40fd"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2trvcokof4iy6.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/guide",
+      "type": "script",
+      "status": 200,
+      "sha256": "3a8782ddcbb73b031d732c87ddb7832118d51ccc3f23413023d1135994e26bb9"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1sizbqpwhzwhd.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/guide",
+      "type": "script",
+      "status": 200,
+      "sha256": "1001a84e2a1a6c4573088d988226ef443428416b924577c0682630957977991d"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/21en880woklcv.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/guide",
+      "type": "script",
+      "status": 200,
+      "sha256": "8067b6383fb2167c71f1969cdce399dcd550fe0f6089bb370011a12e837a8a01"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/137ummfue5qox.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/guide",
+      "type": "script",
+      "status": 200,
+      "sha256": "1627b1b0be0b5d54fdc7e9985970be8528144ee0da6190c58c81296759233ad4"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3swe6s5dnteh_.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/guide",
+      "type": "script",
+      "status": 200,
+      "sha256": "848e435b1fca13ba593225e59560e448556e836fb90a12315b516beef30d9b6e"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2-oi_vs57vxss.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/guide",
+      "type": "script",
+      "status": 200,
+      "sha256": "960b422ff12611c0087006f2c5ad85600ed12d06efa8cd65b2807583cfe93939"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1hm2w4pqx6nzd.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/guide",
+      "type": "script",
+      "status": 200,
+      "sha256": "3c7b2e3d6839d865aa506973a102ce84e8aef5ae9556bd3a3987795458063e1e"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1620fi2lrpdvr.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/guide",
+      "type": "script",
+      "status": 200,
+      "sha256": "d5d2a095fb4fb179b6c861cfe23851cc8234de01974e0a7ad9aa1b17cbda5891"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/0zvv47ixu2edh.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "7a74da9f59a103ef5b7b2fc95372d88b8bcc32f0192e3d77fc99ebb544118b14"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3iqh9ew9zxk82.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "7cd1f4450d93348dc4fefb2556cb8bf7f1752c230a2b6dbb96ef2eae74f1ebd9"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2e1qop7e87lwg.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "e76a5a210610ab3ff143a8e1048e3162301fc6a00967912398aa68c919c27675"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1w5f3xuxsp9eb.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "dbfc7ccf28183003b9069d54905e8ec399d6fd553194344ec4e49d4b1985062f"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3yhr034v6_if6.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "0fec0ecdef3ebaaf7bc56e5ea7e3ec59892ce5d1e34058ea0fcedbf6ec6542d3"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1qp_6s-z4p--q.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "b5383feaeb7cc19712f890b79d26c6a819c9c6fa770ca483f3a05dbf853dd82e"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1toahr56km-92.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "62fe20bde2a6aac5527f5d129d2bcd858c61ef995c23daec70a0e26b1b4de2f0"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3x18-szlysc25.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "437ccde9430098da2a6875f642469047426012beb87916700fdce70774d1a686"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/43m2hpj8hp395.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "bbcca2867b2f6f47722f7327732913af962593cbb9c9e1815472d2016cd9076b"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1cjscrcr4hzd4.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "00a37de727df45b77a828b2058ef06182872578caf912837b20d49fbbcd35c7f"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/39sp-or8slczm.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "0cae88942df2c3da779bada5ba9478d27daaba8ff8b8eb2aa992022749d2d81b"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/211e8js16vwdf.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "38b8092b60044c792e0996d3f2e8c30d64b83459307e69f00c5d7ec1044d76f1"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/2ndrccv_r_lh7.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "7f8065c7d8d8f456c52a3ae463d7e6498d35b268e989f724add92caa69895877"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/10ama26dcc5m1.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "45a95aa05b304ee45e1f8e7e0f9f274368950b147cf569ffeff2e4de2b5581bd"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/28igtwdkc0l4f.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/01-why-software-engineering-is-changing",
+      "type": "script",
+      "status": 200,
+      "sha256": "b0c1e8d8564ab78c1d18bb9dca1c046f377867e1c5f4c89b3cbf0010f5af73b6"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/276n_veq8t6w9.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/03-first-principles-trust-evidence-and-authority",
+      "type": "script",
+      "status": 200,
+      "sha256": "4768a29b9d25618f14b0e807ee9cfd5731bc563ba311c39ea608a068e4b058b6"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3b5rr270s63jq.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/01-understand/03-first-principles-trust-evidence-and-authority",
+      "type": "script",
+      "status": 200,
+      "sha256": "6a45ab3e491a4eca0c46e052319f0189ee20bf28541190e861facb9540bd0166"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/3quh5c6a8m762.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/03-build/13-control-plane-orchestrator-and-execution-plane",
+      "type": "script",
+      "status": 200,
+      "sha256": "47ab22340bb31b2943c0d0b4ae8e6a365abe1cdce02975c2e30448a8375799cc"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/32s0c3rwpb1ji.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/03-build/13-control-plane-orchestrator-and-execution-plane",
+      "type": "script",
+      "status": 200,
+      "sha256": "a7a5cf2ad5783519c1f10c19e25424d088cb9984e4b796e47becf7b93d7b2d1c"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/0i9mjog05_aby.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/architecture",
+      "type": "script",
+      "status": 200,
+      "sha256": "6607870d6bdabefe8715eb45e2a701fcb46b26c83e7ca80cd5ff11c39de361d0"
+    },
+    {
+      "url": "https://ai-software-factory-mastery.vercel.app/_next/static/immutable/chunks/1muyq8-z-_iwm.js",
+      "page": "https://ai-software-factory-mastery.vercel.app/search",
+      "type": "script",
+      "status": 200,
+      "sha256": "36c56b6adccdf06bb113a2d76521eef9aa18beb93e5234db15b2586bfdd584c1"
+    }
+  ],
+  "pageErrors": [
+    {
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+      "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+    },
+    {
+      "page": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+      "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+    }
+  ],
+  "networkFailures": [],
+  "recordedFailures": [
+    {
+      "name": "/docs/appendix/changelog duplicate IDs",
+      "actual": [
+        "added",
+        "changed"
+      ]
+    },
+    {
+      "name": "/docs/02-design/06-intent-and-specification-engineering overflow 390",
+      "actual": 572
+    },
+    {
+      "name": "/docs/04-prove/31-quality-contracts-proof-packages-and-certificates overflow 390",
+      "actual": 572
+    },
+    {
+      "name": "/docs/05-operate/35-observability-telemetry-and-forensics overflow 390",
+      "actual": 416
+    },
+    {
+      "name": "/docs/appendix/architecture-communication overflow 390",
+      "actual": 495
+    },
+    {
+      "name": "/docs/appendix/changelog duplicate IDs",
+      "actual": [
+        "added",
+        "changed"
+      ]
+    },
+    {
+      "name": "/docs/appendix/mission-control/03-capability-workflow-and-admission-map overflow 390",
+      "actual": 393
+    },
+    {
+      "name": "zero product console errors",
+      "actual": [
+        {
+          "type": "error",
+          "page": "https://ai-software-factory-mastery.vercel.app/guide/bridge-qualification-no-such-page",
+          "message": "Failed to load resource: the server responded with a status of 404 ()",
+          "location": {
+            "url": "https://ai-software-factory-mastery.vercel.app/guide/bridge-qualification-no-such-page",
+            "line": 0,
+            "column": 0,
+            "lineNumber": 0,
+            "columnNumber": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "zero page errors / hydration failures",
+      "actual": [
+        {
+          "page": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+          "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+        },
+        {
+          "page": "https://ai-software-factory-mastery.vercel.app/docs/03-build/25-the-12-layer-production-ai-agent-stack",
+          "message": "Minified React error #418; visit https://react.dev/errors/418?args[]=HTML&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings."
+        }
+      ]
+    }
+  ],
+  "expected404HarnessCorrection": "The custom-404 console line is expected. The harness now accepts its empty HTTP/2 status text only at the exact tested404 URL. All genuine hydration, duplicate-ID and overflow failures remain.",
+  "attributionLimit": "Public response bytes and asset hashes are recorded; deployment identity requires separate immutable deployment/config evidence."
+}
