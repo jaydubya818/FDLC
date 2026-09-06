@@ -199,6 +199,7 @@ test("mission control leads with the product and exposes an interactive governed
   assert.match(html, /Command Center.*Work Orders.*Approvals &amp; Audit/is);
   assert.match(html, /Inspect what is real.*where it stops/is);
   assert.match(html, /Available.*Experimental.*Planned/is);
+  assert.match(html, /One exact Context7 query-docs read.*One fixed public React query only.*harness-native MCP remain unsupported/is);
 });
 
 test("long technical pages expose the requested rail and tablet jump navigation", async () => {

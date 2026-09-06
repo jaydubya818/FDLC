@@ -5,6 +5,8 @@
  *   --canonical=https://fdlc.ai --output=/tmp/fdlc-acceptance
  * Optional: --deployment=dpl_... --return-fdlc=https://www.fdlc.ai
  *   --resolved-return-fdlc=https://fdlc.ai
+ *   --capability-source=reconciled-main (default) or pre-reconciliation
+ * Select the source era explicitly for retained pre-reconciliation rollback artifacts.
  * --return-fdlc asserts the Guide link's origin; --resolved-return-fdlc asserts
  * its final document origin and defaults to the link origin. Neither is rewritten.
  */
@@ -13,6 +15,7 @@ import { createHash } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { chromium } from "playwright";
+import { migrationFdlcCapabilityContract } from "../lib/migration-fdlc-contract.ts";
 import {
   isSuccessfulGuidePrefetchCancellation,
   MIGRATION_PREFETCH_REQUEST_HEADERS,
@@ -20,7 +23,7 @@ import {
 } from "../lib/migration-browser-network.ts";
 
 const allowedOptions = new Set([
-  "fdlc", "guide", "mode", "guide-edition", "canonical", "output", "deployment", "return-fdlc", "resolved-return-fdlc",
+  "fdlc", "guide", "mode", "guide-edition", "canonical", "output", "deployment", "return-fdlc", "resolved-return-fdlc", "capability-source",
 ]);
 const options = {};
 for (const argument of process.argv.slice(2)) {
@@ -68,12 +71,7 @@ const footerLinks = [
 ];
 const routes = ["/", ...primaryLinks.filter(([, path]) => path !== "/guide").map(([, path]) => path), ...secondaryLinks.map(([, path]) => path)];
 const expected404 = new URL("/fdlc-regression-no-such-page", fdlcOrigin).href;
-// Independent, edition-specific source oracle. The frozen final FDLC public
-// capability ledger already differs from the current/bridge publication; never
-// derive expectations from the browser's observed counts or edit that ledger.
-const capabilityContract = mode === "final"
-  ? { source: "8057d1fd2c9aafaad309488aaa6038bd61b61e57", total: 13, groups: [["qualified", 7], ["bounded", 4], ["missing", 2]] }
-  : { source: "e4112bb06333b8244c18fc4a9736b1f3c807bc78", total: 12, groups: [["available", 6], ["experimental", 4], ["planned", 2]] };
+const capabilityContract = migrationFdlcCapabilityContract(mode, options["capability-source"] ?? "reconciled-main");
 const result = {
   startedAt: new Date().toISOString(), mode, guideEdition, fdlcOrigin, guideOrigin, canonicalOrigin, returnOrigin, resolvedReturnOrigin,
   capabilityContract,
@@ -81,6 +79,7 @@ const result = {
   checks: [], pages: [], interactions: [], navigation: [], assets: [], console: [], pageErrors: [], networkFailures: [], speculativeRscCancellations: [], failures: [],
   evidenceLimits: [
     "This browser suite does not promote, inspect runtime logs, or establish source/asset deployment identity independently of Vercel metadata.",
+    "Capability contract selection records reviewed source ancestry, not the deployment's exact source identity; verify that identity independently before choosing the contract.",
     "Cross-app landing/return checks supplement, not replace, full Guide acceptance.",
     "Recorded speculative RSC cancellations received successful Flight response headers; this does not prove full body consumption or a JavaScript abort source. Navigation/data/asset failures are never included in this class.",
     ...(guideEdition === "old" ? ["The unchanged old Guide has no FDLC-home link; its return check uses browser Back and does not certify a nonexistent link."] : []),
@@ -288,10 +287,18 @@ async function missionControl(device) {
     if (!await detail.evaluate((element) => element.open)) await summary.click();
     const disclosureText = (await detail.innerText()).toLowerCase();
     check(`${checkpoint}: supported behavior and current boundary`, await detail.locator("p").count() === 2 && disclosureText.includes("current boundary") && disclosureText.includes("supported"), name);
+    if (await summary.locator("strong").innerText() === capabilityContract.mcp.name) {
+      const paragraphs = await detail.locator("p").allInnerTexts();
+      const normalize = (value) => value.replace(/\s+/g, " ").trim();
+      check(`${device}: exact narrow MCP supported behavior`, normalize(paragraphs[0] ?? "").replace(/^Supported\s*/, "") === capabilityContract.mcp.summary);
+      check(`${device}: exact MCP authority exclusions`, normalize(paragraphs[1] ?? "").replace(/^Current boundary\s*/, "") === capabilityContract.mcp.limitation);
+    }
     await summary.focus();
     await summary.press("Enter");
     check(`${checkpoint}: keyboard collapse`, !await detail.evaluate((element) => element.open), name);
   }
+  const mcp = page.locator(`#capabilities .is-${capabilityContract.mcp.group} details`).filter({ has: page.getByText(capabilityContract.mcp.name, { exact: true }) });
+  check(`${device}: exactly one MCP entry in its source-qualified group`, await mcp.count() === 1);
   await inspectCurrent("/mission-control", { action: "capability interactions" });
   result.interactions.push({ device, flowStages: names, operatorViews: viewNames, capabilityCount: await capabilities.count() });
 }

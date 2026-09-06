@@ -1,8 +1,8 @@
 # Mission Control Public Capability Matrix
 
-Date: 2026-09-03
+Date: 2026-09-05
 
-Baseline: local Mission Control checkout `07a96ac3623c8a6772455fcf4c9cdf4ca78e6d2f`. The current capability maturity ledger remains canonical. Website labels intentionally compress its detailed internal vocabulary into Available, Experimental, Planned, and Proposed.
+Baseline: Mission Control `ed77c46c9d975a2ed0c666cdaf0a3f0e12e77d4d`. The current capability maturity ledger remains canonical. Website labels intentionally compress its detailed internal vocabulary into Available, Experimental, Planned, and Proposed.
 
 | Capability | Public status | Safe public claim | Limitation to disclose | Source evidence |
 | --- | --- | --- | --- | --- |
@@ -19,8 +19,8 @@ Baseline: local Mission Control checkout `07a96ac3623c8a6772455fcf4c9cdf4ca78e6d
 | Factory Learning | Experimental | Accepted outcomes and evidence can form bounded learning signals and human-reviewed proposals. | Promotion remains manual and real production signals are limited. | `docs/software-factory/CONTINUOUS_LEARNING.md`; `convex/factoryLearning.ts`; maturity ledger |
 | GitHub App publication/currentness | Available | Publication can be permit-gated and reconciled to exact pull-request head and evidence lineage. | Demonstrated in a bounded path; merge remains human-owned. | `docs/testing/evidence/real-codex-github-pr-golden-path/README.md`; `convex/githubApp.ts` |
 | Remote Sandbox | Experimental | A bounded live Remote Sandbox cohort has been qualified for production-pilot evaluation. | Preview only; provider-enforced egress and sustained real-work evidence remain missing. | `docs/product/software-factory-capability-maturity.md`; remote sandbox qualification evidence |
-| Native tool authorization | Experimental | Some native allowlists and scope controls exist. | No canonical versioned tool-authority contract yet. | Harness manifests; maturity ledger |
-| MCP runtime | Planned | The architecture reserves a governed MCP boundary. | Current admitted harness manifests mark MCP unsupported. | Harness manifests; maturity ledger |
+| Native tool authorization | Experimental | A canonical Tool Version, Tool Grant, broker, and durable-receipt boundary covers fixtures and one qualified real read. | Harness-native tools do not yet use the same canonical authority. | governed MCP ADR; harness manifests; maturity ledger |
+| MCP runtime | Experimental | One exact Context7 `query-docs` read was qualified through an exact Tool Version and Tool Grant, brokered execution, durable receipts, schema/currentness checks, and independent verification. | One fixed public React query only; writes, arbitrary services or operations, broad credentials, remote arbitrary MCP, and harness-native MCP remain unsupported. | `docs/testing/evidence/governed-mcp-phase4-recovery/`; maturity ledger |
 | Release and production feedback | Experimental | Release records and some gating/feedback structures exist. | No complete production observation, rollback, and outcome proof. | `convex/factoryReleases.ts`; maturity ledger |
 | Multi-tenant enterprise operation | Experimental | Company/workspace scoping exists. | Cross-company production operation is not qualified. | `convex/schema.ts`; authorization tests; maturity ledger |
 | Factory incident response | Planned | Existing alerts and evidence can support a future incident lifecycle. | No canonical end-to-end incident aggregate and recovery lifecycle exists. | maturity ledger; convergence plan |
@@ -34,4 +34,3 @@ Baseline: local Mission Control checkout `07a96ac3623c8a6772455fcf4c9cdf4ca78e6d
 4. Keep Available statements narrow and pair them with their material limitation.
 5. Do not claim general production certification, fleet scale, zero-touch delivery, full MCP support, automatic self-improvement, or enterprise availability.
 6. Link the public page to the repository README, capability ledger, and exact quickstart.
-
