@@ -1,8 +1,13 @@
 # Mission Control Public Capability Matrix
 
-Date: 2026-09-05
+Date: 2026-09-06
 
 Baseline: Mission Control `ed77c46c9d975a2ed0c666cdaf0a3f0e12e77d4d`. The current capability maturity ledger remains canonical. Website labels intentionally compress its detailed internal vocabulary into Available, Experimental, Planned, and Proposed.
+
+The inference routing row was separately reviewed against merged Mission Control
+`9a68b56c3ee788c4f8b4132a8c7c9d14f32dee28`. Its retained reservation and durable
+identity evidence does not update the other rows' assessment revisions or establish
+live provider execution, actual billing, human acceptance or Production release.
 
 | Capability | Public status | Safe public claim | Limitation to disclose | Source evidence |
 | --- | --- | --- | --- | --- |
@@ -13,7 +18,7 @@ Baseline: Mission Control `ed77c46c9d975a2ed0c666cdaf0a3f0e12e77d4d`. The curren
 | Human Plan approval and WorkOrder acceptance | Available | Human decisions are distinct, server-authorized boundaries. | Merge and production release remain separate decisions. | `docs/product/mission-control-north-star.md`; `convex/workOrders.ts`; `convex/approvalDecisions.ts` |
 | Codex harness adapter | Available | `codex/v1` is the production-admitted execution adapter. | Admission is bounded to exact supported configuration and repository controls. | `packages/workflow-engine/src/harnessManifests.ts`; maturity ledger |
 | DeepSeek harness adapter | Experimental | A pinned local persistent-worker adapter exists for evaluation. | Disabled by default and not production-admitted. | `docs/software-factory/worker-runtime-operations.md`; harness manifests |
-| Model/harness/backend routing | Experimental | Policy-aware routing and recorded routing decisions are implemented behind gates. | Advisory/default-gated; evidence volume and cost coverage are incomplete. | `packages/model-router/`; `convex/modelRouting.ts`; maturity ledger |
+| Model/harness/backend routing | Experimental | WorkOrder inference reservations are conserved across requests, and canonical call intents and receipts preserve durable lineage. | Inference is default off. Live provider qualification, billing settlement and complete outcome economics remain incomplete. | [Canonical identity contract](https://github.com/jaydubya818/MissionControl/blob/9a68b56c3ee788c4f8b4132a8c7c9d14f32dee28/docs/software-factory/inference-ledger-identity-contract.md); [reservation qualification](https://github.com/jaydubya818/MissionControl/blob/9a68b56c3ee788c4f8b4132a8c7c9d14f32dee28/docs/testing/evidence/capability-convergence-reservation-final/README.md); [durable identity qualification](https://github.com/jaydubya818/MissionControl/blob/9a68b56c3ee788c4f8b4132a8c7c9d14f32dee28/docs/testing/evidence/capability-convergence-identity-backend/README.md) |
 | Factory Memory and Context Packages | Available | Provenance-backed context can be retrieved, frozen to an Attempt, and inspected. | Advisory and phase-gated; cannot alter frozen intent or satisfy acceptance. | `packages/memory/`; `convex/factoryMemory.ts`; maturity ledger |
 | Observability, traces, and evals | Available | Runs can produce traces, scores, datasets, and experiments for diagnostic comparison. | Diagnostic only; these records do not confer acceptance authority. | `convex/traces.ts`; `convex/evals.ts`; maturity ledger |
 | Factory Learning | Experimental | Accepted outcomes and evidence can form bounded learning signals and human-reviewed proposals. | Promotion remains manual and real production signals are limited. | `docs/software-factory/CONTINUOUS_LEARNING.md`; `convex/factoryLearning.ts`; maturity ledger |
