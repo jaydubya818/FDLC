@@ -110,6 +110,29 @@ test("Guide rollback shadow points only to the canonical same-origin Guide", asy
   assert.doesNotMatch(html, /ai-software-factory-mastery\.vercel\.app|href=["']\/docs\//i);
 });
 
+test("global navigation exposes the canonical Guide disclosure in desktop and mobile shells", async () => {
+  const html = await (await render("/guide")).text();
+  const header = html.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0];
+  assert.ok(header, "renders the persistent FDLC global header");
+  for (const label of ["Framework", "Architecture", "Guide", "Mission Control", "Maturity", "More"]) {
+    assert.match(header, new RegExp(`>${label}(?:\\s|<)`), label);
+  }
+  for (const [label, href] of [
+    ["Guide Home", "/guide"],
+    ["Atlas", "/guide/atlas"],
+    ["Reference", "/guide/topics"],
+    ["Glossary", "/guide/glossary"],
+    ["Search", "/guide/search"],
+  ]) {
+    assert.equal([...header.matchAll(new RegExp(`href="${href}"[^>]*>${label}<`, "g"))].length, 2, `${label} exists in desktop and mobile navigation`);
+  }
+  assert.match(header, /<button aria-controls="guide-navigation" aria-expanded="false"[^>]*>Guide/);
+  assert.match(header, /<button aria-controls="mobile-guide-navigation" aria-expanded="true" class="is-active"[^>]*>Guide/);
+  for (const id of ["guide-navigation", "more-navigation", "mobile-navigation", "mobile-guide-navigation"]) {
+    assert.equal([...header.matchAll(new RegExp(`id="${id}"`, "g"))].length, 1, `${id} is unique`);
+  }
+});
+
 test("manifesto publishes the ten operating invariants and the state boundary", async () => {
   const html = await (await render("/manifesto")).text();
   assert.match(html, /Autonomy is useful only when it can be .*trusted/i);
