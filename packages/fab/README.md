@@ -9,6 +9,7 @@ The software engineering agent for the Factory Development Lifecycle.
 - One clean, committed local Git repository; repository/language/build/test inspection.
 - Explicit user-owned macOS Keychain or environment credential reference, scoped to OS user, provider and repository.
 - Native read/plan/edit/check loop with OpenAI and Anthropic HTTP adapters.
+- Credential-free Bedrock protocol adapter for an explicitly bound Mission Control broker; offline protocol controls only, no standalone AWS credential path.
 - Exact file allowlist, content-hash edits, plan consent, secret filtering and bounded context.
 - Real project commands in a disposable macOS sandbox snapshot, with no model credentials or network.
 - Private local sessions, ordered events, diff/check evidence, cancellation and guarded resume.
@@ -99,6 +100,39 @@ Qualification records authentication, inference, JSON tool arguments, continuati
 Phase 3 qualification permits at most three external requests, each with at most 128 output tokens, and zero automatic retries. Every request has a local ID and a private, flushed request journal written before dispatch, then provider request/response IDs when available. A lost response remains UNKNOWN; a request ID alone does not prove success. Reports distinguish injected transport from LIVE and keep requested, returned and qualified identities separate. `latest` aliases are rejected. No live provider/model has been qualified in this repository yet.
 
 Usage preserves provider semantics: OpenAI prompt counts include cache reads and completion counts include reported reasoning; Anthropic input counts exclude its separately reported cache read/write counts. Missing fields and price/cost stay unknown. Sources: [OpenAI request IDs](https://platform.openai.com/docs/api-reference/introduction), [Claude Messages usage](https://platform.claude.com/docs/en/api/typescript/messages). The 200 KB context bound is a configured byte limit, not model context-window discovery.
+
+## Bedrock through Mission Control
+
+`BedrockModelProvider` serializes the Anthropic text/tool protocol for Bedrock
+`InvokeModel`. It accepts only Sonnet 4.6 through the account-bound
+`us.anthropic.claude-sonnet-4-6` profile in `us-east-1`. An external operator
+configuration binds `provider: "bedrock"`, the exact `bedrockRoute`, and a
+credential reference with `source: {"kind":"broker"}`. Configuration carries
+no AWS credentials, role-assumption command, alternate endpoint, or retry policy.
+
+The host must supply `BedrockBrokerTransport` through Mission Control's explicit
+integration point. The host owns identity verification, current canonical
+Attempt/lease checks, exact request token counting, durable monetary reservation,
+one transport attempt, and settlement. The interface itself does not prove those
+controls or grant execution. Missing broker enrollment fails closed. Neither a
+Bedrock config nor the existing HTTP transport can enable ambient AWS access.
+
+Each adapter invocation records intent before broker dispatch, freezes its
+request/profile identity, validates the returned provider request ID and single
+attempt, and retains safely observed usage/model metadata when policy rejects
+the response. Cancellation and timeout also bound durable-observer waits.
+Missing usage, returned-model identity and dollar cost stay unknown. An inspected
+profile relationship is distinct from the model identifier returned by inference.
+
+The CLI can inspect these saved sessions with `status` and `diff`. Bedrock auth,
+qualification, planning and execution require the Mission Control broker; the CLI
+does not discover AWS configuration or accept local AWS keys. Protocol tests inject
+a synthetic broker and are not live provider, deployed lineage, budget enforcement,
+or autonomous engineering qualification. Fab remains Experimental and whole-agent
+containment remains unqualified.
+
+References: [AWS Anthropic Messages](https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html),
+[AWS CountTokens](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_CountTokens.html).
 
 ## Bounded live engineering evaluation
 

@@ -1,6 +1,6 @@
 {
   "name": "@fdlc/fab",
-  "version": "0.1.0-experimental.2",
+  "version": "0.1.0-experimental.3",
   "private": true,
   "description": "Factory Agent Builder \u2014 bounded local engineering candidates",
   "type": "module",
@@ -37,6 +37,6 @@
     "pretest": "npm run build",
     "test": "node --test test/*.test.ts",
     "test:contained": "npm run build && FAB_TEST_CONTAINMENT=1 FAB_TEST_KEYCHAIN=1 node --test test/*.test.ts",
-    "test:provider": "node --test test/models.test.ts test/qualification.test.ts"
+    "test:provider": "node --test test/models.test.ts test/qualification.test.ts test/bedrock.test.ts"
   }
 }

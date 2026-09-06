@@ -4,6 +4,8 @@ export { KeychainCredentialStore } from './keychain.ts';
 export { qualifyProvider } from './qualification.ts';
 export { prepareEvaluation, runEvaluation, evaluationScope } from './evaluation.ts';
 export { HttpModelProvider } from './models.ts';
+export { BedrockModelProvider, bedrockRequestBody, bedrockErrorCode } from './bedrock.ts';
+export type { BedrockBrokerIdentity, BedrockBrokerRequest, BedrockBrokerResponse, BedrockBrokerTransport } from './bedrock.ts';
 export { Repository } from './repository.ts';
 export { SessionStore } from './sessions.ts';
 export { parseConfig, FabError } from './validation.ts';

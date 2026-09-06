@@ -1,4 +1,8 @@
-export type ProviderId = 'openai' | 'anthropic';
+export type ProviderId = 'openai' | 'anthropic' | 'bedrock';
+export interface BedrockRoute {
+  accountId: string; region: 'us-east-1'; modelId: 'anthropic.claude-sonnet-4-6';
+  inferenceProfileId: 'us.anthropic.claude-sonnet-4-6'; inferenceProfileArn: string;
+}
 export type JsonObject = Record<string, unknown>;
 export interface ToolCall { id: string; name: string; arguments: JsonObject }
 export type Message =
@@ -21,6 +25,8 @@ export interface ProviderRequestReceipt {
   inputBytes: number; maximumOutputTokens: number; retries: 0;
   httpStatus: number | null; requestId: string | null; responseId: string | null;
   returnedModel: string | null; usage: Usage | null; costClassification: 'UNKNOWN'; errorCode: string | null;
+  /** Exact routing observation, not a grant or fabricated provider-returned model. */
+  bedrockRoute?: BedrockRoute; requestDigest?: string;
 }
 export type ObserveProviderRequest = (receipt: ProviderRequestReceipt) => Promise<void> | void;
 export interface ModelReply {
@@ -37,7 +43,7 @@ export interface ModelProvider {
 export interface CredentialReference {
   id: string; owner: string; provider: ProviderId;
   scope: { kind: 'repository'; root: string };
-  source: { kind: 'environment'; variable: string } | { kind: 'keychain' };
+  source: { kind: 'environment'; variable: string } | { kind: 'keychain' } | { kind: 'broker' };
 }
 export interface CredentialMetadata { reference: string; configured: boolean; storage: 'environment' | 'keychain' }
 export interface CredentialStore {
@@ -55,6 +61,7 @@ export interface CheckDefinition { id: string; argv: string[] }
 export interface FabConfig {
   version: 1; repository: string; provider: ProviderId; model: string;
   credential: CredentialReference;
+  bedrockRoute?: BedrockRoute;
   writableFiles: string[]; checks: CheckDefinition[];
   acceptanceCriteria: string[];
   maxTurns: number; timeoutMs: number; checkTimeoutMs: number;
