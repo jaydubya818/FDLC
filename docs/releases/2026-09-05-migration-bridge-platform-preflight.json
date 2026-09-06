@@ -1,0 +1,528 @@
+{
+  "observedAt": "2026-09-05T20:05:33.164Z",
+  "readOnly": true,
+  "environmentValuesRetained": false,
+  "productionActionsAuthorizedByLatestDecision": false,
+  "oldGuideFocusStatus": {
+    "exceptionId": "OLD_GUIDE_SEARCH_FOCUS_TRAP",
+    "deploymentId": "dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur",
+    "status": "KNOWN_EXCEPTION / ACCEPTED_TEMPORARILY",
+    "allowedState": "bridge FDLC + exact old Guide only",
+    "expires": "immediately when migration leaves bridge/old",
+    "newGuideStatus": "PASS_REQUIRED_WITHOUT_EXCEPTION"
+  },
+  "projects": [
+    {
+      "label": "FDLC",
+      "projectId": "prj_MTztpwHj7IeGwuSMUzdcytLjo6zs",
+      "settings": {
+        "id": "prj_MTztpwHj7IeGwuSMUzdcytLjo6zs",
+        "name": "fdlc",
+        "framework": null,
+        "rootDirectory": null,
+        "buildCommand": null,
+        "installCommand": null,
+        "outputDirectory": null,
+        "nodeVersion": "24.x",
+        "autoAssignCustomDomains": true,
+        "sourceFilesOutsideRootDirectory": true,
+        "microfrontends": {
+          "enabled": true,
+          "groupIds": [
+            "mfe_1we4N3uLnAPIkT2Gpgv2T4NJ5PO4"
+          ],
+          "isDefaultApp": true,
+          "defaultRoute": "/",
+          "updatedAt": 1788550552781
+        }
+      },
+      "link": {
+        "type": "github",
+        "org": "jaydubya818",
+        "repo": "FDLC",
+        "repoId": 1356471667,
+        "productionBranch": "main"
+      },
+      "protection": {
+        "sso": {
+          "deploymentType": "all_except_custom_domains"
+        },
+        "passwordConfigured": false,
+        "automationBypassCount": 0,
+        "bypassMetadata": []
+      },
+      "environmentMetadata": [
+        {
+          "key": "FDLC_BRIDGE_GUIDE_ORIGIN",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/fdlc-guide-migration-bridge",
+          "type": "encrypted",
+          "createdAt": 1788637391260,
+          "updatedAt": 1788637391260
+        },
+        {
+          "key": "GUIDE_LEGACY_REDIRECTS_ENABLED",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/reconcile-microfrontends-main",
+          "type": "encrypted",
+          "createdAt": 1788562919339,
+          "updatedAt": 1788562919339
+        },
+        {
+          "key": "GUIDE_LEGACY_REDIRECTS_ENABLED",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/fdlc-guide-consolidation",
+          "type": "encrypted",
+          "createdAt": 1788550608659,
+          "updatedAt": 1788550608659
+        }
+      ],
+      "production": {
+        "id": "dpl_GvmTzMNUmpKt3825k69MUgL6YwTX",
+        "name": "fdlc",
+        "url": "fdlc-pcmfy8cqy-jaydubya818.vercel.app",
+        "target": "production",
+        "readyState": "READY",
+        "alias": [
+          "fdlc.ai",
+          "fdlc.vercel.app",
+          "www.fdlc.ai",
+          "fdlc-jaydubya818.vercel.app",
+          "fdlc-prod-jaydubya818.vercel.app",
+          "fdlc-git-main-jaydubya818.vercel.app"
+        ],
+        "aliasAssigned": true,
+        "createdAt": 1788560121951,
+        "sha": "e4112bb06333b8244c18fc4a9736b1f3c807bc78",
+        "branch": "main",
+        "gitSource": {
+          "type": "github",
+          "sha": "e4112bb06333b8244c18fc4a9736b1f3c807bc78",
+          "ref": "main",
+          "repoId": 1356471667
+        },
+        "microfrontends": {
+          "groupIds": [
+            "mfe_1we4N3uLnAPIkT2Gpgv2T4NJ5PO4"
+          ],
+          "isDefaultApp": true,
+          "defaultAppProjectName": "fdlc",
+          "mfeConfigUploadState": "no_config"
+        },
+        "effectiveBuildSettings": {
+          "framework": "nextjs",
+          "buildCommand": "npm run build:vercel",
+          "installCommand": null,
+          "outputDirectory": null,
+          "nodeVersion": "24.x"
+        }
+      },
+      "branchPreview": {
+        "id": "dpl_GYsajDzvwdN52HkApSK12SmUkA7A",
+        "name": "fdlc",
+        "url": "fdlc-9fd96dafq-jaydubya818.vercel.app",
+        "target": null,
+        "readyState": "READY",
+        "alias": [
+          "fdlc-git-codex-fdlc-guide-migration-bridge-jaydubya818.vercel.app"
+        ],
+        "aliasAssigned": true,
+        "createdAt": 1788637456214,
+        "sha": "982c5626a301792d00accf1d05d23327b6296067",
+        "branch": "codex/fdlc-guide-migration-bridge",
+        "gitSource": {
+          "type": "github",
+          "sha": "982c5626a301792d00accf1d05d23327b6296067",
+          "ref": "codex/fdlc-guide-migration-bridge",
+          "repoId": 1356471667
+        },
+        "microfrontends": {
+          "groupIds": [
+            "mfe_1we4N3uLnAPIkT2Gpgv2T4NJ5PO4"
+          ],
+          "isDefaultApp": true,
+          "defaultAppProjectName": "fdlc",
+          "mfeConfigUploadState": "success"
+        },
+        "effectiveBuildSettings": {
+          "framework": "nextjs",
+          "buildCommand": "npm run build:vercel",
+          "installCommand": null,
+          "outputDirectory": null,
+          "nodeVersion": "24.x"
+        }
+      },
+      "pr": {
+        "number": 12,
+        "html_url": "https://github.com/jaydubya818/FDLC/pull/12",
+        "state": "open",
+        "draft": true,
+        "merged": false,
+        "merged_at": null,
+        "mergeable": true,
+        "mergeable_state": "clean",
+        "updated_at": "2026-09-05T19:57:39Z",
+        "base": {
+          "ref": "main",
+          "sha": "e4112bb06333b8244c18fc4a9736b1f3c807bc78"
+        },
+        "head": {
+          "ref": "codex/fdlc-guide-migration-bridge",
+          "sha": "982c5626a301792d00accf1d05d23327b6296067"
+        },
+        "readFailed": false
+      },
+      "ci": {
+        "combinedState": "success",
+        "statusesReadFailed": false,
+        "statuses": [
+          {
+            "context": "Vercel",
+            "state": "success",
+            "description": "Deployment has completed",
+            "target_url": "https://vercel.com/jaydubya818/fdlc/GYsajDzvwdN52HkApSK12SmUkA7A",
+            "updated_at": "2026-09-05T19:44:54Z"
+          }
+        ],
+        "checksReadFailed": false,
+        "checkRuns": [
+          {
+            "name": "Vercel Preview Comments",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "982c5626a301792d00accf1d05d23327b6296067",
+            "details_url": "https://vercel.com/github",
+            "started_at": "2026-09-05T19:45:17Z",
+            "completed_at": "2026-09-05T19:45:17Z"
+          }
+        ],
+        "workflowsReadFailed": false,
+        "workflowRuns": []
+      }
+    },
+    {
+      "label": "Guide",
+      "projectId": "prj_KZQBsEEmJMnEpCx3DHW4mfzIOAuO",
+      "settings": {
+        "id": "prj_KZQBsEEmJMnEpCx3DHW4mfzIOAuO",
+        "name": "ai-software-factory-mastery",
+        "framework": "nextjs",
+        "rootDirectory": "site",
+        "buildCommand": null,
+        "installCommand": null,
+        "outputDirectory": null,
+        "nodeVersion": "24.x",
+        "autoAssignCustomDomains": false,
+        "sourceFilesOutsideRootDirectory": true,
+        "microfrontends": {
+          "enabled": true,
+          "groupIds": [
+            "mfe_1we4N3uLnAPIkT2Gpgv2T4NJ5PO4"
+          ],
+          "isDefaultApp": false,
+          "defaultRoute": "/guide",
+          "updatedAt": 1788550552928
+        }
+      },
+      "link": {
+        "type": "github",
+        "org": "jaydubya818",
+        "repo": "ai-software-factory-mastery",
+        "repoId": 1321328855,
+        "productionBranch": "main"
+      },
+      "protection": {
+        "sso": {
+          "deploymentType": "all_except_custom_domains"
+        },
+        "passwordConfigured": false,
+        "automationBypassCount": 1,
+        "bypassMetadata": [
+          {
+            "createdAt": 1788410466789,
+            "scope": "automation-bypass"
+          }
+        ]
+      },
+      "environmentMetadata": [
+        {
+          "key": "FDLC_MFE_CONFIG_SHA256",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/fdlc-guide-migration-bridge",
+          "type": "encrypted",
+          "createdAt": 1788637218014,
+          "updatedAt": 1788637218014
+        },
+        {
+          "key": "GUIDE_MFE_PREVIEW_ENABLED",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/fdlc-guide-migration-bridge",
+          "type": "encrypted",
+          "createdAt": 1788637216211,
+          "updatedAt": 1788637216211
+        },
+        {
+          "key": "NEXT_PUBLIC_SITE_URL",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/fdlc-guide-migration-bridge",
+          "type": "encrypted",
+          "createdAt": 1788637216133,
+          "updatedAt": 1788637216133
+        },
+        {
+          "key": "FDLC_MFE_SOURCE_COMMIT",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/fdlc-guide-migration-bridge",
+          "type": "encrypted",
+          "createdAt": 1788637216046,
+          "updatedAt": 1788637216046
+        },
+        {
+          "key": "GUIDE_LEGACY_REDIRECTS_ENABLED",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/reconcile-microfrontends-main",
+          "type": "encrypted",
+          "createdAt": 1788562945485,
+          "updatedAt": 1788562945485
+        },
+        {
+          "key": "NEXT_PUBLIC_SITE_URL",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/reconcile-microfrontends-main",
+          "type": "encrypted",
+          "createdAt": 1788562941014,
+          "updatedAt": 1788562941014
+        },
+        {
+          "key": "GUIDE_MFE_PREVIEW_ENABLED",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/reconcile-microfrontends-main",
+          "type": "encrypted",
+          "createdAt": 1788562936299,
+          "updatedAt": 1788562936299
+        },
+        {
+          "key": "FDLC_MFE_SOURCE_COMMIT",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/reconcile-microfrontends-main",
+          "type": "encrypted",
+          "createdAt": 1788562929345,
+          "updatedAt": 1788562929345
+        },
+        {
+          "key": "FDLC_MFE_CONFIG_SHA256",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/reconcile-microfrontends-main",
+          "type": "encrypted",
+          "createdAt": 1788562924820,
+          "updatedAt": 1788562924820
+        },
+        {
+          "key": "GUIDE_MFE_PREVIEW_ENABLED",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/fdlc-guide-consolidation",
+          "type": "encrypted",
+          "createdAt": 1788556306565,
+          "updatedAt": 1788556306565
+        },
+        {
+          "key": "FDLC_MFE_SOURCE_COMMIT",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/fdlc-guide-consolidation",
+          "type": "encrypted",
+          "createdAt": 1788556288177,
+          "updatedAt": 1788556288177
+        },
+        {
+          "key": "FDLC_MFE_CONFIG_SHA256",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/fdlc-guide-consolidation",
+          "type": "encrypted",
+          "createdAt": 1788556270822,
+          "updatedAt": 1788556270822
+        },
+        {
+          "key": "GUIDE_LEGACY_REDIRECTS_ENABLED",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/fdlc-guide-consolidation",
+          "type": "encrypted",
+          "createdAt": 1788550662751,
+          "updatedAt": 1788550662751
+        },
+        {
+          "key": "NEXT_PUBLIC_SITE_URL",
+          "target": [
+            "preview"
+          ],
+          "gitBranch": "codex/fdlc-guide-consolidation",
+          "type": "encrypted",
+          "createdAt": 1788550654363,
+          "updatedAt": 1788550654363
+        }
+      ],
+      "production": {
+        "id": "dpl_EZemFq1QbGX1YG5WG8C1BAmd8Yur",
+        "name": "ai-software-factory-mastery",
+        "url": "ai-software-factory-mastery-m9hawsnky-jaydubya818.vercel.app",
+        "target": "production",
+        "readyState": "READY",
+        "alias": [
+          "ai-software-factory-mastery.vercel.app",
+          "ai-software-factory-mastery-jaydubya818.vercel.app",
+          "ai-software-factory-mastery-git-main-jaydubya818.vercel.app"
+        ],
+        "aliasAssigned": true,
+        "createdAt": 1788542178999,
+        "sha": "87d3841f96353d03278311dfc7e7b2d25649a331",
+        "branch": "main",
+        "gitSource": {
+          "type": "github",
+          "sha": "87d3841f96353d03278311dfc7e7b2d25649a331",
+          "ref": "main",
+          "repoId": 1321328855
+        },
+        "microfrontends": {},
+        "effectiveBuildSettings": {
+          "framework": "nextjs",
+          "buildCommand": null,
+          "installCommand": null,
+          "outputDirectory": null,
+          "nodeVersion": "24.x"
+        }
+      },
+      "branchPreview": {
+        "id": "dpl_EYYQaUg7BAcUhVVtQTzxMjFCJgLN",
+        "name": "ai-software-factory-mastery",
+        "url": "ai-software-factory-mastery-pxvr0h18x-jaydubya818.vercel.app",
+        "target": null,
+        "readyState": "READY",
+        "alias": [
+          "ai-software-factory-mastery-git-codex-fdlc-g-cf0ba7-jaydubya818.vercel.app"
+        ],
+        "aliasAssigned": true,
+        "createdAt": 1788637292196,
+        "sha": "8cf00f9e1882fb01af58d22a95881d4833d39d06",
+        "branch": "codex/fdlc-guide-migration-bridge",
+        "gitSource": {
+          "type": "github",
+          "sha": "8cf00f9e1882fb01af58d22a95881d4833d39d06",
+          "ref": "codex/fdlc-guide-migration-bridge",
+          "repoId": 1321328855
+        },
+        "microfrontends": {
+          "groupIds": [
+            "mfe_1we4N3uLnAPIkT2Gpgv2T4NJ5PO4"
+          ],
+          "isDefaultApp": false,
+          "defaultAppProjectName": "fdlc"
+        },
+        "effectiveBuildSettings": {
+          "framework": "nextjs",
+          "buildCommand": null,
+          "installCommand": null,
+          "outputDirectory": null,
+          "nodeVersion": "24.x"
+        }
+      },
+      "pr": {
+        "number": 12,
+        "html_url": "https://github.com/jaydubya818/ai-software-factory-mastery/pull/12",
+        "state": "open",
+        "draft": true,
+        "merged": false,
+        "merged_at": null,
+        "mergeable": true,
+        "mergeable_state": "clean",
+        "updated_at": "2026-09-05T19:57:39Z",
+        "base": {
+          "ref": "codex/reconcile-microfrontends-main",
+          "sha": "7b9f00beda0eab41348c8650a61009c6ab630fbf"
+        },
+        "head": {
+          "ref": "codex/fdlc-guide-migration-bridge",
+          "sha": "8cf00f9e1882fb01af58d22a95881d4833d39d06"
+        },
+        "readFailed": false
+      },
+      "ci": {
+        "combinedState": "success",
+        "statusesReadFailed": false,
+        "statuses": [
+          {
+            "context": "Vercel – ai-software-factory-mastery_documentation",
+            "state": "success",
+            "description": "Deployment has completed",
+            "target_url": "https://vercel.com/jaydubya818/ai-software-factory-mastery_documentation/2Ff9WS1nu8shDJsa7vh2zMp9Lmgw",
+            "updated_at": "2026-09-05T19:39:23Z"
+          },
+          {
+            "context": "Vercel – ai-software-factory-mastery",
+            "state": "success",
+            "description": "Deployment has completed",
+            "target_url": "https://vercel.com/jaydubya818/ai-software-factory-mastery/EYYQaUg7BAcUhVVtQTzxMjFCJgLN",
+            "updated_at": "2026-09-05T19:42:49Z"
+          }
+        ],
+        "checksReadFailed": false,
+        "checkRuns": [
+          {
+            "name": "Vercel Preview Comments",
+            "status": "completed",
+            "conclusion": "success",
+            "head_sha": "8cf00f9e1882fb01af58d22a95881d4833d39d06",
+            "details_url": "https://vercel.com/github",
+            "started_at": "2026-09-05T19:43:30Z",
+            "completed_at": "2026-09-05T19:43:30Z"
+          }
+        ],
+        "workflowsReadFailed": false,
+        "workflowRuns": []
+      }
+    }
+  ],
+  "groups": [
+    {
+      "group": {
+        "id": "mfe_1we4N3uLnAPIkT2Gpgv2T4NJ5PO4",
+        "name": "fdlc-guide",
+        "fallbackEnvironment": "PRODUCTION",
+        "enablePolyrepoBranchRouting": true,
+        "updatedAt": 1788550573684
+      },
+      "configDeploymentId": "dpl_GvmTzMNUmpKt3825k69MUgL6YwTX"
+    }
+  ],
+  "completedAt": "2026-09-05T20:05:46.425Z"
+}

@@ -1,7 +1,10 @@
+import { withMicrofrontends } from "@vercel/microfrontends/next/config";
 import type { NextConfig } from "next";
+import { guideBridgeOrigin } from "./lib/guide-bridge.ts";
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+// Invalid qualification inputs must fail the build, not change live routing.
+guideBridgeOrigin();
 
-export default nextConfig;
+const nextConfig: NextConfig = {};
+
+export default withMicrofrontends(nextConfig);
