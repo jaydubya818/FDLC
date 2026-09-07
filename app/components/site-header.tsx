@@ -125,7 +125,7 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="header-inner">
         <Link className="wordmark" href="/" aria-label="FDLC.ai home">
-          <Image className="brand-logo" src="/fdlc-logo-updated.png" alt="FDLC.ai — Factory Development Lifecycle" width={2007} height={784} priority />
+          <Image className="brand-logo" src="/fdlc-logo-transparent.png" alt="FDLC.ai — Factory Development Lifecycle" width={2007} height={784} sizes="220px" priority />
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {primary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
