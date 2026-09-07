@@ -1190,6 +1190,11 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 .fde-collaboration-grid li { padding: 10px 0; border-top: 1px solid var(--line); color: var(--muted); font-family: var(--serif); font-size: 20px; }
 .fde-collaboration-grid .is-together { background: #e5e6df; }
 .fde-collaboration-grid .is-together li { color: var(--green); }
+.fde-customer-product { background: #dedfd8; }
+.fde-customer-product-footer { margin-top: 44px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 36px; align-items: end; }
+.fde-customer-product-footer p { max-width: 760px; margin: 0; padding-left: 18px; border-left: 3px solid var(--amber); color: var(--muted); font-size: 12px; line-height: 1.65; }
+.fde-customer-product-footer strong { color: var(--ink); }
+.fde-customer-product-footer .section-link { margin: 0; white-space: nowrap; }
 .fde-control-section { padding: 104px max(24px, calc((100vw - var(--content-width)) / 2)); display: grid; grid-template-columns: .78fr 1.22fr; gap: clamp(54px, 8vw, 110px); align-items: center; background: var(--ink); color: white; }
 .fde-control-copy .section-label { color: var(--green-bright); }
 .fde-control-copy h2 { margin: 18px 0 26px; font-family: var(--serif); font-size: clamp(44px, 4.5vw, 62px); font-weight: 500; letter-spacing: -.05em; line-height: .98; }
@@ -1481,7 +1486,7 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
   .guide-stage-line { grid-template-columns: repeat(2, 1fr); }
   .principles-preview { grid-template-columns: 1fr; }
   .ecosystem-cards, .system-models { grid-template-columns: 1fr; }
-  .fde-human-system > header, .fde-responsibility-grid, .fde-definition-section, .fde-phase-journey, .fde-selection-model, .fde-transformation-section > header, .fde-representative-example, .fde-before-after, .fde-collaboration-grid, .fde-partnership-v2, .fde-evidence-ledger, .fde-maturity-boundary { grid-template-columns: 1fr; }
+  .fde-human-system > header, .fde-responsibility-grid, .fde-definition-section, .fde-phase-journey, .fde-selection-model, .fde-transformation-section > header, .fde-representative-example, .fde-before-after, .fde-collaboration-grid, .fde-customer-product-footer, .fde-partnership-v2, .fde-evidence-ledger, .fde-maturity-boundary { grid-template-columns: 1fr; }
   .fde-human-system > header { gap: 24px; }
   .fde-responsibility-grid article { min-height: 390px; }
   .fde-definition-section { gap: 58px; }
@@ -1491,6 +1496,8 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
   .fde-representative-example > div { min-height: 170px; border-right: 0; border-bottom: 1px solid var(--line); }
   .fde-before-after article { min-height: 340px; }
   .fde-collaboration-grid article { min-height: 270px; }
+  .fde-customer-product-footer { align-items: start; }
+  .fde-customer-product-footer .section-link { white-space: normal; }
   .fde-partnership-v2, .fde-maturity-boundary { gap: 34px; }
   .fde-qualification-states { grid-template-columns: repeat(2, 1fr); }
   .ecosystem-cards > a { min-height: 250px; }
