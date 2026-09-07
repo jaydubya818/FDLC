@@ -233,7 +233,14 @@ test("interactive routes have complete server-rendered entry states", async () =
 
 test("FDE publishes the qualification state and its dormant live boundary", async () => {
   const html = await (await render("/deploy")).text();
-  assert.match(html, /FDLC Deploy \/ FDE/i);
+  assert.match(html, /Factory Deployed Engineer \(FDE\)/i);
+  assert.match(html, /Three phases.*One evidence trail/is);
+  assert.match(html, /FDLC defines it.*Mission Control governs it.*FDE applies it/is);
+  assert.match(html, /FDLC Readiness.*Understand\. Plan\. Select\./is);
+  assert.match(html, /FDLC Lighthouse.*Prove value\. Measure impact\./is);
+  assert.match(html, /FDLC Scale.*Scale reliably\. Multiply outcomes\./is);
+  assert.match(html, /Dependency modernization.*API migration.*Vulnerability remediation.*Quality remediation.*Documentation maintenance.*Code review assistance/is);
+  assert.match(html, /Bring one real workflow.*current baseline/is);
   assert.match(html, /Production.*Qualified \/ Healthy/is);
   assert.match(html, /Qualification environment.*Ready/is);
   assert.match(html, /083665737366.*us-east-1.*qual\.factory-engineer\.fdlc\.ai/is);
