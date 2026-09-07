@@ -637,7 +637,9 @@ button, input, textarea, select { font: inherit; }
 .relationship span { color: var(--green); font-family: var(--mono); font-size: var(--text-label); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .architecture-area-links { margin: 22px 0 0 100px; display: flex; flex-wrap: wrap; gap: 18px 30px; }
 .architecture-area-links a { color: var(--green); font-size: 12px; font-weight: 700; }
-.factory-system-diagram { padding: 112px max(20px, calc((100vw - var(--content-width)) / 2)); background: #dedfd8; }
+.factory-system-diagram { padding: clamp(32px, 4vw, 56px) clamp(20px, 4vw, 56px); background: #dedfd8; }
+.factory-system-diagram > .section-header { grid-template-columns: minmax(0, 1fr); gap: 0; margin-bottom: 32px; }
+.factory-system-diagram .section-header h2 { max-width: 22ch; font-size: clamp(38px, 4vw, 56px); }
 .system-map { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #afb3ac; border: 1px solid #afb3ac; }
 .system-map > div { min-height: 155px; padding: 22px; display: flex; flex-direction: column; background: var(--surface); }
 .system-map > div:nth-child(2), .system-map > div:nth-child(4), .system-map > div:nth-child(5) { background: var(--ink); color: white; }

@@ -66,6 +66,20 @@ try {
       await page.getByRole("heading", { level: 1 }).waitFor();
       await checkGlobalNavigation(page, { mobile: width === 390, keyboard: route === "/" });
       await audit(route);
+      if (route === "/architecture") {
+        const systemFlow = page.locator("#system-flow");
+        const layout = await systemFlow.evaluate(section => {
+          const heading = section.querySelector("h2");
+          return {
+            headingLines: heading.getBoundingClientRect().height / parseFloat(getComputedStyle(heading).lineHeight),
+            mapWidthRatio: section.querySelector(".system-map").getBoundingClientRect().width / section.getBoundingClientRect().width,
+          };
+        });
+        assert.ok(layout.headingLines <= (width === 390 ? 4.1 : 2.1), "System flow heading must not collapse into a narrow column");
+        assert.ok(layout.mapWidthRatio >= .8, "System map uses the content column instead of repeated viewport gutters");
+        await systemFlow.screenshot({ path: new URL(`architecture-system-flow-${width}.png`, output).pathname });
+        report.flows.push({ name: "architecture-system-flow-readable-width", width, result: "PASS" });
+      }
       for (const href of await page.locator("a[href]").evaluateAll(nodes => nodes.map(n => n.getAttribute("href")))) {
         if (href.startsWith("/") && !href.startsWith("//") && !href.startsWith("/guide")) links.add(href.split("#")[0]);
       }
