@@ -58,6 +58,11 @@ export default function ArchitecturePage() {
       <p className="control-boundary-rule">Every Attempt returns attributable evidence. No producing system may promote its own result.</p>
     </section>
 
+    <section className="section-block">
+      <SectionHeader eyebrow="Across factories" title="One objective can require several qualified factories." description="Mission Control owns the governed Plan, WorkOrder dependencies, and artifact handoffs. Factory supervisors coordinate Tasks inside their assigned boundary. Local evidence verifies each WorkOrder; global evidence verifies the integrated result." />
+      <div className="hero-actions"><Link className="button button-dark" href="/enterprise#operating-model">Explore the enterprise delivery diagram</Link><a className="text-action" href="/guide/appendix/enterprise-multi-factory-delivery">Read the complete operating contract →</a></div>
+    </section>
+
     <StateBoundary />
 
     <section className="section-block architecture-details">

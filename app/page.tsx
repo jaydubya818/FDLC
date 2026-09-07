@@ -69,6 +69,14 @@ export default function Home() {
           <p className="orientation-note">This inner lifecycle produces software. The seven-stage FDLC lifecycle below evolves the factory that performs it.</p>
         </section>
 
+        <section className="content-section" id="enterprise-delivery">
+          <SectionHeader eyebrow="Enterprise delivery" title="Compose many factories around one objective." description="A migration, security fix, and release can share one governed Plan while qualified factories execute each WorkOrder. Mission Control coordinates the dependencies, artifact handoffs, evidence, and authority." />
+          <div className="enterprise-home-summary">
+            <div><p>Builders describe outcomes. Factories contribute verified artifacts. The integrated result still has to satisfy the objective and earn release authorization.</p><div className="hero-actions"><Link className="button button-dark" href="/enterprise">Explore multi-factory delivery</Link><Link className="text-action" href="/enterprise#pricing">Contact FDLC Enterprise for pricing →</Link></div></div>
+            <ol><li>Approve the Plan and its dependency graph.</li><li>Route WorkOrders to qualified Factory Versions.</li><li>Verify each output and the integrated Candidate.</li><li>Authorize release and validate production outcomes.</li><li>Qualify improvements before expanding adoption.</li></ol>
+          </div>
+        </section>
+
         <section className="comparison-section">
           <div className="comparison-intro">
             <p className="section-label">The category boundary</p>

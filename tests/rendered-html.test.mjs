@@ -307,3 +307,9 @@ test("preview products are explicitly labeled", async () => {
     assert.match(html, /Proposed|Design partner/i, route);
   }
 });
+
+test("enterprise pricing inquiries have a working contact destination", async () => {
+  const html = await (await render("/enterprise")).text();
+  assert.match(html, /support@fdlc\.ai/);
+  assert.match(html, /href="mailto:support@fdlc\.ai\?subject=FDLC%20Enterprise%20pricing%20and%20scope"/);
+});

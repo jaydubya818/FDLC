@@ -48,6 +48,7 @@ export default function DeployPage() {
               <Link className="button button-dark" href="/maturity">Assess your factory readiness</Link>
               <a className="button button-light" href="#how-fde-works">See how FDE works</a>
               <Link className="text-action" href="/start">Explore a Factory Definition <span aria-hidden="true">→</span></Link>
+              <Link className="text-action" href="/enterprise#pricing">Contact FDLC Enterprise for pricing <span aria-hidden="true">→</span></Link>
             </div>
           </div>
 
