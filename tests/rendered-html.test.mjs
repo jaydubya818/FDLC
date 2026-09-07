@@ -111,11 +111,14 @@ test("framework publishes the exact category definition and distinction", async 
 test("architecture makes the control boundary and durable operating record explicit", async () => {
   const html = await (await render("/architecture")).text();
   assert.match(html, /Intelligence can change.*Authority cannot be implicit/is);
-  assert.match(html, /Intelligence supply.*Models reason.*Agents act.*Factory control plane.*factory governs.*Execution environment.*Effects stay bounded/is);
+  assert.match(html, /Intelligence supply.*Models reason.*Agents act.*Factory control plane.*factory governs.*Governed execution.*Operation stays bounded/is);
   assert.match(html, /Authority flows down.*Allow intelligence to vary.*Always bound authority.*Evidence flows back/is);
   assert.match(html, /Expected to change.*Models.*agents.*skills.*prompts.*tool adapters.*Required to persist.*Intent.*identity.*authority.*state.*evidence.*decisions.*outcomes/is);
   assert.match(html, /Every Attempt returns attributable evidence.*No producing system may promote its own result/is);
   assert.match(html, /href=["']#control-boundary["']/i);
+  assert.match(html, /href=["']#execution-vocabulary["']/i);
+  assert.match(html, /Canonical execution vocabulary.*Model.*Agent Loop.*Agent Harness.*Work Graph.*Orchestrator.*Runtime.*Sandbox.*Capability Implementation.*Control Plane.*Factory/is);
+  assert.match(html, /Harness may enforce a local rule.*Control Plane owns.*authority/is);
 });
 
 test("Guide rollback shadow points only to the canonical same-origin Guide", async () => {

@@ -35,9 +35,9 @@ export const guideParts = [
       [13, "Control plane, orchestrator, and execution plane", "Separate authority, coordination, and work.", `${guideRoot}/03-build/13-control-plane-orchestrator-and-execution-plane`],
       [14, "Durable execution: tasks, attempts, leases, and recovery", "Survive failures without losing truth.", `${guideRoot}/03-build/14-durable-execution`],
       [15, "Coding harnesses and agent protocols", "Own the execution contract and place interoperability protocols deliberately.", `${guideRoot}/03-build/15-coding-harnesses-and-agent-protocols`],
-      [16, "Harness engineering", "Engineer reproducible sessions, loops, controls, events, and conformance evidence.", `${guideRoot}/03-build/16-harness-engineering`],
+      [16, "Harness engineering", "Engineer the bounded operating environment around Agents without collapsing Runtime, orchestration, or authority into it.", `${guideRoot}/03-build/16-harness-engineering`],
       [17, "Development environments, sandboxes, and compute", "Contain side effects and prove cleanup.", `${guideRoot}/03-build/17-development-environments-sandboxes-and-compute`],
-      [18, "Agent architecture: loop, MCP, tools, context, and memory", "Design one bounded worker as a governed runtime composition.", `${guideRoot}/03-build/18-agent-architecture`],
+      [18, "Agent architecture: loop, MCP, tools, context, and memory", "Compose one goal-directed worker from a Model, Loop, Harness, capabilities, context, state, and evaluation.", `${guideRoot}/03-build/18-agent-architecture`],
       [19, "Data, knowledge, and semantic engineering", "Prepare attributable knowledge and semantic contracts.", `${guideRoot}/03-build/19-data-knowledge-and-semantic-engineering`],
       [20, "Context engineering", "Compile the minimum sufficient, permission-aware Context Package.", `${guideRoot}/03-build/20-context-engineering`],
       [21, "Models and capability selection", "Treat models as qualified, replaceable capability profiles.", `${guideRoot}/03-build/21-models-and-capability-selection`],
@@ -99,13 +99,13 @@ export const guideEntryPaths = [
 ] as const;
 
 export const proposedGuideMap = [
+  ["Execution Boundaries and Canonical Terminology", `${guideRoot}/appendix/execution-boundaries-and-terminology`, "Guide reference"],
   ["What Is an AI Software Factory?", `${guideRoot}/01-understand/02-the-factory-in-one-view`, "Guide chapter"],
   ["Coding Agents vs. Software Factories", `${guideRoot}/01-understand/01-why-software-engineering-is-changing`, "Guide chapter"],
   ["Factory Development Lifecycle", "/framework", "FDLC framework"],
   ["Reference Architecture", "/architecture", "FDLC framework"],
   ["Intent and Specification Engineering", `${guideRoot}/02-design/06-intent-and-specification-engineering`, "Guide chapter"],
   ["Planning and Work Decomposition", `${guideRoot}/stages/02-plan`, "Guide stage"],
-  ["Agent Harnesses", `${guideRoot}/03-build/16-harness-engineering`, "Guide chapter"],
   ["Agents and Agent Definitions", `${guideRoot}/stages/03-define-agent`, "Guide stage"],
   ["Skills and Reusable Capabilities", `${guideRoot}/03-build/12-skills-as-packages`, "Guide chapter"],
   ["Tools and MCP", `${guideRoot}/03-build/18-agent-architecture`, "Guide chapter"],

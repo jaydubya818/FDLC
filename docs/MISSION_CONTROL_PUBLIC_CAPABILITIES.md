@@ -42,3 +42,28 @@ qualification. Routing and inference accounting are distinct responsibilities.
 4. Keep Available statements narrow and pair them with their material limitation.
 5. Do not claim general production certification, fleet scale, zero-touch delivery, full MCP support, automatic self-improvement, or enterprise availability.
 6. Link the public page to the repository README, capability ledger, and exact quickstart.
+
+## Production reliability requirements
+
+The public incident-operations section describes required next capabilities, not
+current availability. Preserve the existing roadmap order and extend current
+records and controls in this sequence:
+
+1. Build an impact graph and blast-radius query over Factory Versions, Execution
+   Profiles, capabilities, WorkOrders, Attempts, effects, evidence, approvals,
+   releases, environments, and outcomes. Retain explicit unknown states and
+   evidence freshness.
+2. Add one durable incident record with severity, roles, hypotheses, decisions,
+   commands, acknowledgements, observed enforcement, communications, and handoff.
+3. Qualify scoped containment and declared degraded modes one control and subject
+   at a time. Do not infer broad authority from the existing repository pause.
+4. Add effect reconciliation for saga and partial-DAG recovery, including stable
+   logical operations, receipts, orphaned work, compensation, residual effects,
+   and the safe boundary for a replacement Attempt.
+5. Bind known-good restoration to exact artifact and configuration identity and
+   require independent recovery evidence, backlog disposition, residual risk,
+   and governed corrective actions before incident closure.
+
+The acceptance bar includes negative tests for stale workers, ambiguous effects,
+failed control enforcement, unavailable policy or identity, stale queued work,
+failed restoration, and recovery that creates a new regression.
