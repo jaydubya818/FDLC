@@ -236,6 +236,10 @@ test("mission control leads with the product and exposes an interactive governed
   assert.match(html, /Inspect what is real.*where it stops/is);
   assert.match(html, /Available.*Experimental.*Planned/is);
   assert.match(html, /One exact Context7 query-docs read.*One fixed public React query only.*harness-native MCP remain unsupported/is);
+  assert.match(html, /Canonical Factory admission.*deterministic synthetic path.*live autonomous delivery remains unqualified/is);
+  assert.match(html, /Factory Version.*Execution Profile.*WorkOrder.*Readiness.*Task.*Attempt.*Unpublished Candidate.*Verification Subject.*Verifier Attempt.*Evidence.*Human Authority/is);
+  assert.match(html, /Readiness.*derived determination.*never a manually asserted READY flag/is);
+  assert.match(html, /No external model calls, publication, acceptance, or Production mutation occurred/is);
 });
 
 test("long technical pages expose the requested rail and tablet jump navigation", async () => {

@@ -53,7 +53,7 @@ export default function MissionControlPage() {
     <section className="section-block mc-how-section" id="how-it-works">
       <SectionHeader eyebrow="Interactive governed path" title="Follow one mission through the control plane." description="Select a stage to see the governing question, the authority allowed to answer it, and the proof required before state can advance." />
       <MissionControlFlow />
-      <div className="mc-object-heading"><div><p className="section-label">Durable record model</p><h3>Every claim has an owner, lineage, and boundary.</h3></div><p>Mission Control expands the FDLC Artifact Protocol with implementation records needed to dispatch, recover, verify, and audit real work.</p></div>
+      <div className="mc-object-heading"><div><p className="section-label">Canonical admission model</p><h3>Every claim has an owner, lineage, and boundary.</h3></div><p>Mission Control binds a qualified Factory composition to approved work, derives readiness from current evidence, and keeps production, verification, and consequential human authority separate.</p></div>
       <ol className="mc-object-ledger">{missionControlObjects.map(([name, summary], index) => <li key={name}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{name}</strong><p>{summary}</p></div></li>)}</ol>
     </section>
 

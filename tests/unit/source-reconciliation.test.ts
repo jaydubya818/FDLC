@@ -6,15 +6,20 @@ import { dependencyModernizationExample } from "../../data/dependency-modernizat
 import { missionControlCapabilities } from "../../data/mission-control.ts";
 
 test("preserves current-main Mission Control source while final routing lands", () => {
-  assert.equal(missionControlCapabilities.length, 12);
+  assert.equal(missionControlCapabilities.length, 13);
   assert.equal(missionControlCapabilities.filter((item) => item.status === "Available").length, 6);
-  assert.equal(missionControlCapabilities.filter((item) => item.status === "Experimental").length, 5);
+  assert.equal(missionControlCapabilities.filter((item) => item.status === "Experimental").length, 6);
   assert.equal(missionControlCapabilities.filter((item) => item.status === "Planned").length, 1);
   const mcp = missionControlCapabilities.find((item) => item.name === "Governed MCP runtime");
   assert.deepEqual(mcp, {
     name: "Governed MCP runtime", status: "Experimental",
     summary: "One exact Context7 query-docs read was qualified through versioned authority, brokered execution, durable receipts, and independent verification.",
     limitation: "One fixed public React query only; writes, arbitrary servers and operations, broad credentials, and harness-native MCP remain unsupported.",
+  });
+  assert.deepEqual(missionControlCapabilities.find((item) => item.name === "Canonical Factory admission"), {
+    name: "Canonical Factory admission", status: "Experimental",
+    summary: "One deterministic synthetic path qualified exact Factory Versions, derived WorkOrder readiness, producer and verifier Attempts, an unpublished candidate, and current verification evidence.",
+    limitation: "No external model calls, publication, acceptance, or Production mutation occurred; live autonomous delivery remains unqualified.",
   });
 });
 
