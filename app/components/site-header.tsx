@@ -13,7 +13,7 @@ const primary: readonly NavLink[] = [
 ];
 
 const guide: readonly NavLink[] = [
-  ["Guide Home", "/guide"],
+  ["Overview", "/guide"],
   ["Atlas", "/guide/atlas"],
   ["Reference", "/guide/topics"],
   ["Glossary", "/guide/glossary"],
