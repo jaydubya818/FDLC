@@ -2,18 +2,27 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArchitectureDiagram } from "./components/architecture-diagram";
-import { CategoryDistinction } from "./components/category-distinction";
-import { FactoryExplorer } from "./components/factory-explorer";
-import { LifecycleDiagram } from "./components/lifecycle-diagram";
-import { ProtocolDiagram } from "./components/protocol-diagram";
 import { SectionHeader } from "./components/page-hero";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
-import { ecosystemRoles, evidencePositioning, lifecycleStages, manifesto, maturityLevels, primaryPositioning } from "../data/fdlc";
+import { evidencePositioning, primaryPositioning } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "FDLC is the open operating model and reference architecture for designing, governing, and continuously improving AI software factories.", "/");
+export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "FDLC is the open operating model and technical foundation for designing, governing, and operating trusted AI software factories.", "/");
+
+const exampleSteps = [
+  ["Intent", "Upgrade a dependency across approved repositories without changing public behavior."],
+  ["Factory", "Plan → Modify → Test → Verify → Approve"],
+  ["Evidence", "Compatibility · Tests · Security · Cost · Human authority"],
+  ["Outcome", "A production-ready modernization candidate with an attributable evidence trail."],
+] as const;
+
+const actions = [
+  ["Understand", "See one workflow move from intent to verified outcome.", "/in-5-minutes", "Follow the five-minute example"],
+  ["Assess", "Identify your current factory maturity and the next capability to earn.", "/maturity", "Assess your factory"],
+  ["Build", "Turn one engineering outcome into a reusable Factory Definition.", "/start", "Build a Factory Definition"],
+  ["Go deeper", "Use the Framework, Architecture, and Guide as the technical reference.", "/framework", "Explore the Framework"],
+] as const;
 
 export default function Home() {
   return (
@@ -23,143 +32,73 @@ export default function Home() {
         <section className="hero-shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>Factory Development Lifecycle (FDLC)</span><span>Open framework · v0.1</span></p>
+            <p className="hero-problem">Code generation is becoming abundant. Trusted autonomous software delivery is not.</p>
             <h1>Build the factory that builds your software.</h1>
-            <p className="hero-lede">
-              The Factory Development Lifecycle (FDLC) is the process for designing,
-              assembling, governing, operating, measuring, and continuously improving the
-              AI software factory that produces software.
-            </p>
+            <p className="hero-lede">FDLC is the operating model and technical foundation for designing, governing, and operating AI software factories that turn intent into verified software.</p>
+            <p className="hero-audience">For engineering leaders, platform teams, software-factory architects, and builders evaluating governed AI delivery.</p>
             <div className="hero-category-contrast" aria-label="Difference between SDLC and FDLC" role="group">
               <div><span>SDLC</span><p>Governs the lifecycle of <strong>software.</strong></p></div>
-              <div><span>FDLC</span><p>Governs the lifecycle of the <strong>factory that builds it.</strong></p></div>
+              <div><span>FDLC</span><p>Governs the <strong>factory that builds it.</strong></p></div>
             </div>
-            <p className="hero-proof"><strong>Verified delivery,</strong> not merely generated code.</p>
             <div className="hero-actions">
-              <Link className="button button-dark" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
-              <Link className="button button-light" href="/framework">Explore the Framework</Link>
-              <Link className="text-action" href="/mission-control">Mission Control →</Link>
+              <a className="button button-dark" href="#worked-example">See a factory in action</a>
+              <Link className="button button-light" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
             </div>
           </div>
-          <aside className="hero-model" aria-labelledby="hero-model-title">
-            <div className="model-chrome"><span>FDLC / FACTORY IN ONE VIEW</span><span>01—07</span></div>
-            <h2 id="hero-model-title">Engineer the factory. Govern every run.</h2>
-            <ol className="hero-lifecycle" aria-label="Factory Development Lifecycle stages">
-              {lifecycleStages.map((stage) => (
-                <li key={stage.id}><span>{String(stage.number).padStart(2, "0")}</span><strong>{stage.name}</strong></li>
-              ))}
+          <aside className="hero-model hero-value-model" aria-labelledby="hero-model-title">
+            <div className="model-chrome"><span>FDLC / OPERATING MODEL</span><span>01—04</span></div>
+            <h2 id="hero-model-title">Make autonomous delivery governable.</h2>
+            <ol>
+              <li><span>01</span><div><strong>Define the outcome</strong><p>State what should happen and how success will be judged.</p></div></li>
+              <li><span>02</span><div><strong>Bound the work</strong><p>Give each attempt explicit scope, identity, and authority.</p></div></li>
+              <li><span>03</span><div><strong>Require evidence</strong><p>Verify the exact candidate before it advances.</p></div></li>
+              <li><span>04</span><div><strong>Learn from outcomes</strong><p>Improve the factory only from validated results.</p></div></li>
             </ol>
-            <p className="model-section-label">Six capability areas</p>
-            <ArchitectureDiagram compact />
-            <div className="model-outcome">
-              <span>Unit of value</span>
-              <strong>Verified outcome</strong>
-            </div>
+            <div className="model-outcome"><span>Unit of value</span><strong>Verified outcome</strong></div>
           </aside>
         </section>
 
         <section className="statement-band" aria-label="FDLC category statement">
-          <p>FDLC / Category promise</p>
-          <strong>{primaryPositioning}</strong>
-          <span>{evidencePositioning}</span>
+          <p>FDLC / Category promise</p><strong>{primaryPositioning}</strong><span>{evidencePositioning}</span>
         </section>
 
-        <section className="content-section shift-section">
-          <SectionHeader eyebrow="Inside the factory" title="One autonomous software-delivery lifecycle." description="An operating factory receives intent, coordinates bounded work, earns release through evidence, observes the result, and learns. These runtime steps are distinct from the lifecycle used to engineer the factory itself." />
-          <FactoryExplorer />
-          <p className="orientation-note">This inner lifecycle produces software. The seven-stage FDLC lifecycle below evolves the factory that performs it.</p>
-        </section>
-
-        <section className="content-section" id="enterprise-delivery">
-          <SectionHeader eyebrow="Enterprise delivery" title="Compose many factories around one objective." description="A migration, security fix, and release can share one governed Plan while qualified factories execute each WorkOrder. Mission Control coordinates the dependencies, artifact handoffs, evidence, and authority." />
-          <div className="enterprise-home-summary">
-            <div><p>Builders describe outcomes. Factories contribute verified artifacts. The integrated result still has to satisfy the objective and earn release authorization.</p><div className="hero-actions"><Link className="button button-dark" href="/enterprise">Explore multi-factory delivery</Link><Link className="text-action" href="/enterprise#pricing">Contact FDLC Enterprise for pricing →</Link></div></div>
-            <ol><li>Approve the Plan and its dependency graph.</li><li>Route WorkOrders to qualified Factory Versions.</li><li>Verify each output and the integrated Candidate.</li><li>Authorize release and validate production outcomes.</li><li>Qualify improvements before expanding adoption.</li></ol>
-          </div>
-        </section>
-
-        <section className="comparison-section">
-          <div className="comparison-intro">
-            <p className="section-label">The category boundary</p>
-            <h2>Three categories. One critical distinction.</h2>
-            <p>FDLC does not replace the SDLC. It engineers the persistent production system that increasingly performs parts of it. FDLC is the lifecycle for the factory itself.</p>
-          </div>
-          <div><CategoryDistinction /></div>
-        </section>
-
-        <section className="dark-section">
-          <div className="content-section">
-            <SectionHeader eyebrow="Architecture" title="Six areas. One governed system." description="Models, agents, and tools can change. The factory keeps intent, identity, authority, state, evidence, decisions, and outcomes durable across every substitution." />
-            <div className="home-control-thesis" aria-label="FDLC control-boundary thesis" role="group"><span>Intelligence may vary.</span><strong>Authority remains explicit.</strong><span>Evidence must return.</span></div>
-            <ArchitectureDiagram />
-            <Link className="section-link light-link" href="/architecture">Explore the reference architecture <span aria-hidden="true">→</span></Link>
-          </div>
-        </section>
-
-        <section className="content-section lifecycle-section">
-          <SectionHeader eyebrow="Factory lifecycle / Outer loop" title="The factory is engineered, not installed." description="FDLC evolves the production system from a measured opportunity to an operating factory line and then improves it from validated outcomes. Governance, security, observability, and measurement remain continuous throughout." />
-          <LifecycleDiagram />
-        </section>
-
-        <section className="protocol-section">
-          <div className="content-section">
-            <SectionHeader eyebrow="Artifact protocol" title="Every transition earns its state." description="The runtime lifecycle is made inspectable by durable nouns: intent, specification, authorized work, attributable attempts, evidence, decisions, releases, outcomes, and learning signals." />
-            <ProtocolDiagram />
-            <div className="invariant-grid">
-              <article><span>01</span><h3>The Plan is governed.</h3><p>Approval binds one exact, reviewable revision.</p></article>
-              <article><span>02</span><h3>Evidence gates transitions.</h3><p>Missing, stale, or unrelated proof cannot become success.</p></article>
-              <article><span>03</span><h3>Verification is separable.</h3><p>A producer should not be its only verifier.</p></article>
-            </div>
-          </div>
-        </section>
-
-        <section className="content-section principles-preview">
-          <div className="principles-quote">
-            <p className="section-label">FDLC Manifesto</p>
-            <blockquote>“Human attention belongs at consequential boundaries.”</blockquote>
-            <Link className="section-link" href="/manifesto">Read all ten principles <span aria-hidden="true">→</span></Link>
-          </div>
-          <ol>
-            {manifesto.slice(0, 5).map((item) => <li key={item.number}><span>{String(item.number).padStart(2, "0")}</span><strong>{item.principle}</strong></li>)}
+        <section className="content-section adoption-example" id="worked-example">
+          <SectionHeader eyebrow="One illustrative example" title="Modernize a dependency without surrendering control." description="A software factory does more than generate a patch. It coordinates bounded work, returns evidence, preserves human authority, and produces a candidate that can earn release." />
+          <ol className="adoption-example-flow" aria-label="Dependency modernization factory flow">
+            {exampleSteps.map(([name, description], index) => <li key={name}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{name}</strong><p>{description}</p></div></li>)}
           </ol>
+          <div className="adoption-example-actions"><Link className="button button-dark" href="/in-5-minutes">Follow the complete example</Link><Link className="button button-light" href="/start">Build your Factory Definition</Link></div>
         </section>
 
-        <section className="mission-preview">
+        <section className="adoption-thesis">
+          <div><p className="section-label">Why FDLC</p><h2>Autonomy becomes useful when the surrounding system is trustworthy.</h2></div>
+          <div className="adoption-thesis-grid">
+            <article><span>01</span><h3>Intent stays explicit.</h3><p>The factory begins with a governed outcome and acceptance contract.</p></article>
+            <article><span>02</span><h3>Authority stays bounded.</h3><p>Agents, models, and tools act inside declared operational limits.</p></article>
+            <article><span>03</span><h3>Evidence earns progress.</h3><p>Execution, verification, approval, release, and outcomes remain distinct.</p></article>
+          </div>
+        </section>
+
+        <section className="content-section adoption-actions">
+          <SectionHeader eyebrow="Use FDLC now" title="Choose the next useful step." description="Start with the depth that matches your question. Every path leads back to one governed system." />
+          <div className="adoption-action-grid">
+            {actions.map(([label, description, href, action]) => <Link href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></Link>)}
+          </div>
+          <nav className="adoption-reference-links" aria-label="FDLC technical references"><Link href="/architecture">Architecture</Link><a href="/guide">Guide</a><Link href="/mission-control">Mission Control</Link><Link href="/manifesto">Manifesto</Link></nav>
+        </section>
+
+        <section className="mission-preview adoption-mission-preview">
           <div className="mission-preview-copy">
-            <p className="section-label">Open-source reference implementation</p>
-            <h2>Mission Control</h2>
-            <p>A governed control plane for planning, executing, verifying, approving, and learning from autonomous software work.</p>
-            <ol>
-              {["Intent becomes an approved Plan", "Plans release bounded WorkOrders", "Attempts run under explicit authority", "Independent evidence gates acceptance", "Outcomes become governed learning signals"].map((item, index) => <li key={item}><span>{index + 1}</span>{item}</li>)}
-            </ol>
-            <div className="hero-actions"><Link className="button button-dark" href="/mission-control">Learn more</Link><a className="button button-light" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">GitHub ↗</a></div>
+            <p className="section-label">Open-source reference implementation</p><h2>See the operating model in Mission Control.</h2>
+            <p>Inspect how plans, Work Orders, attempts, evidence, approvals, releases, and outcomes stay visible across autonomous software work.</p>
+            <div className="hero-actions"><Link className="button button-dark" href="/mission-control">Inspect Mission Control</Link><a className="button button-light" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View source ↗</a></div>
           </div>
-          <figure className="product-frame">
-            <div><span>MISSION CONTROL / COMMAND CENTER</span><span>DEMO VIEW</span></div>
-            <Image src="/mission-control/command-center.png" alt="Mission Control command center showing ranked work that needs operator attention" width={1600} height={1050} sizes="(max-width: 980px) 100vw, 65vw" />
-            <figcaption>Deterministic demo view. Capability status is documented separately.</figcaption>
-          </figure>
+          <figure className="product-frame"><div><span>MISSION CONTROL / COMMAND CENTER</span><span>DEMO VIEW</span></div><Image src="/mission-control/command-center.png" alt="Mission Control command center showing ranked work that needs operator attention" width={1600} height={1050} sizes="(max-width: 980px) 100vw, 65vw" /><figcaption>Deterministic demo view. Current capability status is documented on the Mission Control page.</figcaption></figure>
         </section>
 
-        <section className="content-section maturity-preview">
-          <SectionHeader eyebrow="Factory maturity" title="How mature is your software factory?" description="Maturity is not the number of agents you run. It is the strength of your intent, execution, evidence, governance, and learning systems." />
-          <ol className="maturity-ladder">
-            {maturityLevels.map((level) => <li key={level.level}><span>L{level.level}</span><div><strong>{level.name}</strong><small>{level.operatingModel}</small></div></li>)}
-          </ol>
-          <Link className="section-link" href="/maturity">Assess your factory <span aria-hidden="true">→</span></Link>
-        </section>
-
-        <section className="guide-preview">
-          <div><p className="section-label">The field guide</p><h2>Learn the discipline from first principles to production.</h2></div>
-          <div><p>The full 44-chapter AI Software Factory Guide covers architecture, governance, agents, harnesses, tools, context, models, verification, security, operations, and governed learning.</p><a className="button button-light" href="/guide">Choose a reading path</a></div>
-        </section>
-
-        <section className="content-section ecosystem-section">
-          <SectionHeader eyebrow="The FDLC.ai ecosystem" title="One discipline. Five distinct roles." description="The open foundation defines the category. Products and services make it concrete without becoming the definition of FDLC itself." />
-          <div className="ecosystem-cards">
-            {ecosystemRoles.map((item, index) => item.href.startsWith("/guide")
-              ? <a href={item.href} key={item.name}><span>{String(index + 1).padStart(2, "0")} / {item.status}</span><h3>{item.name}</h3><strong>{item.role}</strong><p>{item.description}</p><small>Explore →</small></a>
-              : <Link href={item.href} key={item.name}><span>{String(index + 1).padStart(2, "0")} / {item.status}</span><h3>{item.name}</h3><strong>{item.role}</strong><p>{item.description}</p><small>Explore →</small></Link>)}
-          </div>
+        <section className="content-section adoption-enterprise">
+          <div><p className="section-label">Need help applying FDLC?</p><h2>Start with one bounded factory line.</h2></div>
+          <div><p>The Factory Deployed Engineer path helps teams assess readiness, prove one real workflow, and scale only what the evidence supports.</p><div className="hero-actions"><Link className="button button-dark" href="/deploy">Explore FDE</Link><Link className="text-action" href="/enterprise">Enterprise path →</Link></div></div>
         </section>
       </main>
       <SiteFooter />

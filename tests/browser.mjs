@@ -36,6 +36,7 @@ try {
   assert.ok(ready, "Production preview did not start");
   browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || undefined });
   const page = await browser.newPage();
+  await page.context().grantPermissions(["clipboard-read", "clipboard-write"], { origin });
   page.on("pageerror", error => report.errors.push({ url: page.url(), message: error.message }));
   // This suite owns the FDLC artifact. Composed /guide routes belong to the
   // independently built Guide artifact and are covered by the migration's
@@ -57,6 +58,19 @@ try {
     report.results.push({ label, width: page.viewportSize().width, ...result });
     assert.equal(result.overflow, false, `${label}: horizontal overflow`);
     assert.deepEqual(result.violations, [], `${label}: accessibility violations`);
+  }
+  async function keyboardActivateButton(name) {
+    const button = page.getByRole("button", { name, exact: true });
+    for (let attempt = 0; attempt < 100 && !(await button.isEnabled()); attempt++) await delay(10);
+    assert.ok(await button.isEnabled(), `${name} must become enabled after keyboard input`);
+    await button.focus();
+    assert.ok(await button.evaluate(node => node === document.activeElement));
+    await page.keyboard.press("Enter");
+  }
+  async function waitForFactoryStep(stepNumber) {
+    const selector = `section[aria-label="Factory Definition builder, step ${stepNumber} of 5"]`;
+    await page.locator(selector).waitFor();
+    await page.waitForFunction((stepSelector) => document.activeElement?.matches(stepSelector), selector);
   }
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
@@ -125,24 +139,69 @@ try {
     await page.goto(`${origin}/start`);
     assert.ok(await page.getByRole("button", { name: "Continue", exact: true }).isDisabled());
     await page.getByRole("combobox").selectOption("Test repair");
-    await page.getByLabel("Outcome", { exact: true }).fill("Repair the synthetic date conversion regression.");
+    await page.getByLabel("Describe the outcome", { exact: true }).fill("Repair the synthetic date conversion regression.");
     await page.getByRole("button", { name: "Continue", exact: true }).click();
     await page.getByLabel("What proves the work succeeded?").fill("The date regression test passes\nExisting contracts remain unchanged");
     await page.getByRole("button", { name: "Continue", exact: true }).click();
-    await page.getByRole("checkbox", { name: "Repository read", exact: true }).check();
-    await page.getByRole("checkbox", { name: "Code modification", exact: true }).check();
+    await page.getByRole("checkbox", { name: "Read repositories", exact: true }).check();
+    await page.getByRole("checkbox", { name: "Modify code", exact: true }).check();
     await page.getByRole("button", { name: "Continue", exact: true }).click();
-    await page.getByRole("checkbox", { name: "Tests", exact: true }).check();
+    await page.getByRole("checkbox", { name: "Automated tests", exact: true }).check();
     await page.getByRole("button", { name: "Continue", exact: true }).click();
     assert.ok(await page.getByRole("button", { name: "Generate Factory Definition" }).isDisabled());
-    await page.getByRole("checkbox", { name: "Merge", exact: true }).check();
+    await page.getByRole("checkbox", { name: "Approve merge", exact: true }).check();
     await page.getByRole("button", { name: "Generate Factory Definition" }).click();
     await page.getByRole("heading", { name: "Test repair", exact: true }).waitFor();
+    assert.ok(await page.locator(".factory-result").evaluate(node => node === document.activeElement));
     assert.match(await page.locator(".factory-result").innerText(), /Repair the synthetic date conversion regression/);
+    await page.getByRole("button", { name: "Copy Factory Definition" }).click();
+    await page.getByText("Copied to your clipboard.", { exact: true }).waitFor();
+    assert.match(await page.evaluate(() => navigator.clipboard.readText()), /# Factory Definition: Test repair/);
+    const downloadPromise = page.waitForEvent("download");
+    await page.getByRole("button", { name: "Download Factory Definition" }).click();
+    const download = await downloadPromise;
+    assert.equal(download.suggestedFilename(), "test-repair-factory-definition.md");
     await audit("factory-definition-result");
+    await page.screenshot({ path: new URL(`factory-definition-result-${width}.png`, output).pathname, fullPage: true });
     await page.getByRole("button", { name: "Start over" }).click();
-    assert.equal(await page.getByLabel("Outcome", { exact: true }).inputValue(), "");
-    report.flows.push({ name: "factory-builder-validation-generate-reset", width, result: "PASS" });
+    assert.equal(await page.getByLabel("Describe the outcome", { exact: true }).inputValue(), "");
+    report.flows.push({ name: "factory-builder-validation-export-reset", width, result: "PASS" });
+
+    await page.goto(`${origin}/start`);
+    const keyboardWorkType = page.getByRole("combobox");
+    await keyboardWorkType.focus();
+    await page.keyboard.type("Test repair");
+    assert.equal(await keyboardWorkType.inputValue(), "Test repair");
+    await page.getByLabel("Describe the outcome", { exact: true }).focus();
+    await page.keyboard.type("Repair the synthetic keyboard navigation regression.");
+    await keyboardActivateButton("Continue");
+    await waitForFactoryStep(2);
+    await page.getByLabel("What proves the work succeeded?").focus();
+    await page.keyboard.type("The keyboard regression test passes");
+    await keyboardActivateButton("Continue");
+    await waitForFactoryStep(3);
+    for (const name of ["Read repositories", "Modify code"]) {
+      await page.getByRole("checkbox", { name, exact: true }).focus();
+      await page.keyboard.press("Space");
+    }
+    await keyboardActivateButton("Continue");
+    await waitForFactoryStep(4);
+    await page.getByRole("checkbox", { name: "Automated tests", exact: true }).focus();
+    await page.keyboard.press("Space");
+    await keyboardActivateButton("Continue");
+    await waitForFactoryStep(5);
+    await page.getByRole("checkbox", { name: "Approve merge", exact: true }).focus();
+    await page.keyboard.press("Space");
+    await keyboardActivateButton("Generate Factory Definition");
+    assert.ok(await page.locator(".factory-result").evaluate(node => node === document.activeElement));
+    await page.getByRole("button", { name: "Copy Factory Definition" }).focus();
+    await page.keyboard.press("Enter");
+    await page.getByText("Copied to your clipboard.", { exact: true }).waitFor();
+    const keyboardDownloadPromise = page.waitForEvent("download");
+    await page.getByRole("button", { name: "Download Factory Definition" }).focus();
+    await page.keyboard.press("Enter");
+    assert.equal((await keyboardDownloadPromise).suggestedFilename(), "test-repair-factory-definition.md");
+    report.flows.push({ name: "factory-builder-keyboard-only-complete-copy-download", width, result: "PASS" });
 
     await page.goto(`${origin}/maturity`);
     await page.getByRole("button", { name: "Start assessment", exact: true }).click();
@@ -154,10 +213,39 @@ try {
     }
     await page.getByRole("button", { name: "Retake assessment" }).waitFor();
     assert.match(await page.locator(".assessment-result").innerText(), /Level 0/);
+    for (const name of ["Define one bounded factory line", "Use the Guide", "Explore FDE"]) assert.ok(await page.getByRole("link", { name }).isVisible());
     await audit("maturity-result");
+    await page.screenshot({ path: new URL(`maturity-result-${width}.png`, output).pathname, fullPage: true });
     await page.getByRole("button", { name: "Retake assessment" }).click();
     await page.getByRole("button", { name: "Start assessment", exact: true }).waitFor();
     report.flows.push({ name: "eleven-dimension-assessment-result-reset", width, result: "PASS" });
+
+    await page.goto(`${origin}/maturity`);
+    await page.getByRole("button", { name: "Start assessment", exact: true }).focus();
+    await page.keyboard.press("Enter");
+    for (let index = 0; index < 11; index++) {
+      await page.getByRole("radio").first().focus();
+      await page.keyboard.press("Space");
+      const nextLabel = index === 10 ? "View result" : "Next dimension";
+      await keyboardActivateButton(nextLabel);
+      if (index < 10) {
+        const expectedDimension = `dimension ${index + 2} of`;
+        let assessmentLabel = "";
+        for (let attempt = 0; attempt < 100; attempt++) {
+          assessmentLabel = await page.locator(".assessment-panel").getAttribute("aria-label") ?? "";
+          const panelHasFocus = await page.locator(".assessment-panel").evaluate(node => node === document.activeElement);
+          if (assessmentLabel.includes(expectedDimension) && panelHasFocus) break;
+          await delay(10);
+        }
+        assert.match(assessmentLabel, new RegExp(expectedDimension), `Keyboard assessment must advance to ${expectedDimension}`);
+      }
+    }
+    assert.ok(await page.locator(".assessment-result").evaluate(node => node === document.activeElement));
+    const keyboardNextStep = page.getByRole("link", { name: "Define one bounded factory line" });
+    await keyboardNextStep.focus();
+    await page.keyboard.press("Enter");
+    await page.waitForURL(`${origin}/start`);
+    report.flows.push({ name: "maturity-assessment-keyboard-only-complete-next-step", width, result: "PASS" });
 
     await page.goto(`${origin}/mission-control`);
     for (const name of ["Mission Control delivery stages", "Mission Control operator views"]) {
@@ -172,21 +260,11 @@ try {
     report.flows.push({ name: "mission-control-delivery-and-operator-tabs", width, result: "PASS" });
 
     await page.goto(origin);
-    const stages = page.getByRole("tablist", { name: "Runtime lifecycle stages" }).getByRole("tab");
-    // Prove hydration through an observable state change; prefetch may stay active.
-    await stages.first().click();
-    await page.waitForFunction(() => document.querySelector('.factory-explorer-stages button:first-child').getAttribute("aria-selected") === "true");
-    await stages.first().focus();
-    await page.keyboard.press("End");
-    await page.waitForFunction(() => document.querySelector('.factory-explorer-stages button:last-child') === document.activeElement && document.activeElement.getAttribute("aria-selected") === "true");
-    assert.equal(await stages.last().getAttribute("aria-selected"), "true");
-    await page.keyboard.press("Home");
-    await page.waitForFunction(() => document.querySelector('.factory-explorer-stages button:first-child') === document.activeElement && document.activeElement.getAttribute("aria-selected") === "true");
-    assert.equal(await stages.first().getAttribute("aria-selected"), "true");
-    await page.keyboard.press("ArrowRight");
-    await page.waitForFunction(() => document.querySelector('.factory-explorer-stages button:nth-child(2)').getAttribute("aria-selected") === "true");
-    assert.equal(await stages.nth(1).getAttribute("aria-selected"), "true");
-    report.flows.push({ name: "factory-explorer-keyboard", width, result: "PASS" });
+    assert.match(await page.locator(".hero-problem").innerText(), /Trusted autonomous software delivery is not/);
+    await page.getByRole("link", { name: "See a factory in action" }).click();
+    await page.waitForURL(`${origin}/#worked-example`);
+    assert.ok(await page.getByRole("list", { name: "Dependency modernization factory flow" }).isVisible());
+    report.flows.push({ name: "homepage-problem-to-worked-example", width, result: "PASS" });
 
     await page.goto(`${origin}/deploy`);
     const definitionDetail = page.locator(".fde-definition-grid details").first();

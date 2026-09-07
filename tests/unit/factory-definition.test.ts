@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { factoryFormErrors, generateFactoryDefinition, splitLines } from "../../lib/factory-definition.ts";
+import { factoryFormErrors, formatFactoryDefinitionMarkdown, generateFactoryDefinition, splitLines } from "../../lib/factory-definition.ts";
 
 const completeForm = {
   workType: "API migration",
@@ -23,6 +23,14 @@ test("generates a bounded conceptual factory definition", () => {
   assert.equal(definition.candidateWorkOrders.length, 3);
   assert.ok(definition.requiredCapabilities.includes("Independent verification"));
   assert.deepEqual(factoryFormErrors(completeForm), []);
+});
+
+test("exports a reusable Markdown artifact with its status boundary", () => {
+  const markdown = formatFactoryDefinitionMarkdown(generateFactoryDefinition(completeForm));
+  assert.match(markdown, /^# Factory Definition: API migration/m);
+  assert.match(markdown, /## Acceptance criteria\n\n- All contract tests pass/);
+  assert.match(markdown, /## Candidate Work Orders\n\n- \*\*Map deprecated API usage:/);
+  assert.match(markdown, /not an executable Mission Control manifest/);
 });
 
 test("requires all five teaching boundaries", () => {

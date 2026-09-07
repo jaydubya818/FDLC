@@ -78,27 +78,18 @@ test("robots explicitly permits search and AI fetch agents", async () => {
 test("homepage answers the category boundary and links to primary destinations", async () => {
   const response = await render("/");
   const html = await response.text();
-  assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?is the process for designing, assembling, governing, operating, measuring, and continuously improving[\s\S]*?<\/section>/i);
+  assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?Code generation is becoming abundant\. Trusted autonomous software delivery is not\.[\s\S]*?operating model and technical foundation[\s\S]*?<\/section>/i);
   assert.match(html, /Build the factory that builds your software/i);
-  assert.match(html, /SDLC.*Governs the lifecycle of.*software.*FDLC.*Governs the lifecycle of the.*factory that builds it/is);
+  assert.match(html, /For engineering leaders, platform teams, software-factory architects, and builders/i);
+  assert.match(html, /SDLC.*Governs the lifecycle of.*software.*FDLC.*Governs the.*factory that builds it/is);
   assert.match(html, /Verified delivery, not merely generated code/i);
   assert.match(html, /Autonomy without evidence is just faster guessing/i);
-  assert.match(html, /Traditional SDLC.*AI-Native SDLC.*FDLC.*Software \+ AI-assisted workflow.*The software factory/is);
-  assert.match(html, /FDLC is the lifecycle for the factory itself/i);
-  assert.match(html, /Intelligence may vary.*Authority remains explicit.*Evidence must return/is);
-  assert.match(html, /Receive.*Specify.*Plan.*Execute.*Verify.*Approve.*Release.*Observe.*Learn/is);
-  assert.match(html, /Interactive factory explorer.*Choose a stage.*inspect the capabilities it activates/is);
-  assert.match(html, /Does the exact candidate satisfy the specification.*Evidence required.*independent checks/is);
-  assert.match(html, /participate at/i);
-  assert.match(html, /Active capabilities are marked in green/i);
-  assert.match(html, /Agents.*Models.*Skills.*Tools.*Context.*Runtime.*Policy.*Evals.*Observability.*Human control/is);
-  assert.match(html, /Evals.*Test the exact candidate/is);
-  assert.match(html, /Participates at/i);
-  assert.match(html, /href=["']\/architecture#trust["']/i);
-  assert.match(html, /Discover.*Design.*Assemble.*Validate.*Deploy.*Operate.*Improve/is);
-  assert.match(html, /Continuous controls.*Govern.*Secure.*Observe.*Measure/is);
-  assert.match(html, /Intent.*Specification.*Plan.*Work Order.*Attempt.*Evidence.*Verification.*Approval.*Release.*Outcome.*Learning Signal/is);
-  assert.match(html, /FDLC.*Defines it.*Mission Control.*Demonstrates it.*The Guide.*Teaches it/is);
+  assert.match(html, /One illustrative example.*Modernize a dependency without surrendering control/is);
+  assert.match(html, /Intent.*Factory.*Evidence.*Outcome/is);
+  assert.match(html, /Plan.*Modify.*Test.*Verify.*Approve/is);
+  assert.match(html, /Choose the next useful step/i);
+  assert.match(html, /Understand.*Assess.*Build.*Go deeper/is);
+  assert.match(html, /Need help applying FDLC.*Start with one bounded factory line/is);
   for (const href of ["/framework", "/architecture", "/in-5-minutes", "/guide", "/mission-control", "/maturity", "/start"]) assert.match(html, new RegExp(`href=["']${href}["']`));
 });
 
