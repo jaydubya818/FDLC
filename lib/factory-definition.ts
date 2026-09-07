@@ -61,6 +61,60 @@ export function generateFactoryDefinition(form: FactoryForm): FactoryDefinition 
   };
 }
 
+function markdownList(items: string[]) {
+  return items.map((item) => `- ${item}`).join("\n");
+}
+
+export function formatFactoryDefinitionMarkdown(definition: FactoryDefinition) {
+  const workOrders = definition.candidateWorkOrders
+    .map((item) => `- **${item.name}:** ${item.outcome}`)
+    .join("\n");
+
+  return `# Factory Definition: ${definition.intent.workType}
+
+Version: ${definition.version}
+Status: Conceptual FDLC output
+
+## Intent
+
+${definition.intent.outcome}
+
+## Acceptance criteria
+
+${markdownList(definition.acceptanceCriteria)}
+
+## Plan boundaries
+
+${markdownList(definition.planBoundaries)}
+
+## Candidate Work Orders
+
+${workOrders}
+
+## Required capabilities
+
+${markdownList(definition.requiredCapabilities)}
+
+## Delegated authority
+
+${markdownList(definition.authority)}
+
+## Verification contract
+
+${markdownList(definition.verificationContract)}
+
+## Human controls
+
+${markdownList(definition.humanControls)}
+
+## Outcome metrics
+
+${markdownList(definition.outcomeMetrics)}
+
+> This artifact teaches the FDLC mental model. It is not an executable Mission Control manifest or a formal FDLC Specification document.
+`;
+}
+
 export function factoryFormErrors(form: FactoryForm) {
   const errors: string[] = [];
   if (!form.workType) errors.push("Choose a work type.");
