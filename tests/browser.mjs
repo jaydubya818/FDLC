@@ -81,8 +81,8 @@ try {
       await page.keyboard.press("Enter");
       assert.equal(await guideTrigger.getAttribute("aria-expanded"), "true");
       await page.keyboard.press("ArrowDown");
-      await page.waitForFunction(() => document.activeElement?.textContent === "Guide Home");
-      assert.equal(await page.evaluate(() => document.activeElement?.textContent), "Guide Home");
+      await page.waitForFunction(() => document.activeElement?.textContent === "Overview");
+      assert.equal(await page.evaluate(() => document.activeElement?.textContent), "Overview");
       await page.keyboard.press("End");
       await page.waitForFunction(() => document.activeElement?.textContent === "Search");
       assert.equal(await page.evaluate(() => document.activeElement?.textContent), "Search");
@@ -90,6 +90,22 @@ try {
       assert.equal(await guideTrigger.getAttribute("aria-expanded"), "false");
       assert.ok(await guideTrigger.evaluate(node => node === document.activeElement));
       report.flows.push({ name: "guide-dropdown-keyboard-and-focus-return", width, result: "PASS" });
+
+      const navGeometry = async () => page.locator(".desktop-nav > a, .desktop-nav > .nav-dropdown > button").evaluateAll(nodes => nodes.map(node => ({
+        label: node.textContent?.trim(),
+        left: node.getBoundingClientRect().left,
+        width: node.getBoundingClientRect().width,
+      })));
+      await page.goto(`${origin}/architecture`);
+      const architectureGeometry = await navGeometry();
+      await page.goto(`${origin}/guide`);
+      const guideGeometry = await navGeometry();
+      assert.deepEqual(guideGeometry.map(({ label }) => label), architectureGeometry.map(({ label }) => label));
+      for (let index = 0; index < architectureGeometry.length; index += 1) {
+        assert.ok(Math.abs(guideGeometry[index].left - architectureGeometry[index].left) < 0.1, `${architectureGeometry[index].label} must not shift when Guide becomes active`);
+        assert.ok(Math.abs(guideGeometry[index].width - architectureGeometry[index].width) < 0.1, `${architectureGeometry[index].label} must keep a stable width`);
+      }
+      report.flows.push({ name: "global-navigation-stable-across-active-routes", width, result: "PASS" });
     }
 
     await page.goto(`${origin}/start`);
