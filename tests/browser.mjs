@@ -173,6 +173,16 @@ try {
     await page.waitForFunction(() => document.querySelector('.factory-explorer-stages button:nth-child(2)').getAttribute("aria-selected") === "true");
     assert.equal(await stages.nth(1).getAttribute("aria-selected"), "true");
     report.flows.push({ name: "factory-explorer-keyboard", width, result: "PASS" });
+
+    await page.goto(`${origin}/deploy`);
+    const definitionDetail = page.locator(".fde-definition-grid details").first();
+    assert.equal(await definitionDetail.getAttribute("open"), null);
+    await definitionDetail.locator("summary").click();
+    assert.notEqual(await definitionDetail.getAttribute("open"), null);
+    assert.match(await definitionDetail.innerText(), /Intent.*outcome the factory exists to produce/is);
+    await audit("factory-definition-component-open");
+    report.flows.push({ name: "fde-factory-definition-disclosure", width, result: "PASS" });
+
     if (width === 390) {
       await page.getByLabel("Open navigation", { exact: true }).click();
       await page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("link", { name: "Framework", exact: true }).click();
