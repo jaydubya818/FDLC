@@ -5,6 +5,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { setTimeout as delay } from "node:timers/promises";
 import { chromium } from "playwright";
+import { checkGlobalNavigation } from "./helpers/global-navigation.mjs";
 
 // A local production build, a new browser profile and synthetic form inputs only.
 const require = createRequire(import.meta.url);
@@ -58,11 +59,12 @@ try {
     assert.deepEqual(result.violations, [], `${label}: accessibility violations`);
   }
   for (const width of [1440, 390]) {
-    await page.setViewportSize({ width, height: 1000 });
+    await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
     for (const route of routes) {
       const response = await page.goto(`${origin}${route}`);
       assert.equal(response.status(), 200, route);
       await page.getByRole("heading", { level: 1 }).waitFor();
+      await checkGlobalNavigation(page, { mobile: width === 390, keyboard: route === "/" });
       await audit(route);
       for (const href of await page.locator("a[href]").evaluateAll(nodes => nodes.map(n => n.getAttribute("href")))) {
         if (href.startsWith("/") && !href.startsWith("//") && !href.startsWith("/guide")) links.add(href.split("#")[0]);

@@ -5,36 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEventHandler, type ReactNode } from "react";
 
-type NavLink = readonly [label: string, href: string];
-
-const primary: readonly NavLink[] = [
-  ["Framework", "/framework"],
-  ["Architecture", "/architecture"],
-];
-
-const guide: readonly NavLink[] = [
-  ["Guide Home", "/guide"],
-  ["Atlas", "/guide/atlas"],
-  ["Reference", "/guide/topics"],
-  ["Glossary", "/guide/glossary"],
-  ["Search", "/guide/search"],
-];
-
-const afterGuide: readonly NavLink[] = [
-  ["Mission Control", "/mission-control"],
-  ["FDE", "/deploy"],
-  ["Maturity", "/maturity"],
-];
-
-const secondary: readonly NavLink[] = [
-  ["FDLC in 5 Minutes", "/in-5-minutes"],
-  ["Manifesto", "/manifesto"],
-  ["Specification", "/spec"],
-  ["Benchmarks", "/benchmarks"],
-  ["Start", "/start"],
-  ["Enterprise", "/enterprise"],
-  ["About", "/about"],
-];
+import { primary, guide, afterGuide, secondary, type NavLink } from "../../lib/global-navigation";
 
 function isCurrent(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);

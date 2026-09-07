@@ -114,6 +114,7 @@ export default function DeployPage() {
               <article key={name}><span>{number}</span><h2>{name}</h2><strong>{headline}</strong><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></article>
             ))}
           </div>
+          <p>Establish a baseline, run a Lighthouse, and measure its outcomes. <Link className="text-action" href="/benchmarks">Explore Benchmarks →</Link></p>
         </section>
 
         <section className="section-block">
