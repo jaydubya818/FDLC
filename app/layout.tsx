@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { canonicalDefinition } from "../data/fdlc";
 import { siteUrl } from "../lib/site";
+import "./design-system.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
