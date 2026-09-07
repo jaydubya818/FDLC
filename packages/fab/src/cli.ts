@@ -61,7 +61,7 @@ export async function main(argv = process.argv.slice(2)): Promise<void> {
     const command = positionals[0];
     if (values.help || !command) { print(HELP); return; }
     if (command === 'models') {
-      print({ providers: ['openai', 'anthropic'], maturity: 'Experimental HTTP adapters; deterministic protocol tests only', qualifiedModels: [], modelSelection: 'Explicit model ID required', streaming: false, reasoningControls: false, contextWindow: null, costUsd: null }); return;
+      print({ providers: ['openai', 'anthropic', 'openrouter'], maturity: 'Experimental explicit provider adapters', qualifiedModels: [], modelSelection: 'Explicit model ID required; no automatic fallback', streaming: false, reasoningControls: false, contextWindow: null, costUsd: null }); return;
     }
     if (command === 'inspect') { print(new Repository(process.cwd()).inspect()); return; }
     if (command === 'evaluate' && positionals[1] === 'prepare' && positionals.length === 4) {

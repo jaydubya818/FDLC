@@ -20,7 +20,7 @@ const nativeBridge: KeychainBridge = request => new Promise((resolve, reject) =>
 
 function assertReference(reference: CredentialReference): void {
   if (reference.source.kind !== 'keychain' || reference.owner !== `local:${process.getuid?.() ?? 'user'}`
-    || !['openai', 'anthropic'].includes(reference.provider) || reference.scope.kind !== 'repository'
+    || !['openai', 'anthropic', 'openrouter'].includes(reference.provider) || reference.scope.kind !== 'repository'
     || !reference.scope.root.startsWith('/') || !/^[a-zA-Z0-9:_-]{1,100}$/.test(reference.id)) {
     fail('CREDENTIAL_SCOPE', 'Secure-store reference must match this OS owner and explicit provider/repository.');
   }

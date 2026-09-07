@@ -38,7 +38,7 @@ function runtime(f: ReturnType<typeof fixture>, steps: ToolCall[], provider: Pro
 const plan = call('submit_plan', { summary: 'Apply the bounded change and run project tests.', steps: ['Inspect source', 'Change only approved files', 'Run actual checks', 'Present candidate'] });
 const finish = call('finish_candidate', { summary: 'Implemented the fixture change; actual project tests passed.', unresolved: [] });
 
-for (const provider of ['openai', 'anthropic'] as ProviderId[]) {
+for (const provider of ['openai', 'anthropic', 'openrouter'] as ProviderId[]) {
   for (const scenario of cases) test(`${provider} shared evaluation: ${scenario.name} (mock model, real repository/check)`, { skip: !contained && 'Set FAB_TEST_CONTAINMENT=1 in a host that permits sandbox-exec.' }, async t => {
     const files: Record<string, string> = {};
     if (scenario.before !== null) files[scenario.file] = scenario.before;

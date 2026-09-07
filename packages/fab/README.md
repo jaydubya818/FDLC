@@ -99,7 +99,12 @@ Qualification records authentication, inference, JSON tool arguments, continuati
 
 Phase 3 qualification permits at most three external requests, each with at most 128 output tokens, and zero automatic retries. Every request has a local ID and a private, flushed request journal written before dispatch, then provider request/response IDs when available. A lost response remains UNKNOWN; a request ID alone does not prove success. Reports distinguish injected transport from LIVE and keep requested, returned and qualified identities separate. `latest` aliases are rejected. No live provider/model has been qualified in this repository yet.
 
-Usage preserves provider semantics: OpenAI prompt counts include cache reads and completion counts include reported reasoning; Anthropic input counts exclude its separately reported cache read/write counts. Missing fields and price/cost stay unknown. Sources: [OpenAI request IDs](https://platform.openai.com/docs/api-reference/introduction), [Claude Messages usage](https://platform.claude.com/docs/en/api/typescript/messages). The 200 KB context bound is a configured byte limit, not model context-window discovery.
+Usage preserves provider semantics: OpenAI and OpenRouter prompt counts include cache reads and completion counts include reported reasoning; OpenRouter's provider-reported `usage.cost` is recorded as actual cost when present. Anthropic input counts exclude its separately reported cache read/write counts. Missing fields and price/cost stay unknown. Sources: [OpenAI request IDs](https://platform.openai.com/docs/api-reference/introduction), [OpenRouter API](https://openrouter.ai/docs/api/reference/overview), [Claude Messages usage](https://platform.claude.com/docs/en/api/typescript/messages). The 200 KB context bound is a configured byte limit, not model context-window discovery.
+
+OpenRouter uses only the fixed `https://openrouter.ai/api/v1/chat/completions`
+endpoint with the exact configured model ID, non-streaming requests, zero retries,
+and no fallback. Mission Control may supply an attempt-scoped broker credential;
+Fab does not discover generic provider credentials for that route.
 
 ## Bedrock through Mission Control
 

@@ -6,23 +6,23 @@ import { PLAN_TOOLS } from '../src/tools.ts';
 import type { ProviderId, ProviderRequestReceipt } from '../src/types.ts';
 import { call, fixture, TEST_KEY, wireReply } from './helpers.ts';
 
-for (const provider of ['openai', 'anthropic'] as ProviderId[]) {
+for (const provider of ['openai', 'anthropic', 'openrouter'] as ProviderId[]) {
   test(`${provider}: real adapter maps tool calls/results and uses only bound authentication`, async t => {
     const f = fixture({ 'index.js': '1\n' }, provider); t.after(f.cleanup);
     const redactor = new Redactor(); const credentials = new EnvironmentCredentialProvider(f.config.credential, redactor, { FAB_TEST_MODEL_KEY: TEST_KEY });
     const model = new HttpModelProvider({ provider, model: 'fixture-model', credentials, reference: f.config.credential, redactor,
       fetchImpl: async (url, init) => {
-        assert.equal(String(url), provider === 'openai' ? 'https://api.openai.com/v1/chat/completions' : 'https://api.anthropic.com/v1/messages');
+        assert.equal(String(url), provider === 'openai' ? 'https://api.openai.com/v1/chat/completions' : provider === 'openrouter' ? 'https://openrouter.ai/api/v1/chat/completions' : 'https://api.anthropic.com/v1/messages');
         assert.equal(init?.redirect, 'error');
         assert(JSON.stringify(init?.headers).includes(TEST_KEY));
         assert(!String(init?.body).includes(TEST_KEY));
         const body = JSON.parse(String(init?.body));
-        assert.equal(body.messages.at(-1).role, provider === 'openai' ? 'tool' : 'user');
+        assert.equal(body.messages.at(-1).role, provider === 'anthropic' ? 'user' : 'tool');
         return wireReply(provider, [call('submit_plan', { summary: 'Fix it', steps: ['Read', 'Edit', 'Check'] })], TEST_KEY);
       },
     });
     const reply = await model.invoke([{ role: 'user', content: TEST_KEY }, { role: 'assistant', content: '', calls: [call('read_file', { path: 'index.js' })] }, { role: 'tool', content: 'File content', callId: 'call_read_file', error: false }], PLAN_TOOLS, new AbortController().signal);
-    assert.equal(reply.calls[0]?.name, 'submit_plan'); assert.equal(reply.usage.costUsd, null); assert.equal(reply.usage.inputTokens, 10); assert(!reply.content.includes(TEST_KEY));
+    assert.equal(reply.calls[0]?.name, 'submit_plan'); assert.equal(reply.usage.costUsd, provider === 'openrouter' ? 0.000012 : null); assert.equal(reply.usage.inputTokens, 10); assert(!reply.content.includes(TEST_KEY));
   });
   test(`${provider}: error bodies and network exceptions cannot leak credentials`, async t => {
     const f = fixture({ 'index.js': '1\n' }, provider); t.after(f.cleanup);
@@ -33,7 +33,7 @@ for (const provider of ['openai', 'anthropic'] as ProviderId[]) {
     }
   });
 }
-for (const provider of ['openai', 'anthropic'] as const) {
+for (const provider of ['openai', 'anthropic', 'openrouter'] as const) {
   test(`${provider}: request receipts retain attribution through response loss and prevent dispatch without a checkpoint`, async t => {
     const f = fixture({ 'index.js': '1\n' }, provider); t.after(f.cleanup);
     const redactor = new Redactor(); const credentials = new EnvironmentCredentialProvider(f.config.credential, redactor, { FAB_TEST_MODEL_KEY: TEST_KEY });
@@ -53,7 +53,7 @@ for (const provider of ['openai', 'anthropic'] as const) {
     const redactor = new Redactor(); const credentials = new EnvironmentCredentialProvider(f.config.credential, redactor, { FAB_TEST_MODEL_KEY: TEST_KEY });
     const receipts: ProviderRequestReceipt[] = [];
     const model = new HttpModelProvider({ provider, model: f.config.model, credentials, reference: f.config.credential, redactor,
-      fetchImpl: async () => new Response('malformed', { headers: { [provider === 'openai' ? 'x-request-id' : 'request-id']: 'req_received_789' } }) });
+      fetchImpl: async () => new Response('malformed', { headers: { [provider === 'anthropic' ? 'request-id' : 'x-request-id']: 'req_received_789' } }) });
     await assert.rejects(model.invoke([], [], new AbortController().signal, receipt => { receipts.push(receipt); }), /decoded/);
     assert.deepEqual(receipts.map(item => item.phase), ['STARTED', 'RESPONSE_HEADERS', 'FAILED']);
     assert.equal(receipts.at(-1)?.requestId, 'req_received_789');
@@ -65,6 +65,8 @@ test('provider usage fields preserve their distinct cache and reasoning semantic
   const openai = parseReply('openai', { model: 'fixture-returned', choices: [{ message: { content: 'ok' }, finish_reason: 'stop' }],
     usage: { prompt_tokens: 30, completion_tokens: 9, prompt_tokens_details: { cached_tokens: 20 }, completion_tokens_details: { reasoning_tokens: 5 } } });
   assert.equal(openai.usage.inputTokens, 30); assert.equal(openai.usage.reasoningTokens, 5); assert.equal(openai.usage.cachedTokens, 20);
+  const openrouter = parseReply('openrouter', { model: 'openai/gpt-5.1-codex-mini', choices: [{ message: { content: 'ok' }, finish_reason: 'stop' }], usage: { prompt_tokens: 4, completion_tokens: 2, cost: 0.000005 } });
+  assert.equal(openrouter.usage.costUsd, 0.000005);
   const anthropic = parseReply('anthropic', { content: [{ type: 'text', text: 'ok' }], stop_reason: 'end_turn',
     usage: { input_tokens: 10, output_tokens: 3, cache_read_input_tokens: 20, cache_creation_input_tokens: 7 } });
   assert.equal(anthropic.usage.inputTokens, 10); assert.equal(anthropic.usage.cacheWriteTokens, 7); assert.equal(anthropic.usage.reasoningTokens, null);

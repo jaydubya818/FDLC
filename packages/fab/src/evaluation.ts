@@ -127,7 +127,7 @@ export async function runEvaluation(input: {
     provider: config.provider, requestedModel: config.model, returnedModels: [...new Set([...requests.values()].map(item => item.returnedModel).filter(Boolean))],
     qualificationCompletedAt: qualification.completedAt, completion: complete, firstPassCheckSuccess: session.checks[0] ? session.checks[0].status === 'passed' : null,
     requestCount, maximumRequests: input.maximumRequests, maximumOutputTokensPerRequest: 4096, modelInvocations: session.modelCalls, retries: session.retries,
-    elapsedMs: Date.now() - Date.parse(session.createdAt), usage: session.usage, costClassification: 'UNKNOWN',
+    elapsedMs: Date.now() - Date.parse(session.createdAt), usage: session.usage, costClassification: session.usage.costUsd === null ? 'UNKNOWN' : 'ACTUAL',
     humanInterventions: 0, planAuthorization: 'EXPLICIT_BOUNDED_EVALUATION_INVOCATION', correctionAttempts: 0,
     referenceCheck, candidateUnchanged, candidateDigest: session.candidateDigest, sessionStatus: session.status,
     failureClassification: complete ? null : !candidateUnchanged ? 'CANDIDATE_DRIFT' : referenceCheck ? 'REFERENCE_CHECK_FAILED' : session.events.filter(event => event.kind === 'stage_failed').at(-1)?.data ?? session.status,

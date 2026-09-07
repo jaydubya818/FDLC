@@ -1,4 +1,4 @@
-export type ProviderId = 'openai' | 'anthropic' | 'bedrock';
+export type ProviderId = 'openai' | 'anthropic' | 'openrouter' | 'bedrock';
 export interface BedrockRoute {
   accountId: string; region: 'us-east-1'; modelId: 'anthropic.claude-sonnet-4-6';
   inferenceProfileId: 'us.anthropic.claude-sonnet-4-6'; inferenceProfileArn: string;
@@ -24,7 +24,7 @@ export interface ProviderRequestReceipt {
   outcome: 'UNKNOWN' | 'RESPONSE_RECEIVED';
   inputBytes: number; maximumOutputTokens: number; retries: 0;
   httpStatus: number | null; requestId: string | null; responseId: string | null;
-  returnedModel: string | null; usage: Usage | null; costClassification: 'UNKNOWN'; errorCode: string | null;
+  returnedModel: string | null; usage: Usage | null; costClassification: 'ACTUAL' | 'UNKNOWN'; errorCode: string | null;
   /** Exact routing observation, not a grant or fabricated provider-returned model. */
   bedrockRoute?: BedrockRoute; requestDigest?: string;
 }
