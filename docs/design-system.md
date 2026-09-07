@@ -2,6 +2,8 @@
 
 `app/design-system.css` owns the shared public tokens, header, navigation, and footer. The Guide consumes a generated copy through its `site/scripts/sync-global-navigation.mjs --source=/path/to/FDLC` command. Run the same command with `--check` before releasing the pair. Page compositions and the Guide's reader controls remain owned by their respective applications.
 
+FDLC imports the shared stylesheet directly from the root layout so it is an explicit build dependency. `postbuild:vercel` verifies the emitted CSS contains the shell and tokens; browser checks verify header geometry. After the 2026-09-06 release exposed stale CSS in a cached Vercel artifact, the pair was rolled back. Replacements must be built without the old cache and their served CSS inspected before alias promotion, followed by the full canonical browser review.
+
 Use cream paper, deep green actions, editorial serif headings, sans-serif interface text, and monospace technical values. Shared widths are 1240px for content and 760px for reading; spacing uses 4/8/12/16/24/32px increments. Controls have 44px minimum targets and 4px corners; cards use 6px corners. Status words always carry meaning independently of color. Never equate qualification or synthetic evidence with live operation.
 
 Global navigation changes to a touch menu at 1100px in both apps. Desktop disclosure menus support arrows, Escape, and natural Tab/Shift+Tab exit. The Guide search palette remains a modal with its own focus containment and restoration. Reader search/theme controls sit below the common header so the header does not change between applications.

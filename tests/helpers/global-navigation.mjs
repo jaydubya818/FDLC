@@ -6,6 +6,15 @@ const primaryLabels = ["Framework", "Architecture", "Guide", "Mission Control", 
 
 export async function checkGlobalNavigation(page, { mobile, keyboard = false, touch = false }) {
   const header = page.locator("header").first();
+  const headerLayout = await header.evaluate(node => {
+    const logo = node.querySelector(".global-logo");
+    const inner = node.querySelector(".global-header-inner");
+    return { height: node.getBoundingClientRect().height, logoWidth: logo.getBoundingClientRect().width, display: getComputedStyle(inner).display, position: getComputedStyle(node).position };
+  });
+  assert.equal(headerLayout.position, "sticky", "The shared header stylesheet is loaded");
+  assert.equal(headerLayout.display, "grid", "Header logo and navigation share one row");
+  assert.ok(headerLayout.height >= 72 && headerLayout.height <= 90, "Header height stays within the responsive design system");
+  assert.ok(headerLayout.logoWidth >= 180 && headerLayout.logoWidth <= 220, "The logo retains its intended size");
   const desktop = header.getByRole("navigation", { name: "Primary navigation", includeHidden: true });
   assert.deepEqual(await desktop.locator(":scope > a, :scope > .nav-dropdown > button").allTextContents().then(labels => labels.map(label => label.replace("⌄", "").trim())), primaryLabels);
   const more = header.locator("#more-navigation");
