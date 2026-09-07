@@ -896,6 +896,9 @@ button, input, textarea, select { font: inherit; }
 .mc-object-ledger li > span { color: var(--amber); font-family: var(--mono); font-size: var(--text-label); }
 .mc-object-ledger strong { font-size: 14px; }
 .mc-object-ledger p { max-width: 510px; margin: 12px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.mc-enhancement-section .mc-object-ledger li { padding: 24px; }
+.mc-enhancement-section .mc-object-ledger strong { display: block; margin-top: 12px; font-size: 1.125rem; }
+.mc-enhancement-section .mc-object-ledger p { font-size: 1rem; line-height: 1.65; }
 .mc-boundary-section { padding: 78px max(20px, calc((100vw - var(--content-width)) / 2)); background: var(--ink); }
 .mc-boundary-section .state-boundary { margin: 0; }
 .screenshots-section { padding: 112px max(20px, calc((100vw - var(--content-width)) / 2)); background: #dedfd8; }

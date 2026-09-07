@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
 import { contextSkillsPractices } from "../../data/context-skills-practices";
+import { systemDesignDecisions } from "../../data/system-design";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArchitectureDiagram } from "../components/architecture-diagram";
@@ -23,6 +24,7 @@ const contents = [
   { label: "05 Trust", href: "#trust" },
   { label: "06 Learning", href: "#learning" },
   { label: "Context & skills", href: "#context-skills" },
+  { label: "Design decisions", href: "#design-decisions" },
   { label: "System flow", href: "#system-flow" },
 ] as const;
 
@@ -92,6 +94,15 @@ export default function ArchitecturePage() {
       </div>
       <p><a href="/guide/appendix/context-skills-engineering">Read the complete practices and worked playbook in the Guide →</a></p>
       <p>The worked local example records a harness-version mismatch and zero executed trials. It demonstrates an honest stop condition, not improved performance or production qualification.</p>
+    </section>
+
+    <section className="section-block" id="design-decisions">
+      <SectionHeader eyebrow="Architecture in practice" title="Six decisions before a factory takes on real work." description="Use these checks when designing a new workflow or reviewing an existing one. Each connects a design choice to the evidence needed to operate it. They refine the six architecture areas without adding another lifecycle." />
+      <div className="architecture-areas">
+        {systemDesignDecisions.map((decision) => <ResponsiveDetails key={decision.number} className="architecture-area" collapseAt="tablet"><summary><span>{decision.number}</span><div><p>Operating decision</p><h3>{decision.title}</h3></div><p>{decision.question}</p><small className="disclosure-status"><span className="when-closed">Read decision</span><span className="when-open">Collapse decision</span></small></summary><div className="architecture-area-body"><div className="architecture-detail-grid"><section><h3>Problem</h3><p>{decision.problem}</p></section><section><h3>Architectural decision</h3><p>{decision.decision}</p></section><section><h3>Why it exists</h3><p>{decision.rationale}</p></section><section><h3>Governing invariant</h3><p>{decision.invariant}</p></section><section><h3>Failure behavior</h3><p>{decision.failure}</p></section><section><h3>Maturity and implementation</h3><p>{decision.status}</p></section></div><p><strong>Evidence required: </strong>{decision.evidence}</p><p className="relationship"><span>Implementation relationship</span>{decision.relationship}</p></div></ResponsiveDetails>)}
+      </div>
+      <p><a href="/guide/appendix/factory-system-design-playbook">Use the design worksheet, recovery drills, and worked example in the Guide →</a></p>
+      <p><Link href="/mission-control#enhancements">See the implementation priorities for Mission Control →</Link></p>
     </section>
 
     <section className="factory-system-diagram" id="system-flow">

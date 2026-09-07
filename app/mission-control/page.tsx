@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +9,7 @@ import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
 import { StatusBadge } from "../components/status-badge";
 import { missionControlCapabilities, missionControlObjects } from "../../data/mission-control";
+import { missionControlEnhancements } from "../../data/system-design";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Mission Control", "The open-source reference implementation of the Factory Development Lifecycle.", "/mission-control");
@@ -48,7 +50,7 @@ export default function MissionControlPage() {
       <article><span>03 / Decide</span><strong>Put human attention at consequential boundaries.</strong></article>
     </section>
 
-    <nav aria-label="Mission Control page sections" className="mc-section-nav"><a href="#how-it-works">How it works</a><a href="#operator-experience">Operator views</a><a href="#architecture">Architecture</a><a href="#capabilities">Capabilities</a><a href="#quickstart">Run locally</a></nav>
+    <nav aria-label="Mission Control page sections" className="mc-section-nav"><a href="#how-it-works">How it works</a><a href="#operator-experience">Operator views</a><a href="#architecture">Architecture</a><a href="#capabilities">Capabilities</a><a href="#enhancements">Development priorities</a><a href="#quickstart">Run locally</a></nav>
 
     <section className="section-block mc-how-section" id="how-it-works">
       <SectionHeader eyebrow="Interactive governed path" title="Follow one mission through the control plane." description="Select a stage to see the governing question, the authority allowed to answer it, and the proof required before state can advance." />
@@ -86,6 +88,12 @@ export default function MissionControlPage() {
         return <section className={`mc-capability-group is-${status.toLowerCase()}`} key={status}><header><StatusBadge status={status} /><span>{String(capabilities.length).padStart(2, "0")} capabilities</span></header><div>{capabilities.map((capability, index) => <details key={capability.name} open={status === "Available" && index === 0}><summary><strong>{capability.name}</strong><span aria-hidden="true">+</span></summary><div><p><b>Supported</b>{capability.summary}</p><p><b>Current boundary</b>{capability.limitation}</p></div></details>)}</div></section>;
       })}</div>
       <a className="section-link" href="https://github.com/jaydubya818/MissionControl/blob/main/docs/product/software-factory-capability-maturity.md" rel="noreferrer" target="_blank">Read the canonical capability maturity ledger ↗</a>
+    </section>
+
+    <section className="section-block mc-enhancement-section" id="enhancements">
+      <SectionHeader eyebrow="Development priorities / Proposed" title="Prove one complete operating loop, then expand." description="These are enhancement priorities, not availability claims or new execution authority. Build on the existing control plane, capability records, inference accounting, incident controls, and advisory learning." />
+      <ol className="mc-object-ledger">{missionControlEnhancements.map((item, index) => <li key={item.title}><span>{String(index + 1).padStart(2, "0")}</span><div><p>{item.phase}</p><strong>{item.title}</strong><p>{item.description}</p><p><b>Proof before expansion: </b>{item.gate}</p></div></li>)}</ol>
+      <p><a href="/guide/appendix/factory-system-design-playbook">Read the engineering playbook and readiness questions →</a></p>
     </section>
 
     <section className="quickstart-section" id="quickstart">
