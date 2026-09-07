@@ -10,6 +10,7 @@ import { StateBoundary } from "../components/state-boundary";
 import { StatusBadge } from "../components/status-badge";
 import { missionControlCapabilities, missionControlObjects } from "../../data/mission-control";
 import { missionControlEnhancements } from "../../data/system-design";
+import { missionControlIncidentRequirements } from "../../data/production-operations";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Mission Control", "The open-source reference implementation of the Factory Development Lifecycle.", "/mission-control");
@@ -50,7 +51,7 @@ export default function MissionControlPage() {
       <article><span>03 / Decide</span><strong>Put human attention at consequential boundaries.</strong></article>
     </section>
 
-    <nav aria-label="Mission Control page sections" className="mc-section-nav"><a href="#how-it-works">How it works</a><a href="#operator-experience">Operator views</a><a href="#architecture">Architecture</a><a href="#capabilities">Capabilities</a><a href="#enhancements">Development priorities</a><a href="#quickstart">Run locally</a></nav>
+    <nav aria-label="Mission Control page sections" className="mc-section-nav"><a href="#how-it-works">How it works</a><a href="#operator-experience">Operator views</a><a href="#architecture">Architecture</a><a href="#capabilities">Capabilities</a><a href="#enhancements">Development priorities</a><a href="#incident-operations">Incident operations</a><a href="#quickstart">Run locally</a></nav>
 
     <section className="section-block mc-how-section" id="how-it-works">
       <SectionHeader eyebrow="Interactive governed path" title="Follow one mission through the control plane." description="Select a stage to see the governing question, the authority allowed to answer it, and the proof required before state can advance." />
@@ -94,6 +95,12 @@ export default function MissionControlPage() {
       <SectionHeader eyebrow="Development priorities / Proposed" title="Prove one complete operating loop, then expand." description="These are enhancement priorities, not availability claims or new execution authority. Build on the existing control plane, capability records, inference accounting, incident controls, and advisory learning." />
       <ol className="mc-object-ledger">{missionControlEnhancements.map((item, index) => <li key={item.title}><span>{String(index + 1).padStart(2, "0")}</span><div><p>{item.phase}</p><strong>{item.title}</strong><p>{item.description}</p><p><b>Proof before expansion: </b>{item.gate}</p></div></li>)}</ol>
       <p><a href="/guide/appendix/factory-system-design-playbook">Read the engineering playbook and readiness questions →</a></p>
+    </section>
+
+    <section className="section-block mc-enhancement-section" id="incident-operations">
+      <SectionHeader eyebrow="Production operations / Required" title="Make failures inspectable, containable, and recoverable." description="These controls fit inside the existing roadmap. They extend current records and the narrowly qualified pause and restoration path; they are requirements, not availability claims." />
+      <ol className="mc-object-ledger">{missionControlIncidentRequirements.map((item, index) => <li key={item.title}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{item.title}</strong><p>{item.description}</p></div></li>)}</ol>
+      <p><a href="/guide/appendix/production-reliability-operations-playbook">Read the production reliability and incident operations playbook →</a></p>
     </section>
 
     <section className="quickstart-section" id="quickstart">

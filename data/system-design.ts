@@ -81,6 +81,12 @@ export const systemDesignDecisions = [
 
 export const missionControlEnhancements = [
   {
+    phase: "First / Make execution identity explicit",
+    title: "Separate Model, Agent, Harness, Runtime, Sandbox, and Work Graph records",
+    description: "Extend the Execution Profile and Attempt manifest with distinct immutable references for Model Profile, Agent Definition, Harness Version, Capability Implementations, Runtime Artifact, Sandbox Profile, Work Graph Version, Orchestrator policy, and Control Plane policy bundle. Show the same boundary map in admission, run inspection, evidence, and incident views.",
+    gate: "A failed Attempt can be attributed to one boundary without reconstructing identity from logs. Replacing one component changes only its reference, requires current qualification, and never silently widens authority.",
+  },
+  {
     phase: "First / Close the operating loop",
     title: "Make one real outcome inspectable end to end",
     description: "Connect the existing Plan, readiness, Attempts, evidence, human decision, release, and observation records. Present missing proof, unresolved cost, and the next responsible owner in one decision brief.",

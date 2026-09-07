@@ -1,0 +1,32 @@
+export const executionTaxonomy = [
+  { term: "Model", role: "Inference engine", question: "What reasoning or generation is available?", boundary: "Supplies intelligence; it is not the worker or authority." },
+  { term: "Agent", role: "Goal-directed worker", question: "Who is pursuing the bounded task?", boundary: "Uses model intelligence, instructions, context, state, and capabilities." },
+  { term: "Agent Loop", role: "Iteration cycle", question: "How does one Agent make progress and stop?", boundary: "Loads state, selects, acts, observes, evaluates, replans, and terminates." },
+  { term: "Agent Harness", role: "Operating envelope", question: "How is the Agent allowed to operate?", boundary: "Governs context, models, tools, working state, permissions, budgets, recovery, telemetry, and stopping." },
+  { term: "Coding Harness", role: "Software-engineering Harness", question: "How may an Agent inspect, change, build, and verify a repository?", boundary: "Specializes the Agent Harness for code, shell, compiler, test, package, Git, diagnostic, and artifact workflows." },
+  { term: "IDE Harness", role: "Editor-integrated Coding Harness", question: "Which editor state participates in bounded execution?", boundary: "May use open files, selections, diagnostics, terminal, Git, and approval state; an IDE alone is not a Harness." },
+  { term: "Work Graph", role: "Workflow topology", question: "What work can happen next?", boundary: "Represents nodes, dependencies, branches, joins, gates, interrupts, cycles, and terminal states." },
+  { term: "Orchestrator", role: "Durable coordinator", question: "Which eligible node executes next?", boundary: "Advances the Work Graph across Agents, Harness invocations, deterministic work, and human waits." },
+  { term: "Runtime", role: "Execution substrate", question: "Where and how does execution live and survive?", boundary: "Provides process lifecycle, compute, queues, leases, persistence, resume, concurrency, and recovery." },
+  { term: "Sandbox", role: "Isolation boundary", question: "What can this execution affect?", boundary: "Restricts filesystem, processes, network, credentials, dependencies, and resources." },
+  { term: "Capability", role: "Stable operation", question: "What can the system do?", boundary: "Names provider-independent work such as inspect a repository or run tests." },
+  { term: "Capability Implementation", role: "Qualified realization", question: "Which exact implementation performs it?", boundary: "Binds provider, tool, skill, model, adapter, version, permissions, and evidence." },
+  { term: "Control Plane", role: "Enterprise authority", question: "Who may authorize, revoke, approve, promote, and release?", boundary: "Owns identity, policy, budgets, evidence requirements, decisions, and emergency control." },
+  { term: "Factory", role: "Outcome system", question: "How does intent become accepted software?", boundary: "Composes people, process, agents, Harnesses, capabilities, Runtime, Trust, delivery, and learning." },
+  { term: "Factory Platform", role: "Shared enterprise foundation", question: "Which governed services should many Factories reuse?", boundary: "Supplies Mission Control, identity, policy, registries, orchestration, Runtime, Sandboxes, evaluation, evidence, approvals, and release integration." },
+  { term: "Factory Version", role: "Immutable qualified composition", question: "Which exact governed composition is eligible to run?", boundary: "Binds separate Model, Agent, Harness, graph, capability, Runtime, Sandbox, verification, and policy identities without mutable runtime coupling." },
+  { term: "Loop Engineering", role: "Worker-iteration discipline", question: "Is one Agent choosing, evaluating, replanning, and stopping well?", boundary: "Improves the Agent Loop inside a bounded unit of work." },
+  { term: "Graph Engineering", role: "Work-topology discipline", question: "Are dependencies, branches, joins, gates, retries, and terminal states correct?", boundary: "Improves the Work Graph coordinated by the Orchestrator." },
+  { term: "Harness Engineering", role: "Operating-envelope discipline", question: "Are context, tools, state, permissions, budgets, recovery, and validation correct?", boundary: "Improves how an Agent may operate while leaving enterprise authority in the Control Plane." },
+  { term: "AI Harness", role: "Non-canonical external label", question: "Which actual architectural boundary does the speaker mean?", boundary: "Translate it to Model Harness, Agent Harness, Coding Harness, Evaluation Harness, Runtime, Orchestrator, or Control Plane." },
+] as const;
+
+export const executionRelationship = [
+  "Control Plane authorizes an Execution Profile",
+  "Orchestrator advances the Work Graph",
+  "Agent Harness governs one Agent",
+  "Agent Loop iterates inside a graph node",
+  "Runtime hosts execution",
+  "Sandbox isolates effects",
+  "Evidence returns for independent judgment",
+] as const;

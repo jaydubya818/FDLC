@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
 import { contextSkillsPractices } from "../../data/context-skills-practices";
+import { productionOperatingContracts } from "../../data/production-operations";
 import { systemDesignDecisions } from "../../data/system-design";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -10,6 +11,7 @@ import { ResponsiveDetails } from "../components/responsive-details";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
 import { architectureAreas } from "../../data/fdlc";
+import { executionRelationship, executionTaxonomy } from "../../data/execution-taxonomy";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Architecture", "Explore the six capability areas of the FDLC architecture: Intent, Harness, Capability, Model, Trust, and Learning.", "/architecture");
@@ -17,6 +19,7 @@ export const metadata: Metadata = pageMetadata("Architecture", "Explore the six 
 const contents = [
   { label: "Overview", href: "#overview" },
   { label: "Control boundary", href: "#control-boundary" },
+  { label: "Execution vocabulary", href: "#execution-vocabulary" },
   { label: "01 Intent", href: "#intent" },
   { label: "02 Harness", href: "#harness" },
   { label: "03 Capability", href: "#capability" },
@@ -25,6 +28,7 @@ const contents = [
   { label: "06 Learning", href: "#learning" },
   { label: "Context & skills", href: "#context-skills" },
   { label: "Design decisions", href: "#design-decisions" },
+  { label: "Production operations", href: "#production-operations" },
   { label: "System flow", href: "#system-flow" },
 ] as const;
 
@@ -43,14 +47,14 @@ export default function ArchitecturePage() {
     <div className="longform-layout">
     <PageContentsNav items={contents} mobileTitle="Jump to area" title="Architecture areas" variant="rail" />
     <div className="longform-content">
-    <section className="architecture-overview" id="overview"><ArchitectureDiagram /><p>Trust constrains every area. Learning closes the loop only through governed promotion. The model is replaceable; the control contract is not.</p></section>
+    <section className="architecture-overview" id="overview"><ArchitectureDiagram /><p>Trust constrains every area. Learning closes the loop only through governed promotion. The model is replaceable; the control contract is not.</p><p><a href="/guide/appendix/principles#fifty-concepts-to-have-cold">Learn the fifty core concepts →</a> <a href="/guide/appendix/glossary">Open the canonical glossary →</a></p></section>
 
     <section className="architecture-control-boundary" id="control-boundary">
       <SectionHeader eyebrow="The control boundary" title="Intelligence can change. Authority cannot be implicit." description="Models reason and agents act, but neither should own identity, permission, authoritative state, release policy, or the evidence used to judge its work. Those responsibilities belong to the factory around them." />
       <div className="control-boundary-map" aria-label="Intelligence supply, factory control plane, and bounded execution environment" role="group">
         <article className="control-boundary-supply"><span>01 / Intelligence supply</span><h3>Models reason.<br />Agents act.</h3><p>Selected for the exact Work Order by capability and operating constraints.</p><ul><li>Task and complexity fit</li><li>Quality and risk profile</li><li>Latency and availability</li><li>Cost per verified outcome</li></ul><small>Replaceable by design</small></article>
         <article className="control-boundary-plane"><span>02 / Factory control plane</span><h3>The factory governs.</h3><p>Durable controls remain outside the model and apply to every provider, agent, and tool.</p><ul><li>Identity and delegated authority</li><li>Policy, budget, and routing</li><li>State, leases, and recovery</li><li>Evidence, decisions, and audit</li></ul><small>Durable system of record</small></article>
-        <article className="control-boundary-execution"><span>03 / Execution environment</span><h3>Effects stay bounded.</h3><p>Every Attempt runs inside an explicit, observable, recoverable operating envelope.</p><ul><li>Isolated compute</li><li>Scoped tools and file access</li><li>Short-lived credentials</li><li>Network, time, and resource limits</li></ul><small>Constrained and recoverable</small></article>
+        <article className="control-boundary-execution"><span>03 / Governed execution</span><h3>Operation stays bounded.</h3><p>The Harness governs one Agent, the Runtime hosts it, and the Sandbox isolates its effects.</p><ul><li>Explicit Agent Loop</li><li>Scoped capabilities and file access</li><li>Short-lived credentials</li><li>Network, time, and resource limits</li></ul><small>Constrained and recoverable</small></article>
       </div>
       <div className="control-boundary-rail" aria-label="Authority flows from the control plane into execution and evidence flows back for independent judgment" role="group"><span>Authority flows down →</span><strong>Allow intelligence to vary. Always bound authority.</strong><span>← Evidence flows back</span></div>
       <div className="control-durability-map">
@@ -58,6 +62,16 @@ export default function ArchitecturePage() {
         <article><span>Required to persist</span><strong>Intent · identity · authority · state · evidence · decisions · outcomes</strong><p>The operating record must survive every capability substitution.</p></article>
       </div>
       <p className="control-boundary-rule">Every Attempt returns attributable evidence. No producing system may promote its own result.</p>
+    </section>
+
+    <section className="section-block architecture-details" id="execution-vocabulary">
+      <SectionHeader eyebrow="Canonical execution vocabulary" title="Name the boundary before assigning the responsibility." description="Most disagreement about agent harnesses is a boundary disagreement. FDLC separates the worker, its iteration loop, its operating envelope, workflow coordination, execution infrastructure, isolation, and enterprise authority so each has a clear owner, lifecycle, identity, and qualification boundary." />
+      <div className="architecture-detail-grid">
+        {executionTaxonomy.map((item) => <section key={item.term}><h3>{item.term}</h3><p><strong>{item.role}.</strong> {item.boundary}</p><p><small>{item.question}</small></p></section>)}
+      </div>
+      <p className="relationship"><span>Canonical relationship</span>{executionRelationship.join(" → ")}</p>
+      <p>A Harness may enforce a local rule, but the Control Plane owns the identity, policy, approval, budget, and revocation authority behind that rule. A packaged product may implement several boundaries; the immutable identities must remain distinct.</p>
+      <div className="hero-actions"><a className="button button-dark" href="/guide/appendix/execution-boundaries-and-terminology">Read the full terminology reference</a><a className="text-action" href="/guide/appendix/glossary">Open the canonical glossary →</a></div>
     </section>
 
     <section className="section-block">
@@ -105,13 +119,22 @@ export default function ArchitecturePage() {
       <p><Link href="/mission-control#enhancements">See the implementation priorities for Mission Control →</Link></p>
     </section>
 
+    <section className="section-block" id="production-operations">
+      <SectionHeader eyebrow="Production reliability" title="Treat failure as governed work." description="A factory can remain trustworthy while a model, worker, dependency, or release is unhealthy only when impact, containment, effects, recovery, and closure are explicit operating records." />
+      <div className="architecture-areas">
+        {productionOperatingContracts.map((contract) => <ResponsiveDetails key={contract.number} className="architecture-area" collapseAt="tablet"><summary><span>{contract.number}</span><div><p>Operating contract</p><h3>{contract.title}</h3></div><p>{contract.question}</p><small className="disclosure-status"><span className="when-closed">Read contract</span><span className="when-open">Collapse contract</span></small></summary><div className="architecture-area-body"><div className="architecture-detail-grid"><section><h3>Required behavior</h3><p>{contract.decision}</p></section><section><h3>Governing invariant</h3><p>{contract.invariant}</p></section><section><h3>Required record</h3><p>Bind the decision, actor, authority, exact subject, observed effect, evidence, unknowns, deadline, and next permitted action.</p></section></div></div></ResponsiveDetails>)}
+      </div>
+      <p><a href="/guide/appendix/production-reliability-operations-playbook">Use the incident packet, degraded-mode matrix, saga contract, and failure drills in the Guide →</a></p>
+      <p><Link href="/mission-control#incident-operations">See what Mission Control must add to support these controls →</Link></p>
+    </section>
+
     <section className="factory-system-diagram" id="system-flow">
       <SectionHeader eyebrow="Software factory concept" title="Authority flows down. Evidence flows back." />
       <div className="system-map" aria-label="Software factory concept from human intent through control, execution, evidence, outcome, and learning" role="group">
         <div className="system-map-human"><span>Humans</span><strong>Intent + policy</strong><small>Own goals, judgment, and material risk</small></div>
         <div className="system-map-control"><span>Control plane</span><strong>Plan · govern · route</strong><small>Identity, authority, budget, and state</small></div>
         <div className="system-map-supply"><span>Capability supply</span><strong>Agents · models · skills · tools · context</strong></div>
-        <div className="system-map-execution"><span>Execution</span><strong>Harness + isolated environment</strong><small>Attempts, leases, checkpoints, recovery</small></div>
+        <div className="system-map-execution"><span>Execution</span><strong>Harness · Runtime · Sandbox</strong><small>Agent Loop, Attempts, leases, checkpoints, recovery</small></div>
         <div className="system-map-proof"><span>Trust</span><strong>Evidence + independent verification</strong><small>Policy and human approval at consequence</small></div>
         <div className="system-map-outcome"><span>Outcome</span><strong>Accepted, observed value</strong><small>Feeds governed learning—not direct mutation</small></div>
       </div>

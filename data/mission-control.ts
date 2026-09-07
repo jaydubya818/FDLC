@@ -18,8 +18,8 @@ export const missionControlCapabilities = [
 ] as const;
 
 export const missionControlObjects = [
-  ["Factory Version", "An immutable, qualified composition of Factory capabilities used to govern a class of execution. Qualification alone does not activate it."],
-  ["Execution Profile", "The governed composition binding runtime, harness, model and tool capabilities, backend, environment, and policy for an Attempt."],
+  ["Factory Version", "An immutable, qualified composition of Agent Definitions, Harness Versions, Capability Implementations, Model Profiles, Runtime Artifacts, Sandbox Profiles, Work Graphs, verification requirements, and policy references. Qualification alone does not activate it."],
+  ["Execution Profile", "The governed composition that keeps Model, Agent, Harness, Work Graph, Runtime, Sandbox, Capability Implementation, and policy identities distinct for an Attempt."],
   ["WorkOrder", "The canonical governed unit of approved work, bound to an exact revision and Factory Version."],
   ["Readiness", "A derived determination that required identities, qualifications, authorities, resources, and policies are satisfied. It is never a manually asserted READY flag."],
   ["Task", "A bounded executable portion of an admitted WorkOrder; completion does not accept the WorkOrder."],
