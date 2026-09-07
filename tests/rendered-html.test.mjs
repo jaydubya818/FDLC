@@ -15,7 +15,7 @@ test("global More stays focused while contextual artifacts remain discoverable",
   const expected = ["FDLC in 5 Minutes", "Manifesto", "Start", "Enterprise", "About"];
   for (const route of routes) {
     const html = await (await render(route)).text();
-    const header = html.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0];
+    const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
     assert.ok(header, route);
     const more = header.match(/id="more-navigation"[^>]*>([\s\S]*?)<\/div>/)?.[1];
     const mobileMore = header.match(/<span>More<\/span>([\s\S]*?)<\/nav>/)?.[1];
@@ -139,7 +139,7 @@ test("Guide rollback shadow points only to the canonical same-origin Guide", asy
 
 test("global navigation exposes the canonical Guide disclosure in desktop and mobile shells", async () => {
   const html = await (await render("/guide")).text();
-  const header = html.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0];
+  const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
   assert.ok(header, "renders the persistent FDLC global header");
   for (const label of ["Framework", "Architecture", "Guide", "Mission Control", "FDE", "Maturity", "More"]) {
     assert.match(header, new RegExp(`>${label}(?:\\s|<)`), label);

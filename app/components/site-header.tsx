@@ -32,14 +32,7 @@ function onMenuKeyDown(event: globalThis.KeyboardEvent, container: HTMLElement |
   } else if (event.key === "Home" || event.key === "End") {
     event.preventDefault();
     links.at(event.key === "Home" ? 0 : -1)?.focus();
-  } else if (event.key === "Tab" && links.length) {
-    if (!event.shiftKey && document.activeElement === links.at(-1)) {
-      event.preventDefault();
-      links[0].focus();
-    } else if (event.shiftKey && document.activeElement === links[0]) {
-      event.preventDefault();
-      links.at(-1)?.focus();
-    }
+
   }
 }
 
@@ -83,7 +76,7 @@ function NavDropdown({ active, id, label, links }: { active: boolean; id: string
   }
 
   return (
-    <div className={`nav-dropdown${active ? " is-active" : ""}${open ? " is-open" : ""}`} ref={root}>
+    <div className={`nav-dropdown${active ? " is-active" : ""}${open ? " is-open" : ""}`} ref={root} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}>
       <button aria-controls={id} aria-expanded={open} onClick={() => setOpen((value) => !value)} onKeyDown={handleTriggerKeyDown} ref={trigger} type="button">
         {label} <span aria-hidden="true">⌄</span>
       </button>
@@ -122,9 +115,9 @@ export function SiteHeader() {
   }, [mobileOpen]);
 
   return (
-    <header className="site-header">
-      <div className="header-inner">
-        <Link className="wordmark" href="/" aria-label="FDLC.ai home">
+    <header className="global-header">
+      <div className="global-header-inner">
+        <Link className="global-logo" href="/" aria-label="FDLC.ai home">
           <Image className="brand-logo" src="/fdlc-logo-transparent.png" alt="FDLC.ai — Factory Development Lifecycle" width={2007} height={784} sizes="220px" priority />
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
@@ -134,8 +127,8 @@ export function SiteHeader() {
           <NavDropdown active={secondaryActive} id="more-navigation" label="More" links={secondary} />
         </nav>
         <a className="header-github" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">GitHub <span aria-hidden="true">↗</span></a>
-        <div className={`mobile-nav${mobileOpen ? " is-open" : ""}`} ref={mobileRoot}>
-          <button aria-controls="mobile-navigation" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)} type="button" ref={mobileTrigger}>Menu</button>
+        <div className={`global-mobile${mobileOpen ? " is-open" : ""}`} ref={mobileRoot} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setMobileOpen(false); }}>
+          <button aria-controls="mobile-navigation" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)} onKeyDown={(event) => { if (event.key === "Escape") setMobileOpen(false); }} type="button" ref={mobileTrigger}>Menu</button>
           <nav aria-label="Mobile navigation" hidden={!mobileOpen} id="mobile-navigation">
             {primary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
             <button aria-controls="mobile-guide-navigation" aria-expanded={mobileGuideOpen} className={guideActive ? "is-active" : ""} onClick={() => setMobileGuideOpen((value) => !value)} type="button">Guide <span aria-hidden="true">⌄</span></button>
