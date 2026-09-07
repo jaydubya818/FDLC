@@ -11,6 +11,33 @@ function render(pathname = "/", method = "GET") {
 
 const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/specification", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/about"];
 
+test("global More stays focused while contextual artifacts remain discoverable", async () => {
+  const expected = ["FDLC in 5 Minutes", "Manifesto", "Start", "Enterprise", "About"];
+  for (const route of routes) {
+    const html = await (await render(route)).text();
+    const header = html.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0];
+    assert.ok(header, route);
+    const more = header.match(/id="more-navigation"[^>]*>([\s\S]*?)<\/div>/)?.[1];
+    const mobileMore = header.match(/<span>More<\/span>([\s\S]*?)<\/nav>/)?.[1];
+    for (const menu of [more, mobileMore]) {
+      assert.ok(menu, route);
+      assert.deepEqual([...menu.matchAll(/<a\b[^>]*>([^<]+)<\/a>/g)].map((match) => match[1]), expected, route);
+    }
+    assert.doesNotMatch(header, /href="\/(?:spec|specification|benchmarks)"/, route);
+    if (["/specification", "/benchmarks"].includes(route)) {
+      assert.doesNotMatch(header, /nav-dropdown is-active|aria-current="page"/, route);
+    }
+  }
+  for (const [route, href] of [["/framework", "/specification"], ["/maturity", "/benchmarks"], ["/deploy", "/benchmarks"]]) {
+    const html = await (await render(route)).text();
+    const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
+    assert.ok(main?.includes(`href="${href}"`), `${route} links contextually to ${href}`);
+    assert.equal((await render(href)).status, 200);
+  }
+  const sitemap = await (await render("/sitemap.xml")).text();
+  for (const route of ["/specification", "/benchmarks"]) assert.ok(sitemap.includes(route));
+});
+
 test("server-renders every public route with FDLC metadata and a heading", async () => {
   for (const route of routes) {
     const response = await render(route);

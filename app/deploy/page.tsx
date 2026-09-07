@@ -130,6 +130,7 @@ export default function DeployPage() {
               </li>
             ))}
           </ol>
+          <p>Establish a baseline, run a Lighthouse, and measure its outcomes. <Link className="text-action" href="/benchmarks">Explore Benchmarks →</Link></p>
         </section>
 
         <section className="section-block fde-candidates" id="lighthouse-candidates">

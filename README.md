@@ -53,3 +53,7 @@ The independent [Fab package](packages/fab/README.md) is staged here for local r
 Fab remains **Experimental**. See the [Phase 3 qualification record](docs/fab/FAB-PHASE3-QUALIFICATION.md) for exact package identities, offline evidence and the remaining live/deployed gates. Run `npm run test:browser` after `npm run build` to repeat the site browser, mobile, accessibility, link and interactive-flow checks (install Chromium with `npx --no-install playwright install chromium`).
 
 The existing Vercel/Next build has the same browser gate: run `npm run build:vercel`, then `npm run test:browser:vercel`. Both commands exercise local production artifacts and do not deploy a website. Reports identify their runtime and are kept separately under `output/playwright/site/` and `output/playwright/site-next/`.
+
+## Shared global navigation
+
+`lib/global-navigation.ts` owns the desktop and mobile destinations for FDLC and the Guide. When changing it, regenerate the Guide copy with `node site/scripts/sync-global-navigation.mjs --source=/path/to/FDLC` from the Guide repository, then run the same command with `--check` against the exact qualified FDLC source before releasing both applications. Guide-specific active states stay in the Guide header.

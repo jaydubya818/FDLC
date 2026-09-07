@@ -17,7 +17,7 @@ export const metadata: Metadata = pageMetadata("Framework", canonicalDefinition,
 
 const frameworkPieces = [
   ["FDLC Framework", "Open methodology", "The operating model and engineering discipline defined on this page.", "/framework"],
-  ["FDLC Specification", "Proposed standard", "Formal definitions and invariants for portable artifacts and state transitions.", "/spec"],
+  ["FDLC Specification", "Proposed standard", "Formal definitions and invariants for portable artifacts and state transitions.", "/specification"],
   ["AI Software Factory Guide", "Open field guide", "The detailed methodology from first principles through production.", "/guide"],
   ["Mission Control", "Open-source reference", "The reference implementation that makes the FDLC protocol concrete.", "/mission-control"],
   ["FDLC Enterprise", "Proposed product", "The commercial control plane for operating proven factories at organizational scale.", "/enterprise"],
