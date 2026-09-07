@@ -11,5 +11,7 @@
   "nontransparentPerimeterPixels": 0,
   "method": "Deterministic seeded graph-cut mask, contact-shadow exclusion, local alpha matting. Original source RGB retained for all fully opaque artwork.",
   "sourceSha256": "fbea48944680d8847e445d8172fd224df2cd12c6306582c8164a214181d28a71",
-  "assetSha256": "1fbb32f5bbc9e2e5056584da78491b82ac3dbd7816869b9db44ee0c697f1bc7c"
+  "assetSha256": "8ce5db993f13d466f8df90c1520e97dd8118fa4206e4e90256a3c43b7863914c",
+  "transparentRgbCleared": true,
+  "assetBytes": 525654
 }
