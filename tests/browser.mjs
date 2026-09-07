@@ -187,7 +187,7 @@ try {
       await page.getByLabel("Open navigation", { exact: true }).click();
       await page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("link", { name: "Framework", exact: true }).click();
       await page.waitForURL(`${origin}/framework`);
-      await page.waitForFunction(() => document.querySelector(".mobile-nav > button")?.getAttribute("aria-expanded") === "false");
+      await page.waitForFunction(() => document.querySelector(".global-mobile > button")?.getAttribute("aria-expanded") === "false");
       const comparison = page.getByRole("region", { name: "Category comparison" });
       await comparison.focus();
       assert.ok(await comparison.evaluate(node => node === document.activeElement));

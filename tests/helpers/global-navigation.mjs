@@ -65,7 +65,16 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
         await page.keyboard.press("Tab");
         assert.equal(await page.evaluate(() => document.activeElement.textContent), label);
       }
-      await page.keyboard.press("Escape");
+      await page.keyboard.press("Tab");
+      await panel.waitFor({ state: "hidden" });
+      assert.equal(await panel.evaluate(node => node.contains(document.activeElement)), false, "Tab leaves the dropdown");
+      await trigger.focus();
+      await page.keyboard.press("ArrowDown");
+      await page.waitForFunction(() => document.activeElement?.textContent === "FDLC in 5 Minutes");
+      await page.keyboard.press("Shift+Tab");
+      assert.ok(await trigger.evaluate(node => document.activeElement === node), "Shift+Tab returns to the trigger");
+      await page.keyboard.press("Shift+Tab");
+      await panel.waitFor({ state: "hidden" });
     }
   }
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);

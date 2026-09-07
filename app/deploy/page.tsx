@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CopyValue } from "../components/copy-value";
 import { SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { pageMetadata } from "../../lib/metadata";
@@ -216,11 +217,11 @@ export default function DeployPage() {
             <article><span>Bedrock live calls</span><strong>0</strong></article>
           </div>
           <div className="fde-evidence-ledger">
-            <div><p className="section-label">Qualification identity</p><dl>{qualificationFacts.map(([label, value]) => <div key={label}><dt>{label}</dt><dd><code>{value}</code></dd></div>)}</dl></div>
+            <div><p className="section-label">Qualification identity</p><dl>{qualificationFacts.map(([label, value]) => <div key={label}><dt>{label}</dt><dd><CopyValue label={label} value={value} /></dd></div>)}</dl></div>
             <div><p className="section-label">Release and recovery</p><dl>
-              <div><dt>Current Production deployment</dt><dd><code>{productionDeployment}</code></dd></div>
-              <div><dt>Qualified baseline</dt><dd><code>{qualifiedBaselineDeployment}</code></dd></div>
-              <div><dt>Retained rollback target</dt><dd><code>{rollbackDeployment}</code></dd></div>
+              <div><dt>Current Production deployment</dt><dd><CopyValue label="current Production deployment" value={productionDeployment} /></dd></div>
+              <div><dt>Qualified baseline</dt><dd><CopyValue label="qualified baseline" value={qualifiedBaselineDeployment} /></dd></div>
+              <div><dt>Retained rollback target</dt><dd><CopyValue label="retained rollback target" value={rollbackDeployment} /></dd></div>
               <div><dt>Production aliases</dt><dd><code>fdlc.ai · www.fdlc.ai</code></dd></div>
               <div><dt>Immutable runtime supply chain</dt><dd>Immutable ECR image digests and exact secret-version references are pinned. No secret values are published.</dd></div>
             </dl></div>
