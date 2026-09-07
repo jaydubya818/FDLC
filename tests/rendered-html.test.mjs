@@ -114,11 +114,11 @@ test("global navigation exposes the canonical Guide disclosure in desktop and mo
   const html = await (await render("/guide")).text();
   const header = html.match(/<header class="site-header">[\s\S]*?<\/header>/)?.[0];
   assert.ok(header, "renders the persistent FDLC global header");
-  for (const label of ["Framework", "Architecture", "Guide", "Mission Control", "Maturity", "More"]) {
+  for (const label of ["Framework", "Architecture", "Guide", "Mission Control", "FDE", "Maturity", "More"]) {
     assert.match(header, new RegExp(`>${label}(?:\\s|<)`), label);
   }
   for (const [label, href] of [
-    ["Guide Home", "/guide"],
+    ["Overview", "/guide"],
     ["Atlas", "/guide/atlas"],
     ["Reference", "/guide/topics"],
     ["Glossary", "/guide/glossary"],
