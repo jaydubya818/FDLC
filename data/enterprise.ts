@@ -1,14 +1,39 @@
 export const enterpriseGuideHref = "/guide/appendix/enterprise-multi-factory-delivery";
 
 export const enterpriseStages = [
-  ["Builder intent", "Describe the outcome, scope, constraints, and acceptance criteria. Repository and organizational context ground the request; intent alone grants no authority."],
-  ["Classify the objective", "Identify required capabilities using repository manifests, dependencies, ownership, data classification, and policy alongside model reasoning."],
-  ["Approve a governed Plan", "A replaceable planner proposes WorkOrders and dependencies. The durable Plan records verification contracts, budgets, stop conditions, and approval of an exact revision."],
-  ["Route each WorkOrder", "Filter for authorization, compatibility, and qualification first. Rank eligible Factory Versions using evidence for comparable workloads, then pin the version and Execution Profile."],
-  ["Execute inside the factory", "A supervisor coordinates bounded Tasks across specialists, harnesses, and deterministic tools. Each Attempt records its inputs, capabilities, cost, and resulting Candidate."],
-  ["Verify locally and globally", "Independent verification checks each WorkOrder. Objective verification checks the integrated Candidate against acceptance criteria and current upstream artifacts."],
-  ["Authorize and release", "The accountable authority reviews evidence and approves the exact release scope. Controlled delivery applies rollout gates, observation, and a defined rollback path."],
-  ["Measure and improve", "Validate production and business outcomes. Attribute quality, time, cost, and human effort to the composition; evaluate and qualify proposed changes before promotion."],
+  ["Intent", "Describe the outcome, scope, constraints, and acceptance criteria from any approved entry point. Repository and organizational context ground the request; intent alone grants no authority."],
+  ["Plan", "Mission Control classifies the objective and materializes a durable Plan of WorkOrders, dependencies, verification contracts, budgets, stop conditions, and decision points."],
+  ["Route", "Filter for policy, authorization, compatibility, and qualification first. Select and pin the eligible Factory Version and Execution Profile for each WorkOrder."],
+  ["Execute", "A factory supervisor composes bounded Tasks from reusable agents, harnesses, tools, model routes, context, and execution infrastructure. Attempts produce attributable Candidates."],
+  ["Verify", "Independent verification checks each WorkOrder locally and checks the integrated Candidate globally against the Objective and current upstream artifacts."],
+  ["Release", "The accountable authority reviews evidence and approves the exact artifact, environment, rollout scope, and rollback conditions before controlled delivery acts."],
+  ["Learn", "Observe production and business outcomes. Attribute quality, time, cost, and human effort to the composition; qualify improvements as new versions instead of silently changing production."],
+] as const;
+
+export const enterpriseScale = [
+  ["Builder scale", "Scheduling, quotas, tenant fairness, concurrency, and backpressure"],
+  ["Repository scale", "Repository intelligence, ownership, policy, language, toolchain, and Execution Profiles"],
+  ["Workload scale", "Durable WorkOrders, Tasks, Attempts, queues, sandbox capacity, and horizontal execution"],
+] as const;
+
+export const enterprisePlatformServices = [
+  ["Mission Control", "Objective, Plan, WorkOrder, dependency, routing, evidence, authority, and outcome coordination"],
+  ["Identity and access", "SSO/OIDC, provisioning, RBAC/ABAC, workload identity, delegated authority, and short-lived credentials"],
+  ["Capability registry", "Versioned agents, harnesses, tools, skills, model routes, context providers, verifiers, and execution backends"],
+  ["Model gateway", "Provider-independent logical routes, policy, quotas, fallbacks, regional constraints, quality, latency, and cost"],
+  ["Context intelligence", "Authorized code and knowledge retrieval with ACL filtering, provenance, reranking, compaction, and token budgets"],
+  ["Execution control", "Queues, schedulers, isolated sandboxes, resource and network limits, ephemeral credentials, and artifact capture"],
+  ["Observability and cost", "Objective-level traces across WorkOrders, Attempts, inference, tools, verification, human effort, and accepted outcomes"],
+  ["Policy and compliance", "External enforcement of model, tool, data, network, autonomy, residency, risk, DLP, and release controls"],
+  ["Evidence and audit", "Artifact lineage, hashes, tests, scans, policy results, verifier decisions, approvals, and immutable audit events"],
+] as const;
+
+export const enterpriseReusableCapabilities = [
+  ["Agents", "Reusable reasoning roles for planning, coding, testing, research, security analysis, review, and verification"],
+  ["Harnesses", "Controlled context, tools, state, retries, budgets, recovery, and stopping conditions around Tasks and agents"],
+  ["Tools and skills", "Governed Git, issue tracking, CI/CD, scanners, build systems, APIs, MCP services, and domain knowledge"],
+  ["Models and inference", "Qualified logical routes across commercial, open, and specialized models without making a provider the factory identity"],
+  ["Execution Profiles", "Versioned runtime, toolchain, sandbox, network, resource, context, autonomy, and verification settings"],
 ] as const;
 
 export const enterpriseRouting = [
@@ -18,13 +43,10 @@ export const enterpriseRouting = [
 ] as const;
 
 export const enterpriseFactories = [
-  ["Software Delivery", "Bounded features, defects, and refactoring", "Implementation Candidate with build and acceptance evidence."],
-  ["Modernization", "Language, framework, runtime, and API migrations", "Migration Candidate with compatibility and regression evidence."],
-  ["Security Remediation", "Vulnerabilities and insecure dependencies", "Remediation Candidate with dependency, scan, and regression evidence."],
-  ["Test Engineering", "Coverage gaps, regression suites, and test reliability", "Test artifacts checked for relevant behavior, stability, and defect detection."],
-  ["Verification", "Integrated behavior and objective acceptance", "Independent verdict on the integrated Candidate and its evidence."],
-  ["Delivery", "Packaging, release preparation, and approved deployment", "Release artifacts and deployment records from controlled tooling."],
-  ["Reliability", "Production health and post-release validation", "Observation results, SLO checks, and rollback recommendations."],
+  ["Software Delivery / broad default", "Features, defects, refactoring, tests, dependency updates, routine security fixes, release preparation, and approved deployments", "One outcome contract can contain many workflows and reusable capability routes."],
+  ["Modernization / when justified", "Migration waves, framework and language changes, platform upgrades, compatibility analysis, and repository transformation", "Separate only when ownership, lifecycle, qualification, or exception handling materially differs from normal delivery."],
+  ["Security Remediation / when justified", "Enterprise vulnerability discovery, remediation, exception tracking, verification, reporting, and continuous risk reduction", "Separate when risk, evidence, compliance, sandbox, or authority requirements form a distinct operating contract."],
+  ["Additional factories / evidence led", "Reliability, test engineering, delivery, data migration, accessibility, compliance, or domain-specific outcomes", "Create one only when outcome semantics, ownership, qualification, governance, authority, or lifecycle are materially different."],
 ] as const;
 
 export const enterpriseControls = [

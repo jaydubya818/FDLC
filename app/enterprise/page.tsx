@@ -4,37 +4,57 @@ import Link from "next/link";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { PageContentsNav } from "../components/page-contents-nav";
 import { SiteShell } from "../components/site-shell";
-import { enterpriseAdoption, enterpriseControls, enterpriseFactories, enterpriseGuideHref, enterpriseRouting, enterpriseStages } from "../../data/enterprise";
+import { enterpriseAdoption, enterpriseControls, enterpriseFactories, enterpriseGuideHref, enterprisePlatformServices, enterpriseReusableCapabilities, enterpriseRouting, enterpriseScale, enterpriseStages } from "../../data/enterprise";
 import { pageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Enterprise multi-factory software delivery", "Compose governed software factories around enterprise objectives. Explore routing, independent verification, human authority, adoption, and FDLC Enterprise pricing discussions.", "/enterprise");
+export const metadata: Metadata = pageMetadata("Enterprise AI software factory platform", "One shared enterprise platform, composable outcome-specific factories, reusable capabilities, and verified outcomes. Explore governance, routing, verification, adoption, and FDLC Enterprise pricing discussions.", "/enterprise");
 
 const contents = [
   { label: "Operating model", href: "#operating-model" },
+  { label: "Shared platform", href: "#platform" },
+  { label: "Factory portfolio", href: "#factory-portfolio" },
   { label: "Routing and dependencies", href: "#routing" },
   { label: "Verification", href: "#verification" },
-  { label: "Factory catalog", href: "#factory-catalog" },
   { label: "Enterprise readiness", href: "#readiness" },
   { label: "Adoption and pricing", href: "#pricing" },
 ] as const;
 
 export default function EnterprisePage() {
   return <SiteShell><div className="page-wrap enterprise-page">
-    <PageHero eyebrow="FDLC Enterprise" status="Design partnership" variant="compact" title="Many factories. One governed objective." description="Enterprise software work crosses teams, repositories, and delivery systems. FDLC describes how to compose specialized factories around one objective, preserve authority, and verify the integrated outcome." meta={[["Model", "Multi-factory delivery"], ["Foundation", "Open framework"], ["Pricing", "Contact FDLC Enterprise"]]}>
+    <PageHero eyebrow="FDLC Enterprise" status="Design partnership" variant="compact" title="One platform. Many verified outcomes." description="Centralize the enterprise infrastructure that should be shared. Compose factories only for materially different governed outcomes. Reuse qualified agents, harnesses, tools, model routes, context, and execution profiles across the portfolio." meta={[["Architecture", "Shared platform"], ["Operating units", "Composable factories"], ["Pricing", "Contact FDLC Enterprise"]]}>
       <div className="hero-actions"><a className="button button-dark" href="mailto:support@fdlc.ai?subject=FDLC%20Enterprise%20pricing%20and%20scope">Contact FDLC Enterprise</a><a className="text-action" href={enterpriseGuideHref}>Read the enterprise guide →</a></div>
     </PageHero>
     <PageContentsNav items={contents} />
 
     <section className="section-block" id="operating-model">
-      <SectionHeader eyebrow="Enterprise operating model" title="From builder intent to a verified outcome." description="The builder describes the result. Mission Control owns the Plan, dependencies, routing, evidence, and authority across factories. Each factory executes a bounded WorkOrder." />
+      <SectionHeader eyebrow="Enterprise operating model" title="Centralize infrastructure. Specialize outcomes." description="The architecture separates a singular enterprise platform from outcome-specific factories and reusable execution capabilities. Scale increases capacity and concurrency without requiring a factory per team or repository." />
       <figure className="enterprise-diagram">
         <a href="/enterprise/multi-factory-software-delivery.png" target="_blank" rel="noreferrer" aria-label="Open the enterprise multi-factory software delivery diagram at full resolution in a new tab">
-          <Image src="/enterprise/multi-factory-software-delivery.png" alt="Enterprise multi-factory delivery: eight stages from builder intent to outcomes, with panels for the governed Plan, factory internals, local and global verification, factory catalog, versioning, and learning. The full text explanation follows." width={1536} height={1024} sizes="(max-width: 1280px) 100vw, 1240px" />
+          <Image src="/enterprise/multi-factory-software-delivery.png" alt="Enterprise AI software factory platform: one shared infrastructure layer, a portfolio of outcome-specific factories, reusable agents and execution capabilities, and a flow from builder intent to verified outcomes. The full text explanation follows." width={1521} height={908} sizes="(max-width: 1280px) 100vw, 1240px" priority />
         </a>
-        <figcaption>Reference architecture supplied by Jay West. <a href="/enterprise/multi-factory-software-delivery.png" target="_blank" rel="noreferrer">Open full-resolution diagram ↗</a> Factory versions, skill counts, and scale examples are illustrative; they do not describe a published product catalog or measured capacity.</figcaption>
+        <figcaption>Enterprise platform reference architecture supplied by Jay West. <a href="/enterprise/multi-factory-software-delivery.png" target="_blank" rel="noreferrer">Open full-resolution diagram ↗</a> The 100+ builder and repository figures are an architecture scenario, not a published FDLC capacity benchmark or customer claim.</figcaption>
       </figure>
-      <p className="enterprise-note">These eight stages describe delivery through multiple factories. The seven-stage <Link href="/framework">Factory Development Lifecycle</Link> governs how those factories are designed, qualified, operated, and improved.</p>
+      <div className="enterprise-thesis" aria-label="Enterprise architecture thesis"><strong>One platform.</strong><strong>Composable factories.</strong><strong>Reusable capabilities.</strong></div>
+      <p className="enterprise-note"><strong>Organizational scale and factory count are different dimensions.</strong> Builder scale is primarily a scheduling, quota, and concurrency problem. Repository scale is primarily a context, policy, ownership, and configuration problem. Workload scale is handled through WorkOrders, Tasks, Attempts, queues, sandboxes, and horizontal execution. Create another Factory Definition only when the governed outcome contract materially changes.</p>
+      <div className="enterprise-routing">{enterpriseScale.map(([dimension, response], index) => <article key={dimension}><p className="section-label">Scale dimension {index + 1}</p><h3>{dimension}</h3><p>{response}</p></article>)}</div>
+      <SectionHeader eyebrow="Example flow" title="From builder intent to a verified outcome." description="The builder states the result. Mission Control materializes and coordinates the durable execution contract. Factories perform bounded work; evidence and authority govern what advances." />
       <ol className="enterprise-stages">{enterpriseStages.map(([title, description], index) => <li key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{description}</p></div></li>)}</ol>
+    </section>
+
+    <section className="section-block" id="platform">
+      <SectionHeader eyebrow="Shared enterprise infrastructure" title="One control plane and one governed capability ecosystem." description="Factories consume common platform services instead of duplicating orchestration, identity, inference, context, sandboxes, observability, policy, and evidence systems." />
+      <div className="enterprise-platform-grid">{enterprisePlatformServices.map(([name, description]) => <article key={name}><h3>{name}</h3><p>{description}</p></article>)}</div>
+      <p className="enterprise-note"><strong>Mission Control is the meta-factory control plane.</strong> It owns Objective → Plan → WorkOrders → routing → state → evidence → authority → outcomes, including the cross-factory dependency graph. Factories do not form an uncontrolled peer-to-peer orchestration network. Every Objective, WorkOrder, Task, Attempt, tool call, and consequential action remains attributable to a human or service principal and bounded by delegated authority.</p>
+      <p className="enterprise-note"><strong>Inference is not execution, and policy is not a prompt.</strong> Logical model routes select approved inference under quality, cost, availability, and regional constraints. Actual code changes, tests, scans, and builds run in isolated execution environments with filesystem, network, resource, and credential controls. Gateways, brokers, sandboxes, and release boundaries enforce policy outside the model.</p>
+      <SectionHeader eyebrow="Reusable capabilities" title="Build and qualify capabilities for reuse across factory compositions." description="Agent count, model count, profile count, and factory count are independent. The same qualified coding agent or test harness can participate in several factories under different Plans, policies, profiles, and verification contracts." />
+      <div className="enterprise-capability-grid">{enterpriseReusableCapabilities.map(([name, description]) => <article key={name}><h3>{name}</h3><p>{description}</p></article>)}</div>
+      <p className="enterprise-note"><strong>Keep the boundaries clear.</strong> An agent is a reasoning role. A harness controls execution around a Task or agent. A model supplies inference. An Execution Profile absorbs repository, runtime, environment, and risk variation. A factory owns a stable class of governed outcomes.</p>
+    </section>
+
+    <section className="section-block" id="factory-portfolio">
+      <SectionHeader eyebrow="Outcome-specific operating units" title="Start with a broad default. Add factories only when evidence justifies them." description="A Factory Definition carries an outcome contract, ownership, planning semantics, capability composition, qualification, verification, authority, service objectives, and lifecycle. A different workflow or implementation technique alone does not justify another factory." />
+      <div className="enterprise-catalog">{enterpriseFactories.map(([name, scope, evidence]) => <article key={name}><h3>{name}</h3><p>{scope}</p><p><strong>Boundary:</strong> {evidence}</p></article>)}</div>
+      <p className="enterprise-note"><strong>Factory creation test.</strong> Create a separate factory when outcome semantics, ownership, qualification, governance, risk, authority, lifecycle, or verification requirements are materially different. Otherwise use another skill, workflow, harness, capability route, or Execution Profile inside the existing factory.</p>
     </section>
 
     <section className="section-block" id="routing">
@@ -64,9 +84,8 @@ export default function EnterprisePage() {
       <p className="enterprise-note"><strong>Independent verification is more than a second model.</strong> Prefer deterministic checks for builds, tests, policy, and digests. Use specialized evaluators and human review where judgment is required. Shared prompts, models, or missing context can create correlated failures even across separate agents.</p>
     </section>
 
-    <section className="section-block" id="factory-catalog">
-      <SectionHeader eyebrow="Reusable capabilities" title="Scale through composition, not a factory per repository." description="A Factory Definition names a delivery capability. An immutable Factory Version identifies its qualified composition. An Execution Profile specializes the approved operating envelope for a workload and environment." />
-      <div className="enterprise-catalog">{enterpriseFactories.map(([name, scope, evidence]) => <article key={name}><h3>{name}</h3><p>{scope}</p><p><strong>Expected output:</strong> {evidence}</p></article>)}</div>
+    <section className="section-block" id="factory-versioning">
+      <SectionHeader eyebrow="Factory versioning" title="Qualify immutable compositions and activate them for a declared scope." description="A Factory Definition names the governed outcome capability. A Factory Version identifies its immutable composition. An Execution Profile specializes the qualified operating envelope for a workload and environment." />
       <div className="enterprise-version"><p className="section-label">Version lifecycle</p><h3>Develop → Qualify → Promote → Activate → Observe → Improve</h3><p>Pin the supervisor recipe, skills, model routes, harnesses, tools, context policies, sandbox, and verification contract. Qualify the composition as well as its components. A published version is not automatically eligible for routing.</p><p>Improvements create new candidates. Suspending a bad version stops new admissions; routing can return to a previously qualified version that remains eligible. Reverting factory routing does not undo an application deployment or a database change.</p></div>
     </section>
 
