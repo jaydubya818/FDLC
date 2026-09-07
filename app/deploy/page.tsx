@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CopyValue } from "../components/copy-value";
+import { MissionControlProductTour } from "../components/mission-control-experience";
 import { SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { pageMetadata } from "../../lib/metadata";
@@ -196,6 +197,15 @@ export default function DeployPage() {
             <article><span>01 / You bring</span><ul>{["A real workflow", "A baseline", "Domain experts", "Engineering constraints"].map((item) => <li key={item}>{item}</li>)}</ul></article>
             <article className="is-together"><span>02 / We build together</span><ul>{["Factory Definition", "Lighthouse", "Evidence", "Operating model"].map((item) => <li key={item}>{item}</li>)}</ul></article>
             <article><span>03 / You keep</span><ul>{["The factory line", "The evidence", "The capabilities", "The operating playbook", "The ability to scale"].map((item) => <li key={item}>{item}</li>)}</ul></article>
+          </div>
+        </section>
+
+        <section className="screenshots-section fde-customer-product" id="customer-product">
+          <SectionHeader eyebrow="The customer product" title="This is where your team runs the factory." description="Mission Control is the operating dashboard delivered with the factory line. Your team sees work that needs attention, inspects bounded execution, reviews evidence, makes consequential decisions, and retains the audit trail." />
+          <MissionControlProductTour />
+          <div className="fde-customer-product-footer">
+            <p><strong>What these screens show:</strong> the deterministic Software Factory demo and its operator experience. They demonstrate product structure—not a live customer engagement, customer activity, or performance result.</p>
+            <Link className="section-link" href="/mission-control">Explore the full Mission Control product <span aria-hidden="true">→</span></Link>
           </div>
         </section>
 

@@ -286,6 +286,8 @@ test("FDE publishes the qualification state and its dormant live boundary", asyn
   assert.match(html, /From developers to builders.*Managers increasingly lead humans.*digital workers/is);
   assert.match(html, /The FDE.*Software architecture.*AI \/ agent engineering.*Change leadership.*Operating-model design/is);
   assert.match(html, /You bring.*We build together.*You keep.*The factory line.*The operating playbook.*ability to scale/is);
+  assert.match(html, /The customer product.*This is where your team runs the factory.*Mission Control is the operating dashboard delivered with the factory line/is);
+  assert.match(html, /Command Center.*Work Orders.*Approvals &amp; Audit.*What these screens show.*deterministic Software Factory demo.*not a live customer engagement/is);
   assert.match(html, /Autonomy without abdicating control.*See what ran, why it advanced, and how to recover.*Mission Control gives the team visibility.*Agents may propose.*Humans retain consequential authority/is);
   assert.match(html, /Bring one real workflow.*current baseline/is);
   assert.match(html, /Production.*Qualified \/ Healthy/is);

@@ -197,6 +197,12 @@ try {
     await audit("factory-definition-component-open");
     report.flows.push({ name: "fde-factory-definition-disclosure", width, result: "PASS" });
 
+    const fdeProductTour = page.getByLabel("Mission Control operator views");
+    await fdeProductTour.getByRole("tab", { name: /Work Orders/ }).click();
+    assert.match(await page.locator("#mc-product-panel").innerText(), /Keep scope, authority, and verification on one record/i);
+    await audit("fde-customer-product-work-orders");
+    report.flows.push({ name: "fde-customer-product-tour", width, result: "PASS" });
+
     if (width === 390) {
       await page.getByLabel("Open navigation", { exact: true }).click();
       await page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("link", { name: "Framework", exact: true }).click();
