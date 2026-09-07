@@ -36,7 +36,22 @@ npm test
 - `docs/` — source audit, information architecture, content model, design system, implementation plan, capability matrix, and release checklist
 - `tests/` — unit and rendered-route checks
 
-Mission Control and the source Guide are separate open-source projects. This site links to them without importing their runtime systems or private material.
+Mission Control and the Guide remain separate open-source projects. The Guide is composed into FDLC.ai through Vercel Microfrontends while retaining its own source, runtime, routes, and assets.
+
+## Guide and Microfrontends
+
+FDLC.ai is the umbrella experience and the default Microfrontends application. The [AI Software Factory Guide](https://github.com/jaydubya818/ai-software-factory-mastery) is a separate Next.js application that owns the canonical `/guide` namespace, including its chapters, Atlas, Reference, Glossary, Search, Mermaid rendering, and Guide-specific theme behavior.
+
+The ownership boundary is explicit:
+
+- This repository owns the FDLC global shell, all non-Guide routes, and the authoritative [`microfrontends.json`](microfrontends.json) configuration.
+- The Guide repository owns Guide content and rendering, including every route under `/guide` and its Vercel-prefixed JavaScript and CSS assets.
+- Vercel composes the two applications on the canonical FDLC.ai domain. Direct loads and reloads stay on the same public origin while requests and assets continue to resolve from the owning deployment.
+- Compatibility routes such as `/docs`, `/visuals`, `/topics`, `/search`, and `/glossary` remain declared in the Microfrontends configuration only for the controlled legacy migration path.
+
+The Guide does not fetch Microfrontends configuration dynamically during every build. It commits a generated, sanitized snapshot and manifest derived from this repository. Guide Preview and Production builds fail closed when that snapshot is absent, stale, modified, or does not match the independently trusted FDLC digest and source revision.
+
+Treat an FDLC/Guide release as a qualified pair: verify the exact source revisions and deployments, preserve the previous pair as rollback targets, and run browser acceptance against the composed canonical domain before considering Production complete.
 
 ## Factory Deployed Engineer (FDE)
 
@@ -58,4 +73,6 @@ The existing Vercel/Next build has the same browser gate: run `npm run build:ver
 
 ## Shared global navigation
 
-`lib/global-navigation.ts` owns the desktop and mobile destinations for FDLC and the Guide. When changing it, regenerate the Guide copy with `node site/scripts/sync-global-navigation.mjs --source=/path/to/FDLC` from the Guide repository, then run the same command with `--check` against the exact qualified FDLC source before releasing both applications. Guide-specific active states stay in the Guide header.
+[`lib/global-navigation.ts`](lib/global-navigation.ts) is the authoritative desktop and mobile navigation definition for FDLC and the Guide. The Guide renders its own copy at the MFE boundary so the global shell remains stable without coupling the two runtimes at request time.
+
+When changing global navigation, regenerate the Guide copy with `node site/scripts/sync-global-navigation.mjs --source=/path/to/FDLC` from the Guide repository. Run the same command with `--check` against the exact qualified FDLC source before releasing both applications. Guide-specific active states stay in the Guide header, but labels, destinations, ordering, and layout must remain synchronized across both deployments.
