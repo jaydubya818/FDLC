@@ -40,7 +40,9 @@ Mission Control and the source Guide are separate open-source projects. This sit
 
 ## Factory Deployed Engineer (FDE)
 
-The [Factory Deployed Engineer experience](https://fdlc.ai/deploy) applies the FDLC operating model to a real workflow through three evidence-gated phases: **FDLC Readiness → FDLC Lighthouse → FDLC Scale**. Readiness establishes the baseline and selects a suitable first line; Lighthouse proves one bounded workflow; Scale expands only what the evidence supports. Mission Control provides the qualification control-plane environment.
+The [Factory Deployed Engineer experience](https://fdlc.ai/deploy) is the human implementation layer of FDLC. An FDE works inside an engineering environment to discover the right opportunity, create the Factory Definition, assemble and qualify a governed line in Mission Control, prove it against real outcomes, and transfer the resulting operating capability to the organization.
+
+The engagement advances through three evidence-gated phases: **FDLC Readiness → FDLC Lighthouse → FDLC Scale**. Readiness establishes the baseline and selects a suitable first line; Lighthouse proves one bounded workflow; Scale expands only what the evidence supports. The organization keeps the factory line, evidence, reusable capabilities, operating playbook, and scale path.
 
 The AWS qualification environment in account `083665737366` (`us-east-1`) and the Mission Control qualification deployment `calm-buffalo-854` are ready for controlled activation. FDLC.ai Production is qualified and healthy. Runtime images are pinned by immutable digest, runtime services remain scaled to zero, and no secret values are published.
 
