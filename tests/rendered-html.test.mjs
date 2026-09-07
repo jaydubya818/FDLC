@@ -240,6 +240,26 @@ test("mission control leads with the product and exposes an interactive governed
   assert.match(html, /Factory Version.*Execution Profile.*WorkOrder.*Readiness.*Task.*Attempt.*Unpublished Candidate.*Verification Subject.*Verifier Attempt.*Evidence.*Human Authority/is);
   assert.match(html, /Readiness.*derived determination.*never a manually asserted READY flag/is);
   assert.match(html, /No external model calls, publication, acceptance, or Production mutation occurred/is);
+  assert.match(html, /Development priorities.*Proposed.*Prove one complete operating loop, then expand/is);
+  assert.match(html, /real outcome inspectable.*route eligibility.*safe improvement.*broader coordination/is);
+});
+
+test("architecture publishes six practical system-design decisions", async () => {
+  const html = await (await render("/architecture")).text();
+  assert.match(html, /id="design-decisions"/);
+  for (const decision of [
+    "Qualify the plan before dispatch",
+    "Separate routing from scheduling",
+    "Recover without repeating consequences",
+    "Keep evidence current and independent",
+    "Measure acceptance and observed value separately",
+    "Promote and revoke exact factory versions",
+  ]) assert.match(html, new RegExp(decision, "i"));
+  assert.match(html, /Problem.*Architectural decision.*Why it exists.*Governing invariant.*Failure behavior.*Maturity and implementation.*Evidence required.*Implementation relationship/is);
+  assert.match(html, /planner.*replaceable intelligence.*Plan revision.*governed artifact/is);
+  assert.match(html, /ACTUAL.*ESTIMATED.*UNKNOWN/is);
+  assert.match(html, /Learning creates Improvement Candidates.*cannot mutate or activate Production/is);
+  assert.match(html, /href="\/guide\/appendix\/factory-system-design-playbook"/);
 });
 
 test("long technical pages expose the requested rail and tablet jump navigation", async () => {

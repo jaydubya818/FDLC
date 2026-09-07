@@ -1,13 +1,14 @@
 # Mission Control Public Capability Matrix
 
-Date: 2026-09-06
+Date: 2026-09-07
 
 Baseline: Mission Control `ed77c46c9d975a2ed0c666cdaf0a3f0e12e77d4d`. The current capability maturity ledger remains canonical. Website labels intentionally compress its detailed internal vocabulary into Available, Experimental, Planned, and Proposed.
 
-The inference routing row was separately reviewed against merged Mission Control
-`9a68b56c3ee788c4f8b4132a8c7c9d14f32dee28`. Its retained reservation and durable
-identity evidence does not update the other rows' assessment revisions or establish
-live provider execution, actual billing, human acceptance or Production release.
+The routing, inference accounting, and incident rows were reconciled against
+Mission Control `ee870794cddb426824fc881a520ccdda028060d6` on 2026-09-07.
+This updates only their cited scope; it does not establish live provider
+billing, broad containment, accepted customer outcomes, or general production
+qualification. Routing and inference accounting are distinct responsibilities.
 
 | Capability | Public status | Safe public claim | Limitation to disclose | Source evidence |
 | --- | --- | --- | --- | --- |
@@ -18,7 +19,8 @@ live provider execution, actual billing, human acceptance or Production release.
 | Human Plan approval and WorkOrder acceptance | Available | Human decisions are distinct, server-authorized boundaries. | Merge and production release remain separate decisions. | `docs/product/mission-control-north-star.md`; `convex/workOrders.ts`; `convex/approvalDecisions.ts` |
 | Codex harness adapter | Available | `codex/v1` is the production-admitted execution adapter. | Admission is bounded to exact supported configuration and repository controls. | `packages/workflow-engine/src/harnessManifests.ts`; maturity ledger |
 | DeepSeek harness adapter | Experimental | A pinned local persistent-worker adapter exists for evaluation. | Disabled by default and not production-admitted. | `docs/software-factory/worker-runtime-operations.md`; harness manifests |
-| Model/harness/backend routing | Experimental | WorkOrder inference reservations are conserved across requests, and canonical call intents and receipts preserve durable lineage. | Inference is default off. Live provider qualification, billing settlement and complete outcome economics remain incomplete. | [Canonical identity contract](https://github.com/jaydubya818/MissionControl/blob/9a68b56c3ee788c4f8b4132a8c7c9d14f32dee28/docs/software-factory/inference-ledger-identity-contract.md); [reservation qualification](https://github.com/jaydubya818/MissionControl/blob/9a68b56c3ee788c4f8b4132a8c7c9d14f32dee28/docs/testing/evidence/capability-convergence-reservation-final/README.md); [durable identity qualification](https://github.com/jaydubya818/MissionControl/blob/9a68b56c3ee788c4f8b4132a8c7c9d14f32dee28/docs/testing/evidence/capability-convergence-identity-backend/README.md) |
+| Model/harness/backend routing | Experimental | Policy-aware routing records capability selection against qualification and execution constraints. | Advisory and gated; complete outcome economics and broader live fallback qualification remain incomplete. | [Current ledger at ee870794](https://github.com/jaydubya818/MissionControl/blob/ee870794cddb426824fc881a520ccdda028060d6/docs/product/software-factory-capability-maturity.md) |
+| Governed inference accounting | Experimental | Aggregate reservations, bounded dispatch allowance, immutable observations, settlement correction, and durable recovery are qualified offline. | Default off. Live provider billing, comparison of two exact routes, and real accepted-workload economics remain unqualified. | [Current convergence program at ee870794](https://github.com/jaydubya818/MissionControl/blob/ee870794cddb426824fc881a520ccdda028060d6/docs/software-factory/capability-convergence-program.md); [current ledger](https://github.com/jaydubya818/MissionControl/blob/ee870794cddb426824fc881a520ccdda028060d6/docs/product/software-factory-capability-maturity.md) |
 | Factory Memory and Context Packages | Available | Provenance-backed context can be retrieved, frozen to an Attempt, and inspected. | Advisory and phase-gated; cannot alter frozen intent or satisfy acceptance. | `packages/memory/`; `convex/factoryMemory.ts`; maturity ledger |
 | Observability, traces, and evals | Available | Runs can produce traces, scores, datasets, and experiments for diagnostic comparison. | Diagnostic only; these records do not confer acceptance authority. | `convex/traces.ts`; `convex/evals.ts`; maturity ledger |
 | Factory Learning | Experimental | Accepted outcomes and evidence can form bounded learning signals and human-reviewed proposals. | Promotion remains manual and real production signals are limited. | `docs/software-factory/CONTINUOUS_LEARNING.md`; `convex/factoryLearning.ts`; maturity ledger |
@@ -28,7 +30,8 @@ live provider execution, actual billing, human acceptance or Production release.
 | MCP runtime | Experimental | One exact Context7 `query-docs` read was qualified through an exact Tool Version and Tool Grant, an Execution Profile and canonical Attempt, brokered execution, durable receipts, schema/currentness checks, and independent verification. | One fixed public React query only; writes, arbitrary services or operations, broad credentials, remote arbitrary MCP, and harness-native MCP remain unsupported. | [Phase 4 completion record at f90c50f](https://github.com/jaydubya818/MissionControl/blob/f90c50f5b4191467b2117bb8762754f697b1cefd/docs/testing/evidence/governed-mcp-phase4-recovery/completion-record.md); maturity ledger |
 | Release and production feedback | Experimental | Release records and some gating/feedback structures exist. | No complete production observation, rollback, and outcome proof. | `convex/factoryReleases.ts`; maturity ledger |
 | Multi-tenant enterprise operation | Experimental | Company/workspace scoping exists. | Cross-company production operation is not qualified. | `convex/schema.ts`; authorization tests; maturity ledger |
-| Factory incident response | Planned | Existing alerts and evidence can support a future incident lifecycle. | No canonical end-to-end incident aggregate and recovery lifecycle exists. | maturity ledger; convergence plan |
+| Factory incident pause and restoration | Available | Incident Command qualified pause and separately authorized restoration of dispatch admission for the Mission Control repository, with independently observed effects. | One exact repository operation using a synthetic qualification incident; other controls, arbitrary repositories, customer incidents, and autonomous emergency authority remain unqualified. | [Production qualification v55 at ee870794](https://github.com/jaydubya818/MissionControl/blob/ee870794cddb426824fc881a520ccdda028060d6/docs/testing/evidence/factory-incident-command-production-v55/README.md) |
+| Broader containment controls | Planned | Extend qualified containment to additional capability versions, control actions, and targets as workload needs justify them. | Each control and target requires separate qualification and authority; the existing pause operation grants no broader permission. | [Current limitation and next gate at ee870794](https://github.com/jaydubya818/MissionControl/blob/ee870794cddb426824fc881a520ccdda028060d6/docs/product/software-factory-capability-maturity.md) |
 | Public benchmark program | Proposed | Mission Control exposes measurements useful for future FDLC benchmarks. | No public benchmark dataset or comparable result series exists. | Observability/eval sources; FDLC benchmark proposal |
 
 ## Public copy rules

@@ -4,12 +4,27 @@ import test from "node:test";
 import { architectureAreas, metrics } from "../../data/fdlc.ts";
 import { dependencyModernizationExample } from "../../data/dependency-modernization-example.ts";
 import { missionControlCapabilities } from "../../data/mission-control.ts";
+import { systemDesignDecisions } from "../../data/system-design.ts";
 
-test("preserves current-main Mission Control source while final routing lands", () => {
-  assert.equal(missionControlCapabilities.length, 13);
-  assert.equal(missionControlCapabilities.filter((item) => item.status === "Available").length, 6);
-  assert.equal(missionControlCapabilities.filter((item) => item.status === "Experimental").length, 6);
-  assert.equal(missionControlCapabilities.filter((item) => item.status === "Planned").length, 1);
+test("makes every system-design decision operational and evidence-bound", () => {
+  assert.equal(systemDesignDecisions.length, 6);
+  for (const decision of systemDesignDecisions) {
+    for (const field of ["problem", "decision", "rationale", "invariant", "failure", "status", "evidence", "relationship"] as const) {
+      assert.ok(decision[field].length > 30, `${decision.title}: ${field}`);
+    }
+  }
+});
+
+test("preserves bounded Mission Control qualification claims", () => {
+  const accounting = missionControlCapabilities.find((item) => item.name === "Governed inference accounting");
+  assert.equal(accounting?.status, "Experimental");
+  assert.match(accounting?.summary ?? "", /qualified offline/);
+  assert.match(accounting?.limitation ?? "", /Default off.*billing.*unqualified/);
+  const incident = missionControlCapabilities.find((item) => item.name === "Factory incident pause and restoration");
+  assert.equal(incident?.status, "Available");
+  assert.match(incident?.summary ?? "", /separately authorized restoration.*Mission Control repository/);
+  assert.match(incident?.limitation ?? "", /One exact repository operation.*synthetic.*remain unqualified/);
+  assert.equal(missionControlCapabilities.find((item) => item.name === "Broader containment controls")?.status, "Planned");
   const mcp = missionControlCapabilities.find((item) => item.name === "Governed MCP runtime");
   assert.deepEqual(mcp, {
     name: "Governed MCP runtime", status: "Experimental",
