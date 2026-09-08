@@ -2,6 +2,7 @@ export const executionTaxonomy = [
   { term: "Model", role: "Inference engine", question: "What reasoning or generation is available?", boundary: "Supplies intelligence; it is not the worker or authority." },
   { term: "Agent", role: "Goal-directed worker", question: "Who is pursuing the bounded task?", boundary: "Uses model intelligence, instructions, context, state, and capabilities." },
   { term: "Agent Loop", role: "Iteration cycle", question: "How does one Agent make progress and stop?", boundary: "Loads state, selects, acts, observes, evaluates, replans, and terminates." },
+  { term: "Agentic SDK", role: "Developer toolkit", question: "Which reusable primitives or implementations are used to construct the agentic application?", boundary: "May supply Agent definitions, loops, tools, handoffs, guardrails, sessions, tracing, orchestration helpers, or Runtime integration; it is not itself the Agent, Harness, Runtime, Orchestrator, or Control Plane." },
   { term: "Agent Harness", role: "Operating envelope", question: "How is the Agent allowed to operate?", boundary: "Governs context, models, tools, working state, permissions, budgets, recovery, telemetry, and stopping." },
   { term: "Coding Harness", role: "Software-engineering Harness", question: "How may an Agent inspect, change, build, and verify a repository?", boundary: "Specializes the Agent Harness for code, shell, compiler, test, package, Git, diagnostic, and artifact workflows." },
   { term: "IDE Harness", role: "Editor-integrated Coding Harness", question: "Which editor state participates in bounded execution?", boundary: "May use open files, selections, diagnostics, terminal, Git, and approval state; an IDE alone is not a Harness." },
@@ -24,6 +25,7 @@ export const executionTaxonomy = [
 export const executionRelationship = [
   "Control Plane authorizes an Execution Profile",
   "Orchestrator advances the Work Graph",
+  "Agentic SDK may supply implementations",
   "Agent Harness governs one Agent",
   "Agent Loop iterates inside a graph node",
   "Runtime hosts execution",

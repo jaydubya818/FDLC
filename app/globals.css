@@ -681,6 +681,38 @@ button, input, textarea, select { font: inherit; }
 .architecture-detail-disclosure > summary span { color: var(--muted); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
 .relationship { margin: 24px 0 0 100px; display: grid; grid-template-columns: 150px 1fr; color: var(--muted); line-height: 1.65; }
 .relationship span { color: var(--green); font-family: var(--mono); font-size: var(--text-label); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+
+.agentic-system-section { border-top: 1px solid var(--line); }
+.agentic-stack { margin: 48px 0 0 100px; padding: 0; display: grid; gap: 10px; list-style: none; }
+.agentic-layer { display: grid; grid-template-columns: minmax(280px, .85fr) minmax(260px, 1.15fr) minmax(210px, .8fr); border: 1px solid var(--line); background: var(--surface); }
+.agentic-layer-heading { display: grid; grid-template-columns: 34px 1fr; gap: 14px; padding: 20px; }
+.agentic-layer-heading > span, .agentic-layer-examples > span, .sdk-key-point > span { color: var(--green); font-family: var(--mono); font-size: var(--text-label); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.agentic-layer-heading small { color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .07em; text-transform: uppercase; }
+.agentic-layer h3 { margin: 4px 0 8px; font-family: var(--serif); font-size: 28px; font-weight: 500; letter-spacing: -.03em; }
+.agentic-layer p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+.agentic-layer ul { margin: 0; padding: 18px 24px 18px 40px; border-left: 1px solid var(--line); color: var(--muted); font-size: 12px; line-height: 1.55; }
+.agentic-layer-examples { padding: 20px; border-left: 1px solid var(--line); }
+.agentic-layer-examples p { margin-top: 12px; }
+.agentic-layer-agentic-sdk { border-color: var(--amber); box-shadow: inset 4px 0 0 var(--amber); }
+.agentic-layer-control-plane { background: var(--green); color: white; }
+.agentic-layer-control-plane p, .agentic-layer-control-plane li { color: #c4d3cc; }
+.agentic-layer-control-plane .agentic-layer-heading small { color: #dfeae5; }
+.agentic-layer-control-plane ul, .agentic-layer-control-plane .agentic-layer-examples { border-color: #517263; }
+.agentic-layer-control-plane .agentic-layer-heading > span, .agentic-layer-control-plane .agentic-layer-examples > span { color: var(--green-bright); }
+.sdk-key-point { margin: 24px 0 0 100px; padding: 22px; display: grid; grid-template-columns: 150px 1fr; gap: 18px; border: 1px solid var(--amber); background: var(--amber-pale); }
+.sdk-key-point p { margin: 0; line-height: 1.65; }
+.sdk-comparison { margin: 16px 0 0 100px; border-top: 1px solid var(--line); }
+.sdk-comparison > div { display: grid; grid-template-columns: 130px minmax(220px, .8fr) minmax(260px, 1.2fr); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); border-left: 1px solid var(--line); }
+.sdk-comparison strong, .sdk-comparison span, .sdk-comparison p { margin: 0; padding: 14px; font-size: 12px; line-height: 1.5; }
+.sdk-comparison strong { color: var(--green); font-family: var(--mono); font-size: var(--text-label); letter-spacing: .07em; text-transform: uppercase; }
+.sdk-comparison span, .sdk-comparison p { border-left: 1px solid var(--line); }
+.sdk-comparison p { color: var(--muted); }
+.sdk-ecosystem-title { margin: 28px 0 12px 100px; font-family: var(--serif); font-size: 26px; font-weight: 500; }
+.sdk-ecosystem-map { margin-left: 100px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.sdk-ecosystem-map article { min-width: 0; padding: 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+.sdk-ecosystem-map article > span { color: var(--green); font-family: var(--mono); font-size: var(--text-label); font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.sdk-ecosystem-map h3 { margin: 24px 0 10px; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+.sdk-ecosystem-map p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
 .architecture-area-links { margin: 22px 0 0 100px; display: flex; flex-wrap: wrap; gap: 18px 30px; }
 .architecture-area-links a { color: var(--green); font-size: 12px; font-weight: 700; }
 .factory-system-diagram { padding: clamp(32px, 4vw, 56px) clamp(20px, 4vw, 56px); background: #dedfd8; }
@@ -1416,7 +1448,7 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
   .architecture-area > summary { min-height: 180px; padding: 24px 20px; grid-template-columns: 50px 1fr; align-content: start; background: var(--surface); }
   .architecture-area > summary > p { grid-column: 2; margin-top: 18px; }
   .architecture-area > summary > small { grid-column: 2; margin-top: 20px; display: block; color: var(--area-accent); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
-  .architecture-detail-grid, .relationship, .architecture-area-links { margin-left: 0; }
+  .architecture-detail-grid, .relationship, .architecture-area-links, .agentic-stack, .sdk-key-point, .sdk-comparison, .sdk-ecosystem-title, .sdk-ecosystem-map { margin-left: 0; }
   .architecture-detail-disclosure > summary > .disclosure-status { display: inline; }
 }
 
@@ -1448,6 +1480,8 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
   .protocol-track > li:nth-child(3n) { border-right: 0; }
   .maturity-ladder { grid-template-columns: repeat(3, 1fr); }
   .architecture-detail-grid { grid-template-columns: repeat(2, 1fr); }
+  .agentic-layer { grid-template-columns: 1fr 1fr; }
+  .agentic-layer-examples { grid-column: 1 / -1; border-top: 1px solid var(--line); border-left: 0; }
   .control-boundary-map { grid-template-columns: 1fr; }
   .control-boundary-map article { min-height: 420px; }
   .object-grid, .metric-grid, .metric-grid.is-full { grid-template-columns: repeat(3, 1fr); }
@@ -1815,6 +1849,10 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
   .architecture-detail-grid { grid-template-columns: 1fr; }
   .architecture-detail-grid > section, .architecture-detail-grid > details { min-height: auto; }
   .relationship { grid-template-columns: 1fr; gap: 8px; }
+  .agentic-layer, .sdk-key-point, .sdk-comparison > div { grid-template-columns: 1fr; }
+  .sdk-ecosystem-map { grid-template-columns: 1fr; }
+  .agentic-layer ul, .agentic-layer-examples, .sdk-comparison span, .sdk-comparison p { border-top: 1px solid var(--line); border-left: 0; }
+  .sdk-key-point { gap: 10px; }
   .system-map { grid-template-columns: 1fr; }
   .manifesto-list > li { grid-template-columns: 40px 1fr; }
   .manifesto-list h2 { font-size: 38px; }
