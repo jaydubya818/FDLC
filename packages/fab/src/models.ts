@@ -79,7 +79,7 @@ export function requestBody(provider: ProviderId, model: string, messages: Messa
       if (message.role === 'user') return message;
       return { role: 'assistant', content: message.content || null, ...(message.calls.length ? { tool_calls: message.calls.map(call => ({ id: call.id, type: 'function', function: { name: call.name, arguments: JSON.stringify(call.arguments) } })) } : {}) };
     })],
-    ...(tools.length ? { tools: tools.map(tool => ({ type: 'function', function: tool })), parallel_tool_calls: false } : {}),
+    ...(tools.length ? { tools: tools.map(tool => ({ type: 'function', function: tool })), ...(provider === 'openai' ? { parallel_tool_calls: false } : {}) } : {}),
   };
   return {
     model, max_tokens: maximumOutputTokens, system: SYSTEM, stream: false,

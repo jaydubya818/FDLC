@@ -75,5 +75,6 @@ test('unknown usage stays null and malformed tool arguments fail closed', () => 
   assert.equal(parseReply('openai', { choices: [{ message: { content: 'No calls' }, finish_reason: 'stop' }] }).usage.inputTokens, null);
   assert.throws(() => parseReply('openai', { choices: [{ message: { tool_calls: [{ id: 'x', type: 'function', function: { name: 'write_file', arguments: 'broken' } }] }, finish_reason: 'tool_calls' }] }), /malformed/);
   assert.throws(() => parseReply('anthropic', { content: [{ type: 'thinking', thinking: 'unsupported' }], stop_reason: 'end_turn' }), /Unsupported/);
-  const body = requestBody('openai', 'fixture', [], PLAN_TOOLS); assert.equal(body.store, false); assert.equal(body.stream, false);
+  const body = requestBody('openai', 'fixture', [], PLAN_TOOLS); assert.equal(body.store, false); assert.equal(body.stream, false); assert.equal(body.parallel_tool_calls, false);
+  assert.equal(requestBody('openrouter', 'fixture', [], PLAN_TOOLS).parallel_tool_calls, undefined);
 });
