@@ -117,8 +117,16 @@ test("architecture makes the control boundary and durable operating record expli
   assert.match(html, /Every Attempt returns attributable evidence.*No producing system may promote its own result/is);
   assert.match(html, /href=["']#control-boundary["']/i);
   assert.match(html, /href=["']#execution-vocabulary["']/i);
-  assert.match(html, /Canonical execution vocabulary.*Model.*Agent Loop.*Agent Harness.*Work Graph.*Orchestrator.*Runtime.*Sandbox.*Capability Implementation.*Control Plane.*Factory/is);
+  assert.match(html, /Canonical execution vocabulary.*Model.*Agent Loop.*Agentic SDK.*Agent Harness.*Work Graph.*Orchestrator.*Runtime.*Sandbox.*Capability Implementation.*Control Plane.*Factory/is);
   assert.match(html, /Harness may enforce a local rule.*Control Plane owns.*authority/is);
+  assert.match(html, /Agentic systems architecture.*construction toolkit.*does not become the system/is);
+  assert.match(html, /Control Plane.*Orchestrator.*Agentic SDK.*Agent Harness.*Agent.*Model/is);
+  assert.match(html, /SDK guardrails can enforce behavior.*do not establish enterprise authority/is);
+  assert.match(html, /Control Plane and factory coordination/i);
+  assert.match(html, /Coding Harness and capability implementation/i);
+  assert.match(html, /Fab · Experimental/i);
+  assert.match(html, /Fab has no independent acceptance, publication, or Control Plane authority/is);
+  assert.match(html, /href=["']\/guide\/appendix\/execution-boundaries-and-terminology#agentic-sdk-toolkit-not-authority["']/i);
 });
 
 test("Guide rollback shadow points only to the canonical same-origin Guide", async () => {

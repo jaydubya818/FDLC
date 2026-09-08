@@ -12,6 +12,7 @@ import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
 import { architectureAreas } from "../../data/fdlc";
 import { executionRelationship, executionTaxonomy } from "../../data/execution-taxonomy";
+import { agenticSystemLayers, sdkBoundaryComparisons } from "../../data/agentic-system-taxonomy";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Architecture", "Explore the six capability areas of the FDLC architecture: Intent, Harness, Capability, Model, Trust, and Learning.", "/architecture");
@@ -20,6 +21,7 @@ const contents = [
   { label: "Overview", href: "#overview" },
   { label: "Control boundary", href: "#control-boundary" },
   { label: "Execution vocabulary", href: "#execution-vocabulary" },
+  { label: "Agentic system stack", href: "#agentic-system-stack" },
   { label: "01 Intent", href: "#intent" },
   { label: "02 Harness", href: "#harness" },
   { label: "03 Capability", href: "#capability" },
@@ -72,6 +74,28 @@ export default function ArchitecturePage() {
       <p className="relationship"><span>Canonical relationship</span>{executionRelationship.join(" → ")}</p>
       <p>A Harness may enforce a local rule, but the Control Plane owns the identity, policy, approval, budget, and revocation authority behind that rule. A packaged product may implement several boundaries; the immutable identities must remain distinct.</p>
       <div className="hero-actions"><a className="button button-dark" href="/guide/appendix/execution-boundaries-and-terminology">Read the full terminology reference</a><a className="text-action" href="/guide/appendix/glossary">Open the canonical glossary →</a></div>
+    </section>
+
+    <section className="section-block agentic-system-section" id="agentic-system-stack">
+      <SectionHeader eyebrow="Agentic systems architecture" title="A toolkit can implement layers. It does not become the system." description="Agentic SDKs are useful because they package common agent-building primitives. FDLC keeps the responsibilities separate so adopting an SDK never silently transfers enterprise authority, durable orchestration, runtime ownership, or release control to a library." />
+      <ol className="agentic-stack" aria-label="Agentic system architecture from enterprise control to model execution">
+        {agenticSystemLayers.map((layer) => <li className={`agentic-layer agentic-layer-${layer.id}`} key={layer.id}>
+          <div className="agentic-layer-heading"><span>{layer.number}</span><div><small>{layer.role}</small><h3>{layer.term}</h3><p>{layer.purpose}</p></div></div>
+          <ul>{layer.owns.map((item) => <li key={item}>{item}</li>)}</ul>
+          <div className="agentic-layer-examples"><span>Examples</span><p>{layer.examples.join(" · ")}</p></div>
+        </li>)}
+      </ol>
+      <div className="sdk-key-point"><span>Key boundary</span><p><strong>An Agentic SDK is a construction toolkit.</strong> It may provide an Agent Loop, Harness implementation, Work Graph helpers, or Runtime integration. Those supplied parts still require separate identities, qualification evidence, and authority from the Control Plane.</p></div>
+      <div className="sdk-comparison" role="table" aria-label="Agentic SDK compared with adjacent system boundaries">
+        {sdkBoundaryComparisons.map(([term, meaning, example]) => <div key={term} role="row"><strong role="cell">{term}</strong><span role="cell">{meaning}</span><p role="cell">{example}</p></div>)}
+      </div>
+      <h3 className="sdk-ecosystem-title">What this means for FDLC</h3>
+      <div className="sdk-ecosystem-map">
+        <article><span>Mission Control</span><h3>Control Plane and factory coordination</h3><p>Mission Control owns governed WorkOrders, resolved execution identities, authority, durable state, verification, acceptance, and release coordination. It may invoke SDK-built components without transferring those decisions to the SDK.</p></article>
+        <article><span>Fab · Experimental</span><h3>Coding Harness and capability implementation</h3><p>Fab operates a bounded repository-editing Agent Loop and integrates through Mission Control&apos;s Harness adapter contract. Its model adapters and loop are implementation details; Fab has no independent acceptance, publication, or Control Plane authority.</p></article>
+      </div>
+      <p className="control-boundary-rule">SDK guardrails can enforce behavior inside an execution framework. They do not establish enterprise authority to modify a repository, spend a budget, accept a Candidate, publish a release, or change Production.</p>
+      <div className="hero-actions"><a className="button button-dark" href="/guide/appendix/execution-boundaries-and-terminology#agentic-sdk-toolkit-not-authority">Read the canonical SDK boundary</a><a className="text-action" href="/guide/03-build/15-coding-harnesses-and-agent-protocols">Compare implementation choices →</a></div>
     </section>
 
     <section className="section-block">
