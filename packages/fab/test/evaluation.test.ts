@@ -58,7 +58,9 @@ for (const provider of ['openai', 'anthropic', 'openrouter'] as ProviderId[]) {
     assert.equal(result.checks[0]?.status, 'passed'); assert.equal(result.checks[0]?.exitCode, 0);
     assert.equal(result.checks[0]?.candidateDigest, result.candidateDigest);
     assert(result.diff.includes(scenario.file)); assert(result.diff.includes('+'));
-    assert.equal(result.independent, false); assert.equal(result.acceptance, 'not_evaluated'); assert.equal(result.usage.costUsd, null);
+    assert.equal(result.independent, false); assert.equal(result.acceptance, 'not_evaluated');
+    if (provider === 'openrouter') assert(result.usage.costUsd !== null && result.usage.costUsd > 0);
+    else assert.equal(result.usage.costUsd, null);
     assert.equal(readFileSync(path.join(f.root, scenario.file), 'utf8'), scenario.after);
     const persisted = readFileSync(path.join(r.store.directory, result.id + '.json'), 'utf8'); assert(!persisted.includes(TEST_KEY));
     if (provider === 'openai' && scenario.name === 'bug fix' && process.env.FAB_QUALIFICATION_OUTPUT) {
