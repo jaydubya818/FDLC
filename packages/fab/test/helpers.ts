@@ -25,8 +25,8 @@ export function fixture(files: Record<string, string>, provider: ProviderId = 'o
   return { directory, root: repository.root, config, cleanup: () => rmSync(directory, { recursive: true, force: true }) };
 }
 export function wireReply(provider: ProviderId, calls: ToolCall[], text = ''): Response {
-  const usage = provider === 'openai' ? { prompt_tokens: 10, completion_tokens: 5, prompt_tokens_details: { cached_tokens: 0 } } : { input_tokens: 10, output_tokens: 5, cache_read_input_tokens: 0 };
-  return Response.json(provider === 'openai'
+  const usage = provider === 'openai' || provider === 'openrouter' ? { prompt_tokens: 10, completion_tokens: 5, prompt_tokens_details: { cached_tokens: 0 }, ...(provider === 'openrouter' ? { cost: 0.000012 } : {}) } : { input_tokens: 10, output_tokens: 5, cache_read_input_tokens: 0 };
+  return Response.json(provider === 'openai' || provider === 'openrouter'
     ? { choices: [{ message: { content: text || null, tool_calls: calls.map(call => ({ type: 'function', id: call.id, function: { name: call.name, arguments: JSON.stringify(call.arguments) } })) }, finish_reason: calls.length ? 'tool_calls' : 'stop' }], usage }
     : { content: [...(text ? [{ type: 'text', text }] : []), ...calls.map(call => ({ type: 'tool_use', id: call.id, name: call.name, input: call.arguments }))], stop_reason: calls.length ? 'tool_use' : 'end_turn', usage });
 }

@@ -5,7 +5,7 @@ import { HttpModelProvider } from '../src/models.ts';
 import { EnvironmentCredentialProvider, Redactor } from '../src/credentials.ts';
 import { call, fixture, TEST_KEY, wireReply } from './helpers.ts';
 
-for (const provider of ['openai', 'anthropic'] as const) {
+for (const provider of ['openai', 'anthropic', 'openrouter'] as const) {
   test(`${provider}: qualification requires explicit live opt-in and a selected credential`, async t => {
     const f = fixture({ 'index.js': '1\n' }, provider); t.after(f.cleanup);
     const redactor = new Redactor(); let calls = 0;
@@ -30,7 +30,8 @@ for (const provider of ['openai', 'anthropic'] as const) {
     assert.equal(report.requestCount, 3); assert.equal(report.maximumRequests, 3); assert.equal(report.retries, 0);
     assert.equal(report.transport, 'INJECTED'); assert.deepEqual(report.qualifiedModels, []);
     assert.equal(new Set(report.requests.map(item => item.localRequestId)).size, 3);
-    assert(report.requests.every(item => item.phase === 'SUCCEEDED' && item.costClassification === 'UNKNOWN'));
+    assert(report.requests.every(item => item.phase === 'SUCCEEDED' && item.costClassification === (provider === 'openrouter' ? 'ACTUAL' : 'UNKNOWN')));
+    assert.equal(report.costClassification, provider === 'openrouter' ? 'ACTUAL' : 'UNKNOWN');
     assert(report.checks.filter(item => item.mode === 'unsupported').every(item => item.status === 'NOT RUN'));
   });
   test(`${provider}: qualification refuses latest and does not retry failed calls`, async t => {
@@ -38,7 +39,7 @@ for (const provider of ['openai', 'anthropic'] as const) {
     const redactor = new Redactor(); const credentials = new EnvironmentCredentialProvider(f.config.credential, redactor, { FAB_TEST_MODEL_KEY: TEST_KEY });
     let calls = 0;
     const run = (model: string) => qualifyProvider({ config: { ...f.config, model }, credentials, redactor, live: true, signal: new AbortController().signal,
-      fetchImpl: async () => { calls++; return new Response(TEST_KEY, { status: 429, headers: { [provider === 'openai' ? 'x-request-id' : 'request-id']: 'req_fixture_123' } }); } });
+      fetchImpl: async () => { calls++; return new Response(TEST_KEY, { status: 429, headers: { [provider === 'anthropic' ? 'request-id' : 'x-request-id']: 'req_fixture_123' } }); } });
     assert.equal((await run('model-latest')).status, 'FAIL'); assert.equal(calls, 0);
     const failed = await run(f.config.model);
     assert.equal(calls, 1); assert.equal(failed.requestCount, 1); assert.equal(failed.status, 'FAIL');

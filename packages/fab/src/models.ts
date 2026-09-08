@@ -13,6 +13,9 @@ If the request is impossible or contradicts its constraints, use report_blocked.
 function nullableCount(value: unknown): number | null {
   return typeof value === 'number' && Number.isSafeInteger(value) && value >= 0 ? value : null;
 }
+function nullableCost(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : null;
+}
 function list(value: unknown, max = 8): unknown[] {
   if (!Array.isArray(value) || value.length > max) fail('PROVIDER_RESPONSE', 'Provider returned an invalid or oversized list.');
   return value;
@@ -32,7 +35,7 @@ export function parseReply(provider: ProviderId, value: unknown): ModelReply {
   assertHttpProvider(provider);
   const raw = object(value);
   const usage = raw.usage ? object(raw.usage) : {};
-  if (provider === 'openai') {
+  if (provider === 'openai' || provider === 'openrouter') {
     const choices = list(raw.choices, 1);
     const choice = object(choices[0]);
     const message = object(choice.message);
@@ -48,9 +51,10 @@ export function parseReply(provider: ProviderId, value: unknown): ModelReply {
     if ((choice.finish_reason === 'tool_calls') !== (calls.length > 0) && choice.finish_reason !== 'length') fail('PROVIDER_RESPONSE', 'Provider tool completion is inconsistent.');
     return {
       returnedModel: typeof raw.model === 'string' ? string(raw.model, 150) : null,
+      ...(provider === 'openrouter' ? { upstreamProvider: providerIdentifier(raw.provider) } : {}),
       content: optionalText(message.content), calls,
       finish: choice.finish_reason === 'length' ? 'limited' : calls.length ? 'tools' : 'complete',
-      usage: { inputTokens: nullableCount(usage.prompt_tokens), outputTokens: nullableCount(usage.completion_tokens), cachedTokens: nullableCount(usage.prompt_tokens_details ? object(usage.prompt_tokens_details).cached_tokens : null), cacheWriteTokens: null, reasoningTokens: nullableCount(usage.completion_tokens_details ? object(usage.completion_tokens_details).reasoning_tokens : null), costUsd: null },
+      usage: { inputTokens: nullableCount(usage.prompt_tokens), outputTokens: nullableCount(usage.completion_tokens), cachedTokens: nullableCount(usage.prompt_tokens_details ? object(usage.prompt_tokens_details).cached_tokens : null), cacheWriteTokens: null, reasoningTokens: nullableCount(usage.completion_tokens_details ? object(usage.completion_tokens_details).reasoning_tokens : null), costUsd: provider === 'openrouter' ? nullableCost(usage.cost) : null },
     };
   }
   const blocks = list(raw.content, 20).map(object);
@@ -69,14 +73,15 @@ export function parseReply(provider: ProviderId, value: unknown): ModelReply {
 export function requestBody(provider: ProviderId, model: string, messages: Message[], tools: ToolDefinition[], maximumOutputTokens = 4096): JsonObject {
   assertHttpProvider(provider);
   if (!Number.isSafeInteger(maximumOutputTokens) || maximumOutputTokens < 1 || maximumOutputTokens > 4096) fail('PROVIDER_BUDGET', 'Output token budget must be between 1 and 4096.');
-  if (provider === 'openai') return {
-    model, max_completion_tokens: maximumOutputTokens, store: false, stream: false,
+  if (provider === 'openai' || provider === 'openrouter') return {
+    model, ...(provider === 'openai' ? { max_completion_tokens: maximumOutputTokens, store: false } : { max_tokens: maximumOutputTokens,
+      provider: { allow_fallbacks: false, require_parameters: true, data_collection: 'deny' } }), stream: false,
     messages: [{ role: 'system', content: SYSTEM }, ...messages.map(message => {
       if (message.role === 'tool') return { role: 'tool', content: message.content, tool_call_id: message.callId };
       if (message.role === 'user') return message;
       return { role: 'assistant', content: message.content || null, ...(message.calls.length ? { tool_calls: message.calls.map(call => ({ id: call.id, type: 'function', function: { name: call.name, arguments: JSON.stringify(call.arguments) } })) } : {}) };
     })],
-    ...(tools.length ? { tools: tools.map(tool => ({ type: 'function', function: tool })), parallel_tool_calls: false } : {}),
+    ...(tools.length ? { tools: tools.map(tool => ({ type: 'function', function: tool })), ...(provider === 'openai' ? { parallel_tool_calls: false } : {}) } : {}),
   };
   return {
     model, max_tokens: maximumOutputTokens, system: SYSTEM, stream: false,
@@ -139,13 +144,13 @@ export class HttpModelProvider implements ModelProvider {
         try {
           response = await abortable(this.#fetch(receipt.endpoint, {
             method: 'POST', redirect: 'error', signal: deadline,
-            headers: this.provider === 'openai'
+            headers: this.provider === 'openai' || this.provider === 'openrouter'
               ? { 'content-type': 'application/json', authorization: `Bearer ${secret}` }
               : { 'content-type': 'application/json', 'x-api-key': secret, 'anthropic-version': '2023-06-01' }, body: sanitizedBody,
           }), deadline);
         } catch { fail(deadline.aborted ? (signal.aborted ? 'PROVIDER_CANCELLED' : 'PROVIDER_TIMEOUT') : 'PROVIDER_NETWORK', 'Provider request failed, timed out or was cancelled; no automatic retry was made.'); }
         receipt.httpStatus = response.status;
-        receipt.requestId = providerIdentifier(response.headers.get(this.provider === 'openai' ? 'x-request-id' : 'request-id'));
+        receipt.requestId = providerIdentifier(response.headers.get(this.provider === 'openai' || this.provider === 'openrouter' ? 'x-request-id' : 'request-id'));
         receipt.phase = 'RESPONSE_HEADERS';
         try { await publish(); } catch (error) { await response.body?.cancel().catch(() => {}); throw error; }
         if (!response.ok) {
@@ -174,6 +179,8 @@ export class HttpModelProvider implements ModelProvider {
         const reply = this.#redactor.value(parseReply(this.provider, raw));
         receipt.responseId = providerIdentifier(object(raw).id);
         receipt.returnedModel = reply.returnedModel ?? null; receipt.usage = reply.usage;
+        if (this.provider === 'openrouter') receipt.upstreamProvider = reply.upstreamProvider ?? null;
+        receipt.costClassification = reply.usage.costUsd === null ? 'UNKNOWN' : 'ACTUAL';
         receipt.phase = 'SUCCEEDED'; receipt.completedAt = new Date().toISOString();
         await publish();
         return reply;
@@ -188,9 +195,9 @@ export class HttpModelProvider implements ModelProvider {
 }
 export function providerProtocol(provider: ProviderId) {
   assertHttpProvider(provider);
-  return provider === 'openai'
-    ? { endpoint: 'https://api.openai.com/v1/chat/completions', protocol: 'openai-chat-completions/non-streaming' }
-    : { endpoint: 'https://api.anthropic.com/v1/messages', protocol: 'anthropic-messages/2023-06-01/non-streaming' };
+  if (provider === 'openai') return { endpoint: 'https://api.openai.com/v1/chat/completions', protocol: 'openai-chat-completions/non-streaming' };
+  if (provider === 'openrouter') return { endpoint: 'https://openrouter.ai/api/v1/chat/completions', protocol: 'openrouter-chat-completions/non-streaming' };
+  return { endpoint: 'https://api.anthropic.com/v1/messages', protocol: 'anthropic-messages/2023-06-01/non-streaming' };
 }
 function providerIdentifier(value: unknown): string | null {
   return typeof value === 'string' && /^[A-Za-z0-9_.:-]{1,200}$/.test(value) ? value : null;
@@ -204,7 +211,7 @@ export function abortable<T>(operation: Promise<T>, signal: AbortSignal): Promis
   });
 }
 function assertHttpProvider(provider: ProviderId): void {
-  if (provider !== 'openai' && provider !== 'anthropic') fail('BROKER_REQUIRED', 'Bedrock requires its explicitly bound Mission Control broker; HTTP fallback is prohibited.');
+  if (provider !== 'openai' && provider !== 'anthropic' && provider !== 'openrouter') fail('BROKER_REQUIRED', 'Bedrock requires its explicitly bound Mission Control broker; HTTP fallback is prohibited.');
 }
 export function addUsage(total: Usage, next: Usage, first: boolean): Usage {
   const add = (a: number | null, b: number | null) => first ? b : a === null || b === null ? null : a + b;

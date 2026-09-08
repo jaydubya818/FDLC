@@ -11,7 +11,7 @@ export interface QualificationReport {
   status: 'PASS' | 'FAIL' | 'NOT RUN'; checks: QualificationCheck[]; limitations: string[];
   transport: 'LIVE' | 'INJECTED'; endpoint: string; protocol: string; qualifiedModels: string[];
   requests: ProviderRequestReceipt[]; requestCount: number; maximumRequests: 3; retries: 0; maximumOutputTokensPerRequest: 128;
-  costClassification: 'UNKNOWN'; contextLimit: { kind: 'CONFIGURED_UTF8_BYTES'; maximum: 200000 };
+  costClassification: 'ACTUAL' | 'UNKNOWN'; contextLimit: { kind: 'CONFIGURED_UTF8_BYTES'; maximum: 200000 };
   usageSemantics: string;
 }
 const LIVE_CHECKS = ['authentication', 'basic inference', 'structured tool arguments', 'tool calling', 'tool-result continuation', 'model identity', 'usage reporting'];
@@ -29,7 +29,7 @@ export async function qualifyProvider(input: { config: FabConfig; credentials: C
   const report: QualificationReport = { version: 1, maturity: 'Experimental', provider: config.provider, requestedModel: config.model, returnedModels: [], credentialReference: config.credential.id,
     transport: input.fetchImpl ? 'INJECTED' : 'LIVE', ...protocol, qualifiedModels: [], requests: [], requestCount: 0, maximumRequests: 3, retries: 0, maximumOutputTokensPerRequest: 128,
     costClassification: 'UNKNOWN', contextLimit: { kind: 'CONFIGURED_UTF8_BYTES', maximum: 200000 },
-    usageSemantics: config.provider === 'openai' ? 'Input includes cache reads; output includes reasoning tokens when reported. Missing values remain null.' : 'Input excludes separately reported cache reads and cache writes. Reasoning tokens are not separately exposed by this adapter. Missing values remain null.',
+    usageSemantics: config.provider === 'openai' || config.provider === 'openrouter' ? 'Input includes cache reads; output includes reasoning tokens when reported. OpenRouter provider-reported cost is preserved when present; missing values remain null.' : 'Input excludes separately reported cache reads and cache writes. Reasoning tokens are not separately exposed by this adapter. Missing values remain null.',
     startedAt: new Date(started).toISOString(), completedAt: '', latencyMs: 0, usage: { inputTokens: null, outputTokens: null, cachedTokens: null, costUsd: null }, status: 'NOT RUN', checks: [],
     limitations: ['No automatic provider/model fallback or retry.', 'This is protocol qualification, not autonomous engineering quality or production certification.', 'Token streaming and reasoning controls are unsupported; context window and cost remain unknown.', 'Provider error, cancellation, timeout and context limits are fault-injected contract tests; they do not deliberately spend on failing live requests.'] };
   const check = (name: string, pass: boolean, mode: QualificationCheck['mode'], detail = '') => report.checks.push({ name, status: pass ? 'PASS' : 'FAIL', mode, detail });
@@ -58,6 +58,7 @@ export async function qualifyProvider(input: { config: FabConfig; credentials: C
         await input.observe?.(receipt);
       });
       report.usage = addUsage(report.usage, reply.usage, requests++ === 0);
+      report.costClassification = report.usage.costUsd === null ? 'UNKNOWN' : 'ACTUAL';
       if (reply.returnedModel && !report.returnedModels.includes(reply.returnedModel)) report.returnedModels.push(reply.returnedModel);
       return reply;
     };
@@ -77,7 +78,7 @@ export async function qualifyProvider(input: { config: FabConfig; credentials: C
         check('tool-result continuation', continued.finish === 'complete' && continued.content.includes('FAB_CONTINUATION_OK'), 'live');
       } else check('tool-result continuation', false, 'live', 'No valid tool call to continue.');
       check('model identity', report.returnedModels.length > 0, 'live', 'Requested ID was sent unchanged; returned IDs recorded separately because providers may resolve aliases.');
-      check('usage reporting', report.usage.inputTokens !== null && report.usage.outputTokens !== null, 'live', 'Cost is unknown; missing cache counts stay null.');
+      check('usage reporting', report.usage.inputTokens !== null && report.usage.outputTokens !== null, 'live', report.costClassification === 'ACTUAL' ? 'Provider-reported cost is recorded as actual.' : 'Cost is unknown; missing cache counts stay null.');
     } catch (error) {
       for (const name of LIVE_CHECKS) if (!report.checks.some(item => item.name === name)) check(name, false, 'live', error instanceof FabError ? error.code : 'REQUEST_STOPPED');
     }

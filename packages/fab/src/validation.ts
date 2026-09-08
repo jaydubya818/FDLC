@@ -27,7 +27,7 @@ export function integer(value: unknown, min: number, max: number): number {
   return value;
 }
 export function providerId(value: unknown): ProviderId {
-  if (value !== 'openai' && value !== 'anthropic' && value !== 'bedrock') fail('INVALID_PROVIDER', 'Select openai, anthropic, or the Mission Control Bedrock broker.');
+  if (value !== 'openai' && value !== 'anthropic' && value !== 'openrouter' && value !== 'bedrock') fail('INVALID_PROVIDER', 'Select openai, anthropic, openrouter, or the Mission Control Bedrock broker.');
   return value;
 }
 export function digest(value: unknown): string {
@@ -74,7 +74,7 @@ export function parseConfig(value: unknown): FabConfig {
   const source = object(credential.source); keys(source, source.kind === 'environment' ? ['kind', 'variable'] : ['kind']);
   const scope = object(credential.scope); keys(scope, ['kind', 'root']);
   if (credential.provider !== provider || !['environment', 'keychain', 'broker'].includes(String(source.kind)) || scope.kind !== 'repository' || scope.root !== repository) fail('CREDENTIAL_SCOPE', 'Credential must match the selected provider and repository.');
-  if ((provider === 'bedrock') !== (source.kind === 'broker')) fail('CREDENTIAL_SOURCE', 'Bedrock requires an explicitly bound Mission Control broker; HTTP providers require their enrolled local credential.');
+  if (provider === 'bedrock' ? source.kind !== 'broker' : provider !== 'openrouter' && source.kind === 'broker') fail('CREDENTIAL_SOURCE', 'Bedrock requires a broker; OpenRouter may use an attempt broker; other HTTP providers require an enrolled local credential.');
   if (provider !== 'bedrock' && raw.bedrockRoute !== undefined) fail('BEDROCK_ROUTE', 'A Bedrock route cannot be attached to another provider.');
   const bedrockRoute = provider === 'bedrock' ? parseBedrockRoute(raw.bedrockRoute) : undefined;
   const variable = source.kind === 'environment' ? string(source.variable, 100) : '';
