@@ -1,6 +1,6 @@
 {
   "name": "@fdlc/fab",
-  "version": "0.1.0-experimental.7",
+  "version": "0.1.0-experimental.8",
   "private": true,
   "description": "Factory Agent Builder \u2014 bounded local engineering candidates",
   "type": "module",

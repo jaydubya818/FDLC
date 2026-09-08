@@ -77,6 +77,6 @@ test('unknown usage stays null and malformed tool arguments fail closed', () => 
   assert.throws(() => parseReply('anthropic', { content: [{ type: 'thinking', thinking: 'unsupported' }], stop_reason: 'end_turn' }), /Unsupported/);
   const body = requestBody('openai', 'fixture', [], PLAN_TOOLS); assert.equal(body.store, false); assert.equal(body.stream, false); assert.equal(body.parallel_tool_calls, false);
   const openrouterBody = requestBody('openrouter', 'fixture', [], PLAN_TOOLS);
-  assert.equal(openrouterBody.parallel_tool_calls, undefined); assert.equal(openrouterBody.max_tokens, 4096); assert.equal(openrouterBody.max_completion_tokens, undefined);
+  assert.equal(openrouterBody.parallel_tool_calls, undefined); assert.equal(openrouterBody.store, undefined); assert.equal(openrouterBody.max_tokens, 4096); assert.equal(openrouterBody.max_completion_tokens, undefined);
   assert.deepEqual(openrouterBody.provider, { allow_fallbacks: false, require_parameters: true, data_collection: 'deny' });
 });

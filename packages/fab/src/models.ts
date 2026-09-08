@@ -74,8 +74,8 @@ export function requestBody(provider: ProviderId, model: string, messages: Messa
   assertHttpProvider(provider);
   if (!Number.isSafeInteger(maximumOutputTokens) || maximumOutputTokens < 1 || maximumOutputTokens > 4096) fail('PROVIDER_BUDGET', 'Output token budget must be between 1 and 4096.');
   if (provider === 'openai' || provider === 'openrouter') return {
-    model, ...(provider === 'openai' ? { max_completion_tokens: maximumOutputTokens } : { max_tokens: maximumOutputTokens,
-      provider: { allow_fallbacks: false, require_parameters: true, data_collection: 'deny' } }), store: false, stream: false,
+    model, ...(provider === 'openai' ? { max_completion_tokens: maximumOutputTokens, store: false } : { max_tokens: maximumOutputTokens,
+      provider: { allow_fallbacks: false, require_parameters: true, data_collection: 'deny' } }), stream: false,
     messages: [{ role: 'system', content: SYSTEM }, ...messages.map(message => {
       if (message.role === 'tool') return { role: 'tool', content: message.content, tool_call_id: message.callId };
       if (message.role === 'user') return message;
