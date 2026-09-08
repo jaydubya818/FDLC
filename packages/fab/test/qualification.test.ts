@@ -21,7 +21,7 @@ for (const provider of ['openai', 'anthropic', 'openrouter'] as const) {
     let index = 0;
     const report = await qualifyProvider({ config: f.config, credentials, redactor, live: true, signal: new AbortController().signal, fetchImpl: async (_url, options) => {
       const body = JSON.parse(String(options?.body)); assert.equal(body.model, f.config.model);
-      assert.equal(body[provider === 'anthropic' ? 'max_tokens' : 'max_completion_tokens'], 128);
+      assert.equal(body[provider === 'openai' ? 'max_completion_tokens' : 'max_tokens'], 128);
       const reply = wireReply(provider, index === 1 ? [call('qualification_echo', { value: 7 })] : [], index === 0 ? 'FAB_OK' : 'FAB_CONTINUATION_OK'); index++;
       return Response.json({ ...await reply.json(), model: 'fixture-returned-model' });
     } });

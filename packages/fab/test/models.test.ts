@@ -65,8 +65,8 @@ test('provider usage fields preserve their distinct cache and reasoning semantic
   const openai = parseReply('openai', { model: 'fixture-returned', choices: [{ message: { content: 'ok' }, finish_reason: 'stop' }],
     usage: { prompt_tokens: 30, completion_tokens: 9, prompt_tokens_details: { cached_tokens: 20 }, completion_tokens_details: { reasoning_tokens: 5 } } });
   assert.equal(openai.usage.inputTokens, 30); assert.equal(openai.usage.reasoningTokens, 5); assert.equal(openai.usage.cachedTokens, 20);
-  const openrouter = parseReply('openrouter', { model: 'openai/gpt-5.1-codex-mini', choices: [{ message: { content: 'ok' }, finish_reason: 'stop' }], usage: { prompt_tokens: 4, completion_tokens: 2, cost: 0.000005 } });
-  assert.equal(openrouter.usage.costUsd, 0.000005);
+  const openrouter = parseReply('openrouter', { model: 'openai/gpt-4.1-mini', provider: 'Azure', choices: [{ message: { content: 'ok' }, finish_reason: 'stop' }], usage: { prompt_tokens: 4, completion_tokens: 2, cost: 0.000005 } });
+  assert.equal(openrouter.usage.costUsd, 0.000005); assert.equal(openrouter.upstreamProvider, 'Azure');
   const anthropic = parseReply('anthropic', { content: [{ type: 'text', text: 'ok' }], stop_reason: 'end_turn',
     usage: { input_tokens: 10, output_tokens: 3, cache_read_input_tokens: 20, cache_creation_input_tokens: 7 } });
   assert.equal(anthropic.usage.inputTokens, 10); assert.equal(anthropic.usage.cacheWriteTokens, 7); assert.equal(anthropic.usage.reasoningTokens, null);
@@ -76,5 +76,7 @@ test('unknown usage stays null and malformed tool arguments fail closed', () => 
   assert.throws(() => parseReply('openai', { choices: [{ message: { tool_calls: [{ id: 'x', type: 'function', function: { name: 'write_file', arguments: 'broken' } }] }, finish_reason: 'tool_calls' }] }), /malformed/);
   assert.throws(() => parseReply('anthropic', { content: [{ type: 'thinking', thinking: 'unsupported' }], stop_reason: 'end_turn' }), /Unsupported/);
   const body = requestBody('openai', 'fixture', [], PLAN_TOOLS); assert.equal(body.store, false); assert.equal(body.stream, false); assert.equal(body.parallel_tool_calls, false);
-  assert.equal(requestBody('openrouter', 'fixture', [], PLAN_TOOLS).parallel_tool_calls, undefined);
+  const openrouterBody = requestBody('openrouter', 'fixture', [], PLAN_TOOLS);
+  assert.equal(openrouterBody.parallel_tool_calls, undefined); assert.equal(openrouterBody.max_tokens, 4096); assert.equal(openrouterBody.max_completion_tokens, undefined);
+  assert.deepEqual(openrouterBody.provider, { allow_fallbacks: false, require_parameters: true, data_collection: 'deny' });
 });

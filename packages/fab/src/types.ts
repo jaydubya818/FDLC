@@ -25,12 +25,14 @@ export interface ProviderRequestReceipt {
   inputBytes: number; maximumOutputTokens: number; retries: 0;
   httpStatus: number | null; requestId: string | null; responseId: string | null;
   returnedModel: string | null; usage: Usage | null; costClassification: 'ACTUAL' | 'UNKNOWN'; errorCode: string | null;
+  upstreamProvider?: string | null;
   /** Exact routing observation, not a grant or fabricated provider-returned model. */
   bedrockRoute?: BedrockRoute; requestDigest?: string;
 }
 export type ObserveProviderRequest = (receipt: ProviderRequestReceipt) => Promise<void> | void;
 export interface ModelReply {
   returnedModel?: string | null;
+  upstreamProvider?: string | null;
   content: string; calls: ToolCall[]; usage: Usage;
   finish: 'complete' | 'tools' | 'limited';
 }

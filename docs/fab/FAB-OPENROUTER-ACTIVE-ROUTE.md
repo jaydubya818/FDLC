@@ -9,12 +9,13 @@ The initial active route is fixed to:
 - provider: `openrouter`
 - endpoint: `https://openrouter.ai/api/v1/chat/completions`
 - protocol: `openrouter-chat-completions/non-streaming`
-- model: `openai/gpt-5.1-codex-mini`
+- model: `openai/gpt-4.1-mini`
 - retries: `0`
 - fallback: disabled
 - streaming: disabled
 
-Mission Control supplies an attempt-scoped OpenRouter key from its credential
+OpenRouter provider fallback is explicitly disabled and parameter support is
+required. Mission Control supplies an attempt-scoped OpenRouter key from its credential
 broker. The key has a dollar limit and expiry, is kept in memory, and is revoked
 after the attempt. Fab records the requested and returned model, request identity,
 token usage, latency, and provider-reported cost for every physical request.
