@@ -80,3 +80,9 @@ test('unknown usage stays null and malformed tool arguments fail closed', () => 
   assert.equal(openrouterBody.parallel_tool_calls, undefined); assert.equal(openrouterBody.store, undefined); assert.equal(openrouterBody.max_tokens, 4096); assert.equal(openrouterBody.max_completion_tokens, undefined);
   assert.deepEqual(openrouterBody.provider, { allow_fallbacks: false, require_parameters: true, data_collection: 'deny' });
 });
+test('redaction preserves shared schema nodes while bounding real cycles', () => {
+  const redactor = new Redactor(); const shared = { type: 'string' };
+  assert.deepEqual(redactor.value({ first: shared, second: shared }), { first: shared, second: shared });
+  const cycle: Record<string, unknown> = {}; cycle.self = cycle;
+  assert.deepEqual(redactor.value(cycle), { self: '[Circular]' });
+});

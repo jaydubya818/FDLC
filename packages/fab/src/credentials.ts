@@ -22,15 +22,15 @@ export class Redactor {
       .replace(/https?:\/\/[^\s/@]+:[^\s/@]+@/g, 'https://[REDACTED]@');
   }
   value<T>(value: T, seen = new WeakSet<object>()): T {
-    if (value && typeof value === 'object') {
-      if (seen.has(value)) return '[Circular]' as T;
-      seen.add(value);
-    }
-    if (value instanceof Error) return this.value({ name: value.name, message: value.message, stack: value.stack, ...Object.fromEntries(Object.entries(value)), cause: value.cause }, seen) as T;
     if (typeof value === 'string') return this.text(value) as T;
-    if (Array.isArray(value)) return value.map(item => this.value(item, seen)) as T;
-    if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([key, item]) => [this.text(key), this.value(item, seen)])) as T;
-    return value;
+    if (!value || typeof value !== 'object') return value;
+    if (seen.has(value)) return '[Circular]' as T;
+    seen.add(value);
+    try {
+      if (value instanceof Error) return this.value({ name: value.name, message: value.message, stack: value.stack, ...Object.fromEntries(Object.entries(value)), cause: value.cause }, seen) as T;
+      if (Array.isArray(value)) return value.map(item => this.value(item, seen)) as T;
+      return Object.fromEntries(Object.entries(value).map(([key, item]) => [this.text(key), this.value(item, seen)])) as T;
+    } finally { seen.delete(value); }
   }
   terminal(value: string): string {
     // eslint-disable-next-line no-control-regex -- Strip untrusted terminal control characters while preserving tabs/newlines.
