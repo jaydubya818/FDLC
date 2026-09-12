@@ -16,7 +16,7 @@ No merge-blocking code, security, accessibility, or runtime finding remains for 
 
 - The Product Owner ran the actual `npm run build:vercel` target in a normal macOS Terminal. Next 16.3.4 Turbopack compiled successfully, generated 279 of 279 static pages, and passed the post-build design-system check.
 - Producer-run gates remain separately recorded: corpus verification, 41 unit checks, 25 rendered checks, both 14-check corpus browser suites, both 52-check whole-site suites, Vinext and Next webpack builds/runtimes, 33 Mermaid parses per runtime, and accessibility checks at desktop and mobile widths.
-- The production dependency audit was rerun during final review and reported zero vulnerabilities.
+- The full dependency audit was rerun after upgrading the Cloudflare build toolchain and reported zero vulnerabilities.
 - No credential-shaped values were found in the imported corpus or implementation.
 
 ## Review perspectives

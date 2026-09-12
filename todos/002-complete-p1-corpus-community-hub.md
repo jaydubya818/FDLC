@@ -96,6 +96,7 @@ Implement Option 1. Keep canonical promotion, taxonomy adjudication, and route r
 
 - The Product Owner ran `npm run build:vercel` from the isolated worktree in a normal macOS Terminal.
 - Next 16.3.4 Turbopack compiled successfully, completed TypeScript and page data collection, generated 279 of 279 static pages, and passed the post-build design-system check.
+- Upgraded `@cloudflare/vite-plugin` and Wrangler to compatible patched releases, then reran the full dependency audit with zero vulnerabilities.
 - Restored the generated `next-env.d.ts` file to its committed dual-runtime form and completed the final merge review.
 
 **Learnings:**

@@ -62,8 +62,8 @@ That optional check fails closed for a missing or escaping path. The current rep
 
 | Gate | Result | Evidence |
 |---|---|---|
-| Clean install | Pass | `npm ci`; 711 packages restored from lockfile |
-| Production dependency audit | Pass | 0 production vulnerabilities |
+| Clean install | Pass | `npm ci`; 707 packages restored from lockfile |
+| Full dependency audit | Pass | 0 vulnerabilities |
 | Corpus verification/stale output | Pass | 0 errors; generated JSON matches source digest |
 | Unit suite | Pass | 41/41 |
 | Lint | Pass | 0 errors |
@@ -82,7 +82,7 @@ That optional check fails closed for a missing or escaping path. The current rep
 
 The managed Codex environment could not complete Turbopack because it denied the PostCSS worker's internal port bind. The Product Owner independently reran the same final-source command in a normal local Terminal, where Next 16.3.4 completed the production build successfully. This closes the shipping-build gate without treating the producer's constrained-environment result as a pass.
 
-The full audit still reports four high-severity development-only advisories in the pre-existing Cloudflare/Wrangler toolchain. The new Mermaid dependency initially added production advisories; it was pinned to 11.17.2 with `lodash-es` 4.18.1 overridden, returning the production audit to zero. Upgrade Cloudflare/Wrangler separately to keep this content branch's blast radius clear.
+The Mermaid dependency is pinned to 11.17.2 with `lodash-es` 4.18.1 overridden. Before release, `@cloudflare/vite-plugin` and Wrangler were upgraded to their compatible patched releases, clearing the remaining development-toolchain advisories. The final full audit reports zero vulnerabilities.
 
 ## Measured cost
 
