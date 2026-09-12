@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" class="fd" role="img" aria-labelledby="t-D05 d-D05">
+<title id="t-D05">The Composition Hierarchy</title>
+<desc id="d-D05">Seven nested levels from Model to FDLC. Top to bottom: FDLC (lifecycle, architecture, artifacts, governance, learning model) governs the Factory Ecosystem (many factories under one enterprise control plane), which governs the Control Plane (authority, policy, routing, state, registries, budgets), which governs the Factory (a reusable governed production capability versioned as a Factory Version), which bounds the Harness (operating envelope and loop controls around one agent), which bounds the Agent (reasoning plus goal, tools, context and working state), which uses the Model (a replaceable inference resource). A side panel lists cross-cutting roles: Tool, Skill, Agent Loop, Work Graph, Orchestrator, Runtime, Sandbox, Capability, Factory Platform.</desc>
+<style>
+svg.fd{--fd-paper:#f3f1ea;--fd-surface:#faf9f5;--fd-ink:#171a18;--fd-muted:#59605a;--fd-line:#c9ccc4;
+--fd-intent-fill:#dce8ef;--fd-intent-stroke:#2f5f78;--fd-intent-text:#1f4557;
+--fd-control-fill:#e4e9ec;--fd-control-stroke:#4a5d68;--fd-control-text:#2f3f47;
+--fd-exec-fill:#f5e6d0;--fd-exec-stroke:#9a4f1c;--fd-exec-text:#6b3612;
+--fd-trust-fill:#dcefe4;--fd-trust-stroke:#1a654b;--fd-trust-text:#114735;
+--fd-learn-fill:#e9e2f4;--fd-learn-stroke:#5c3f8f;--fd-learn-text:#3f2a66;
+--fd-human:#b3261e;--fd-tint:.45}
+@media (prefers-color-scheme:dark){svg.fd{--fd-paper:#15191b;--fd-surface:#1d2326;--fd-ink:#ecebe4;--fd-muted:#a8b0aa;--fd-line:#3b433d;
+--fd-intent-fill:#1c3140;--fd-intent-stroke:#8ec1dc;--fd-intent-text:#cfe6f2;
+--fd-control-fill:#2a3438;--fd-control-stroke:#a8bcc6;--fd-control-text:#dbe5ea;
+--fd-exec-fill:#3b2812;--fd-exec-stroke:#e2a468;--fd-exec-text:#f5dcc0;
+--fd-trust-fill:#143326;--fd-trust-stroke:#7fd2a6;--fd-trust-text:#cdeedb;
+--fd-learn-fill:#2b2142;--fd-learn-stroke:#bfa5ea;--fd-learn-text:#e3d8f5;
+--fd-human:#ff8a80;--fd-tint:.35}}
+.bg{fill:var(--fd-paper)}
+text{font-family:"Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;fill:var(--fd-ink);font-size:16px}
+.mono{font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace}
+.title{font-size:34px;font-weight:600}
+.sub{font-size:18px;fill:var(--fd-muted)}
+.h{font-size:20px;font-weight:600}.h2{font-size:18px;font-weight:600}.h3{font-size:16px;font-weight:600}
+.b{font-size:16px}.s{font-size:15px;fill:var(--fd-muted)}.xs{font-size:14px;fill:var(--fd-muted)}
+.i{font-style:italic}.c{text-anchor:middle}.r{text-anchor:end}.strong{font-weight:600}
+.label{font-size:14px;fill:var(--fd-muted)}
+.tag{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace;fill:var(--fd-muted)}
+.box{stroke-width:2;rx:6}
+.intent{fill:var(--fd-intent-fill);stroke:var(--fd-intent-stroke)}
+.control{fill:var(--fd-control-fill);stroke:var(--fd-control-stroke)}
+.exec{fill:var(--fd-exec-fill);stroke:var(--fd-exec-stroke)}
+.trust{fill:var(--fd-trust-fill);stroke:var(--fd-trust-stroke)}
+.learn{fill:var(--fd-learn-fill);stroke:var(--fd-learn-stroke)}
+.neutral{fill:var(--fd-surface);stroke:var(--fd-muted)}
+.human{stroke:var(--fd-human)!important;stroke-width:3.5}
+.t-intent{fill:var(--fd-intent-text)}.t-control{fill:var(--fd-control-text)}.t-exec{fill:var(--fd-exec-text)}
+.t-trust{fill:var(--fd-trust-text)}.t-learn{fill:var(--fd-learn-text)}.t-human{fill:var(--fd-human)}
+.zone{stroke-width:2;rx:10;fill-opacity:var(--fd-tint)}
+.zone.dash{stroke-dasharray:8 6}
+.fl{fill:none;stroke:var(--fd-ink);stroke-width:2.5;marker-end:url(#m-ink)}
+.au{fill:none;stroke:var(--fd-control-stroke);stroke-width:3;marker-end:url(#m-au)}
+.ev{fill:none;stroke:var(--fd-trust-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ev)}
+.ln{fill:none;stroke:var(--fd-learn-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ln)}
+.rt{fill:none;stroke:var(--fd-muted);stroke-width:2;stroke-dasharray:5 5;marker-end:url(#m-mu)}
+.thin{stroke-width:1.5}
+.nomk{marker-end:none}
+.dot{fill:var(--fd-trust-stroke)}
+.lbg{fill:var(--fd-paper);stroke:none}
+.chip{stroke-width:2;rx:14}
+.mk-ink{fill:var(--fd-ink)}.mk-au{fill:var(--fd-control-stroke)}.mk-ev{fill:var(--fd-trust-stroke)}
+.mk-ln{fill:var(--fd-learn-stroke)}.mk-mu{fill:var(--fd-muted)}
+.hair{stroke:var(--fd-line);stroke-width:1.5;fill:none}
+.x{stroke:var(--fd-human);stroke-width:3;fill:none}
+</style>
+<defs>
+<marker id="m-ink" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ink" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-au" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-au" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ev" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ev" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ln" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ln" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-mu" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-mu" d="M0,1 L11,6 L0,11 z"/></marker>
+</defs>
+<rect class="bg" width="1600" height="900"/>
+<g id="header"><text x="60" y="76" class="title">The Composition Hierarchy</text>
+<text x="60" y="108" class="sub">Each level is a distinct identity with its own lifecycle, version, qualification, and failure question</text>
+<text x="1540" y="70" class="tag r">FDLC visual canon · D05</text></g>
+<g id="level-fdlc">
+<rect x="60" y="150" width="960" height="74" class="box neutral"/>
+<text x="540.0" y="184.2" class="h c">FDLC</text>
+<text x="540.0" y="205.2" class="s c">lifecycle · architecture · artifacts · governance · learning model</text>
+</g>
+<path id="a-0" d="M540.0,224 L540.0,242" class="au"/>
+<text x="556.0" y="238" class="label">governs</text>
+<g id="level-factory-ecosystem">
+<rect x="86" y="242" width="908" height="74" class="box control"/>
+<text x="540.0" y="276.2" class="h t-control c">Factory Ecosystem</text>
+<text x="540.0" y="297.2" class="s c">many specialized factories coordinated through one enterprise control plane</text>
+</g>
+<path id="a-1" d="M540.0,316 L540.0,334" class="au"/>
+<text x="556.0" y="330" class="label">governs</text>
+<g id="level-control-plane">
+<rect x="112" y="334" width="856" height="74" class="box control"/>
+<text x="540.0" y="368.2" class="h t-control c">Control Plane</text>
+<text x="540.0" y="389.2" class="s c">authority · policy · routing · state · registries · budgets — the durable system of record</text>
+</g>
+<path id="a-2" d="M540.0,408 L540.0,426" class="au"/>
+<text x="556.0" y="422" class="label">governs</text>
+<g id="level-factory">
+<rect x="138" y="426" width="804" height="74" class="box exec"/>
+<text x="540.0" y="460.2" class="h t-exec c">Factory</text>
+<text x="540.0" y="481.2" class="s c">reusable governed production capability · versioned as an immutable Factory Version</text>
+</g>
+<path id="a-3" d="M540.0,500 L540.0,518" class="au"/>
+<text x="556.0" y="514" class="label">bounds</text>
+<g id="level-harness">
+<rect x="164" y="518" width="752" height="74" class="box exec"/>
+<text x="540.0" y="552.2" class="h t-exec c">Harness</text>
+<text x="540.0" y="573.2" class="s c">operating envelope + loop controls around one agent · enforces locally, never holds enterprise authority</text>
+</g>
+<path id="a-4" d="M540.0,592 L540.0,610" class="au"/>
+<text x="556.0" y="606" class="label">bounds</text>
+<g id="level-agent">
+<rect x="190" y="610" width="700" height="74" class="box exec"/>
+<text x="540.0" y="644.2" class="h t-exec c">Agent</text>
+<text x="540.0" y="665.2" class="s c">reasoning loop + goal + tools + context + working state · a worker inside the factory, not a factory</text>
+</g>
+<path id="a-5" d="M540.0,684 L540.0,702" class="au"/>
+<text x="556.0" y="698" class="label">uses</text>
+<g id="level-model">
+<rect x="216" y="702" width="648" height="74" class="box exec"/>
+<text x="540.0" y="736.2" class="h t-exec c">Model</text>
+<text x="540.0" y="757.2" class="s c">inference resource — replaceable; the factory is more durable than the model inside it</text>
+</g>
+<path id="a-govern" d="M1046,160 L1046,780" class="au"/>
+<text x="1066" y="300" class="tag c" transform="rotate(-90 1066 300)">authority flows down</text>
+<path id="a-evidence" d="M1078,780 L1078,160" class="ev"/>
+<text x="1066" y="640" class="tag c" transform="rotate(-90 1066 640)">evidence flows back</text>
+<g id="roles"><rect x="1110" y="150" width="430" height="640" class="zone neutral"/></g>
+<text x="1130" y="180" class="h3">Cross-cutting roles inside the hierarchy</text>
+<text x="1130" y="214" class="h3">Tool</text>
+<text x="1130" y="236" class="xs">capability invoked under a grant (API, CLI, MCP op)</text>
+<text x="1130" y="278" class="h3">Skill</text>
+<text x="1130" y="300" class="xs">reusable, versioned procedure loaded by the harness</text>
+<text x="1130" y="342" class="h3">Agent Loop</text>
+<text x="1130" y="364" class="xs">load → select → act → observe → evaluate → replan → stop</text>
+<text x="1130" y="406" class="h3">Work Graph</text>
+<text x="1130" y="428" class="xs">nodes · dependencies · gates · joins · retries · terminal states</text>
+<text x="1130" y="470" class="h3">Orchestrator</text>
+<text x="1130" y="492" class="xs">durable coordinator that advances the Work Graph</text>
+<text x="1130" y="534" class="h3">Runtime</text>
+<text x="1130" y="556" class="xs">process lifecycle · compute · queues · leases · persistence</text>
+<text x="1130" y="598" class="h3">Sandbox</text>
+<text x="1130" y="620" class="xs">isolation: filesystem · process · network · credentials</text>
+<text x="1130" y="662" class="h3">Capability</text>
+<text x="1130" y="684" class="xs">stable, provider-independent operation (“run tests”)</text>
+<text x="1130" y="726" class="h3">Factory Platform</text>
+<text x="1130" y="748" class="xs">shared enterprise foundation many factories reuse</text>
+<text x="60" y="818" class="xs">Skills, Tools, and Context Packages are loaded, invoked, or frozen by the Harness. Agentic SDKs are an implementation choice inside the Agent &amp; Harness layer; FDLC sits above SDK choice.</text>
+<g id="legend">
+<rect x="60" y="847" width="26" height="16" class="box intent" rx="3"/>
+<text x="94" y="860" class="xs">Intent</text>
+<rect x="155.28" y="847" width="26" height="16" class="box control" rx="3"/>
+<text x="189.28" y="860" class="xs">Control</text>
+<rect x="260.08000000000004" y="847" width="26" height="16" class="box exec" rx="3"/>
+<text x="294.08000000000004" y="860" class="xs">Execution</text>
+<rect x="383.36000000000007" y="847" width="26" height="16" class="box trust" rx="3"/>
+<text x="417.36000000000007" y="860" class="xs">Trust</text>
+<rect x="476.4000000000001" y="847" width="26" height="16" class="box learn" rx="3"/>
+<text x="510.4000000000001" y="860" class="xs">Learning</text>
+<rect x="592.1200000000001" y="847" width="26" height="16" class="box neutral human" rx="3"/>
+<text x="626.1200000000001" y="860" class="xs">Human authority</text>
+<path d="M765.1600000000001,855 L809.1600000000001,855" class="au"/><text x="819.1600000000001" y="860" class="xs">authority / flow (solid)</text>
+<path d="M987.4000000000001,855 L1031.4,855" class="ev"/><text x="1041.4" y="860" class="xs">evidence (dashed, back)</text>
+<path d="M1221.1200000000001,855 L1265.1200000000001,855" class="ln"/><text x="1275.1200000000001" y="860" class="xs">learning (dashed)</text>
+</g>
+</svg>

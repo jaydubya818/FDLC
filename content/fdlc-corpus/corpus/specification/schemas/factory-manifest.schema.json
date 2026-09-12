@@ -1,0 +1,1259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fdlc.ai/schemas/v1/factory-manifest.schema.json",
+  "title": "FDLC Factory Manifest",
+  "description": "The declarative definition of a factory: identity, capabilities, inputs/outputs, planner, execution profiles, models, skills, tools, context sources, runtime, sandbox, network/credential policy, verification, evidence, approval policy, risk class, observability, economics, qualification, release policy. Authored by humans (YAML); assembled into immutable Factory Versions.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "type": {
+      "type": "string",
+      "const": "fdlc://v1/factory-manifest"
+    },
+    "id": {
+      "$ref": "#/$defs/Id"
+    },
+    "namespace": {
+      "$ref": "#/$defs/Namespace"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,63}$",
+      "description": "Stable machine name; the `<factory>` segment of `FV-<factory>-<semver>`."
+    },
+    "version": {
+      "$ref": "#/$defs/Semver",
+      "description": "Manifest revision. Each Factory Version records the exact manifest digest it was assembled from."
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "SOFTWARE",
+        "VERIFICATION",
+        "AUTOMATION"
+      ]
+    },
+    "specialization": {
+      "type": "string",
+      "description": "Catalog entry (e.g. dependency-upgrade, code-review, security-remediation)."
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "factoryOwner": {
+          "$ref": "#/$defs/Actor"
+        },
+        "policyOwner": {
+          "$ref": "#/$defs/Actor"
+        },
+        "team": {
+          "type": "string"
+        },
+        "costCenter": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "factoryOwner",
+        "policyOwner"
+      ],
+      "additionalProperties": false
+    },
+    "risk_class": {
+      "$ref": "#/$defs/RiskClass",
+      "description": "Highest risk class of work this factory may be routed."
+    },
+    "autonomy_ceiling": {
+      "$ref": "#/$defs/AutonomyLevel"
+    },
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "description": "Provider-independent capabilities this factory provides (input to Objective routing)."
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/IoContract"
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/IoContract"
+      }
+    },
+    "planner": {
+      "$ref": "#/$defs/CapabilityBinding"
+    },
+    "work_graph": {
+      "type": "object",
+      "properties": {
+        "workflowId": {
+          "type": "string"
+        },
+        "versionConstraint": {
+          "type": "string"
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "workflowId",
+        "versionConstraint"
+      ],
+      "additionalProperties": false
+    },
+    "execution_profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/ExecutionProfileDeclaration"
+      }
+    },
+    "model_routes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/ModelRouteDeclaration"
+      }
+    },
+    "agents": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CapabilityBinding"
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CapabilityBinding"
+      }
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ToolBinding"
+      }
+    },
+    "context_sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ContextSourceDeclaration"
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "properties": {
+        "backend": {
+          "type": "string",
+          "enum": [
+            "persistent-worker",
+            "remote-sandbox",
+            "isolated-container"
+          ]
+        },
+        "harness": {
+          "$ref": "#/$defs/CapabilityBinding"
+        },
+        "artifactConstraint": {
+          "type": "string",
+          "description": "Which runtime artifact kinds are admissible (EXECUTABLE, CONTAINER_IMAGE)."
+        },
+        "leaseDurationMs": {
+          "type": "integer",
+          "minimum": 1000
+        },
+        "checkpointPolicy": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "STEP",
+            "COMPACTION"
+          ]
+        }
+      },
+      "required": [
+        "backend",
+        "harness"
+      ],
+      "additionalProperties": false
+    },
+    "sandbox": {
+      "type": "object",
+      "properties": {
+        "isolation": {
+          "type": "string",
+          "enum": [
+            "READ_ONLY",
+            "WORKSPACE_WRITE"
+          ]
+        },
+        "provider": {
+          "type": "string"
+        },
+        "imageConstraint": {
+          "type": "string"
+        },
+        "filesystem": {
+          "type": "string",
+          "enum": [
+            "WORKTREE_ONLY",
+            "SNAPSHOT",
+            "EPHEMERAL"
+          ]
+        },
+        "processIsolation": {
+          "type": "boolean"
+        },
+        "resourceLimits": {
+          "type": "object",
+          "properties": {
+            "cpu": {
+              "type": "number"
+            },
+            "memoryMb": {
+              "type": "integer"
+            },
+            "diskGb": {
+              "type": "integer"
+            },
+            "maxRuntimeMs": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        },
+        "publicIngress": {
+          "type": "boolean",
+          "const": false
+        },
+        "resourceAbsenceRequiredBeforePublication": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "required": [
+        "isolation",
+        "filesystem",
+        "publicIngress",
+        "resourceAbsenceRequiredBeforePublication"
+      ],
+      "additionalProperties": false
+    },
+    "network_policy": {
+      "type": "object",
+      "properties": {
+        "egress": {
+          "type": "string",
+          "enum": [
+            "DENY_ALL",
+            "RESTRICTED_ALLOWLIST",
+            "UNRESTRICTED"
+          ]
+        },
+        "allowlist": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "classificationGated": {
+          "type": "boolean",
+          "description": "Non-public repositories require provider-enforced egress proof."
+        }
+      },
+      "required": [
+        "egress"
+      ],
+      "additionalProperties": false
+    },
+    "credential_policy": {
+      "type": "object",
+      "properties": {
+        "classes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scoping": {
+          "type": "string",
+          "enum": [
+            "ATTEMPT_SCOPED",
+            "NONE"
+          ]
+        },
+        "longLivedInSandbox": {
+          "type": "boolean",
+          "const": false
+        },
+        "publicationIdentityInSandbox": {
+          "type": "boolean",
+          "const": false
+        },
+        "revokeBeforePublication": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "required": [
+        "scoping",
+        "longLivedInSandbox",
+        "publicationIdentityInSandbox",
+        "revokeBeforePublication"
+      ],
+      "additionalProperties": false
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "contract": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/CriterionVerifierMap"
+          }
+        },
+        "independence": {
+          "type": "object",
+          "properties": {
+            "required": {
+              "type": "boolean"
+            },
+            "minimumBoundary": {
+              "type": "string",
+              "enum": [
+                "SEPARATE_ATTEMPT",
+                "SEPARATE_FACTORY",
+                "SEPARATE_MODEL_FAMILY"
+              ]
+            },
+            "verifierFactoryName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "required",
+            "minimumBoundary"
+          ],
+          "additionalProperties": false
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "TASK",
+              "WORK_ORDER",
+              "OBJECTIVE",
+              "RELEASE"
+            ]
+          }
+        },
+        "currentnessRule": {
+          "type": "string",
+          "const": "newest-candidate-newest-exact-verification"
+        }
+      },
+      "required": [
+        "contract",
+        "independence",
+        "levels",
+        "currentnessRule"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "requiredCategories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "statementFormat": {
+          "type": "string",
+          "const": "in-toto/v1"
+        },
+        "retentionDays": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "traceContext": {
+          "type": "string",
+          "const": "w3c-traceparent"
+        }
+      },
+      "required": [
+        "requiredCategories",
+        "statementFormat",
+        "retentionDays"
+      ],
+      "additionalProperties": false
+    },
+    "approval_policy": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "$ref": "#/$defs/RiskTierPolicy"
+      }
+    },
+    "observability": {
+      "type": "object",
+      "properties": {
+        "requiredSpans": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "costAttribution": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "requiredSpans",
+        "metrics"
+      ],
+      "additionalProperties": false
+    },
+    "economics": {
+      "type": "object",
+      "properties": {
+        "budgets": {
+          "type": "object",
+          "properties": {
+            "maxCostPerWorkOrder": {
+              "$ref": "#/$defs/Money"
+            },
+            "maxAttemptsPerWorkOrder": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "maxRuntimeMinutes": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "costCoverageRule": {
+          "type": "string",
+          "const": "unknown-cost-is-null"
+        },
+        "denominators": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "VERIFIED",
+              "ACCEPTED",
+              "RELEASED"
+            ]
+          }
+        },
+        "includeFailedAttempts": {
+          "type": "boolean",
+          "const": true
+        }
+      },
+      "required": [
+        "budgets",
+        "costCoverageRule",
+        "denominators",
+        "includeFailedAttempts"
+      ],
+      "additionalProperties": false
+    },
+    "qualification": {
+      "type": "object",
+      "properties": {
+        "standardVersion": {
+          "type": "string"
+        },
+        "requiredScopes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/QualificationScope"
+          }
+        },
+        "expiryDays": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "hardGates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "standardVersion",
+        "requiredScopes",
+        "expiryDays"
+      ],
+      "additionalProperties": false
+    },
+    "release_policy": {
+      "type": "object",
+      "properties": {
+        "environments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "rollout": {
+          "type": "string",
+          "enum": [
+            "CANARY",
+            "PERCENTAGE",
+            "REGION",
+            "FULL"
+          ]
+        },
+        "rollbackRequired": {
+          "type": "boolean"
+        },
+        "publicationAuthority": {
+          "type": "string",
+          "const": "CONTROL_PLANE_ONLY"
+        },
+        "mergeAuthority": {
+          "type": "string",
+          "enum": [
+            "HUMAN",
+            "POLICY_WITHIN_ENVELOPE"
+          ]
+        },
+        "observationWindowDays": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "environments",
+        "rollout",
+        "rollbackRequired",
+        "publicationAuthority",
+        "mergeAuthority",
+        "observationWindowDays"
+      ],
+      "additionalProperties": false
+    },
+    "outcome_metrics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "DEFINED",
+        "DESIGNED",
+        "ARCHIVED"
+      ]
+    },
+    "reviewedBy": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Actor"
+      }
+    },
+    "factoryVersionIds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Id"
+      }
+    },
+    "digest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "createdAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "createdBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "updatedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Transition"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "type",
+    "id",
+    "namespace",
+    "name",
+    "version",
+    "description",
+    "purpose",
+    "owner",
+    "risk_class",
+    "autonomy_ceiling",
+    "capabilities",
+    "inputs",
+    "outputs",
+    "planner",
+    "execution_profiles",
+    "model_routes",
+    "runtime",
+    "sandbox",
+    "network_policy",
+    "credential_policy",
+    "verification",
+    "evidence",
+    "approval_policy",
+    "observability",
+    "economics",
+    "qualification",
+    "release_policy",
+    "state",
+    "digest",
+    "createdAt",
+    "createdBy",
+    "updatedAt"
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]*$",
+      "description": "Instance identifier. Unique within the issuing namespace; combined with `namespace` it is globally unique."
+    },
+    "ArtifactUri": {
+      "type": "string",
+      "pattern": "^fdlc://v1/(intent|specification|plan|work-order|factory-manifest|factory-version|execution-profile|capability-manifest|qualification-record|context-package|attempt|candidate|evidence|verification|decision|release|outcome|learning-signal|improvement-candidate)(/[A-Za-z0-9][A-Za-z0-9._:@-]*)?$",
+      "description": "Artifact type URI (`fdlc://v1/<artifact>`), optionally suffixed with an instance id."
+    },
+    "Namespace": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the issuing control plane or organization. Scopes every `id` in this record."
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 over the RFC 8785 (JCS) canonical JSON of the digested projection."
+    },
+    "GitSha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$|^[a-f0-9]{64}$",
+      "description": "Lowercase full Git object id (SHA-1 or SHA-256 repository)."
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp in UTC."
+    },
+    "Semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "RiskClass": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "AutonomyLevel": {
+      "type": "string",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "description": "HITL spectrum position. Effective autonomy is min(factory, objective, work order, policy, trust)."
+    },
+    "Actor": {
+      "type": "object",
+      "description": "Attributable identity. `identitySource` says how the control plane established it; never inferred from a client label.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "policy",
+            "service",
+            "agent",
+            "system"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "identitySource": {
+          "type": "string",
+          "enum": [
+            "authenticated",
+            "workload-identity",
+            "service-command",
+            "development-fallback"
+          ]
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "delegationRef": {
+          "$ref": "#/$defs/Id",
+          "description": "Reference to the delegation record that grants this actor its authority."
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "identitySource"
+      ],
+      "additionalProperties": false
+    },
+    "Ref": {
+      "type": "object",
+      "description": "Reference to another FDLC artifact instance, optionally pinned to a digest.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/ArtifactUri"
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "revisionNumber": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false
+    },
+    "CostRecord": {
+      "type": "object",
+      "description": "Cost with an honesty class. UNKNOWN cost stays UNKNOWN; implementations MUST NOT invent zeroes.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "ESTIMATED",
+            "UNKNOWN"
+          ]
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of contributing cost items that were measured."
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "Transition": {
+      "type": "object",
+      "description": "Audit record of one authoritative state transition. Every field listed here MUST be recorded.",
+      "properties": {
+        "transitionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "priorVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fromState": {
+          "type": "string"
+        },
+        "toState": {
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "occurredAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "requiredEvidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "decisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "invalidatedDependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ref"
+          }
+        }
+      },
+      "required": [
+        "subjectId",
+        "fromState",
+        "toState",
+        "actor",
+        "reason",
+        "idempotencyKey",
+        "occurredAt"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "description": "Content-addressed reference to a stored artifact (diff, log, screenshot, bundle).",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/Id"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactId",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "IoContract": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "schemaRef": {
+          "type": "string"
+        },
+        "artifactType": {
+          "$ref": "#/$defs/ArtifactUri"
+        }
+      },
+      "required": [
+        "kind",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "CapabilityBinding": {
+      "type": "object",
+      "properties": {
+        "capabilityId": {
+          "$ref": "#/$defs/Id"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "agent",
+            "skill",
+            "tool",
+            "model-route",
+            "harness",
+            "verifier",
+            "context-source",
+            "planner"
+          ]
+        },
+        "versionConstraint": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "capabilityId",
+        "versionConstraint"
+      ],
+      "additionalProperties": false
+    },
+    "ToolBinding": {
+      "type": "object",
+      "properties": {
+        "capabilityId": {
+          "$ref": "#/$defs/Id"
+        },
+        "versionConstraint": {
+          "type": "string"
+        },
+        "operations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "grantPolicy": {
+          "type": "string",
+          "enum": [
+            "PER_OPERATION_EXPIRING",
+            "PER_ATTEMPT"
+          ]
+        },
+        "maxSideEffectClass": {
+          "type": "string",
+          "enum": [
+            "READ_ONLY",
+            "WRITE_LOCAL",
+            "WRITE_REMOTE",
+            "DESTRUCTIVE",
+            "PUBLISH"
+          ]
+        }
+      },
+      "required": [
+        "capabilityId",
+        "versionConstraint",
+        "operations",
+        "grantPolicy",
+        "maxSideEffectClass"
+      ],
+      "additionalProperties": false
+    },
+    "ExecutionProfileDeclaration": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{2,63}$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "backend": {
+          "type": "string",
+          "enum": [
+            "persistent-worker",
+            "remote-sandbox",
+            "isolated-container"
+          ]
+        },
+        "autonomyCeiling": {
+          "$ref": "#/$defs/AutonomyLevel"
+        },
+        "environments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "modelRouteId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "backend",
+        "autonomyCeiling",
+        "environments"
+      ],
+      "additionalProperties": false
+    },
+    "ModelRouteDeclaration": {
+      "type": "object",
+      "properties": {
+        "routeId": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "PLAN",
+            "IMPLEMENT",
+            "TRANSFORM",
+            "VERIFY",
+            "REVIEW"
+          ]
+        },
+        "tier": {
+          "type": "string",
+          "enum": [
+            "FRONTIER",
+            "WORKHORSE",
+            "SMALL",
+            "LOCAL"
+          ]
+        },
+        "qualifiedProviders": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "independentFromProducer": {
+          "type": "boolean"
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "routeId",
+        "role",
+        "tier",
+        "qualifiedProviders"
+      ],
+      "additionalProperties": false
+    },
+    "ContextSourceDeclaration": {
+      "type": "object",
+      "properties": {
+        "capabilityId": {
+          "$ref": "#/$defs/Id"
+        },
+        "versionConstraint": {
+          "type": "string"
+        },
+        "freshnessMaxAgeHours": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "authorization": {
+          "type": "string",
+          "enum": [
+            "SUBJECT_IDENTITY",
+            "FACTORY_IDENTITY"
+          ]
+        },
+        "provenanceRequired": {
+          "type": "boolean",
+          "const": true
+        },
+        "classificationCeiling": {
+          "type": "string",
+          "enum": [
+            "PUBLIC",
+            "INTERNAL",
+            "CONFIDENTIAL",
+            "RESTRICTED"
+          ]
+        }
+      },
+      "required": [
+        "capabilityId",
+        "versionConstraint",
+        "authorization",
+        "provenanceRequired"
+      ],
+      "additionalProperties": false
+    },
+    "CriterionVerifierMap": {
+      "type": "object",
+      "properties": {
+        "criterionClass": {
+          "type": "string"
+        },
+        "verifierCapabilityId": {
+          "$ref": "#/$defs/Id"
+        },
+        "evidenceCategory": {
+          "type": "string"
+        },
+        "mandatory": {
+          "type": "boolean"
+        },
+        "independence": {
+          "type": "string",
+          "enum": [
+            "ANY_VERIFICATION",
+            "CANDIDATE_DEPENDENT_ALLOWED",
+            "INDEPENDENT_REQUIRED"
+          ]
+        }
+      },
+      "required": [
+        "criterionClass",
+        "verifierCapabilityId",
+        "evidenceCategory",
+        "mandatory",
+        "independence"
+      ],
+      "additionalProperties": false
+    },
+    "RiskTierPolicy": {
+      "type": "object",
+      "properties": {
+        "riskClass": {
+          "$ref": "#/$defs/RiskClass"
+        },
+        "execution": {
+          "type": "string",
+          "enum": [
+            "AUTO",
+            "HUMAN_AUTHORIZED"
+          ]
+        },
+        "verification": {
+          "type": "string",
+          "enum": [
+            "AUTO_DETERMINISTIC",
+            "INDEPENDENT",
+            "INDEPENDENT_PLUS_HUMAN"
+          ]
+        },
+        "acceptance": {
+          "type": "string",
+          "enum": [
+            "POLICY",
+            "POLICY_WITHIN_ENVELOPE",
+            "HUMAN"
+          ]
+        },
+        "releaseAuthorization": {
+          "type": "string",
+          "enum": [
+            "POLICY",
+            "HUMAN"
+          ]
+        }
+      },
+      "required": [
+        "riskClass",
+        "execution",
+        "verification",
+        "acceptance",
+        "releaseAuthorization"
+      ],
+      "additionalProperties": false
+    },
+    "QualificationScope": {
+      "type": "object",
+      "properties": {
+        "workloadClass": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "string"
+        },
+        "riskTier": {
+          "$ref": "#/$defs/RiskClass"
+        },
+        "autonomyLevel": {
+          "$ref": "#/$defs/AutonomyLevel"
+        }
+      },
+      "required": [
+        "workloadClass",
+        "environment",
+        "riskTier",
+        "autonomyLevel"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[a-z0-9]+(-[a-z0-9]+)*$": {}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,29 @@
+%% D12 Factory Version state machine
+%% Type: state · Page: /architecture/factory-versioning, /specification/v1/factory-version
+stateDiagram-v2
+  direction LR
+  [*] --> Draft: assembling
+  Draft --> Candidate: composition frozen, digest computed
+  Candidate --> Qualified: Qualification Record PASS for scope
+  Candidate --> Rejected: Qualification FAIL (preserved)
+  Qualified --> Active: Decision (promotion) per environment
+  Active --> Restricted: regression — scope narrowed
+  Restricted --> Active: re-qualified for full scope
+  Active --> Suspended: incident containment
+  Restricted --> Suspended
+  Suspended --> Active: Decision (restoration) + current Qualification Record
+  Active --> Deprecated: successor Active
+  Restricted --> Deprecated
+  Qualified --> Deprecated: never activated, superseded
+  Deprecated --> Retired: no routed work, grants revoked, records retained
+  Rejected --> [*]
+  Retired --> [*]
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18
+  classDef warn fill:#f5e6d0,stroke:#b3261e,color:#171a18
+  class Draft,Candidate execution
+  class Qualified,Active trust
+  class Restricted,Suspended warn
+  class Rejected,Deprecated,Retired neutral

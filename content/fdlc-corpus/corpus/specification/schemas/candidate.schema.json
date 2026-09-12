@@ -1,0 +1,766 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fdlc.ai/schemas/v1/candidate.schema.json",
+  "title": "FDLC Candidate",
+  "description": "The exact output of a Producer Attempt, identified by commit + tree + diff hash + contract digest + source Attempt. Unpublished until permitted. A Candidate is an output, not a success declaration.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "type": {
+      "type": "string",
+      "const": "fdlc://v1/candidate"
+    },
+    "id": {
+      "$ref": "#/$defs/Id"
+    },
+    "namespace": {
+      "$ref": "#/$defs/Namespace"
+    },
+    "sourceAttemptId": {
+      "$ref": "#/$defs/Id"
+    },
+    "workOrderId": {
+      "$ref": "#/$defs/Id"
+    },
+    "workOrderRevisionNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "intentId": {
+      "$ref": "#/$defs/Id"
+    },
+    "verificationContractDigest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "qualityContractDigest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "executionManifestDigest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "GIT_CANDIDATE",
+        "ARTIFACT_BUNDLE",
+        "AUTOMATION_OUTPUT"
+      ]
+    },
+    "git": {
+      "type": "object",
+      "properties": {
+        "repositoryId": {
+          "$ref": "#/$defs/Id"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "providerRepositoryId": {
+          "type": "string"
+        },
+        "baseSha": {
+          "$ref": "#/$defs/GitSha"
+        },
+        "commitSha": {
+          "$ref": "#/$defs/GitSha"
+        },
+        "treeSha": {
+          "$ref": "#/$defs/GitSha"
+        },
+        "diffDigest": {
+          "$ref": "#/$defs/Digest",
+          "description": "SHA-256 of the raw unified diff base..commit."
+        },
+        "baseRef": {
+          "type": "string"
+        },
+        "headRef": {
+          "type": "string"
+        },
+        "changedFiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "ADDED",
+                  "MODIFIED",
+                  "DELETED",
+                  "RENAMED"
+                ]
+              },
+              "additions": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "deletions": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "blobDigest": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "status"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "repositoryId",
+        "provider",
+        "baseSha",
+        "commitSha",
+        "treeSha",
+        "diffDigest",
+        "baseRef",
+        "headRef",
+        "changedFiles"
+      ],
+      "additionalProperties": false
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ArtifactRef"
+      }
+    },
+    "outputSnapshot": {
+      "type": "object",
+      "description": "AUTOMATION_OUTPUT candidates: immutable output snapshot identity.",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/Id"
+        },
+        "contentDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "outputContractDigest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "artifactId",
+        "contentDigest"
+      ],
+      "additionalProperties": false
+    },
+    "scopeReconciliation": {
+      "type": "object",
+      "description": "Changed files compared with the frozen code scope, change budget, and negative constraints before anything is review-ready.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "IN_SCOPE",
+            "OUT_OF_SCOPE",
+            "UNKNOWN"
+          ]
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "PATH_OUT_OF_SCOPE",
+                  "DENIED_PATH",
+                  "FILE_BUDGET",
+                  "LINE_BUDGET",
+                  "NEGATIVE_CONSTRAINT",
+                  "VERIFICATION_AUTHORITY_SURFACE"
+                ]
+              },
+              "path": {
+                "type": "string"
+              },
+              "constraintId": {
+                "$ref": "#/$defs/Id"
+              },
+              "detail": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "kind"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "filesChanged": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "linesChanged": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "verificationAuthorityStatus": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "UNKNOWN"
+          ],
+          "description": "FAIL when the candidate modified files that determine its own verification verdict."
+        },
+        "reconciledAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "status",
+        "violations",
+        "verificationAuthorityStatus",
+        "reconciledAt"
+      ],
+      "additionalProperties": false
+    },
+    "subject": {
+      "type": "object",
+      "description": "Verification Subject identity derived from this Candidate; frozen at FROZEN.",
+      "properties": {
+        "subjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "frozenAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "subjectId",
+        "subjectVersion",
+        "digest",
+        "frozenAt"
+      ],
+      "additionalProperties": false
+    },
+    "publication": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "UNPUBLISHED",
+            "AUTHORIZED",
+            "PUBLISHED",
+            "CLOSED"
+          ]
+        },
+        "permitId": {
+          "$ref": "#/$defs/Id"
+        },
+        "permitLeaseId": {
+          "$ref": "#/$defs/Id"
+        },
+        "permitValidUntil": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "decisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "verificationReceiptId": {
+          "$ref": "#/$defs/Id"
+        },
+        "pullRequest": {
+          "type": "object",
+          "properties": {
+            "provider": {
+              "type": "string"
+            },
+            "providerPullRequestId": {
+              "type": "string"
+            },
+            "number": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "baseRef": {
+              "type": "string"
+            },
+            "headRef": {
+              "type": "string"
+            },
+            "headSha": {
+              "$ref": "#/$defs/GitSha"
+            },
+            "draftAtPublication": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "provider",
+            "providerPullRequestId",
+            "number",
+            "url",
+            "headSha",
+            "draftAtPublication"
+          ],
+          "additionalProperties": false
+        },
+        "publishedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "bindingDigest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "additionalProperties": false
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "PRODUCED",
+        "FROZEN",
+        "PUBLISHED",
+        "SUPERSEDED",
+        "WITHDRAWN"
+      ]
+    },
+    "supersededById": {
+      "$ref": "#/$defs/Id"
+    },
+    "readyAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "digest": {
+      "$ref": "#/$defs/Digest",
+      "description": "Digest over (sourceAttemptId, workOrderId, workOrderRevisionNumber, verificationContractDigest, kind, git|outputSnapshot)."
+    },
+    "createdAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "createdBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Transition"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "type",
+    "id",
+    "namespace",
+    "sourceAttemptId",
+    "workOrderId",
+    "workOrderRevisionNumber",
+    "verificationContractDigest",
+    "qualityContractDigest",
+    "executionManifestDigest",
+    "kind",
+    "scopeReconciliation",
+    "publication",
+    "state",
+    "readyAt",
+    "digest",
+    "createdAt",
+    "createdBy"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "GIT_CANDIDATE"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "git"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "AUTOMATION_OUTPUT"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "outputSnapshot"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "FROZEN",
+              "PUBLISHED",
+              "SUPERSEDED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "subject"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "PUBLISHED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "publication": {
+            "required": [
+              "permitId",
+              "permitLeaseId",
+              "decisionId",
+              "verificationReceiptId",
+              "pullRequest",
+              "publishedAt",
+              "bindingDigest"
+            ],
+            "properties": {
+              "state": {
+                "const": "PUBLISHED"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "PRODUCED",
+              "FROZEN"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "publication": {
+            "properties": {
+              "state": {
+                "enum": [
+                  "UNPUBLISHED",
+                  "AUTHORIZED"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]*$",
+      "description": "Instance identifier. Unique within the issuing namespace; combined with `namespace` it is globally unique."
+    },
+    "ArtifactUri": {
+      "type": "string",
+      "pattern": "^fdlc://v1/(intent|specification|plan|work-order|factory-manifest|factory-version|execution-profile|capability-manifest|qualification-record|context-package|attempt|candidate|evidence|verification|decision|release|outcome|learning-signal|improvement-candidate)(/[A-Za-z0-9][A-Za-z0-9._:@-]*)?$",
+      "description": "Artifact type URI (`fdlc://v1/<artifact>`), optionally suffixed with an instance id."
+    },
+    "Namespace": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the issuing control plane or organization. Scopes every `id` in this record."
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 over the RFC 8785 (JCS) canonical JSON of the digested projection."
+    },
+    "GitSha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$|^[a-f0-9]{64}$",
+      "description": "Lowercase full Git object id (SHA-1 or SHA-256 repository)."
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp in UTC."
+    },
+    "Semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "RiskClass": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "AutonomyLevel": {
+      "type": "string",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "description": "HITL spectrum position. Effective autonomy is min(factory, objective, work order, policy, trust)."
+    },
+    "Actor": {
+      "type": "object",
+      "description": "Attributable identity. `identitySource` says how the control plane established it; never inferred from a client label.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "policy",
+            "service",
+            "agent",
+            "system"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "identitySource": {
+          "type": "string",
+          "enum": [
+            "authenticated",
+            "workload-identity",
+            "service-command",
+            "development-fallback"
+          ]
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "delegationRef": {
+          "$ref": "#/$defs/Id",
+          "description": "Reference to the delegation record that grants this actor its authority."
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "identitySource"
+      ],
+      "additionalProperties": false
+    },
+    "Ref": {
+      "type": "object",
+      "description": "Reference to another FDLC artifact instance, optionally pinned to a digest.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/ArtifactUri"
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "revisionNumber": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false
+    },
+    "CostRecord": {
+      "type": "object",
+      "description": "Cost with an honesty class. UNKNOWN cost stays UNKNOWN; implementations MUST NOT invent zeroes.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "ESTIMATED",
+            "UNKNOWN"
+          ]
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of contributing cost items that were measured."
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "Transition": {
+      "type": "object",
+      "description": "Audit record of one authoritative state transition. Every field listed here MUST be recorded.",
+      "properties": {
+        "transitionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "priorVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fromState": {
+          "type": "string"
+        },
+        "toState": {
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "occurredAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "requiredEvidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "decisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "invalidatedDependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ref"
+          }
+        }
+      },
+      "required": [
+        "subjectId",
+        "fromState",
+        "toState",
+        "actor",
+        "reason",
+        "idempotencyKey",
+        "occurredAt"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "description": "Content-addressed reference to a stored artifact (diff, log, screenshot, bundle).",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/Id"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactId",
+        "digest"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[a-z0-9]+(-[a-z0-9]+)*$": {}
+  },
+  "additionalProperties": false
+}

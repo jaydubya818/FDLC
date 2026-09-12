@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" class="fd" role="img" aria-labelledby="t-D08 d-D08">
+<title id="t-D08">The Control Boundary</title>
+<desc id="d-D08">Three parts of a factory and the flows between them. A human authority approves consequential decisions and feeds the factory control plane. The control plane, the durable system of record, sends authority down (solid arrows) to intelligence supply (models reason, agents act — replaceable by design) and to governed execution (harness, runtime, sandbox — constrained and recoverable). Evidence flows back up (dashed arrows). Governed execution hands Candidates and Evidence to independent verification, whose result returns to the control plane. Two panels list what is expected to change (models, agents, skills, prompts, tool adapters) and what is required to persist (intent, identity, authority, state, evidence, decisions, outcomes).</desc>
+<style>
+svg.fd{--fd-paper:#f3f1ea;--fd-surface:#faf9f5;--fd-ink:#171a18;--fd-muted:#59605a;--fd-line:#c9ccc4;
+--fd-intent-fill:#dce8ef;--fd-intent-stroke:#2f5f78;--fd-intent-text:#1f4557;
+--fd-control-fill:#e4e9ec;--fd-control-stroke:#4a5d68;--fd-control-text:#2f3f47;
+--fd-exec-fill:#f5e6d0;--fd-exec-stroke:#9a4f1c;--fd-exec-text:#6b3612;
+--fd-trust-fill:#dcefe4;--fd-trust-stroke:#1a654b;--fd-trust-text:#114735;
+--fd-learn-fill:#e9e2f4;--fd-learn-stroke:#5c3f8f;--fd-learn-text:#3f2a66;
+--fd-human:#b3261e;--fd-tint:.45}
+@media (prefers-color-scheme:dark){svg.fd{--fd-paper:#15191b;--fd-surface:#1d2326;--fd-ink:#ecebe4;--fd-muted:#a8b0aa;--fd-line:#3b433d;
+--fd-intent-fill:#1c3140;--fd-intent-stroke:#8ec1dc;--fd-intent-text:#cfe6f2;
+--fd-control-fill:#2a3438;--fd-control-stroke:#a8bcc6;--fd-control-text:#dbe5ea;
+--fd-exec-fill:#3b2812;--fd-exec-stroke:#e2a468;--fd-exec-text:#f5dcc0;
+--fd-trust-fill:#143326;--fd-trust-stroke:#7fd2a6;--fd-trust-text:#cdeedb;
+--fd-learn-fill:#2b2142;--fd-learn-stroke:#bfa5ea;--fd-learn-text:#e3d8f5;
+--fd-human:#ff8a80;--fd-tint:.35}}
+.bg{fill:var(--fd-paper)}
+text{font-family:"Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;fill:var(--fd-ink);font-size:16px}
+.mono{font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace}
+.title{font-size:34px;font-weight:600}
+.sub{font-size:18px;fill:var(--fd-muted)}
+.h{font-size:20px;font-weight:600}.h2{font-size:18px;font-weight:600}.h3{font-size:16px;font-weight:600}
+.b{font-size:16px}.s{font-size:15px;fill:var(--fd-muted)}.xs{font-size:14px;fill:var(--fd-muted)}
+.i{font-style:italic}.c{text-anchor:middle}.r{text-anchor:end}.strong{font-weight:600}
+.label{font-size:14px;fill:var(--fd-muted)}
+.tag{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace;fill:var(--fd-muted)}
+.box{stroke-width:2;rx:6}
+.intent{fill:var(--fd-intent-fill);stroke:var(--fd-intent-stroke)}
+.control{fill:var(--fd-control-fill);stroke:var(--fd-control-stroke)}
+.exec{fill:var(--fd-exec-fill);stroke:var(--fd-exec-stroke)}
+.trust{fill:var(--fd-trust-fill);stroke:var(--fd-trust-stroke)}
+.learn{fill:var(--fd-learn-fill);stroke:var(--fd-learn-stroke)}
+.neutral{fill:var(--fd-surface);stroke:var(--fd-muted)}
+.human{stroke:var(--fd-human)!important;stroke-width:3.5}
+.t-intent{fill:var(--fd-intent-text)}.t-control{fill:var(--fd-control-text)}.t-exec{fill:var(--fd-exec-text)}
+.t-trust{fill:var(--fd-trust-text)}.t-learn{fill:var(--fd-learn-text)}.t-human{fill:var(--fd-human)}
+.zone{stroke-width:2;rx:10;fill-opacity:var(--fd-tint)}
+.zone.dash{stroke-dasharray:8 6}
+.fl{fill:none;stroke:var(--fd-ink);stroke-width:2.5;marker-end:url(#m-ink)}
+.au{fill:none;stroke:var(--fd-control-stroke);stroke-width:3;marker-end:url(#m-au)}
+.ev{fill:none;stroke:var(--fd-trust-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ev)}
+.ln{fill:none;stroke:var(--fd-learn-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ln)}
+.rt{fill:none;stroke:var(--fd-muted);stroke-width:2;stroke-dasharray:5 5;marker-end:url(#m-mu)}
+.thin{stroke-width:1.5}
+.nomk{marker-end:none}
+.dot{fill:var(--fd-trust-stroke)}
+.lbg{fill:var(--fd-paper);stroke:none}
+.chip{stroke-width:2;rx:14}
+.mk-ink{fill:var(--fd-ink)}.mk-au{fill:var(--fd-control-stroke)}.mk-ev{fill:var(--fd-trust-stroke)}
+.mk-ln{fill:var(--fd-learn-stroke)}.mk-mu{fill:var(--fd-muted)}
+.hair{stroke:var(--fd-line);stroke-width:1.5;fill:none}
+.x{stroke:var(--fd-human);stroke-width:3;fill:none}
+</style>
+<defs>
+<marker id="m-ink" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ink" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-au" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-au" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ev" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ev" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ln" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ln" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-mu" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-mu" d="M0,1 L11,6 L0,11 z"/></marker>
+</defs>
+<rect class="bg" width="1600" height="900"/>
+<g id="header"><text x="60" y="76" class="title">The Control Boundary</text>
+<text x="60" y="108" class="sub">Allow intelligence to vary. Always bound authority.</text>
+<text x="1540" y="70" class="tag r">FDLC visual canon · D08</text></g>
+<g id="human">
+<rect x="60" y="150" width="300" height="110" class="box neutral human"/>
+<text x="210.0" y="192.5" class="h c">Human authority</text>
+<text x="210.0" y="213.5" class="s c">approves consequential decisions;</text>
+<text x="210.0" y="233.0" class="s c">retains override and restoration</text>
+</g>
+<path id="a-human-cp" d="M360,205 L420,205" class="au"/>
+<text x="390" y="190" class="label c">Decision</text>
+<g id="control-plane">
+<rect x="420" y="150" width="1120" height="130" class="box control"/>
+<text x="980.0" y="193.4" class="h t-control c">02 / Factory control plane — the factory governs</text>
+<text x="980.0" y="214.4" class="s c">identity · delegated authority · policy · budgets · routing · state · leases · recovery</text>
+<text x="980.0" y="233.9" class="s c">evidence requirements · decisions · audit · emergency control</text>
+<text x="980.0" y="252.4" class="xs i c">Durable system of record</text>
+</g>
+<g id="intelligence">
+<rect x="60" y="400" width="640" height="200" class="box exec"/>
+<text x="380.0" y="468.6" class="h t-exec c">01 / Intelligence supply — models reason, agents act</text>
+<text x="380.0" y="489.6" class="s c">models · agents · skills · prompts · tool adapters</text>
+<text x="380.0" y="509.1" class="s c">selected per Work Order by capability, quality and risk profile,</text>
+<text x="380.0" y="528.6" class="s c">latency, availability, and cost per verified outcome</text>
+<text x="380.0" y="547.1" class="xs i c">Replaceable by design</text>
+</g>
+<g id="execution">
+<rect x="900" y="400" width="640" height="200" class="box exec"/>
+<text x="1220.0" y="468.6" class="h t-exec c">03 / Governed execution — operation stays bounded</text>
+<text x="1220.0" y="489.6" class="s c">the Harness governs one Agent · the Runtime hosts it · the Sandbox isolates effects</text>
+<text x="1220.0" y="509.1" class="s c">scoped capabilities and file access · short-lived credentials</text>
+<text x="1220.0" y="528.6" class="s c">network, time, and resource limits · explicit Agent Loop</text>
+<text x="1220.0" y="547.1" class="xs i c">Constrained and recoverable</text>
+</g>
+<path id="a-au-s" d="M520,280 L520,400" class="au"/>
+<rect x="447.4" y="334.1" width="66.6" height="17.5" class="lbg" rx="3"/>
+<text x="508" y="346" class="label r">authority</text>
+<path id="a-ev-s" d="M640,400 L640,280" class="ev"/>
+<rect x="646.0" y="334.1" width="69.1" height="17.5" class="lbg" rx="3"/>
+<text x="652" y="346" class="label">evidence</text>
+<path id="a-au-x" d="M1160,280 L1160,400" class="au"/>
+<rect x="1087.4" y="334.1" width="66.6" height="17.5" class="lbg" rx="3"/>
+<text x="1148" y="346" class="label r">authority</text>
+<path id="a-ev-x" d="M1280,400 L1280,280" class="ev"/>
+<rect x="1286.0" y="334.1" width="69.1" height="17.5" class="lbg" rx="3"/>
+<text x="1292" y="346" class="label">evidence</text>
+<g id="verification">
+<rect x="540" y="650" width="520" height="90" class="box trust"/>
+<text x="800.0" y="692.9" class="h t-trust c">Independent verification</text>
+<text x="800.0" y="712.9" class="xs c">the producer is never the sole judge · makes work eligible; never accepts</text>
+</g>
+<path id="a-x-v" d="M1220,600 L1220,695 L1060,695" class="ev"/>
+<rect x="1064.8" y="670.1" width="150.3" height="17.5" class="lbg" rx="3"/>
+<text x="1140" y="682" class="label c">Candidate + Evidence</text>
+<path id="a-v-cp" d="M800,650 L800,280" class="ev"/>
+<rect x="739.0" y="334.1" width="122.0" height="17.5" class="lbg" rx="3"/>
+<text x="800" y="346" class="label c">verification result</text>
+<path id="a-s-x" d="M700,470 L900,470" class="fl"/>
+<rect x="739.8" y="444.1" width="120.4" height="17.5" class="lbg" rx="3"/>
+<text x="800" y="456" class="label c">agents act inside</text>
+<g id="expected-to-change">
+<rect x="60" y="770" width="700" height="60" class="box neutral"/>
+<text x="410.0" y="795.9" class="h3 c">Expected to change</text>
+<text x="410.0" y="815.6" class="s c">models · agents · skills · prompts · tool adapters</text>
+</g>
+<g id="required-to-persist">
+<rect x="840" y="770" width="700" height="60" class="box neutral"/>
+<text x="1190.0" y="795.9" class="h3 c">Required to persist</text>
+<text x="1190.0" y="815.6" class="s c">intent · identity · authority · state · evidence · decisions · outcomes</text>
+</g>
+<g id="legend">
+<rect x="60" y="847" width="26" height="16" class="box intent" rx="3"/>
+<text x="94" y="860" class="xs">Intent</text>
+<rect x="155.28" y="847" width="26" height="16" class="box control" rx="3"/>
+<text x="189.28" y="860" class="xs">Control</text>
+<rect x="260.08000000000004" y="847" width="26" height="16" class="box exec" rx="3"/>
+<text x="294.08000000000004" y="860" class="xs">Execution</text>
+<rect x="383.36000000000007" y="847" width="26" height="16" class="box trust" rx="3"/>
+<text x="417.36000000000007" y="860" class="xs">Trust</text>
+<rect x="476.4000000000001" y="847" width="26" height="16" class="box learn" rx="3"/>
+<text x="510.4000000000001" y="860" class="xs">Learning</text>
+<rect x="592.1200000000001" y="847" width="26" height="16" class="box neutral human" rx="3"/>
+<text x="626.1200000000001" y="860" class="xs">Human authority</text>
+<path d="M765.1600000000001,855 L809.1600000000001,855" class="au"/><text x="819.1600000000001" y="860" class="xs">authority / flow (solid)</text>
+<path d="M987.4000000000001,855 L1031.4,855" class="ev"/><text x="1041.4" y="860" class="xs">evidence (dashed, back)</text>
+<path d="M1221.1200000000001,855 L1265.1200000000001,855" class="ln"/><text x="1275.1200000000001" y="860" class="xs">learning (dashed)</text>
+</g>
+</svg>

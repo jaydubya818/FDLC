@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "previewPrefix": "/corpus-preview",
+  "reservedPreviewPrefixes": [
+    "/corpus-artifacts"
+  ],
+  "classifications": [
+    {
+      "glob": "corpus/**/*.md",
+      "kind": "candidate-document",
+      "rule": "Publish only when valid path front matter is present"
+    },
+    {
+      "glob": "corpus/specification/schemas/*.schema.json",
+      "kind": "raw-schema",
+      "rule": "Validate and expose only through the preview raw-artifact route"
+    },
+    {
+      "glob": "corpus/specification/examples/*.{json,yaml,yml}",
+      "kind": "raw-example",
+      "rule": "Validate and expose only through the preview raw-artifact route"
+    },
+    {
+      "glob": "corpus/diagrams/mermaid/*.mmd",
+      "kind": "mermaid-source",
+      "rule": "Render only when referenced by a published document"
+    },
+    {
+      "glob": "corpus/diagrams/svg/**/*.svg",
+      "kind": "image",
+      "rule": "Expose only when manifest-listed"
+    },
+    {
+      "glob": "corpus/diagrams/svg/png/**/*.png",
+      "kind": "image",
+      "rule": "Expose only when manifest-listed"
+    },
+    {
+      "glob": "canon/**",
+      "kind": "review-source",
+      "rule": "Never create a corpus document route"
+    },
+    {
+      "glob": "audit/**",
+      "kind": "review-evidence",
+      "rule": "Never create a corpus document route"
+    },
+    {
+      "glob": "site-implementation/**",
+      "kind": "implementation-reference",
+      "rule": "Never create a corpus document route"
+    },
+    {
+      "glob": "corpus/README.md",
+      "kind": "repository-reference",
+      "rule": "Never create a corpus document route"
+    },
+    {
+      "glob": "corpus/diagrams/svg/README.md",
+      "kind": "repository-reference",
+      "rule": "Never create a corpus document route"
+    },
+    {
+      "glob": "corpus/specification/CHANGELOG.md",
+      "kind": "review-artifact",
+      "rule": "Do not route until the project changelog ownership decision is made"
+    }
+  ]
+}

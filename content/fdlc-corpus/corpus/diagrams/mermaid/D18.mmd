@@ -1,0 +1,31 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D18 Builder experience — traditional vs factory-driven
+%% Type: flow · Page: /architecture/builders, /architecture/transformation
+flowchart TB
+  subgraph T["Traditional flow"]
+    direction LR
+    T1["Ticket"] --> T2["Developer reads, designs, writes code"] --> T3["Pull request"] --> T4["Reviewer reads the diff"] --> T5["CI"] --> T6["Merge"] --> T7["Deploy"]
+    T2 -. "context lives in the developer's head" .-> T4
+    T4 -. "judgment collapsed into diff review" .-> T6
+  end
+  subgraph F["Factory-driven flow"]
+    direction LR
+    B["Builder<br/>Intent · constraints · acceptance criteria"]:::human --> S["Specification<br/>(finalized)"] --> P["Plan<br/>(approved revision)"] --> R["Route to qualified<br/>Factory Version"] --> X["Execute in sandbox<br/>Candidate + Evidence"] --> V["Independent<br/>Verification"] --> A["Decision: acceptance<br/>human or policy at risk tier"]:::human --> REL["Release"] --> O["Outcome<br/>observed"] --> L["Learning Signal →<br/>Improvement Candidate"]
+    B -. "approves the Plan" .-> P
+    B -. "reads the decision packet; judgment on exceptions, architecture, risk" .-> A
+    L -. "new Factory Version via Qualify" .-> R
+  end
+  class T1,T2,T3,T4,T5,T6,T7 neutral
+  class S,P intent
+  class R control
+  class X execution
+  class V,A,REL,O trust
+  class L learning
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

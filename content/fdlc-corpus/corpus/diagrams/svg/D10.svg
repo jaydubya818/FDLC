@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" class="fd" role="img" aria-labelledby="t-D10 d-D10">
+<title id="t-D10">Three-Level Routing</title>
+<desc id="d-D10">Three horizontal bands. Level 1, Objective routing, owned by the Objective Planner in the control plane: an Objective becomes required capabilities, a factory set, and a dependency graph across Work Orders. Level 2, Work Order routing, owned by the Factory Router: a Work Order passes an eligibility filter (policy, authorization, compatibility, qualification, authority) before ranking by evidence (quality, reliability, latency, cost per verified outcome), producing a qualified Factory Version plus Execution Profile; an empty eligible set blocks or escalates and never relaxes a gate; scheduling is a separate decision. Level 3, Task routing, owned by the Capability Router inside the factory: a Task is bound to a model route, skill, tool, runtime, sandbox and provider within the Execution Profile's admitted set, producing an Attempt with a frozen routing snapshot.</desc>
+<style>
+svg.fd{--fd-paper:#f3f1ea;--fd-surface:#faf9f5;--fd-ink:#171a18;--fd-muted:#59605a;--fd-line:#c9ccc4;
+--fd-intent-fill:#dce8ef;--fd-intent-stroke:#2f5f78;--fd-intent-text:#1f4557;
+--fd-control-fill:#e4e9ec;--fd-control-stroke:#4a5d68;--fd-control-text:#2f3f47;
+--fd-exec-fill:#f5e6d0;--fd-exec-stroke:#9a4f1c;--fd-exec-text:#6b3612;
+--fd-trust-fill:#dcefe4;--fd-trust-stroke:#1a654b;--fd-trust-text:#114735;
+--fd-learn-fill:#e9e2f4;--fd-learn-stroke:#5c3f8f;--fd-learn-text:#3f2a66;
+--fd-human:#b3261e;--fd-tint:.45}
+@media (prefers-color-scheme:dark){svg.fd{--fd-paper:#15191b;--fd-surface:#1d2326;--fd-ink:#ecebe4;--fd-muted:#a8b0aa;--fd-line:#3b433d;
+--fd-intent-fill:#1c3140;--fd-intent-stroke:#8ec1dc;--fd-intent-text:#cfe6f2;
+--fd-control-fill:#2a3438;--fd-control-stroke:#a8bcc6;--fd-control-text:#dbe5ea;
+--fd-exec-fill:#3b2812;--fd-exec-stroke:#e2a468;--fd-exec-text:#f5dcc0;
+--fd-trust-fill:#143326;--fd-trust-stroke:#7fd2a6;--fd-trust-text:#cdeedb;
+--fd-learn-fill:#2b2142;--fd-learn-stroke:#bfa5ea;--fd-learn-text:#e3d8f5;
+--fd-human:#ff8a80;--fd-tint:.35}}
+.bg{fill:var(--fd-paper)}
+text{font-family:"Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;fill:var(--fd-ink);font-size:16px}
+.mono{font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace}
+.title{font-size:34px;font-weight:600}
+.sub{font-size:18px;fill:var(--fd-muted)}
+.h{font-size:20px;font-weight:600}.h2{font-size:18px;font-weight:600}.h3{font-size:16px;font-weight:600}
+.b{font-size:16px}.s{font-size:15px;fill:var(--fd-muted)}.xs{font-size:14px;fill:var(--fd-muted)}
+.i{font-style:italic}.c{text-anchor:middle}.r{text-anchor:end}.strong{font-weight:600}
+.label{font-size:14px;fill:var(--fd-muted)}
+.tag{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace;fill:var(--fd-muted)}
+.box{stroke-width:2;rx:6}
+.intent{fill:var(--fd-intent-fill);stroke:var(--fd-intent-stroke)}
+.control{fill:var(--fd-control-fill);stroke:var(--fd-control-stroke)}
+.exec{fill:var(--fd-exec-fill);stroke:var(--fd-exec-stroke)}
+.trust{fill:var(--fd-trust-fill);stroke:var(--fd-trust-stroke)}
+.learn{fill:var(--fd-learn-fill);stroke:var(--fd-learn-stroke)}
+.neutral{fill:var(--fd-surface);stroke:var(--fd-muted)}
+.human{stroke:var(--fd-human)!important;stroke-width:3.5}
+.t-intent{fill:var(--fd-intent-text)}.t-control{fill:var(--fd-control-text)}.t-exec{fill:var(--fd-exec-text)}
+.t-trust{fill:var(--fd-trust-text)}.t-learn{fill:var(--fd-learn-text)}.t-human{fill:var(--fd-human)}
+.zone{stroke-width:2;rx:10;fill-opacity:var(--fd-tint)}
+.zone.dash{stroke-dasharray:8 6}
+.fl{fill:none;stroke:var(--fd-ink);stroke-width:2.5;marker-end:url(#m-ink)}
+.au{fill:none;stroke:var(--fd-control-stroke);stroke-width:3;marker-end:url(#m-au)}
+.ev{fill:none;stroke:var(--fd-trust-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ev)}
+.ln{fill:none;stroke:var(--fd-learn-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ln)}
+.rt{fill:none;stroke:var(--fd-muted);stroke-width:2;stroke-dasharray:5 5;marker-end:url(#m-mu)}
+.thin{stroke-width:1.5}
+.nomk{marker-end:none}
+.dot{fill:var(--fd-trust-stroke)}
+.lbg{fill:var(--fd-paper);stroke:none}
+.chip{stroke-width:2;rx:14}
+.mk-ink{fill:var(--fd-ink)}.mk-au{fill:var(--fd-control-stroke)}.mk-ev{fill:var(--fd-trust-stroke)}
+.mk-ln{fill:var(--fd-learn-stroke)}.mk-mu{fill:var(--fd-muted)}
+.hair{stroke:var(--fd-line);stroke-width:1.5;fill:none}
+.x{stroke:var(--fd-human);stroke-width:3;fill:none}
+</style>
+<defs>
+<marker id="m-ink" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ink" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-au" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-au" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ev" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ev" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ln" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ln" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-mu" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-mu" d="M0,1 L11,6 L0,11 z"/></marker>
+</defs>
+<rect class="bg" width="1600" height="900"/>
+<g id="header"><text x="60" y="76" class="title">Three-Level Routing</text>
+<text x="60" y="108" class="sub">Routing decides who may; scheduling decides when. Eligibility is filtered before anything is ranked.</text>
+<text x="1540" y="70" class="tag r">FDLC visual canon · D10</text></g>
+<g id="level-1"><rect x="60" y="140" width="1480" height="150" class="zone control"/><text x="1524" y="166" class="tag r t-control">Level 1 · Objective routing — Objective Planner (control plane)</text></g>
+<g id="objective">
+<rect x="80" y="185" width="200" height="80" class="box intent"/>
+<text x="180.0" y="222.9" class="h t-intent c">Objective</text>
+<text x="180.0" y="242.9" class="xs c">an admitted Intent</text>
+</g>
+<path id="a-obj-planner" d="M280,225 L330,225" class="fl"/>
+<g id="objective-planner">
+<rect x="330" y="185" width="380" height="80" class="box control"/>
+<text x="520.0" y="222.2" class="h2 t-control c">Objective Planner</text>
+<text x="520.0" y="241.6" class="xs c">which factories are needed?</text>
+</g>
+<path id="a-planner-out" d="M710,225 L760,225" class="fl"/>
+<g id="factory-set">
+<rect x="760" y="185" width="440" height="80" class="box control"/>
+<text x="980.0" y="221.5" class="h3 t-control c">required capabilities → factory set</text>
+<text x="980.0" y="240.3" class="xs c">+ dependency graph across Work Orders</text>
+</g>
+<path id="a-set-wos" d="M1200,225 L1250,225" class="fl"/>
+<g id="work-orders">
+<rect x="1250" y="185" width="270" height="80" class="box intent"/>
+<text x="1385.0" y="222.2" class="h2 t-intent c">Work Orders</text>
+<text x="1385.0" y="241.6" class="xs c">one per bounded unit of work</text>
+</g>
+<g id="level-2"><rect x="60" y="320" width="1480" height="260" class="zone control"/><text x="1524" y="346" class="tag r t-control">Level 2 · Work Order routing — Factory Router</text></g>
+<g id="work-order">
+<rect x="80" y="380" width="200" height="90" class="box intent"/>
+<text x="180.0" y="413.8" class="h t-intent c">Work Order</text>
+<text x="180.0" y="433.8" class="xs c">scope · risk class</text>
+<text x="180.0" y="452.0" class="xs c">verification contract</text>
+</g>
+<path id="a-wo-elig" d="M280,425 L330,425" class="fl"/>
+<g id="eligibility">
+<rect x="330" y="365" width="360" height="120" class="box control"/>
+<text x="510.0" y="404.0" class="h2 t-control c">1 · Eligibility filter</text>
+<text x="510.0" y="423.4" class="xs c">policy · authorization · compatibility</text>
+<text x="510.0" y="441.6" class="xs c">qualification · authority</text>
+<text x="510.0" y="459.8" class="xs i c">ineligible candidates are never scored</text>
+</g>
+<path id="a-elig-rank" d="M690,425 L740,425" class="fl"/>
+<g id="ranking">
+<rect x="740" y="365" width="340" height="120" class="box control"/>
+<text x="910.0" y="404.0" class="h2 t-control c">2 · Rank by evidence</text>
+<text x="910.0" y="423.4" class="xs c">quality · reliability · latency</text>
+<text x="910.0" y="441.6" class="xs c">cost per verified outcome</text>
+<text x="910.0" y="459.8" class="xs i c">hard budget + unknown cost → fail closed</text>
+</g>
+<path id="a-rank-fv" d="M1080,425 L1130,425" class="fl"/>
+<g id="factory-version">
+<rect x="1130" y="365" width="390" height="120" class="box exec"/>
+<text x="1325.0" y="411.8" class="h2 t-exec c">Qualified Factory Version</text>
+<text x="1325.0" y="433.2" class="h3 t-exec c">+ Execution Profile</text>
+<text x="1325.0" y="452.0" class="xs c">immutable composition · routing Decision recorded</text>
+</g>
+<path id="a-elig-block" d="M510,485 L510,510" class="rt"/>
+<g id="blocked">
+<rect x="330" y="510" width="360" height="50" class="box trust human"/>
+<text x="510.0" y="539.9" class="xs c">empty set → Blocked / escalate · never relax a gate</text>
+</g>
+<g id="scheduling">
+<rect x="740" y="510" width="340" height="50" class="box neutral"/>
+<text x="910.0" y="530.8" class="xs c">Scheduling is a separate decision</text>
+<text x="910.0" y="549.0" class="xs c">capacity · fairness · leases</text>
+</g>
+<text x="1325" y="540" class="xs c">critical risk → never auto-routed without explicit policy</text>
+<g id="level-3"><rect x="60" y="610" width="1480" height="170" class="zone exec"/><text x="1524" y="636" class="tag r t-exec">Level 3 · Task routing — Capability Router inside the factory</text></g>
+<g id="task">
+<rect x="80" y="665" width="200" height="90" class="box intent"/>
+<text x="180.0" y="707.9" class="h t-intent c">Task</text>
+<text x="180.0" y="727.9" class="xs c">one Work Graph node</text>
+</g>
+<path id="a-task-cap" d="M280,710 L330,710" class="fl"/>
+<g id="capability-router">
+<rect x="330" y="665" width="360" height="90" class="box control"/>
+<text x="510.0" y="698.1" class="h2 t-control c">Capability Router</text>
+<text x="510.0" y="717.5" class="xs c">within the Execution Profile's admitted set</text>
+<text x="510.0" y="735.7" class="xs i c">fallbacks must be prequalified</text>
+</g>
+<path id="a-cap-res" d="M690,710 L740,710" class="fl"/>
+<g id="resources">
+<rect x="740" y="665" width="400" height="90" class="box exec"/>
+<text x="940.0" y="696.1" class="h3 t-exec c">model route · skill · tool</text>
+<text x="940.0" y="716.9" class="h3 t-exec c">runtime · sandbox · provider</text>
+<text x="940.0" y="735.7" class="xs c">e.g. implementation-workhorse · verification-independent</text>
+</g>
+<path id="a-res-att" d="M1140,710 L1190,710" class="fl"/>
+<g id="attempt">
+<rect x="1190" y="665" width="330" height="90" class="box exec"/>
+<text x="1355.0" y="707.9" class="h t-exec c">Attempt</text>
+<text x="1355.0" y="727.9" class="xs c">frozen routing snapshot · fenced lease</text>
+</g>
+<path id="a-l1-l2" d="M180,265 L180,380" class="au"/>
+<text x="192" y="310" class="label">Work Orders</text>
+<path id="a-l2-l3" d="M180,470 L180,665" class="au"/>
+<text x="192" y="600" class="label">Tasks</text>
+<text x="60" y="812" class="xs">Invariants: eligibility before ranking · an ineligible candidate never receives a score · routing ≠ scheduling · a hard budget with unknown estimated cost fails closed · fallbacks are prequalified.</text>
+<g id="legend">
+<rect x="60" y="847" width="26" height="16" class="box intent" rx="3"/>
+<text x="94" y="860" class="xs">Intent</text>
+<rect x="155.28" y="847" width="26" height="16" class="box control" rx="3"/>
+<text x="189.28" y="860" class="xs">Control</text>
+<rect x="260.08000000000004" y="847" width="26" height="16" class="box exec" rx="3"/>
+<text x="294.08000000000004" y="860" class="xs">Execution</text>
+<rect x="383.36000000000007" y="847" width="26" height="16" class="box trust" rx="3"/>
+<text x="417.36000000000007" y="860" class="xs">Trust</text>
+<rect x="476.4000000000001" y="847" width="26" height="16" class="box learn" rx="3"/>
+<text x="510.4000000000001" y="860" class="xs">Learning</text>
+<rect x="592.1200000000001" y="847" width="26" height="16" class="box neutral human" rx="3"/>
+<text x="626.1200000000001" y="860" class="xs">Human authority</text>
+<path d="M765.1600000000001,855 L809.1600000000001,855" class="au"/><text x="819.1600000000001" y="860" class="xs">authority / flow (solid)</text>
+<path d="M987.4000000000001,855 L1031.4,855" class="ev"/><text x="1041.4" y="860" class="xs">evidence (dashed, back)</text>
+<path d="M1221.1200000000001,855 L1265.1200000000001,855" class="ln"/><text x="1275.1200000000001" y="860" class="xs">learning (dashed)</text>
+</g>
+</svg>

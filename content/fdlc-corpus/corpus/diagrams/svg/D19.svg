@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" class="fd" role="img" aria-labelledby="t-D19 d-D19">
+<title id="t-D19">Agent, Skill, Tool, Harness, Factory</title>
+<desc id="d-D19">Nested containment diagram. The Factory Ecosystem contains a Control Plane band and a Factory. Inside the Factory: an Orchestrator advances the Work Graph; a Runtime hosts execution; inside it a Sandbox isolates effects; inside that a Harness bounds exactly one Agent and its Agent Loop (load, select, act, observe, evaluate, replan, stop). To the right, inside the Factory, sit Skills (loaded), Tools (invoked under a grant), Model (called), Context Package (frozen into the Attempt), and the Verifier, an independent Verification Attempt. Solid arrows show the control plane authorizing an Execution Profile and the Orchestrator dispatching one Work Graph node; dashed arrows carry Candidate plus Evidence to the Verifier and the verification result back to the control plane.</desc>
+<style>
+svg.fd{--fd-paper:#f3f1ea;--fd-surface:#faf9f5;--fd-ink:#171a18;--fd-muted:#59605a;--fd-line:#c9ccc4;
+--fd-intent-fill:#dce8ef;--fd-intent-stroke:#2f5f78;--fd-intent-text:#1f4557;
+--fd-control-fill:#e4e9ec;--fd-control-stroke:#4a5d68;--fd-control-text:#2f3f47;
+--fd-exec-fill:#f5e6d0;--fd-exec-stroke:#9a4f1c;--fd-exec-text:#6b3612;
+--fd-trust-fill:#dcefe4;--fd-trust-stroke:#1a654b;--fd-trust-text:#114735;
+--fd-learn-fill:#e9e2f4;--fd-learn-stroke:#5c3f8f;--fd-learn-text:#3f2a66;
+--fd-human:#b3261e;--fd-tint:.45}
+@media (prefers-color-scheme:dark){svg.fd{--fd-paper:#15191b;--fd-surface:#1d2326;--fd-ink:#ecebe4;--fd-muted:#a8b0aa;--fd-line:#3b433d;
+--fd-intent-fill:#1c3140;--fd-intent-stroke:#8ec1dc;--fd-intent-text:#cfe6f2;
+--fd-control-fill:#2a3438;--fd-control-stroke:#a8bcc6;--fd-control-text:#dbe5ea;
+--fd-exec-fill:#3b2812;--fd-exec-stroke:#e2a468;--fd-exec-text:#f5dcc0;
+--fd-trust-fill:#143326;--fd-trust-stroke:#7fd2a6;--fd-trust-text:#cdeedb;
+--fd-learn-fill:#2b2142;--fd-learn-stroke:#bfa5ea;--fd-learn-text:#e3d8f5;
+--fd-human:#ff8a80;--fd-tint:.35}}
+.bg{fill:var(--fd-paper)}
+text{font-family:"Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;fill:var(--fd-ink);font-size:16px}
+.mono{font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace}
+.title{font-size:34px;font-weight:600}
+.sub{font-size:18px;fill:var(--fd-muted)}
+.h{font-size:20px;font-weight:600}.h2{font-size:18px;font-weight:600}.h3{font-size:16px;font-weight:600}
+.b{font-size:16px}.s{font-size:15px;fill:var(--fd-muted)}.xs{font-size:14px;fill:var(--fd-muted)}
+.i{font-style:italic}.c{text-anchor:middle}.r{text-anchor:end}.strong{font-weight:600}
+.label{font-size:14px;fill:var(--fd-muted)}
+.tag{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace;fill:var(--fd-muted)}
+.box{stroke-width:2;rx:6}
+.intent{fill:var(--fd-intent-fill);stroke:var(--fd-intent-stroke)}
+.control{fill:var(--fd-control-fill);stroke:var(--fd-control-stroke)}
+.exec{fill:var(--fd-exec-fill);stroke:var(--fd-exec-stroke)}
+.trust{fill:var(--fd-trust-fill);stroke:var(--fd-trust-stroke)}
+.learn{fill:var(--fd-learn-fill);stroke:var(--fd-learn-stroke)}
+.neutral{fill:var(--fd-surface);stroke:var(--fd-muted)}
+.human{stroke:var(--fd-human)!important;stroke-width:3.5}
+.t-intent{fill:var(--fd-intent-text)}.t-control{fill:var(--fd-control-text)}.t-exec{fill:var(--fd-exec-text)}
+.t-trust{fill:var(--fd-trust-text)}.t-learn{fill:var(--fd-learn-text)}.t-human{fill:var(--fd-human)}
+.zone{stroke-width:2;rx:10;fill-opacity:var(--fd-tint)}
+.zone.dash{stroke-dasharray:8 6}
+.fl{fill:none;stroke:var(--fd-ink);stroke-width:2.5;marker-end:url(#m-ink)}
+.au{fill:none;stroke:var(--fd-control-stroke);stroke-width:3;marker-end:url(#m-au)}
+.ev{fill:none;stroke:var(--fd-trust-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ev)}
+.ln{fill:none;stroke:var(--fd-learn-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ln)}
+.rt{fill:none;stroke:var(--fd-muted);stroke-width:2;stroke-dasharray:5 5;marker-end:url(#m-mu)}
+.thin{stroke-width:1.5}
+.nomk{marker-end:none}
+.dot{fill:var(--fd-trust-stroke)}
+.lbg{fill:var(--fd-paper);stroke:none}
+.chip{stroke-width:2;rx:14}
+.mk-ink{fill:var(--fd-ink)}.mk-au{fill:var(--fd-control-stroke)}.mk-ev{fill:var(--fd-trust-stroke)}
+.mk-ln{fill:var(--fd-learn-stroke)}.mk-mu{fill:var(--fd-muted)}
+.hair{stroke:var(--fd-line);stroke-width:1.5;fill:none}
+.x{stroke:var(--fd-human);stroke-width:3;fill:none}
+</style>
+<defs>
+<marker id="m-ink" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ink" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-au" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-au" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ev" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ev" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ln" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ln" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-mu" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-mu" d="M0,1 L11,6 L0,11 z"/></marker>
+</defs>
+<rect class="bg" width="1600" height="900"/>
+<g id="header"><text x="60" y="76" class="title">Agent, Skill, Tool, Harness, Factory</text>
+<text x="60" y="108" class="sub">A Tool acts · a Skill packages a method · an Agent pursues a goal · a Harness is the envelope · a Factory turns intent into verified outcomes</text>
+<text x="1540" y="70" class="tag r">FDLC visual canon · D19</text></g>
+<g id="ecosystem"><rect x="60" y="135" width="1480" height="625" class="zone control dash"/><text x="76" y="161" class="h3 t-control">Factory Ecosystem — many factories under one enterprise control plane</text></g>
+<g id="control-plane">
+<rect x="80" y="172" width="1440" height="56" class="box control"/>
+<text x="800.0" y="205.6" class="h3 t-control c">Control Plane — identity · authority · policy · budgets · state · registries · decisions · emergency control</text>
+</g>
+<g id="factory"><rect x="80" y="262" width="1420" height="480" class="zone exec"/><text x="96" y="288" class="h3 t-exec">Factory — one immutable Factory Version FV-… (agents, skills, tools, routes, runtime, sandbox, verification, policy)</text></g>
+<g id="orchestrator">
+<rect x="100" y="300" width="230" height="130" class="box control"/>
+<text x="215.0" y="344.0" class="h2 t-control c">Orchestrator</text>
+<text x="215.0" y="363.4" class="xs c">advances the Work Graph</text>
+<text x="215.0" y="381.6" class="xs c">across agents, deterministic</text>
+<text x="215.0" y="399.8" class="xs c">steps, and human waits</text>
+</g>
+<g id="runtime"><rect x="360" y="300" width="760" height="420" class="zone exec dash"/><text x="376" y="326" class="h3 t-exec">Runtime — process lifecycle · leases · persistence · resume</text></g>
+<g id="sandbox"><rect x="384" y="340" width="712" height="360" class="zone exec dash"/><text x="400" y="366" class="h3 t-exec">Sandbox — filesystem · process · network · credentials · resources</text></g>
+<g id="harness"><rect x="408" y="380" width="664" height="300" class="zone exec"/><text x="424" y="406" class="h3 t-exec">Harness — operating envelope + loop controls for ONE agent</text></g>
+<g id="agent">
+<rect x="432" y="418" width="300" height="110" class="box exec"/>
+<text x="582.0" y="461.8" class="h t-exec c">Agent</text>
+<text x="582.0" y="481.8" class="xs c">reasoning + goal + tools</text>
+<text x="582.0" y="500.0" class="xs c">+ context + working state</text>
+</g>
+<g id="harness-note">
+<rect x="756" y="418" width="292" height="110" class="box neutral"/>
+<text x="902.0" y="451.3" class="h3 c">The Harness enforces locally:</text>
+<text x="902.0" y="470.1" class="xs c">budgets · stopping · recovery</text>
+<text x="902.0" y="488.3" class="xs c">telemetry · policy checks — never</text>
+<text x="902.0" y="506.5" class="xs c">enterprise authority</text>
+</g>
+<g id="agent-loop">
+<rect x="432" y="552" width="616" height="100" class="box exec"/>
+<text x="740.0" y="589.4" class="h2 t-exec c">Agent Loop</text>
+<text x="740.0" y="609.9" class="s c">load → select → act → observe → evaluate → replan → stop</text>
+<text x="740.0" y="628.4" class="xs c">runs inside one Work Graph node</text>
+</g>
+<g id="skills">
+<rect x="1200" y="372" width="280" height="60" class="box exec"/>
+<text x="1340.0" y="399.2" class="h2 t-exec c">Skills</text>
+<text x="1340.0" y="418.6" class="xs c">versioned procedures loaded in context</text>
+</g>
+<path id="a-harness-skills" d="M1072,402 L1200,402" class="fl"/>
+<text x="1160" y="394" class="label c">loads</text>
+<g id="tools">
+<rect x="1200" y="444" width="280" height="60" class="box exec"/>
+<text x="1340.0" y="471.2" class="h2 t-exec c">Tools</text>
+<text x="1340.0" y="490.6" class="xs c">capabilities invoked under a grant</text>
+</g>
+<path id="a-harness-tools" d="M1072,474 L1200,474" class="fl"/>
+<text x="1160" y="466" class="label c">invokes</text>
+<g id="model">
+<rect x="1200" y="516" width="280" height="60" class="box exec"/>
+<text x="1340.0" y="543.2" class="h2 t-exec c">Model</text>
+<text x="1340.0" y="562.6" class="xs c">inference resource — replaceable</text>
+</g>
+<path id="a-harness-model" d="M1072,546 L1200,546" class="fl"/>
+<text x="1160" y="538" class="label c">calls</text>
+<g id="context-package">
+<rect x="1200" y="588" width="280" height="60" class="box exec"/>
+<text x="1340.0" y="615.2" class="h2 t-exec c">Context Package</text>
+<text x="1340.0" y="634.6" class="xs c">frozen · advisory · never evidence</text>
+</g>
+<path id="a-context-package-harness" d="M1200,618 L1072,618" class="fl"/>
+<text x="1160" y="610" class="label c">frozen in</text>
+<g id="verifier">
+<rect x="1200" y="672" width="280" height="60" class="box trust"/>
+<text x="1340.0" y="699.2" class="h2 t-trust c">Verifier</text>
+<text x="1340.0" y="718.6" class="xs c">independent Verification Attempt</text>
+</g>
+<path id="a-cp-orch" d="M215,228 L215,300" class="au"/>
+<text x="228" y="250" class="label">authorizes an Execution Profile</text>
+<path id="a-orch-harness" d="M215,430 L215,470 L408,470" class="fl"/>
+<text x="110" y="494" class="label">dispatches one Work Graph node</text>
+<path id="a-harness-verifier" d="M1072,664 L1200,702" class="ev"/>
+<text x="1152" y="662" class="label c">Candidate + Evidence</text>
+<path id="a-verifier-cp" d="M1480,702 L1512,702 L1512,228" class="ev"/>
+<text x="1500" y="250" class="label r">verification result → control plane</text>
+<text x="60" y="790" class="xs">A Tool acts. A Skill packages a method. An Agent pursues a goal; its Agent Loop is how it makes progress. The Harness is the envelope it operates in. The Orchestrator advances work across agents and time.</text>
+<text x="60" y="812" class="xs">The Runtime hosts execution. The Sandbox contains its effects. The Factory is the governed system that turns intent into verified outcomes. Categorize by responsibility at the boundary, not by marketing name.</text>
+<g id="legend">
+<rect x="60" y="847" width="26" height="16" class="box intent" rx="3"/>
+<text x="94" y="860" class="xs">Intent</text>
+<rect x="155.28" y="847" width="26" height="16" class="box control" rx="3"/>
+<text x="189.28" y="860" class="xs">Control</text>
+<rect x="260.08000000000004" y="847" width="26" height="16" class="box exec" rx="3"/>
+<text x="294.08000000000004" y="860" class="xs">Execution</text>
+<rect x="383.36000000000007" y="847" width="26" height="16" class="box trust" rx="3"/>
+<text x="417.36000000000007" y="860" class="xs">Trust</text>
+<rect x="476.4000000000001" y="847" width="26" height="16" class="box learn" rx="3"/>
+<text x="510.4000000000001" y="860" class="xs">Learning</text>
+<rect x="592.1200000000001" y="847" width="26" height="16" class="box neutral human" rx="3"/>
+<text x="626.1200000000001" y="860" class="xs">Human authority</text>
+<path d="M765.1600000000001,855 L809.1600000000001,855" class="au"/><text x="819.1600000000001" y="860" class="xs">authority / flow (solid)</text>
+<path d="M987.4000000000001,855 L1031.4,855" class="ev"/><text x="1041.4" y="860" class="xs">evidence (dashed, back)</text>
+<path d="M1221.1200000000001,855 L1265.1200000000001,855" class="ln"/><text x="1275.1200000000001" y="860" class="xs">learning (dashed)</text>
+</g>
+</svg>

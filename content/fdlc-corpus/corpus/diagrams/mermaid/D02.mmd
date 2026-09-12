@@ -1,0 +1,30 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D02 Delivery Loop (inner loop, ten steps)
+%% Type: flow · Hero SVG: svg/D02.svg · Page: /framework/delivery-loop
+flowchart LR
+  S1["1 Receive<br/>What outcome matters?<br/>→ Intent"] --> S2["2 Specify<br/>What must be true?<br/>→ Specification"]
+  S2 --> S3["3 Plan<br/>How will the factory achieve it?<br/>→ Plan · Work Orders"]
+  S3 --> S4["4 Route<br/>Which factory, version, profile?<br/>→ Routing Decision · bound Work Order"]
+  S4 --> S5["5 Execute<br/>What exactly ran?<br/>→ Context Package · Attempt · Candidate · Evidence"]
+  S5 --> S6["6 Verify<br/>Does evidence satisfy the spec?<br/>→ Verification (independent)"]
+  S6 --> S7["7 Approve<br/>May this consequence proceed?<br/>→ Decision (acceptance)"]:::human
+  S7 --> S8["8 Release<br/>What was promoted?<br/>→ Release"]
+  S8 --> S9["9 Observe<br/>Did the result hold in reality?<br/>→ Outcome"]
+  S9 --> S10["10 Learn<br/>What should change in the factory?<br/>→ Learning Signal · Improvement Candidate"]
+  S6 -- "fail / stale" --> S5
+  S7 -- "reject / revise" --> S3
+  S10 -. "to Factory Lifecycle · Improve" .-> FL[("Factory Lifecycle")]
+  NC["Execution complete ≠ Verified ≠ Approved ≠ Released ≠ Outcome proven"]:::neutral
+  class S1,S2,S3 intent
+  class S4 control
+  class S5 execution
+  class S6,S7,S8,S9 trust
+  class S10,FL learning
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

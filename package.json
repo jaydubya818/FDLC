@@ -6,27 +6,48 @@
     "node": ">=22.13.0"
   },
   "scripts": {
+    "corpus:sync": "node --experimental-strip-types scripts/corpus/taxonomy.ts --write && node --experimental-strip-types scripts/corpus/generate.ts --write",
+    "corpus:verify": "node --experimental-strip-types scripts/corpus/taxonomy.ts --check && node --experimental-strip-types scripts/corpus/generate.ts --check",
     "dev": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext dev",
+    "prebuild": "npm run corpus:verify",
     "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
     "microfrontends:check": "node scripts/check-microfrontends-config.mjs",
-    "prebuild:vercel": "npm run microfrontends:check",
+    "prebuild:vercel": "npm run corpus:verify && npm run microfrontends:check",
     "build:vercel": "next build",
     "postbuild:vercel": "node scripts/check-built-design-system.mjs",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
     "test": "npm run test:unit && npm run build && node --test tests/rendered-html.test.mjs",
+    "pretest:next": "npm run corpus:verify",
     "test:next": "next build --webpack && npm run test:next-runtime",
     "test:next-runtime": "node scripts/check-next-runtime.mjs",
+    "pretest:unit": "npm run corpus:verify",
     "test:unit": "node --experimental-strip-types --test tests/unit/**/*.test.ts",
+    "pretypecheck": "npm run corpus:verify",
     "typecheck": "next typegen && tsc --noEmit && npm run typecheck --prefix packages/fab",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "test:browser": "node tests/browser.mjs",
-    "test:browser:vercel": "node tests/browser.mjs next"
+    "test:browser:vercel": "node tests/browser.mjs next",
+    "pretest:corpus-browser": "npm run corpus:verify",
+    "test:corpus-browser": "node tests/corpus-browser.mjs",
+    "pretest:corpus-browser:vercel": "npm run corpus:verify",
+    "test:corpus-browser:vercel": "node tests/corpus-browser.mjs next"
   },
   "dependencies": {
     "@vercel/microfrontends": "2.4.0",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "github-slugger": "2.0.0",
+    "gray-matter": "4.0.3",
+    "mermaid": "11.17.2",
     "next": "16.3.4",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "react-markdown": "10.1.0",
+    "remark-gfm": "4.0.1",
+    "remark-parse": "11.0.0",
+    "unified": "11.0.5",
+    "unist-util-visit": "5.1.0",
+    "yaml": "2.9.1"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.54.4",
@@ -53,6 +74,9 @@
     "vinext": "1.0.0-beta.9",
     "vite": "8.2.2",
     "wrangler": "4.129.0"
+  },
+  "overrides": {
+    "lodash-es": "4.18.1"
   },
   "type": "module"
 }

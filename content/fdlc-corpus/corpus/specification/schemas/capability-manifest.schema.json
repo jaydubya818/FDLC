@@ -1,0 +1,1815 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fdlc.ai/schemas/v1/capability-manifest.schema.json",
+  "title": "FDLC Capability Manifest",
+  "description": "Registry entry for a Capability Implementation. Kinds: agent, skill, tool, model-route, harness, verifier, context-source. Carries identity, version, permissions, qualification, evidence, deprecation. The `spec` object is kind-specific (Skill Manifest, Tool Manifest, ...).",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "type": {
+      "type": "string",
+      "const": "fdlc://v1/capability-manifest"
+    },
+    "id": {
+      "$ref": "#/$defs/Id",
+      "description": "CAP-<kind>-<name>-<semver>."
+    },
+    "namespace": {
+      "$ref": "#/$defs/Namespace"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "agent",
+        "skill",
+        "tool",
+        "model-route",
+        "harness",
+        "verifier",
+        "context-source"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._/-]{1,127}$"
+    },
+    "version": {
+      "$ref": "#/$defs/Semver"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Provider-independent capability ids this implementation realizes."
+    },
+    "owner": {
+      "$ref": "#/$defs/Actor"
+    },
+    "publisher": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "sourceRepository": {
+          "type": "string"
+        },
+        "sourcePath": {
+          "type": "string"
+        },
+        "sourceCommit": {
+          "$ref": "#/$defs/GitSha"
+        },
+        "contentDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "buildProvenanceRef": {
+          "type": "string",
+          "description": "SLSA provenance attestation reference."
+        },
+        "signatureRef": {
+          "type": "string"
+        },
+        "sbomRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "contentDigest"
+      ],
+      "additionalProperties": false
+    },
+    "compatibility": {
+      "type": "object",
+      "properties": {
+        "harnesses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "models": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "runtimes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "backends": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sdk": {
+          "type": "object",
+          "properties": {
+            "package": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "digest": {
+              "$ref": "#/$defs/Digest"
+            }
+          },
+          "required": [
+            "package",
+            "version"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "permissions": {
+      "type": "object",
+      "description": "What invoking this implementation may require or cause. Permission is not authority.",
+      "properties": {
+        "required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "credentialClasses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "networkDestinations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "filesystem": {
+          "type": "string",
+          "enum": [
+            "NONE",
+            "READ",
+            "WRITE_WORKTREE"
+          ]
+        },
+        "maxSideEffectClass": {
+          "$ref": "#/$defs/SideEffectClass"
+        }
+      },
+      "required": [
+        "maxSideEffectClass"
+      ],
+      "additionalProperties": false
+    },
+    "security": {
+      "type": "object",
+      "properties": {
+        "scanStatus": {
+          "type": "string",
+          "enum": [
+            "UNSCANNED",
+            "PASSED",
+            "FAILED",
+            "QUARANTINED"
+          ]
+        },
+        "scannedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "injectionSafetyReviewed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "scanStatus"
+      ],
+      "additionalProperties": false
+    },
+    "qualification": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNQUALIFIED",
+            "EVIDENCE_QUALIFIED"
+          ]
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "qualificationRecordId": {
+                "$ref": "#/$defs/Id"
+              },
+              "digest": {
+                "$ref": "#/$defs/Digest"
+              },
+              "scope": {
+                "type": "string"
+              },
+              "expiresAt": {
+                "$ref": "#/$defs/Timestamp"
+              }
+            },
+            "required": [
+              "qualificationRecordId"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "expiresAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "status",
+        "records"
+      ],
+      "additionalProperties": false
+    },
+    "evidenceIds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Id"
+      }
+    },
+    "deprecation": {
+      "type": "object",
+      "properties": {
+        "deprecated": {
+          "type": "boolean"
+        },
+        "replacementId": {
+          "$ref": "#/$defs/Id"
+        },
+        "sunsetAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "deprecated"
+      ],
+      "additionalProperties": false
+    },
+    "spec": {
+      "type": "object",
+      "description": "Kind-specific manifest (see allOf)."
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "PUBLISHED",
+        "QUALIFIED",
+        "DEPRECATED",
+        "REVOKED",
+        "RETIRED"
+      ]
+    },
+    "digest": {
+      "$ref": "#/$defs/Digest",
+      "description": "Digest over (kind, name, version, provenance.contentDigest, permissions, spec). Immutable after PUBLISHED."
+    },
+    "publishedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "createdAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "createdBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Transition"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "type",
+    "id",
+    "namespace",
+    "kind",
+    "name",
+    "version",
+    "description",
+    "owner",
+    "provenance",
+    "permissions",
+    "security",
+    "qualification",
+    "deprecation",
+    "spec",
+    "state",
+    "digest",
+    "createdAt",
+    "createdBy"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "skill"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "$ref": "#/$defs/SkillManifest"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "tool"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "$ref": "#/$defs/ToolManifest"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "agent"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "$ref": "#/$defs/AgentDefinition"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "model-route"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "$ref": "#/$defs/ModelRouteManifest"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "harness"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "$ref": "#/$defs/HarnessManifest"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "verifier"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "$ref": "#/$defs/VerifierManifest"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "context-source"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "spec": {
+            "$ref": "#/$defs/ContextSourceManifest"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "PUBLISHED",
+              "QUALIFIED",
+              "DEPRECATED",
+              "REVOKED",
+              "RETIRED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "publishedAt"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "QUALIFIED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "qualification": {
+            "properties": {
+              "status": {
+                "const": "EVIDENCE_QUALIFIED"
+              },
+              "records": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]*$",
+      "description": "Instance identifier. Unique within the issuing namespace; combined with `namespace` it is globally unique."
+    },
+    "ArtifactUri": {
+      "type": "string",
+      "pattern": "^fdlc://v1/(intent|specification|plan|work-order|factory-manifest|factory-version|execution-profile|capability-manifest|qualification-record|context-package|attempt|candidate|evidence|verification|decision|release|outcome|learning-signal|improvement-candidate)(/[A-Za-z0-9][A-Za-z0-9._:@-]*)?$",
+      "description": "Artifact type URI (`fdlc://v1/<artifact>`), optionally suffixed with an instance id."
+    },
+    "Namespace": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the issuing control plane or organization. Scopes every `id` in this record."
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 over the RFC 8785 (JCS) canonical JSON of the digested projection."
+    },
+    "GitSha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$|^[a-f0-9]{64}$",
+      "description": "Lowercase full Git object id (SHA-1 or SHA-256 repository)."
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp in UTC."
+    },
+    "Semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "RiskClass": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "AutonomyLevel": {
+      "type": "string",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "description": "HITL spectrum position. Effective autonomy is min(factory, objective, work order, policy, trust)."
+    },
+    "Actor": {
+      "type": "object",
+      "description": "Attributable identity. `identitySource` says how the control plane established it; never inferred from a client label.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "policy",
+            "service",
+            "agent",
+            "system"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "identitySource": {
+          "type": "string",
+          "enum": [
+            "authenticated",
+            "workload-identity",
+            "service-command",
+            "development-fallback"
+          ]
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "delegationRef": {
+          "$ref": "#/$defs/Id",
+          "description": "Reference to the delegation record that grants this actor its authority."
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "identitySource"
+      ],
+      "additionalProperties": false
+    },
+    "Ref": {
+      "type": "object",
+      "description": "Reference to another FDLC artifact instance, optionally pinned to a digest.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/ArtifactUri"
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "revisionNumber": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false
+    },
+    "CostRecord": {
+      "type": "object",
+      "description": "Cost with an honesty class. UNKNOWN cost stays UNKNOWN; implementations MUST NOT invent zeroes.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "ESTIMATED",
+            "UNKNOWN"
+          ]
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of contributing cost items that were measured."
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "Transition": {
+      "type": "object",
+      "description": "Audit record of one authoritative state transition. Every field listed here MUST be recorded.",
+      "properties": {
+        "transitionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "priorVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fromState": {
+          "type": "string"
+        },
+        "toState": {
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "occurredAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "requiredEvidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "decisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "invalidatedDependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ref"
+          }
+        }
+      },
+      "required": [
+        "subjectId",
+        "fromState",
+        "toState",
+        "actor",
+        "reason",
+        "idempotencyKey",
+        "occurredAt"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "description": "Content-addressed reference to a stored artifact (diff, log, screenshot, bundle).",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/Id"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactId",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "SideEffectClass": {
+      "type": "string",
+      "enum": [
+        "READ_ONLY",
+        "WRITE_LOCAL",
+        "WRITE_REMOTE",
+        "DESTRUCTIVE",
+        "PUBLISH",
+        "FINANCIAL"
+      ]
+    },
+    "Support": {
+      "type": "string",
+      "enum": [
+        "SUPPORTED",
+        "PARTIAL",
+        "UNSUPPORTED"
+      ]
+    },
+    "SkillManifest": {
+      "type": "object",
+      "description": "A reusable, versioned, domain-specific procedure or playbook loaded into an agent's context by the harness.",
+      "properties": {
+        "skillType": {
+          "type": "string",
+          "enum": [
+            "PROCEDURE",
+            "PLAYBOOK",
+            "RULES",
+            "PROMPT_TEMPLATE",
+            "WORKFLOW",
+            "TOOL_GUIDE",
+            "ARCHITECTURE_GUIDE",
+            "EVALUATION_GUIDE"
+          ]
+        },
+        "content": {
+          "type": "object",
+          "properties": {
+            "format": {
+              "type": "string"
+            },
+            "contentDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "sizeBytes": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "storageRef": {
+              "type": "string"
+            },
+            "entrypoint": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "format",
+            "contentDigest",
+            "sizeBytes"
+          ],
+          "additionalProperties": false
+        },
+        "applicability": {
+          "type": "object",
+          "properties": {
+            "workTypes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "languages": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "pathPatterns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "triggers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "capabilityId": {
+                "$ref": "#/$defs/Id"
+              },
+              "range": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "capabilityId",
+              "range"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "requiredTools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "capabilityId": {
+                "$ref": "#/$defs/Id"
+              },
+              "operations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "capabilityId",
+              "operations"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "automationProfile": {
+          "type": "object",
+          "description": "Deterministic-execution contract if this skill can be converted to code."
+        },
+        "evaluation": {
+          "type": "object",
+          "properties": {
+            "scenarioSuiteId": {
+              "$ref": "#/$defs/Id"
+            },
+            "suiteDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "lastResult": {
+              "type": "string",
+              "enum": [
+                "PASS",
+                "WARN",
+                "FAIL",
+                "INVALID",
+                "NOT_RUN"
+              ]
+            },
+            "lastRunAt": {
+              "$ref": "#/$defs/Timestamp"
+            }
+          },
+          "required": [
+            "lastResult"
+          ],
+          "additionalProperties": false
+        },
+        "grantsAuthority": {
+          "type": "boolean",
+          "const": false,
+          "description": "A skill supplies material to reason with; it never grants authority."
+        }
+      },
+      "required": [
+        "skillType",
+        "content",
+        "applicability",
+        "dependencies",
+        "requiredTools",
+        "evaluation",
+        "grantsAuthority"
+      ],
+      "additionalProperties": false
+    },
+    "ToolOperation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "inputSchemaDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "outputSchemaDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "sideEffectClass": {
+          "$ref": "#/$defs/SideEffectClass"
+        },
+        "idempotent": {
+          "type": "boolean"
+        },
+        "requiredPermissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "commandClass": {
+          "type": "string"
+        },
+        "rateLimit": {
+          "type": "object",
+          "properties": {
+            "calls": {
+              "type": "integer"
+            },
+            "perSeconds": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "inputSchemaDigest",
+        "sideEffectClass",
+        "idempotent",
+        "requiredPermissions"
+      ],
+      "additionalProperties": false
+    },
+    "ToolManifest": {
+      "type": "object",
+      "description": "A capability the agent may invoke (API, CLI, MCP operation) under a grant. Discovery is descriptive input, never authority.",
+      "properties": {
+        "operations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/ToolOperation"
+          }
+        },
+        "sideEffectClass": {
+          "$ref": "#/$defs/SideEffectClass",
+          "description": "Maximum over operations."
+        },
+        "grants": {
+          "type": "object",
+          "properties": {
+            "model": {
+              "type": "string",
+              "enum": [
+                "PER_OPERATION_EXPIRING"
+              ]
+            },
+            "defaultTtlSeconds": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "revocationMode": {
+              "type": "string",
+              "enum": [
+                "DENY_NEW_CALLS"
+              ]
+            },
+            "absentGrantMeans": {
+              "type": "string",
+              "const": "NO_TOOL_CAPABILITY"
+            },
+            "receiptPhases": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "AUTHORIZATION",
+                  "COMPLETION"
+                ]
+              },
+              "minItems": 2
+            }
+          },
+          "required": [
+            "model",
+            "defaultTtlSeconds",
+            "revocationMode",
+            "absentGrantMeans",
+            "receiptPhases"
+          ],
+          "additionalProperties": false
+        },
+        "mcpBinding": {
+          "type": "object",
+          "properties": {
+            "serverKey": {
+              "type": "string"
+            },
+            "serverVersion": {
+              "type": "string"
+            },
+            "transport": {
+              "type": "string",
+              "enum": [
+                "stdio",
+                "streamable-http",
+                "sse"
+              ]
+            },
+            "implementationDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "inputSchemaDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "broker": {
+              "type": "string",
+              "enum": [
+                "GOVERNED_BROKER",
+                "DIRECT"
+              ]
+            },
+            "outputTrust": {
+              "type": "string",
+              "const": "UNTRUSTED_CONTENT"
+            }
+          },
+          "required": [
+            "serverKey",
+            "serverVersion",
+            "transport",
+            "implementationDigest",
+            "inputSchemaDigest",
+            "broker",
+            "outputTrust"
+          ],
+          "additionalProperties": false
+        },
+        "nativeBinding": {
+          "type": "object",
+          "properties": {
+            "executable": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "digest": {
+              "$ref": "#/$defs/Digest"
+            }
+          },
+          "required": [
+            "executable",
+            "version",
+            "digest"
+          ],
+          "additionalProperties": false
+        },
+        "poisoningDetection": {
+          "type": "boolean"
+        },
+        "redaction": {
+          "$ref": "#/$defs/Support"
+        }
+      },
+      "required": [
+        "operations",
+        "sideEffectClass",
+        "grants"
+      ],
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": [
+            "mcpBinding"
+          ]
+        },
+        {
+          "required": [
+            "nativeBinding"
+          ]
+        }
+      ]
+    },
+    "AgentDefinition": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "promptBundleDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "toolManifestDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "modelRouteId": {
+          "type": "string"
+        },
+        "genomeDigest": {
+          "$ref": "#/$defs/Digest",
+          "description": "Digest over (modelConfig, promptBundleDigest, toolManifestDigest)."
+        },
+        "skillIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "allowedToolIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "loopLimits": {
+          "type": "object",
+          "properties": {
+            "maxTurns": {
+              "type": "integer"
+            },
+            "maxToolCalls": {
+              "type": "integer"
+            },
+            "maxTokens": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        },
+        "outputContract": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "role",
+        "promptBundleDigest",
+        "toolManifestDigest",
+        "modelRouteId",
+        "genomeDigest"
+      ],
+      "additionalProperties": false
+    },
+    "ModelRouteManifest": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "modelId": {
+          "type": "string"
+        },
+        "tier": {
+          "type": "string",
+          "enum": [
+            "FRONTIER",
+            "WORKHORSE",
+            "SMALL",
+            "LOCAL"
+          ]
+        },
+        "reasoningConfig": {
+          "type": "object",
+          "properties": {
+            "temperature": {
+              "type": "number"
+            },
+            "maxTokens": {
+              "type": "integer"
+            },
+            "effort": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "modelCapabilities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "contextWindowTokens": {
+          "type": "integer"
+        },
+        "runtimeIdentity": {
+          "type": "object",
+          "properties": {
+            "gateway": {
+              "type": "string"
+            },
+            "apiVersion": {
+              "type": "string"
+            },
+            "modelArtifactDigest": {
+              "$ref": "#/$defs/Digest"
+            }
+          },
+          "additionalProperties": false
+        },
+        "costPolicyDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "routeDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "availability": {
+          "type": "string",
+          "enum": [
+            "HEALTHY",
+            "DEGRADED",
+            "RATE_LIMITED",
+            "UNAVAILABLE"
+          ]
+        }
+      },
+      "required": [
+        "provider",
+        "modelId",
+        "tier",
+        "routeDigest"
+      ],
+      "additionalProperties": false
+    },
+    "HarnessManifest": {
+      "type": "object",
+      "description": "Truthful declaration of what an Agent Harness adapter supports, what it must not hold, and what the control plane must supply around it.",
+      "properties": {
+        "identity": {
+          "type": "object",
+          "properties": {
+            "harnessId": {
+              "type": "string"
+            },
+            "harnessVersion": {
+              "type": "string"
+            },
+            "harnessCommit": {
+              "type": "string"
+            },
+            "adapterId": {
+              "type": "string"
+            },
+            "adapterVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "harnessId",
+            "harnessVersion",
+            "adapterId",
+            "adapterVersion"
+          ],
+          "additionalProperties": false
+        },
+        "effectiveConfigDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "runtimeArtifact": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "EXECUTABLE",
+                "CONTAINER_IMAGE"
+              ]
+            },
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "digest": {
+              "$ref": "#/$defs/Digest"
+            }
+          },
+          "required": [
+            "kind",
+            "name",
+            "version",
+            "digest"
+          ],
+          "additionalProperties": false
+        },
+        "models": {
+          "type": "object",
+          "properties": {
+            "providerSelection": {
+              "$ref": "#/$defs/Support"
+            },
+            "modelSelection": {
+              "$ref": "#/$defs/Support"
+            },
+            "reasoningControls": {
+              "$ref": "#/$defs/Support"
+            },
+            "supported": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "provider": {
+                    "type": "string"
+                  },
+                  "modelId": {
+                    "type": "string"
+                  },
+                  "selection": {
+                    "type": "string",
+                    "enum": [
+                      "ADVERTISED",
+                      "PASSTHROUGH"
+                    ]
+                  }
+                },
+                "required": [
+                  "provider",
+                  "modelId",
+                  "selection"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "filesystem": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Support"
+          }
+        },
+        "shell": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Support"
+          }
+        },
+        "git": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "$ref": "#/$defs/Support"
+            },
+            "diff": {
+              "$ref": "#/$defs/Support"
+            },
+            "commit": {
+              "$ref": "#/$defs/Support"
+            },
+            "branch": {
+              "$ref": "#/$defs/Support"
+            },
+            "remotePublication": {
+              "type": "string",
+              "const": "UNSUPPORTED"
+            }
+          },
+          "required": [
+            "remotePublication"
+          ],
+          "additionalProperties": false
+        },
+        "tools": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Support"
+          }
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Support"
+          }
+        },
+        "headless": {
+          "type": "object",
+          "properties": {
+            "support": {
+              "$ref": "#/$defs/Support"
+            },
+            "mode": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "support"
+          ],
+          "additionalProperties": false
+        },
+        "cancellation": {
+          "type": "object",
+          "properties": {
+            "support": {
+              "$ref": "#/$defs/Support"
+            },
+            "mode": {
+              "type": "string"
+            },
+            "idempotentCleanup": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "support",
+            "idempotentCleanup"
+          ],
+          "additionalProperties": false
+        },
+        "sandbox": {
+          "type": "object",
+          "properties": {
+            "isolationModes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "READ_ONLY",
+                  "WORKSPACE_WRITE"
+                ]
+              }
+            },
+            "externalSandboxRecommended": {
+              "type": "boolean"
+            },
+            "requirements": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "isolationModes"
+          ],
+          "additionalProperties": false
+        },
+        "network": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "credentials": {
+          "type": "object",
+          "properties": {
+            "classes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "passedToToolProcesses": {
+              "type": "boolean"
+            },
+            "redaction": {
+              "$ref": "#/$defs/Support"
+            }
+          },
+          "additionalProperties": false
+        },
+        "telemetry": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Support"
+          }
+        },
+        "resultContract": {
+          "type": "string",
+          "const": "factory-result/v1"
+        },
+        "admission": {
+          "type": "object",
+          "properties": {
+            "maturity": {
+              "type": "string",
+              "enum": [
+                "EXPERIMENTAL",
+                "PILOT",
+                "PRODUCTION"
+              ]
+            },
+            "executionBackends": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
+            },
+            "requiredExternalControls": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "allOf": [
+                {
+                  "contains": {
+                    "const": "canonical-worker-lease"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "sandbox-policy"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "repository-scope-reconciliation"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "independent-verification"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "publication-permit"
+                  }
+                }
+              ]
+            },
+            "prohibitedAuthorities": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "allOf": [
+                {
+                  "contains": {
+                    "const": "worker-leases"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "verification-subjects"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "verification-plans"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "evidence-authority"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "publication"
+                  }
+                },
+                {
+                  "contains": {
+                    "const": "acceptance"
+                  }
+                }
+              ]
+            },
+            "unattendedModeAdmitted": {
+              "type": "boolean",
+              "const": false
+            }
+          },
+          "required": [
+            "maturity",
+            "executionBackends",
+            "requiredExternalControls",
+            "prohibitedAuthorities",
+            "unattendedModeAdmitted"
+          ],
+          "additionalProperties": false
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "identity",
+        "effectiveConfigDigest",
+        "runtimeArtifact",
+        "git",
+        "headless",
+        "cancellation",
+        "sandbox",
+        "resultContract",
+        "admission",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "VerifierManifest": {
+      "type": "object",
+      "properties": {
+        "verifierType": {
+          "type": "string",
+          "enum": [
+            "DETERMINISTIC",
+            "STATIC_ANALYSIS",
+            "DYNAMIC_ANALYSIS",
+            "SECURITY_SCAN",
+            "POLICY",
+            "MODEL_JUDGE",
+            "HUMAN",
+            "EXTERNAL"
+          ]
+        },
+        "checkCategories": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidenceCategories": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "independenceClass": {
+          "type": "string",
+          "enum": [
+            "SEPARATE_ATTEMPT",
+            "SEPARATE_FACTORY",
+            "SEPARATE_MODEL_FAMILY",
+            "HUMAN"
+          ]
+        },
+        "deterministic": {
+          "type": "boolean"
+        },
+        "measuredFalseSuccessRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "measuredFalseFailureRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "calibrationSuiteId": {
+          "$ref": "#/$defs/Id"
+        },
+        "acceptanceAuthority": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "required": [
+        "verifierType",
+        "checkCategories",
+        "evidenceCategories",
+        "independenceClass",
+        "deterministic",
+        "acceptanceAuthority"
+      ],
+      "additionalProperties": false
+    },
+    "ContextSourceManifest": {
+      "type": "object",
+      "properties": {
+        "sourceType": {
+          "type": "string",
+          "enum": [
+            "REPOSITORY",
+            "DOCUMENTATION",
+            "KNOWLEDGE_GRAPH",
+            "VECTOR_INDEX",
+            "ISSUE_TRACKER",
+            "RUNBOOK",
+            "API"
+          ]
+        },
+        "freshnessPolicy": {
+          "type": "object",
+          "properties": {
+            "maxAgeHours": {
+              "type": "integer"
+            },
+            "revisionTracked": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "authorizationModel": {
+          "type": "string",
+          "enum": [
+            "SUBJECT_IDENTITY",
+            "FACTORY_IDENTITY"
+          ]
+        },
+        "classificationCeiling": {
+          "type": "string",
+          "enum": [
+            "PUBLIC",
+            "INTERNAL",
+            "CONFIDENTIAL",
+            "RESTRICTED"
+          ]
+        },
+        "provenanceRequired": {
+          "type": "boolean",
+          "const": true
+        },
+        "retrievalContract": {
+          "type": "object",
+          "properties": {
+            "maxItems": {
+              "type": "integer"
+            },
+            "maxTokens": {
+              "type": "integer"
+            },
+            "strategies": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "trust": {
+          "type": "string",
+          "const": "UNTRUSTED_DATA"
+        }
+      },
+      "required": [
+        "sourceType",
+        "authorizationModel",
+        "classificationCeiling",
+        "provenanceRequired",
+        "trust"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[a-z0-9]+(-[a-z0-9]+)*$": {}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,30 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D04 Two loops relationship (Factory Lifecycle hosts the Delivery Loop)
+%% Type: flow · Hero SVG: svg/D04.svg · Page: /framework, /framework/factory-lifecycle
+flowchart TB
+  subgraph OUTER["Factory Lifecycle (outer) — how a factory comes to exist, earns trust, and changes"]
+    direction LR
+    O1[Discover] --> O2[Define] --> O3[Design] --> O4[Assemble] --> O5[Qualify] --> O6[Deploy] --> O7[Operate] --> O8[Improve]
+  end
+  subgraph INNER["Delivery Loop (inner) — how one unit of intent becomes a verified outcome"]
+    direction LR
+    I1[Receive] --> I2[Specify] --> I3[Plan] --> I4[Route] --> I5[Execute] --> I6[Verify] --> I7[Approve] --> I8[Release] --> I9[Observe] --> I10[Learn]
+  end
+  O7 -- "runs inside an Active Factory Version" --> INNER
+  I10 -. "Learning Signals" .-> O8
+  O8 -. "new Factory Version via Qualify → Deploy" .-> O5
+  N["Deploy promotes a Factory Version. Release promotes a software artifact.<br/>Neither transition creates its own authority."]:::neutral
+  class O1,O2,O3,I1,I2,I3 intent
+  class I4 control
+  class O4,O7,I5 execution
+  class O5,O6,I6,I7,I8,I9 trust
+  class O8,I10 learning
+  class I7,O6 human
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

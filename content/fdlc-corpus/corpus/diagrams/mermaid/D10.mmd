@@ -1,0 +1,29 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D10 Three-level routing
+%% Type: flow · Hero SVG: svg/D10.svg · Page: /architecture/routing
+flowchart TB
+  OBJ["Objective"] --> L1["Level 1 — Objective routing<br/>Objective Planner (control plane)"]
+  L1 --> CAP["Required capabilities → factory set<br/>+ dependency graph across Work Orders"]
+  CAP --> WO["Work Order"]
+  WO --> L2["Level 2 — Work Order routing<br/>Factory Router"]
+  L2 --> ELIG["Eligibility filter (before ranking)<br/>policy · authorization · compatibility · qualification · authority"]
+  ELIG -- "eligible set" --> RANK["Rank by evidence<br/>quality · reliability · latency · cost per verified outcome"]
+  ELIG -- "empty set" --> BLOCK["Blocked / escalate<br/>never relax a gate · critical never auto-routed"]:::human
+  RANK --> FV["qualified Factory Version + Execution Profile<br/>(immutable composition)"]
+  FV --> SCHED["Scheduling — a separate decision<br/>capacity · fairness · leases"]
+  SCHED --> TASK["Task"]
+  TASK --> L3["Level 3 — Task routing<br/>Capability Router inside the factory"]
+  L3 --> RES["model route · skill · tool · runtime · sandbox · provider<br/>within the Execution Profile's admitted set"]
+  RES --> ATT["Attempt with frozen routing snapshot"]
+  class OBJ,WO,TASK intent
+  class L1,CAP,L2,ELIG,RANK,SCHED,L3 control
+  class FV,RES,ATT execution
+  class BLOCK trust
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

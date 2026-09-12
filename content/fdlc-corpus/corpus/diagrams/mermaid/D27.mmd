@@ -1,0 +1,36 @@
+%% D27 Work Order lifecycle (state machine)
+%% Type: state · Page: /specification/v1/work-order
+stateDiagram-v2
+  [*] --> DRAFT
+  DRAFT --> READY: released from approved Plan
+  READY --> ROUTED: routing Decision binds Factory Version + Execution Profile
+  ROUTED --> DISPATCHED: Attempt admitted under fenced lease
+  DISPATCHED --> IN_PROGRESS: Attempt RUNNING
+  IN_PROGRESS --> AWAITING_APPROVAL: Attempt PAUSED for human decision
+  AWAITING_APPROVAL --> IN_PROGRESS: decision recorded, same Attempt resumes
+  IN_PROGRESS --> AWAITING_VERIFICATION: producer Attempt COMPLETED, Candidate frozen
+  AWAITING_VERIFICATION --> IN_PROGRESS: NOT_VERIFIED → corrective Attempt
+  AWAITING_VERIFICATION --> DONE: acceptance Decision on current evidence
+  IN_PROGRESS --> BLOCKED: Attempt FAILED / budget fence / policy denial
+  BLOCKED --> ROUTED: blocker resolved, new Attempt
+  DONE --> REOPENED: reopen Decision (invalidates affected evidence)
+  REOPENED --> ROUTED: new revision routed
+  READY --> SUPERSEDED: material revision
+  ROUTED --> CANCELED
+  IN_PROGRESS --> CANCELED
+  BLOCKED --> CANCELED
+  DONE --> [*]
+  CANCELED --> [*]
+  SUPERSEDED --> [*]
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef human fill:#dcefe4,stroke:#b3261e,stroke-width:3px,color:#171a18
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18
+  class DRAFT,READY intent
+  class ROUTED control
+  class DISPATCHED,IN_PROGRESS,BLOCKED execution
+  class AWAITING_VERIFICATION,DONE,REOPENED trust
+  class AWAITING_APPROVAL human
+  class CANCELED,SUPERSEDED neutral

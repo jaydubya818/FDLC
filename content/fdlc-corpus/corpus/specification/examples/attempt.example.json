@@ -1,0 +1,128 @@
+{
+  "schemaVersion": "1.0",
+  "type": "fdlc://v1/attempt",
+  "id": "ATT-104-01-p1",
+  "namespace": "https://acme.example/factories/checkout",
+  "workOrderId": "WO-104-01",
+  "workOrderRevisionNumber": 1,
+  "workOrderDigest": "sha256:c71cd9ffb858a2246f0ac88f48da89110aecef031b15bbbc675c2a2370e8ac93",
+  "taskId": "TASK-104-01-2",
+  "intentId": "INT-104",
+  "role": "producer",
+  "purpose": "IMPLEMENTATION",
+  "attemptNumber": 1,
+  "factoryVersionId": "FV-depmod-1.0",
+  "factoryVersionDigest": "sha256:ce6706f3f86d3e77ddd2e266cc1cbf88480a25bb535e2845eda36be5d98bec7f",
+  "executionProfileId": "EP-depmod-1.0-prod",
+  "executionProfileDigest": "sha256:d93145737892842c402a5765ae03045cf0b9b685a678cd76d1bc52faec829b04",
+  "routingDecisionId": "DEC-104-R1",
+  "admissionDecisionId": "DEC-104-A1",
+  "contextPackageId": "CTX-104-01-p1",
+  "contextPackageDigest": "sha256:591bd3b4b63f1270096128cd9ee09266c91703666ea6ac49bc0a716d66ffcc23",
+  "executionManifest": {
+    "manifestVersion": "fdlc-execution-manifest/1.0",
+    "causation": {
+      "intentId": "INT-104", "planId": "PLAN-104-r2", "planDigest": "sha256:0dc4b958e05409dbf3e0541a7c45bd9777d60c5e464e17e00910fe0d323a4b37",
+      "qualityContractDigest": "sha256:dc8ccbf7d977e52efff8403f63b12e0889313b0deb0e14d4ac62866efe11ca16",
+      "workOrderId": "WO-104-01", "workOrderRevisionNumber": 1, "taskId": "TASK-104-01-2", "attemptId": "ATT-104-01-p1",
+      "factoryVersionId": "FV-depmod-1.0", "factoryVersionDigest": "sha256:ce6706f3f86d3e77ddd2e266cc1cbf88480a25bb535e2845eda36be5d98bec7f",
+      "executionProfileId": "EP-depmod-1.0-prod", "executionProfileDigest": "sha256:d93145737892842c402a5765ae03045cf0b9b685a678cd76d1bc52faec829b04",
+      "purpose": "IMPLEMENTATION"
+    },
+    "repository": {
+      "repositoryId": "repo:checkout-api", "name": "acme/checkout-api", "dataClassification": "INTERNAL",
+      "baseSha": "1405df66cbe219b0bf6355bc3d60361a8376b6b4", "baseRef": "main", "branch": "factory/WO-104-01/ATT-104-01-p1",
+      "worktree": "/work/attempts/ATT-104-01-p1", "codeScopeIds": ["scope:checkout-api/services"],
+      "allowedPaths": ["services/checkout-api/**"],
+      "excludedPaths": ["services/checkout-api/api/public/**", "services/checkout-api/auth/**", "services/checkout-api/config/secrets/**", "services/checkout-api/schema/**"],
+      "verificationPublicationOrder": "VERIFY_BEFORE_PUBLICATION"
+    },
+    "intent": {"title": "Implement bounded SDK v4 upgrade", "desiredOutcome": "checkout-api on acme-payments-sdk 4.x with unchanged public API, schema, and authorization behavior.",
+               "acceptanceCriterionIds": ["AC-104-01", "AC-104-02", "AC-104-03", "AC-104-04"],
+               "selectedTask": {"title": "Implement bounded upgrade", "description": "Upgrade the manifest and lockfile, migrate call sites in services/checkout-api/payments, run tests."}},
+    "workOrderSpecificationDigest": "sha256:c71cd9ffb858a2246f0ac88f48da89110aecef031b15bbbc675c2a2370e8ac93",
+    "harness": {
+      "adapterId": "codex", "adapterVersion": "v1", "harnessId": "codex-cli", "harnessVersion": "0.146.0",
+      "capabilityManifestDigest": "sha256:d0313f6a3c7a6d72d91025c8ad5fc0b4575076f88756c15c418f563c2525a571",
+      "effectiveConfigDigest": "sha256:6b4d36371a4fa3a0c70536c873112a7f5220fcf695927bf6a8e847790a2c68cc",
+      "runtimeArtifactDigest": "sha256:8d18901b3b5dc6f87e1c9ce2795119d6bd3bea620ab184201f392604d63136e7",
+      "isolation": "WORKSPACE_WRITE", "timeoutMs": 5400000, "completionContract": "factory-result/v1", "publicationAuthority": "CONTROL_PLANE_ONLY"
+    },
+    "modelRoute": {"routeId": "implement-workhorse", "provider": "acme-gateway", "modelId": "workhorse-a",
+                   "routeDigest": "sha256:b2cd54e494af6ca42d7cafc364c079baa6d9b7489d314d2a3a96090e9b72d378",
+                   "qualificationDigest": "sha256:ee8587fb49c7639baf1f2c13ee087683ae3bf15e319bb8ca19bc2503c92c6d57", "inferenceMode": "ALLOWED"},
+    "backend": "remote-sandbox",
+    "sandbox": {
+      "profileId": "SBX-acme-remote-4", "profileDigest": "sha256:6dc87bf3ac7649b799be35cdd8b3a0bdae66a0447c69c286e01df5c87c589859",
+      "resourceName": "fdlc-attempt-3f1c9a2b7d0e4c61",
+      "credentialGrants": [{"kind": "INFERENCE", "secretValueIncluded": false, "publicationAuthority": "NONE"}],
+      "teardown": {"credentialsRevokedBeforePublication": true, "resourceAbsenceRequiredBeforePublication": true}
+    },
+    "allowedTools": [
+      {"capabilityId": "CAP-tool-git-1.4.0", "operations": ["status", "diff", "commit", "branch"], "grantId": "GRANT-depmod-git-7", "grantDigest": "sha256:e576cca6bde452b6ae7abc66e3bed499b4f8e5e18e50e4d069ceae30f26bd557"},
+      {"capabilityId": "CAP-tool-package-registry-1.2.0", "operations": ["resolve-version", "audit"], "grantId": "GRANT-depmod-registry-3", "grantDigest": "sha256:73bdee11f3db288e7b57344d2eb4d38cd176aa4cb712d9e59448625ea12df3d1"},
+      {"capabilityId": "CAP-tool-test-runner-3.0.1", "operations": ["run"], "grantId": "GRANT-depmod-tests-2", "grantDigest": "sha256:15f1263faa1c7787558c407fea770f9b9817bff0c69c0613d72c932203e1d01a"}
+    ],
+    "skills": [
+      {"capabilityId": "CAP-skill-sdk-migration-2.1.0", "version": "2.1.0", "digest": "sha256:1de2d7eebb2f58d843990420e5b256acc04cda13c7feea1878e58a501769a5b3"},
+      {"capabilityId": "CAP-skill-lockfile-hygiene-1.0.3", "version": "1.0.3", "digest": "sha256:058c32224b4114b10ae6bf009404c1db204c25040ba892d2709b60b7644a79fd"}
+    ],
+    "contextPackageDigest": "sha256:591bd3b4b63f1270096128cd9ee09266c91703666ea6ac49bc0a716d66ffcc23",
+    "workflow": {"workflowId": "depmod-upgrade", "version": 4, "digest": "sha256:c74a39daf117663c6c5a324dd5d322e137c5ea7f3c85e790591ca847a533ffb6",
+                 "steps": [
+                   {"stepId": "research", "kind": "AGENT", "agentCapabilityId": "CAP-agent-repo-researcher-1.2.0", "promptBundleDigest": "sha256:03d50314af8367d5c487df203500cd90fbdf188819ef03a2bc7610c28ef6ed53", "timeoutMs": 900000},
+                   {"stepId": "implement", "kind": "AGENT", "agentCapabilityId": "CAP-agent-upgrade-implementer-1.6.0", "promptBundleDigest": "sha256:aec5b08b1e0f0295a1412790d1f8286ba9078950f7db7e8325fb876d518cf24e", "timeoutMs": 3600000, "outputSchemaDigest": "sha256:c74a39daf117663c6c5a324dd5d322e137c5ea7f3c85e790591ca847a533ffb6"}
+                 ]},
+    "retryPolicy": {"maxAttempts": 3, "maxTotalWallClockMs": 5400000, "maxCost": {"amount": 25, "currency": "USD"},
+                    "retryableFailureClasses": ["CAPACITY", "PROVIDER", "EXECUTOR"], "failClosedFailureClasses": ["AUTHORIZATION", "CONFIGURATION", "VALIDATION", "UNKNOWN"]},
+    "lease": {"durationMs": 300000, "heartbeatIntervalMs": 30000},
+    "compiledPromptDigest": "sha256:aec5b08b1e0f0295a1412790d1f8286ba9078950f7db7e8325fb876d518cf24e",
+    "idempotencyKeys": {"commit": "commit:WO-104-01:ATT-104-01-p1", "publish": "publish:WO-104-01:1405df66cbe219b0bf6355bc3d60361a8376b6b4"}
+  },
+  "executionManifestDigest": "sha256:061b3bf427e9111d287436c02a5e3ce9ebbe23b2b6f7bfb928c56329eae13692",
+  "executorInvocationId": "codex-session-8b2e6f1a",
+  "lease": {"leaseId": "LEASE-104-01-p1-1", "workerId": "worker-h7", "sessionId": "sess-2026-09-03-h7-01", "generation": 12,
+            "fence": "f3c0a9e17b5d4e2c9a1b8d6f0e4c2a7b", "claimedAt": "2026-09-03T08:00:40Z", "heartbeatAt": "2026-09-03T09:02:10Z",
+            "expiresAt": "2026-09-03T09:07:10Z", "durationMs": 300000},
+  "checkpoints": [
+    {"checkpointId": "CKPT-104-01-p1-1", "leaseId": "LEASE-104-01-p1-1", "stepId": "research",
+     "artifact": {"artifactId": "ART-104-01-p1-ckpt1", "kind": "CHECKPOINT", "mediaType": "application/json", "digest": "sha256:44f35f3abdfd36766845d37589dc013ee003812fa449e3138ae120f525eb190d"},
+     "createdAt": "2026-09-03T08:19:00Z", "summary": "Dependency surface inventoried: 14 call sites in payments/.", "compactionBoundary": false, "safeToResume": true}
+  ],
+  "state": "COMPLETED",
+  "phase": "TERMINAL",
+  "disposition": "PRESERVED",
+  "dispositionReason": "Completed; worktree preserved until publication and verification lineage are reconciled.",
+  "reconciledAt": "2026-09-03T09:03:30Z",
+  "candidateId": "CAND-104-01-p1",
+  "handoff": {
+    "schema": "factory-result/v1", "status": "COMPLETED",
+    "summary": "Upgraded acme-payments-sdk to 4.2.1, migrated 14 call sites, removed compat shim, updated lockfile. Local contract and integration suites pass.",
+    "completedAcceptanceCriterionIds": ["AC-104-01", "AC-104-02", "AC-104-03", "AC-104-04"],
+    "incompleteAcceptanceCriterionIds": [], "unknownAcceptanceCriterionIds": [],
+    "verificationCommands": ["pnpm test --filter checkout-api -- --grep 'CT-|IT-'", "acme-depscan --fail-on acme-payments-sdk@3 --fail-on-new"],
+    "knownRisks": ["Idempotency-key header now set by SDK; covered by CT-PAY-014."],
+    "nextAction": "Independent verification by the verification factory.",
+    "candidateSha": "4015b57a143aec5156fd1444a017a32137a3fd0f"
+  },
+  "cost": {"status": "MEASURED", "amount": 11.2, "currency": "USD", "coverage": 1.0},
+  "usage": {"inputTokens": 212400, "outputTokens": 38900, "modelRequests": 41, "toolCalls": 63, "retries": null, "wallClockMs": 3740000},
+  "evidenceIds": ["EV-104-03", "EV-104-04"],
+  "eventLogDigest": "sha256:f2ed27c8ca426586709ff95c1e7e001941d31b6d83229dbd421eab2f0da5c14a",
+  "traceContext": {"traceId": "4bf92f3577b34da6a3ce929d0e0e4736", "spanId": "00f067aa0ba902b7"},
+  "worktree": "/work/attempts/ATT-104-01-p1",
+  "createdAt": "2026-09-03T08:00:31Z",
+  "claimedAt": "2026-09-03T08:00:40Z",
+  "startedAt": "2026-09-03T08:01:20Z",
+  "completedAt": "2026-09-03T09:03:00Z",
+  "createdBy": {"kind": "system", "id": "system:orchestrator", "identitySource": "workload-identity"},
+  "digest": "sha256:061b3bf427e9111d287436c02a5e3ce9ebbe23b2b6f7bfb928c56329eae13692",
+  "history": [
+    {"subjectId": "ATT-104-01-p1", "fromState": "PENDING", "toState": "CLAIMED", "actor": {"kind": "service", "id": "svc:worker-h7", "identitySource": "workload-identity"},
+     "reason": "Atomic claim; admission checks passed (registration, heartbeat, repository access, executor, profile qualification, Factory Version binding).",
+     "policyVersion": "admission-policy/4", "idempotencyKey": "ATT-104-01-p1:claim:1", "occurredAt": "2026-09-03T08:00:40Z", "decisionId": "DEC-104-A1"},
+    {"subjectId": "ATT-104-01-p1", "fromState": "RUNNING", "toState": "COMPLETED", "actor": {"kind": "service", "id": "svc:worker-h7", "identitySource": "workload-identity"},
+     "reason": "Structured completion received under current fence; candidate 4015b57a frozen.", "policyVersion": "admission-policy/4",
+     "idempotencyKey": "ATT-104-01-p1:complete:1", "occurredAt": "2026-09-03T09:03:00Z"}
+  ]
+}

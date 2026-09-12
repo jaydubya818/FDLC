@@ -1,0 +1,35 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D22 Economics — cost per accepted outcome, not tokens
+%% Type: infographic · Page: /architecture/economics
+flowchart LR
+  subgraph IN["Attributed cost (declared cohort, declared window)"]
+    direction TB
+    I1["Inference tokens · model cost"]
+    I2["Compute · sandbox · storage"]
+    I3["Tool calls · retrieval"]
+    I4["Independent verification"]
+    I5["Retries · failed Attempts"]
+    I6["Human review minutes"]
+    I7["Remediation · incidents"]
+  end
+  IN --> SUM["Total cohort cost<br/>each component ACTUAL · ESTIMATED · UNKNOWN"]
+  SUM --> D1["÷ Work Orders admitted<br/>= Cost per Work Order"]
+  SUM --> D2["÷ independently verified<br/>= Cost per verified outcome"]
+  SUM --> D3["÷ verified and accepted<br/>= Cost per accepted outcome"]
+  SUM --> D4["÷ released<br/>= Cost per released outcome"]
+  SUM --> D5["÷ production-verified in window<br/>= Cost per production outcome"]
+  F["Failed, retried, abandoned work"] -. "stays in the numerator,<br/>never in a denominator" .-> SUM
+  D3 --> R["Routing by economics · budgets · Improvement Candidates"]
+  class I1,I2,I3,I5 execution
+  class I4,I6,I7 trust
+  class SUM,D1,D2,D3,D4,D5 control
+  class R learning
+  class F neutral
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

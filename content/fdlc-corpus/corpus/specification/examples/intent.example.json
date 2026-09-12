@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0",
+  "type": "fdlc://v1/intent",
+  "id": "INT-104",
+  "namespace": "https://acme.example/factories/checkout",
+  "title": "Upgrade Acme Payments SDK v3 to v4 in checkout-api",
+  "goal": "checkout-api runs on Acme Payments SDK v4 with no change in public API, schema, or authorization behavior.",
+  "rationale": "SDK v3 leaves support in Q4. The upgrade is repetitive, high-volume, risk-bearing, and objectively verifiable, which makes it a strong lighthouse workload for the dependency-modernization factory.",
+  "owner": {"kind": "human", "id": "user:dana.okafor", "identitySource": "authenticated", "displayName": "Dana Okafor"},
+  "requester": {"kind": "human", "id": "user:dana.okafor", "identitySource": "authenticated"},
+  "signalRefs": [
+    {"kind": "finding", "label": "Dependency audit: acme-payments-sdk 3.x end of support", "location": "https://acme.example/security/findings/DEP-2211"}
+  ],
+  "constraints": [
+    "No public API, schema, or authorization behavior changes.",
+    "No new runtime dependencies beyond the SDK upgrade itself.",
+    "Work stays inside services/checkout-api."
+  ],
+  "sourcesOfTruth": [
+    {"kind": "repo", "label": "checkout-api", "location": "https://git.acme.example/acme/checkout-api"},
+    {"kind": "doc", "label": "Acme Payments SDK v4 migration guide", "location": "https://acme.example/docs/payments-sdk/v4/migration", "digest": "sha256:a948f2759151cfd34fb1cd7ce818b579b633b161e382ac05b97c1c8745cc96de"}
+  ],
+  "scope": {
+    "repositories": [
+      {"repositoryId": "repo:checkout-api", "provider": "github", "name": "acme/checkout-api", "defaultBranch": "main",
+       "codeScopes": ["scope:checkout-api/services"], "dataClassification": "INTERNAL"}
+    ],
+    "environments": ["staging", "production"],
+    "nonGoals": ["Refactoring unrelated payment flows", "Changing retry semantics"]
+  },
+  "riskClass": "MEDIUM",
+  "riskReasons": ["payments-adjacent", "dependency-change"],
+  "stopCondition": "Stop when an accepted Work Order upgrades the SDK with all acceptance criteria verified, or when the cost limit, three corrective iterations, or any authorization boundary is reached.",
+  "budget": {
+    "costLimit": {"amount": 60, "currency": "USD"},
+    "spent": {"status": "MEASURED", "amount": 18.4, "currency": "USD", "coverage": 1.0},
+    "maxCorrectiveIterations": 3,
+    "maxReadOnlyConcurrency": 2,
+    "deadline": "2026-09-30T00:00:00Z"
+  },
+  "executionPolicy": "SERIAL_MUTATIONS",
+  "correctiveIterations": 0,
+  "state": "DONE",
+  "admissionDecisionId": "DEC-104-A0",
+  "currentSpecificationId": "SPEC-104-r1",
+  "currentSpecificationDigest": "sha256:b0a338f1f6b50109c098b5b605e4c3bed903c6f121be84bde77508807d0451b0",
+  "currentPlanId": "PLAN-104-r2",
+  "currentPlanDigest": "sha256:0dc4b958e05409dbf3e0541a7c45bd9777d60c5e464e17e00910fe0d323a4b37",
+  "workOrderIds": ["WO-104-01"],
+  "acceptanceDecisionId": "DEC-104-01",
+  "admittedDigest": "sha256:574a225a9ebda0686b36949efd0f20a7d6019eb4243ddb1a6aa6f28ac2ad7459",
+  "createdAt": "2026-09-01T09:12:00Z",
+  "createdBy": {"kind": "human", "id": "user:dana.okafor", "identitySource": "authenticated"},
+  "updatedAt": "2026-09-09T16:40:00Z",
+  "admittedAt": "2026-09-01T09:30:00Z",
+  "acceptedAt": "2026-09-09T16:40:00Z",
+  "idempotencyKey": "intent:acme/checkout-api:payments-sdk-v4",
+  "history": [
+    {"subjectId": "INT-104", "fromState": "DRAFT", "toState": "ADMITTED",
+     "actor": {"kind": "policy", "id": "policy:intake/2", "identitySource": "workload-identity"},
+     "reason": "Well-formed, owned, in scope; risk class MEDIUM confirmed by policy.", "policyVersion": "intake-policy/2",
+     "idempotencyKey": "INT-104:admit:1", "occurredAt": "2026-09-01T09:30:00Z", "decisionId": "DEC-104-A0"},
+    {"subjectId": "INT-104", "fromState": "AWAITING_ACCEPTANCE", "toState": "DONE",
+     "actor": {"kind": "human", "id": "user:dana.okafor", "identitySource": "authenticated"},
+     "reason": "WO-104-01 accepted on current evidence; stop condition satisfied.", "policyVersion": "approval-policy/3",
+     "idempotencyKey": "INT-104:accept:1", "occurredAt": "2026-09-09T16:40:00Z", "requiredEvidenceIds": ["EV-104-09"], "decisionId": "DEC-104-01"}
+  ]
+}

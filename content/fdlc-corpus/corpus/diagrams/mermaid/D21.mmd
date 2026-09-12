@@ -1,0 +1,31 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D21 Governed learning loop
+%% Type: flow · Page: /architecture/learning
+flowchart LR
+  SRC["Executions · failures · retries · verifications<br/>overrides · cost · latency · incidents<br/>accepted and rejected outcomes"] --> LS["Learning Signal<br/>attributable · reviewed<br/>acceptanceAuthority: false"]
+  LS --> CL["Recurring cluster<br/>versioned failure taxonomy"]
+  CL --> DS["Evaluation dataset<br/>regression · held-out · adversarial"]
+  CL --> IC["Improvement Candidate<br/>routing · skill · evaluator · policy · prompt · config"]
+  DS --> IC
+  IC --> HR{"Human review<br/>approve · snooze · dismiss · reject"}:::human
+  HR -- "approve" --> CFV["Candidate Factory Version"]
+  CFV --> Q["Qualify<br/>baseline vs candidate · quality floor · regression suites"]
+  Q --> PD{"Decision: promotion"}:::human
+  PD -- "promote" --> ACT["Active Factory Version (env)<br/>canary · observation window"]
+  PD -- "reject" --> REJ["Rejected (preserved)"]
+  ACT -- "regression" --> RB["Restoration to previous version"]
+  ACT -. "outcomes" .-> SRC
+  IC x-. "never mutates" .-x LIVE["Live configuration · acceptance · evidence · authority"]
+  class SRC,LS,CL,DS,IC learning
+  class HR,Q,PD trust
+  class CFV execution
+  class ACT,RB control
+  class REJ,LIVE neutral
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

@@ -1,0 +1,22 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D15 Verification hierarchy (local → global) + orthogonal factory qualification
+%% Type: architecture · Page: /architecture/verification
+flowchart TB
+  T["Task verification<br/>one step's output — fast, local, often deterministic"] --> W["Work Order verification — the unit of acceptance<br/>independent Verification Attempt on the exact Candidate"]
+  W --> O["Objective / Integration verification<br/>integrated Candidate across Work Orders and factories"]
+  O --> R["Release verification<br/>environment validation · canary · production verification window"]
+  Q["Factory qualification (orthogonal axis)<br/>verifies the factory, not the work"] -.-> T
+  Q -.-> W
+  Q -.-> O
+  Q -.-> R
+  RULES["Execution success ≠ Task success ≠ Verification success ≠ Business outcome<br/>Independence proven by lineage and by standard · currentness: newest exact-bound verification decides"]:::neutral
+  class T,W,O,R trust
+  class Q control
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

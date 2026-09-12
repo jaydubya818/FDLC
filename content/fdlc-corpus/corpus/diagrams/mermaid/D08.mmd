@@ -1,0 +1,29 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D08 Control boundary (authority down / evidence back)
+%% Type: architecture · Hero SVG: svg/D08.svg · Page: /architecture, /framework/principles
+flowchart TB
+  H["Human authority<br/>approves consequential decisions · retains override and restoration"]:::human
+  CP["02 / Factory control plane — the factory governs<br/>identity · delegated authority · policy · budgets · routing · state · leases · evidence · decisions · audit<br/><i>Durable system of record</i>"]
+  S["01 / Intelligence supply — models reason, agents act<br/>models · agents · skills · prompts · tool adapters<br/><i>Replaceable by design</i>"]
+  X["03 / Governed execution — operation stays bounded<br/>Harness governs one Agent · Runtime hosts it · Sandbox isolates effects<br/>short-lived credentials · scoped capabilities · network, time, resource limits<br/><i>Constrained and recoverable</i>"]
+  V["Independent verification<br/>producer is never the sole judge"]
+  H -- "Decision" --> CP
+  CP -- "authority flows down (solid)" --> S
+  CP -- "authority flows down (solid)" --> X
+  S -. "evidence flows back (dashed)" .-> CP
+  X -. "Candidate + Evidence" .-> V
+  V -. "verification result" .-> CP
+  CH["Expected to change<br/>models · agents · skills · prompts · tool adapters"]:::neutral
+  PS["Required to persist<br/>intent · identity · authority · state · evidence · decisions · outcomes"]:::neutral
+  T["Allow intelligence to vary. Always bound authority."]:::neutral
+  class CP control
+  class S,X execution
+  class V trust
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

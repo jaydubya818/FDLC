@@ -1,0 +1,43 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D19 Agent vs Skill vs Tool vs Harness vs Factory
+%% Type: architecture · Hero SVG: svg/D19.svg · Page: /architecture/agents-skills-tools-harnesses
+flowchart TB
+  subgraph ECO["Factory Ecosystem — many factories, one enterprise control plane"]
+    CP["Control Plane<br/>identity · authority · policy · budgets · state · registries · decisions"]
+    subgraph FAC["Factory (Factory Version FV-…)"]
+      ORCH["Orchestrator<br/>advances the Work Graph across agents, deterministic steps, human waits"]
+      subgraph RT["Runtime — process lifecycle · leases · persistence · resume"]
+        subgraph SB["Sandbox — filesystem · process · network · credentials"]
+          subgraph H["Harness — operating envelope for ONE agent"]
+            A["Agent<br/>goal · instructions · context · working state"]
+            LOOP["Agent Loop<br/>load → select → act → observe → evaluate → replan → stop"]
+            A --- LOOP
+          end
+        end
+      end
+      SK["Skills<br/>versioned procedures loaded into context"]
+      TL["Tools<br/>capabilities invoked under a grant"]
+      M["Model<br/>inference resource"]
+      CTX["Context Package<br/>frozen · advisory · never evidence"]
+      VER["Verifier<br/>independent Verification Attempt"]
+    end
+  end
+  CP -- "authorizes Execution Profile" --> ORCH
+  ORCH -- "dispatches one Work Graph node" --> H
+  H -- "loads" --> SK
+  H -- "invokes via policy check" --> TL
+  H -- "calls" --> M
+  CTX -- "frozen into the Attempt" --> H
+  H -. "Candidate + Evidence" .-> VER
+  VER -. "result" .-> CP
+  class CP,ORCH control
+  class A,LOOP,SK,TL,M,CTX execution
+  class VER trust
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

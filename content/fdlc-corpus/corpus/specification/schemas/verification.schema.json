@@ -1,0 +1,1398 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fdlc.ai/schemas/v1/verification.schema.json",
+  "title": "FDLC Verification",
+  "description": "An independent Verification Attempt against a frozen Verification Subject and Plan, producing a Result and a Quality Gate decision. Independence is proven by lineage and by standard. Verification makes work eligible; it never accepts.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "type": {
+      "type": "string",
+      "const": "fdlc://v1/verification"
+    },
+    "id": {
+      "$ref": "#/$defs/Id"
+    },
+    "namespace": {
+      "$ref": "#/$defs/Namespace"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "TASK",
+        "WORK_ORDER",
+        "OBJECTIVE",
+        "RELEASE"
+      ]
+    },
+    "workOrderId": {
+      "$ref": "#/$defs/Id"
+    },
+    "workOrderRevisionNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "intentId": {
+      "$ref": "#/$defs/Id"
+    },
+    "verificationContractDigest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "qualityContractDigest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "sourceAttemptId": {
+      "$ref": "#/$defs/Id"
+    },
+    "verificationAttemptId": {
+      "$ref": "#/$defs/Id"
+    },
+    "verifierFactoryVersionId": {
+      "$ref": "#/$defs/Id"
+    },
+    "subject": {
+      "$ref": "#/$defs/VerificationSubject"
+    },
+    "plan": {
+      "$ref": "#/$defs/VerificationPlan"
+    },
+    "independence": {
+      "$ref": "#/$defs/IndependenceResult"
+    },
+    "isolationAttestation": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "DETACHED_GIT_WORKTREE",
+            "FRESH_CLONE",
+            "REMOTE_SANDBOX",
+            "ISOLATED_CONTAINER",
+            "AUTOMATION_SNAPSHOT"
+          ]
+        },
+        "sandboxId": {
+          "type": "string"
+        },
+        "rootBindingDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "subjectDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "verifierRoot": {
+          "type": "string"
+        },
+        "sourceRoot": {
+          "type": "string"
+        },
+        "initialClean": {
+          "type": "boolean"
+        },
+        "finalSubjectMatch": {
+          "type": "boolean"
+        },
+        "headSha": {
+          "$ref": "#/$defs/GitSha"
+        },
+        "treeSha": {
+          "$ref": "#/$defs/GitSha"
+        },
+        "attestedAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "mode",
+        "sandboxId",
+        "rootBindingDigest",
+        "subjectDigest",
+        "initialClean",
+        "finalSubjectMatch",
+        "attestedAt"
+      ],
+      "additionalProperties": false
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/CheckResult"
+      }
+    },
+    "coverage": {
+      "type": "object",
+      "properties": {
+        "requiredRequirementCoverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "requiredEvidenceCoverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "requiredRiskCoverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "criterionId": {
+                "$ref": "#/$defs/Id"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "EVIDENCED",
+                  "MISSING"
+                ]
+              },
+              "requiredEvidenceCount": {
+                "type": "integer"
+              },
+              "usableEvidenceCount": {
+                "type": "integer"
+              },
+              "evidenceIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Id"
+                }
+              }
+            },
+            "required": [
+              "criterionId",
+              "status",
+              "requiredEvidenceCount",
+              "usableEvidenceCount",
+              "evidenceIds"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "requiredRequirementCoverage",
+        "requiredEvidenceCoverage",
+        "criteria"
+      ],
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "VERIFIED",
+            "NOT_VERIFIED",
+            "BLOCKED",
+            "REQUIRES_HUMAN_REVIEW"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requirementsPassed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "requirementsFailed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "decisionInputDigest": {
+          "$ref": "#/$defs/Digest",
+          "description": "Digest over (subject digest, plan digest, check results, evidence set digest, independence result)."
+        },
+        "evidenceSetDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "evidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "evaluatedAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "verdict",
+        "reasons",
+        "decisionInputDigest",
+        "evidenceSetDigest",
+        "evidenceIds",
+        "evaluatedAt"
+      ],
+      "additionalProperties": false
+    },
+    "receipt": {
+      "type": "object",
+      "description": "Work Order-scope receipt: the durable, expiring statement of this verification's verdict.",
+      "properties": {
+        "receiptId": {
+          "$ref": "#/$defs/Id"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "PENDING",
+            "PASSED",
+            "FAILED",
+            "WAIVED",
+            "STALE"
+          ]
+        },
+        "recordedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "validUntil": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "invalidatedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "invalidatedBy": {
+          "$ref": "#/$defs/Ref"
+        },
+        "invalidationReason": {
+          "type": "string"
+        },
+        "humanReviewDecisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "waiverDecisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "receiptId",
+        "status",
+        "recordedAt",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "currentness": {
+      "$ref": "#/$defs/CurrentnessResult"
+    },
+    "qualityGate": {
+      "$ref": "#/$defs/QualityGateDecision"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "PLANNED",
+        "RUNNING",
+        "COMPLETED",
+        "FAILED",
+        "CANCELED",
+        "INVALIDATED"
+      ]
+    },
+    "startedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "completedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "invalidatedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "digest": {
+      "$ref": "#/$defs/Digest",
+      "description": "Digest over (subject.digest, plan.planDigest, verificationAttemptId, result.decisionInputDigest)."
+    },
+    "createdAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "createdBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Transition"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "type",
+    "id",
+    "namespace",
+    "level",
+    "workOrderId",
+    "workOrderRevisionNumber",
+    "verificationContractDigest",
+    "sourceAttemptId",
+    "verificationAttemptId",
+    "verifierFactoryVersionId",
+    "subject",
+    "plan",
+    "state",
+    "createdAt",
+    "createdBy"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "COMPLETED",
+              "INVALIDATED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "independence",
+          "isolationAttestation",
+          "checks",
+          "coverage",
+          "result",
+          "receipt",
+          "currentness",
+          "qualityGate",
+          "completedAt",
+          "digest"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "INVALIDATED"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "invalidatedAt"
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]*$",
+      "description": "Instance identifier. Unique within the issuing namespace; combined with `namespace` it is globally unique."
+    },
+    "ArtifactUri": {
+      "type": "string",
+      "pattern": "^fdlc://v1/(intent|specification|plan|work-order|factory-manifest|factory-version|execution-profile|capability-manifest|qualification-record|context-package|attempt|candidate|evidence|verification|decision|release|outcome|learning-signal|improvement-candidate)(/[A-Za-z0-9][A-Za-z0-9._:@-]*)?$",
+      "description": "Artifact type URI (`fdlc://v1/<artifact>`), optionally suffixed with an instance id."
+    },
+    "Namespace": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the issuing control plane or organization. Scopes every `id` in this record."
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 over the RFC 8785 (JCS) canonical JSON of the digested projection."
+    },
+    "GitSha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$|^[a-f0-9]{64}$",
+      "description": "Lowercase full Git object id (SHA-1 or SHA-256 repository)."
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp in UTC."
+    },
+    "Semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "RiskClass": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "AutonomyLevel": {
+      "type": "string",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "description": "HITL spectrum position. Effective autonomy is min(factory, objective, work order, policy, trust)."
+    },
+    "Actor": {
+      "type": "object",
+      "description": "Attributable identity. `identitySource` says how the control plane established it; never inferred from a client label.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "policy",
+            "service",
+            "agent",
+            "system"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "identitySource": {
+          "type": "string",
+          "enum": [
+            "authenticated",
+            "workload-identity",
+            "service-command",
+            "development-fallback"
+          ]
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "delegationRef": {
+          "$ref": "#/$defs/Id",
+          "description": "Reference to the delegation record that grants this actor its authority."
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "identitySource"
+      ],
+      "additionalProperties": false
+    },
+    "Ref": {
+      "type": "object",
+      "description": "Reference to another FDLC artifact instance, optionally pinned to a digest.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/ArtifactUri"
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "revisionNumber": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false
+    },
+    "CostRecord": {
+      "type": "object",
+      "description": "Cost with an honesty class. UNKNOWN cost stays UNKNOWN; implementations MUST NOT invent zeroes.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "ESTIMATED",
+            "UNKNOWN"
+          ]
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of contributing cost items that were measured."
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "Transition": {
+      "type": "object",
+      "description": "Audit record of one authoritative state transition. Every field listed here MUST be recorded.",
+      "properties": {
+        "transitionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "priorVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fromState": {
+          "type": "string"
+        },
+        "toState": {
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "occurredAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "requiredEvidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "decisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "invalidatedDependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ref"
+          }
+        }
+      },
+      "required": [
+        "subjectId",
+        "fromState",
+        "toState",
+        "actor",
+        "reason",
+        "idempotencyKey",
+        "occurredAt"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "description": "Content-addressed reference to a stored artifact (diff, log, screenshot, bundle).",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/Id"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactId",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "VerificationSubject": {
+      "type": "object",
+      "description": "The exact thing to be examined: Candidate identity + Work Order revision + contract digest + source Attempt. Digest-addressed.",
+      "properties": {
+        "subjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "GIT_CANDIDATE",
+            "AUTOMATION_OUTPUT",
+            "RELEASE_ARTIFACT",
+            "INTEGRATED_CANDIDATE"
+          ]
+        },
+        "candidateId": {
+          "$ref": "#/$defs/Id"
+        },
+        "candidateIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          },
+          "description": "INTEGRATED_CANDIDATE: constituent candidates across Work Orders."
+        },
+        "workOrderId": {
+          "$ref": "#/$defs/Id"
+        },
+        "workOrderRevisionNumber": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "verificationContractDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "sourceAttemptId": {
+          "$ref": "#/$defs/Id"
+        },
+        "repositoryId": {
+          "$ref": "#/$defs/Id"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "providerRepositoryId": {
+          "type": "string"
+        },
+        "baseSha": {
+          "$ref": "#/$defs/GitSha"
+        },
+        "commitSha": {
+          "$ref": "#/$defs/GitSha"
+        },
+        "treeSha": {
+          "$ref": "#/$defs/GitSha"
+        },
+        "diffDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "baseRef": {
+          "type": "string"
+        },
+        "headRef": {
+          "type": "string"
+        },
+        "outputSnapshotContentHash": {
+          "$ref": "#/$defs/Digest"
+        },
+        "artifactDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest",
+          "description": "Server-reproducible digest over the identity fields. subjectId = verification-subject:<hex>."
+        },
+        "frozenAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "subjectId",
+        "subjectVersion",
+        "kind",
+        "workOrderId",
+        "workOrderRevisionNumber",
+        "verificationContractDigest",
+        "sourceAttemptId",
+        "digest",
+        "frozenAt"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "GIT_CANDIDATE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "candidateId",
+              "repositoryId",
+              "commitSha",
+              "treeSha",
+              "diffDigest"
+            ]
+          }
+        }
+      ]
+    },
+    "VerificationPlan": {
+      "type": "object",
+      "description": "Which checks run, with which methods, against which assertions. Frozen before the verifier starts; immutable once RUNNING. It may not weaken the contract.",
+      "properties": {
+        "planId": {
+          "$ref": "#/$defs/Id"
+        },
+        "planVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "planDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "subjectDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "generatedBy": {
+          "type": "object",
+          "properties": {
+            "factoryVersionId": {
+              "$ref": "#/$defs/Id"
+            },
+            "attemptId": {
+              "$ref": "#/$defs/Id"
+            },
+            "executorInvocationId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "factoryVersionId",
+            "attemptId"
+          ],
+          "additionalProperties": false
+        },
+        "requirements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/Id"
+              },
+              "description": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string",
+                "enum": [
+                  "WORK_ORDER",
+                  "ACCEPTANCE_CRITERION",
+                  "POLICY",
+                  "MANUAL"
+                ]
+              },
+              "sourceReference": {
+                "type": "string"
+              },
+              "criticality": {
+                "type": "string",
+                "enum": [
+                  "REQUIRED",
+                  "IMPORTANT",
+                  "INFORMATIONAL"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "description",
+              "source",
+              "criticality"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "requiredRisks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/Id"
+              },
+              "description": {
+                "type": "string"
+              },
+              "severity": {
+                "$ref": "#/$defs/RiskClass"
+              },
+              "source": {
+                "type": "string",
+                "enum": [
+                  "WORK_ORDER",
+                  "POLICY",
+                  "HUMAN_APPROVED"
+                ]
+              },
+              "affectedAreas": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "id",
+              "description",
+              "severity",
+              "source"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "discoveredRisks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/Id"
+              },
+              "description": {
+                "type": "string"
+              },
+              "severity": {
+                "$ref": "#/$defs/RiskClass"
+              },
+              "discoveredBy": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "description",
+              "severity",
+              "discoveredBy"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "requiredEvidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/Id"
+              },
+              "requirementIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Id"
+                }
+              },
+              "riskIds": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/Id"
+                }
+              },
+              "description": {
+                "type": "string"
+              },
+              "evidenceType": {
+                "type": "string"
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "checkId": {
+                "$ref": "#/$defs/Id"
+              }
+            },
+            "required": [
+              "id",
+              "requirementIds",
+              "description",
+              "evidenceType",
+              "required"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "adversarial": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "scenarios": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "$ref": "#/$defs/Id"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "requirementIds": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/$defs/Id"
+                    }
+                  }
+                },
+                "required": [
+                  "id",
+                  "description"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "enabled"
+          ],
+          "additionalProperties": false
+        },
+        "frozenAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "planId",
+        "planVersion",
+        "planDigest",
+        "subjectDigest",
+        "generatedBy",
+        "requirements",
+        "requiredEvidence",
+        "frozenAt"
+      ],
+      "additionalProperties": false
+    },
+    "IndependenceResult": {
+      "type": "object",
+      "description": "Independence by lineage (different process) AND by standard (different definition of success). Absent authority status is not PASS.",
+      "properties": {
+        "policyVersion": {
+          "type": "string"
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lineage": {
+          "type": "object",
+          "properties": {
+            "separateAttempt": {
+              "type": "boolean"
+            },
+            "separateLease": {
+              "type": "boolean"
+            },
+            "separateInvocation": {
+              "type": "boolean"
+            },
+            "separateWorktree": {
+              "type": "boolean"
+            },
+            "separateFactoryVersion": {
+              "type": "boolean"
+            },
+            "verifierFactoryPurpose": {
+              "type": "string",
+              "const": "VERIFICATION"
+            },
+            "reportCapability": {
+              "type": "string"
+            },
+            "separateModelFamily": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "separateAttempt",
+            "separateLease",
+            "separateInvocation",
+            "separateWorktree",
+            "separateFactoryVersion",
+            "verifierFactoryPurpose"
+          ],
+          "additionalProperties": false
+        },
+        "standard": {
+          "type": "object",
+          "properties": {
+            "authorityStatus": {
+              "type": "string",
+              "enum": [
+                "PASS",
+                "FAIL",
+                "UNKNOWN"
+              ],
+              "description": "FAIL: the candidate modified files that determine its own verdict."
+            },
+            "mutatedAuthoritySurfaces": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "contextFirewall": {
+              "type": "boolean",
+              "description": "Verifier did not receive the producer's reasoning."
+            }
+          },
+          "required": [
+            "authorityStatus"
+          ],
+          "additionalProperties": false
+        },
+        "evaluatedAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "policyVersion",
+        "passed",
+        "reasons",
+        "lineage",
+        "standard",
+        "evaluatedAt"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "passed": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "standard": {
+                "properties": {
+                  "authorityStatus": {
+                    "const": "PASS"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "CheckResult": {
+      "type": "object",
+      "properties": {
+        "checkId": {
+          "$ref": "#/$defs/Id"
+        },
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "verifierCapabilityId": {
+          "$ref": "#/$defs/Id"
+        },
+        "mandatory": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "SKIPPED",
+            "NOT_CONFIGURED",
+            "ERROR"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        },
+        "criterionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "evidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "startedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "completedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "durationMs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "checkId",
+        "name",
+        "category",
+        "verifierCapabilityId",
+        "mandatory",
+        "status",
+        "criterionIds",
+        "evidenceIds",
+        "startedAt",
+        "completedAt"
+      ],
+      "additionalProperties": false
+    },
+    "CurrentnessResult": {
+      "type": "object",
+      "description": "Deterministic evaluation: newest candidate, then newest exact-bound verification, never an older pass.",
+      "properties": {
+        "rule": {
+          "type": "string",
+          "const": "newest-candidate-newest-exact-verification"
+        },
+        "current": {
+          "type": "boolean"
+        },
+        "eligible": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evaluatedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "exactIdentity": {
+          "type": "object",
+          "properties": {
+            "workOrderId": {
+              "$ref": "#/$defs/Id"
+            },
+            "workOrderRevisionNumber": {
+              "type": "integer"
+            },
+            "verificationContractDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "sourceAttemptId": {
+              "$ref": "#/$defs/Id"
+            },
+            "subjectDigest": {
+              "$ref": "#/$defs/Digest"
+            }
+          },
+          "required": [
+            "workOrderId",
+            "workOrderRevisionNumber",
+            "verificationContractDigest",
+            "sourceAttemptId",
+            "subjectDigest"
+          ],
+          "additionalProperties": false
+        },
+        "providerHead": {
+          "type": "object",
+          "properties": {
+            "provider": {
+              "type": "string"
+            },
+            "pullRequestNumber": {
+              "type": "integer"
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "OPEN",
+                "CLOSED",
+                "MERGED"
+              ]
+            },
+            "headSha": {
+              "$ref": "#/$defs/GitSha"
+            },
+            "matchesSubject": {
+              "type": "boolean"
+            },
+            "syncedAt": {
+              "$ref": "#/$defs/Timestamp"
+            },
+            "attestationExpiresAt": {
+              "$ref": "#/$defs/Timestamp"
+            }
+          },
+          "required": [
+            "provider",
+            "headSha",
+            "matchesSubject",
+            "syncedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "rule",
+        "current",
+        "eligible",
+        "reasons",
+        "evaluatedAt",
+        "exactIdentity"
+      ],
+      "additionalProperties": false
+    },
+    "QualityGateDecision": {
+      "type": "object",
+      "description": "Append-only projection of eligibility. It is read by an acceptance Decision; it never accepts and is never read back as authority.",
+      "properties": {
+        "gateDecisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "ELIGIBLE",
+            "INELIGIBLE",
+            "UNKNOWN",
+            "STALE",
+            "WAIVER_REQUIRED",
+            "AWAITING_HUMAN"
+          ]
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "OBSERVE_ONLY",
+            "SHADOW",
+            "ENFORCED",
+            "EMERGENCY_BYPASS"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blockingFindingIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "requiredDecisionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "decisionInputDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "evidenceSetDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "evaluatedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "acceptanceAuthority": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "required": [
+        "gateDecisionId",
+        "state",
+        "mode",
+        "reasons",
+        "decisionInputDigest",
+        "evaluatedAt",
+        "acceptanceAuthority"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[a-z0-9]+(-[a-z0-9]+)*$": {}
+  },
+  "additionalProperties": false
+}

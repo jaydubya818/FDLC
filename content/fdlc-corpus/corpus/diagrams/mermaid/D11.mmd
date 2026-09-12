@@ -1,0 +1,31 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D11 Factory Version composition (immutable, content-addressed)
+%% Type: architecture · Hero SVG: svg/D11.svg · Page: /architecture/factory-versioning
+flowchart TB
+  FV["Factory Version FV-depmod-1.0<br/>digest: sha256 over JCS-canonicalized manifest · immutable"]
+  FV --> PL["Planner version"]
+  FV --> AG["Agent Definitions (versions)"]
+  FV --> HA["Harness versions (adapters)"]
+  FV --> SK["Skills (versions, digests)"]
+  FV --> TL["Tools (Tool Manifests + grants)"]
+  FV --> MR["Model routes<br/>logical route → qualified providers"]
+  FV --> CX["Context configuration<br/>sources · policy · freshness"]
+  FV --> RT["Runtime artifact + Sandbox image (digests)"]
+  FV --> NP["Network · credential · filesystem policy"]
+  FV --> VC["Verification contract<br/>criteria → verifiers · independence rules"]
+  FV --> AP["Approval policy<br/>risk tier → decision authority"]:::human
+  FV --> EP["Execution Profiles<br/>admitted compositions"]
+  FV --> EC["Economics<br/>budgets · cost coverage rules"]
+  FV --> QE["Qualification evidence<br/>scopes · expiry"]
+  class FV,EP,NP,EC control
+  class PL intent
+  class AG,HA,SK,TL,MR,CX,RT execution
+  class VC,AP,QE trust
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

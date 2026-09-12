@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0",
+  "type": "fdlc://v1/context-package",
+  "id": "CTX-104-01-p1",
+  "namespace": "https://acme.example/factories/checkout",
+  "attemptId": "ATT-104-01-p1",
+  "workOrderId": "WO-104-01",
+  "workOrderRevisionNumber": 1,
+  "factoryVersionId": "FV-depmod-1.0",
+  "purpose": "IMPLEMENTATION",
+  "objective": "Material relevant to upgrading acme-payments-sdk from 3.x to 4.x in services/checkout-api while preserving public API, schema, and authorization behavior.",
+  "qualityContractDigest": "sha256:dc8ccbf7d977e52efff8403f63b12e0889313b0deb0e14d4ac62866efe11ca16",
+  "authorization": {
+    "subjectIdentity": {"kind": "service", "id": "svc:factory/dependency-modernization", "identitySource": "workload-identity"},
+    "classificationCeiling": "INTERNAL",
+    "policyDigest": "sha256:78bdceec0af5280c4dbcdd5705e9dfed11e83ee7c74d0be2687d11879b85449f"
+  },
+  "items": [
+    {"itemId": "CTX-104-01-p1-i1", "sourceType": "DOCUMENT", "sourceId": "doc:payments-sdk/v4/migration", "sourceRevision": "2026-08-30",
+     "contentDigest": "sha256:a948f2759151cfd34fb1cd7ce818b579b633b161e382ac05b97c1c8745cc96de", "classification": "INTERNAL",
+     "retrievedAt": "2026-09-03T08:01:10Z", "validUntil": "2026-09-10T08:01:10Z",
+     "provenance": {"contextSourceCapabilityId": "CAP-context-source-migration-docs-1.1.0", "locator": "https://acme.example/docs/payments-sdk/v4/migration#breaking-changes", "chunkRef": "chunk:3-9"},
+     "tokens": 2140, "trust": "UNTRUSTED_DATA"},
+    {"itemId": "CTX-104-01-p1-i2", "sourceType": "REPOSITORY_FILE", "sourceId": "services/checkout-api/payments/client.ts", "sourceRevision": "1405df66cbe219b0bf6355bc3d60361a8376b6b4",
+     "contentDigest": "sha256:400a71103aa91e58aba2bdb7bd0b1957f10b2036c0a8300632f9da43e66353db", "classification": "INTERNAL",
+     "retrievedAt": "2026-09-03T08:01:12Z",
+     "provenance": {"contextSourceCapabilityId": "CAP-context-source-repository-1.0.0", "locator": "git+https://git.acme.example/acme/checkout-api#1405df66:services/checkout-api/payments/client.ts"},
+     "tokens": 1830, "trust": "UNTRUSTED_DATA"},
+    {"itemId": "CTX-104-01-p1-i3", "sourceType": "SKILL", "sourceId": "CAP-skill-sdk-migration-2.1.0", "sourceRevision": "2.1.0",
+     "contentDigest": "sha256:1de2d7eebb2f58d843990420e5b256acc04cda13c7feea1878e58a501769a5b3", "classification": "INTERNAL",
+     "retrievedAt": "2026-09-03T08:01:12Z",
+     "provenance": {"contextSourceCapabilityId": "CAP-context-source-capability-registry-1.0.0", "locator": "registry://capabilities/CAP-skill-sdk-migration-2.1.0"},
+     "tokens": 3900, "trust": "UNTRUSTED_DATA"}
+  ],
+  "budget": {"maxTokens": 24000, "usedTokens": 7870, "maxItems": 20},
+  "retrievalPlan": {"planId": "RP-104-01-p1", "planDigest": "sha256:78bdceec0af5280c4dbcdd5705e9dfed11e83ee7c74d0be2687d11879b85449f",
+                    "strategies": ["work-order-keywords", "changed-surface-neighbors", "skill-applicability"],
+                    "sources": [{"capabilityId": "CAP-context-source-migration-docs-1.1.0", "version": "1.1.0", "digest": "sha256:b71e4927de8a983d7490ea01f43d8ded8d2569b9c3690d39a448d5e6fd120795"}]},
+  "freshness": {"assembledAt": "2026-09-03T08:01:15Z", "maxAgeHours": 168, "staleItemIds": []},
+  "advisories": [
+    {"id": "ADV-104-01", "rationale": "Migration guide notes changed idempotency-key header; suggest an explicit contract test.", "acceptanceCriterionIds": ["AC-104-01"], "evidenceRequired": true}
+  ],
+  "contentDigest": "sha256:591bd3b4b63f1270096128cd9ee09266c91703666ea6ac49bc0a716d66ffcc23",
+  "frozen": true,
+  "acceptanceAuthority": false,
+  "state": "FROZEN",
+  "digest": "sha256:591bd3b4b63f1270096128cd9ee09266c91703666ea6ac49bc0a716d66ffcc23",
+  "createdAt": "2026-09-03T08:01:15Z",
+  "createdBy": {"kind": "service", "id": "svc:context-engine", "identitySource": "workload-identity"}
+}

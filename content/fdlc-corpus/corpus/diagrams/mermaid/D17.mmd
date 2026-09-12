@@ -1,0 +1,33 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D17 HITL / risk-tier matrix (risk-tiered autonomy)
+%% Type: matrix · Page: /architecture/authority
+flowchart LR
+  subgraph LOW["Low risk"]
+    direction TB
+    L1["Execute: auto"] --> L2["Verify: auto (deterministic)"] --> L3["Approve: policy accepts"]
+  end
+  subgraph MED["Medium risk"]
+    direction TB
+    M1["Execute: auto"] --> M2["Verify: independent verification required"] --> M3["Approve: policy accepts within envelope"]
+  end
+  subgraph HIGH["High risk"]
+    direction TB
+    H1["Execute: auto"] --> H2["Verify: independent"] --> H3["Approve: human acceptance required"]:::human
+  end
+  subgraph CRIT["Critical risk"]
+    direction TB
+    C1["Execute: human-authorized before execution"]:::human --> C2["Verify: independent + human review"]:::human --> C3["Approve: human acceptance + release authorization"]:::human
+  end
+  LOW --- MED --- HIGH --- CRIT
+  SPEC["HITL spectrum: Human executes → Human reviews → Human approves → Human supervises → Human handles exceptions → Policy governs autonomously<br/>Effective autonomy = min(factory, objective, work order, policy, trust level) · demotes immediately on evidence regression"]:::neutral
+  class L1,M1,H1,C1 execution
+  class L2,M2,H2,C2,L3,M3,H3,C3 trust
+  linkStyle 8,9,10 stroke-width:0px,stroke:transparent
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

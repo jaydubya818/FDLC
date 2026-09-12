@@ -1,0 +1,33 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D20 Local factory vs Enterprise Factory Ecosystem
+%% Type: architecture · Page: /architecture, /enterprise
+flowchart LR
+  subgraph LOCAL["Local Factory — one repo / product / domain"]
+    direction TB
+    LCP["Embedded control plane<br/>single-tenant · repo/app credentials"] --> LF["One factory<br/>routing Level 2–3"]
+    LF --> LV["Work Order verification"]
+    LV -. "per-factory learning" .-> LCP
+  end
+  subgraph ECO["Enterprise Factory Ecosystem — many factories, BUs, repos, environments"]
+    direction TB
+    ECP["Shared control plane<br/>enterprise identity · workload identity · policy · Factory Registry · Capability Registry"]
+    ECP --> OP["Objective Planner<br/>routing Level 1"]
+    OP --> F1["Factory A vX"]
+    OP --> F2["Factory B vY"]
+    OP --> F3["Factory C vZ"]
+    F1 & F2 & F3 --> IV["Objective / integration verification"]
+    IV --> RV["Release verification"]
+    RV -. "cross-factory evaluation datasets · governed promotion per version" .-> ECP
+  end
+  LOCAL == "scales by adding factories under one control plane<br/>Scope → Prove → Expand → Operate" ==> ECO
+  class LCP,ECP,OP control
+  class LF,F1,F2,F3 execution
+  class LV,IV,RV trust
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

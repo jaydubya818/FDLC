@@ -1,0 +1,24 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D24 Maturity model (L0–L5; conformance begins at L2)
+%% Type: infographic · Page: /framework/maturity
+flowchart LR
+  L0["L0 Ad Hoc AI Use<br/>chat / IDE assistants<br/>human executes · nothing retained"] --> L1["L1 Assisted Development<br/>agents in IDE/CLI, no shared control<br/>human reviews every change"]
+  L1 --> L2["L2 Governed Agents<br/>bounded identities · permissions · sandboxes<br/>evidence retained · human approves"]
+  L2 --> L3["L3 Orchestrated Delivery<br/>durable Plans · Work Orders · Attempts · leases<br/>independent verification · human supervises"]
+  L3 --> L4["L4 Qualified Factory<br/>immutable Factory Versions · qualification<br/>release controls · human handles exceptions"]
+  L4 --> L5["L5 Factory Ecosystem<br/>many factories · shared control plane · three-level routing<br/>policy governs within scopes"]
+  L2 -. "conformance begins (FDLC-L2)" .-> C[("Factory conformance")]
+  RULE["Scoring: overall level = min over hard-gate dimensions (Security · Verification · Governance), then floor(average) of the rest"]:::neutral
+  class L0,L1 neutral
+  class L2 execution
+  class L3 control
+  class L4 trust
+  class L5,C learning
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

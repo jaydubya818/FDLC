@@ -1,0 +1,34 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D09 Multi-factory orchestration — SSO example
+%% Type: architecture · Hero SVG: svg/D09.svg · Page: /architecture/multi-factory
+flowchart TB
+  B["Builder"]:::human --> INT["Objective INT-100<br/>'Add SSO to the customer portal'"]
+  subgraph CP["Enterprise Control Plane"]
+    direction LR
+    OP["Objective Planner<br/>Level 1 routing"] --> PLAN["Plan PLAN-100-r1<br/>Work Orders · dependency graph · budgets"]
+    FR[("Factory Registry<br/>capabilities · versions · scopes")] --> RT["Factory Router<br/>Level 2 routing"]
+    PLAN --> RT
+  end
+  INT --> OP
+  RT -- "WO-101 Backend · OIDC + session model" --> F1["Code Generation Factory<br/>FV-codegen-2.3"]
+  RT -- "WO-102 Frontend · login flow + tokens" --> F1
+  RT -- "WO-103 Security · threat model + scans" --> F2["Security Remediation Factory<br/>FV-secrem-1.4"]
+  F1 -. "Candidates + Evidence" .-> J["Join: integrated Candidate"]
+  F2 -. "Findings + Evidence" .-> J
+  J --> IV["Integration V&V<br/>Objective-level verification (separate Attempt)"]
+  IV --> DEC["Decision: acceptance<br/>human · High tier"]:::human
+  DEC --> REL["Release REL-100"]
+  REL -. "Outcome" .-> INT
+  F1 x-. "factories never orchestrate one another" .-x F2
+  class INT,PLAN intent
+  class OP,FR,RT control
+  class F1,F2 execution
+  class J,IV,DEC,REL trust
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

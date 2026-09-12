@@ -1,0 +1,30 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D25 Sandbox architecture (one Attempt, contained effects)
+%% Type: architecture · Page: /architecture/sandboxing
+flowchart LR
+  CP["Control plane<br/>frozen execution manifest · Sandbox Profile digest"] -- "allocate under lease" --> ALLOC["Allocation journal<br/>REQUESTED → READY → RUNNING → RESULT_READY → TERMINATED"]
+  ALLOC --> SB
+  subgraph SB["Sandbox (one Attempt)"]
+    direction TB
+    SUP["Root-owned supervisor<br/>hash-chained receipt spool"]
+    AG["Unprivileged agent process<br/>worktree · pinned toolchain"]
+    SUP --- AG
+  end
+  BROKER["Credential broker"] -- "short-lived, Attempt-scoped" --> SB
+  SB -- "egress allowlist only" --> NET["Package registries · shared dev services"]
+  SB -. "signed, content-addressed result bundle" .-> Q["Quarantine"]
+  Q --> V["Scope · secret · lineage checks<br/>independent verification"]
+  V --> PUB["Host-side publication broker<br/>repo-scoped token · one branch · one PR (permit-gated)"]
+  SB x-. "never publishes directly" .-x PUB
+  CP -- "revoke credentials · terminate · prove absence" --> SB
+  class CP,ALLOC,BROKER control
+  class SUP,AG,NET execution
+  class Q,V,PUB trust
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

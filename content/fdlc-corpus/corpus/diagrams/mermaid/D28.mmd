@@ -1,0 +1,29 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D28 Objective dependency graph — SSO example with joins and gates
+%% Type: flow · Page: /architecture/multi-factory, /enterprise/reference-architecture
+flowchart LR
+  OBJ["Objective INT-100<br/>Add SSO to the customer portal"] --> A["WO-101 Backend<br/>FV-codegen-2.3"]
+  OBJ --> C["WO-103 Security<br/>FV-secrem-1.4"]
+  A --> J1{"Join:<br/>API contract pinned"}
+  J1 --> B["WO-102 Frontend<br/>FV-codegen-2.3"]
+  B --> J2{"Join:<br/>integrated Candidate"}
+  C --> J2
+  J2 --> V["WO-104 Integration V&V<br/>Verification Factory FV-verify-3.0"]
+  V --> G{"Gate:<br/>Decision (acceptance)"}:::human
+  G -- "accepted" --> R["WO-105 Release<br/>Release Factory FV-release-1.1"]
+  G -- "rejected" --> X["Blocked: remediation Work Order"]
+  R --> O["WO-106 Observe<br/>production verification window"]
+  O -. "Outcome" .-> OBJ
+  class OBJ intent
+  class A,B,C execution
+  class J1,J2 control
+  class V,G,R,O trust
+  class X neutral
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

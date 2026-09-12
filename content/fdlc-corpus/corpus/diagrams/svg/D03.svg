@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" class="fd" role="img" aria-labelledby="t-D03 d-D03">
+<title id="t-D03">The Factory Lifecycle</title>
+<desc id="d-D03">The eight-stage Factory Lifecycle, the outer loop of FDLC: Discover, Define, Design, Assemble, Qualify, Deploy, Operate, Improve. Each stage names its purpose and output artifact. Qualify may reject a candidate back to Assemble; Operate may suspend or restrict a version, returning to Deploy for restoration; Improve produces a candidate Factory Version that re-enters Qualify. A strip below shows the Factory Version states produced along the way: Draft, Candidate, Qualified, Active, Restricted or Suspended, Deprecated, Retired.</desc>
+<style>
+svg.fd{--fd-paper:#f3f1ea;--fd-surface:#faf9f5;--fd-ink:#171a18;--fd-muted:#59605a;--fd-line:#c9ccc4;
+--fd-intent-fill:#dce8ef;--fd-intent-stroke:#2f5f78;--fd-intent-text:#1f4557;
+--fd-control-fill:#e4e9ec;--fd-control-stroke:#4a5d68;--fd-control-text:#2f3f47;
+--fd-exec-fill:#f5e6d0;--fd-exec-stroke:#9a4f1c;--fd-exec-text:#6b3612;
+--fd-trust-fill:#dcefe4;--fd-trust-stroke:#1a654b;--fd-trust-text:#114735;
+--fd-learn-fill:#e9e2f4;--fd-learn-stroke:#5c3f8f;--fd-learn-text:#3f2a66;
+--fd-human:#b3261e;--fd-tint:.45}
+@media (prefers-color-scheme:dark){svg.fd{--fd-paper:#15191b;--fd-surface:#1d2326;--fd-ink:#ecebe4;--fd-muted:#a8b0aa;--fd-line:#3b433d;
+--fd-intent-fill:#1c3140;--fd-intent-stroke:#8ec1dc;--fd-intent-text:#cfe6f2;
+--fd-control-fill:#2a3438;--fd-control-stroke:#a8bcc6;--fd-control-text:#dbe5ea;
+--fd-exec-fill:#3b2812;--fd-exec-stroke:#e2a468;--fd-exec-text:#f5dcc0;
+--fd-trust-fill:#143326;--fd-trust-stroke:#7fd2a6;--fd-trust-text:#cdeedb;
+--fd-learn-fill:#2b2142;--fd-learn-stroke:#bfa5ea;--fd-learn-text:#e3d8f5;
+--fd-human:#ff8a80;--fd-tint:.35}}
+.bg{fill:var(--fd-paper)}
+text{font-family:"Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;fill:var(--fd-ink);font-size:16px}
+.mono{font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace}
+.title{font-size:34px;font-weight:600}
+.sub{font-size:18px;fill:var(--fd-muted)}
+.h{font-size:20px;font-weight:600}.h2{font-size:18px;font-weight:600}.h3{font-size:16px;font-weight:600}
+.b{font-size:16px}.s{font-size:15px;fill:var(--fd-muted)}.xs{font-size:14px;fill:var(--fd-muted)}
+.i{font-style:italic}.c{text-anchor:middle}.r{text-anchor:end}.strong{font-weight:600}
+.label{font-size:14px;fill:var(--fd-muted)}
+.tag{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace;fill:var(--fd-muted)}
+.box{stroke-width:2;rx:6}
+.intent{fill:var(--fd-intent-fill);stroke:var(--fd-intent-stroke)}
+.control{fill:var(--fd-control-fill);stroke:var(--fd-control-stroke)}
+.exec{fill:var(--fd-exec-fill);stroke:var(--fd-exec-stroke)}
+.trust{fill:var(--fd-trust-fill);stroke:var(--fd-trust-stroke)}
+.learn{fill:var(--fd-learn-fill);stroke:var(--fd-learn-stroke)}
+.neutral{fill:var(--fd-surface);stroke:var(--fd-muted)}
+.human{stroke:var(--fd-human)!important;stroke-width:3.5}
+.t-intent{fill:var(--fd-intent-text)}.t-control{fill:var(--fd-control-text)}.t-exec{fill:var(--fd-exec-text)}
+.t-trust{fill:var(--fd-trust-text)}.t-learn{fill:var(--fd-learn-text)}.t-human{fill:var(--fd-human)}
+.zone{stroke-width:2;rx:10;fill-opacity:var(--fd-tint)}
+.zone.dash{stroke-dasharray:8 6}
+.fl{fill:none;stroke:var(--fd-ink);stroke-width:2.5;marker-end:url(#m-ink)}
+.au{fill:none;stroke:var(--fd-control-stroke);stroke-width:3;marker-end:url(#m-au)}
+.ev{fill:none;stroke:var(--fd-trust-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ev)}
+.ln{fill:none;stroke:var(--fd-learn-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ln)}
+.rt{fill:none;stroke:var(--fd-muted);stroke-width:2;stroke-dasharray:5 5;marker-end:url(#m-mu)}
+.thin{stroke-width:1.5}
+.nomk{marker-end:none}
+.dot{fill:var(--fd-trust-stroke)}
+.lbg{fill:var(--fd-paper);stroke:none}
+.chip{stroke-width:2;rx:14}
+.mk-ink{fill:var(--fd-ink)}.mk-au{fill:var(--fd-control-stroke)}.mk-ev{fill:var(--fd-trust-stroke)}
+.mk-ln{fill:var(--fd-learn-stroke)}.mk-mu{fill:var(--fd-muted)}
+.hair{stroke:var(--fd-line);stroke-width:1.5;fill:none}
+.x{stroke:var(--fd-human);stroke-width:3;fill:none}
+</style>
+<defs>
+<marker id="m-ink" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ink" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-au" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-au" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ev" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ev" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ln" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ln" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-mu" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-mu" d="M0,1 L11,6 L0,11 z"/></marker>
+</defs>
+<rect class="bg" width="1600" height="900"/>
+<g id="header"><text x="60" y="76" class="title">The Factory Lifecycle</text>
+<text x="60" y="108" class="sub">How a factory comes to exist, earns trust, and changes — never by mutating an Active version</text>
+<text x="1540" y="70" class="tag r">FDLC visual canon · D03</text></g>
+<g id="stage-1">
+<rect x="60" y="150" width="340" height="165" class="box intent"/>
+<text x="230.0" y="200.5" class="h t-intent c">1 · Discover</text>
+<text x="230.0" y="221.5" class="s i c">find work worth a factory;</text>
+<text x="230.0" y="241.0" class="s i c">measure the baseline</text>
+<text x="230.0" y="261.5" class="h3 c">→ Opportunity record</text>
+<text x="230.0" y="280.3" class="xs c">exit: owned opportunity + stop condition</text>
+</g>
+<path id="a-1" d="M400,232 L440,232" class="fl"/>
+<g id="stage-2">
+<rect x="440" y="150" width="340" height="165" class="box intent"/>
+<text x="610.0" y="200.5" class="h t-intent c">2 · Define</text>
+<text x="610.0" y="221.5" class="s i c">outcome contract · risk class</text>
+<text x="610.0" y="241.0" class="s i c">authority · acceptance criteria</text>
+<text x="610.0" y="261.5" class="h3 c">→ Factory Manifest (definition)</text>
+<text x="610.0" y="280.3" class="xs c">exit: Factory Owner + Policy Owner review</text>
+</g>
+<path id="a-2" d="M780,232 L820,232" class="fl"/>
+<g id="stage-3">
+<rect x="820" y="150" width="340" height="165" class="box intent"/>
+<text x="990.0" y="200.5" class="h t-intent c">3 · Design</text>
+<text x="990.0" y="221.5" class="s i c">Work Graph · capabilities · routing</text>
+<text x="990.0" y="241.0" class="s i c">context · verification contract</text>
+<text x="990.0" y="261.5" class="h3 c">→ Factory Design</text>
+<text x="990.0" y="280.3" class="xs c">exit: every criterion maps to a verifier</text>
+</g>
+<path id="a-3" d="M1160,232 L1200,232" class="fl"/>
+<g id="stage-4">
+<rect x="1200" y="150" width="340" height="165" class="box exec"/>
+<text x="1370.0" y="200.5" class="h t-exec c">4 · Assemble</text>
+<text x="1370.0" y="221.5" class="s i c">compose the exact agents, skills,</text>
+<text x="1370.0" y="241.0" class="s i c">tools, harness, routes, sandbox</text>
+<text x="1370.0" y="261.5" class="h3 c">→ Factory Version (candidate)</text>
+<text x="1370.0" y="280.3" class="xs c">exit: content-addressed manifest</text>
+</g>
+<g id="stage-5">
+<rect x="60" y="380" width="340" height="165" class="box trust"/>
+<text x="230.0" y="430.5" class="h t-trust c">5 · Qualify</text>
+<text x="230.0" y="451.5" class="s i c">evaluate for a declared scope:</text>
+<text x="230.0" y="471.0" class="s i c">workload × env × risk × autonomy</text>
+<text x="230.0" y="491.5" class="h3 c">→ Qualification Record</text>
+<text x="230.0" y="510.3" class="xs c">fail → Rejected (preserved) → 4 Assemble</text>
+</g>
+<path id="a-5" d="M400,462 L440,462" class="fl"/>
+<g id="stage-6">
+<rect x="440" y="380" width="340" height="165" class="box trust human"/>
+<text x="610.0" y="430.5" class="h t-trust c">6 · Deploy</text>
+<text x="610.0" y="451.5" class="s i c">promote the exact qualified</text>
+<text x="610.0" y="471.0" class="s i c">version into an environment</text>
+<text x="610.0" y="491.5" class="h3 c">→ Active Factory Version</text>
+<text x="610.0" y="510.3" class="xs c">Decision: promotion · rollback preserved</text>
+</g>
+<path id="a-6" d="M780,462 L820,462" class="fl"/>
+<g id="stage-7">
+<rect x="820" y="380" width="340" height="165" class="box exec"/>
+<text x="990.0" y="430.5" class="h t-exec c">7 · Operate</text>
+<text x="990.0" y="451.5" class="s i c">run the Delivery Loop durably;</text>
+<text x="990.0" y="471.0" class="s i c">exceptions · incidents · capacity · cost</text>
+<text x="990.0" y="491.5" class="h3 c">→ Verified outcomes · evidence</text>
+<text x="990.0" y="510.3" class="xs c">Suspended / Restricted → 6 Deploy (restore)</text>
+</g>
+<path id="a-7" d="M1160,462 L1200,462" class="fl"/>
+<g id="stage-8">
+<rect x="1200" y="380" width="340" height="165" class="box learn"/>
+<text x="1370.0" y="430.5" class="h t-learn c">8 · Improve</text>
+<text x="1370.0" y="451.5" class="s i c">Learning Signals →</text>
+<text x="1370.0" y="471.0" class="s i c">Improvement Candidates</text>
+<text x="1370.0" y="491.5" class="h3 c">→ next Factory Version</text>
+<text x="1370.0" y="510.3" class="xs c">proposal only; re-enters 5 Qualify</text>
+</g>
+<path id="a-4-5" d="M1370,315 L1370,350 L230,350 L230,380" class="fl"/>
+<path id="a-improve-qualify" d="M1370,545 L1370,600 L230,600 L230,545" class="ln"/>
+<rect x="496.8" y="593.1" width="606.4" height="17.5" class="lbg" rx="3"/>
+<text x="800" y="605" class="label c">Improvement Candidate → candidate Factory Version → Qualify → Deploy (governed promotion)</text>
+<text x="60" y="652" class="tag">Factory Version states along the lifecycle</text>
+<g id="fv-draft"><rect x="60" y="666" width="120" height="44" class="chip exec"/><text x="120.0" y="693.5" class="h3 c ">Draft</text></g>
+<text x="120.0" y="732" class="xs c">stage 3–4</text>
+<path id="a-fv-draft" d="M184,688 L210,688" class="fl thin"/>
+<g id="fv-candidate"><rect x="216" y="666" width="150" height="44" class="chip exec"/><text x="291.0" y="693.5" class="h3 c ">Candidate</text></g>
+<text x="291.0" y="732" class="xs c">stage 4</text>
+<path id="a-fv-candidate" d="M370,688 L396,688" class="fl thin"/>
+<g id="fv-qualified"><rect x="402" y="666" width="200" height="44" class="chip trust"/><text x="502.0" y="693.5" class="h3 c ">Qualified (scope)</text></g>
+<text x="502.0" y="732" class="xs c">stage 5</text>
+<path id="a-fv-qualified" d="M606,688 L632,688" class="fl thin"/>
+<g id="fv-active"><rect x="638" y="666" width="170" height="44" class="chip trust"/><text x="723.0" y="693.5" class="h3 c ">Active (env)</text></g>
+<text x="723.0" y="732" class="xs c">stage 6–7</text>
+<path id="a-fv-active" d="M812,688 L838,688" class="fl thin"/>
+<g id="fv-restricted"><rect x="844" y="666" width="250" height="44" class="chip exec"/><text x="969.0" y="693.5" class="h3 c ">Restricted · Suspended</text></g>
+<text x="969.0" y="732" class="xs c">stage 7</text>
+<path id="a-fv-restricted" d="M1098,688 L1124,688" class="fl thin"/>
+<g id="fv-deprecated"><rect x="1130" y="666" width="160" height="44" class="chip neutral"/><text x="1210.0" y="693.5" class="h3 c ">Deprecated</text></g>
+<text x="1210.0" y="732" class="xs c">stage 8</text>
+<path id="a-fv-deprecated" d="M1294,688 L1320,688" class="fl thin"/>
+<g id="fv-retired"><rect x="1326" y="666" width="130" height="44" class="chip neutral"/><text x="1391.0" y="693.5" class="h3 c ">Retired</text></g>
+<text x="1391.0" y="732" class="xs c">stage —</text>
+<text x="60" y="790" class="s">Each stage declares entry criteria, exit criteria, inputs, outputs, evidence, and roles. Deploy promotes a Factory Version; Release (Delivery Loop step 8) promotes a software artifact.</text>
+<text x="60" y="816" class="xs">Validate was renamed Qualify: qualification of a Factory Version is first-class and must not collide with software verification.</text>
+<g id="legend">
+<rect x="60" y="847" width="26" height="16" class="box intent" rx="3"/>
+<text x="94" y="860" class="xs">Intent</text>
+<rect x="155.28" y="847" width="26" height="16" class="box control" rx="3"/>
+<text x="189.28" y="860" class="xs">Control</text>
+<rect x="260.08000000000004" y="847" width="26" height="16" class="box exec" rx="3"/>
+<text x="294.08000000000004" y="860" class="xs">Execution</text>
+<rect x="383.36000000000007" y="847" width="26" height="16" class="box trust" rx="3"/>
+<text x="417.36000000000007" y="860" class="xs">Trust</text>
+<rect x="476.4000000000001" y="847" width="26" height="16" class="box learn" rx="3"/>
+<text x="510.4000000000001" y="860" class="xs">Learning</text>
+<rect x="592.1200000000001" y="847" width="26" height="16" class="box neutral human" rx="3"/>
+<text x="626.1200000000001" y="860" class="xs">Human authority</text>
+<path d="M765.1600000000001,855 L809.1600000000001,855" class="au"/><text x="819.1600000000001" y="860" class="xs">authority / flow (solid)</text>
+<path d="M987.4000000000001,855 L1031.4,855" class="ev"/><text x="1041.4" y="860" class="xs">evidence (dashed, back)</text>
+<path d="M1221.1200000000001,855 L1265.1200000000001,855" class="ln"/><text x="1275.1200000000001" y="860" class="xs">learning (dashed)</text>
+</g>
+</svg>

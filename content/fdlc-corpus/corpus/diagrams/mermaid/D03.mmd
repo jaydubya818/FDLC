@@ -1,0 +1,26 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D03 Factory Lifecycle (outer loop, eight stages)
+%% Type: flow · Hero SVG: svg/D03.svg · Page: /framework/factory-lifecycle
+flowchart LR
+  T1["1 Discover<br/>baseline: cost · cycle time · defects · effort<br/>→ Opportunity record"] --> T2["2 Define<br/>outcome contract · risk class · authority<br/>→ Factory Manifest (definition)"]
+  T2 --> T3["3 Design<br/>Work Graph · capabilities · routing · verification contract<br/>→ Factory Design"]
+  T3 --> T4["4 Assemble<br/>exact composition, digests<br/>→ Factory Version (candidate)"]
+  T4 --> T5["5 Qualify<br/>scope: workload × env × risk × autonomy<br/>→ Qualification Record"]
+  T5 --> T6["6 Deploy<br/>Decision: promotion<br/>→ Active Factory Version"]:::human
+  T6 --> T7["7 Operate<br/>runs the Delivery Loop durably<br/>→ Verified outcomes · operating evidence"]
+  T7 --> T8["8 Improve<br/>Learning Signals → Improvement Candidates<br/>→ next Factory Version"]
+  T8 -. "candidate Factory Version" .-> T5
+  T5 -- "Rejected (preserved)" --> T4
+  T7 -- "Suspended / Restricted → restoration" --> T6
+  class T1,T2,T3 intent
+  class T4,T7 execution
+  class T5,T6 trust
+  class T8 learning
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

@@ -1,0 +1,25 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D29 Production promotion pipeline (Observe → Propose → Evaluate → Qualify → Approve → Promote → Observe)
+%% Type: flow · Page: /architecture/factory-versioning
+flowchart LR
+  O1["Observe<br/>outcomes · incidents · cost"] --> P["Propose<br/>Improvement Candidate"]
+  P --> E["Evaluate<br/>regression · held-out · adversarial"]
+  E --> Q["Qualify<br/>candidate Factory Version for scope"]
+  Q --> A["Approve<br/>Decision: promotion"]:::human
+  A --> PR["Promote / Activate<br/>environment · cohort · restoration target"]
+  PR --> O2["Observe<br/>window · thresholds"]
+  O2 -- "thresholds fail" --> R["Restore<br/>Decision: restoration → previous version"]:::human
+  O2 -- "thresholds hold" --> O1
+  R --> O1
+  N["Never mutate an Active version. Promotion targets an exact digest; restoration targets a separately identified previous version."]:::neutral
+  class O1,O2,P learning
+  class E,Q,A trust
+  class PR,R control
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0",
+  "type": "fdlc://v1/release",
+  "id": "REL-104-01",
+  "namespace": "https://acme.example/factories/checkout",
+  "intentId": "INT-104",
+  "workOrderIds": ["WO-104-01"],
+  "candidateId": "CAND-104-01-p1",
+  "candidateDigest": "sha256:ce27a4c7cde6fdb8f69e2b1619d75aeb1e3a68b14137a0552e2d77cb49bb7601",
+  "acceptanceDecisionId": "DEC-104-01",
+  "releaseAuthorizationDecisionId": "DEC-104-03",
+  "factoryVersionId": "FV-depmod-1.0",
+  "artifact": {
+    "kind": "MERGE_COMMIT",
+    "digest": "sha256:964bf3fc5ddc785d7081ac0dc088bc1c39f971c538fb7ed9bbf1f269dcbe166b",
+    "mergeCommitSha": "14091a9f2461267ee7e02525b4f1f2923f1c9849",
+    "sourceHeadSha": "4015b57a143aec5156fd1444a017a32137a3fd0f",
+    "buildDigest": "sha256:245d1dd5fccb04578faf7af37b197c50058818c4a93b4878e5adb6dd5cb80815",
+    "provenanceRef": "attestation://acme/slsa/checkout-api@14091a9f",
+    "sbomRef": "artifact://checkout/releases/REL-104-01/sbom.spdx.json",
+    "mergedAt": "2026-09-09T17:05:00Z",
+    "mergeActor": {"kind": "human", "id": "user:dana.okafor", "identitySource": "authenticated"},
+    "pullRequest": {"provider": "github", "number": 118, "url": "https://git.acme.example/acme/checkout-api/pull/118"}
+  },
+  "environment": {"id": "env:production", "name": "production", "tier": "PRODUCTION", "digest": "sha256:ec813cc13f7b811c07e37b88ed53acf1d22c0b30e81dc3475d69d75dee4be81c"},
+  "policy": {"policyBundleDigest": "sha256:7c03694221918049ddb99dca78ad81f516b8f3c915c5830b3b9ce1e77ee0cd08", "currentAt": "2026-09-09T17:10:00Z",
+             "approvalPolicyDigest": "sha256:edff4763861bfb82ae50a0322f3fdb54d091341c310891bf0192fc97f8153308"},
+  "rollout": {
+    "strategy": "CANARY", "cohort": "checkout-canary-5pct",
+    "steps": [
+      {"step": 1, "exposure": "5%", "gate": "error-rate and p95 latency within band for 60 min", "status": "PASSED", "decisionId": "DEC-104-03", "evidenceIds": ["EV-104-21"]},
+      {"step": 2, "exposure": "50%", "gate": "error-rate and p95 latency within band for 120 min", "status": "PASSED", "decisionId": "DEC-104-04", "evidenceIds": ["EV-104-22"]},
+      {"step": 3, "exposure": "100%", "gate": "production verification checks", "status": "PASSED", "decisionId": "DEC-104-05", "evidenceIds": ["EV-104-23"]}
+    ],
+    "provider": "acme-deploy", "providerDeploymentRef": "deploy:checkout-api:2026-09-09-3"
+  },
+  "rollback": {
+    "ready": true, "strategy": "ROLLBACK",
+    "target": {"commitSha": "b9759359b0d6d70a6593146e72040391245e204f", "releaseId": "REL-103-02"},
+    "conditions": ["error-rate > 0.5% over 10 min", "payment-authorization failures > baseline + 2σ", "any SEV1/SEV2 incident linked to checkout-api"],
+    "planDigest": "sha256:41daeac3572f783a84524da017c8566fe84e7e835693ee2cd9390f352af19b9d",
+    "owner": {"kind": "human", "id": "user:dana.okafor", "identitySource": "authenticated"}
+  },
+  "verification": {
+    "environmentValidationEvidenceIds": ["EV-104-20"],
+    "smokeEvidenceIds": ["EV-104-21"],
+    "healthEvidenceIds": ["EV-104-22"],
+    "canaryComparisonEvidenceIds": ["EV-104-22"],
+    "productionVerificationEvidenceIds": ["EV-104-23"],
+    "verificationId": "VER-104-03",
+    "verificationAttemptCount": 1
+  },
+  "observationWindow": {"start": "2026-09-09T20:30:00Z", "end": "2026-09-16T20:30:00Z", "outcomeId": "OUT-104-01"},
+  "state": "PROMOTED",
+  "authorizedAt": "2026-09-09T17:10:00Z",
+  "deployedAt": "2026-09-09T17:25:00Z",
+  "verifiedAt": "2026-09-09T20:30:00Z",
+  "promotedAt": "2026-09-09T20:30:00Z",
+  "digest": "sha256:964bf3fc5ddc785d7081ac0dc088bc1c39f971c538fb7ed9bbf1f269dcbe166b",
+  "createdAt": "2026-09-09T17:06:00Z",
+  "createdBy": {"kind": "service", "id": "svc:release-system", "identitySource": "workload-identity"},
+  "history": [
+    {"subjectId": "REL-104-01", "fromState": "ELIGIBLE", "toState": "AUTHORIZED", "actor": {"kind": "policy", "id": "policy:release/2", "identitySource": "workload-identity"},
+     "reason": "MEDIUM risk: policy authorizes canary release within envelope; rollback plan present with owner.", "policyVersion": "release-policy/2",
+     "idempotencyKey": "REL-104-01:authorize:1", "occurredAt": "2026-09-09T17:10:00Z", "decisionId": "DEC-104-03"},
+    {"subjectId": "REL-104-01", "fromState": "VERIFIED", "toState": "PROMOTED", "actor": {"kind": "policy", "id": "policy:release/2", "identitySource": "workload-identity"},
+     "reason": "Production verification checks PASS at 100% exposure.", "policyVersion": "release-policy/2",
+     "idempotencyKey": "REL-104-01:promote:1", "occurredAt": "2026-09-09T20:30:00Z", "requiredEvidenceIds": ["EV-104-23"], "decisionId": "DEC-104-05"}
+  ]
+}

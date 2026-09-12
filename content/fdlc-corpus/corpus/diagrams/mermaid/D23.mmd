@@ -1,0 +1,32 @@
+%% D23 Observability trace — one Work Order, one Attempt, one verification, one Decision
+%% Type: sequence · Page: /architecture/observability
+sequenceDiagram
+  autonumber
+  box rgb(228,233,236) Control
+    participant R as Router (L4)
+    participant O as Orchestrator
+  end
+  box rgb(245,230,208) Execution
+    participant W as Worker / Harness
+    participant S as Sandbox
+    participant M as Model route
+    participant T as Tool broker
+  end
+  box rgb(220,239,228) Trust
+    participant V as Verifier Attempt
+    participant P as Policy / Human
+  end
+  Note over R: trace root: wo=WO-104-01 fv=FV-depmod-1.0
+  R->>O: span routing.decide {eligible=3, ranked=1, ep=EP-depmod-1.0-prod}
+  O->>W: span attempt.claim {attempt=ATT-104-01-p1, lease, generation}
+  W->>S: span sandbox.allocate {profile digest} → READY
+  W->>M: span gen_ai.chat {route, tokens in/out/cached, cost=ESTIMATED}
+  W->>T: span tool.execute {grant, authorization receipt}
+  T-->>W: completion receipt {output digest, poisoning=false}
+  W->>W: span plan.revise {reason, retry=1} — linked, not nested
+  W->>S: span sandbox.result {bundle digest} → quarantine
+  O->>V: span verification.attempt {subject=CAND-104-01-01, independence proven}
+  V-->>O: verification result PASS {receipt, valid-until}
+  O->>P: span decision.request {kind=acceptance, risk=medium}
+  P-->>O: Decision DEC-104-03 {actor, policy version, evidence ids}
+  Note over R,P: Every span carries tenant · Intent · Plan rev · WO rev · Attempt · manifest digest · actor · redaction state
