@@ -1,7 +1,7 @@
 ---
 title: "feat: Integrate the FDLC corpus as a verified preview"
 type: feat
-status: active
+status: ready-for-product-review
 date: 2026-09-12
 branch: codex/corpus-integration-preview
 base: origin/main@ff7b25f
@@ -18,14 +18,14 @@ This is intentionally a preview integration, not a canonical cutover. The branch
 
 ## Implementation status
 
-The verified corpus pipeline is implemented on `codex/corpus-integration-preview`. The landing experience is now being revised from an audit inventory into a reader-first community hub. Evidence and local commands are in `docs/reviews/2026-09-12-corpus-preview-validation.md`; the machine-readable corpus report is `docs/reviews/corpus-preview-verification.json`.
+The verified corpus pipeline and reader-first community hub are implemented on `codex/corpus-integration-preview`. Evidence and local commands are in `docs/reviews/2026-09-12-corpus-preview-validation.md`; the machine-readable corpus report is `docs/reviews/corpus-preview-verification.json`.
 
-The reader-first preview implementation is green in Vinext and native Next webpack builds/runtimes, including both 14-check browser suites. Those are producer-run automated checks, not Product Owner acceptance. The actual `npm run build:vercel` Turbopack target and the Local review checklist are explicit, separate merge gates and remain unchecked until they are genuinely completed.
+The reader-first preview is green in Vinext, native Next webpack, and the actual Next 16 Turbopack shipping build. The Product Owner ran `npm run build:vercel` in a normal macOS Terminal: it compiled successfully, completed TypeScript, generated 279 of 279 static pages, and passed the post-build design-system check. Automated evidence is still not Product Owner acceptance, so the Local review checklist remains separate and unchecked.
 
 ## Evidence ownership and merge gates
 
 - [x] Producer automation: verifier, unit, rendered, runtime, browser, accessibility, and fallback checks have reproducible artifacts.
-- [ ] Shipping build: `npm run build:vercel` must complete successfully after the final source change.
+- [x] Shipping build: `npm run build:vercel` completed successfully after the final source change in the Product Owner's normal local environment.
 - [ ] Product Owner acceptance: the Local review checklist must be completed by the Product Owner, not inferred from automated evidence.
 - [ ] Governance decisions: canonical route promotion and taxonomy qualification remain outside this preview merge.
 
@@ -298,7 +298,7 @@ Start with split generated document artifacts if a centralized TypeScript module
 - [x] Add contract, rendered, and browser coverage for curated paths and richer filters.
 - [x] Rerun the complete supported gate after the final source change.
 - [x] Attempt `npm run build:vercel` as its own shipping gate and record the exact result prominently.
-- [ ] Obtain a successful `npm run build:vercel` result in a normal local or Vercel environment.
+- [x] Obtain a successful `npm run build:vercel` result in a normal local or Vercel environment.
 - [x] Capture final desktop and mobile screenshots for Product Owner review.
 
 **Exit:** the branch is a technically qualified merge candidate for a noindex preview; Product Owner visual acceptance remains explicitly unclaimed.

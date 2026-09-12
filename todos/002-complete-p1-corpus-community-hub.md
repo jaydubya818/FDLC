@@ -1,5 +1,5 @@
 ---
-status: ready
+status: complete
 priority: p1
 issue_id: "002"
 tags: [content, navigation, discovery, accessibility, verification]
@@ -49,7 +49,7 @@ Implement Option 1. Keep canonical promotion, taxonomy adjudication, and route r
 - [x] Desktop and mobile layouts remain accessible and free of horizontal overflow.
 - [x] Existing corpus documents, artifacts, noindex controls, and canonical pages remain unchanged.
 - [x] Automated tests, dual supported runtimes, and the actual Vercel/Turbopack build are reported separately.
-- [ ] The actual Vercel/Turbopack build passes in a normal local or Vercel environment.
+- [x] The actual Vercel/Turbopack build passes in a normal local or Vercel environment.
 - [x] The local Product Owner review checklist remains unchecked for the Product Owner to complete.
 
 ## Work Log
@@ -87,3 +87,17 @@ Implement Option 1. Keep canonical promotion, taxonomy adjudication, and route r
 - Draft filter values should be submitted atomically; auto-applying independent selects can lose state during overlapping client transitions.
 - A technically complete corpus becomes useful only after outcome-based wayfinding is placed ahead of the raw inventory.
 - The shipping build remains a separate gate until it succeeds in a normal Terminal or Vercel environment.
+
+### 2026-09-12 - External shipping gate closed
+
+**By:** Product Owner and Codex
+
+**Actions:**
+
+- The Product Owner ran `npm run build:vercel` from the isolated worktree in a normal macOS Terminal.
+- Next 16.3.4 Turbopack compiled successfully, completed TypeScript and page data collection, generated 279 of 279 static pages, and passed the post-build design-system check.
+- Restored the generated `next-env.d.ts` file to its committed dual-runtime form and completed the final merge review.
+
+**Learnings:**
+
+- Environment restrictions must be reported separately from product failures and closed with evidence from the real shipping path.

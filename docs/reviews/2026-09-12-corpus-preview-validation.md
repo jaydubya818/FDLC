@@ -1,6 +1,6 @@
 ---
 title: FDLC corpus preview validation
-status: implementation-complete-awaiting-external-build-and-product-review
+status: implementation-complete-awaiting-product-review
 date: 2026-09-12
 branch: codex/corpus-integration-preview
 base: origin/main@ff7b25f
@@ -10,7 +10,7 @@ base: origin/main@ff7b25f
 
 ## Outcome
 
-The corpus is integrated as a reversible, non-canonical learning-library preview. Its reader experience and supported runtime gates are ready for Product Owner testing on `codex/corpus-integration-preview`; it is not ready to merge until the external Turbopack build gate succeeds, and it is not approved for canonical route promotion or production deployment.
+The corpus is integrated as a reversible, non-canonical learning-library preview. Its reader experience and all required build/runtime gates are technically qualified on `codex/corpus-integration-preview`. It is ready for Product Owner review as a preview-only merge candidate; it is not approved for canonical route promotion or production deployment.
 
 The implementation renders 157 manifest-backed documents and 95 allowlisted source artifacts without replacing an existing page. Four curated paths now help new readers, builders, platform/security teams, and leaders turn the corpus into practical learning and adoption sequences. The preview is absent from primary navigation and the sitemap, carries `noindex` metadata, and is disallowed in `robots.txt`. Both Vinext and native Next browser suites pass at desktop and mobile widths.
 
@@ -78,9 +78,9 @@ That optional check fails closed for a missing or escaping path. The current rep
 | Mermaid browser parsing | Pass | 33/33 source files in each runtime suite |
 | Desktop/mobile accessibility | Pass | axe: 0 violations and 0 incomplete checks on the final hub; 0 violations on catalog and long technical documents at 1440px and 390px in both suites |
 | JavaScript-disabled reading | Pass | document prose and diagram source available in both runtime suites |
-| Vercel/Turbopack shipping build | **Blocked — not pass** | Final-source `npm run build:vercel` reached Next 16.3.4 Turbopack, then the managed host denied the PostCSS worker's internal port bind before application compilation |
+| Vercel/Turbopack shipping build | Pass | Product Owner-run normal macOS Terminal build compiled in 2.4s, completed TypeScript and page collection, generated 279/279 static pages, and passed the post-build design-system check |
 
-The final-source Turbopack `npm run build:vercel` attempt cannot complete inside this managed environment because its PostCSS worker is denied an internal loopback bind (`Operation not permitted`). Running with elevated sandbox permissions produces the same host restriction. Next documents that Turbopack processes PostCSS in a Node worker pool; no supported no-port worker mode is exposed. The native Next webpack production build, runtime smoke, and browser suite all pass, but they do not convert this row into a pass. Run `npm run build:vercel` once in a normal local Terminal or Vercel environment before merge approval.
+The managed Codex environment could not complete Turbopack because it denied the PostCSS worker's internal port bind. The Product Owner independently reran the same final-source command in a normal local Terminal, where Next 16.3.4 completed the production build successfully. This closes the shipping-build gate without treating the producer's constrained-environment result as a pass.
 
 The full audit still reports four high-severity development-only advisories in the pre-existing Cloudflare/Wrangler toolchain. The new Mermaid dependency initially added production advisories; it was pinned to 11.17.2 with `lodash-es` 4.18.1 overridden, returning the production audit to zero. Upgrade Cloudflare/Wrangler separately to keep this content branch's blast radius clear.
 
@@ -160,9 +160,9 @@ Final browser screenshots are available at:
 
 ### Before merging this preview branch
 
-1. Run `npm run build:vercel` in a normal local shell to close the one environment-specific gap.
-2. Review one long architecture document, one tutorial, one pattern register, one schema, and `/start#builder` on desktop and mobile.
-3. Confirm that a preview-only merge is desirable. Do not combine this approval with canonical route promotion.
+1. Review one long architecture document, one tutorial, one pattern register, one schema, and `/start#builder` on desktop and mobile.
+2. Confirm that a preview-only merge is desirable. Do not combine this approval with canonical route promotion.
+3. Keep the non-blocking hardening work recorded in todos 003–006 outside this bounded preview merge.
 
 ## Post-Deploy Monitoring & Validation
 
