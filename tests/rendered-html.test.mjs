@@ -58,8 +58,8 @@ test("corpus raw artifacts are allowlisted and unknown targets fail closed", asy
   assert.equal((await render("/corpus-preview/not-a-real-document")).status, 404);
 });
 
-test("global More stays focused while contextual artifacts remain discoverable", async () => {
-  const expected = ["FDLC in 5 Minutes", "Manifesto", "Start", "Enterprise", "About"];
+test("global More exposes the preview while contextual artifacts remain focused", async () => {
+  const expected = ["FDLC in 5 Minutes", "Learning Library (Preview)", "Manifesto", "Start", "Enterprise", "About"];
   for (const route of routes) {
     const html = await (await render(route)).text();
     const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
@@ -83,6 +83,9 @@ test("global More stays focused while contextual artifacts remain discoverable",
   }
   const sitemap = await (await render("/sitemap.xml")).text();
   for (const route of ["/specification", "/benchmarks"]) assert.ok(sitemap.includes(route));
+  const previewHeader = (await (await render("/corpus-preview")).text()).match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
+  assert.match(previewHeader ?? "", /nav-dropdown is-active/);
+  assert.match(previewHeader ?? "", /<a(?=[^>]*aria-current="page")(?=[^>]*href="\/corpus-preview")[^>]*>Learning Library \(Preview\)<\/a>/);
 });
 
 test("server-renders every public route with FDLC metadata and a heading", async () => {
@@ -136,9 +139,16 @@ test("homepage answers the category boundary and links to primary destinations",
   assert.match(html, /Intent.*Factory.*Evidence.*Outcome/is);
   assert.match(html, /Plan.*Modify.*Test.*Verify.*Approve/is);
   assert.match(html, /Choose the next useful step/i);
-  assert.match(html, /Understand.*Assess.*Build.*Go deeper/is);
+  assert.match(html, /Understand.*Assess.*Build.*Go deeper.*Explore/is);
+  assert.match(html, /Explore the Learning Library \(Preview\)/i);
   assert.match(html, /Need help applying FDLC.*Start with one bounded factory line/is);
-  for (const href of ["/framework", "/architecture", "/in-5-minutes", "/guide", "/mission-control", "/maturity", "/start"]) assert.match(html, new RegExp(`href=["']${href}["']`));
+  for (const href of ["/framework", "/architecture", "/in-5-minutes", "/guide", "/mission-control", "/maturity", "/start", "/corpus-preview"]) assert.match(html, new RegExp(`href=["']${href}["']`));
+  const homeHeader = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0] ?? "";
+  const homeMain = html.match(/<main\b[^>]*>[\s\S]*?<\/main>/)?.[0] ?? "";
+  const homeFooter = html.match(/<footer class="global-footer">[\s\S]*?<\/footer>/)?.[0] ?? "";
+  assert.equal([...homeHeader.matchAll(/href="\/corpus-preview"/g)].length, 2, "desktop and mobile navigation expose the preview");
+  assert.equal([...homeMain.matchAll(/href="\/corpus-preview"/g)].length, 1, "homepage action exposes the preview");
+  assert.equal([...homeFooter.matchAll(/href="\/corpus-preview"/g)].length, 1, "footer exposes the preview");
 });
 
 test("framework publishes the exact category definition and distinction", async () => {

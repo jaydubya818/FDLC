@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 
-const moreLabels = ["FDLC in 5 Minutes", "Manifesto", "Start", "Enterprise", "About"];
-const morePaths = ["/in-5-minutes", "/manifesto", "/start", "/enterprise", "/about"];
+const moreLabels = ["FDLC in 5 Minutes", "Learning Library (Preview)", "Manifesto", "Start", "Enterprise", "About"];
+const morePaths = ["/in-5-minutes", "/corpus-preview", "/manifesto", "/start", "/enterprise", "/about"];
 const primaryLabels = ["Framework", "Architecture", "Guide", "Mission Control", "FDE", "Maturity", "More"];
 
 export async function checkGlobalNavigation(page, { mobile, keyboard = false, touch = false }) {
@@ -35,7 +35,7 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
   assert.equal(await trigger.getAttribute("aria-expanded"), "true");
   if (mobile) {
     const labels = await panel.locator(":scope > a").allTextContents();
-    assert.deepEqual(labels.slice(-5), moreLabels);
+    assert.deepEqual(labels.slice(-moreLabels.length), moreLabels);
   }
   if (mobile) {
     if (touch) await page.touchscreen.tap(8, 300);

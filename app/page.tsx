@@ -22,6 +22,7 @@ const actions = [
   ["Assess", "Identify your current factory maturity and the next capability to earn.", "/maturity", "Assess your factory"],
   ["Build", "Turn one engineering outcome into a reusable Factory Definition.", "/start", "Build a Factory Definition"],
   ["Go deeper", "Use the Framework, Architecture, and Guide as the technical reference.", "/framework", "Explore the Framework"],
+  ["Explore", "Follow guided learning paths or search the complete draft FDLC reference.", "/corpus-preview", "Explore the Learning Library (Preview)"],
 ] as const;
 
 export default function Home() {
