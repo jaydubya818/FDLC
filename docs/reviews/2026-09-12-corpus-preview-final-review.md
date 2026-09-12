@@ -1,6 +1,6 @@
 ---
 title: FDLC corpus preview final merge review
-status: technically-approved-awaiting-product-owner
+status: approved-preview-release
 date: 2026-09-12
 branch: codex/corpus-integration-preview
 base: origin/main@ff7b25f
@@ -34,8 +34,8 @@ No merge-blocking code, security, accessibility, or runtime finding remains for 
 - Todo 005: sandbox or sanitize same-origin SVG artifacts before accepting future diagram imports.
 - Todo 006: detect collisions between explicit and generated heading ids.
 
-None of these findings is exploitable or broken in the committed corpus: current SVGs contain no active content, current heading ids are unique, current publication output matches the intended policy, and the preview is unadvertised/noindex. They become important before accepting broader content sources or promoting the corpus publicly.
+None of these findings is exploitable or broken in the committed corpus: current SVGs contain no active content, current heading ids are unique, current publication output matches the intended policy, and the preview remains clearly labeled and noindex. They become important before accepting broader content sources or promoting the corpus publicly.
 
 ## Product Owner boundary
 
-The Local review checklist remains unchecked. Technical approval does not decide whether the information architecture, wording, or learning paths are the right product experience, and it does not approve any of the nine route collisions or 73 taxonomy dispositions.
+The Product Owner visually accepted the production preview and approved a clearly labeled soft launch. This acceptance does not approve any of the nine route collisions, 73 taxonomy dispositions, canonical route replacements, or search indexing.

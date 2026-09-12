@@ -83,7 +83,7 @@ button, input, textarea, select { font: inherit; }
 .adoption-thesis-grid span { color: var(--amber-light); font-family: var(--mono); font-size: var(--text-label); }
 .adoption-thesis-grid h3 { margin: 0; font-size: 17px; }
 .adoption-thesis-grid p { margin: 0; color: #afbbb4; font-size: 14px; line-height: 1.55; }
-.adoption-action-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
+.adoption-action-grid { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
 .adoption-action-grid > a { min-height: 270px; padding: 22px; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
 .adoption-action-grid > a:hover { background: var(--sage); }
 .adoption-action-grid span { color: var(--green); font-family: var(--mono); font-size: var(--text-label); font-weight: 700; text-transform: uppercase; }
@@ -103,6 +103,7 @@ button, input, textarea, select { font: inherit; }
   .statement-band { grid-template-columns: 1fr 1fr; }
   .statement-band span { grid-column: 1 / -1; }
   .adoption-example-flow, .adoption-action-grid { grid-template-columns: repeat(2, 1fr); }
+  .adoption-action-grid > a:last-child { min-height: 210px; grid-column: 1 / -1; }
   .adoption-thesis, .adoption-enterprise { grid-template-columns: 1fr; }
 }
 
@@ -121,6 +122,7 @@ button, input, textarea, select { font: inherit; }
   .statement-band span { grid-column: auto; margin-top: 8px; }
   .adoption-example-flow, .adoption-action-grid { grid-template-columns: 1fr; }
   .adoption-example-flow li, .adoption-action-grid > a { min-height: 190px; }
+  .adoption-action-grid > a:last-child { min-height: 190px; }
   .adoption-thesis { padding-top: 78px; padding-bottom: 78px; }
   .adoption-thesis-grid article { grid-template-columns: 36px 1fr; }
   .adoption-thesis-grid p { grid-column: 2; }

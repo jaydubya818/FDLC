@@ -166,7 +166,7 @@ Final browser screenshots are available at:
 
 ## Post-Deploy Monitoring & Validation
 
-This is an unadvertised, noindex preview, but it still adds runtime and artifact routes.
+This is a clearly labeled, noindex soft launch. It is discoverable from the header, homepage, and footer while remaining outside search indexing and the sitemap.
 
 - **Logs:** watch for requests containing `/corpus-preview` or `/corpus-artifacts`, 5xx responses, render errors, and Mermaid client failures.
 - **Healthy signals:** preview catalog and representative documents return 200; invalid document and artifact paths return 404; canonical route response rates and latency remain unchanged.
@@ -183,12 +183,6 @@ This is an unadvertised, noindex preview, but it still adds runtime and artifact
 5. Add version/diff views and source-linked feedback only after repository ownership and corpus release governance are decided.
 6. Publish canonical schema endpoints, `llms.txt`, and role-based reading paths only with an approved versioning and compatibility contract.
 
-## Decision requested
+## Soft-launch decision
 
-After local testing, choose one of three bounded outcomes:
-
-- merge the preview as an unadvertised review surface;
-- request changes on this branch;
-- decline the preview integration and retain the archive only.
-
-Canonical route replacement remains a separate decision in every case.
+After production review, the Product Owner approved discoverability links in the More menu, homepage, and footer. The Learning Library remains labeled Preview and noindex. Canonical route replacement remains a separate decision.
