@@ -58,8 +58,9 @@ const contentRoot = path.join(projectRoot, "content/fdlc-corpus");
 const outputPath = path.join(projectRoot, "data/corpus.generated.ts");
 const reportPath = path.join(projectRoot, "docs/reviews/corpus-preview-verification.json");
 const publicationPath = path.join(contentRoot, "publication.json");
+const packageJsonPath = path.join(projectRoot, "package.json");
 const packageLockPath = path.join(projectRoot, "package-lock.json");
-const generatorVersion = "1.0.0";
+const generatorVersion = "1.0.1";
 const excludedMarkdown = new Set([
   "corpus/README.md",
   "corpus/diagrams/svg/README.md",
@@ -322,6 +323,7 @@ async function main() {
   let existingReport: { generatedAt?: string } = {};
   try { existingReport = JSON.parse(await readFile(reportPath, "utf8")); } catch { /* A missing report is expected before the first sync. */ }
   const generatedAt = writeMode ? new Date().toISOString() : existingReport.generatedAt ?? "MISSING—RUN npm run corpus:sync";
+  const packageJson = JSON.parse(await readFile(packageJsonPath, "utf8")) as { engines?: { node?: string } };
   const packageLock = JSON.parse(await readFile(packageLockPath, "utf8")) as { packages?: Record<string, { version?: string }> };
   const packageVersion = (name: string) => packageLock.packages?.[`node_modules/${name}`]?.version ?? "unavailable";
   const checks = [
@@ -341,7 +343,7 @@ async function main() {
     archiveSha256: "54583e8f18d3e474617b6d63b25ddac1c58ff196c8271a2dcb22f7f4a6e38a49",
     sourceDigest: digest,
     toolVersions: {
-      node: process.version,
+      node: packageJson.engines?.node ?? "unavailable",
       ajv: packageVersion("ajv"),
       grayMatter: packageVersion("gray-matter"),
       mermaid: packageVersion("mermaid"),

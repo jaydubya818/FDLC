@@ -65,7 +65,7 @@ That optional check fails closed for a missing or escaping path. The current rep
 | Clean install | Pass | `npm ci`; 711 packages restored from lockfile |
 | Production dependency audit | Pass | 0 production vulnerabilities |
 | Corpus verification/stale output | Pass | 0 errors; generated JSON matches source digest |
-| Unit suite | Pass | 40/40 |
+| Unit suite | Pass | 41/41 |
 | Lint | Pass | 0 errors |
 | TypeScript | Pass | root and `packages/fab` |
 | Vinext production build | Pass | all preview and artifact routes emitted |

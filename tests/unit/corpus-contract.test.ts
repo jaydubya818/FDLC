@@ -64,3 +64,9 @@ test("negative schema fixture proves example mismatch detection", async () => {
   ], findings);
   assert.ok(findings.some((finding) => finding.check === "schema-example" && finding.severity === "error"));
 });
+
+test("verification reports the repository Node contract instead of the host patch version", async () => {
+  const packageJson = JSON.parse(await readFile(path.resolve(import.meta.dirname, "../../package.json"), "utf8"));
+  const report = JSON.parse(await readFile(path.resolve(import.meta.dirname, "../../docs/reviews/corpus-preview-verification.json"), "utf8"));
+  assert.equal(report.toolVersions.node, packageJson.engines.node);
+});

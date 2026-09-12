@@ -79,7 +79,7 @@ Implement Option 1. Keep canonical promotion, taxonomy adjudication, and route r
 - Reduced the initial catalog from 24 to 9 documents and collapsed maintainer-only evidence to shorten the mobile reading path.
 - Found and fixed a sequential-filter state-loss bug during manual browser interaction.
 - Added manifest contract, rendered HTML, browser flow, responsive layout, and accessibility coverage.
-- Passed the final-source Vinext and native Next webpack builds, 40 unit checks, 25 rendered checks, both 14-check corpus browser suites, both 52-check whole-site suites, lint, typecheck, and the production dependency audit.
+- Passed the final-source Vinext and native Next webpack builds, 41 unit checks, 25 rendered checks, both 14-check corpus browser suites, both 52-check whole-site suites, lint, typecheck, and the production dependency audit.
 - Attempted `npm run build:vercel` against the final source. Next 16.3.4 Turbopack was blocked before application compilation because this managed host denies the PostCSS worker's internal port bind.
 
 **Learnings:**
