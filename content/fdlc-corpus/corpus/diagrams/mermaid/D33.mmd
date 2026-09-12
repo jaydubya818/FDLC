@@ -1,0 +1,33 @@
+%% D33 Incident Command lifecycle
+%% Type: state · Page: /architecture/operations, /enterprise/operations
+stateDiagram-v2
+  [*] --> CLARIFY: impact · severity · commander named
+  CLARIFY --> CONTAIN: containment actions declared (pause dispatch · quarantine · hold publication)
+  CONTAIN --> OBSERVE: every action has COMMAND · ACK · EFFECT_OBSERVED
+  OBSERVE --> ISOLATE: forensic bundle preserved
+  ISOLATE --> RESTORE: failed layer identified (intent · context · model · tool · state · policy · evaluation)
+  RESTORE --> CORRECT: incident-scoped restoration Decision + known-safe evidence
+  CORRECT --> PREVENT: defect corrected
+  PREVENT --> MEASURE: regression case + control added (Improvement Candidate)
+  MEASURE --> RESOLVED: fix holds over window · unknowns dispositioned
+  RESOLVED --> [*]
+  note right of CONTAIN
+    Acknowledgment ≠ containment.
+    Only the independent observer records EFFECT_OBSERVED.
+  end note
+  note right of RESTORE
+    Restoration is a new consequential action
+    with its own current, incident-scoped authority
+    (Decision kind restoration). Factory Version: Suspended → Active.
+  end note
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef human fill:#e4e9ec,stroke:#b3261e,stroke-width:3px,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  class CLARIFY,CONTAIN human
+  class OBSERVE,ISOLATE execution
+  class RESTORE human
+  class CORRECT trust
+  class PREVENT,MEASURE learning
+  class RESOLVED trust

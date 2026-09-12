@@ -1,0 +1,651 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fdlc.ai/schemas/v1/learning-signal.schema.json",
+  "title": "FDLC Learning Signal",
+  "description": "An attributable, reviewed signal from executions, failures, retries, verifications, overrides, cost, incidents, outcomes. Advisory: it carries no acceptance authority and mutates nothing.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "type": {
+      "type": "string",
+      "const": "fdlc://v1/learning-signal"
+    },
+    "id": {
+      "$ref": "#/$defs/Id"
+    },
+    "namespace": {
+      "$ref": "#/$defs/Namespace"
+    },
+    "signalType": {
+      "type": "string",
+      "enum": [
+        "HUMAN_CORRECTION",
+        "REPEATED_INSTRUCTION",
+        "VERIFICATION_FAILURE",
+        "DETERMINISTIC_GATE_FAILURE",
+        "RETRY_REQUIRED",
+        "RECOVERY_REQUIRED",
+        "CONTEXT_MISS",
+        "CONTEXT_OVERLOAD",
+        "MODEL_ROUTING_MISMATCH",
+        "TOOL_SELECTION_MISMATCH",
+        "PROMPT_AMBIGUITY",
+        "AGENT_CONFIG_DRIFT",
+        "UNNECESSARY_AGENT_USAGE",
+        "TOKEN_WASTE",
+        "HUMAN_INTERVENTION",
+        "REPEATED_REVIEW_FINDING",
+        "OUTCOME_REGRESSION",
+        "ROLLBACK",
+        "ESCAPED_DEFECT",
+        "COST_ANOMALY",
+        "LATENCY_ANOMALY",
+        "VERIFIER_DISAGREEMENT",
+        "VERIFIER_FALSE_SUCCESS",
+        "VERIFIER_FALSE_FAILURE",
+        "INCIDENT",
+        "POLICY_VIOLATION",
+        "SPEC_QUALITY_FINDING"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "sourceType": {
+          "type": "string",
+          "enum": [
+            "VERIFICATION",
+            "EVIDENCE",
+            "ATTEMPT",
+            "RUN_EVENT",
+            "TRACE",
+            "DECISION",
+            "OUTCOME",
+            "RELEASE",
+            "INCIDENT",
+            "CAPABILITY_REGISTRY",
+            "SPECIFICATION",
+            "QUALIFICATION_RECORD"
+          ]
+        },
+        "sourceId": {
+          "$ref": "#/$defs/Id"
+        },
+        "sourceDigest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "sourceType",
+        "sourceId"
+      ],
+      "additionalProperties": false
+    },
+    "subject": {
+      "type": "object",
+      "description": "What the signal is about. Attribution is required; an unattributed signal is noise.",
+      "properties": {
+        "factoryVersionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "factoryVersionDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "executionProfileId": {
+          "$ref": "#/$defs/Id"
+        },
+        "workOrderId": {
+          "$ref": "#/$defs/Id"
+        },
+        "attemptId": {
+          "$ref": "#/$defs/Id"
+        },
+        "intentId": {
+          "$ref": "#/$defs/Id"
+        },
+        "releaseId": {
+          "$ref": "#/$defs/Id"
+        },
+        "capabilityId": {
+          "$ref": "#/$defs/Id"
+        },
+        "modelRouteDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "repositoryId": {
+          "$ref": "#/$defs/Id"
+        },
+        "affectedComponent": {
+          "type": "string",
+          "enum": [
+            "ROUTING",
+            "SKILL",
+            "EVALUATOR",
+            "POLICY",
+            "PROMPT",
+            "CONFIG",
+            "TOOL",
+            "CONTEXT",
+            "HARNESS",
+            "MODEL_ROUTE",
+            "SPECIFICATION",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "required": [
+        "factoryVersionId",
+        "affectedComponent"
+      ],
+      "additionalProperties": false
+    },
+    "reasonCode": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "normalizedSignature": {
+      "type": "string",
+      "description": "Deterministic fingerprint of the failure or friction pattern, used for clustering and dedupe."
+    },
+    "clusterKey": {
+      "type": "string"
+    },
+    "clusterId": {
+      "$ref": "#/$defs/Id"
+    },
+    "evidenceIds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Id"
+      }
+    },
+    "evidenceFingerprint": {
+      "$ref": "#/$defs/Digest"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "severity": {
+      "$ref": "#/$defs/RiskClass"
+    },
+    "observed": {
+      "type": "object",
+      "properties": {
+        "modelCalls": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "cost": {
+          "$ref": "#/$defs/CostRecord"
+        },
+        "humanMinutes": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "retries": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "review": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNREVIEWED",
+            "REVIEWED",
+            "DISMISSED"
+          ]
+        },
+        "reviewedBy": {
+          "$ref": "#/$defs/Actor"
+        },
+        "reviewedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "acceptanceAuthority": {
+      "type": "boolean",
+      "const": false
+    },
+    "mutatesProduction": {
+      "type": "boolean",
+      "const": false
+    },
+    "improvementCandidateId": {
+      "$ref": "#/$defs/Id"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "RECORDED",
+        "CLUSTERED",
+        "REVIEWED",
+        "PROMOTED_TO_CANDIDATE",
+        "DISMISSED",
+        "EXPIRED"
+      ]
+    },
+    "observedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "expiresAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "idempotencyKey": {
+      "type": "string"
+    },
+    "digest": {
+      "$ref": "#/$defs/Digest",
+      "description": "Digest over (signalType, source, subject, normalizedSignature, evidenceFingerprint, observedAt)."
+    },
+    "createdAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "createdBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Transition"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "type",
+    "id",
+    "namespace",
+    "signalType",
+    "source",
+    "subject",
+    "reasonCode",
+    "summary",
+    "normalizedSignature",
+    "evidenceIds",
+    "confidence",
+    "severity",
+    "review",
+    "acceptanceAuthority",
+    "mutatesProduction",
+    "state",
+    "observedAt",
+    "idempotencyKey",
+    "digest",
+    "createdAt",
+    "createdBy"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "REVIEWED",
+              "PROMOTED_TO_CANDIDATE",
+              "DISMISSED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "review": {
+            "required": [
+              "reviewedBy",
+              "reviewedAt"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "REVIEWED",
+                  "DISMISSED"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "PROMOTED_TO_CANDIDATE"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "improvementCandidateId"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "CLUSTERED"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "clusterId"
+        ]
+      }
+    },
+    {
+      "properties": {
+        "evidenceIds": {
+          "minItems": 1
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]*$",
+      "description": "Instance identifier. Unique within the issuing namespace; combined with `namespace` it is globally unique."
+    },
+    "ArtifactUri": {
+      "type": "string",
+      "pattern": "^fdlc://v1/(intent|specification|plan|work-order|factory-manifest|factory-version|execution-profile|capability-manifest|qualification-record|context-package|attempt|candidate|evidence|verification|decision|release|outcome|learning-signal|improvement-candidate)(/[A-Za-z0-9][A-Za-z0-9._:@-]*)?$",
+      "description": "Artifact type URI (`fdlc://v1/<artifact>`), optionally suffixed with an instance id."
+    },
+    "Namespace": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the issuing control plane or organization. Scopes every `id` in this record."
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 over the RFC 8785 (JCS) canonical JSON of the digested projection."
+    },
+    "GitSha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$|^[a-f0-9]{64}$",
+      "description": "Lowercase full Git object id (SHA-1 or SHA-256 repository)."
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp in UTC."
+    },
+    "Semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "RiskClass": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "AutonomyLevel": {
+      "type": "string",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "description": "HITL spectrum position. Effective autonomy is min(factory, objective, work order, policy, trust)."
+    },
+    "Actor": {
+      "type": "object",
+      "description": "Attributable identity. `identitySource` says how the control plane established it; never inferred from a client label.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "policy",
+            "service",
+            "agent",
+            "system"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "identitySource": {
+          "type": "string",
+          "enum": [
+            "authenticated",
+            "workload-identity",
+            "service-command",
+            "development-fallback"
+          ]
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "delegationRef": {
+          "$ref": "#/$defs/Id",
+          "description": "Reference to the delegation record that grants this actor its authority."
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "identitySource"
+      ],
+      "additionalProperties": false
+    },
+    "Ref": {
+      "type": "object",
+      "description": "Reference to another FDLC artifact instance, optionally pinned to a digest.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/ArtifactUri"
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "revisionNumber": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false
+    },
+    "CostRecord": {
+      "type": "object",
+      "description": "Cost with an honesty class. UNKNOWN cost stays UNKNOWN; implementations MUST NOT invent zeroes.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "ESTIMATED",
+            "UNKNOWN"
+          ]
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of contributing cost items that were measured."
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "Transition": {
+      "type": "object",
+      "description": "Audit record of one authoritative state transition. Every field listed here MUST be recorded.",
+      "properties": {
+        "transitionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "priorVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fromState": {
+          "type": "string"
+        },
+        "toState": {
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "occurredAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "requiredEvidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "decisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "invalidatedDependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ref"
+          }
+        }
+      },
+      "required": [
+        "subjectId",
+        "fromState",
+        "toState",
+        "actor",
+        "reason",
+        "idempotencyKey",
+        "occurredAt"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "description": "Content-addressed reference to a stored artifact (diff, log, screenshot, bundle).",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/Id"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactId",
+        "digest"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[a-z0-9]+(-[a-z0-9]+)*$": {}
+  },
+  "additionalProperties": false
+}

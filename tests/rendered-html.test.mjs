@@ -11,6 +11,53 @@ function render(pathname = "/", method = "GET") {
 
 const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/specification", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/about"];
 
+test("corpus preview renders a noindex catalog without entering the public sitemap", async () => {
+  const response = await render("/corpus-preview");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Find the guidance you need to build a trustworthy software factory/i);
+  assert.match(html, /Choose a path through FDLC/i);
+  assert.match(html, /What the library gives the community/i);
+  assert.match(html, /Search the full library/i);
+  assert.match(html, /157<\/strong>.*Manifest-backed routes/is);
+  assert.match(html, /Review candidate.*not FDLC canon/i);
+  for (const href of [
+    "/corpus-preview/start",
+    "/corpus-preview/guides/build-your-first-factory",
+    "/corpus-preview/architecture/authority",
+    "/corpus-preview/enterprise/adoption",
+  ]) assert.match(html, new RegExp(`href="${href}"`));
+  assert.match(html, /name="robots" content="noindex, nofollow/i);
+  const sitemap = await (await render("/sitemap.xml")).text();
+  assert.doesNotMatch(sitemap, /corpus-preview/);
+  const robots = await (await render("/robots.txt")).text();
+  assert.match(robots, /Disallow: \/corpus-preview\//);
+});
+
+test("corpus documents share link and custom-anchor behavior while canonical pages stay unchanged", async () => {
+  const framework = await render("/corpus-preview/framework");
+  assert.equal(framework.status, 200);
+  const frameworkHtml = await framework.text();
+  assert.match(frameworkHtml, /The FDLC Framework/);
+  assert.match(frameworkHtml, /href="\/corpus-preview\/architecture\/execution-vocabulary"/);
+  assert.match(frameworkHtml, /content="noindex, nofollow/i);
+  const start = await (await render("/corpus-preview/start")).text();
+  assert.match(start, /id="builder"/);
+  const canonicalFramework = await (await render("/framework")).text();
+  assert.match(canonicalFramework, /Six operating shifts/i);
+  assert.doesNotMatch(canonicalFramework, /Draft corpus preview/i);
+});
+
+test("corpus raw artifacts are allowlisted and unknown targets fail closed", async () => {
+  const schema = await render("/corpus-artifacts/corpus/specification/schemas/intent.schema.json");
+  assert.equal(schema.status, 200);
+  assert.match(schema.headers.get("content-type") ?? "", /^application\/json/);
+  assert.equal(schema.headers.get("x-content-type-options"), "nosniff");
+  assert.match(await schema.text(), /fdlc:\/\/v1\/intent/);
+  assert.equal((await render("/corpus-artifacts/corpus/specification/schemas/not-real.schema.json")).status, 404);
+  assert.equal((await render("/corpus-preview/not-a-real-document")).status, 404);
+});
+
 test("global More stays focused while contextual artifacts remain discoverable", async () => {
   const expected = ["FDLC in 5 Minutes", "Manifesto", "Start", "Enterprise", "About"];
   for (const route of routes) {
@@ -72,7 +119,8 @@ test("robots explicitly permits search and AI fetch agents", async () => {
   for (const userAgent of ["Google-Extended", "GPTBot", "ChatGPT-User", "OAI-SearchBot", "*"]) {
     assert.match(body, new RegExp(`User-Agent: ${userAgent.replace("*", "\\*")}\\nAllow: /`, "i"));
   }
-  assert.doesNotMatch(body, /Disallow:\s*\//i);
+  assert.doesNotMatch(body, /Disallow:\s*\/(?:\s|$)/i);
+  assert.match(body, /Disallow: \/corpus-preview\//i);
 });
 
 test("homepage answers the category boundary and links to primary destinations", async () => {

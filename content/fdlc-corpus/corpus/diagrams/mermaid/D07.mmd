@@ -1,0 +1,49 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D07 Areas × layers matrix
+%% Type: matrix · Page: /architecture (rendered there as a table; this flowchart groups each area's owned layers)
+%% ● = area owns the layer's primary decisions · ○ = contributes a component or constraint
+%% Table fallback (identical cells) lives in diagrams.md §5.
+flowchart LR
+  subgraph A1["1 · Intent"]
+    direction TB
+    A1a["● L1 Experience"] --- A1b["● L2 Intent & Planning"] --- A1c["○ contributes<br/>L3 · L4 · L6 · L8 · L12"]
+  end
+  subgraph A2["2 · Execution"]
+    direction TB
+    A2a["● L4 Routing & Orchestration"] --- A2b["● L5 Agent & Harness (shared)"] --- A2c["● L7 Execution Environment"] --- A2d["○ contributes<br/>L3 · L6 · L9 · L11"]
+  end
+  subgraph A3["3 · Capability"]
+    direction TB
+    A3a["● L5 Agent & Harness (shared)"] --- A3b["● L6 Context & Knowledge"] --- A3c["○ contributes<br/>L3 · L4 · L8 · L12"]
+  end
+  subgraph A4["4 · Model"]
+    direction TB
+    A4a["● L5 Agent & Harness (shared)"] --- A4b["○ contributes<br/>L3 · L4 · L8 · L11 · L12"]
+  end
+  subgraph A5["5 · Trust"]
+    direction TB
+    A5a["● L3 Control Plane"] --- A5b["● L8 Verification"] --- A5c["● L9 Evidence & Provenance"] --- A5d["● L10 Authority & Release"] --- A5e["○ contributes<br/>L1 · L2 · L4 · L6 · L7 · L11 · L12"]
+  end
+  subgraph A6["6 · Learning"]
+    direction TB
+    A6a["● L11 Observability & Economics"] --- A6b["● L12 Learning"] --- A6c["○ contributes<br/>L2 · L4 · L5 · L8 · L9 · L10"]
+  end
+  subgraph A7["Continuous controls (Govern · Secure · Observe · Measure)"]
+    direction TB
+    A7a["● L3 · L6 · L7 · L9 · L11"] --- A7b["○ contributes<br/>L1 · L2 · L4 · L5 · L8 · L10 · L12"]
+  end
+  A1 ~~~ A2 ~~~ A3 ~~~ A4 ~~~ A5 ~~~ A6 ~~~ A7
+  class A1a,A1b,A1c intent
+  class A2a,A2b,A2c,A2d,A3a,A3b,A3c,A4a,A4b execution
+  class A5a,A5b,A5c,A5d,A5e trust
+  class A6a,A6b,A6c learning
+  class A7a,A7b control
+  linkStyle default stroke-width:0px,stroke:transparent
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

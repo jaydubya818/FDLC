@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0",
+  "type": "fdlc://v1/evidence",
+  "id": "EV-104-09",
+  "namespace": "https://acme.example/factories/checkout",
+  "evidenceKey": "WO-104-01:r1:CHK-104-TEST:AC-104-01",
+  "category": "TEST_RESULT",
+  "checkId": "CHK-104-TEST",
+  "criterionIds": ["AC-104-01"],
+  "requirementIds": ["REQ-104-03"],
+  "riskIds": ["RISK-104-01"],
+  "subject": {
+    "kind": "CANDIDATE",
+    "candidateId": "CAND-104-01-p1",
+    "subjectDigest": "sha256:bc9e58be15d0abe0a8159ff375752bc65adca6c6a02fcde0ad02283db510641f",
+    "commitSha": "4015b57a143aec5156fd1444a017a32137a3fd0f",
+    "treeSha": "80655da8d80aaaf92ce5357e7828dc09adb00993",
+    "diffDigest": "sha256:6793803b255f9bbd0a9943b129a67af9650328c54451b76790a7be08d4c65bb3",
+    "contractDigest": "sha256:7578cc0498d5fccce37655a6d0f8a0a07eec696427228335d6656cbe1148be78",
+    "sourceAttemptId": "ATT-104-01-p1",
+    "workOrderId": "WO-104-01",
+    "workOrderRevisionNumber": 1,
+    "environmentDigest": "sha256:6dc87bf3ac7649b799be35cdd8b3a0bdae66a0447c69c286e01df5c87c589859"
+  },
+  "producer": {
+    "actor": {"kind": "service", "id": "svc:factory/verification", "identitySource": "workload-identity"},
+    "role": "verifier",
+    "independent": true,
+    "attemptId": "ATT-104-01-v1",
+    "factoryVersionId": "FV-verify-2.3",
+    "factoryPurpose": "VERIFICATION",
+    "executorInvocationId": "verify-session-c41d0e9f",
+    "leaseId": "LEASE-104-01-v1-1",
+    "adapterId": "isolated-invocation",
+    "verifierCapabilityId": "CAP-verifier-test-runner-3.0.1",
+    "reportCapability": "verification:report"
+  },
+  "independence": {"policyVersion": "verification-independence/v1", "passed": true,
+                   "reasons": ["Separate Attempt, lease, invocation, worktree, and Factory Version; verifier factory purpose VERIFICATION; verification-authority surfaces untouched by the candidate."],
+                   "sourceAttemptId": "ATT-104-01-p1", "verificationAttemptId": "ATT-104-01-v1"},
+  "result": "PASS",
+  "summary": "CT-* and IT-* suites: 212 passed, 0 failed, 0 skipped against 4015b57a in a fresh clone.",
+  "measurements": {"testsPassed": 212, "testsFailed": 0, "testsSkipped": 0, "durationMs": 418230},
+  "tool": {"name": "pnpm", "version": "9.12.0", "command": ["pnpm", "test", "--filter", "checkout-api", "--", "--grep", "CT-|IT-"], "exitCode": 0, "durationMs": 418230,
+           "environmentDigest": "sha256:6dc87bf3ac7649b799be35cdd8b3a0bdae66a0447c69c286e01df5c87c589859"},
+  "artifacts": [
+    {"artifactId": "ART-104-01-v1-junit", "kind": "TEST_OUTPUT", "mediaType": "application/xml", "digest": "sha256:82d28700a095c34b413248b7b9726b502a520f545c1565a9f5b39add9d8b1067", "sizeBytes": 91344, "storageRef": "artifact://checkout/ATT-104-01-v1/junit.xml"},
+    {"artifactId": "ART-104-01-v1-log", "kind": "COMMAND_LOG", "mediaType": "text/plain", "digest": "sha256:3ac66b4aca00d8a3bb2ff9f4cae23a83b7b2506bb4bbe2be82d08c77707af180", "sizeBytes": 220117, "storageRef": "artifact://checkout/ATT-104-01-v1/test.log"}
+  ],
+  "integrity": {
+    "contentDigest": "sha256:e586922c54b52d8283f3252853712aa94366e9f0817622a7fb0cd31fe3642fb2",
+    "signature": {"format": "dsse", "keyId": "acme-verification-factory-2026", "signatureRef": "attestation://acme/evidence/EV-104-09", "signer": "spiffe://acme.example/factory/verification"}
+  },
+  "validity": {
+    "observedAt": "2026-09-03T10:11:04Z",
+    "validUntil": "2026-09-10T10:11:04Z",
+    "assumptions": ["SUBJECT_HEAD", "WORK_ORDER_REVISION", "VERIFICATION_CONTRACT", "PLAN_DIGEST", "ENVIRONMENT_DIGEST", "TOOL_VERSION", "VALIDITY_WINDOW"],
+    "staleReasons": []
+  },
+  "provenance": {
+    "class": "LIVE",
+    "traceRefs": [{"traceId": "9d1c4a7e2b6f4c0d8e3a5b7c9d1e2f30", "spanId": "1a2b3c4d5e6f7081"}],
+    "executionManifestDigest": "sha256:b7d0c7cf8805254a3fa377a328f6d91751fb25d5dd1de93feb0c3f12a5c8af30",
+    "executionProfileDigest": "sha256:5ed7f0866fe74ab23634a68046d35aa7e39c7e45c626ec3007b94300d9d36945",
+    "receiptPacketDigest": "sha256:1678691fbf26ce98f9b8c97b9aaea32b5b448bc790c8739a70a8f51ea4db0519"
+  },
+  "attestation": {
+    "statementType": "https://in-toto.io/Statement/v1",
+    "predicateType": "https://fdlc.ai/attestation/evidence/v1",
+    "subjects": [
+      {"name": "git+https://git.acme.example/acme/checkout-api", "digest": {"gitCommit": "4015b57a143aec5156fd1444a017a32137a3fd0f", "gitTree": "80655da8d80aaaf92ce5357e7828dc09adb00993"}},
+      {"name": "fdlc://v1/candidate/CAND-104-01-p1", "digest": {"sha256": "ce27a4c7cde6fdb8f69e2b1619d75aeb1e3a68b14137a0552e2d77cb49bb7601"}}
+    ],
+    "statementDigest": "sha256:26c4f30edf340bc9f8508308af785e45e321325a122778389b92c11c86476c05",
+    "envelopeRef": "attestation://acme/evidence/EV-104-09",
+    "envelopeFormat": "dsse"
+  },
+  "state": "CURRENT",
+  "recordedAt": "2026-09-03T10:11:30Z",
+  "createdBy": {"kind": "service", "id": "svc:control-plane", "identitySource": "workload-identity"},
+  "createdAt": "2026-09-03T10:11:30Z",
+  "digest": "sha256:e586922c54b52d8283f3252853712aa94366e9f0817622a7fb0cd31fe3642fb2"
+}

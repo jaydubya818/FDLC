@@ -1,0 +1,28 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D16 Authority model (Capability ≠ Permission ≠ Authority)
+%% Type: architecture · Page: /architecture/authority
+flowchart TB
+  CP["Control Plane<br/>holds authority: identity · delegation · policy · budgets"]
+  CP -- "delegates" --> H["Human<br/>approves consequential decisions;<br/>retains override and restoration authority"]:::human
+  CP -- "delegates within bounds" --> PE["Policy engine<br/>authorizes within delegated bounds; never widens them"]
+  CP -- "admits Execution Profile" --> F["Factory<br/>executes bounded work"]
+  F --> AG["Agent<br/>proposes: candidates · plans · learning signals"]
+  F --> VF["Verifier<br/>attests, independently"]
+  H -- "Decision" --> RS["Release system<br/>promotes exact accepted artifacts"]
+  PE -- "Decision (Low/Medium, in envelope)" --> RS
+  AG -. "Candidate + Evidence" .-> VF
+  VF -. "Verification → eligibility" .-> H
+  VF -. "Verification → eligibility" .-> PE
+  RS -. "Outcome" .-> CP
+  DEF["Capability = can act · Permission = allowed to invoke · Authority = delegated right to make a consequence real"]:::neutral
+  class CP,PE control
+  class F,AG execution
+  class VF,RS trust
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

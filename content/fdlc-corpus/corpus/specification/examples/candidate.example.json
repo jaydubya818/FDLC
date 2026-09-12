@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0",
+  "type": "fdlc://v1/candidate",
+  "id": "CAND-104-01-p1",
+  "namespace": "https://acme.example/factories/checkout",
+  "sourceAttemptId": "ATT-104-01-p1",
+  "workOrderId": "WO-104-01",
+  "workOrderRevisionNumber": 1,
+  "intentId": "INT-104",
+  "verificationContractDigest": "sha256:7578cc0498d5fccce37655a6d0f8a0a07eec696427228335d6656cbe1148be78",
+  "qualityContractDigest": "sha256:dc8ccbf7d977e52efff8403f63b12e0889313b0deb0e14d4ac62866efe11ca16",
+  "executionManifestDigest": "sha256:061b3bf427e9111d287436c02a5e3ce9ebbe23b2b6f7bfb928c56329eae13692",
+  "kind": "GIT_CANDIDATE",
+  "git": {
+    "repositoryId": "repo:checkout-api", "provider": "github", "providerRepositoryId": "R_example_checkout",
+    "baseSha": "1405df66cbe219b0bf6355bc3d60361a8376b6b4",
+    "commitSha": "4015b57a143aec5156fd1444a017a32137a3fd0f",
+    "treeSha": "80655da8d80aaaf92ce5357e7828dc09adb00993",
+    "diffDigest": "sha256:6793803b255f9bbd0a9943b129a67af9650328c54451b76790a7be08d4c65bb3",
+    "baseRef": "main", "headRef": "factory/WO-104-01/ATT-104-01-p1",
+    "changedFiles": [
+      {"path": "services/checkout-api/package.json", "status": "MODIFIED", "additions": 1, "deletions": 1},
+      {"path": "services/checkout-api/pnpm-lock.yaml", "status": "MODIFIED", "additions": 22, "deletions": 19},
+      {"path": "services/checkout-api/payments/client.ts", "status": "MODIFIED", "additions": 41, "deletions": 57},
+      {"path": "services/checkout-api/payments/compat/v3-shim.ts", "status": "DELETED", "additions": 0, "deletions": 88},
+      {"path": "services/checkout-api/payments/refunds.ts", "status": "MODIFIED", "additions": 12, "deletions": 12},
+      {"path": "services/checkout-api/payments/webhooks.ts", "status": "MODIFIED", "additions": 9, "deletions": 11}
+    ]
+  },
+  "artifacts": [
+    {"artifactId": "ART-104-01-p1-diff", "kind": "CODE_DIFF", "mediaType": "text/x-diff", "digest": "sha256:6793803b255f9bbd0a9943b129a67af9650328c54451b76790a7be08d4c65bb3", "sizeBytes": 18422, "storageRef": "artifact://checkout/ATT-104-01-p1/diff.patch"},
+    {"artifactId": "ART-104-01-p1-log", "kind": "LOG_BUNDLE", "mediaType": "application/x-ndjson", "digest": "sha256:f2ed27c8ca426586709ff95c1e7e001941d31b6d83229dbd421eab2f0da5c14a", "sizeBytes": 402118, "storageRef": "artifact://checkout/ATT-104-01-p1/events.ndjson"}
+  ],
+  "scopeReconciliation": {
+    "status": "IN_SCOPE", "violations": [], "filesChanged": 6, "linesChanged": 273,
+    "verificationAuthorityStatus": "PASS",
+    "reconciledAt": "2026-09-03T09:03:20Z"
+  },
+  "subject": {"subjectId": "verification-subject:bc9e58be15d0abe0a8159ff375752bc65adca6c6a02fcde0ad02283db510641f", "subjectVersion": 2,
+              "digest": "sha256:bc9e58be15d0abe0a8159ff375752bc65adca6c6a02fcde0ad02283db510641f", "frozenAt": "2026-09-03T09:03:25Z"},
+  "publication": {
+    "state": "PUBLISHED",
+    "permitId": "PERMIT-104-01-p1-1", "permitLeaseId": "LEASE-104-01-p1-1", "permitValidUntil": "2026-09-04T12:10:00Z",
+    "decisionId": "DEC-104-PUB1", "verificationReceiptId": "RCPT-104-02",
+    "pullRequest": {"provider": "github", "providerPullRequestId": "PR_example_104", "number": 118, "url": "https://git.acme.example/acme/checkout-api/pull/118",
+                    "baseRef": "main", "headRef": "factory/WO-104-01/ATT-104-01-p1", "headSha": "4015b57a143aec5156fd1444a017a32137a3fd0f", "draftAtPublication": true},
+    "publishedAt": "2026-09-04T11:42:00Z",
+    "bindingDigest": "sha256:ce27a4c7cde6fdb8f69e2b1619d75aeb1e3a68b14137a0552e2d77cb49bb7601"
+  },
+  "state": "PUBLISHED",
+  "readyAt": "2026-09-03T09:03:00Z",
+  "digest": "sha256:ce27a4c7cde6fdb8f69e2b1619d75aeb1e3a68b14137a0552e2d77cb49bb7601",
+  "createdAt": "2026-09-03T09:03:00Z",
+  "createdBy": {"kind": "system", "id": "system:orchestrator", "identitySource": "workload-identity"}
+}

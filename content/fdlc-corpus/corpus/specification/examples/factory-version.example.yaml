@@ -1,0 +1,161 @@
+# Factory Version — FV-depmod-1.0 (worked example, illustrative digests)
+schemaVersion: "1.0"
+type: fdlc://v1/factory-version
+id: FV-depmod-1.0
+namespace: https://acme.example/factories/checkout
+factoryManifestId: FM-depmod
+factoryManifestDigest: sha256:8e19ad72519630e0240eac8e07937c7148bf552beb7bbb3697dc3c4a0c29c3ee
+factoryName: dependency-modernization
+version: 1.0.0
+purpose: SOFTWARE
+riskBoundary: HIGH
+
+composition:
+  planner: {capabilityId: CAP-planner-objective-1.3.0, version: 1.3.0, digest: sha256:1fbe05d6177dc973ea3d1c514598949572f54842831da956f8a59723e4036611}
+  agentDefinitions:
+    - capabilityId: CAP-agent-upgrade-implementer-1.6.0
+      version: 1.6.0
+      digest: sha256:7cd819b2daf42c7a44c899c30a0fee2aa4a964d39891718d06fd8d1f5ac6f30b
+      role: implementer
+      promptBundleDigest: sha256:aec5b08b1e0f0295a1412790d1f8286ba9078950f7db7e8325fb876d518cf24e
+      toolManifestDigest: sha256:a72c59753779940ad10ace0408907d37297011ae41c8feeab76fda19c65a6db5
+      modelRouteId: implement-workhorse
+    - capabilityId: CAP-agent-repo-researcher-1.2.0
+      version: 1.2.0
+      digest: sha256:b71e4927de8a983d7490ea01f43d8ded8d2569b9c3690d39a448d5e6fd120795
+      role: researcher
+      promptBundleDigest: sha256:03d50314af8367d5c487df203500cd90fbdf188819ef03a2bc7610c28ef6ed53
+      toolManifestDigest: sha256:92c1b06cceac8b0c0bcd29aaf155528e591c688a3794d6d511907825b2c537af
+      modelRouteId: research-frontier
+  harnesses:
+    - capabilityId: CAP-harness-codex-adapter-1.0.0
+      version: 1.0.0
+      digest: sha256:9d16af71ed9546b19f74aeb544a65388b5fdf5f5218886d29540086b3763832c
+      adapterId: codex
+      adapterVersion: v1
+      capabilityManifestDigest: sha256:d0313f6a3c7a6d72d91025c8ad5fc0b4575076f88756c15c418f563c2525a571
+      effectiveConfigDigest: sha256:6b4d36371a4fa3a0c70536c873112a7f5220fcf695927bf6a8e847790a2c68cc
+      runtimeArtifactDigest: sha256:8d18901b3b5dc6f87e1c9ce2795119d6bd3bea620ab184201f392604d63136e7
+  skills:
+    - {capabilityId: CAP-skill-sdk-migration-2.1.0, version: 2.1.0, digest: sha256:1de2d7eebb2f58d843990420e5b256acc04cda13c7feea1878e58a501769a5b3}
+    - {capabilityId: CAP-skill-lockfile-hygiene-1.0.3, version: 1.0.3, digest: sha256:058c32224b4114b10ae6bf009404c1db204c25040ba892d2709b60b7644a79fd}
+  tools:
+    - capabilityId: CAP-tool-git-1.4.0
+      version: 1.4.0
+      digest: sha256:a72c59753779940ad10ace0408907d37297011ae41c8feeab76fda19c65a6db5
+      operations: [status, diff, commit, branch]
+      grantId: GRANT-depmod-git-7
+      grantDigest: sha256:e576cca6bde452b6ae7abc66e3bed499b4f8e5e18e50e4d069ceae30f26bd557
+    - capabilityId: CAP-tool-package-registry-1.2.0
+      version: 1.2.0
+      digest: sha256:d00c0a4eaad4392eac3867625ffa0e3c78665fe66b1df8743333530bd224bef3
+      operations: [resolve-version, audit]
+      grantId: GRANT-depmod-registry-3
+      grantDigest: sha256:73bdee11f3db288e7b57344d2eb4d38cd176aa4cb712d9e59448625ea12df3d1
+    - capabilityId: CAP-tool-test-runner-3.0.1
+      version: 3.0.1
+      digest: sha256:92c1b06cceac8b0c0bcd29aaf155528e591c688a3794d6d511907825b2c537af
+      operations: [run]
+      grantId: GRANT-depmod-tests-2
+      grantDigest: sha256:15f1263faa1c7787558c407fea770f9b9817bff0c69c0613d72c932203e1d01a
+  modelRoutes:
+    - routeId: research-frontier
+      role: PLAN
+      provider: acme-gateway
+      modelId: frontier-a
+      routeDigest: sha256:b2cd54e494af6ca42d7cafc364c079baa6d9b7489d314d2a3a96090e9b72d378
+      qualificationDigest: sha256:ee8587fb49c7639baf1f2c13ee087683ae3bf15e319bb8ca19bc2503c92c6d57
+    - routeId: implement-workhorse
+      role: IMPLEMENT
+      provider: acme-gateway
+      modelId: workhorse-a
+      reasoningConfig: {temperature: 0.1, maxTokens: 16000}
+      routeDigest: sha256:b2cd54e494af6ca42d7cafc364c079baa6d9b7489d314d2a3a96090e9b72d378
+      qualificationDigest: sha256:ee8587fb49c7639baf1f2c13ee087683ae3bf15e319bb8ca19bc2503c92c6d57
+  contextConfiguration:
+    sources:
+      - {capabilityId: CAP-context-source-migration-docs-1.1.0, version: 1.1.0, digest: sha256:b71e4927de8a983d7490ea01f43d8ded8d2569b9c3690d39a448d5e6fd120795}
+    policyDigest: sha256:78bdceec0af5280c4dbcdd5705e9dfed11e83ee7c74d0be2687d11879b85449f
+    freshnessMaxAgeHours: 168
+    digest: sha256:78bdceec0af5280c4dbcdd5705e9dfed11e83ee7c74d0be2687d11879b85449f
+  workGraph: {workflowId: depmod-upgrade, version: 4, digest: sha256:c74a39daf117663c6c5a324dd5d322e137c5ea7f3c85e790591ca847a533ffb6}
+  runtimeArtifact:
+    kind: CONTAINER_IMAGE
+    name: acme/factory-runtime
+    version: 2026.09.1
+    digest: sha256:8d18901b3b5dc6f87e1c9ce2795119d6bd3bea620ab184201f392604d63136e7
+  sandboxImage:
+    reference: acme/factory-runtime@sha256:245d1dd5fccb04578faf7af37b197c50058818c4a93b4878e5adb6dd5cb80815
+    digest: sha256:245d1dd5fccb04578faf7af37b197c50058818c4a93b4878e5adb6dd5cb80815
+    profileDigest: sha256:6dc87bf3ac7649b799be35cdd8b3a0bdae66a0447c69c286e01df5c87c589859
+  networkPolicy: {policyId: POL-net-restricted-allowlist, version: "3", digest: sha256:63e735c1c9565ebda2ea6b77a37dd4dee6e9c20edea9a66ac9a56fac3c7a1a1d}
+  credentialPolicy: {policyId: POL-cred-attempt-scoped, version: "2", digest: sha256:3b9f3e7efe7aa008f1b7d07c206a7588339548354214bb74b3ac8bda3751b1f9}
+  filesystemPolicy: {policyId: POL-fs-worktree-only, version: "1", digest: sha256:4f7bdb740905d5799555848571df58903454361789485f0de3edb94402848194}
+  verificationContract: {policyId: VC-depmod, version: "2", digest: sha256:c74a39daf117663c6c5a324dd5d322e137c5ea7f3c85e790591ca847a533ffb6}
+  approvalPolicy: {policyId: POL-approval-risk-tiers, version: "3", digest: sha256:edff4763861bfb82ae50a0322f3fdb54d091341c310891bf0192fc97f8153308}
+  policyBundle: {policyId: POL-bundle-checkout, version: "7", digest: sha256:7c03694221918049ddb99dca78ad81f516b8f3c915c5830b3b9ce1e77ee0cd08}
+  executionProfiles:
+    - {executionProfileId: EP-depmod-1.0-prod, key: prod, digest: sha256:d93145737892842c402a5765ae03045cf0b9b685a678cd76d1bc52faec829b04}
+    - {executionProfileId: EP-depmod-1.0-offline-qual, key: offline-qual, digest: sha256:5ed7f0866fe74ab23634a68046d35aa7e39c7e45c626ec3007b94300d9d36945}
+  economics:
+    maxCostPerWorkOrder: {amount: 25, currency: USD}
+    maxAttempts: 3
+    maxRuntimeMinutes: 90
+    digest: sha256:2db555ed18aff07dc9b8588f853a72f3fd5180e076fdc44aa9ca4e135fa330ab
+  verifierBindings:
+    - {capabilityId: CAP-verifier-scope-reconciler-1.0.0, version: 1.0.0, digest: sha256:82d28700a095c34b413248b7b9726b502a520f545c1565a9f5b39add9d8b1067}
+compositionDigest: sha256:a10170aa188c2bc965fe62d8dbe5e110e15e2e29ff489583b83d29ea31a3ade0
+
+qualification:
+  standardVersion: fdlc-qualification-standard/1.0
+  records:
+    - qualificationRecordId: QUAL-depmod-1.0-01
+      digest: sha256:0febdd713a0bc53e29eec65d7b560ffb3c9bbfa40f08d705d921ae270bd12c40
+      scope: {workloadClass: dependency-upgrade, environment: production, riskTier: MEDIUM, autonomyLevel: L3}
+      result: QUALIFIED
+      expiresAt: "2026-11-24T00:00:00Z"
+  qualifiedScopes:
+    - {workloadClass: dependency-upgrade, environment: staging, riskTier: MEDIUM, autonomyLevel: L3}
+    - {workloadClass: dependency-upgrade, environment: production, riskTier: MEDIUM, autonomyLevel: L3}
+
+activations:
+  - environment: production
+    promotionDecisionId: DEC-FV-depmod-1.0-P1
+    activatedAt: "2026-08-27T09:00:00Z"
+    rolloutCohort: checkout-repositories
+    restorationTargetVersionId: FV-depmod-0.9
+    qualificationRecordId: QUAL-depmod-1.0-01
+    readinessAssessedAt: "2026-08-27T08:50:00Z"
+
+readiness:
+  status: PASS
+  assessedAt: "2026-08-27T08:50:00Z"
+  expiresAt: "2026-09-27T08:50:00Z"
+  checks:
+    - {id: repository, status: VERIFIED}
+    - {id: workflow-contract, status: VERIFIED}
+    - {id: execution-profile, status: VERIFIED}
+    - {id: model-route, status: VERIFIED}
+    - {id: agent-manifests, status: VERIFIED}
+    - {id: policy, status: VERIFIED}
+    - {id: budget, status: VERIFIED}
+    - {id: verifiers, status: VERIFIED}
+    - {id: sandbox-profile, status: VERIFIED}
+    - {id: recovery, status: VERIFIED}
+
+state: ACTIVE
+previousVersionId: FV-depmod-0.9
+digest: sha256:ce6706f3f86d3e77ddd2e266cc1cbf88480a25bb535e2845eda36be5d98bec7f
+createdAt: "2026-08-21T12:00:00Z"
+createdBy: {kind: human, id: "user:priya.n", identitySource: authenticated}
+history:
+  - subjectId: FV-depmod-1.0
+    fromState: QUALIFIED
+    toState: ACTIVE
+    actor: {kind: human, id: "user:priya.n", identitySource: authenticated}
+    reason: Qualification QUAL-depmod-1.0-01 current for production scope; readiness PASS; restoration target FV-depmod-0.9 preserved.
+    policyVersion: promotion-policy/2
+    idempotencyKey: "FV-depmod-1.0:activate:production:1"
+    occurredAt: "2026-08-27T09:00:00Z"
+    requiredEvidenceIds: [EV-QUAL-depmod-1.0-set]
+    decisionId: DEC-FV-depmod-1.0-P1

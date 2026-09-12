@@ -1,0 +1,20 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D32 Non-collapsible state boundary
+%% Type: infographic · Page: /framework/delivery-loop, /architecture/verification, /anti-patterns
+flowchart LR
+  A["Execution complete<br/>(step 5 · Attempt COMPLETED)"] -- "≠" --> B["Verified<br/>(step 6 · independent, current)"]
+  B -- "≠" --> G["Gate eligible<br/>(currentness recomputed)"]
+  G -- "≠" --> C["Accepted / Approved<br/>(step 7 · Decision)"]:::human
+  C -- "≠" --> D["Merged / Released<br/>(step 8 · Release)"]
+  D -- "≠" --> E["Production verified /<br/>Outcome proven (step 9)"]
+  N["Each boundary needs its own record and its own authority. Missing, stale, or unrelated evidence cannot become success."]:::neutral
+  class A execution
+  class B,G,C,D,E trust
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

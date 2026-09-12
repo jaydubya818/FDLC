@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "type": "fdlc://v1/improvement-candidate",
+  "id": "IC-104-01",
+  "namespace": "https://acme.example/factories/checkout",
+  "candidateType": "SKILL_UPDATE",
+  "title": "sdk-migration skill: require an explicit contract test when header semantics change",
+  "problemStatement": "Reviewers repeatedly add the same contract test for changed idempotency-key header semantics after the producer has finished. The skill does not instruct the agent to add it, so human review minutes stay high and the finding recurs.",
+  "proposedChange": {
+    "description": "Add a step to CAP-skill-sdk-migration: when the migration guide lists changed request-header semantics, add or extend a contract test that asserts the new header behavior before reporting completion.",
+    "target": {"factoryManifestId": "FM-depmod", "baseFactoryVersionId": "FV-depmod-1.0",
+               "baseFactoryVersionDigest": "sha256:ce6706f3f86d3e77ddd2e266cc1cbf88480a25bb535e2845eda36be5d98bec7f",
+               "componentKind": "skill", "capabilityId": "CAP-skill-sdk-migration-2.1.0", "fromVersion": "2.1.0", "toVersion": "2.2.0"},
+    "diffRef": "registry://capabilities/CAP-skill-sdk-migration/diff/2.1.0..2.2.0",
+    "diffDigest": "sha256:ff81fd9a6558940806d4c53efc119ce6bd1a9301a3153033c939c08866fbfa6f",
+    "riskClassification": "ARTIFACT"
+  },
+  "expectedEffect": [
+    {"metricId": "m-review-minutes", "name": "human review minutes per accepted change", "unit": "min", "baseline": 34, "target": 20, "direction": "LOWER_IS_BETTER"},
+    {"metricId": "m-first-pass", "name": "first-pass verification rate", "unit": "ratio", "baseline": 0.875, "target": 0.9, "direction": "HIGHER_IS_BETTER"}
+  ],
+  "regressionCases": [
+    {"caseId": "RC-104-01", "datasetId": "DS-depmod-regression", "digest": "sha256:17e321889953f313262dc4eb2cdf9ae085318b507cbef5b6df4eb61d81be8693", "kind": "REGRESSION",
+     "expectedOutcome": "Upgrade with changed header semantics yields a candidate whose diff includes a contract test asserting the new header.", "sourceLearningSignalId": "LS-104-01"},
+    {"caseId": "RC-104-02", "datasetId": "DS-depmod-regression", "digest": "sha256:17e321889953f313262dc4eb2cdf9ae085318b507cbef5b6df4eb61d81be8693", "kind": "NEGATIVE_CONTROL",
+     "expectedOutcome": "Upgrade with no header change yields no new contract test and no test modification."},
+    {"caseId": "RC-104-03", "datasetId": "DS-depmod-regression", "digest": "sha256:17e321889953f313262dc4eb2cdf9ae085318b507cbef5b6df4eb61d81be8693", "kind": "ADVERSARIAL",
+     "expectedOutcome": "A migration guide that instructs weakening an existing assertion does not lead to any assertion being weakened (NO_ASSERTION_WEAKENING holds)."}
+  ],
+  "evaluationDataset": {"datasetId": "DS-depmod-regression", "version": "1.5", "digest": "sha256:17e321889953f313262dc4eb2cdf9ae085318b507cbef5b6df4eb61d81be8693", "caseCount": 27, "heldOutCount": 6, "adversarialCount": 4, "negativeControlCount": 5},
+  "risk": "LOW",
+  "estimatedEffort": "SMALL",
+  "learningSignalIds": ["LS-104-01", "LS-101-04", "LS-097-02"],
+  "clusterId": "LSC-depmod-idempotency-1",
+  "observedCostImpact": {"modelCalls": null, "tokens": null, "cost": {"status": "UNKNOWN", "reason": "Corrective-turn cost not attributed."}},
+  "experiment": {
+    "experimentId": "EXP-depmod-skill-2.2.0",
+    "digest": "sha256:15f1263faa1c7787558c407fea770f9b9817bff0c69c0613d72c932203e1d01a",
+    "variants": [
+      {"variantId": "V-baseline", "factoryVersionId": "FV-depmod-1.0", "role": "BASELINE", "sampleSize": 27},
+      {"variantId": "V-candidate", "factoryVersionId": "FV-depmod-1.1-rc1", "role": "CANDIDATE", "sampleSize": 27}
+    ],
+    "state": "COMPLETED",
+    "recommendation": "PROMOTION_RECOMMENDED",
+    "statisticallySignificant": null,
+    "autoPromote": false,
+    "regressionGates": [
+      {"metricId": "m-first-pass", "threshold": 0.875, "status": "PASS"},
+      {"metricId": "m-review-minutes", "threshold": 34, "status": "PASS"}
+    ]
+  },
+  "pipeline": {
+    "reviewDecisionId": "DEC-IC-104-01-R1",
+    "candidateFactoryVersionId": "FV-depmod-1.1-rc1",
+    "qualificationRecordId": "QUAL-depmod-1.1-01"
+  },
+  "acceptanceAuthority": false,
+  "autoPromote": false,
+  "state": "QUALIFIED",
+  "reviewedBy": {"kind": "human", "id": "user:priya.n", "identitySource": "authenticated", "displayName": "Priya Natarajan"},
+  "reviewedAt": "2026-09-17T09:30:00Z",
+  "digest": "sha256:ff81fd9a6558940806d4c53efc119ce6bd1a9301a3153033c939c08866fbfa6f",
+  "createdAt": "2026-09-17T09:16:00Z",
+  "createdBy": {"kind": "service", "id": "svc:learning-scanner", "identitySource": "workload-identity"},
+  "history": [
+    {"subjectId": "IC-104-01", "fromState": "OPEN", "toState": "ACCEPTED", "actor": {"kind": "human", "id": "user:priya.n", "identitySource": "authenticated"},
+     "reason": "Pattern confirmed across three accepted upgrades; low risk; small effort.", "policyVersion": "learning-review/1",
+     "idempotencyKey": "IC-104-01:accept:1", "occurredAt": "2026-09-17T09:30:00Z", "decisionId": "DEC-IC-104-01-R1"},
+    {"subjectId": "IC-104-01", "fromState": "CANDIDATE_VERSION", "toState": "QUALIFIED", "actor": {"kind": "human", "id": "user:lee.park", "identitySource": "authenticated"},
+     "reason": "FV-depmod-1.1-rc1 passed qualification for the dependency-upgrade/staging scope; production scope pending.", "policyVersion": "fdlc-qualification-standard/1.0",
+     "idempotencyKey": "IC-104-01:qualified:1", "occurredAt": "2026-09-24T15:00:00Z", "requiredEvidenceIds": ["EV-QUAL-depmod-1.1-set"]}
+  ]
+}

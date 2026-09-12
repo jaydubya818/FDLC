@@ -1,0 +1,1665 @@
+{
+  "schema": "fdlc-corpus-verification/v1",
+  "generatedAt": "2026-09-12T19:41:33.418Z",
+  "generatorVersion": "1.0.1",
+  "reproduce": "npm run corpus:sync && npm run corpus:verify",
+  "archiveSha256": "54583e8f18d3e474617b6d63b25ddac1c58ff196c8271a2dcb22f7f4a6e38a49",
+  "sourceDigest": "80794d5aa50f29d59f094b764a9fd65e86e1670d09d1c74be83831c6f85435e3",
+  "toolVersions": {
+    "node": ">=22.13.0",
+    "ajv": "8.20.0",
+    "grayMatter": "4.0.3",
+    "mermaid": "11.17.2",
+    "next": "16.3.4",
+    "reactMarkdown": "10.1.0",
+    "vinext": "1.0.0-beta.9",
+    "yaml": "2.9.1"
+  },
+  "outcomes": {
+    "pass": 4,
+    "fail": 0,
+    "skip": 1,
+    "externally-unverifiable": 1
+  },
+  "checks": [
+    {
+      "name": "front-matter-and-routes",
+      "result": "pass"
+    },
+    {
+      "name": "links-and-fragments",
+      "result": "pass"
+    },
+    {
+      "name": "schema-example-pairs",
+      "result": "pass"
+    },
+    {
+      "name": "diagram-references",
+      "result": "pass"
+    },
+    {
+      "name": "mermaid-source-syntax",
+      "result": "skip",
+      "detail": "Validated in both real-browser runtime suites, not by the build-time generator."
+    },
+    {
+      "name": "mission-control-files",
+      "result": "externally-unverifiable",
+      "detail": "Set MC_REPO_PATH to a Mission Control checkout to verify these paths."
+    }
+  ],
+  "counts": {
+    "importedArchiveFiles": 277,
+    "contentTreeFiles": 279,
+    "corpusMarkdownFiles": 160,
+    "reviewMarkdownFiles": 10,
+    "routedDocuments": 157,
+    "words": 370144,
+    "schemas": 19,
+    "examples": 19,
+    "mermaidSources": 33,
+    "canonicalCollisions": 9,
+    "errors": 0,
+    "warnings": 81,
+    "externallyUnverifiable": 183,
+    "verifiedMissionControlReferences": 0
+  },
+  "collisions": [
+    "/about",
+    "/architecture",
+    "/benchmarks",
+    "/enterprise",
+    "/framework",
+    "/in-5-minutes",
+    "/mission-control",
+    "/specification",
+    "/start"
+  ],
+  "findings": [
+    {
+      "check": "description-length",
+      "detail": "164 characters",
+      "severity": "warning",
+      "source": "corpus/about.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "177 characters",
+      "severity": "warning",
+      "source": "corpus/anti-patterns/context-dumping.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "170 characters",
+      "severity": "warning",
+      "source": "corpus/anti-patterns/frontier-model-everywhere.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "176 characters",
+      "severity": "warning",
+      "source": "corpus/anti-patterns/hidden-agent-state.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "163 characters",
+      "severity": "warning",
+      "source": "corpus/anti-patterns/human-approval-everywhere.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "184 characters",
+      "severity": "warning",
+      "source": "corpus/anti-patterns/no-evidence-lineage.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "172 characters",
+      "severity": "warning",
+      "source": "corpus/anti-patterns/no-qualification.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "168 characters",
+      "severity": "warning",
+      "source": "corpus/anti-patterns/no-sandbox.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "171 characters",
+      "severity": "warning",
+      "source": "corpus/anti-patterns/prompt-as-governance.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "217 characters",
+      "severity": "warning",
+      "source": "corpus/anti-patterns/top-10-factory-failure-modes.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "247 characters",
+      "severity": "warning",
+      "source": "corpus/framework/agents-skills-tools-harnesses.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "204 characters",
+      "severity": "warning",
+      "source": "corpus/framework/builders.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "193 characters",
+      "severity": "warning",
+      "source": "corpus/architecture/economics.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "177 characters",
+      "severity": "warning",
+      "source": "corpus/architecture/learning.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "181 characters",
+      "severity": "warning",
+      "source": "corpus/architecture/observability.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "188 characters",
+      "severity": "warning",
+      "source": "corpus/architecture/sandboxing.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "213 characters",
+      "severity": "warning",
+      "source": "corpus/architecture/security.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "182 characters",
+      "severity": "warning",
+      "source": "corpus/architecture/transformation.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "201 characters",
+      "severity": "warning",
+      "source": "corpus/benchmarks.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "181 characters",
+      "severity": "warning",
+      "source": "corpus/compare.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "184 characters",
+      "severity": "warning",
+      "source": "corpus/diagrams/decision-trees.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "163 characters",
+      "severity": "warning",
+      "source": "corpus/diagrams/infographics.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "207 characters",
+      "severity": "warning",
+      "source": "corpus/enterprise/adoption.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "191 characters",
+      "severity": "warning",
+      "source": "corpus/enterprise/execution-fleet.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "179 characters",
+      "severity": "warning",
+      "source": "corpus/enterprise/identity-tenancy.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "227 characters",
+      "severity": "warning",
+      "source": "corpus/enterprise/model-gateway.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "180 characters",
+      "severity": "warning",
+      "source": "corpus/architecture/operations.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "201 characters",
+      "severity": "warning",
+      "source": "corpus/enterprise/policy-governance.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "174 characters",
+      "severity": "warning",
+      "source": "corpus/enterprise/reference-architecture.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "191 characters",
+      "severity": "warning",
+      "source": "corpus/essays/essays.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "201 characters",
+      "severity": "warning",
+      "source": "corpus/essays/the-agent-is-not-the-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "177 characters",
+      "severity": "warning",
+      "source": "corpus/essays/the-case-for-factory-versioning.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "187 characters",
+      "severity": "warning",
+      "source": "corpus/essays/verification-is-the-scarce-resource.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "202 characters",
+      "severity": "warning",
+      "source": "corpus/examples/examples.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "221 characters",
+      "severity": "warning",
+      "source": "corpus/examples/code-generation-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "194 characters",
+      "severity": "warning",
+      "source": "corpus/examples/code-review-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "215 characters",
+      "severity": "warning",
+      "source": "corpus/examples/dependency-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "243 characters",
+      "severity": "warning",
+      "source": "corpus/examples/migration-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "187 characters",
+      "severity": "warning",
+      "source": "corpus/examples/security-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "169 characters",
+      "severity": "warning",
+      "source": "corpus/framework/delivery-loop.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "207 characters",
+      "severity": "warning",
+      "source": "corpus/framework/factory-lifecycle.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "178 characters",
+      "severity": "warning",
+      "source": "corpus/framework/maturity.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "166 characters",
+      "severity": "warning",
+      "source": "corpus/framework/principles.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "176 characters",
+      "severity": "warning",
+      "source": "corpus/glossary.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "171 characters",
+      "severity": "warning",
+      "source": "corpus/guides/code-review-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "187 characters",
+      "severity": "warning",
+      "source": "corpus/guides/dependency-upgrade-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "183 characters",
+      "severity": "warning",
+      "source": "corpus/guides/documentation-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "223 characters",
+      "severity": "warning",
+      "source": "corpus/guides/enterprise-factory-platform.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "161 characters",
+      "severity": "warning",
+      "source": "corpus/guides/jira-to-pr-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "186 characters",
+      "severity": "warning",
+      "source": "corpus/guides/multi-factory-workflow.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "235 characters",
+      "severity": "warning",
+      "source": "corpus/guides/multi-repository-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "193 characters",
+      "severity": "warning",
+      "source": "corpus/guides/security-remediation-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "184 characters",
+      "severity": "warning",
+      "source": "corpus/guides/testing-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "214 characters",
+      "severity": "warning",
+      "source": "corpus/mission-control.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "165 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/patterns.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "195 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/candidate-currentness.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "172 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/capability-based-routing.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "188 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/decision-record.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "231 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/degraded-mode.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "168 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/fail-closed-qualification.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "239 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/governed-learning.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "175 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/model-routing.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "178 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/multi-factory-orchestration.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "177 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/objective-decomposition.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "216 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/progressive-autonomy.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "248 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/publication-permit.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "161 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/sandbox-per-work-order.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "184 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/tool-grant-and-receipt.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "180 characters",
+      "severity": "warning",
+      "source": "corpus/patterns/verification-contract.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "238 characters",
+      "severity": "warning",
+      "source": "corpus/seo.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "169 characters",
+      "severity": "warning",
+      "source": "corpus/start.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "193 characters",
+      "severity": "warning",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "180 characters",
+      "severity": "warning",
+      "source": "corpus/tutorials/10-capture-evidence.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "168 characters",
+      "severity": "warning",
+      "source": "corpus/tutorials/11-configure-approval-policy.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "166 characters",
+      "severity": "warning",
+      "source": "corpus/tutorials/07-create-a-factory-version.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "174 characters",
+      "severity": "warning",
+      "source": "corpus/tutorials/12-create-a-second-factory.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "169 characters",
+      "severity": "warning",
+      "source": "corpus/tutorials/05-create-an-execution-profile.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "185 characters",
+      "severity": "warning",
+      "source": "corpus/tutorials/06-define-verification-rules.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "191 characters",
+      "severity": "warning",
+      "source": "corpus/tutorials/09-execute-a-work-order.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "222 characters",
+      "severity": "warning",
+      "source": "corpus/tutorials/13-route-an-objective-across-factories.md"
+    },
+    {
+      "check": "description-length",
+      "detail": "190 characters",
+      "severity": "warning",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/mission-control-ui/src/ModelRoutingView.tsx",
+      "severity": "external",
+      "source": "corpus/tutorials/04-configure-a-model-route.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/mission-control-ui/src/workspace/FactoryConfigurationPanel.tsx",
+      "severity": "external",
+      "source": "corpus/tutorials/07-create-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server",
+      "severity": "external",
+      "source": "corpus/architecture/architecture.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/dockerSandboxProvider.ts",
+      "severity": "external",
+      "source": "corpus/enterprise/execution-fleet.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/factoryAttemptWorker.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/09-execute-a-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/factoryVerification.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/12-create-a-second-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/factoryWorkspaceOwnership.ts",
+      "severity": "external",
+      "source": "corpus/patterns/recovery-checkpoint.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/githubAppPublisher.ts",
+      "severity": "external",
+      "source": "corpus/specification/v1/candidate.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/governedInferenceGateway.ts",
+      "severity": "external",
+      "source": "corpus/enterprise/model-gateway.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/governedMcpBroker.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/03-add-a-tool.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/governedMcpContracts.ts",
+      "severity": "external",
+      "source": "corpus/patterns/tool-grant-and-receipt.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/sandboxCredentials.ts",
+      "severity": "external",
+      "source": "corpus/architecture/sandboxing.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/sandboxProvider.ts",
+      "severity": "external",
+      "source": "corpus/architecture/sandboxing.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/sandboxReconciler.ts",
+      "severity": "external",
+      "source": "corpus/patterns/sandbox-per-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "apps/orchestration-server/src/sandboxSupervisor.ts",
+      "severity": "external",
+      "source": "corpus/patterns/sandbox-per-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "CONTRIBUTING.md",
+      "severity": "external",
+      "source": "corpus/project.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/companyContext.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/companyMembers.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/context/activation.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/02-add-a-skill.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/context/changeRisk.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/06-define-verification-rules.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/context/importSkills.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/02-add-a-skill.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/context/manifests.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/02-add-a-skill.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/context/packages.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/02-add-a-skill.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/context/verifiers.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/06-define-verification-rules.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/evalControlPlane.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/08-qualify-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/executionRouting.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/13-route-an-objective-across-factories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/factory/attempts.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/09-execute-a-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/factory/configuration.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/factory/executionProfiles.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/05-create-an-execution-profile.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/factory/governedMcp.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/03-add-a-tool.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/factory/incidentControlObserver.ts",
+      "severity": "external",
+      "source": "corpus/architecture/operations.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/factory/incidentControls.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/factory/incidents.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/factory/learning.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/factory/metaLoop.ts",
+      "severity": "external",
+      "source": "corpus/specification/v1/improvement-candidate.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/factory/releases.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/10-capture-evidence.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/factoryMemory.ts",
+      "severity": "external",
+      "source": "corpus/specification/v1/context-package.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/featureFlags.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/github.ts",
+      "severity": "external",
+      "source": "corpus/guides/jira-to-pr-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/governance/changeRecords.ts",
+      "severity": "external",
+      "source": "corpus/enterprise/reference-architecture.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/governance/policyEnvelopes.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/07-create-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/governance/roleAssignments.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/governance/roles.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/governancePolicies.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/06-define-verification-rules.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/inferenceGateway.ts",
+      "severity": "external",
+      "source": "corpus/enterprise/reference-architecture.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/armPolicy.ts",
+      "severity": "external",
+      "source": "corpus/enterprise/policy-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/companyAccess.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/11-configure-approval-policy.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/currentVerification.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/10-capture-evidence.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/dockerSandboxAdmission.ts",
+      "severity": "external",
+      "source": "corpus/enterprise/execution-fleet.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/evalControlPlaneSchema.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/08-qualify-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/executionManifest.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/05-create-an-execution-profile.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/executionProfile.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/05-create-an-execution-profile.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/executionProfileAdmission.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/05-create-an-execution-profile.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/executionRecovery.ts",
+      "severity": "external",
+      "source": "corpus/specification/v1/attempt.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/executionRouting.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/13-route-an-objective-across-factories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/factoryAttempt.ts",
+      "severity": "external",
+      "source": "corpus/patterns/lease-based-worker.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/factoryConfiguration.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/07-create-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/factoryHumanReview.ts",
+      "severity": "external",
+      "source": "corpus/patterns/publication-permit.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/factoryIncident.ts",
+      "severity": "external",
+      "source": "corpus/patterns/degraded-mode.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/factoryIncidentControl.ts",
+      "severity": "external",
+      "source": "corpus/architecture/operations.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/factoryLearning.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/factoryMemoryValidators.ts",
+      "severity": "external",
+      "source": "corpus/architecture/context.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/factoryModelRoute.ts",
+      "severity": "external",
+      "source": "corpus/patterns/model-routing.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/factoryRelease.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/10-capture-evidence.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/factoryWorkflowContract.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/12-create-a-second-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/githubAppAuth.ts",
+      "severity": "external",
+      "source": "corpus/architecture/security.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/governedMcp.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/03-add-a-tool.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/localCandidateRecovery.ts",
+      "severity": "external",
+      "source": "corpus/patterns/recovery-checkpoint.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/metaLoopSignals.ts",
+      "severity": "external",
+      "source": "corpus/architecture/learning.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/missionPlan.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/13-route-an-objective-across-factories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/missionSpecValidators.ts",
+      "severity": "external",
+      "source": "corpus/specification/v1/specification.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/missionWorkOrderContract.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/09-execute-a-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/modelRouteAdmission.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/04-configure-a-model-route.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/observabilityPersistence.ts",
+      "severity": "external",
+      "source": "corpus/architecture/observability.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/preExecutionRecovery.ts",
+      "severity": "external",
+      "source": "corpus/patterns/recovery-checkpoint.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/qualityContract.ts",
+      "severity": "external",
+      "source": "corpus/specification/v1/plan.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/qualityGateDecision.ts",
+      "severity": "external",
+      "source": "corpus/specification/v1/verification.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/repositoryExecutionPolicy.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/riskClassifier.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/11-configure-approval-policy.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/workOrderDispatch.ts",
+      "severity": "external",
+      "source": "corpus/specification/v1/work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/workOrderGovernance.ts",
+      "severity": "external",
+      "source": "corpus/guides/security-remediation-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/lib/workOrderSpecificationValidators.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/06-define-verification-rules.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/missionPlanning.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/09-execute-a-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/missions.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/13-route-an-objective-across-factories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/missionSpecs.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/09-execute-a-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/modelCatalog.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/modelRoutingDecisions.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/13-route-an-objective-across-factories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/modelRoutingPolicies.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/13-route-an-objective-across-factories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/observability.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/10-capture-evidence.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/operations/opEvents.ts",
+      "severity": "external",
+      "source": "corpus/enterprise/reference-architecture.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/projects.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/registry/agentTemplates.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/07-create-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/registry/agentVersions.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/07-create-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/registry/tenants.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/schema.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/08-qualify-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/serviceCommands.ts",
+      "severity": "external",
+      "source": "corpus/guides/enterprise-factory-platform.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/tasks.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/09-execute-a-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/workflowRuns.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/10-capture-evidence.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/workflows.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/12-create-a-second-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "convex/workOrders.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "data/execution-taxonomy.ts",
+      "severity": "external",
+      "source": "corpus/glossary.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "data/fdlc.ts",
+      "severity": "external",
+      "source": "corpus/framework/maturity.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "data/mission-control.ts",
+      "severity": "external",
+      "source": "corpus/glossary.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/architecture/company-workspace-repository-control-plane.md",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/architecture/eval-control-plane-v1.md",
+      "severity": "external",
+      "source": "corpus/architecture/qualification.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/architecture/execution-routing-v1.md",
+      "severity": "external",
+      "source": "corpus/tutorials/13-route-an-objective-across-factories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/architecture/executor-adapter-contract.md",
+      "severity": "external",
+      "source": "corpus/architecture/execution-vocabulary.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/architecture/factory-learning-continuous-improvement.md",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/architecture/factory-memory-context-intelligence.md",
+      "severity": "external",
+      "source": "corpus/specification/v1/context-package.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/architecture/generic-harness-contract-v1.md",
+      "severity": "external",
+      "source": "corpus/tutorials/05-create-an-execution-profile.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/architecture/remote-sandbox-execution.md",
+      "severity": "external",
+      "source": "corpus/tutorials/05-create-an-execution-profile.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/CONTEXT_MANIFESTS.md",
+      "severity": "external",
+      "source": "corpus/tutorials/02-add-a-skill.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/decisions/execution-profile-identity.md",
+      "severity": "external",
+      "source": "corpus/tutorials/05-create-an-execution-profile.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/decisions/factory-self-improvement-governance.md",
+      "severity": "external",
+      "source": "corpus/specification/v1/improvement-candidate.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/decisions/governed-mcp-tool-capability.md",
+      "severity": "external",
+      "source": "corpus/tutorials/03-add-a-tool.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/decisions/model-route-runtime-identity-separation.md",
+      "severity": "external",
+      "source": "corpus/tutorials/04-configure-a-model-route.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/decisions/verification-first-architecture-decisions.md",
+      "severity": "external",
+      "source": "corpus/tutorials/13-route-an-objective-across-factories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/decisions/worker-runtime-leases-recovery.md",
+      "severity": "external",
+      "source": "corpus/patterns/lease-based-worker.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/FACTORY_VOCABULARY.md",
+      "severity": "external",
+      "source": "corpus/tutorials/08-qualify-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/OVERVIEW.md",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/product/mission-control-north-star.md",
+      "severity": "external",
+      "source": "corpus/architecture/transformation.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/product/software-factory-capability-maturity.md",
+      "severity": "external",
+      "source": "corpus/tutorials/tutorials.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/security/evidence-retention-policy.md",
+      "severity": "external",
+      "source": "corpus/tutorials/10-capture-evidence.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/security/github-app-connection.md",
+      "severity": "external",
+      "source": "corpus/architecture/security.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/security/human-service-authorization-matrix.md",
+      "severity": "external",
+      "source": "corpus/tutorials/11-configure-approval-policy.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/security/remote-sandbox-threat-model.md",
+      "severity": "external",
+      "source": "corpus/patterns/sandbox-per-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/security/service-command-authentication.md",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/security/verification-plane-threat-model.md",
+      "severity": "external",
+      "source": "corpus/guides/security-remediation-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/accounting-delivery-contract.md",
+      "severity": "external",
+      "source": "corpus/architecture/economics.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/CONTINUOUS_LEARNING.md",
+      "severity": "external",
+      "source": "corpus/specification/v1/learning-signal.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/factory-incident-command.md",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/governed-missions-contract.md",
+      "severity": "external",
+      "source": "corpus/tutorials/13-route-an-objective-across-factories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/inference-dispatch-authority-contract.md",
+      "severity": "external",
+      "source": "corpus/enterprise/model-gateway.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/inference-ledger-identity-contract.md",
+      "severity": "external",
+      "source": "corpus/enterprise/model-gateway.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/MODEL_ROUTING_OPERATIONS.md",
+      "severity": "external",
+      "source": "corpus/patterns/model-routing.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/operating-contract-evidence-map.md",
+      "severity": "external",
+      "source": "corpus/architecture/operations.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/verification-and-gate-state-machines.md",
+      "severity": "external",
+      "source": "corpus/tutorials/06-define-verification-rules.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/verification-failure-recovery-reconciliation.md",
+      "severity": "external",
+      "source": "corpus/patterns/recovery-checkpoint.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/verification-first-domain-contracts.md",
+      "severity": "external",
+      "source": "corpus/tutorials/06-define-verification-rules.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/verification-first-workorder-contract.md",
+      "severity": "external",
+      "source": "corpus/tutorials/06-define-verification-rules.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/verification-receipt.md",
+      "severity": "external",
+      "source": "corpus/tutorials/10-capture-evidence.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/software-factory/worker-runtime-operations.md",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/testing/evidence/context-skills-factory-admission-v1/README.md",
+      "severity": "external",
+      "source": "corpus/tutorials/08-qualify-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/testing/evidence/docs-workspace-routing",
+      "severity": "external",
+      "source": "corpus/guides/documentation-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/testing/evidence/factory-incident-command-production-v55/README.md",
+      "severity": "external",
+      "source": "corpus/tutorials/14-scale-across-repositories.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/testing/evidence/governed-mcp-phase4-recovery/README.md",
+      "severity": "external",
+      "source": "corpus/tutorials/03-add-a-tool.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/testing/evidence/pr-72-human-review-resume",
+      "severity": "external",
+      "source": "corpus/tutorials/11-configure-approval-policy.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/testing/evidence/production-factory-pilot-v3/README.md",
+      "severity": "external",
+      "source": "corpus/tutorials/08-qualify-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/testing/evidence/real-codex-github-pr-golden-path/README.md",
+      "severity": "external",
+      "source": "corpus/tutorials/09-execute-a-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "docs/WORKFLOWS_QUICKSTART.md",
+      "severity": "external",
+      "source": "corpus/guides/build-your-first-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "lib/factory-definition.ts",
+      "severity": "external",
+      "source": "corpus/framework/factory-lifecycle.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "lib/maturity.ts",
+      "severity": "external",
+      "source": "corpus/framework/maturity.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "LICENSE",
+      "severity": "external",
+      "source": "corpus/project.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "mc-context.json",
+      "severity": "external",
+      "source": "corpus/tutorials/02-add-a-skill.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/cli/src/commands/workOrder.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/06-define-verification-rules.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/context-tools",
+      "severity": "external",
+      "source": "corpus/architecture/context.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/context-tools/src/skillLint.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/02-add-a-skill.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/memory/src/factory/context.ts",
+      "severity": "external",
+      "source": "corpus/patterns/context-package.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/memory/src/factory/planner.ts",
+      "severity": "external",
+      "source": "corpus/anti-patterns/context-dumping.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/memory/src/factory/retrieval.ts",
+      "severity": "external",
+      "source": "corpus/architecture/context.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/memory/src/factory/security.ts",
+      "severity": "external",
+      "source": "corpus/architecture/context.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/model-router",
+      "severity": "external",
+      "source": "corpus/enterprise/model-gateway.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/policy-engine",
+      "severity": "external",
+      "source": "corpus/enterprise/policy-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/workflow-engine/src/harnessManifests.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/05-create-an-execution-profile.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/workflow-engine/src/verificationCurrentness.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/06-define-verification-rules.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/workflow-engine/src/verificationDecision.ts",
+      "severity": "external",
+      "source": "corpus/examples/security-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/workflow-engine/src/verificationIndependence.ts",
+      "severity": "external",
+      "source": "corpus/tutorials/06-define-verification-rules.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/workflow-engine/src/verificationPlan.ts",
+      "severity": "external",
+      "source": "corpus/specification/v1/verification.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "packages/workflow-engine/src/verificationSubject.ts",
+      "severity": "external",
+      "source": "corpus/specification/v1/verification.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "README.md",
+      "severity": "external",
+      "source": "corpus/tutorials/01-build-your-first-software-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "scripts/check-convex-authorization.mjs",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "scripts/convex-authorization-baseline.json",
+      "severity": "external",
+      "source": "corpus/tutorials/15-build-enterprise-governance.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "scripts/import-repo-skills.mjs",
+      "severity": "external",
+      "source": "corpus/tutorials/02-add-a-skill.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "scripts/mc",
+      "severity": "external",
+      "source": "corpus/tutorials/09-execute-a-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "scripts/mc-context.mjs",
+      "severity": "external",
+      "source": "corpus/tutorials/02-add-a-skill.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "scripts/prepare-phase4-mcp-qualification.mjs",
+      "severity": "external",
+      "source": "corpus/tutorials/07-create-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "scripts/qualification/prepare-local-factory.mts",
+      "severity": "external",
+      "source": "corpus/tutorials/12-create-a-second-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "scripts/qualification/run-local-synthetic-mission.mts",
+      "severity": "external",
+      "source": "corpus/tutorials/09-execute-a-work-order.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "scripts/skill-lint.mjs",
+      "severity": "external",
+      "source": "corpus/tutorials/02-add-a-skill.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "scripts/system-factory-e2e-qualification.mjs",
+      "severity": "external",
+      "source": "corpus/tutorials/08-qualify-a-factory-version.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "SECURITY.md",
+      "severity": "external",
+      "source": "corpus/project.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "workflows/code-review.yaml",
+      "severity": "external",
+      "source": "corpus/guides/code-review-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
+      "detail": "workflows/security-audit.yaml",
+      "severity": "external",
+      "source": "corpus/guides/security-remediation-factory.md"
+    }
+  ]
+}

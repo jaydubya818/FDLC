@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "1.0",
+  "type": "fdlc://v1/decision",
+  "id": "DEC-104-01",
+  "namespace": "https://acme.example/factories/checkout",
+  "kind": "acceptance",
+  "subject": {"type": "fdlc://v1/work-order", "id": "WO-104-01", "digest": "sha256:c71cd9ffb858a2246f0ac88f48da89110aecef031b15bbbc675c2a2370e8ac93", "revisionNumber": 1},
+  "actor": {"kind": "human", "id": "user:dana.okafor", "identitySource": "authenticated", "displayName": "Dana Okafor"},
+  "authorization": {
+    "serverAuthorized": true,
+    "permission": "delivery.approve",
+    "delegationRef": "DELEG-checkout-owners-2026",
+    "policyVersion": "approval-policy/3",
+    "scope": {"tenant": "acme", "workspace": "checkout", "repository": "repo:checkout-api"},
+    "separationOfDuty": {"checked": true}
+  },
+  "riskClass": "MEDIUM",
+  "outcome": "APPROVED",
+  "conditions": [],
+  "rationale": "Exact-current verification VER-104-02 is VERIFIED and independent; Quality Gate ELIGIBLE under ENFORCED mode; PR #118 head matches the frozen subject; no active Attempts. Accepting revision 1 of WO-104-01.",
+  "inputs": {
+    "evidenceIds": ["EV-104-09", "EV-104-10", "EV-104-11", "EV-104-12"],
+    "verificationId": "VER-104-02",
+    "qualityGateState": "ELIGIBLE",
+    "decisionInputDigest": "sha256:ee6be7457bdd596f69d88c82fa75ffcefc22736ddea6ac7f33fa6c8a66313781",
+    "reviewPackageDigest": "sha256:0bb2241e31a9f7ebb93aa43f08ad5057a9870d0334e00f4887961630198ee551",
+    "currentnessResult": true
+  },
+  "transition": {"fromState": "AWAITING_VERIFICATION", "toState": "DONE", "priorVersion": 14},
+  "validity": {"decidedAt": "2026-09-09T16:40:00Z", "expiresAt": "2026-09-16T16:40:00Z"},
+  "acceptance": {
+    "workOrderId": "WO-104-01",
+    "workOrderRevisionNumber": 1,
+    "candidateId": "CAND-104-01-p1",
+    "subjectDigest": "sha256:bc9e58be15d0abe0a8159ff375752bc65adca6c6a02fcde0ad02283db510641f",
+    "verificationId": "VER-104-02",
+    "receiptId": "RCPT-104-02",
+    "currentnessEvaluatedAt": "2026-09-09T16:38:00Z",
+    "current": true,
+    "activeAttempts": 0,
+    "publicationBindingDigest": "sha256:ce27a4c7cde6fdb8f69e2b1619d75aeb1e3a68b14137a0552e2d77cb49bb7601"
+  },
+  "state": "DECIDED",
+  "idempotencyKey": "accept:WO-104-01:r1:dana.okafor:1",
+  "digest": "sha256:491150850eec71f8399ffd639d3dd07ff4cbcb1d60b73f9f66edfb0aa5a7f328",
+  "createdAt": "2026-09-09T16:39:50Z",
+  "createdBy": {"kind": "human", "id": "user:dana.okafor", "identitySource": "authenticated"},
+  "history": [
+    {"subjectId": "DEC-104-01", "fromState": "PENDING", "toState": "DECIDED",
+     "actor": {"kind": "human", "id": "user:dana.okafor", "identitySource": "authenticated"},
+     "reason": "Acceptance recorded; currentness recomputed at decision time.", "policyVersion": "approval-policy/3",
+     "idempotencyKey": "accept:WO-104-01:r1:dana.okafor:1", "occurredAt": "2026-09-09T16:40:00Z",
+     "requiredEvidenceIds": ["EV-104-09", "EV-104-10", "EV-104-11", "EV-104-12"]}
+  ]
+}

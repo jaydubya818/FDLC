@@ -1,0 +1,24 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D05 Composition hierarchy (Model → FDLC)
+%% Type: architecture · Hero SVG: svg/D05.svg · Page: /framework, /architecture/execution-vocabulary
+flowchart TB
+  FDLC["FDLC<br/>lifecycle · architecture · artifacts · governance · learning model"]
+  ECO["Factory Ecosystem<br/>many factories under one enterprise control plane"]
+  CP["Control Plane<br/>authority · policy · routing · state · registries · budgets"]
+  F["Factory<br/>reusable governed production capability → Factory Version"]
+  H["Harness<br/>operating envelope + loop controls around one agent"]
+  A["Agent<br/>reasoning + goal + tools + context + working state"]
+  M["Model<br/>inference resource (replaceable)"]
+  FDLC -- governs --> ECO -- governs --> CP -- governs --> F -- bounds --> H -- bounds --> A -- uses --> M
+  SK["Skill · Tool · Context Package<br/>loaded / invoked / frozen by the Harness"] -.-> H
+  class FDLC neutral
+  class ECO,CP control
+  class F,H,A,M,SK execution
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

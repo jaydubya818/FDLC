@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" class="fd" role="img" aria-labelledby="t-D02 d-D02">
+<title id="t-D02">The Delivery Loop</title>
+<desc id="d-D02">The ten-step Delivery Loop, the inner loop of FDLC: Receive, Specify, Plan, Route, Execute, Verify, Approve, Release, Observe, Learn. Each step answers one question and produces a named artifact. Verify may return work to Execute on failure or stale evidence; Approve may return it to Plan. Learn hands Learning Signals to the Factory Lifecycle's Improve stage. A strip below states the non-collapsible states: Execution complete is not Verified, is not Approved, is not Released, is not Outcome proven.</desc>
+<style>
+svg.fd{--fd-paper:#f3f1ea;--fd-surface:#faf9f5;--fd-ink:#171a18;--fd-muted:#59605a;--fd-line:#c9ccc4;
+--fd-intent-fill:#dce8ef;--fd-intent-stroke:#2f5f78;--fd-intent-text:#1f4557;
+--fd-control-fill:#e4e9ec;--fd-control-stroke:#4a5d68;--fd-control-text:#2f3f47;
+--fd-exec-fill:#f5e6d0;--fd-exec-stroke:#9a4f1c;--fd-exec-text:#6b3612;
+--fd-trust-fill:#dcefe4;--fd-trust-stroke:#1a654b;--fd-trust-text:#114735;
+--fd-learn-fill:#e9e2f4;--fd-learn-stroke:#5c3f8f;--fd-learn-text:#3f2a66;
+--fd-human:#b3261e;--fd-tint:.45}
+@media (prefers-color-scheme:dark){svg.fd{--fd-paper:#15191b;--fd-surface:#1d2326;--fd-ink:#ecebe4;--fd-muted:#a8b0aa;--fd-line:#3b433d;
+--fd-intent-fill:#1c3140;--fd-intent-stroke:#8ec1dc;--fd-intent-text:#cfe6f2;
+--fd-control-fill:#2a3438;--fd-control-stroke:#a8bcc6;--fd-control-text:#dbe5ea;
+--fd-exec-fill:#3b2812;--fd-exec-stroke:#e2a468;--fd-exec-text:#f5dcc0;
+--fd-trust-fill:#143326;--fd-trust-stroke:#7fd2a6;--fd-trust-text:#cdeedb;
+--fd-learn-fill:#2b2142;--fd-learn-stroke:#bfa5ea;--fd-learn-text:#e3d8f5;
+--fd-human:#ff8a80;--fd-tint:.35}}
+.bg{fill:var(--fd-paper)}
+text{font-family:"Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;fill:var(--fd-ink);font-size:16px}
+.mono{font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace}
+.title{font-size:34px;font-weight:600}
+.sub{font-size:18px;fill:var(--fd-muted)}
+.h{font-size:20px;font-weight:600}.h2{font-size:18px;font-weight:600}.h3{font-size:16px;font-weight:600}
+.b{font-size:16px}.s{font-size:15px;fill:var(--fd-muted)}.xs{font-size:14px;fill:var(--fd-muted)}
+.i{font-style:italic}.c{text-anchor:middle}.r{text-anchor:end}.strong{font-weight:600}
+.label{font-size:14px;fill:var(--fd-muted)}
+.tag{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace;fill:var(--fd-muted)}
+.box{stroke-width:2;rx:6}
+.intent{fill:var(--fd-intent-fill);stroke:var(--fd-intent-stroke)}
+.control{fill:var(--fd-control-fill);stroke:var(--fd-control-stroke)}
+.exec{fill:var(--fd-exec-fill);stroke:var(--fd-exec-stroke)}
+.trust{fill:var(--fd-trust-fill);stroke:var(--fd-trust-stroke)}
+.learn{fill:var(--fd-learn-fill);stroke:var(--fd-learn-stroke)}
+.neutral{fill:var(--fd-surface);stroke:var(--fd-muted)}
+.human{stroke:var(--fd-human)!important;stroke-width:3.5}
+.t-intent{fill:var(--fd-intent-text)}.t-control{fill:var(--fd-control-text)}.t-exec{fill:var(--fd-exec-text)}
+.t-trust{fill:var(--fd-trust-text)}.t-learn{fill:var(--fd-learn-text)}.t-human{fill:var(--fd-human)}
+.zone{stroke-width:2;rx:10;fill-opacity:var(--fd-tint)}
+.zone.dash{stroke-dasharray:8 6}
+.fl{fill:none;stroke:var(--fd-ink);stroke-width:2.5;marker-end:url(#m-ink)}
+.au{fill:none;stroke:var(--fd-control-stroke);stroke-width:3;marker-end:url(#m-au)}
+.ev{fill:none;stroke:var(--fd-trust-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ev)}
+.ln{fill:none;stroke:var(--fd-learn-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ln)}
+.rt{fill:none;stroke:var(--fd-muted);stroke-width:2;stroke-dasharray:5 5;marker-end:url(#m-mu)}
+.thin{stroke-width:1.5}
+.nomk{marker-end:none}
+.dot{fill:var(--fd-trust-stroke)}
+.lbg{fill:var(--fd-paper);stroke:none}
+.chip{stroke-width:2;rx:14}
+.mk-ink{fill:var(--fd-ink)}.mk-au{fill:var(--fd-control-stroke)}.mk-ev{fill:var(--fd-trust-stroke)}
+.mk-ln{fill:var(--fd-learn-stroke)}.mk-mu{fill:var(--fd-muted)}
+.hair{stroke:var(--fd-line);stroke-width:1.5;fill:none}
+.x{stroke:var(--fd-human);stroke-width:3;fill:none}
+</style>
+<defs>
+<marker id="m-ink" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ink" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-au" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-au" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ev" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ev" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ln" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ln" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-mu" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-mu" d="M0,1 L11,6 L0,11 z"/></marker>
+</defs>
+<rect class="bg" width="1600" height="900"/>
+<g id="header"><text x="60" y="76" class="title">The Delivery Loop</text>
+<text x="60" y="108" class="sub">How one unit of intent becomes a verified outcome — verbs are steps, nouns are artifacts</text>
+<text x="1540" y="70" class="tag r">FDLC visual canon · D02</text></g>
+<g id="step-1">
+<rect x="60" y="150" width="260" height="150" class="box intent"/>
+<text x="190.0" y="211.8" class="h t-intent c">1 · Receive</text>
+<text x="190.0" y="232.8" class="s i c">What outcome matters?</text>
+<text x="190.0" y="253.3" class="h3 c">→ Intent</text>
+</g>
+<path id="a-1" d="M320,225 L365,225" class="fl"/>
+<g id="step-2">
+<rect x="365" y="150" width="260" height="150" class="box intent"/>
+<text x="495.0" y="211.8" class="h t-intent c">2 · Specify</text>
+<text x="495.0" y="232.8" class="s i c">What must be true?</text>
+<text x="495.0" y="253.3" class="h3 c">→ Specification</text>
+</g>
+<path id="a-2" d="M625,225 L670,225" class="fl"/>
+<g id="step-3">
+<rect x="670" y="150" width="260" height="150" class="box intent"/>
+<text x="800.0" y="211.8" class="h t-intent c">3 · Plan</text>
+<text x="800.0" y="232.8" class="s i c">How will the factory achieve it?</text>
+<text x="800.0" y="253.3" class="h3 c">→ Plan · Work Orders</text>
+</g>
+<path id="a-3" d="M930,225 L975,225" class="fl"/>
+<g id="step-4">
+<rect x="975" y="150" width="260" height="150" class="box control"/>
+<text x="1105.0" y="201.4" class="h t-control c">4 · Route</text>
+<text x="1105.0" y="222.4" class="s i c">Which factory, version, profile?</text>
+<text x="1105.0" y="242.9" class="h3 c">→ Routing Decision</text>
+<text x="1105.0" y="263.8" class="h3 c">bound Work Order</text>
+</g>
+<path id="a-4" d="M1235,225 L1280,225" class="fl"/>
+<g id="step-5">
+<rect x="1280" y="150" width="260" height="150" class="box exec"/>
+<text x="1410.0" y="201.4" class="h t-exec c">5 · Execute</text>
+<text x="1410.0" y="222.4" class="s i c">What exactly ran?</text>
+<text x="1410.0" y="242.9" class="h3 c">→ Context Package · Attempt</text>
+<text x="1410.0" y="263.8" class="h3 c">Candidate · Evidence</text>
+</g>
+<g id="step-6">
+<rect x="60" y="390" width="260" height="150" class="box trust"/>
+<text x="190.0" y="451.9" class="h t-trust c">6 · Verify</text>
+<text x="190.0" y="472.9" class="s i c">Does evidence satisfy the spec?</text>
+<text x="190.0" y="493.4" class="h3 c">→ Verification (independent)</text>
+</g>
+<path id="a-6" d="M320,465 L365,465" class="fl"/>
+<g id="step-7">
+<rect x="365" y="390" width="260" height="150" class="box trust human"/>
+<text x="495.0" y="451.9" class="h t-trust c">7 · Approve</text>
+<text x="495.0" y="472.9" class="s i c">May this consequence proceed?</text>
+<text x="495.0" y="493.4" class="h3 c">→ Decision (acceptance)</text>
+</g>
+<path id="a-7" d="M625,465 L670,465" class="fl"/>
+<g id="step-8">
+<rect x="670" y="390" width="260" height="150" class="box trust"/>
+<text x="800.0" y="451.9" class="h t-trust c">8 · Release</text>
+<text x="800.0" y="472.9" class="s i c">What was promoted?</text>
+<text x="800.0" y="493.4" class="h3 c">→ Release</text>
+</g>
+<path id="a-8" d="M930,465 L975,465" class="fl"/>
+<g id="step-9">
+<rect x="975" y="390" width="260" height="150" class="box trust"/>
+<text x="1105.0" y="451.9" class="h t-trust c">9 · Observe</text>
+<text x="1105.0" y="472.9" class="s i c">Did the result hold in reality?</text>
+<text x="1105.0" y="493.4" class="h3 c">→ Outcome</text>
+</g>
+<path id="a-9" d="M1235,465 L1280,465" class="fl"/>
+<g id="step-10">
+<rect x="1280" y="390" width="260" height="150" class="box learn"/>
+<text x="1410.0" y="441.4" class="h t-learn c">10 · Learn</text>
+<text x="1410.0" y="462.4" class="s i c">What should change in the factory?</text>
+<text x="1410.0" y="483.0" class="h3 c">→ Learning Signal</text>
+<text x="1410.0" y="503.8" class="h3 c">Improvement Candidate</text>
+</g>
+<path id="a-5-6" d="M1410,300 L1410,345 L190,345 L190,390" class="fl"/>
+<text x="190" y="562" class="xs c">↩ fail / stale → back to 5 Execute</text>
+<text x="495" y="562" class="xs c">↩ reject / revise → back to 3 Plan</text>
+<path id="a-learn-improve" d="M1410,540 L1410,600" class="ln"/>
+<g id="factory-lifecycle">
+<rect x="1240" y="600" width="300" height="80" class="box learn"/>
+<text x="1390.0" y="636.5" class="h3 t-learn c">Factory Lifecycle · 8 Improve</text>
+<text x="1390.0" y="655.3" class="xs c">new Factory Version via Qualify → Deploy</text>
+</g>
+<text x="60" y="600" class="tag">Non-collapsible states — each boundary needs its own record and its own authority</text>
+<g id="state-execution"><rect x="60" y="612" width="210" height="44" class="chip exec"/><text x="165.0" y="639.5" class="h3 c ">Execution complete</text></g>
+<text x="294" y="642" class="h c">≠</text>
+<g id="state-verified"><rect x="318" y="612" width="150" height="44" class="chip trust"/><text x="393.0" y="639.5" class="h3 c ">Verified</text></g>
+<text x="492" y="642" class="h c">≠</text>
+<g id="state-approved"><rect x="516" y="612" width="160" height="44" class="chip trust human"/><text x="596.0" y="639.5" class="h3 c ">Approved</text></g>
+<text x="700" y="642" class="h c">≠</text>
+<g id="state-released"><rect x="724" y="612" width="150" height="44" class="chip trust"/><text x="799.0" y="639.5" class="h3 c ">Released</text></g>
+<text x="898" y="642" class="h c">≠</text>
+<g id="state-outcome"><rect x="922" y="612" width="200" height="44" class="chip trust"/><text x="1022.0" y="639.5" class="h3 c ">Outcome proven</text></g>
+<text x="60" y="690" class="xs">Mission Control extension: verification passed ≠ current-gate eligible ≠ accepted ≠ merged ≠ production verified.</text>
+<text x="60" y="734" class="h3">Labeled compressions map to step ids:</text>
+<text x="60" y="760" class="s">hero 4-step — Define the outcome (1–2) · Bound the work (3–5) · Require evidence (6–8) · Learn from outcomes (9–10)</text>
+<text x="60" y="784" class="s">executive 6-step — Intent (1–2) · Plan (3–4) · Execute (5) · Verify (6–7) · Release (8) · Learn (9–10)</text>
+<text x="60" y="816" class="s">The Delivery Loop runs only inside an Active Factory Version. Verification makes work eligible; it never accepts.</text>
+<g id="legend">
+<rect x="60" y="847" width="26" height="16" class="box intent" rx="3"/>
+<text x="94" y="860" class="xs">Intent</text>
+<rect x="155.28" y="847" width="26" height="16" class="box control" rx="3"/>
+<text x="189.28" y="860" class="xs">Control</text>
+<rect x="260.08000000000004" y="847" width="26" height="16" class="box exec" rx="3"/>
+<text x="294.08000000000004" y="860" class="xs">Execution</text>
+<rect x="383.36000000000007" y="847" width="26" height="16" class="box trust" rx="3"/>
+<text x="417.36000000000007" y="860" class="xs">Trust</text>
+<rect x="476.4000000000001" y="847" width="26" height="16" class="box learn" rx="3"/>
+<text x="510.4000000000001" y="860" class="xs">Learning</text>
+<rect x="592.1200000000001" y="847" width="26" height="16" class="box neutral human" rx="3"/>
+<text x="626.1200000000001" y="860" class="xs">Human authority</text>
+<path d="M765.1600000000001,855 L809.1600000000001,855" class="au"/><text x="819.1600000000001" y="860" class="xs">authority / flow (solid)</text>
+<path d="M987.4000000000001,855 L1031.4,855" class="ev"/><text x="1041.4" y="860" class="xs">evidence (dashed, back)</text>
+<path d="M1221.1200000000001,855 L1265.1200000000001,855" class="ln"/><text x="1275.1200000000001" y="860" class="xs">learning (dashed)</text>
+</g>
+</svg>

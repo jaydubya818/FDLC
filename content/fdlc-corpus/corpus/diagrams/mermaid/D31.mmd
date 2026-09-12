@@ -1,0 +1,35 @@
+%% D31 Attempt / lease state machine (fenced lease, recovery, disposition)
+%% Type: state · Page: /specification/v1/attempt, /enterprise/execution-fleet
+stateDiagram-v2
+  [*] --> PENDING: created by dispatch, manifest frozen
+  PENDING --> CLAIMED: atomic claim issues lease with fence
+  CLAIMED --> RUNNING: heartbeat started
+  RUNNING --> RUNNING: renew lease (same fence, worker, session, generation)
+  RUNNING --> PAUSED: human decision required
+  PAUSED --> RUNNING: decision recorded, manifest, lease, checkpoint revalidated
+  RUNNING --> SUSPECT: lease expired
+  SUSPECT --> RECONCILING: ownership unknown
+  RUNNING --> CANCELING: cancel command (durable)
+  PAUSED --> CANCELING
+  CANCELING --> RECONCILING: acknowledged or timed out
+  RUNNING --> COMPLETED: structured completion under current fence, Candidate frozen
+  RUNNING --> FAILED: classified failure
+  PAUSED --> FAILED
+  RECONCILING --> FAILED: disposition LOST or FAILED (workspace preserved, new Attempt required)
+  RECONCILING --> CANCELED: disposition CANCELLED
+  RECONCILING --> RUNNING: disposition RECOVERABLE (same lease generation)
+  COMPLETED --> [*]
+  FAILED --> [*]
+  CANCELED --> [*]
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef human fill:#f5e6d0,stroke:#b3261e,stroke-width:3px,color:#171a18
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18
+  classDef warn fill:#faf9f5,stroke:#b3261e,color:#171a18
+  class PENDING,CLAIMED control
+  class RUNNING execution
+  class PAUSED human
+  class SUSPECT,RECONCILING,CANCELING warn
+  class COMPLETED trust
+  class FAILED,CANCELED neutral

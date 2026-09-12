@@ -1,0 +1,777 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fdlc.ai/schemas/v1/qualification-record.schema.json",
+  "title": "FDLC Qualification Record",
+  "description": "The evidence-backed determination that a Factory Version (or Capability, or Execution Profile) meets the Qualification Standard for a declared scope, with expiry and revocation. Fail-closed: a hard gate with UNKNOWN evidence fails.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "type": {
+      "type": "string",
+      "const": "fdlc://v1/qualification-record"
+    },
+    "id": {
+      "$ref": "#/$defs/Id"
+    },
+    "namespace": {
+      "$ref": "#/$defs/Namespace"
+    },
+    "subject": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "factory-version",
+            "capability-manifest",
+            "execution-profile"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "compositionDigest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "standardVersion": {
+      "type": "string",
+      "pattern": "^fdlc-qualification-standard/",
+      "description": "e.g. fdlc-qualification-standard/1.0"
+    },
+    "scope": {
+      "type": "object",
+      "description": "Qualification is scoped: workload class × environment × risk tier × autonomy level.",
+      "properties": {
+        "workloadClasses": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "environments": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "riskTiers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/RiskClass"
+          }
+        },
+        "autonomyLevels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/AutonomyLevel"
+          }
+        }
+      },
+      "required": [
+        "workloadClasses",
+        "environments",
+        "riskTiers",
+        "autonomyLevels"
+      ],
+      "additionalProperties": false
+    },
+    "dimensions": {
+      "type": "array",
+      "minItems": 18,
+      "items": {
+        "$ref": "#/$defs/DimensionResult"
+      },
+      "description": "Exactly the 18 dimensions of the Qualification Standard. Each MUST be present with a result."
+    },
+    "suites": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Suite"
+      }
+    },
+    "cohort": {
+      "type": "object",
+      "properties": {
+        "workloadSampleSize": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cohortDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "syntheticShare": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "hardGateFailures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidenceIds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Id"
+      }
+    },
+    "evidenceSetDigest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "assessedBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "assessedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "independentOfSubjectOwner": {
+      "type": "boolean",
+      "description": "The assessor is not the Factory Owner of the subject."
+    },
+    "expiresAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "revocation": {
+      "type": "object",
+      "properties": {
+        "revokedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "revokedBy": {
+          "$ref": "#/$defs/Actor"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "decisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "incidentId": {
+          "$ref": "#/$defs/Id"
+        }
+      },
+      "required": [
+        "revokedAt",
+        "revokedBy",
+        "reason",
+        "decisionId"
+      ],
+      "additionalProperties": false
+    },
+    "supersededById": {
+      "$ref": "#/$defs/Id"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "PLANNED",
+        "RUNNING",
+        "QUALIFIED",
+        "REJECTED",
+        "EXPIRED",
+        "REVOKED",
+        "SUPERSEDED"
+      ]
+    },
+    "digest": {
+      "$ref": "#/$defs/Digest",
+      "description": "Digest over (subject, standardVersion, scope, dimensions, suites, result, evidenceSetDigest, assessedAt, expiresAt)."
+    },
+    "createdAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "createdBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Transition"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "type",
+    "id",
+    "namespace",
+    "subject",
+    "standardVersion",
+    "scope",
+    "dimensions",
+    "state",
+    "digest",
+    "createdAt",
+    "createdBy"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "QUALIFIED",
+              "REJECTED",
+              "EXPIRED",
+              "REVOKED",
+              "SUPERSEDED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "result",
+          "evidenceIds",
+          "evidenceSetDigest",
+          "assessedBy",
+          "assessedAt",
+          "expiresAt"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "QUALIFIED",
+              "EXPIRED",
+              "SUPERSEDED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "result": {
+            "const": "PASS"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "REJECTED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "result": {
+            "const": "FAIL"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "REVOKED"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "revocation"
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]*$",
+      "description": "Instance identifier. Unique within the issuing namespace; combined with `namespace` it is globally unique."
+    },
+    "ArtifactUri": {
+      "type": "string",
+      "pattern": "^fdlc://v1/(intent|specification|plan|work-order|factory-manifest|factory-version|execution-profile|capability-manifest|qualification-record|context-package|attempt|candidate|evidence|verification|decision|release|outcome|learning-signal|improvement-candidate)(/[A-Za-z0-9][A-Za-z0-9._:@-]*)?$",
+      "description": "Artifact type URI (`fdlc://v1/<artifact>`), optionally suffixed with an instance id."
+    },
+    "Namespace": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the issuing control plane or organization. Scopes every `id` in this record."
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 over the RFC 8785 (JCS) canonical JSON of the digested projection."
+    },
+    "GitSha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$|^[a-f0-9]{64}$",
+      "description": "Lowercase full Git object id (SHA-1 or SHA-256 repository)."
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp in UTC."
+    },
+    "Semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "RiskClass": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "AutonomyLevel": {
+      "type": "string",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "description": "HITL spectrum position. Effective autonomy is min(factory, objective, work order, policy, trust)."
+    },
+    "Actor": {
+      "type": "object",
+      "description": "Attributable identity. `identitySource` says how the control plane established it; never inferred from a client label.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "policy",
+            "service",
+            "agent",
+            "system"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "identitySource": {
+          "type": "string",
+          "enum": [
+            "authenticated",
+            "workload-identity",
+            "service-command",
+            "development-fallback"
+          ]
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "delegationRef": {
+          "$ref": "#/$defs/Id",
+          "description": "Reference to the delegation record that grants this actor its authority."
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "identitySource"
+      ],
+      "additionalProperties": false
+    },
+    "Ref": {
+      "type": "object",
+      "description": "Reference to another FDLC artifact instance, optionally pinned to a digest.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/ArtifactUri"
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "revisionNumber": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false
+    },
+    "CostRecord": {
+      "type": "object",
+      "description": "Cost with an honesty class. UNKNOWN cost stays UNKNOWN; implementations MUST NOT invent zeroes.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "ESTIMATED",
+            "UNKNOWN"
+          ]
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of contributing cost items that were measured."
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "Transition": {
+      "type": "object",
+      "description": "Audit record of one authoritative state transition. Every field listed here MUST be recorded.",
+      "properties": {
+        "transitionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "priorVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fromState": {
+          "type": "string"
+        },
+        "toState": {
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "occurredAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "requiredEvidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "decisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "invalidatedDependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ref"
+          }
+        }
+      },
+      "required": [
+        "subjectId",
+        "fromState",
+        "toState",
+        "actor",
+        "reason",
+        "idempotencyKey",
+        "occurredAt"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "description": "Content-addressed reference to a stored artifact (diff, log, screenshot, bundle).",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/Id"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactId",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "Dimension": {
+      "type": "string",
+      "enum": [
+        "functional-correctness",
+        "task-success",
+        "regression-performance",
+        "security",
+        "sandbox-isolation",
+        "policy-compliance",
+        "tool-permissions",
+        "credential-handling",
+        "unsupported-actions",
+        "model-route-compatibility",
+        "cost",
+        "latency",
+        "reliability",
+        "determinism",
+        "evidence-completeness",
+        "recovery-behavior",
+        "failure-behavior",
+        "observability-coverage"
+      ]
+    },
+    "DimensionResult": {
+      "type": "object",
+      "properties": {
+        "dimension": {
+          "$ref": "#/$defs/Dimension"
+        },
+        "result": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_APPLICABLE",
+            "UNKNOWN",
+            "WAIVED"
+          ]
+        },
+        "hardGate": {
+          "type": "boolean"
+        },
+        "method": {
+          "type": "string"
+        },
+        "threshold": {
+          "type": "string"
+        },
+        "observed": {
+          "type": "string"
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "number",
+              "string",
+              "boolean",
+              "null"
+            ]
+          }
+        },
+        "evidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "waiverDecisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "notApplicableReason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "dimension",
+        "result",
+        "hardGate",
+        "method"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "result": {
+                "const": "PASS"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "evidenceIds": {
+                "minItems": 1
+              }
+            },
+            "required": [
+              "evidenceIds"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "result": {
+                "const": "WAIVED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "waiverDecisionId"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "result": {
+                "const": "NOT_APPLICABLE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "notApplicableReason"
+            ]
+          }
+        }
+      ]
+    },
+    "Suite": {
+      "type": "object",
+      "properties": {
+        "suiteId": {
+          "$ref": "#/$defs/Id"
+        },
+        "version": {
+          "type": "string"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "caseCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "negativeControlCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "passed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "invalid": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skipped": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "receiptId": {
+          "$ref": "#/$defs/Id"
+        },
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Dimension"
+          }
+        }
+      },
+      "required": [
+        "suiteId",
+        "version",
+        "digest",
+        "caseCount",
+        "negativeControlCount",
+        "passed",
+        "failed",
+        "invalid",
+        "skipped"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[a-z0-9]+(-[a-z0-9]+)*$": {}
+  },
+  "additionalProperties": false
+}

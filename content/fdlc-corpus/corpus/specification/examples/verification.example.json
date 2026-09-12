@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "1.0",
+  "type": "fdlc://v1/verification",
+  "id": "VER-104-02",
+  "namespace": "https://acme.example/factories/checkout",
+  "level": "WORK_ORDER",
+  "workOrderId": "WO-104-01",
+  "workOrderRevisionNumber": 1,
+  "intentId": "INT-104",
+  "verificationContractDigest": "sha256:7578cc0498d5fccce37655a6d0f8a0a07eec696427228335d6656cbe1148be78",
+  "qualityContractDigest": "sha256:dc8ccbf7d977e52efff8403f63b12e0889313b0deb0e14d4ac62866efe11ca16",
+  "sourceAttemptId": "ATT-104-01-p1",
+  "verificationAttemptId": "ATT-104-01-v1",
+  "verifierFactoryVersionId": "FV-verify-2.3",
+  "subject": {
+    "subjectId": "verification-subject:bc9e58be15d0abe0a8159ff375752bc65adca6c6a02fcde0ad02283db510641f",
+    "subjectVersion": 2, "kind": "GIT_CANDIDATE", "candidateId": "CAND-104-01-p1",
+    "workOrderId": "WO-104-01", "workOrderRevisionNumber": 1,
+    "verificationContractDigest": "sha256:7578cc0498d5fccce37655a6d0f8a0a07eec696427228335d6656cbe1148be78",
+    "sourceAttemptId": "ATT-104-01-p1",
+    "repositoryId": "repo:checkout-api", "provider": "github", "providerRepositoryId": "R_example_checkout",
+    "baseSha": "1405df66cbe219b0bf6355bc3d60361a8376b6b4", "commitSha": "4015b57a143aec5156fd1444a017a32137a3fd0f",
+    "treeSha": "80655da8d80aaaf92ce5357e7828dc09adb00993", "diffDigest": "sha256:6793803b255f9bbd0a9943b129a67af9650328c54451b76790a7be08d4c65bb3",
+    "baseRef": "main", "headRef": "factory/WO-104-01/ATT-104-01-p1",
+    "digest": "sha256:bc9e58be15d0abe0a8159ff375752bc65adca6c6a02fcde0ad02283db510641f",
+    "frozenAt": "2026-09-03T09:03:25Z"
+  },
+  "plan": {
+    "planId": "verification-plan:5ef42d410ac8a4e517260136f28437d0bb4b6b9a8e1c662b99c371321a134f44", "planVersion": 1,
+    "planDigest": "sha256:5ef42d410ac8a4e517260136f28437d0bb4b6b9a8e1c662b99c371321a134f44",
+    "subjectDigest": "sha256:bc9e58be15d0abe0a8159ff375752bc65adca6c6a02fcde0ad02283db510641f",
+    "generatedBy": {"factoryVersionId": "FV-verify-2.3", "attemptId": "ATT-104-01-v1", "executorInvocationId": "verify-session-c41d0e9f"},
+    "requirements": [
+      {"id": "VR-104-01", "description": "Contract and integration tests pass against the exact candidate.", "source": "ACCEPTANCE_CRITERION", "sourceReference": "AC-104-01", "criticality": "REQUIRED"},
+      {"id": "VR-104-02", "description": "No acme-payments-sdk 3.x artifact; no new dependencies.", "source": "ACCEPTANCE_CRITERION", "sourceReference": "AC-104-02", "criticality": "REQUIRED"},
+      {"id": "VR-104-03", "description": "No v3 or compat imports.", "source": "ACCEPTANCE_CRITERION", "sourceReference": "AC-104-03", "criticality": "REQUIRED"},
+      {"id": "VR-104-04", "description": "Protected paths untouched; change budget respected.", "source": "ACCEPTANCE_CRITERION", "sourceReference": "AC-104-04", "criticality": "REQUIRED"}
+    ],
+    "requiredRisks": [{"id": "RISK-104-01", "description": "v4 idempotency-key header semantics.", "severity": "MEDIUM", "source": "WORK_ORDER", "affectedAreas": ["services/checkout-api/payments"]}],
+    "discoveredRisks": [],
+    "requiredEvidence": [
+      {"id": "RE-104-01", "requirementIds": ["VR-104-01"], "riskIds": ["RISK-104-01"], "description": "Independent test run in a fresh clone.", "evidenceType": "INTEGRATION_TEST", "required": true, "checkId": "CHK-104-TEST"},
+      {"id": "RE-104-02", "requirementIds": ["VR-104-02"], "riskIds": [], "description": "Dependency scan of the candidate lockfile.", "evidenceType": "SECURITY_CHECK", "required": true, "checkId": "CHK-104-DEP"},
+      {"id": "RE-104-03", "requirementIds": ["VR-104-03"], "riskIds": [], "description": "Static rule DEP-V3-IMPORT.", "evidenceType": "ARTIFACT_INSPECTION", "required": true, "checkId": "CHK-104-SA"},
+      {"id": "RE-104-04", "requirementIds": ["VR-104-04"], "riskIds": [], "description": "Scope reconciliation of the frozen diff.", "evidenceType": "ARTIFACT_INSPECTION", "required": true, "checkId": "CHK-104-SCOPE"}
+    ],
+    "adversarial": {"enabled": false},
+    "frozenAt": "2026-09-03T09:40:00Z"
+  },
+  "independence": {
+    "policyVersion": "verification-independence/v1", "passed": true,
+    "reasons": ["Separate Attempt, lease, invocation, worktree, and Factory Version; verifier purpose VERIFICATION; candidate did not modify verification-authority surfaces beyond PACKAGE_MANIFEST and LOCKFILE, which the contract allows."],
+    "lineage": {"separateAttempt": true, "separateLease": true, "separateInvocation": true, "separateWorktree": true, "separateFactoryVersion": true,
+                "verifierFactoryPurpose": "VERIFICATION", "reportCapability": "verification:report", "separateModelFamily": true},
+    "standard": {"authorityStatus": "PASS", "mutatedAuthoritySurfaces": ["PACKAGE_MANIFEST", "LOCKFILE"], "contextFirewall": true},
+    "evaluatedAt": "2026-09-03T10:12:00Z"
+  },
+  "isolationAttestation": {
+    "mode": "FRESH_CLONE", "sandboxId": "sbx-verify-9e21c4", "rootBindingDigest": "sha256:6dc87bf3ac7649b799be35cdd8b3a0bdae66a0447c69c286e01df5c87c589859",
+    "subjectDigest": "sha256:bc9e58be15d0abe0a8159ff375752bc65adca6c6a02fcde0ad02283db510641f",
+    "verifierRoot": "/work/verify/ATT-104-01-v1", "sourceRoot": "/work/attempts/ATT-104-01-p1",
+    "initialClean": true, "finalSubjectMatch": true,
+    "headSha": "4015b57a143aec5156fd1444a017a32137a3fd0f", "treeSha": "80655da8d80aaaf92ce5357e7828dc09adb00993",
+    "attestedAt": "2026-09-03T10:11:50Z"
+  },
+  "checks": [
+    {"checkId": "CHK-104-TEST", "name": "Contract and integration tests", "category": "INTEGRATION_TEST", "verifierCapabilityId": "CAP-verifier-test-runner-3.0.1", "mandatory": true,
+     "status": "PASS", "summary": "212 passed, 0 failed, 0 skipped.", "criterionIds": ["AC-104-01"], "evidenceIds": ["EV-104-09"],
+     "startedAt": "2026-09-03T10:04:00Z", "completedAt": "2026-09-03T10:11:04Z", "durationMs": 424000, "violations": []},
+    {"checkId": "CHK-104-DEP", "name": "Dependency scan", "category": "DEPENDENCY", "verifierCapabilityId": "CAP-verifier-dependency-scan-1.7.0", "mandatory": true,
+     "status": "PASS", "summary": "0 matches for acme-payments-sdk@3; 0 new packages.", "criterionIds": ["AC-104-02"], "evidenceIds": ["EV-104-10"],
+     "startedAt": "2026-09-03T10:11:10Z", "completedAt": "2026-09-03T10:11:31Z", "durationMs": 21000, "violations": []},
+    {"checkId": "CHK-104-SA", "name": "Static analysis for v3 imports", "category": "POLICY", "verifierCapabilityId": "CAP-verifier-static-rules-2.2.0", "mandatory": true,
+     "status": "PASS", "summary": "DEP-V3-IMPORT: 0 findings.", "criterionIds": ["AC-104-03"], "evidenceIds": ["EV-104-11"],
+     "startedAt": "2026-09-03T10:11:31Z", "completedAt": "2026-09-03T10:11:44Z", "durationMs": 13000, "violations": []},
+    {"checkId": "CHK-104-SCOPE", "name": "Change budget and protected paths", "category": "CHANGE_BUDGET", "verifierCapabilityId": "CAP-verifier-scope-reconciler-1.0.0", "mandatory": true,
+     "status": "PASS", "summary": "6 files, 273 lines; 0 violations.", "criterionIds": ["AC-104-04"], "evidenceIds": ["EV-104-12"],
+     "startedAt": "2026-09-03T10:11:44Z", "completedAt": "2026-09-03T10:11:46Z", "durationMs": 2000, "violations": []}
+  ],
+  "coverage": {
+    "requiredRequirementCoverage": 1.0, "requiredEvidenceCoverage": 1.0, "requiredRiskCoverage": 1.0,
+    "criteria": [
+      {"criterionId": "AC-104-01", "status": "EVIDENCED", "requiredEvidenceCount": 1, "usableEvidenceCount": 1, "evidenceIds": ["EV-104-09"]},
+      {"criterionId": "AC-104-02", "status": "EVIDENCED", "requiredEvidenceCount": 1, "usableEvidenceCount": 1, "evidenceIds": ["EV-104-10"]},
+      {"criterionId": "AC-104-03", "status": "EVIDENCED", "requiredEvidenceCount": 1, "usableEvidenceCount": 1, "evidenceIds": ["EV-104-11"]},
+      {"criterionId": "AC-104-04", "status": "EVIDENCED", "requiredEvidenceCount": 1, "usableEvidenceCount": 1, "evidenceIds": ["EV-104-12"]}
+    ]
+  },
+  "result": {
+    "verdict": "VERIFIED",
+    "reasons": ["All four mandatory checks PASS with independent LIVE evidence bound to subject bc9e58be…; required risk RISK-104-01 covered by CT-PAY-014."],
+    "requirementsPassed": 4, "requirementsFailed": 0, "violations": [],
+    "decisionInputDigest": "sha256:ee6be7457bdd596f69d88c82fa75ffcefc22736ddea6ac7f33fa6c8a66313781",
+    "evidenceSetDigest": "sha256:26c4f30edf340bc9f8508308af785e45e321325a122778389b92c11c86476c05",
+    "evidenceIds": ["EV-104-09", "EV-104-10", "EV-104-11", "EV-104-12"],
+    "evaluatedAt": "2026-09-03T10:12:00Z"
+  },
+  "receipt": {
+    "receiptId": "RCPT-104-02", "status": "PASSED", "recordedAt": "2026-09-03T10:12:05Z", "validUntil": "2026-09-10T10:12:05Z",
+    "digest": "sha256:fa571fceeaf1255b26cddde035aeaee44e4267f63dd8d0e391fbe67617461feb"
+  },
+  "currentness": {
+    "rule": "newest-candidate-newest-exact-verification", "current": true, "eligible": true,
+    "reasons": ["Newest candidate-ready source Attempt is ATT-104-01-p1 (COMPLETED); newest exact-bound Verification Attempt is ATT-104-01-v1 (COMPLETED); receipt PASSED, unexpired, decision-input digest matches; provider head 4015b57a matches subject."],
+    "evaluatedAt": "2026-09-09T16:38:00Z",
+    "exactIdentity": {"workOrderId": "WO-104-01", "workOrderRevisionNumber": 1, "verificationContractDigest": "sha256:7578cc0498d5fccce37655a6d0f8a0a07eec696427228335d6656cbe1148be78",
+                      "sourceAttemptId": "ATT-104-01-p1", "subjectDigest": "sha256:bc9e58be15d0abe0a8159ff375752bc65adca6c6a02fcde0ad02283db510641f"},
+    "providerHead": {"provider": "github", "pullRequestNumber": 118, "state": "OPEN", "headSha": "4015b57a143aec5156fd1444a017a32137a3fd0f", "matchesSubject": true,
+                     "syncedAt": "2026-09-09T16:37:40Z", "attestationExpiresAt": "2026-09-09T17:37:40Z"}
+  },
+  "qualityGate": {
+    "gateDecisionId": "QG-104-01-7", "state": "ELIGIBLE", "mode": "ENFORCED",
+    "reasons": ["Every blocking criterion satisfied by current, independent, artifact-bound evidence; no waiver required; human acceptance still required by policy."],
+    "blockingFindingIds": [], "requiredDecisionIds": ["DEC-104-01"],
+    "decisionInputDigest": "sha256:ee6be7457bdd596f69d88c82fa75ffcefc22736ddea6ac7f33fa6c8a66313781",
+    "evidenceSetDigest": "sha256:26c4f30edf340bc9f8508308af785e45e321325a122778389b92c11c86476c05",
+    "policyVersion": "quality-gate-policy/2", "evaluatedAt": "2026-09-09T16:38:00Z", "acceptanceAuthority": false
+  },
+  "state": "COMPLETED",
+  "startedAt": "2026-09-03T09:40:00Z",
+  "completedAt": "2026-09-03T10:12:05Z",
+  "digest": "sha256:fa571fceeaf1255b26cddde035aeaee44e4267f63dd8d0e391fbe67617461feb",
+  "createdAt": "2026-09-03T09:38:00Z",
+  "createdBy": {"kind": "system", "id": "system:orchestrator", "identitySource": "workload-identity"}
+}

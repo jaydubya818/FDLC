@@ -1,0 +1,32 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D01 What is an Autonomous Software Factory
+%% Type: architecture · Hero SVG: svg/D01.svg · Page: / and /in-5-minutes
+flowchart LR
+  B["Builder<br/>(human)"]:::human --> I["Intent<br/>outcome · constraints · owner · risk · budget"]
+  I --> F
+  subgraph F["AI Software Factory — Active Factory Version"]
+    direction LR
+    P["Plan"] --> R["Route"] --> X["Execute<br/>agents · models · skills · tools<br/>context · harness · sandbox"] --> V["Verify<br/>independent"]
+  end
+  CP["Control Plane<br/>identity · authority · policy · budgets · routing · state · decisions"]
+  CP -- "authority flows down (solid)" --> F
+  F -. "evidence flows back (dashed)" .-> CP
+  V --> E["Evidence"]
+  E --> DEC["Decision<br/>human or policy"]:::human
+  DEC --> O["Verified outcome"]
+  O -. "Outcome → Learning Signal → Improvement Candidate" .-> L["Learn<br/>(next Factory Version)"]
+  L -. "governed promotion" .-> CP
+  NOTE["Coding Agent ≠ AI Software Factory<br/>The model proposes. The system decides what becomes real."]:::neutral
+  class I,P intent
+  class CP,R control
+  class X execution
+  class V,E,DEC,O trust
+  class L learning
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

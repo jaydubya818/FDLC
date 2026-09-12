@@ -1,0 +1,35 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D26 Context / RAG architecture (retrieval → assembly → policy → reasoning)
+%% Type: architecture · Page: /architecture/context
+flowchart LR
+  subgraph SRC["Registered sources"]
+    direction TB
+    S1["Repository · code index"]
+    S2["Architecture docs · ADRs"]
+    S3["Issue tracker · chat · wiki"]
+    S4["Ownership · service catalog · APIs"]
+    S5["Historical PRs · standards · policies"]
+    S6["Telemetry · incidents · Factory Memory"]
+  end
+  ACL["Permission filter<br/>before ranking"] --> R
+  SRC --> R["1 · Context Retrieval<br/>lexical · semantic · graph · hybrid"]
+  R --> A["2 · Context Assembly<br/>dedupe · rerank · compact · budget"]
+  A --> P["3 · Context Policy<br/>ACL · freshness · trust class · boundaries · poisoning scan"]
+  ACL --> P
+  P --> CP["Context Package CTX-104-01<br/>frozen · digested · authorized · provenance"]
+  CP -- "bound by hash" --> M["4 · Agent reasoning<br/>inside the Attempt"]
+  M x-. "never becomes" .-x AUTH["Authority · Evidence · Acceptance"]
+  LS["Learning Signal"] -. "proposes retrieval policy change → next Factory Version" .-> P
+  class S1,S2,S3,S4,S5,S6 neutral
+  class ACL,P control
+  class R,A,CP,M execution
+  class AUTH trust
+  class LS learning
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

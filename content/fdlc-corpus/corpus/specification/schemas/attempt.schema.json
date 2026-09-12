@@ -1,0 +1,1521 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fdlc.ai/schemas/v1/attempt.schema.json",
+  "title": "FDLC Attempt",
+  "description": "One immutable execution of a Task under a fenced lease and frozen execution manifest. Retries create new Attempts. role: producer | verifier.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "type": {
+      "type": "string",
+      "const": "fdlc://v1/attempt"
+    },
+    "id": {
+      "$ref": "#/$defs/Id"
+    },
+    "namespace": {
+      "$ref": "#/$defs/Namespace"
+    },
+    "workOrderId": {
+      "$ref": "#/$defs/Id"
+    },
+    "workOrderRevisionNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "workOrderDigest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "taskId": {
+      "$ref": "#/$defs/Id"
+    },
+    "intentId": {
+      "$ref": "#/$defs/Id"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "producer",
+        "verifier"
+      ]
+    },
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "IMPLEMENTATION",
+        "VERIFICATION",
+        "AUTOMATION"
+      ]
+    },
+    "attemptNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "retryOf": {
+      "type": "object",
+      "description": "A retry is a new Attempt with a recorded reason and a changed hypothesis. Never rewrite the prior Attempt.",
+      "properties": {
+        "attemptId": {
+          "$ref": "#/$defs/Id"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 10
+        },
+        "hypothesis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "failureClass": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "attemptId",
+        "reason",
+        "hypothesis"
+      ],
+      "additionalProperties": false
+    },
+    "factoryVersionId": {
+      "$ref": "#/$defs/Id"
+    },
+    "factoryVersionDigest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "executionProfileId": {
+      "$ref": "#/$defs/Id"
+    },
+    "executionProfileDigest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "routingDecisionId": {
+      "$ref": "#/$defs/Id"
+    },
+    "admissionDecisionId": {
+      "$ref": "#/$defs/Id"
+    },
+    "contextPackageId": {
+      "$ref": "#/$defs/Id"
+    },
+    "contextPackageDigest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "executionManifest": {
+      "$ref": "#/$defs/ExecutionManifest"
+    },
+    "executionManifestDigest": {
+      "$ref": "#/$defs/Digest"
+    },
+    "executorInvocationId": {
+      "type": "string",
+      "description": "Engine-native identity for this invocation. New on every Attempt."
+    },
+    "lease": {
+      "$ref": "#/$defs/Lease"
+    },
+    "checkpointLease": {
+      "$ref": "#/$defs/Lease",
+      "description": "Historical workspace owner at a pause; never an active lease or authority."
+    },
+    "checkpoints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Checkpoint"
+      }
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "CLAIMED",
+        "RUNNING",
+        "PAUSED",
+        "SUSPECT",
+        "CANCELING",
+        "RECONCILING",
+        "COMPLETED",
+        "FAILED",
+        "CANCELED"
+      ]
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "CLAIMED",
+        "PREPARING",
+        "EXECUTING",
+        "VALIDATING",
+        "AWAITING_HUMAN_REVIEW",
+        "AWAITING_VERIFICATION",
+        "PUBLISHING",
+        "TERMINAL"
+      ]
+    },
+    "disposition": {
+      "type": "string",
+      "enum": [
+        "RETRYABLE",
+        "RECOVERABLE",
+        "LOST",
+        "PRESERVED",
+        "CANCELLED",
+        "FAILED"
+      ],
+      "description": "Runtime disposition after reconciliation. LOST: ownership unknown or expired; workspace preserved; new Attempt required. RECOVERABLE: durable checkpoint and current lease allow continuation. PRESERVED: cleanup could not prove safety; nothing deleted."
+    },
+    "dispositionReason": {
+      "type": "string"
+    },
+    "reconciledAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "quarantine": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "quarantinedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "staleRecoveryCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "code",
+        "reason",
+        "quarantinedAt",
+        "actor"
+      ],
+      "additionalProperties": false
+    },
+    "failure": {
+      "type": "object",
+      "properties": {
+        "class": {
+          "type": "string",
+          "enum": [
+            "AUTHORIZATION",
+            "CONFIGURATION",
+            "CAPACITY",
+            "PROVIDER",
+            "EXECUTOR",
+            "VALIDATION",
+            "REPOSITORY",
+            "INTERNAL",
+            "UNKNOWN"
+          ]
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "code": {
+          "type": "string"
+        },
+        "stage": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "signature": {
+          "type": "string",
+          "description": "Normalized fingerprint used to detect repeated equivalent failure."
+        }
+      },
+      "required": [
+        "class",
+        "retryable",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "cancellation": {
+      "type": "object",
+      "properties": {
+        "requestedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "requestedBy": {
+          "$ref": "#/$defs/Actor"
+        },
+        "acknowledgedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "requestedAt",
+        "requestedBy",
+        "reason"
+      ],
+      "additionalProperties": false
+    },
+    "candidateId": {
+      "$ref": "#/$defs/Id",
+      "description": "Producer Attempts: the Candidate produced."
+    },
+    "verificationId": {
+      "$ref": "#/$defs/Id",
+      "description": "Verifier Attempts: the Verification produced."
+    },
+    "verificationBinding": {
+      "type": "object",
+      "description": "Verifier Attempts: exact subject tuple frozen before execution.",
+      "properties": {
+        "sourceAttemptId": {
+          "$ref": "#/$defs/Id"
+        },
+        "candidateId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "verificationContractDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "verificationPlanDigest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "sourceAttemptId",
+        "candidateId",
+        "subjectDigest",
+        "verificationContractDigest"
+      ],
+      "additionalProperties": false
+    },
+    "handoff": {
+      "$ref": "#/$defs/Handoff"
+    },
+    "cost": {
+      "$ref": "#/$defs/CostRecord"
+    },
+    "usage": {
+      "type": "object",
+      "properties": {
+        "inputTokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "outputTokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "modelRequests": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "toolCalls": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "retries": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "wallClockMs": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "description": "Unknown telemetry stays null. Never invent zeroes."
+    },
+    "evidenceIds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Id"
+      }
+    },
+    "eventLogDigest": {
+      "$ref": "#/$defs/Digest",
+      "description": "Digest over the ordered run event stream."
+    },
+    "traceContext": {
+      "type": "object",
+      "properties": {
+        "traceId": {
+          "type": "string"
+        },
+        "spanId": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "worktree": {
+      "type": "string"
+    },
+    "createdAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "claimedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "startedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "completedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "createdBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "digest": {
+      "$ref": "#/$defs/Digest",
+      "description": "Digest over the frozen part: (id, workOrderId, workOrderRevisionNumber, role, purpose, attemptNumber, factoryVersionDigest, executionProfileDigest, executionManifestDigest, contextPackageDigest)."
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Transition"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "type",
+    "id",
+    "namespace",
+    "workOrderId",
+    "workOrderRevisionNumber",
+    "role",
+    "purpose",
+    "attemptNumber",
+    "factoryVersionId",
+    "factoryVersionDigest",
+    "executionProfileId",
+    "executionProfileDigest",
+    "executionManifest",
+    "executionManifestDigest",
+    "state",
+    "cost",
+    "createdAt",
+    "createdBy",
+    "digest"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "role": {
+            "const": "producer"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "purpose": {
+            "enum": [
+              "IMPLEMENTATION",
+              "AUTOMATION"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "role": {
+            "const": "verifier"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "purpose": {
+            "const": "VERIFICATION"
+          }
+        },
+        "required": [
+          "verificationBinding"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "CLAIMED",
+              "RUNNING",
+              "PAUSED",
+              "SUSPECT",
+              "CANCELING",
+              "RECONCILING"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "lease",
+          "claimedAt"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "COMPLETED",
+              "FAILED",
+              "CANCELED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "completedAt",
+          "disposition"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "COMPLETED"
+          },
+          "role": {
+            "const": "producer"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "candidateId",
+          "handoff"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "FAILED"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "failure"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "attemptNumber": {
+            "minimum": 2
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "retryOf"
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]*$",
+      "description": "Instance identifier. Unique within the issuing namespace; combined with `namespace` it is globally unique."
+    },
+    "ArtifactUri": {
+      "type": "string",
+      "pattern": "^fdlc://v1/(intent|specification|plan|work-order|factory-manifest|factory-version|execution-profile|capability-manifest|qualification-record|context-package|attempt|candidate|evidence|verification|decision|release|outcome|learning-signal|improvement-candidate)(/[A-Za-z0-9][A-Za-z0-9._:@-]*)?$",
+      "description": "Artifact type URI (`fdlc://v1/<artifact>`), optionally suffixed with an instance id."
+    },
+    "Namespace": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the issuing control plane or organization. Scopes every `id` in this record."
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 over the RFC 8785 (JCS) canonical JSON of the digested projection."
+    },
+    "GitSha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$|^[a-f0-9]{64}$",
+      "description": "Lowercase full Git object id (SHA-1 or SHA-256 repository)."
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp in UTC."
+    },
+    "Semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "RiskClass": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "AutonomyLevel": {
+      "type": "string",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "description": "HITL spectrum position. Effective autonomy is min(factory, objective, work order, policy, trust)."
+    },
+    "Actor": {
+      "type": "object",
+      "description": "Attributable identity. `identitySource` says how the control plane established it; never inferred from a client label.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "policy",
+            "service",
+            "agent",
+            "system"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "identitySource": {
+          "type": "string",
+          "enum": [
+            "authenticated",
+            "workload-identity",
+            "service-command",
+            "development-fallback"
+          ]
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "delegationRef": {
+          "$ref": "#/$defs/Id",
+          "description": "Reference to the delegation record that grants this actor its authority."
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "identitySource"
+      ],
+      "additionalProperties": false
+    },
+    "Ref": {
+      "type": "object",
+      "description": "Reference to another FDLC artifact instance, optionally pinned to a digest.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/ArtifactUri"
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "revisionNumber": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false
+    },
+    "CostRecord": {
+      "type": "object",
+      "description": "Cost with an honesty class. UNKNOWN cost stays UNKNOWN; implementations MUST NOT invent zeroes.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "ESTIMATED",
+            "UNKNOWN"
+          ]
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of contributing cost items that were measured."
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "Transition": {
+      "type": "object",
+      "description": "Audit record of one authoritative state transition. Every field listed here MUST be recorded.",
+      "properties": {
+        "transitionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "priorVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fromState": {
+          "type": "string"
+        },
+        "toState": {
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "occurredAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "requiredEvidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "decisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "invalidatedDependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ref"
+          }
+        }
+      },
+      "required": [
+        "subjectId",
+        "fromState",
+        "toState",
+        "actor",
+        "reason",
+        "idempotencyKey",
+        "occurredAt"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "description": "Content-addressed reference to a stored artifact (diff, log, screenshot, bundle).",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/Id"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactId",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "Lease": {
+      "type": "object",
+      "description": "Temporary execution ownership. The fence is a random token bound to worker, session, and generation; it is not a credential.",
+      "properties": {
+        "leaseId": {
+          "$ref": "#/$defs/Id"
+        },
+        "workerId": {
+          "type": "string"
+        },
+        "sessionId": {
+          "type": "string"
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fence": {
+          "type": "string",
+          "minLength": 16
+        },
+        "claimedAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "heartbeatAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "expiresAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "durationMs": {
+          "type": "integer",
+          "minimum": 1000
+        }
+      },
+      "required": [
+        "leaseId",
+        "workerId",
+        "sessionId",
+        "generation",
+        "fence",
+        "claimedAt",
+        "heartbeatAt",
+        "expiresAt"
+      ],
+      "additionalProperties": false
+    },
+    "Checkpoint": {
+      "type": "object",
+      "properties": {
+        "checkpointId": {
+          "$ref": "#/$defs/Id"
+        },
+        "leaseId": {
+          "$ref": "#/$defs/Id"
+        },
+        "stepId": {
+          "type": "string"
+        },
+        "artifact": {
+          "$ref": "#/$defs/ArtifactRef"
+        },
+        "createdAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "compactionBoundary": {
+          "type": "boolean"
+        },
+        "safeToResume": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "checkpointId",
+        "leaseId",
+        "artifact",
+        "createdAt",
+        "safeToResume"
+      ],
+      "additionalProperties": false
+    },
+    "ExecutionManifest": {
+      "type": "object",
+      "description": "Immutable, Attempt-specific compilation of the Work Order revision and the Factory Version. The worker reads only this.",
+      "properties": {
+        "manifestVersion": {
+          "type": "string",
+          "pattern": "^fdlc-execution-manifest/"
+        },
+        "causation": {
+          "type": "object",
+          "properties": {
+            "intentId": {
+              "$ref": "#/$defs/Id"
+            },
+            "planId": {
+              "$ref": "#/$defs/Id"
+            },
+            "planDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "qualityContractDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "workOrderId": {
+              "$ref": "#/$defs/Id"
+            },
+            "workOrderRevisionNumber": {
+              "type": "integer"
+            },
+            "taskId": {
+              "$ref": "#/$defs/Id"
+            },
+            "attemptId": {
+              "$ref": "#/$defs/Id"
+            },
+            "factoryVersionId": {
+              "$ref": "#/$defs/Id"
+            },
+            "factoryVersionDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "executionProfileId": {
+              "$ref": "#/$defs/Id"
+            },
+            "executionProfileDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "purpose": {
+              "type": "string",
+              "enum": [
+                "IMPLEMENTATION",
+                "VERIFICATION",
+                "AUTOMATION"
+              ]
+            }
+          },
+          "required": [
+            "intentId",
+            "planId",
+            "planDigest",
+            "qualityContractDigest",
+            "workOrderId",
+            "workOrderRevisionNumber",
+            "attemptId",
+            "factoryVersionId",
+            "factoryVersionDigest",
+            "executionProfileId",
+            "executionProfileDigest",
+            "purpose"
+          ],
+          "additionalProperties": false
+        },
+        "repository": {
+          "type": "object",
+          "properties": {
+            "repositoryId": {
+              "$ref": "#/$defs/Id"
+            },
+            "name": {
+              "type": "string"
+            },
+            "dataClassification": {
+              "type": "string",
+              "enum": [
+                "PUBLIC",
+                "INTERNAL",
+                "CONFIDENTIAL",
+                "RESTRICTED"
+              ]
+            },
+            "baseSha": {
+              "$ref": "#/$defs/GitSha"
+            },
+            "baseRef": {
+              "type": "string"
+            },
+            "branch": {
+              "type": "string"
+            },
+            "worktree": {
+              "type": "string"
+            },
+            "codeScopeIds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Id"
+              }
+            },
+            "allowedPaths": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "excludedPaths": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "verificationPublicationOrder": {
+              "type": "string",
+              "const": "VERIFY_BEFORE_PUBLICATION"
+            }
+          },
+          "required": [
+            "repositoryId",
+            "name",
+            "dataClassification",
+            "baseSha",
+            "branch",
+            "codeScopeIds",
+            "allowedPaths",
+            "excludedPaths"
+          ],
+          "additionalProperties": false
+        },
+        "intent": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "desiredOutcome": {
+              "type": "string"
+            },
+            "acceptanceCriterionIds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Id"
+              }
+            },
+            "selectedTask": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "title"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "title",
+            "desiredOutcome",
+            "acceptanceCriterionIds"
+          ],
+          "additionalProperties": false
+        },
+        "workOrderSpecificationDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "harness": {
+          "type": "object",
+          "properties": {
+            "adapterId": {
+              "type": "string"
+            },
+            "adapterVersion": {
+              "type": "string"
+            },
+            "harnessId": {
+              "type": "string"
+            },
+            "harnessVersion": {
+              "type": "string"
+            },
+            "capabilityManifestDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "effectiveConfigDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "runtimeArtifactDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "isolation": {
+              "type": "string",
+              "enum": [
+                "READ_ONLY",
+                "WORKSPACE_WRITE"
+              ]
+            },
+            "timeoutMs": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "completionContract": {
+              "type": "string",
+              "const": "factory-result/v1"
+            },
+            "publicationAuthority": {
+              "type": "string",
+              "const": "CONTROL_PLANE_ONLY"
+            }
+          },
+          "required": [
+            "adapterId",
+            "adapterVersion",
+            "harnessId",
+            "harnessVersion",
+            "capabilityManifestDigest",
+            "effectiveConfigDigest",
+            "runtimeArtifactDigest",
+            "isolation",
+            "timeoutMs",
+            "completionContract",
+            "publicationAuthority"
+          ],
+          "additionalProperties": false
+        },
+        "modelRoute": {
+          "type": "object",
+          "properties": {
+            "routeId": {
+              "type": "string"
+            },
+            "provider": {
+              "type": "string"
+            },
+            "modelId": {
+              "type": "string"
+            },
+            "routeDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "qualificationDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "inferenceMode": {
+              "type": "string",
+              "enum": [
+                "ALLOWED",
+                "DENIED"
+              ]
+            }
+          },
+          "required": [
+            "routeId",
+            "provider",
+            "modelId",
+            "routeDigest",
+            "qualificationDigest",
+            "inferenceMode"
+          ],
+          "additionalProperties": false
+        },
+        "backend": {
+          "type": "string",
+          "enum": [
+            "persistent-worker",
+            "remote-sandbox",
+            "isolated-container"
+          ]
+        },
+        "sandbox": {
+          "type": "object",
+          "properties": {
+            "profileId": {
+              "$ref": "#/$defs/Id"
+            },
+            "profileDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "resourceName": {
+              "type": "string"
+            },
+            "credentialGrants": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string"
+                  },
+                  "secretValueIncluded": {
+                    "type": "boolean",
+                    "const": false
+                  },
+                  "publicationAuthority": {
+                    "type": "string",
+                    "const": "NONE"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "secretValueIncluded",
+                  "publicationAuthority"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "teardown": {
+              "type": "object",
+              "properties": {
+                "credentialsRevokedBeforePublication": {
+                  "type": "boolean",
+                  "const": true
+                },
+                "resourceAbsenceRequiredBeforePublication": {
+                  "type": "boolean",
+                  "const": true
+                }
+              },
+              "required": [
+                "credentialsRevokedBeforePublication",
+                "resourceAbsenceRequiredBeforePublication"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "profileId",
+            "profileDigest",
+            "credentialGrants",
+            "teardown"
+          ],
+          "additionalProperties": false
+        },
+        "allowedTools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "capabilityId": {
+                "$ref": "#/$defs/Id"
+              },
+              "operations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "grantId": {
+                "$ref": "#/$defs/Id"
+              },
+              "grantDigest": {
+                "$ref": "#/$defs/Digest"
+              }
+            },
+            "required": [
+              "capabilityId",
+              "operations",
+              "grantId",
+              "grantDigest"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "capabilityId": {
+                "$ref": "#/$defs/Id"
+              },
+              "version": {
+                "type": "string"
+              },
+              "digest": {
+                "$ref": "#/$defs/Digest"
+              }
+            },
+            "required": [
+              "capabilityId",
+              "version",
+              "digest"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "contextPackageDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "workflow": {
+          "type": "object",
+          "properties": {
+            "workflowId": {
+              "type": "string"
+            },
+            "version": {
+              "type": "integer"
+            },
+            "digest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "steps": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "stepId": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "AGENT",
+                      "DETERMINISTIC",
+                      "VERIFY",
+                      "GATE",
+                      "ROUTER",
+                      "REDUCE"
+                    ]
+                  },
+                  "agentCapabilityId": {
+                    "$ref": "#/$defs/Id"
+                  },
+                  "promptBundleDigest": {
+                    "$ref": "#/$defs/Digest"
+                  },
+                  "timeoutMs": {
+                    "type": "integer"
+                  },
+                  "outputSchemaDigest": {
+                    "$ref": "#/$defs/Digest"
+                  }
+                },
+                "required": [
+                  "stepId",
+                  "kind",
+                  "timeoutMs"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "workflowId",
+            "version",
+            "digest",
+            "steps"
+          ],
+          "additionalProperties": false
+        },
+        "retryPolicy": {
+          "type": "object",
+          "properties": {
+            "maxAttempts": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "maxTotalWallClockMs": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "maxCost": {
+              "$ref": "#/$defs/Money"
+            },
+            "retryableFailureClasses": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "failClosedFailureClasses": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "maxAttempts",
+            "maxTotalWallClockMs",
+            "maxCost",
+            "retryableFailureClasses",
+            "failClosedFailureClasses"
+          ],
+          "additionalProperties": false
+        },
+        "lease": {
+          "type": "object",
+          "properties": {
+            "durationMs": {
+              "type": "integer"
+            },
+            "heartbeatIntervalMs": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "durationMs",
+            "heartbeatIntervalMs"
+          ],
+          "additionalProperties": false
+        },
+        "compiledPromptDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "idempotencyKeys": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Orchestrator-minted keys for every side-effect boundary (commit, push, publish)."
+        }
+      },
+      "required": [
+        "manifestVersion",
+        "causation",
+        "repository",
+        "intent",
+        "workOrderSpecificationDigest",
+        "harness",
+        "modelRoute",
+        "backend",
+        "allowedTools",
+        "workflow",
+        "retryPolicy",
+        "lease",
+        "compiledPromptDigest"
+      ],
+      "additionalProperties": false
+    },
+    "Handoff": {
+      "type": "object",
+      "description": "Structured completion (factory-result/v1). A claim, never proof. Unknowns are represented, never inferred.",
+      "properties": {
+        "schema": {
+          "type": "string",
+          "const": "factory-result/v1"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "COMPLETED",
+            "BLOCKED",
+            "FAILED"
+          ]
+        },
+        "summary": {
+          "type": "string"
+        },
+        "completedAcceptanceCriterionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "incompleteAcceptanceCriterionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "unknownAcceptanceCriterionIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "verificationCommands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "knownRisks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "nextAction": {
+          "type": "string"
+        },
+        "candidateSha": {
+          "$ref": "#/$defs/GitSha"
+        }
+      },
+      "required": [
+        "schema",
+        "status",
+        "summary",
+        "completedAcceptanceCriterionIds",
+        "incompleteAcceptanceCriterionIds",
+        "unknownAcceptanceCriterionIds",
+        "verificationCommands",
+        "knownRisks",
+        "nextAction"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[a-z0-9]+(-[a-z0-9]+)*$": {}
+  },
+  "additionalProperties": false
+}

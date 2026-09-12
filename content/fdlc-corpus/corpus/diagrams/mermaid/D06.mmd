@@ -1,0 +1,46 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D06 Reference architecture (12 layers, 4 planes)
+%% Type: architecture · Hero SVG: svg/D06.svg · Page: /architecture
+flowchart TB
+  subgraph PI["PLANE I — INTENT"]
+    L1["L1 Experience<br/>Builder UI · CLI · IDE · API · issue trackers"]
+    L2["L2 Intent & Planning<br/>Intent · Specification · Objective Planner · Plan · Work Graph · Work Orders"]
+  end
+  subgraph PII["PLANE II — CONTROL"]
+    L3["L3 Control Plane<br/>Identity · Authority · Policy · Budgets · State · Factory Registry · Capability Registry"]
+    L4["L4 Routing & Orchestration<br/>Objective → Work Order → Task routing · Factory Versions · Execution Profiles · Orchestrator · Scheduling · Leases · Queues"]
+  end
+  subgraph PIII["PLANE III — EXECUTION"]
+    L5["L5 Agent & Harness<br/>Agents · Agent Loop · Harness · Skills · Tools · Agentic SDKs · Model routes"]
+    L6["L6 Context & Knowledge<br/>Retrieval · Assembly · Context Policy · Provenance · Freshness · Authorization"]
+    L7["L7 Execution Environment<br/>Runtime · Sandboxes · Compute · Network · Credentials · Artifact extraction"]
+  end
+  subgraph PIV["PLANE IV — TRUST"]
+    L8["L8 Verification<br/>Tests · Static/dynamic analysis · Security · Policy checks · AI evaluators · Independent verifier attempts · Human review"]
+    L9["L9 Evidence & Provenance<br/>Artifacts · Traces · Receipts · Provenance · Currentness · Evidence store"]
+    L10["L10 Authority & Release<br/>Decisions · Publication · Promotion · Release · CI/CD & delivery systems"]
+  end
+  subgraph XC["CROSS-CUTTING"]
+    L11["L11 Observability & Economics<br/>Traces · Quality · Cost · Tokens · Latency · Reliability · Attribution"]
+    L12["L12 Learning<br/>Outcomes · Signals · Evaluation datasets · Improvement Candidates · Factory evolution"]
+  end
+  L1 --> L2 --> L3 --> L4 --> L5
+  L5 --- L6
+  L5 --- L7
+  L7 -. "evidence" .-> L8 -. "evidence" .-> L9 -. "evidence" .-> L10
+  L10 -. "outcomes" .-> L12
+  L12 -. "Improvement Candidates (governed promotion)" .-> L3
+  XC -.-> PIII
+  class L1,L2 intent
+  class L3,L4 control
+  class L5,L6,L7 execution
+  class L8,L9,L10 trust
+  class L11,L12 learning
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

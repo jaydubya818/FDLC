@@ -1,0 +1,27 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D13 Qualification (scoped, fail-closed)
+%% Type: flow · Page: /architecture/qualification, /specification/v1/qualification-record
+flowchart LR
+  CV["Candidate Factory Version<br/>FV-x-1.4.0 (digest)"] --> SC["Declare scope<br/>workload × environment × risk tier × autonomy level"]
+  SC --> DIM["Assess the Qualification Standard<br/>18 dimensions"]
+  DIM --> E1["Evals<br/>correctness · task success · regression"]
+  DIM --> E2["Policy tests<br/>compliance · permissions · credentials · unsupported actions"]
+  DIM --> E3["Security tests<br/>security · sandbox isolation"]
+  DIM --> E4["Recovery drills<br/>recovery · failure behavior · reliability"]
+  DIM --> E5["Operational measures<br/>cost · latency · determinism · evidence completeness · observability · route compatibility"]
+  E1 & E2 & E3 & E4 & E5 --> QR["Qualification Record<br/>per-dimension result · evidence · expiry · revocation"]
+  QR -- "all hard gates PASS" --> Q["Qualified (scope)"]
+  QR -- "any hard gate FAIL or UNKNOWN<br/>(fail closed)" --> R["Rejected (preserved)"]
+  Q --> P["Decision: promotion → Active (env)"]:::human
+  class CV execution
+  class SC,DIM control
+  class E1,E2,E3,E4,E5,QR,Q,P trust
+  class R neutral
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

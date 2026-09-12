@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0",
+  "type": "fdlc://v1/outcome",
+  "id": "OUT-104-01",
+  "namespace": "https://acme.example/factories/checkout",
+  "releaseId": "REL-104-01",
+  "releaseDigest": "sha256:964bf3fc5ddc785d7081ac0dc088bc1c39f971c538fb7ed9bbf1f269dcbe166b",
+  "intentId": "INT-104",
+  "workOrderIds": ["WO-104-01"],
+  "candidateId": "CAND-104-01-p1",
+  "observationWindow": {"start": "2026-09-09T20:30:00Z", "end": "2026-09-16T20:30:00Z", "status": "CLOSED"},
+  "measurementContract": {
+    "contractId": "MC-depmod-checkout-1",
+    "digest": "sha256:0bb2241e31a9f7ebb93aa43f08ad5057a9870d0334e00f4887961630198ee551",
+    "metrics": [
+      {"metricId": "m-error-rate", "name": "checkout-api 5xx error rate", "unit": "ratio", "dimension": "TECHNICAL", "baseline": 0.0021, "target": 0.0021, "direction": "WITHIN_BAND", "rollbackThreshold": 0.005, "source": "telemetry:checkout-api"},
+      {"metricId": "m-latency-p95", "name": "payment authorization p95 latency", "unit": "ms", "dimension": "TECHNICAL", "baseline": 310, "target": 310, "direction": "WITHIN_BAND", "rollbackThreshold": 450, "source": "telemetry:checkout-api"},
+      {"metricId": "m-auth-failures", "name": "payment authorization failures", "unit": "count/day", "dimension": "BUSINESS", "baseline": 14, "target": 14, "direction": "WITHIN_BAND", "rollbackThreshold": 40, "source": "telemetry:payments"},
+      {"metricId": "m-review-minutes", "name": "human review minutes per accepted change", "unit": "min", "dimension": "OPERATIONAL", "baseline": 95, "target": 40, "direction": "LOWER_IS_BETTER", "source": "control-plane"},
+      {"metricId": "m-cost-accepted", "name": "cost per accepted outcome", "unit": "USD", "dimension": "ECONOMIC", "baseline": null, "target": 25, "direction": "LOWER_IS_BETTER", "source": "control-plane"}
+    ]
+  },
+  "measurements": [
+    {"metricId": "m-error-rate", "value": 0.0019, "unit": "ratio", "observedAt": "2026-09-16T20:30:00Z", "source": "telemetry:checkout-api", "evidenceId": "EV-104-31", "confidence": "HIGH", "status": "MEASURED"},
+    {"metricId": "m-latency-p95", "value": 298, "unit": "ms", "observedAt": "2026-09-16T20:30:00Z", "source": "telemetry:checkout-api", "evidenceId": "EV-104-31", "confidence": "HIGH", "status": "MEASURED"},
+    {"metricId": "m-auth-failures", "value": 12, "unit": "count/day", "observedAt": "2026-09-16T20:30:00Z", "source": "telemetry:payments", "evidenceId": "EV-104-32", "confidence": "HIGH", "status": "MEASURED"},
+    {"metricId": "m-review-minutes", "value": 34, "unit": "min", "observedAt": "2026-09-09T16:40:00Z", "source": "control-plane", "evidenceId": "EV-104-33", "confidence": "HIGH", "status": "MEASURED"},
+    {"metricId": "m-cost-accepted", "value": 18.4, "unit": "USD", "observedAt": "2026-09-16T20:30:00Z", "source": "control-plane", "evidenceId": "EV-104-34", "confidence": "HIGH", "status": "MEASURED"}
+  ],
+  "technical": {"healthChecksPassed": true, "errorRateDelta": -0.0002, "latencyP95DeltaMs": -12, "canaryComparison": "WITHIN_BAND"},
+  "operational": {"rolledBack": false, "hotfixRequired": false, "incidentIds": [], "escapedDefects": 0, "reopenCount": 0, "humanReviewMinutes": 34, "changeFailure": false},
+  "business": {"valueMeasureIds": ["m-auth-failures"], "valueConfirmed": true, "leadTimeToValidatedValueMs": 1336800000},
+  "cost": {
+    "cohortDigest": "sha256:b41d1e54c16e3998ab88601e0b183b5d68509945a1e7ded0181410916a02da1e",
+    "total": {"status": "MEASURED", "amount": 18.4, "currency": "USD", "coverage": 1.0},
+    "includesFailedAttempts": true,
+    "attemptIds": ["ATT-104-01-p1", "ATT-104-01-v1"],
+    "byDenominator": {
+      "perVerifiedOutcome": {"status": "MEASURED", "amount": 18.4, "currency": "USD", "coverage": 1.0},
+      "perAcceptedOutcome": {"status": "MEASURED", "amount": 18.4, "currency": "USD", "coverage": 1.0},
+      "perReleasedOutcome": {"status": "MEASURED", "amount": 18.4, "currency": "USD", "coverage": 1.0}
+    },
+    "formulaVersion": "accepted-outcome-economics/1.0"
+  },
+  "attribution": {
+    "factoryVersionId": "FV-depmod-1.0",
+    "factoryVersionDigest": "sha256:ce6706f3f86d3e77ddd2e266cc1cbf88480a25bb535e2845eda36be5d98bec7f",
+    "executionProfileId": "EP-depmod-1.0-prod",
+    "modelRouteDigests": ["sha256:b2cd54e494af6ca42d7cafc364c079baa6d9b7489d314d2a3a96090e9b72d378"],
+    "environment": "production"
+  },
+  "result": "HELD",
+  "state": "CLOSED",
+  "learningSignalIds": ["LS-104-01"],
+  "closedAt": "2026-09-16T20:35:00Z",
+  "closedBy": {"kind": "policy", "id": "policy:observation/1", "identitySource": "workload-identity"},
+  "digest": "sha256:de9e8ae78801319a879c0387bdbf778691274200c8578ab0d1fa3413f37d8b65",
+  "createdAt": "2026-09-09T20:30:00Z",
+  "createdBy": {"kind": "service", "id": "svc:control-plane", "identitySource": "workload-identity"}
+}

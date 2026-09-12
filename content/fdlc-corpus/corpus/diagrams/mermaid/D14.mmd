@@ -1,0 +1,26 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D14 Evidence architecture (Claim → Evidence → Verification → Decision → Authority)
+%% Type: architecture · Hero SVG: svg/D14.svg · Page: /architecture/evidence
+flowchart LR
+  C["Claim<br/>producer assertion: 'AC-3 satisfied'<br/>proves nothing by itself"] --> E["Evidence<br/>test result · diff · scan · trace · receipt<br/>bound to exact subject digest"]
+  E --> V["Verification<br/>independent judgment:<br/>does the evidence satisfy the Specification?"]
+  V --> DEC["Decision<br/>acceptance · release-authorization · promotion<br/>human or policy actor, server-authorized"]:::human
+  DEC --> A["Authority<br/>delegated from the control plane,<br/>never inferred from capability"]
+  A -- "authorizes consequence" --> X["Merge · Deploy · Activate"]
+  CP["Control Plane"] -- "delegates" --> A
+  ST["Evidence states: Missing · Pending · Current · Stale · Conflicting · Superseded<br/>only Current PASS satisfies a mandatory check"]:::neutral
+  BIND["Binding: subject (commit · tree · diff hash · contract digest · source Attempt) · producer · verifier + independence · integrity · validity conditions · provenance chain"]:::neutral
+  E -. "never accepts" .- DEC
+  C -. "never proves" .- V
+  class C execution
+  class E,V,DEC trust
+  class CP,A control
+  class X execution
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18

@@ -1,0 +1,857 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fdlc.ai/schemas/v1/specification.schema.json",
+  "title": "FDLC Specification",
+  "description": "Immutable, versioned statement of what must be true: acceptance criteria, boundaries, verification requirements. Finalized ≠ approved.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "type": {
+      "type": "string",
+      "const": "fdlc://v1/specification"
+    },
+    "id": {
+      "$ref": "#/$defs/Id",
+      "description": "Revision id (e.g. SPEC-104-r1)."
+    },
+    "namespace": {
+      "$ref": "#/$defs/Namespace"
+    },
+    "lineageId": {
+      "$ref": "#/$defs/Id",
+      "description": "Stable id shared by all revisions (e.g. SPEC-104)."
+    },
+    "intentId": {
+      "$ref": "#/$defs/Id"
+    },
+    "revisionNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "baseRevisionId": {
+      "$ref": "#/$defs/Id"
+    },
+    "constitution": {
+      "type": "object",
+      "description": "Durable rules agents may not reinterpret (Project Constitution). Bound by exact digest.",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "revisionNumber": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        }
+      },
+      "required": [
+        "id",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "outcome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requirements": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          }
+        },
+        "acceptanceExpectations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/AcceptanceExpectation"
+          }
+        },
+        "verificationExpectations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/VerificationExpectation"
+          }
+        },
+        "nonGoals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Risk"
+          }
+        },
+        "clarifications": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Clarification"
+          }
+        },
+        "repositoryScope": {
+          "type": "object",
+          "properties": {
+            "repositoryIds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Id"
+              }
+            },
+            "includePaths": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "excludePaths": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "outcome",
+        "requirements",
+        "acceptanceExpectations"
+      ],
+      "additionalProperties": false
+    },
+    "contributions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Contribution"
+      },
+      "description": "Append-only proposals from roles (product, QA, design, engineering, security). Accepted only by a human."
+    },
+    "qualityEvaluation": {
+      "type": "object",
+      "description": "Deterministic spec-quality check. FAIL blocks planning; it never asks the planner to guess.",
+      "properties": {
+        "result": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        },
+        "rulesetVersion": {
+          "type": "string"
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Finding"
+          }
+        },
+        "evaluatedBy": {
+          "$ref": "#/$defs/Actor"
+        },
+        "evaluatedAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "result",
+        "rulesetVersion",
+        "findings",
+        "evaluatedBy",
+        "evaluatedAt"
+      ],
+      "additionalProperties": false
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "EVALUATED",
+        "FINALIZED",
+        "SUPERSEDED"
+      ]
+    },
+    "finalizedBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "finalizedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "finalizationRationale": {
+      "type": "string"
+    },
+    "supersededById": {
+      "$ref": "#/$defs/Id"
+    },
+    "digest": {
+      "$ref": "#/$defs/Digest",
+      "description": "Digest over `content` plus `constitution.digest`. Any change to content is a new revision."
+    },
+    "createdAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "createdBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "idempotencyKey": {
+      "type": "string"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Transition"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "type",
+    "id",
+    "namespace",
+    "lineageId",
+    "intentId",
+    "revisionNumber",
+    "content",
+    "state",
+    "digest",
+    "createdAt",
+    "createdBy"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "EVALUATED",
+              "FINALIZED",
+              "SUPERSEDED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "qualityEvaluation"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "FINALIZED",
+              "SUPERSEDED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "finalizedBy",
+          "finalizedAt"
+        ],
+        "properties": {
+          "qualityEvaluation": {
+            "properties": {
+              "result": {
+                "const": "PASS"
+              }
+            }
+          },
+          "finalizedBy": {
+            "properties": {
+              "kind": {
+                "const": "human"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "revisionNumber": {
+            "minimum": 2
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "baseRevisionId"
+        ]
+      }
+    }
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]*$",
+      "description": "Instance identifier. Unique within the issuing namespace; combined with `namespace` it is globally unique."
+    },
+    "ArtifactUri": {
+      "type": "string",
+      "pattern": "^fdlc://v1/(intent|specification|plan|work-order|factory-manifest|factory-version|execution-profile|capability-manifest|qualification-record|context-package|attempt|candidate|evidence|verification|decision|release|outcome|learning-signal|improvement-candidate)(/[A-Za-z0-9][A-Za-z0-9._:@-]*)?$",
+      "description": "Artifact type URI (`fdlc://v1/<artifact>`), optionally suffixed with an instance id."
+    },
+    "Namespace": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the issuing control plane or organization. Scopes every `id` in this record."
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 over the RFC 8785 (JCS) canonical JSON of the digested projection."
+    },
+    "GitSha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$|^[a-f0-9]{64}$",
+      "description": "Lowercase full Git object id (SHA-1 or SHA-256 repository)."
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp in UTC."
+    },
+    "Semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "RiskClass": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "AutonomyLevel": {
+      "type": "string",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "description": "HITL spectrum position. Effective autonomy is min(factory, objective, work order, policy, trust)."
+    },
+    "Actor": {
+      "type": "object",
+      "description": "Attributable identity. `identitySource` says how the control plane established it; never inferred from a client label.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "policy",
+            "service",
+            "agent",
+            "system"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "identitySource": {
+          "type": "string",
+          "enum": [
+            "authenticated",
+            "workload-identity",
+            "service-command",
+            "development-fallback"
+          ]
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "delegationRef": {
+          "$ref": "#/$defs/Id",
+          "description": "Reference to the delegation record that grants this actor its authority."
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "identitySource"
+      ],
+      "additionalProperties": false
+    },
+    "Ref": {
+      "type": "object",
+      "description": "Reference to another FDLC artifact instance, optionally pinned to a digest.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/ArtifactUri"
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "revisionNumber": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false
+    },
+    "CostRecord": {
+      "type": "object",
+      "description": "Cost with an honesty class. UNKNOWN cost stays UNKNOWN; implementations MUST NOT invent zeroes.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "ESTIMATED",
+            "UNKNOWN"
+          ]
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of contributing cost items that were measured."
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "Transition": {
+      "type": "object",
+      "description": "Audit record of one authoritative state transition. Every field listed here MUST be recorded.",
+      "properties": {
+        "transitionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "priorVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fromState": {
+          "type": "string"
+        },
+        "toState": {
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "occurredAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "requiredEvidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "decisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "invalidatedDependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ref"
+          }
+        }
+      },
+      "required": [
+        "subjectId",
+        "fromState",
+        "toState",
+        "actor",
+        "reason",
+        "idempotencyKey",
+        "occurredAt"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "description": "Content-addressed reference to a stored artifact (diff, log, screenshot, bundle).",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/Id"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactId",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "Requirement": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "title": {
+          "type": "string"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "FUNCTIONAL",
+            "NON_FUNCTIONAL"
+          ]
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "FUNCTIONAL",
+            "SECURITY",
+            "RELIABILITY",
+            "PERFORMANCE",
+            "ACCESSIBILITY",
+            "PRIVACY",
+            "OPERABILITY",
+            "ARCHITECTURE",
+            "COMPATIBILITY"
+          ]
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "MUST",
+            "SHOULD",
+            "MAY"
+          ]
+        },
+        "measurable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "statement",
+        "type",
+        "priority"
+      ],
+      "additionalProperties": false
+    },
+    "AcceptanceExpectation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "requirementIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "verificationMethod": {
+          "type": "string",
+          "enum": [
+            "COMMAND",
+            "TEST",
+            "BROWSER",
+            "MANUAL",
+            "CHECKLIST",
+            "ANALYSIS"
+          ]
+        },
+        "testable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "statement",
+        "requirementIds"
+      ],
+      "additionalProperties": false
+    },
+    "VerificationExpectation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "statement": {
+          "type": "string"
+        },
+        "acceptanceExpectationIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "evidenceCategory": {
+          "type": "string"
+        },
+        "independence": {
+          "type": "string",
+          "enum": [
+            "ANY_VERIFICATION",
+            "CANDIDATE_DEPENDENT_ALLOWED",
+            "INDEPENDENT_REQUIRED"
+          ]
+        },
+        "verificationLevel": {
+          "type": "string",
+          "enum": [
+            "TASK",
+            "WORK_ORDER",
+            "OBJECTIVE",
+            "RELEASE"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "statement",
+        "evidenceCategory",
+        "independence"
+      ],
+      "additionalProperties": false
+    },
+    "Risk": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "description": {
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/RiskClass"
+        },
+        "affectedAreas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "severity"
+      ],
+      "additionalProperties": false
+    },
+    "Clarification": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "question": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        },
+        "resolved": {
+          "type": "boolean"
+        },
+        "answeredBy": {
+          "$ref": "#/$defs/Actor"
+        }
+      },
+      "required": [
+        "id",
+        "question",
+        "resolved"
+      ],
+      "additionalProperties": false
+    },
+    "Contribution": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "PRODUCT",
+            "QA",
+            "DESIGN",
+            "ENGINEERING",
+            "SECURITY_OPERATIONS",
+            "DOMAIN"
+          ]
+        },
+        "targetSection": {
+          "type": "string",
+          "enum": [
+            "OUTCOME",
+            "REQUIREMENTS",
+            "NON_FUNCTIONAL_REQUIREMENTS",
+            "ACCEPTANCE_EXPECTATIONS",
+            "VERIFICATION_EXPECTATIONS",
+            "NON_GOALS",
+            "CONSTRAINTS",
+            "RISKS",
+            "REPOSITORY_SCOPE"
+          ]
+        },
+        "proposal": {
+          "type": "string"
+        },
+        "author": {
+          "$ref": "#/$defs/Actor"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "PENDING",
+            "ACCEPTED",
+            "REJECTED"
+          ]
+        },
+        "decidedBy": {
+          "$ref": "#/$defs/Actor"
+        },
+        "decidedAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "id",
+        "role",
+        "targetSection",
+        "proposal",
+        "author",
+        "decision"
+      ],
+      "additionalProperties": false
+    },
+    "Finding": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "BLOCKING",
+            "WARNING",
+            "INFO"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[a-z0-9]+(-[a-z0-9]+)*$": {}
+  },
+  "additionalProperties": false
+}

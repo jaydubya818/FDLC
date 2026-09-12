@@ -1,0 +1,187 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" class="fd" role="img" aria-labelledby="t-D04 d-D04">
+<title id="t-D04">Two Loops: Factory Lifecycle and Delivery Loop</title>
+<desc id="d-D04">The outer Factory Lifecycle (Discover, Define, Design, Assemble, Qualify, Deploy, Operate, Improve) hosts the inner Delivery Loop (Receive, Specify, Plan, Route, Execute, Verify, Approve, Release, Observe, Learn), which runs only inside an Active Factory Version during the Operate stage. Learn sends Learning Signals to Improve; Improve changes behavior only by producing a new Factory Version that re-enters Qualify and Deploy.</desc>
+<style>
+svg.fd{--fd-paper:#f3f1ea;--fd-surface:#faf9f5;--fd-ink:#171a18;--fd-muted:#59605a;--fd-line:#c9ccc4;
+--fd-intent-fill:#dce8ef;--fd-intent-stroke:#2f5f78;--fd-intent-text:#1f4557;
+--fd-control-fill:#e4e9ec;--fd-control-stroke:#4a5d68;--fd-control-text:#2f3f47;
+--fd-exec-fill:#f5e6d0;--fd-exec-stroke:#9a4f1c;--fd-exec-text:#6b3612;
+--fd-trust-fill:#dcefe4;--fd-trust-stroke:#1a654b;--fd-trust-text:#114735;
+--fd-learn-fill:#e9e2f4;--fd-learn-stroke:#5c3f8f;--fd-learn-text:#3f2a66;
+--fd-human:#b3261e;--fd-tint:.45}
+@media (prefers-color-scheme:dark){svg.fd{--fd-paper:#15191b;--fd-surface:#1d2326;--fd-ink:#ecebe4;--fd-muted:#a8b0aa;--fd-line:#3b433d;
+--fd-intent-fill:#1c3140;--fd-intent-stroke:#8ec1dc;--fd-intent-text:#cfe6f2;
+--fd-control-fill:#2a3438;--fd-control-stroke:#a8bcc6;--fd-control-text:#dbe5ea;
+--fd-exec-fill:#3b2812;--fd-exec-stroke:#e2a468;--fd-exec-text:#f5dcc0;
+--fd-trust-fill:#143326;--fd-trust-stroke:#7fd2a6;--fd-trust-text:#cdeedb;
+--fd-learn-fill:#2b2142;--fd-learn-stroke:#bfa5ea;--fd-learn-text:#e3d8f5;
+--fd-human:#ff8a80;--fd-tint:.35}}
+.bg{fill:var(--fd-paper)}
+text{font-family:"Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;fill:var(--fd-ink);font-size:16px}
+.mono{font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace}
+.title{font-size:34px;font-weight:600}
+.sub{font-size:18px;fill:var(--fd-muted)}
+.h{font-size:20px;font-weight:600}.h2{font-size:18px;font-weight:600}.h3{font-size:16px;font-weight:600}
+.b{font-size:16px}.s{font-size:15px;fill:var(--fd-muted)}.xs{font-size:14px;fill:var(--fd-muted)}
+.i{font-style:italic}.c{text-anchor:middle}.r{text-anchor:end}.strong{font-weight:600}
+.label{font-size:14px;fill:var(--fd-muted)}
+.tag{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace;fill:var(--fd-muted)}
+.box{stroke-width:2;rx:6}
+.intent{fill:var(--fd-intent-fill);stroke:var(--fd-intent-stroke)}
+.control{fill:var(--fd-control-fill);stroke:var(--fd-control-stroke)}
+.exec{fill:var(--fd-exec-fill);stroke:var(--fd-exec-stroke)}
+.trust{fill:var(--fd-trust-fill);stroke:var(--fd-trust-stroke)}
+.learn{fill:var(--fd-learn-fill);stroke:var(--fd-learn-stroke)}
+.neutral{fill:var(--fd-surface);stroke:var(--fd-muted)}
+.human{stroke:var(--fd-human)!important;stroke-width:3.5}
+.t-intent{fill:var(--fd-intent-text)}.t-control{fill:var(--fd-control-text)}.t-exec{fill:var(--fd-exec-text)}
+.t-trust{fill:var(--fd-trust-text)}.t-learn{fill:var(--fd-learn-text)}.t-human{fill:var(--fd-human)}
+.zone{stroke-width:2;rx:10;fill-opacity:var(--fd-tint)}
+.zone.dash{stroke-dasharray:8 6}
+.fl{fill:none;stroke:var(--fd-ink);stroke-width:2.5;marker-end:url(#m-ink)}
+.au{fill:none;stroke:var(--fd-control-stroke);stroke-width:3;marker-end:url(#m-au)}
+.ev{fill:none;stroke:var(--fd-trust-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ev)}
+.ln{fill:none;stroke:var(--fd-learn-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ln)}
+.rt{fill:none;stroke:var(--fd-muted);stroke-width:2;stroke-dasharray:5 5;marker-end:url(#m-mu)}
+.thin{stroke-width:1.5}
+.nomk{marker-end:none}
+.dot{fill:var(--fd-trust-stroke)}
+.lbg{fill:var(--fd-paper);stroke:none}
+.chip{stroke-width:2;rx:14}
+.mk-ink{fill:var(--fd-ink)}.mk-au{fill:var(--fd-control-stroke)}.mk-ev{fill:var(--fd-trust-stroke)}
+.mk-ln{fill:var(--fd-learn-stroke)}.mk-mu{fill:var(--fd-muted)}
+.hair{stroke:var(--fd-line);stroke-width:1.5;fill:none}
+.x{stroke:var(--fd-human);stroke-width:3;fill:none}
+</style>
+<defs>
+<marker id="m-ink" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ink" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-au" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-au" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ev" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ev" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ln" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ln" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-mu" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-mu" d="M0,1 L11,6 L0,11 z"/></marker>
+</defs>
+<rect class="bg" width="1600" height="900"/>
+<g id="header"><text x="60" y="76" class="title">Two Loops: Factory Lifecycle and Delivery Loop</text>
+<text x="60" y="108" class="sub">The Delivery Loop is the production line running; the Factory Lifecycle is how you build, certify, commission, and retool the line</text>
+<text x="1540" y="70" class="tag r">FDLC visual canon · D04</text></g>
+<text x="60" y="150" class="tag">Factory Lifecycle — outer loop · 8 stages</text>
+<g id="outer-discover">
+<rect x="60" y="175" width="165" height="80" class="box intent"/>
+<text x="142.5" y="221.3" class="h2 t-intent c">1 Discover</text>
+</g>
+<path id="a-o0" d="M225,215 L247,215" class="fl thin"/>
+<g id="outer-define">
+<rect x="247" y="175" width="165" height="80" class="box intent"/>
+<text x="329.5" y="221.3" class="h2 t-intent c">2 Define</text>
+</g>
+<path id="a-o1" d="M412,215 L434,215" class="fl thin"/>
+<g id="outer-design">
+<rect x="434" y="175" width="165" height="80" class="box intent"/>
+<text x="516.5" y="221.3" class="h2 t-intent c">3 Design</text>
+</g>
+<path id="a-o2" d="M599,215 L621,215" class="fl thin"/>
+<g id="outer-assemble">
+<rect x="621" y="175" width="165" height="80" class="box exec"/>
+<text x="703.5" y="221.3" class="h2 t-exec c">4 Assemble</text>
+</g>
+<path id="a-o3" d="M786,215 L808,215" class="fl thin"/>
+<g id="outer-qualify">
+<rect x="808" y="175" width="165" height="80" class="box trust"/>
+<text x="890.5" y="221.3" class="h2 t-trust c">5 Qualify</text>
+</g>
+<path id="a-o4" d="M973,215 L995,215" class="fl thin"/>
+<g id="outer-deploy">
+<rect x="995" y="175" width="165" height="80" class="box trust human"/>
+<text x="1077.5" y="221.3" class="h2 t-trust c">6 Deploy</text>
+</g>
+<path id="a-o5" d="M1160,215 L1182,215" class="fl thin"/>
+<g id="outer-operate">
+<rect x="1182" y="175" width="165" height="80" class="box exec"/>
+<text x="1264.5" y="221.3" class="h2 t-exec c">7 Operate</text>
+</g>
+<path id="a-o6" d="M1347,215 L1369,215" class="fl thin"/>
+<g id="outer-improve">
+<rect x="1369" y="175" width="165" height="80" class="box learn"/>
+<text x="1451.5" y="221.3" class="h2 t-learn c">8 Improve</text>
+</g>
+<path id="a-improve-qualify" d="M1451,175 L1451,140 L890,140 L890,175" class="ln"/>
+<rect x="1035.3" y="121.1" width="269.3" height="17.5" class="lbg" rx="3"/>
+<text x="1170" y="133" class="label c">new Factory Version → Qualify → Deploy</text>
+<polygon id="operate-wedge" points="1182,255 1347,255 1540,520 60,520" class="zone exec dash"/>
+<rect x="380" y="368" width="840" height="74" class="lbg" rx="6"/>
+<text x="800" y="395" class="h c">The Delivery Loop runs only inside an Active Factory Version — the Operate stage.</text>
+<text x="800" y="425" class="s c">The outer loop changes behavior only by producing a new Factory Version.</text>
+<text x="60" y="548" class="tag">Delivery Loop — inner loop · 10 steps</text>
+<g id="inner-receive">
+<rect x="60" y="565" width="130" height="80" class="box intent"/>
+<text x="125.0" y="611.3" class="h2 t-intent c">1 Receive</text>
+</g>
+<path id="a-i0" d="M190,605 L210,605" class="fl thin"/>
+<g id="inner-specify">
+<rect x="210" y="565" width="130" height="80" class="box intent"/>
+<text x="275.0" y="611.3" class="h2 t-intent c">2 Specify</text>
+</g>
+<path id="a-i1" d="M340,605 L360,605" class="fl thin"/>
+<g id="inner-plan">
+<rect x="360" y="565" width="130" height="80" class="box intent"/>
+<text x="425.0" y="611.3" class="h2 t-intent c">3 Plan</text>
+</g>
+<path id="a-i2" d="M490,605 L510,605" class="fl thin"/>
+<g id="inner-route">
+<rect x="510" y="565" width="130" height="80" class="box control"/>
+<text x="575.0" y="611.3" class="h2 t-control c">4 Route</text>
+</g>
+<path id="a-i3" d="M640,605 L660,605" class="fl thin"/>
+<g id="inner-execute">
+<rect x="660" y="565" width="130" height="80" class="box exec"/>
+<text x="725.0" y="611.3" class="h2 t-exec c">5 Execute</text>
+</g>
+<path id="a-i4" d="M790,605 L810,605" class="fl thin"/>
+<g id="inner-verify">
+<rect x="810" y="565" width="130" height="80" class="box trust"/>
+<text x="875.0" y="611.3" class="h2 t-trust c">6 Verify</text>
+</g>
+<path id="a-i5" d="M940,605 L960,605" class="fl thin"/>
+<g id="inner-approve">
+<rect x="960" y="565" width="130" height="80" class="box trust human"/>
+<text x="1025.0" y="611.3" class="h2 t-trust c">7 Approve</text>
+</g>
+<path id="a-i6" d="M1090,605 L1110,605" class="fl thin"/>
+<g id="inner-release">
+<rect x="1110" y="565" width="130" height="80" class="box trust"/>
+<text x="1175.0" y="611.3" class="h2 t-trust c">8 Release</text>
+</g>
+<path id="a-i7" d="M1240,605 L1260,605" class="fl thin"/>
+<g id="inner-observe">
+<rect x="1260" y="565" width="130" height="80" class="box trust"/>
+<text x="1325.0" y="611.3" class="h2 t-trust c">9 Observe</text>
+</g>
+<path id="a-i8" d="M1390,605 L1410,605" class="fl thin"/>
+<g id="inner-learn">
+<rect x="1410" y="565" width="130" height="80" class="box learn"/>
+<text x="1475.0" y="611.3" class="h2 t-learn c">10 Learn</text>
+</g>
+<path id="a-learn-improve" d="M1540,605 L1572,605 L1572,215 L1541,215" class="ln"/>
+<text x="1586" y="410" class="label c" transform="rotate(-90 1586 410)">Learning Signals</text>
+<text x="60" y="700" class="h3">Deploy promotes a Factory Version. Release promotes a software artifact. Neither transition creates its own authority.</text>
+<text x="60" y="730" class="s">Outer loop artifacts: Opportunity record · Factory Manifest · Factory Design · Factory Version · Qualification Record · Active Factory Version · operating evidence · Improvement Candidate</text>
+<text x="60" y="756" class="s">Inner loop artifacts: Intent · Specification · Plan · Work Order · Routing Decision · Attempt · Candidate · Evidence · Verification · Decision · Release · Outcome · Learning Signal</text>
+<text x="60" y="800" class="xs">FDLC contains exactly two lifecycles. Every other published sequence is a labeled compression or projection of one of them.</text>
+<g id="legend">
+<rect x="60" y="847" width="26" height="16" class="box intent" rx="3"/>
+<text x="94" y="860" class="xs">Intent</text>
+<rect x="155.28" y="847" width="26" height="16" class="box control" rx="3"/>
+<text x="189.28" y="860" class="xs">Control</text>
+<rect x="260.08000000000004" y="847" width="26" height="16" class="box exec" rx="3"/>
+<text x="294.08000000000004" y="860" class="xs">Execution</text>
+<rect x="383.36000000000007" y="847" width="26" height="16" class="box trust" rx="3"/>
+<text x="417.36000000000007" y="860" class="xs">Trust</text>
+<rect x="476.4000000000001" y="847" width="26" height="16" class="box learn" rx="3"/>
+<text x="510.4000000000001" y="860" class="xs">Learning</text>
+<rect x="592.1200000000001" y="847" width="26" height="16" class="box neutral human" rx="3"/>
+<text x="626.1200000000001" y="860" class="xs">Human authority</text>
+<path d="M765.1600000000001,855 L809.1600000000001,855" class="au"/><text x="819.1600000000001" y="860" class="xs">authority / flow (solid)</text>
+<path d="M987.4000000000001,855 L1031.4,855" class="ev"/><text x="1041.4" y="860" class="xs">evidence (dashed, back)</text>
+<path d="M1221.1200000000001,855 L1265.1200000000001,855" class="ln"/><text x="1275.1200000000001" y="860" class="xs">learning (dashed)</text>
+</g>
+</svg>

@@ -1,0 +1,997 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fdlc.ai/schemas/v1/improvement-candidate.schema.json",
+  "title": "FDLC Improvement Candidate",
+  "description": "A proposed factory change (routing, skill, evaluator, policy, prompt, config) with regression cases and expected effect; enters Qualify as a candidate Factory Version. Proposal only: it never mutates or activates production behavior.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "type": {
+      "type": "string",
+      "const": "fdlc://v1/improvement-candidate"
+    },
+    "id": {
+      "$ref": "#/$defs/Id"
+    },
+    "namespace": {
+      "$ref": "#/$defs/Namespace"
+    },
+    "candidateType": {
+      "type": "string",
+      "enum": [
+        "ROUTING_CHANGE",
+        "SKILL_UPDATE",
+        "EVALUATOR_CHANGE",
+        "POLICY_CHANGE",
+        "PROMPT_CHANGE",
+        "CONFIG_CHANGE",
+        "GATE_ADD",
+        "GATE_MODIFY",
+        "TOOL_CONFIG_CHANGE",
+        "RETRY_POLICY_CHANGE",
+        "CONTEXT_POLICY_CHANGE",
+        "REPLACE_AGENT_WITH_CODE",
+        "DOCUMENTATION",
+        "VERIFIER_ADD",
+        "MAINTENANCE"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "problemStatement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposedChange": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "target": {
+          "type": "object",
+          "properties": {
+            "factoryManifestId": {
+              "$ref": "#/$defs/Id"
+            },
+            "baseFactoryVersionId": {
+              "$ref": "#/$defs/Id"
+            },
+            "baseFactoryVersionDigest": {
+              "$ref": "#/$defs/Digest"
+            },
+            "componentKind": {
+              "type": "string",
+              "enum": [
+                "agent",
+                "skill",
+                "tool",
+                "model-route",
+                "harness",
+                "verifier",
+                "context-source",
+                "policy",
+                "planner",
+                "work-graph",
+                "economics"
+              ]
+            },
+            "capabilityId": {
+              "$ref": "#/$defs/Id"
+            },
+            "fromVersion": {
+              "type": "string"
+            },
+            "toVersion": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "factoryManifestId",
+            "baseFactoryVersionId",
+            "baseFactoryVersionDigest",
+            "componentKind"
+          ],
+          "additionalProperties": false
+        },
+        "diffRef": {
+          "type": "string"
+        },
+        "diffDigest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "riskClassification": {
+          "type": "string",
+          "enum": [
+            "CONFIGURATION",
+            "ARTIFACT",
+            "CONTRACT"
+          ],
+          "description": "Which release clock the change moves on."
+        }
+      },
+      "required": [
+        "description",
+        "target",
+        "riskClassification"
+      ],
+      "additionalProperties": false
+    },
+    "expectedEffect": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "metricId": {
+            "$ref": "#/$defs/Id"
+          },
+          "name": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "baseline": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "target": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "LOWER_IS_BETTER",
+              "HIGHER_IS_BETTER",
+              "WITHIN_BAND"
+            ]
+          }
+        },
+        "required": [
+          "metricId",
+          "name",
+          "unit",
+          "direction"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "regressionCases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "caseId": {
+            "$ref": "#/$defs/Id"
+          },
+          "datasetId": {
+            "$ref": "#/$defs/Id"
+          },
+          "digest": {
+            "$ref": "#/$defs/Digest"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "REGRESSION",
+              "HELD_OUT",
+              "ADVERSARIAL",
+              "NEGATIVE_CONTROL"
+            ]
+          },
+          "expectedOutcome": {
+            "type": "string"
+          },
+          "sourceLearningSignalId": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "required": [
+          "caseId",
+          "datasetId",
+          "digest",
+          "kind",
+          "expectedOutcome"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "evaluationDataset": {
+      "type": "object",
+      "properties": {
+        "datasetId": {
+          "$ref": "#/$defs/Id"
+        },
+        "version": {
+          "type": "string"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "caseCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "heldOutCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "adversarialCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "negativeControlCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "datasetId",
+        "version",
+        "digest",
+        "caseCount"
+      ],
+      "additionalProperties": false
+    },
+    "risk": {
+      "$ref": "#/$defs/RiskClass"
+    },
+    "estimatedEffort": {
+      "type": "string",
+      "enum": [
+        "SMALL",
+        "MEDIUM",
+        "LARGE"
+      ]
+    },
+    "learningSignalIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/Id"
+      }
+    },
+    "clusterId": {
+      "$ref": "#/$defs/Id"
+    },
+    "observedCostImpact": {
+      "type": "object",
+      "properties": {
+        "modelCalls": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "tokens": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "cost": {
+          "$ref": "#/$defs/CostRecord"
+        }
+      },
+      "additionalProperties": false
+    },
+    "experiment": {
+      "type": "object",
+      "description": "Frozen two-variant comparison. Its recommendation is advisory; it never promotes.",
+      "properties": {
+        "experimentId": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "variants": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "variantId": {
+                "$ref": "#/$defs/Id"
+              },
+              "factoryVersionId": {
+                "$ref": "#/$defs/Id"
+              },
+              "role": {
+                "type": "string",
+                "enum": [
+                  "BASELINE",
+                  "CANDIDATE"
+                ]
+              },
+              "sampleSize": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "variantId",
+              "role",
+              "sampleSize"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "DRAFT",
+            "RUNNING",
+            "COMPLETED",
+            "FAILED",
+            "CANCELED"
+          ]
+        },
+        "recommendation": {
+          "type": "string",
+          "enum": [
+            "PROMOTION_RECOMMENDED",
+            "HOLD_RECOMMENDED",
+            "REJECT_RECOMMENDED",
+            "LOW_SAMPLE"
+          ]
+        },
+        "statisticallySignificant": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "autoPromote": {
+          "type": "boolean",
+          "const": false
+        },
+        "regressionGates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "metricId": {
+                "$ref": "#/$defs/Id"
+              },
+              "threshold": {
+                "type": "number"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "PASS",
+                  "FAIL",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "required": [
+              "metricId",
+              "threshold",
+              "status"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "experimentId",
+        "variants",
+        "state",
+        "autoPromote"
+      ],
+      "additionalProperties": false
+    },
+    "pipeline": {
+      "type": "object",
+      "description": "Where this proposal sits in Improve → Assemble → Qualify → Deploy. Every hop is a separate governed artifact.",
+      "properties": {
+        "reviewDecisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "intentId": {
+          "$ref": "#/$defs/Id",
+          "description": "Intent/Plan opened to implement the change, if it needs work."
+        },
+        "workOrderIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "candidateFactoryVersionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "qualificationRecordId": {
+          "$ref": "#/$defs/Id"
+        },
+        "promotionDecisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "activeFactoryVersionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "rollbackDecisionId": {
+          "$ref": "#/$defs/Id"
+        }
+      },
+      "additionalProperties": false
+    },
+    "measurement": {
+      "type": "object",
+      "description": "Post-promotion effect against the expected effect.",
+      "properties": {
+        "metricId": {
+          "$ref": "#/$defs/Id"
+        },
+        "baseline": {
+          "type": "number"
+        },
+        "result": {
+          "type": "number"
+        },
+        "target": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "MET",
+            "MISSED",
+            "INCONCLUSIVE"
+          ]
+        },
+        "evidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "measuredAt": {
+          "$ref": "#/$defs/Timestamp"
+        }
+      },
+      "required": [
+        "metricId",
+        "baseline",
+        "result",
+        "target",
+        "unit",
+        "verdict",
+        "evidenceIds",
+        "measuredAt"
+      ],
+      "additionalProperties": false
+    },
+    "acceptanceAuthority": {
+      "type": "boolean",
+      "const": false
+    },
+    "autoPromote": {
+      "type": "boolean",
+      "const": false
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "ACCEPTED",
+        "WORK_ORDERED",
+        "IMPLEMENTED",
+        "CANDIDATE_VERSION",
+        "QUALIFIED",
+        "PROMOTED",
+        "EFFECTIVE",
+        "DISMISSED",
+        "REJECTED",
+        "ROLLED_BACK",
+        "RETIRED"
+      ]
+    },
+    "reviewedBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "reviewedAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "dismissalReason": {
+      "type": "string"
+    },
+    "digest": {
+      "$ref": "#/$defs/Digest",
+      "description": "Digest over (candidateType, problemStatement, proposedChange, expectedEffect, regressionCases, learningSignalIds)."
+    },
+    "createdAt": {
+      "$ref": "#/$defs/Timestamp"
+    },
+    "createdBy": {
+      "$ref": "#/$defs/Actor"
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Transition"
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "type",
+    "id",
+    "namespace",
+    "candidateType",
+    "title",
+    "problemStatement",
+    "proposedChange",
+    "expectedEffect",
+    "regressionCases",
+    "risk",
+    "learningSignalIds",
+    "acceptanceAuthority",
+    "autoPromote",
+    "state",
+    "digest",
+    "createdAt",
+    "createdBy"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "ACCEPTED",
+              "WORK_ORDERED",
+              "IMPLEMENTED",
+              "CANDIDATE_VERSION",
+              "QUALIFIED",
+              "PROMOTED",
+              "EFFECTIVE",
+              "DISMISSED",
+              "REJECTED",
+              "ROLLED_BACK",
+              "RETIRED"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "reviewedBy",
+          "reviewedAt"
+        ],
+        "properties": {
+          "reviewedBy": {
+            "properties": {
+              "kind": {
+                "const": "human"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "CANDIDATE_VERSION",
+              "QUALIFIED",
+              "PROMOTED",
+              "EFFECTIVE",
+              "ROLLED_BACK"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pipeline": {
+            "required": [
+              "candidateFactoryVersionId"
+            ]
+          }
+        },
+        "required": [
+          "pipeline"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "QUALIFIED",
+              "PROMOTED",
+              "EFFECTIVE",
+              "ROLLED_BACK"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pipeline": {
+            "required": [
+              "qualificationRecordId"
+            ]
+          }
+        },
+        "required": [
+          "regressionCases"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "PROMOTED",
+              "EFFECTIVE",
+              "ROLLED_BACK"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "pipeline": {
+            "required": [
+              "promotionDecisionId",
+              "activeFactoryVersionId"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "EFFECTIVE"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "measurement"
+        ],
+        "properties": {
+          "measurement": {
+            "properties": {
+              "verdict": {
+                "const": "MET"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "const": "DISMISSED"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "dismissalReason"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "state": {
+            "enum": [
+              "QUALIFIED",
+              "PROMOTED",
+              "EFFECTIVE"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "regressionCases": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]*$",
+      "description": "Instance identifier. Unique within the issuing namespace; combined with `namespace` it is globally unique."
+    },
+    "ArtifactUri": {
+      "type": "string",
+      "pattern": "^fdlc://v1/(intent|specification|plan|work-order|factory-manifest|factory-version|execution-profile|capability-manifest|qualification-record|context-package|attempt|candidate|evidence|verification|decision|release|outcome|learning-signal|improvement-candidate)(/[A-Za-z0-9][A-Za-z0-9._:@-]*)?$",
+      "description": "Artifact type URI (`fdlc://v1/<artifact>`), optionally suffixed with an instance id."
+    },
+    "Namespace": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI of the issuing control plane or organization. Scopes every `id` in this record."
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 over the RFC 8785 (JCS) canonical JSON of the digested projection."
+    },
+    "GitSha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$|^[a-f0-9]{64}$",
+      "description": "Lowercase full Git object id (SHA-1 or SHA-256 repository)."
+    },
+    "Timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 timestamp in UTC."
+    },
+    "Semver": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(-[0-9A-Za-z.-]+)?(\\+[0-9A-Za-z.-]+)?$"
+    },
+    "RiskClass": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "AutonomyLevel": {
+      "type": "string",
+      "enum": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5"
+      ],
+      "description": "HITL spectrum position. Effective autonomy is min(factory, objective, work order, policy, trust)."
+    },
+    "Actor": {
+      "type": "object",
+      "description": "Attributable identity. `identitySource` says how the control plane established it; never inferred from a client label.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "human",
+            "policy",
+            "service",
+            "agent",
+            "system"
+          ]
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "identitySource": {
+          "type": "string",
+          "enum": [
+            "authenticated",
+            "workload-identity",
+            "service-command",
+            "development-fallback"
+          ]
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "delegationRef": {
+          "$ref": "#/$defs/Id",
+          "description": "Reference to the delegation record that grants this actor its authority."
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "identitySource"
+      ],
+      "additionalProperties": false
+    },
+    "Ref": {
+      "type": "object",
+      "description": "Reference to another FDLC artifact instance, optionally pinned to a digest.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/ArtifactUri"
+        },
+        "id": {
+          "$ref": "#/$defs/Id"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "revisionNumber": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "type",
+        "id"
+      ],
+      "additionalProperties": false
+    },
+    "Money": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "additionalProperties": false
+    },
+    "CostRecord": {
+      "type": "object",
+      "description": "Cost with an honesty class. UNKNOWN cost stays UNKNOWN; implementations MUST NOT invent zeroes.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "ESTIMATED",
+            "UNKNOWN"
+          ]
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of contributing cost items that were measured."
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "Transition": {
+      "type": "object",
+      "description": "Audit record of one authoritative state transition. Every field listed here MUST be recorded.",
+      "properties": {
+        "transitionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "subjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "priorVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fromState": {
+          "type": "string"
+        },
+        "toState": {
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/$defs/Actor"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "policyVersion": {
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "occurredAt": {
+          "$ref": "#/$defs/Timestamp"
+        },
+        "requiredEvidenceIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Id"
+          }
+        },
+        "decisionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "invalidatedDependents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Ref"
+          }
+        }
+      },
+      "required": [
+        "subjectId",
+        "fromState",
+        "toState",
+        "actor",
+        "reason",
+        "idempotencyKey",
+        "occurredAt"
+      ],
+      "additionalProperties": false
+    },
+    "ArtifactRef": {
+      "type": "object",
+      "description": "Content-addressed reference to a stored artifact (diff, log, screenshot, bundle).",
+      "properties": {
+        "artifactId": {
+          "$ref": "#/$defs/Id"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "mediaType": {
+          "type": "string"
+        },
+        "digest": {
+          "$ref": "#/$defs/Digest"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageRef": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifactId",
+        "digest"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[a-z0-9]+(-[a-z0-9]+)*$": {}
+  },
+  "additionalProperties": false
+}

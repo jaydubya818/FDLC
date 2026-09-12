@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" class="fd" role="img" aria-labelledby="t-D11 d-D11">
+<title id="t-D11">Factory Version Composition</title>
+<desc id="d-D11">A Factory Version, shown as an immutable, content-addressed manifest card for FV-depmod-1.0, composed of fourteen pinned components arranged as tiles: Planner version; Agent Definitions; Harness versions; Skills; Tools with grants; Model routes; Context configuration; Runtime artifact and Sandbox image; Network, credential and filesystem policy; Verification contract; Approval policy; Execution Profiles; Economics; Qualification evidence. A side panel explains why mutable configuration cannot be governed and shows the states Draft, Candidate, Qualified, Active.</desc>
+<style>
+svg.fd{--fd-paper:#f3f1ea;--fd-surface:#faf9f5;--fd-ink:#171a18;--fd-muted:#59605a;--fd-line:#c9ccc4;
+--fd-intent-fill:#dce8ef;--fd-intent-stroke:#2f5f78;--fd-intent-text:#1f4557;
+--fd-control-fill:#e4e9ec;--fd-control-stroke:#4a5d68;--fd-control-text:#2f3f47;
+--fd-exec-fill:#f5e6d0;--fd-exec-stroke:#9a4f1c;--fd-exec-text:#6b3612;
+--fd-trust-fill:#dcefe4;--fd-trust-stroke:#1a654b;--fd-trust-text:#114735;
+--fd-learn-fill:#e9e2f4;--fd-learn-stroke:#5c3f8f;--fd-learn-text:#3f2a66;
+--fd-human:#b3261e;--fd-tint:.45}
+@media (prefers-color-scheme:dark){svg.fd{--fd-paper:#15191b;--fd-surface:#1d2326;--fd-ink:#ecebe4;--fd-muted:#a8b0aa;--fd-line:#3b433d;
+--fd-intent-fill:#1c3140;--fd-intent-stroke:#8ec1dc;--fd-intent-text:#cfe6f2;
+--fd-control-fill:#2a3438;--fd-control-stroke:#a8bcc6;--fd-control-text:#dbe5ea;
+--fd-exec-fill:#3b2812;--fd-exec-stroke:#e2a468;--fd-exec-text:#f5dcc0;
+--fd-trust-fill:#143326;--fd-trust-stroke:#7fd2a6;--fd-trust-text:#cdeedb;
+--fd-learn-fill:#2b2142;--fd-learn-stroke:#bfa5ea;--fd-learn-text:#e3d8f5;
+--fd-human:#ff8a80;--fd-tint:.35}}
+.bg{fill:var(--fd-paper)}
+text{font-family:"Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;fill:var(--fd-ink);font-size:16px}
+.mono{font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace}
+.title{font-size:34px;font-weight:600}
+.sub{font-size:18px;fill:var(--fd-muted)}
+.h{font-size:20px;font-weight:600}.h2{font-size:18px;font-weight:600}.h3{font-size:16px;font-weight:600}
+.b{font-size:16px}.s{font-size:15px;fill:var(--fd-muted)}.xs{font-size:14px;fill:var(--fd-muted)}
+.i{font-style:italic}.c{text-anchor:middle}.r{text-anchor:end}.strong{font-weight:600}
+.label{font-size:14px;fill:var(--fd-muted)}
+.tag{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace;fill:var(--fd-muted)}
+.box{stroke-width:2;rx:6}
+.intent{fill:var(--fd-intent-fill);stroke:var(--fd-intent-stroke)}
+.control{fill:var(--fd-control-fill);stroke:var(--fd-control-stroke)}
+.exec{fill:var(--fd-exec-fill);stroke:var(--fd-exec-stroke)}
+.trust{fill:var(--fd-trust-fill);stroke:var(--fd-trust-stroke)}
+.learn{fill:var(--fd-learn-fill);stroke:var(--fd-learn-stroke)}
+.neutral{fill:var(--fd-surface);stroke:var(--fd-muted)}
+.human{stroke:var(--fd-human)!important;stroke-width:3.5}
+.t-intent{fill:var(--fd-intent-text)}.t-control{fill:var(--fd-control-text)}.t-exec{fill:var(--fd-exec-text)}
+.t-trust{fill:var(--fd-trust-text)}.t-learn{fill:var(--fd-learn-text)}.t-human{fill:var(--fd-human)}
+.zone{stroke-width:2;rx:10;fill-opacity:var(--fd-tint)}
+.zone.dash{stroke-dasharray:8 6}
+.fl{fill:none;stroke:var(--fd-ink);stroke-width:2.5;marker-end:url(#m-ink)}
+.au{fill:none;stroke:var(--fd-control-stroke);stroke-width:3;marker-end:url(#m-au)}
+.ev{fill:none;stroke:var(--fd-trust-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ev)}
+.ln{fill:none;stroke:var(--fd-learn-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ln)}
+.rt{fill:none;stroke:var(--fd-muted);stroke-width:2;stroke-dasharray:5 5;marker-end:url(#m-mu)}
+.thin{stroke-width:1.5}
+.nomk{marker-end:none}
+.dot{fill:var(--fd-trust-stroke)}
+.lbg{fill:var(--fd-paper);stroke:none}
+.chip{stroke-width:2;rx:14}
+.mk-ink{fill:var(--fd-ink)}.mk-au{fill:var(--fd-control-stroke)}.mk-ev{fill:var(--fd-trust-stroke)}
+.mk-ln{fill:var(--fd-learn-stroke)}.mk-mu{fill:var(--fd-muted)}
+.hair{stroke:var(--fd-line);stroke-width:1.5;fill:none}
+.x{stroke:var(--fd-human);stroke-width:3;fill:none}
+</style>
+<defs>
+<marker id="m-ink" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ink" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-au" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-au" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ev" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ev" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ln" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ln" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-mu" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-mu" d="M0,1 L11,6 L0,11 z"/></marker>
+</defs>
+<rect class="bg" width="1600" height="900"/>
+<g id="header"><text x="60" y="76" class="title">Factory Version Composition</text>
+<text x="60" y="108" class="sub">Production routes work to a qualified immutable Factory Version, never to a mutable factory</text>
+<text x="1540" y="70" class="tag r">FDLC visual canon · D11</text></g>
+<g id="factory-version">
+<rect x="60" y="140" width="1040" height="92" class="box control"/>
+<text x="580.0" y="174.2" class="h t-control c">Factory Version FV-depmod-1.0</text>
+<text x="580.0" y="195.2" class="s c">immutable · content-addressed · digest = SHA-256 over the JCS-canonicalized manifest</text>
+<text x="580.0" y="213.7" class="xs c">qualified per scope · activated per environment · any change = a new version</text>
+</g>
+<g id="tile-01">
+<rect x="60" y="256" width="245" height="108" class="box intent"/>
+<text x="182.5" y="307.2" class="h2 t-intent c">Planner version</text>
+<text x="182.5" y="326.6" class="xs c">planner, exact version</text>
+</g>
+<g id="tile-02">
+<rect x="325" y="256" width="245" height="108" class="box exec"/>
+<text x="447.5" y="307.2" class="h2 t-exec c">Agent Definitions</text>
+<text x="447.5" y="326.6" class="xs c">versions · authority limits</text>
+</g>
+<g id="tile-03">
+<rect x="590" y="256" width="245" height="108" class="box exec"/>
+<text x="712.5" y="307.2" class="h2 t-exec c">Harness versions</text>
+<text x="712.5" y="326.6" class="xs c">adapters · manifests</text>
+</g>
+<g id="tile-04">
+<rect x="855" y="256" width="245" height="108" class="box exec"/>
+<text x="977.5" y="307.2" class="h2 t-exec c">Skills</text>
+<text x="977.5" y="326.6" class="xs c">versions · digests</text>
+</g>
+<g id="tile-05">
+<rect x="60" y="384" width="245" height="108" class="box exec"/>
+<text x="182.5" y="435.2" class="h2 t-exec c">Tools</text>
+<text x="182.5" y="454.6" class="xs c">Tool Manifests + grants</text>
+</g>
+<g id="tile-06">
+<rect x="325" y="384" width="245" height="108" class="box exec"/>
+<text x="447.5" y="435.2" class="h2 t-exec c">Model routes</text>
+<text x="447.5" y="454.6" class="xs c">logical route → qualified providers</text>
+</g>
+<g id="tile-07">
+<rect x="590" y="384" width="245" height="108" class="box exec"/>
+<text x="712.5" y="435.2" class="h2 t-exec c">Context configuration</text>
+<text x="712.5" y="454.6" class="xs c">sources · policy · freshness</text>
+</g>
+<g id="tile-08">
+<rect x="855" y="384" width="245" height="108" class="box exec"/>
+<text x="977.5" y="435.2" class="h2 t-exec c">Runtime + Sandbox</text>
+<text x="977.5" y="454.6" class="xs c">artifact and image digests</text>
+</g>
+<g id="tile-09">
+<rect x="60" y="512" width="245" height="108" class="box control"/>
+<text x="182.5" y="554.1" class="h2 t-control c">Isolation policy</text>
+<text x="182.5" y="573.5" class="xs c">network · credentials</text>
+<text x="182.5" y="591.7" class="xs c">filesystem</text>
+</g>
+<g id="tile-10">
+<rect x="325" y="512" width="245" height="108" class="box trust"/>
+<text x="447.5" y="554.1" class="h2 t-trust c">Verification contract</text>
+<text x="447.5" y="573.5" class="xs c">criteria → verifiers</text>
+<text x="447.5" y="591.7" class="xs c">independence rules</text>
+</g>
+<g id="tile-11">
+<rect x="590" y="512" width="245" height="108" class="box trust human"/>
+<text x="712.5" y="563.2" class="h2 t-trust c">Approval policy</text>
+<text x="712.5" y="582.6" class="xs c">risk tier → decision authority</text>
+</g>
+<g id="tile-12">
+<rect x="855" y="512" width="245" height="108" class="box control"/>
+<text x="977.5" y="554.1" class="h2 t-control c">Execution Profiles</text>
+<text x="977.5" y="573.5" class="xs c">admitted compositions</text>
+<text x="977.5" y="591.7" class="xs c">autonomy ceiling</text>
+</g>
+<g id="tile-13">
+<rect x="60" y="640" width="245" height="108" class="box control"/>
+<text x="182.5" y="691.2" class="h2 t-control c">Economics</text>
+<text x="182.5" y="710.6" class="xs c">budgets · cost coverage rules</text>
+</g>
+<g id="tile-14">
+<rect x="325" y="640" width="245" height="108" class="box trust"/>
+<text x="447.5" y="691.2" class="h2 t-trust c">Qualification evidence</text>
+<text x="447.5" y="710.6" class="xs c">scopes · expiry · revocation</text>
+</g>
+<g id="tile-note">
+<rect x="590" y="640" width="510" height="108" class="box neutral"/>
+<text x="845.0" y="681.4" class="h3 c">14 pinned identities, one digest</text>
+<text x="845.0" y="700.2" class="xs c">Retries, restoration, and audit all resolve</text>
+<text x="845.0" y="718.4" class="xs c">to exactly this composition</text>
+</g>
+<g id="why-immutable"><rect x="1140" y="140" width="400" height="330" class="zone neutral"/></g>
+<text x="1160" y="170" class="h3">Why mutable configuration cannot be governed</text>
+<text x="1160" y="204" class="s">✕  no attributable behavior — which composition ran?</text>
+<text x="1160" y="234" class="s">✕  no reproducible evidence</text>
+<text x="1160" y="264" class="s">✕  no safe rollback target</text>
+<text x="1160" y="294" class="s">✕  silent authority widening</text>
+<text x="1160" y="324" class="s">✕  unauditable learning</text>
+<text x="1160" y="354" class="s">✕  cross-tenant blast radius</text>
+<text x="1160" y="400" class="h3">Qualification is scoped:</text>
+<text x="1160" y="424" class="xs">workload class × environment × risk tier × autonomy level</text>
+<text x="1160" y="446" class="xs">fail-closed: a hard gate with unknown evidence fails</text>
+<g id="states"><rect x="1140" y="500" width="400" height="270" class="zone control"/><text x="1156" y="526" class="tag t-control">Factory Version states (D12)</text></g>
+<g id="state-draft"><rect x="1160" y="540" width="220" height="40" class="chip exec"/><text x="1270.0" y="565.5" class="h3 c ">Draft</text></g>
+<path id="a-state-0" d="M1270,580 L1270,596" class="fl thin"/>
+<g id="state-candidate"><rect x="1160" y="596" width="220" height="40" class="chip exec"/><text x="1270.0" y="621.5" class="h3 c ">Candidate</text></g>
+<path id="a-state-1" d="M1270,636 L1270,652" class="fl thin"/>
+<g id="state-qualified"><rect x="1160" y="652" width="220" height="40" class="chip trust"/><text x="1270.0" y="677.5" class="h3 c ">Qualified (scope)</text></g>
+<path id="a-state-2" d="M1270,692 L1270,708" class="fl thin"/>
+<g id="state-active"><rect x="1160" y="708" width="220" height="40" class="chip trust human"/><text x="1270.0" y="733.5" class="h3 c ">Active (environment)</text></g>
+<text x="1395" y="566" class="xs">Assemble</text>
+<text x="1395" y="622" class="xs">digest fixed</text>
+<text x="1395" y="678" class="xs">Qualification Record</text>
+<text x="1395" y="734" class="xs">Decision: promotion</text>
+<text x="60" y="812" class="xs">Composition change → new Factory Version → Qualify → Decision (promotion) → Active. Restoration targets a separately identified previous version.</text>
+<g id="legend">
+<rect x="60" y="847" width="26" height="16" class="box intent" rx="3"/>
+<text x="94" y="860" class="xs">Intent</text>
+<rect x="155.28" y="847" width="26" height="16" class="box control" rx="3"/>
+<text x="189.28" y="860" class="xs">Control</text>
+<rect x="260.08000000000004" y="847" width="26" height="16" class="box exec" rx="3"/>
+<text x="294.08000000000004" y="860" class="xs">Execution</text>
+<rect x="383.36000000000007" y="847" width="26" height="16" class="box trust" rx="3"/>
+<text x="417.36000000000007" y="860" class="xs">Trust</text>
+<rect x="476.4000000000001" y="847" width="26" height="16" class="box learn" rx="3"/>
+<text x="510.4000000000001" y="860" class="xs">Learning</text>
+<rect x="592.1200000000001" y="847" width="26" height="16" class="box neutral human" rx="3"/>
+<text x="626.1200000000001" y="860" class="xs">Human authority</text>
+<path d="M765.1600000000001,855 L809.1600000000001,855" class="au"/><text x="819.1600000000001" y="860" class="xs">authority / flow (solid)</text>
+<path d="M987.4000000000001,855 L1031.4,855" class="ev"/><text x="1041.4" y="860" class="xs">evidence (dashed, back)</text>
+<path d="M1221.1200000000001,855 L1265.1200000000001,855" class="ln"/><text x="1275.1200000000001" y="860" class="xs">learning (dashed)</text>
+</g>
+</svg>

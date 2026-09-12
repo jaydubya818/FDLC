@@ -1,0 +1,192 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" class="fd" role="img" aria-labelledby="t-D09 d-D09">
+<title id="t-D09">Multi-Factory Orchestration — SSO Example</title>
+<desc id="d-D09">A Builder owns Objective INT-100, 'Add SSO to the customer portal'. Inside the enterprise control plane, the Objective Planner (Level 1 routing) produces Plan PLAN-100-r1 with three Work Orders; the Factory Router (Level 2) consults the Factory Registry and binds each Work Order to a qualified Factory Version. WO-101 Backend and WO-102 Frontend go to the Code Generation Factory FV-codegen-2.3; WO-103 Security goes to the Security Remediation Factory FV-secrem-1.4. Factories never orchestrate one another. Their Candidates and Evidence flow (dashed) to a join that forms the integrated Candidate, then to Integration V&amp;V, a human acceptance Decision at the High tier, and Release REL-100, whose Outcome flows back to the Objective.</desc>
+<style>
+svg.fd{--fd-paper:#f3f1ea;--fd-surface:#faf9f5;--fd-ink:#171a18;--fd-muted:#59605a;--fd-line:#c9ccc4;
+--fd-intent-fill:#dce8ef;--fd-intent-stroke:#2f5f78;--fd-intent-text:#1f4557;
+--fd-control-fill:#e4e9ec;--fd-control-stroke:#4a5d68;--fd-control-text:#2f3f47;
+--fd-exec-fill:#f5e6d0;--fd-exec-stroke:#9a4f1c;--fd-exec-text:#6b3612;
+--fd-trust-fill:#dcefe4;--fd-trust-stroke:#1a654b;--fd-trust-text:#114735;
+--fd-learn-fill:#e9e2f4;--fd-learn-stroke:#5c3f8f;--fd-learn-text:#3f2a66;
+--fd-human:#b3261e;--fd-tint:.45}
+@media (prefers-color-scheme:dark){svg.fd{--fd-paper:#15191b;--fd-surface:#1d2326;--fd-ink:#ecebe4;--fd-muted:#a8b0aa;--fd-line:#3b433d;
+--fd-intent-fill:#1c3140;--fd-intent-stroke:#8ec1dc;--fd-intent-text:#cfe6f2;
+--fd-control-fill:#2a3438;--fd-control-stroke:#a8bcc6;--fd-control-text:#dbe5ea;
+--fd-exec-fill:#3b2812;--fd-exec-stroke:#e2a468;--fd-exec-text:#f5dcc0;
+--fd-trust-fill:#143326;--fd-trust-stroke:#7fd2a6;--fd-trust-text:#cdeedb;
+--fd-learn-fill:#2b2142;--fd-learn-stroke:#bfa5ea;--fd-learn-text:#e3d8f5;
+--fd-human:#ff8a80;--fd-tint:.35}}
+.bg{fill:var(--fd-paper)}
+text{font-family:"Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;fill:var(--fd-ink);font-size:16px}
+.mono{font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace}
+.title{font-size:34px;font-weight:600}
+.sub{font-size:18px;fill:var(--fd-muted)}
+.h{font-size:20px;font-weight:600}.h2{font-size:18px;font-weight:600}.h3{font-size:16px;font-weight:600}
+.b{font-size:16px}.s{font-size:15px;fill:var(--fd-muted)}.xs{font-size:14px;fill:var(--fd-muted)}
+.i{font-style:italic}.c{text-anchor:middle}.r{text-anchor:end}.strong{font-weight:600}
+.label{font-size:14px;fill:var(--fd-muted)}
+.tag{font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-family:"SFMono-Regular", Consolas, "Liberation Mono", monospace;fill:var(--fd-muted)}
+.box{stroke-width:2;rx:6}
+.intent{fill:var(--fd-intent-fill);stroke:var(--fd-intent-stroke)}
+.control{fill:var(--fd-control-fill);stroke:var(--fd-control-stroke)}
+.exec{fill:var(--fd-exec-fill);stroke:var(--fd-exec-stroke)}
+.trust{fill:var(--fd-trust-fill);stroke:var(--fd-trust-stroke)}
+.learn{fill:var(--fd-learn-fill);stroke:var(--fd-learn-stroke)}
+.neutral{fill:var(--fd-surface);stroke:var(--fd-muted)}
+.human{stroke:var(--fd-human)!important;stroke-width:3.5}
+.t-intent{fill:var(--fd-intent-text)}.t-control{fill:var(--fd-control-text)}.t-exec{fill:var(--fd-exec-text)}
+.t-trust{fill:var(--fd-trust-text)}.t-learn{fill:var(--fd-learn-text)}.t-human{fill:var(--fd-human)}
+.zone{stroke-width:2;rx:10;fill-opacity:var(--fd-tint)}
+.zone.dash{stroke-dasharray:8 6}
+.fl{fill:none;stroke:var(--fd-ink);stroke-width:2.5;marker-end:url(#m-ink)}
+.au{fill:none;stroke:var(--fd-control-stroke);stroke-width:3;marker-end:url(#m-au)}
+.ev{fill:none;stroke:var(--fd-trust-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ev)}
+.ln{fill:none;stroke:var(--fd-learn-stroke);stroke-width:2.5;stroke-dasharray:9 7;marker-end:url(#m-ln)}
+.rt{fill:none;stroke:var(--fd-muted);stroke-width:2;stroke-dasharray:5 5;marker-end:url(#m-mu)}
+.thin{stroke-width:1.5}
+.nomk{marker-end:none}
+.dot{fill:var(--fd-trust-stroke)}
+.lbg{fill:var(--fd-paper);stroke:none}
+.chip{stroke-width:2;rx:14}
+.mk-ink{fill:var(--fd-ink)}.mk-au{fill:var(--fd-control-stroke)}.mk-ev{fill:var(--fd-trust-stroke)}
+.mk-ln{fill:var(--fd-learn-stroke)}.mk-mu{fill:var(--fd-muted)}
+.hair{stroke:var(--fd-line);stroke-width:1.5;fill:none}
+.x{stroke:var(--fd-human);stroke-width:3;fill:none}
+</style>
+<defs>
+<marker id="m-ink" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ink" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-au" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-au" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ev" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ev" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-ln" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-ln" d="M0,1 L11,6 L0,11 z"/></marker>
+<marker id="m-mu" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path class="mk-mu" d="M0,1 L11,6 L0,11 z"/></marker>
+</defs>
+<rect class="bg" width="1600" height="900"/>
+<g id="header"><text x="60" y="76" class="title">Multi-Factory Orchestration — SSO Example</text>
+<text x="60" y="108" class="sub">The control plane orchestrates the objective. Factories execute bounded work. Factories do not orchestrate one another.</text>
+<text x="1540" y="70" class="tag r">FDLC visual canon · D09</text></g>
+<g id="builder">
+<rect x="60" y="150" width="300" height="56" class="box neutral human"/>
+<text x="210.0" y="183.6" class="h3 c">Builder — owns the Objective</text>
+</g>
+<path id="a-builder-obj" d="M210,206 L210,240" class="fl"/>
+<g id="objective">
+<rect x="60" y="240" width="300" height="100" class="box intent"/>
+<text x="210.0" y="278.1" class="h t-intent c">Objective INT-100</text>
+<text x="210.0" y="299.1" class="s i c">“Add SSO to the customer portal”</text>
+<text x="210.0" y="317.6" class="xs c">risk tier: High · budget · stop condition</text>
+</g>
+<g id="control-plane"><rect x="400" y="150" width="1140" height="190" class="zone control"/><text x="416" y="176" class="h3 t-control">Enterprise Control Plane — identity · policy · registries · routing · decisions · evidence</text></g>
+<g id="objective-planner">
+<rect x="420" y="200" width="250" height="120" class="box control"/>
+<text x="545.0" y="248.1" class="h2 t-control c">Objective Planner</text>
+<text x="545.0" y="267.5" class="xs c">Level 1 · Objective routing</text>
+<text x="545.0" y="285.7" class="xs c">capabilities → factory set</text>
+</g>
+<g id="plan">
+<rect x="700" y="200" width="290" height="120" class="box intent"/>
+<text x="845.0" y="248.1" class="h2 t-intent c">Plan PLAN-100-r1</text>
+<text x="845.0" y="267.5" class="xs c">Work Orders · dependency graph</text>
+<text x="845.0" y="285.7" class="xs c">budgets · verification strategy</text>
+</g>
+<g id="factory-router">
+<rect x="1020" y="200" width="240" height="120" class="box control"/>
+<text x="1140.0" y="248.1" class="h2 t-control c">Factory Router</text>
+<text x="1140.0" y="267.5" class="xs c">Level 2 · Work Order routing</text>
+<text x="1140.0" y="285.7" class="xs c">eligibility → ranking</text>
+</g>
+<g id="factory-registry">
+<rect x="1290" y="200" width="230" height="120" class="box control"/>
+<text x="1405.0" y="248.1" class="h2 t-control c">Factory Registry</text>
+<text x="1405.0" y="267.5" class="xs c">capabilities · versions</text>
+<text x="1405.0" y="285.7" class="xs c">qualification scopes</text>
+</g>
+<path id="a-obj-planner" d="M360,290 L420,290" class="fl"/>
+<path id="a-planner-plan" d="M670,260 L700,260" class="fl"/>
+<path id="a-plan-router" d="M990,260 L1020,260" class="fl"/>
+<path id="a-registry-router" d="M1290,260 L1260,260" class="fl"/>
+<g id="wo-101">
+<rect x="400" y="410" width="220" height="90" class="box intent"/>
+<text x="510.0" y="452.2" class="h2 t-intent c">WO-101 Backend</text>
+<text x="510.0" y="471.6" class="xs c">OIDC + session model</text>
+</g>
+<path id="a-router-wo-101" d="M1140,320 L510,410" class="au"/>
+<g id="wo-102">
+<rect x="640" y="410" width="220" height="90" class="box intent"/>
+<text x="750.0" y="452.2" class="h2 t-intent c">WO-102 Frontend</text>
+<text x="750.0" y="471.6" class="xs c">login flow + token handling</text>
+</g>
+<path id="a-router-wo-102" d="M1140,320 L750,410" class="au"/>
+<g id="wo-103">
+<rect x="880" y="410" width="220" height="90" class="box intent"/>
+<text x="990.0" y="452.2" class="h2 t-intent c">WO-103 Security</text>
+<text x="990.0" y="471.6" class="xs c">threat model + scans + policy</text>
+</g>
+<path id="a-router-wo-103" d="M1140,320 L990,410" class="au"/>
+<text x="1165" y="362" class="label">routing Decisions bind each Work Order</text>
+<text x="1165" y="380" class="label">to a qualified Factory Version + profile</text>
+<g id="factory-codegen">
+<rect x="400" y="560" width="460" height="130" class="box exec"/>
+<text x="630.0" y="613.1" class="h t-exec c">Code Generation Factory</text>
+<text x="630.0" y="634.1" class="s c">FV-codegen-2.3 · executes WO-101 and WO-102</text>
+<text x="630.0" y="652.6" class="xs c">sandboxed Attempts → Candidates + Evidence</text>
+</g>
+<g id="factory-secrem">
+<rect x="880" y="560" width="220" height="130" class="box exec"/>
+<text x="990.0" y="611.8" class="h2 t-exec c">Security Remediation</text>
+<text x="990.0" y="633.2" class="h3 t-exec c">Factory FV-secrem-1.4</text>
+<text x="990.0" y="652.0" class="xs c">executes WO-103</text>
+</g>
+<path id="a-wo101-f1" d="M510,500 L510,560" class="fl"/>
+<path id="a-wo102-f1" d="M750,500 L750,560" class="fl"/>
+<path id="a-wo103-f2" d="M990,500 L990,560" class="fl"/>
+<g id="no-peer-orchestration"><path d="M860,625 L880,625" class="hair"/><path d="M862,617 L878,633 M878,617 L862,633" class="x"/></g>
+<text x="750" y="726" class="xs c">Factories do not orchestrate one another — the control plane orchestrates the objective.</text>
+<path id="a-f1-join" d="M820,560 L820,530 L1120,530 L1120,445 L1140,445" class="ev"/>
+<path id="a-f2-join" d="M1100,600 L1120,600 L1120,536" class="ev nomk"/>
+<circle cx="1120" cy="530" r="5" class="dot"/>
+<rect x="881.1" y="510.1" width="157.9" height="17.5" class="lbg" rx="3"/>
+<text x="960" y="522" class="label c">Candidates + Evidence</text>
+<g id="join">
+<rect x="1140" y="410" width="400" height="70" class="box trust"/>
+<text x="1340.0" y="442.2" class="h2 t-trust c">Join: integrated Candidate</text>
+<text x="1340.0" y="461.6" class="xs c">exact commits · tree · diff hashes across Work Orders</text>
+</g>
+<path id="a-join-iv" d="M1340,480 L1340,500" class="fl"/>
+<g id="integration-vv">
+<rect x="1140" y="500" width="400" height="80" class="box trust"/>
+<text x="1340.0" y="537.2" class="h2 t-trust c">Integration V&amp;V</text>
+<text x="1340.0" y="556.6" class="xs c">Objective-level · separate Verification Attempt</text>
+</g>
+<path id="a-iv-dec" d="M1340,580 L1340,600" class="fl"/>
+<g id="decision">
+<rect x="1140" y="600" width="400" height="80" class="box trust human"/>
+<text x="1340.0" y="637.2" class="h2 t-trust c">Decision: acceptance</text>
+<text x="1340.0" y="656.6" class="xs c">human authority · High risk tier</text>
+</g>
+<path id="a-dec-rel" d="M1340,680 L1340,700" class="fl"/>
+<g id="release">
+<rect x="1140" y="700" width="400" height="70" class="box trust"/>
+<text x="1340.0" y="732.2" class="h2 t-trust c">Release REL-100</text>
+<text x="1340.0" y="751.6" class="xs c">release-authorization · rollback ready</text>
+</g>
+<path id="a-outcome" d="M1140,750 L1110,750 L1110,800 L210,800 L210,340" class="ev"/>
+<rect x="351.3" y="806.1" width="617.4" height="17.5" class="lbg" rx="3"/>
+<text x="660" y="818" class="label c">Outcome OUT-100 observed over a window and attributed to the Objective → Learning Signals</text>
+<g id="legend">
+<rect x="60" y="847" width="26" height="16" class="box intent" rx="3"/>
+<text x="94" y="860" class="xs">Intent</text>
+<rect x="155.28" y="847" width="26" height="16" class="box control" rx="3"/>
+<text x="189.28" y="860" class="xs">Control</text>
+<rect x="260.08000000000004" y="847" width="26" height="16" class="box exec" rx="3"/>
+<text x="294.08000000000004" y="860" class="xs">Execution</text>
+<rect x="383.36000000000007" y="847" width="26" height="16" class="box trust" rx="3"/>
+<text x="417.36000000000007" y="860" class="xs">Trust</text>
+<rect x="476.4000000000001" y="847" width="26" height="16" class="box learn" rx="3"/>
+<text x="510.4000000000001" y="860" class="xs">Learning</text>
+<rect x="592.1200000000001" y="847" width="26" height="16" class="box neutral human" rx="3"/>
+<text x="626.1200000000001" y="860" class="xs">Human authority</text>
+<path d="M765.1600000000001,855 L809.1600000000001,855" class="au"/><text x="819.1600000000001" y="860" class="xs">authority / flow (solid)</text>
+<path d="M987.4000000000001,855 L1031.4,855" class="ev"/><text x="1041.4" y="860" class="xs">evidence (dashed, back)</text>
+<path d="M1221.1200000000001,855 L1265.1200000000001,855" class="ln"/><text x="1275.1200000000001" y="860" class="xs">learning (dashed)</text>
+</g>
+</svg>

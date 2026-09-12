@@ -1,0 +1,63 @@
+%%{init: {"flowchart": {"wrappingWidth": 520, "htmlLabels": true}}}%%
+%% D30 Enterprise reference architecture (10,000 builders · 500 repos · 50 factories; illustrative)
+%% Type: architecture · Page: /enterprise/reference-architecture
+flowchart TB
+  subgraph PI["Plane I — Intent"]
+    B["Builders<br/>SSO / OIDC identities"]:::human
+    P["Enterprise Developer Portal<br/>portal · CLI · IDE · API · issue trackers"]
+    OP["Objective Planner"]
+  end
+  subgraph PII["Plane II — Control"]
+    CP["FDLC Control Plane<br/>identity · authority · policy · budgets · state"]
+    CR["Capability Registry"]
+    FR["Factory Registry"]
+    FQ["Factory Version Qualification"]
+    WR["Work Order Router<br/>eligibility → ranking → scheduling"]
+  end
+  subgraph PIII["Plane III — Execution"]
+    Q["Queues & scheduler"]
+    W["Execution workers & leases"]
+    SB["Sandbox pools<br/>per region · per risk tier"]
+    MG["Model gateway<br/>logical routes"]
+    CTX["Context intelligence<br/>ACL-filtered retrieval"]
+    SEC["Secrets broker"]
+  end
+  subgraph PIV["Plane IV — Trust"]
+    VI["Verification Infrastructure<br/>independent verifier Attempts"]
+    ES["Evidence Store<br/>immutable · content-addressed"]
+    DS["Delivery Systems<br/>CI/CD · release · rollback"]
+  end
+  subgraph XC["Cross-cutting"]
+    OB["Observability & Economics"]
+    AU["Audit ledger"]
+    LN["Learning"]
+  end
+  B --> P --> CP --> OP --> CR --> FR --> FQ --> WR --> Q --> W
+  W --> SB
+  SB --> MG
+  SB --> CTX
+  SB --> SEC
+  SB --> VI --> ES --> DS
+  ES -. "evidence flows back" .-> CP
+  DS -. "Outcomes → Learning Signals" .-> LN
+  LN -. "Improvement Candidates" .-> FQ
+  W -.-> OB
+  VI -.-> OB
+  CP -.-> AU
+  PE["Policy engines<br/>external · fail-closed"] --- CP
+  PE --- WR
+  PE --- SB
+  PE --- DS
+  class P,OP intent
+  class CP,CR,FR,FQ,WR,PE control
+  class Q,W,SB,MG,CTX,SEC execution
+  class VI,ES,DS trust
+  class OB,AU,LN learning
+  %% Canon colour semantics (diagrams.md §2)
+  classDef intent fill:#dce8ef,stroke:#2f5f78,color:#171a18
+  classDef control fill:#e4e9ec,stroke:#4a5d68,color:#171a18
+  classDef execution fill:#f5e6d0,stroke:#9a4f1c,color:#171a18
+  classDef trust fill:#dcefe4,stroke:#1a654b,color:#171a18
+  classDef learning fill:#e9e2f4,stroke:#5c3f8f,color:#171a18
+  classDef human stroke:#b3261e,stroke-width:3px
+  classDef neutral fill:#faf9f5,stroke:#59605a,color:#171a18
