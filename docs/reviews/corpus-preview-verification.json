@@ -1,10 +1,10 @@
 {
   "schema": "fdlc-corpus-verification/v1",
-  "generatedAt": "2026-09-12T19:41:33.418Z",
+  "generatedAt": "2026-09-12T21:24:54.210Z",
   "generatorVersion": "1.0.1",
   "reproduce": "npm run corpus:sync && npm run corpus:verify",
   "archiveSha256": "54583e8f18d3e474617b6d63b25ddac1c58ff196c8271a2dcb22f7f4a6e38a49",
-  "sourceDigest": "80794d5aa50f29d59f094b764a9fd65e86e1670d09d1c74be83831c6f85435e3",
+  "sourceDigest": "1ed4d658726690d63c2ae8dff0dfdd288af0807da0c79240ac9067737d3e6023",
   "toolVersions": {
     "node": ">=22.13.0",
     "ajv": "8.20.0",
@@ -50,19 +50,19 @@
     }
   ],
   "counts": {
-    "importedArchiveFiles": 277,
-    "contentTreeFiles": 279,
-    "corpusMarkdownFiles": 160,
+    "importedArchiveFiles": 278,
+    "contentTreeFiles": 280,
+    "corpusMarkdownFiles": 161,
     "reviewMarkdownFiles": 10,
-    "routedDocuments": 157,
-    "words": 370144,
+    "routedDocuments": 158,
+    "words": 371663,
     "schemas": 19,
     "examples": 19,
     "mermaidSources": 33,
     "canonicalCollisions": 9,
     "errors": 0,
     "warnings": 81,
-    "externallyUnverifiable": 183,
+    "externallyUnverifiable": 185,
     "verifiedMissionControlReferences": 0
   },
   "collisions": [
@@ -853,6 +853,12 @@
     },
     {
       "check": "mission-control-reference",
+      "detail": "convex/lib/demoSeedExtensions.ts",
+      "severity": "external",
+      "source": "corpus/guides/build-your-first-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
       "detail": "convex/lib/dockerSandboxAdmission.ts",
       "severity": "external",
       "source": "corpus/enterprise/execution-fleet.md"
@@ -1333,6 +1339,12 @@
     },
     {
       "check": "mission-control-reference",
+      "detail": "docs/site/get-started/run-the-demo.md",
+      "severity": "external",
+      "source": "corpus/guides/build-your-first-factory.md"
+    },
+    {
+      "check": "mission-control-reference",
       "detail": "docs/software-factory/accounting-delivery-contract.md",
       "severity": "external",
       "source": "corpus/architecture/economics.md"
@@ -1461,7 +1473,7 @@
       "check": "mission-control-reference",
       "detail": "docs/WORKFLOWS_QUICKSTART.md",
       "severity": "external",
-      "source": "corpus/guides/build-your-first-factory.md"
+      "source": "corpus/guides/production-bounded-fix-factory.md"
     },
     {
       "check": "mission-control-reference",

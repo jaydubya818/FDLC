@@ -52,7 +52,7 @@ flowchart TB
 
 | Need | Minimum |
 |---|---|
-| A working first factory | [/guides/build-your-first-factory](/guides/build-your-first-factory) completed: control plane, Coding Harness adapter manifest, verifier identity, sandbox image. |
+| A working first factory | [/guides/production-bounded-fix-factory](/guides/production-bounded-fix-factory) completed: control plane, Coding Harness adapter manifest, verifier identity, sandbox image. |
 | Tracker access | Read issues and post comments through a service identity; a signed webhook for issue events. Jira, Linear, GitHub Issues, or equivalent. |
 | Publication identity | A Git-provider App with Contents write and Pull requests write, held by the control plane. |
 | Repository facts | Code scopes for `acme/orders-api`; protected paths (`auth/**`, `schema/**`, `payments/**`); test suites tagged `UT-`, `IT-`, `CT-`. |
@@ -413,7 +413,7 @@ Spans: `intake.admit`, `spec.finalize`, `plan.approve`, `routing.decide`, `attem
 
 ## Related
 
-- Previous: [/guides/build-your-first-factory](/guides/build-your-first-factory) · Next: [/guides/code-review-factory](/guides/code-review-factory) · Case study: [/examples/code-generation-factory](/examples/code-generation-factory)
+- Previous: [/guides/production-bounded-fix-factory](/guides/production-bounded-fix-factory) · Next: [/guides/code-review-factory](/guides/code-review-factory) · Case study: [/examples/code-generation-factory](/examples/code-generation-factory)
 - Framework: [/framework/delivery-loop](/framework/delivery-loop) steps 1–3, 8
 - Specification: [/specification/v1/intent](/specification/v1/intent) · [/specification/v1/specification](/specification/v1/specification) · [/specification/v1/plan](/specification/v1/plan) · [/specification/v1/work-order](/specification/v1/work-order) · [/specification/v1/candidate](/specification/v1/candidate)
 - Patterns: [/patterns/objective-decomposition](/patterns/objective-decomposition) · [/patterns/context-package](/patterns/context-package) · [/patterns/publication-permit](/patterns/publication-permit) · [/patterns/model-routing](/patterns/model-routing)

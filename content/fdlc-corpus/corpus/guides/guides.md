@@ -1,6 +1,6 @@
 ---
 title: FDLC Build Guides
-description: Ten practical, vendor-neutral guides for building AI software factories — from a first bounded factory to a multi-factory enterprise platform.
+description: A guided quickstart and ten vendor-neutral implementation guides — from a first factory definition to a multi-factory enterprise platform.
 path: /guides
 audience: [builder, factory-engineer, platform, architect, security]
 level: [beginner, practitioner, architect, enterprise]
@@ -14,7 +14,7 @@ mc_refs: [convex/schema.ts, docs/OVERVIEW.md, docs/product/software-factory-capa
 
 ## What is it
 
-A build guide walks a Factory Engineer through designing, assembling, qualifying, and operating one specialized factory. Every guide uses the same thirteen sections, the same artifact vocabulary, the same [Factory Manifest](/specification/v1/factory-manifest) schema, and the same honesty rule for [Mission Control](/mission-control): every capability claim carries its ledger status (Available / Experimental / Planned / Proposed) and its limitation.
+A build guide walks a Factory Engineer through designing, assembling, qualifying, and operating one specialized factory. The beginner quickstart introduces the boundary with a definition and a deterministic demo. The ten implementation guides then use the same thirteen sections, the same artifact vocabulary, the same [Factory Manifest](/specification/v1/factory-manifest) schema, and the same evidence rule for [Mission Control](/mission-control): every capability claim carries its ledger status (Available / Experimental / Planned / Proposed) and its limitation.
 
 Guides are vendor-neutral. Where a Coding Harness plugs in, the guide names the boundary and the contract, not a product. Claude Code, Codex, or any harness that implements the factory's harness contract fits the same slot.
 
@@ -32,13 +32,14 @@ flowchart LR
   I -. "next Factory Version" .-> Q
 ```
 
-Every guide has exactly these sections in this order: **Problem · Architecture · Prerequisites · Lifecycle · Artifacts · Implementation · Security · Verification · Observability · Failure handling · Production considerations · Mission Control mapping · Related.** The Artifacts section always carries a complete Factory Manifest for the factory being built; the Implementation section always shows a Work Order, a verification contract, a sandbox policy, and model routes.
+After the quickstart, every implementation guide has exactly these sections in this order: **Problem · Architecture · Prerequisites · Lifecycle · Artifacts · Implementation · Security · Verification · Observability · Failure handling · Production considerations · Mission Control mapping · Related.** The Artifacts section carries a complete Factory Manifest for the factory being built; the Implementation section shows a Work Order, a verification contract, a sandbox policy, and model routes.
 
 ## The guides
 
 | Guide | Difficulty | Prerequisites | Time (illustrative) | Factory type (catalog) | Targets maturity |
 |---|---|---|---|---|---|
-| [Build your first factory](/guides/build-your-first-factory) | Beginner | One repository with a test suite; a control plane (Mission Control demo or equivalent); one Coding Harness | 1–2 days | Code Generation (bounded fix) | FDLC-L2 → L3 |
+| [Build your first factory: guided quickstart](/guides/build-your-first-factory) | Beginner | A browser; Git and Node.js are optional for the local demo | 10 minutes; 30–45 minutes with demo | Definition + governed-run walkthrough | Define / understand FDLC-L1 → L2 |
+| [Production bounded-fix factory blueprint](/guides/production-bounded-fix-factory) | Practitioner / Advanced | One repository with a test suite; a control plane; one Coding Harness; separate verifier; isolated sandbox | Multi-day, team-dependent | Code Generation (bounded fix) | FDLC-L2 → L3 |
 | [Issue tracker to PR factory](/guides/jira-to-pr-factory) | Practitioner | First factory done; tracker API access; GitHub App or equivalent publication identity | 1 week | Code Generation | FDLC-L3 |
 | [Code review factory](/guides/code-review-factory) | Practitioner | Read access to pull requests; a verifier factory identity | 3–5 days | Code Review (purpose VERIFICATION) | FDLC-L3 |
 | [Testing factory](/guides/testing-factory) | Practitioner | Coverage and mutation tooling in CI; criterion ids in specifications | 1 week | Test Generation | FDLC-L3 |
@@ -53,7 +54,7 @@ Times are illustrative planning estimates for a team that already operates CI an
 
 ## Reading order
 
-Start with the first factory whatever your target level. The dependency-upgrade guide reuses the specification's worked example (`INT-104`, `FV-depmod-1.0`) end to end and is the fastest way to see every artifact in one place. The multi-factory and platform guides assume the Delivery Loop and Factory Lifecycle are familiar and spend their length on registries, routing, integration verification, and fleet operation.
+Start with the guided quickstart whatever your target level. Use the production bounded-fix blueprint when you are ready to assemble real infrastructure. The dependency-upgrade guide reuses the specification's worked example (`INT-104`, `FV-depmod-1.0`) end to end and is the fastest way to see every artifact in one place. The multi-factory and platform guides assume the Delivery Loop and Factory Lifecycle are familiar and spend their length on registries, routing, integration verification, and fleet operation.
 
 ## Conventions
 

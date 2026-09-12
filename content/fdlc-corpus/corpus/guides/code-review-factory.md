@@ -54,7 +54,7 @@ flowchart TB
 
 | Need | Minimum |
 |---|---|
-| First factory | Control plane, harness adapter manifest, sandbox image ([/guides/build-your-first-factory](/guides/build-your-first-factory)). |
+| First factory | Control plane, harness adapter manifest, sandbox image ([/guides/production-bounded-fix-factory](/guides/production-bounded-fix-factory)). |
 | Pull-request access | A Git-provider App with Contents read, Pull requests read, and Pull requests write limited to comments. No review-approval permission. |
 | Rule sets | Versioned review rule sets (security, correctness, style) as Capability Manifests of kind `skill`. |
 | Probe toolchain | The repository's test runner and a way to run a single targeted test or script inside a read-only clone. |

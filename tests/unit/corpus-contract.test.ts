@@ -34,11 +34,14 @@ test("blocks executable URL schemes and rewrites only declared corpus routes", (
 });
 
 test("generated corpus contract is closed and collision-aware", () => {
-  assert.equal(corpusData.documents.length, 157);
+  assert.equal(corpusData.documents.length, 158);
   assert.deepEqual(corpusData.collisions, ["/about", "/architecture", "/benchmarks", "/enterprise", "/framework", "/in-5-minutes", "/mission-control", "/specification", "/start"]);
   assert.equal(new Set(corpusData.documents.map((document) => document.path)).size, corpusData.documents.length);
   assert.equal(corpusData.documents.flatMap((document) => document.links).filter((link) => link.kind === "missing" || link.kind === "unsafe").length, 0);
   assert.ok(corpusData.documents.every((document) => document.previewHref.startsWith("/corpus-preview/")));
+  for (const route of ["/guides/build-your-first-factory", "/guides/production-bounded-fix-factory"]) {
+    assert.ok(corpusData.documents.some((document) => document.path === route), route);
+  }
   assert.ok(Object.keys(corpusData.rawArtifacts).every((artifact) => !artifact.split("/").includes("..")));
 });
 

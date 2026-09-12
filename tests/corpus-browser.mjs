@@ -81,6 +81,15 @@ try {
     await page.getByRole("heading", { level: 1, name: "Verification-first engineering" }).waitFor();
     await audit(page, `document-${width}`);
     await page.screenshot({ path: new URL(`document-${width}.png`, output).pathname, fullPage: true });
+
+    await page.goto(`${origin}/corpus-preview/guides/build-your-first-factory`);
+    await page.getByRole("heading", { level: 1, name: "Build your first factory: guided quickstart" }).waitFor();
+    await page.getByRole("heading", { level: 2, name: "Choose your finish line" }).waitFor();
+    await page.getByText("Execute Code Review Wizard Automation", { exact: true }).waitFor();
+    assert.equal(await page.locator('a[href="https://fdlc.ai/start#factory-builder"]').getAttribute("href"), "https://fdlc.ai/start#factory-builder");
+    assert.equal(await page.getByRole("link", { name: "production bounded-fix factory blueprint" }).first().getAttribute("href"), "/corpus-preview/guides/production-bounded-fix-factory");
+    await audit(page, `first-factory-quickstart-${width}`);
+    await page.screenshot({ path: new URL(`first-factory-quickstart-${width}.png`, output).pathname, fullPage: true });
   }
 
   await page.setViewportSize({ width: 1440, height: 900 });
