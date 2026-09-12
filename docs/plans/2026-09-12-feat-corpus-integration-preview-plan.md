@@ -1,7 +1,7 @@
 ---
 title: "feat: Integrate the FDLC corpus as a verified preview"
 type: feat
-status: ready-for-local-review
+status: active
 date: 2026-09-12
 branch: codex/corpus-integration-preview
 base: origin/main@ff7b25f
@@ -18,9 +18,16 @@ This is intentionally a preview integration, not a canonical cutover. The branch
 
 ## Implementation status
 
-Implemented on `codex/corpus-integration-preview`. The final evidence and local commands are in `docs/reviews/2026-09-12-corpus-preview-validation.md`; the machine-readable corpus report is `docs/reviews/corpus-preview-verification.json`.
+The verified corpus pipeline is implemented on `codex/corpus-integration-preview`. The landing experience is now being revised from an audit inventory into a reader-first community hub. Evidence and local commands are in `docs/reviews/2026-09-12-corpus-preview-validation.md`; the machine-readable corpus report is `docs/reviews/corpus-preview-verification.json`.
 
-The preview implementation is green in Vinext and native Next webpack builds/runtimes, including both 13-check browser suites. The remaining unchecked items below are intentionally broader canonical-promotion work or proposed test-depth enhancements, not hidden prerequisites for local preview review. The default Turbopack Vercel build must still be run in a normal local/Vercel environment because this managed host denies Turbopack's internal worker port.
+The reader-first preview implementation is green in Vinext and native Next webpack builds/runtimes, including both 14-check browser suites. Those are producer-run automated checks, not Product Owner acceptance. The actual `npm run build:vercel` Turbopack target and the Local review checklist are explicit, separate merge gates and remain unchecked until they are genuinely completed.
+
+## Evidence ownership and merge gates
+
+- [x] Producer automation: verifier, unit, rendered, runtime, browser, accessibility, and fallback checks have reproducible artifacts.
+- [ ] Shipping build: `npm run build:vercel` must complete successfully after the final source change.
+- [ ] Product Owner acceptance: the Local review checklist must be completed by the Product Owner, not inferred from automated evidence.
+- [ ] Governance decisions: canonical route promotion and taxonomy qualification remain outside this preview merge.
 
 ## Problem statement
 
@@ -281,6 +288,21 @@ Start with split generated document artifacts if a centralized TypeScript module
 
 **Exit:** the user can check out the branch, reproduce validation, browse the preview, and make an informed merge/promotion decision.
 
+### Phase 6 — Make the preview useful to community readers
+
+- [x] Reframe the landing page around community outcomes instead of corpus mechanics.
+- [x] Add four manifest-backed learning paths for new readers, builders, platform/security teams, and organizational leaders.
+- [x] Add topic discovery and explain how the library helps readers learn, apply, and adopt FDLC.
+- [x] Extend the catalog with URL-addressable audience and level filters.
+- [x] Move verification evidence and corpus mechanics below the primary reader journey without hiding limitations.
+- [x] Add contract, rendered, and browser coverage for curated paths and richer filters.
+- [x] Rerun the complete supported gate after the final source change.
+- [x] Attempt `npm run build:vercel` as its own shipping gate and record the exact result prominently.
+- [ ] Obtain a successful `npm run build:vercel` result in a normal local or Vercel environment.
+- [x] Capture final desktop and mobile screenshots for Product Owner review.
+
+**Exit:** the branch is a technically qualified merge candidate for a noindex preview; Product Owner visual acceptance remains explicitly unclaimed.
+
 ## Acceptance criteria
 
 ### Functional
@@ -380,7 +402,7 @@ Rejected as the final outcome. It is low risk but does not let the Product Owner
 | Risk | Impact | Mitigation |
 |---|---|---|
 | Central generated module is too large | Slow build or oversized bundles | Measure early; split per-document artifacts and keep catalog metadata-only |
-| Vinext and Next disagree | Preview works in one target only | Treat both build/runtime suites as required gates |
+| Vinext, Next webpack, and the shipping Turbopack target disagree | Preview works in a test runtime but fails where it ships | Report all three separately; `npm run build:vercel` is a hard merge gate |
 | Renderer/verifier anchors drift | Green report, broken fragments | One shared heading/link contract and browser fragment tests |
 | Semantic cleanup changes canon silently | Incorrect normative guidance | Inventory first; change only proven cases; Product Owner decides unresolved items |
 | Mermaid blocks reading | Blank/broken documents | Lazy client boundary, strict mode, source fallback, per-diagram errors |

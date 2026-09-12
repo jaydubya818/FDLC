@@ -1,8 +1,8 @@
 export function CorpusStatus({ compact = false }: { compact?: boolean }) {
   return (
     <aside className={`corpus-status${compact ? " is-compact" : ""}`} aria-label="Corpus preview status">
-      <strong>Draft corpus preview</strong>
-      {!compact && <p>This material is under review. It is not the canonical FDLC site or a qualified standard release.</p>}
+      <strong>{compact ? "Draft corpus preview" : "Review candidate — not FDLC canon"}</strong>
+      {!compact && <p>Explore and test this material while it is reviewed. Existing FDLC pages remain authoritative until individual routes are approved for promotion.</p>}
     </aside>
   );
 }

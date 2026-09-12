@@ -72,7 +72,8 @@ try {
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
     await page.goto(`${origin}/corpus-preview`);
-    await page.getByRole("heading", { name: "Review the corpus before it becomes the site." }).waitFor();
+    await page.getByRole("heading", { name: "Find the guidance you need to build a trustworthy software factory." }).waitFor();
+    await page.getByRole("heading", { name: "Choose a path through FDLC." }).waitFor();
     await audit(page, `catalog-${width}`);
     await page.screenshot({ path: new URL(`catalog-${width}.png`, output).pathname, fullPage: true });
 
@@ -84,16 +85,17 @@ try {
 
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(`${origin}/corpus-preview`);
-  assert.equal(await page.locator(".corpus-results > li").count(), 24);
-  await page.getByRole("button", { name: "Show 24 more" }).click();
-  assert.equal(await page.locator(".corpus-results > li").count(), 48);
+  assert.equal(await page.locator(".corpus-journey").count(), 4);
+  assert.equal(await page.locator(".corpus-journey a").count(), 14);
+  assert.equal(await page.locator(".corpus-results > li").count(), 9);
+  await page.getByRole("button", { name: "Show 9 more" }).click();
+  assert.equal(await page.locator(".corpus-results > li").count(), 18);
   report.checks.push({ label: "catalog-progressive-disclosure", result: "PASS" });
 
   await page.getByLabel("Collection").selectOption("architecture");
-  await page.waitForURL(/collection=architecture/);
   await page.getByLabel("Search titles and metadata").fill("verification");
   await page.getByRole("button", { name: "Apply filters" }).click();
-  await page.waitForURL(/q=verification/);
+  await page.waitForURL(/collection=architecture.*q=verification/);
   assert.ok(await page.locator(".corpus-results a").count() > 0);
   await page.locator(".corpus-results a").first().click();
   await page.getByRole("link", { name: "Corpus catalog" }).first().click();
@@ -101,6 +103,16 @@ try {
   assert.match(page.url(), /collection=architecture/);
   assert.match(page.url(), /q=verification/);
   report.checks.push({ label: "url-addressable-filter-and-return", result: "PASS" });
+
+  await page.goto(`${origin}/corpus-preview`);
+  await page.getByLabel("Audience").selectOption("builder");
+  await page.getByLabel("Depth").selectOption("beginner");
+  await page.getByRole("button", { name: "Apply filters" }).click();
+  await page.waitForURL(/audience=builder.*level=beginner/);
+  assert.equal(await page.getByLabel("Audience").inputValue(), "builder");
+  assert.equal(await page.getByLabel("Depth").inputValue(), "beginner");
+  assert.ok(await page.locator(".corpus-results a").count() > 0);
+  report.checks.push({ label: "audience-and-depth-filters", result: "PASS" });
 
   await page.goto(`${origin}/corpus-preview?q=definitely-no-matching-document`);
   await page.getByRole("heading", { name: "No document matches those filters." }).waitFor();

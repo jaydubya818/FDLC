@@ -15,9 +15,18 @@ test("corpus preview renders a noindex catalog without entering the public sitem
   const response = await render("/corpus-preview");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Review the corpus before it becomes the site/i);
-  assert.match(html, /157<\/strong>.*Routed from front matter/is);
-  assert.match(html, /Draft corpus preview/i);
+  assert.match(html, /Find the guidance you need to build a trustworthy software factory/i);
+  assert.match(html, /Choose a path through FDLC/i);
+  assert.match(html, /What the library gives the community/i);
+  assert.match(html, /Search the full library/i);
+  assert.match(html, /157<\/strong>.*Manifest-backed routes/is);
+  assert.match(html, /Review candidate.*not FDLC canon/i);
+  for (const href of [
+    "/corpus-preview/start",
+    "/corpus-preview/guides/build-your-first-factory",
+    "/corpus-preview/architecture/authority",
+    "/corpus-preview/enterprise/adoption",
+  ]) assert.match(html, new RegExp(`href="${href}"`));
   assert.match(html, /name="robots" content="noindex, nofollow/i);
   const sitemap = await (await render("/sitemap.xml")).text();
   assert.doesNotMatch(sitemap, /corpus-preview/);
