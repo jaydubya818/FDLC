@@ -142,6 +142,28 @@ test("full Operator Cockpit has no WCAG A or AA axe violations", async ({
   await expectNoAccessibilityViolations(page);
 });
 
+test("desktop cockpit brand lockup stays inside the navigation rail", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 960 });
+  await openAcmeEngagement(page);
+
+  const descriptor = page.getByText("Factory Definition cockpit", {
+    exact: true,
+  });
+  await expect(descriptor).toBeVisible();
+  expect(
+    await descriptor.evaluate((element) => {
+      const rail = element.closest("aside");
+      if (!rail) return false;
+
+      const descriptorBounds = element.getBoundingClientRect();
+      const railBounds = rail.getBoundingClientRect();
+      return descriptorBounds.right <= railBounds.right - 16;
+    }),
+  ).toBe(true);
+});
+
 test("cockpit landmarks, disclosures, and scroll regions are keyboard reachable", async ({
   page,
 }) => {
