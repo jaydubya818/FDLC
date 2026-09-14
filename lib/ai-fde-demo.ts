@@ -8,6 +8,7 @@ function hostWithoutProtocol(value: string | undefined) {
   return value.replace(/^https?:\/\//, "").replace(/\/$/, "");
 }
 
+/** Prefer VERCEL_BRANCH_URL: unique Preview hosts are not shared across the FDLC and AI-FDE projects. */
 export function syntheticDemoHref(
   vercelEnv = process.env.VERCEL_ENV,
   vercelHost = process.env.VERCEL_BRANCH_URL ?? process.env.VERCEL_URL,
