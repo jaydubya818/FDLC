@@ -47,7 +47,6 @@ test("declares the default app, package names, and production development fallba
   assert.deepEqual(Object.keys(microfrontends.applications), [
     "fdlc",
     "ai-software-factory-mastery",
-    "ai-fde",
   ]);
   assert.deepEqual(microfrontends.applications.fdlc, {
     packageName: "fdlc-site",
@@ -84,13 +83,6 @@ test("declares the default app, package names, and production development fallba
       },
     ],
   );
-  const aiFdeApplication = microfrontends.applications["ai-fde"];
-  assert.equal(aiFdeApplication.packageName, "@ai-fde/operator-cockpit");
-  assert.deepEqual(aiFdeApplication.development, { fallback: "https://ai-fde-agent.vercel.app" });
-  assert.ok("routing" in aiFdeApplication);
-  assert.deepEqual(aiFdeApplication.routing, [
-    { group: "ai-fde", paths: ["/deploy/app", "/deploy/app/:path*"] },
-  ]);
 });
 
 test("routes the shared-domain contract to the intended Vercel projects", () => {
@@ -118,29 +110,36 @@ test("routes the shared-domain contract to the intended Vercel projects", () => 
         "/glossary",
         "/atlas",
       ],
-      "ai-fde": ["/deploy/app", "/deploy/app/engagements/demo-engagement"],
     }),
   );
 });
 
-test("keeps the AI-FDE marketing handoff and child build on one exact prefix", () => {
+test("keeps the AI-FDE handoff and independent child behind one narrow proxy prefix", () => {
   const deployPage = readFileSync("app/deploy/page.tsx", "utf8");
   const childConfig = readFileSync("products/ai-fde/apps/web/next.config.ts", "utf8");
   const productContract = readFileSync("products/ai-fde/apps/web/lib/product.ts", "utf8");
   const childPackage = JSON.parse(readFileSync("products/ai-fde/apps/web/package.json", "utf8"));
   const childVercel = JSON.parse(readFileSync("products/ai-fde/apps/web/vercel.json", "utf8"));
+  const rootVercel = JSON.parse(readFileSync("vercel.json", "utf8"));
 
   assert.match(deployPage, /href="\/deploy\/app"/);
   assert.doesNotMatch(deployPage, /ai-fde-agent\.vercel\.app/);
   assert.match(childConfig, /const appBasePath = "\/deploy\/app"/);
   assert.match(childConfig, /basePath: appBasePath/);
-  assert.match(childConfig, /withMicrofrontends\(nextConfig\)/);
-  assert.equal(childPackage.dependencies["@vercel/microfrontends"], "2.4.0");
-  assert.match(childPackage.scripts.build, /^VC_MICROFRONTENDS_CONFIG=\.\.\/\.\.\/\.\.\/\.\.\/microfrontends\.json next build --webpack$/);
+  assert.doesNotMatch(childConfig, /withMicrofrontends/);
+  assert.equal(childPackage.dependencies["@vercel/microfrontends"], undefined);
+  assert.equal(childPackage.scripts.build, "next build --webpack");
   assert.match(productContract, /export const APP_BASE_PATH = "\/deploy\/app"/);
   assert.match(childVercel.buildCommand, /NEXT_PUBLIC_AI_FDE_HOSTED_DEMO=true/);
   assert.match(childVercel.buildCommand, /NEXT_PUBLIC_AI_FDE_API_URL=https:\/\/api\.ai-fde\.invalid\/api/);
   assert.equal(childVercel.git.deploymentEnabled.main, false);
+  assert.deepEqual(rootVercel.rewrites, [
+    {
+      source: "/deploy/app/:path*",
+      destination: "https://ai-fde-fdlc-preview.vercel.app/deploy/app/:path*",
+    },
+  ]);
+  assert.equal(rootVercel.git.deploymentEnabled.main, false);
 });
 
 test("limits the retired Guide-host guard to its two colliding routes", () => {

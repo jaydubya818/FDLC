@@ -34,18 +34,6 @@
           ]
         }
       ]
-    },
-    "ai-fde": {
-      "packageName": "@ai-fde/operator-cockpit",
-      "development": {
-        "fallback": "https://ai-fde-agent.vercel.app"
-      },
-      "routing": [
-        {
-          "group": "ai-fde",
-          "paths": ["/deploy/app", "/deploy/app/:path*"]
-        }
-      ]
     }
   }
 }

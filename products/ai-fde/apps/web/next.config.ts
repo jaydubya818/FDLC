@@ -1,6 +1,5 @@
 import path from "node:path";
 
-import { withMicrofrontends } from "@vercel/microfrontends/next/config";
 import type { NextConfig } from "next";
 
 const usesPlatformRuntime = process.env.VERCEL === "1";
@@ -87,4 +86,4 @@ const nextConfig: NextConfig = {
       }),
 };
 
-export default withMicrofrontends(nextConfig);
+export default nextConfig;

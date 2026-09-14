@@ -2,6 +2,12 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "buildCommand": "npm run build:vercel",
+  "rewrites": [
+    {
+      "source": "/deploy/app/:path*",
+      "destination": "https://ai-fde-fdlc-preview.vercel.app/deploy/app/:path*"
+    }
+  ],
   "git": {
     "deploymentEnabled": {
       "main": false

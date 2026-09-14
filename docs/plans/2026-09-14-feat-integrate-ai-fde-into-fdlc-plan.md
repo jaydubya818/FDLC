@@ -119,7 +119,7 @@ Keep the FDLC root npm toolchain and AI-FDE's uv/pnpm toolchains explicit. Do no
 ## Milestone B — AI-FDE becomes usable from FDLC
 
 - [x] Make the AI-FDE web app prefix-native beneath `/deploy/app`; verify Links, router navigation, forms, return URLs, errors, assets, callbacks, refresh, deep links, 404, logout, and back/forward.
-- [ ] Add AI-FDE to the root Microfrontends configuration with schema validation, reviewed content digest, exact route ownership, Preview composition, independent deployment, and paired rollback.
+- [x] Proxy the exact `/deploy/app/:path*` namespace to an independently deployed AI-FDE child through a stable Preview alias; keep the paid Microfrontends group limited to the existing Guide applications and preserve paired rollback by moving the alias only after child qualification.
 - [x] Preserve the synthetic adapter's zero live API calls, zero customer data, zero Production credentials, zero model calls, zero Mission Control writes, invalid fallback origin, explicit simulated labels, and fail-the-build safety configuration.
 - [x] Align the cockpit to the FDLC logo, paper/surface/ink/green/amber tokens, semantic states, typography hierarchy, buttons, focus, borders, and spacing through a versioned/shared token contract.
 - [x] Preserve operational density and a compact AI-FDE shell with a clear return to FDLC; do not flatten the cockpit into a marketing page.
@@ -151,7 +151,7 @@ Keep the FDLC root npm toolchain and AI-FDE's uv/pnpm toolchains explicit. Do no
 - Preserve `git.deploymentEnabled.main = false`.
 - Source merge does not authorize Production.
 - Keep the AI-FDE child and FDLC shell independently controlled.
-- For any later authorized Production release: produce and verify exact child → produce and verify exact shell/composition → promote child → promote composition → verify `/deploy` and `/deploy/app` → observe → retain the exact compatible rollback pair.
+- For any later authorized Production release: produce and verify exact child → bind a production AI-FDE origin in an explicit release change → produce and verify exact shell/proxy → promote child → promote shell → verify `/deploy` and `/deploy/app` → observe → retain the exact compatible rollback pair.
 - Rollback must restore both the compatible routing/config digest and compatible child application. Never roll back only one side of an incompatible pair.
 
 ## Deferred
