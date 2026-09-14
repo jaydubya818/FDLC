@@ -100,11 +100,17 @@ jobs:
           < docker/postgres/init/001-roles.sql
       - name: Start and wait for MinIO
         run: |
+          minio_image="quay.io/minio/minio@sha256:46b3009bf7041eefbd90bd0d2b38c6ddc24d20a35d609551a1802c558c1c958f"
+          for pull_attempt in {1..3}; do
+            if docker pull "${minio_image}"; then break; fi
+            if [[ "${pull_attempt}" == "3" ]]; then exit 1; fi
+            sleep 10
+          done
           docker run --detach --name ai-fde-ci-minio \
             --publish 59000:9000 \
             --env MINIO_ROOT_USER=ai-fde-dev \
             --env MINIO_ROOT_PASSWORD=ai-fde-dev-secret \
-            quay.io/minio/minio@sha256:46b3009bf7041eefbd90bd0d2b38c6ddc24d20a35d609551a1802c558c1c958f server /data
+            "${minio_image}" server /data
           for _attempt in {1..30}; do
             if curl --fail --silent http://localhost:59000/minio/health/live >/dev/null; then exit 0; fi
             sleep 2

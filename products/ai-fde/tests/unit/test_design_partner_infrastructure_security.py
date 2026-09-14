@@ -78,6 +78,16 @@ def test_ci_validates_terraform_offline_with_immutable_tooling() -> None:
     assert "docker run --rm --entrypoint sha256sum" in containers
 
 
+def test_ci_retries_the_immutable_minio_pull_without_falling_back_to_a_tag() -> None:
+    workflow = _read(REPOSITORY_ROOT / ".github" / "workflows" / "ai-fde-ci.yml")
+    minio = _workflow_step(workflow, "Start and wait for MinIO")
+
+    assert "for pull_attempt in {1..3}" in minio
+    assert 'docker pull "${minio_image}"' in minio
+    assert "quay.io/minio/minio@sha256:46b3009bf7041eef" in minio
+    assert "minio/minio:RELEASE" not in minio
+
+
 def test_worker_has_no_public_https_egress_and_uses_only_private_service_boundaries() -> None:
     network = _read(TERRAFORM / "network.tf")
     ecs = _read(TERRAFORM / "ecs.tf")
