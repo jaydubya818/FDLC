@@ -13,6 +13,7 @@ const eslintConfig = defineConfig([
     ".vercel/**",
     "dist/**",
     "packages/fab/dist/**",
+    "products/ai-fde/**",
     "out/**",
     "build/**",
     "next-env.d.ts",

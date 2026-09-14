@@ -45,7 +45,7 @@ test("keeps the homepage factory explorer complete and internally linked", () =>
 });
 
 test("keeps ecosystem roles and status boundaries stable", () => {
-  assert.deepEqual(ecosystemRoles.map((item) => item.role), ["Defines it.", "Demonstrates it.", "Teaches it.", "Applies it.", "Industrializes it."]);
+  assert.deepEqual(ecosystemRoles.map((item) => item.role), ["Defines it.", "Demonstrates it.", "Teaches it.", "Discovers and designs it.", "Industrializes it."]);
   assert.equal(ecosystemRoles.at(-1)?.status, "Proposed");
 });
 

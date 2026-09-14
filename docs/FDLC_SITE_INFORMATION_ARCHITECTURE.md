@@ -13,7 +13,7 @@ Every primary page reinforces four distinct views of one system:
 
 Governance, security, observability, and measurement are continuous controls across the factory lifecycle. They are not sequential stages.
 
-FDLC defines the discipline. Mission Control demonstrates it. The Guide teaches it. FDLC Deploy implements it in bounded customer environments. FDLC Enterprise is intended to industrialize proven patterns. The Specification will formalize interoperability. None replaces the FDLC framework itself.
+FDLC defines the discipline. The Guide teaches it. AI-FDE discovers how work happens and designs the governed Factory Definition with an accountable human Factory Deployed Engineer. Mission Control governs runtime qualification and execution. FDLC Enterprise is intended to industrialize proven patterns. The Specification will formalize interoperability. None replaces the FDLC framework itself.
 
 ## Sitemap and ownership
 
@@ -33,7 +33,8 @@ FDLC defines the discipline. Mission Control demonstrates it. The Guide teaches 
 | `/spec` | Preview a future formal, versioned specification | Implementers | Follow specification work | Mission Control schema + FDLC protocol | FDLC spec |
 | `/benchmarks` | Publish measurement philosophy and future methodology | Leaders, researchers | Review metrics | Guide economics/evals + brief | FDLC benchmarks |
 | `/enterprise` | Restrained future commercial governance path | Enterprise buyers | Become a design partner | Brief only; all capabilities future unless verified | Commercial |
-| `/deploy` | Explain readiness, lighthouse, and scale engagements | Buyers and implementation partners | Discuss a design partnership | Brief + Guide FDE/adoption content | Services |
+| `/deploy` | Explain AI-FDE, the human FDE, Factory Definition, and the Mission Control handoff | Buyers and implementation partners | Launch the synthetic demo or assess readiness | AI-FDE source + Guide adoption content | Product |
+| `/deploy/app` | Operate the AI-FDE evidence-to-definition workflow | Evaluators and authorized operators | Produce and review a Factory Definition | `products/ai-fde/apps/web` | Product application |
 
 Future versioned routes are reserved under `/spec/v1`, `/spec/v1/[entity]`, and optional `/guide/[edition]/...` redirects if editorial versioning becomes necessary.
 

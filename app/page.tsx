@@ -99,7 +99,7 @@ export default function Home() {
 
         <section className="content-section adoption-enterprise">
           <div><p className="section-label">Need help applying FDLC?</p><h2>Start with one bounded factory line.</h2></div>
-          <div><p>The Factory Deployed Engineer path helps teams assess readiness, prove one real workflow, and scale only what the evidence supports.</p><div className="hero-actions"><Link className="button button-dark" href="/deploy">Explore FDE</Link><Link className="text-action" href="/enterprise">Enterprise path →</Link></div></div>
+          <div><p>AI-FDE helps an accountable human Factory Deployed Engineer turn reviewed enterprise evidence into an approved Factory Definition for Mission Control validation.</p><div className="hero-actions"><Link className="button button-dark" href="/deploy">Explore AI-FDE</Link><Link className="text-action" href="/enterprise">Enterprise path →</Link></div></div>
         </section>
       </main>
       <SiteFooter />

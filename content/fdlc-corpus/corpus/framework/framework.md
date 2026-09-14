@@ -212,7 +212,7 @@ FDLC requires the artifacts, decisions, and boundaries above. Mission Control im
 | FDLC | Defines it | The open framework, specification, and reference architecture | Open framework |
 | Mission Control | Demonstrates it | The open-source reference implementation with capability boundaries visible | Available reference |
 | The Guide | Teaches it | The methodology and engineering practices from first principles through operation | Open methodology |
-| Factory Deployed Engineer (FDE) | Applies it | An engagement that assesses readiness, proves one bounded factory, and scales only what evidence supports | Design partnership |
+| AI-FDE | Discovers and designs it | The evidence-driven product that produces an approved Factory Definition with an accountable human Factory Deployed Engineer | Internal alpha; synthetic demo |
 | FDLC Enterprise | Industrializes it | The proposed commercial control plane for organizational scale | Proposed |
 
 The Framework remains the definition. Implementations, teaching material, and products support the discipline without becoming the category.

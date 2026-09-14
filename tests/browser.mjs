@@ -213,7 +213,7 @@ try {
     }
     await page.getByRole("button", { name: "Retake assessment" }).waitFor();
     assert.match(await page.locator(".assessment-result").innerText(), /Level 0/);
-    for (const name of ["Define one bounded factory line", "Use the Guide", "Explore FDE"]) assert.ok(await page.getByRole("link", { name }).isVisible());
+    for (const name of ["Define one bounded factory line", "Use the Guide", "Explore AI-FDE"]) assert.ok(await page.getByRole("link", { name }).isVisible());
     await audit("maturity-result");
     await page.screenshot({ path: new URL(`maturity-result-${width}.png`, output).pathname, fullPage: true });
     await page.getByRole("button", { name: "Retake assessment" }).click();
@@ -271,15 +271,15 @@ try {
     assert.equal(await definitionDetail.getAttribute("open"), null);
     await definitionDetail.locator("summary").click();
     assert.notEqual(await definitionDetail.getAttribute("open"), null);
-    assert.match(await definitionDetail.innerText(), /Intent.*outcome the factory exists to produce/is);
+    assert.match(await definitionDetail.innerText(), /Objective.*measurable outcome the factory should produce/is);
     await audit("factory-definition-component-open");
-    report.flows.push({ name: "fde-factory-definition-disclosure", width, result: "PASS" });
+    report.flows.push({ name: "ai-fde-factory-definition-disclosure", width, result: "PASS" });
 
     const fdeProductTour = page.getByLabel("Mission Control operator views");
     await fdeProductTour.getByRole("tab", { name: /Work Orders/ }).click();
     assert.match(await page.locator("#mc-product-panel").innerText(), /Keep scope, authority, and verification on one record/i);
     await audit("fde-customer-product-work-orders");
-    report.flows.push({ name: "fde-customer-product-tour", width, result: "PASS" });
+    report.flows.push({ name: "ai-fde-mission-control-boundary-tour", width, result: "PASS" });
 
     if (width === 390) {
       await page.getByLabel("Open navigation", { exact: true }).click();

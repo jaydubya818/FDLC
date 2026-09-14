@@ -200,7 +200,7 @@ FDLC.ai
 ├── FDLC Specification — formalizes interoperable artifacts
 ├── Mission Control — open-source reference implementation
 ├── AI Software Factory Guide — teaches the discipline
-├── FDLC Deploy — design-partner implementation services
+├── AI-FDE — evidence-driven Factory Definition product for the human Factory Deployed Engineer
 └── FDLC Enterprise — proposed commercial organizational control plane
 ```
 

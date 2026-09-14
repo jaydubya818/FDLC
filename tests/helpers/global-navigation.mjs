@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 
 const moreLabels = ["FDLC in 5 Minutes", "Learning Library (Preview)", "Manifesto", "Start", "Enterprise", "About"];
 const morePaths = ["/in-5-minutes", "/corpus-preview", "/manifesto", "/start", "/enterprise", "/about"];
-const primaryLabels = ["Framework", "Architecture", "Guide", "Mission Control", "FDE", "Maturity", "More"];
+const primaryLabels = ["Framework", "Architecture", "Guide", "Mission Control", "AI-FDE", "Maturity", "More"];
 
 export async function checkGlobalNavigation(page, { mobile, keyboard = false, touch = false }) {
   const header = page.locator("header").first();
