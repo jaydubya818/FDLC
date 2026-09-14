@@ -103,7 +103,7 @@ profile, so the development worker continues to use the application database rol
 validation rejects disabled heartbeats outside development or whenever sanitized data is enabled;
 production workers must use their release-scoped RDS IAM identity and keep heartbeats enabled.
 
-Open [http://localhost:3000](http://localhost:3000). Before presenting, run the automated rehearsal
+Open [http://localhost:3000/deploy/app](http://localhost:3000/deploy/app). Before presenting, run the automated rehearsal
 once on the same commit. Do not reuse the automated rehearsal's runtime: it intentionally cleans up
 when the test completes.
 

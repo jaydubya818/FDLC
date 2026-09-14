@@ -2,6 +2,16 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "buildCommand": "npm run build:vercel",
+  "rewrites": [
+    {
+      "source": "/deploy/app",
+      "destination": "https://ai-64p4dfzr2-jaydubya818.vercel.app/deploy/app"
+    },
+    {
+      "source": "/deploy/app/:path*",
+      "destination": "https://ai-64p4dfzr2-jaydubya818.vercel.app/deploy/app/:path*"
+    }
+  ],
   "git": {
     "deploymentEnabled": {
       "main": false

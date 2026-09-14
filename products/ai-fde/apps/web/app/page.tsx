@@ -19,7 +19,7 @@ import {
 } from "@/lib/api";
 import type { AuthenticatedOperator } from "@/lib/api";
 import type { Engagement, InternalAlphaScorecard } from "@/lib/types";
-import { PRODUCT } from "@/lib/product";
+import { APP_BASE_PATH, PRODUCT } from "@/lib/product";
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("en-US", {
@@ -117,7 +117,7 @@ export default function EngagementsPage() {
   }
 
   if (!loading && authenticationRequired) {
-    return <AuthenticationRequired returnTo="/" />;
+    return <AuthenticationRequired returnTo={APP_BASE_PATH} />;
   }
 
   return (
@@ -154,17 +154,18 @@ export default function EngagementsPage() {
 
       <section className="mx-auto grid max-w-[1240px] gap-14 pb-16 pt-20 lg:grid-cols-[1fr_0.78fr] lg:items-end lg:pt-28">
         <div>
-          <p className="eyebrow">FDLC Deploy · evidence-backed</p>
+          <p className="eyebrow">FDLC Deploy · AI-FDE</p>
           <h1 className="display-font mt-5 max-w-3xl text-5xl font-medium leading-[0.95] tracking-[-0.04em] md:text-7xl">
             {PRODUCT.conciseDescription}
           </h1>
         </div>
         <div className="max-w-xl lg:pb-2">
           <p className="text-base leading-7 text-[var(--ink-soft)]">
-            {PRODUCT.shortName} helps a human FDE turn source evidence into
-            verified operating intent, reproducible economics, and a
-            version-pinned implementation packet. Governed execution remains in
-            Mission Control.
+            AI-FDE helps the accountable human Factory Deployed Engineer turn
+            source evidence into a reviewable Factory Definition: verified
+            operating intent, economics, authority, and version-pinned
+            implementation inputs. Mission Control alone owns qualification,
+            execution evidence, and Factory Versions.
           </p>
           {hostedDemoEnabled && (
             <p className="mt-4 rounded-xl border border-[var(--amber)]/25 bg-[var(--amber-soft)] px-4 py-3 text-xs font-bold leading-5 text-[var(--amber)]">
@@ -291,7 +292,7 @@ export default function EngagementsPage() {
                   : alphaScorecard.comparison.reason}
               </p>
               <p className="mt-2 text-xs font-extrabold uppercase tracking-[0.08em]">
-                Factory Engineer completed operator cohort:{" "}
+                AI-FDE completed operator cohort:{" "}
                 {
                   alphaScorecard.comparison.methods.ai_fde
                     .completed_operator_assessment_count

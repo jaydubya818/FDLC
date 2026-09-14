@@ -114,6 +114,38 @@ test("routes the shared-domain contract to the intended Vercel projects", () => 
   );
 });
 
+test("keeps the AI-FDE handoff and independent child behind one narrow proxy prefix", () => {
+  const deployPage = readFileSync("app/deploy/page.tsx", "utf8");
+  const childConfig = readFileSync("products/ai-fde/apps/web/next.config.ts", "utf8");
+  const productContract = readFileSync("products/ai-fde/apps/web/lib/product.ts", "utf8");
+  const childPackage = JSON.parse(readFileSync("products/ai-fde/apps/web/package.json", "utf8"));
+  const childVercel = JSON.parse(readFileSync("products/ai-fde/apps/web/vercel.json", "utf8"));
+  const rootVercel = JSON.parse(readFileSync("vercel.json", "utf8"));
+
+  assert.match(deployPage, /href="\/deploy\/app"/);
+  assert.doesNotMatch(deployPage, /ai-fde-agent\.vercel\.app/);
+  assert.match(childConfig, /const appBasePath = "\/deploy\/app"/);
+  assert.match(childConfig, /basePath: appBasePath/);
+  assert.doesNotMatch(childConfig, /withMicrofrontends/);
+  assert.equal(childPackage.dependencies["@vercel/microfrontends"], undefined);
+  assert.equal(childPackage.scripts.build, "next build --webpack");
+  assert.match(productContract, /export const APP_BASE_PATH = "\/deploy\/app"/);
+  assert.match(childVercel.buildCommand, /NEXT_PUBLIC_AI_FDE_HOSTED_DEMO=true/);
+  assert.match(childVercel.buildCommand, /NEXT_PUBLIC_AI_FDE_API_URL=https:\/\/api\.ai-fde\.invalid\/api/);
+  assert.equal(childVercel.git.deploymentEnabled.main, false);
+  assert.deepEqual(rootVercel.rewrites, [
+    {
+      source: "/deploy/app",
+      destination: "https://ai-64p4dfzr2-jaydubya818.vercel.app/deploy/app",
+    },
+    {
+      source: "/deploy/app/:path*",
+      destination: "https://ai-64p4dfzr2-jaydubya818.vercel.app/deploy/app/:path*",
+    },
+  ]);
+  assert.equal(rootVercel.git.deploymentEnabled.main, false);
+});
+
 test("limits the retired Guide-host guard to its two colliding routes", () => {
   assert.deepEqual(proxyConfig.matcher, ["/", "/architecture"]);
 });

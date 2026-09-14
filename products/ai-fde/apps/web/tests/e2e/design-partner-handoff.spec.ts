@@ -854,7 +854,7 @@ test("a qualified sanitized partner publishes a governed package for human impor
     if (message.type() === "error") consoleErrors.push(message.text());
   });
 
-  await page.goto(`/engagements/${ENGAGEMENT_ID}`);
+  await page.goto(`/deploy/app/engagements/${ENGAGEMENT_ID}`);
   await expect(
     page.getByRole("heading", { level: 1, name: engagement.name }),
   ).toBeVisible();

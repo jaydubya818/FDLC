@@ -228,9 +228,9 @@ export function DataLifecycleWorkspace({
                 <ShieldIcon className="h-6 w-6 text-[var(--teal)]" />
               </div>
               <p className="mt-4 text-xs leading-5 text-[var(--ink-soft)]">
-                Factory Engineer does not assume a contractual retention period.
-                Once a deadline is recorded, V1 can extend it but cannot
-                silently shorten it.
+                AI-FDE does not assume a contractual retention period. Once a
+                deadline is recorded, V1 can extend it but cannot silently
+                shorten it.
               </p>
               {owner ? (
                 <form className="mt-5 grid gap-3" onSubmit={handleRetention}>
@@ -399,9 +399,8 @@ export function DataLifecycleWorkspace({
                       }
                       type="checkbox"
                     />
-                    I understand that Factory Engineer cannot restore the
-                    deleted customer content from its databases or object
-                    storage.
+                    I understand that AI-FDE cannot restore the deleted customer
+                    content from its databases or object storage.
                   </label>
                   <button
                     className="justify-self-start rounded-full bg-[var(--red)] px-5 py-3 text-xs font-extrabold text-white disabled:cursor-not-allowed disabled:opacity-40"

@@ -163,7 +163,7 @@ jobs:
           web_pid=$!
           trap 'kill "${web_pid}"' EXIT
           for attempt in {1..60}; do
-            if curl --fail --silent http://127.0.0.1:3000 >/dev/null; then break; fi
+            if curl --fail --silent http://127.0.0.1:3000/deploy/app >/dev/null; then break; fi
             if [[ "${attempt}" == "60" ]]; then cat /tmp/ai-fde-web.log; exit 1; fi
             sleep 1
           done

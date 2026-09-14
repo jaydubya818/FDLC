@@ -62,7 +62,7 @@ test("synthetic Acme reaches the governed package-retrieval boundary", async ({
     }
   });
 
-  const landingResponse = await page.goto("/");
+  const landingResponse = await page.goto("/deploy/app");
   expect(landingResponse).not.toBeNull();
   const landingHeaders = landingResponse!.headers();
   expect(landingHeaders["content-security-policy"]).toContain(
@@ -73,11 +73,11 @@ test("synthetic Acme reaches the governed package-retrieval boundary", async ({
   expect(landingHeaders["referrer-policy"]).toBe("no-referrer");
   await expect(page.getByText("Checking operator session")).toBeHidden();
   await expect(page.getByText("Loading engagements…")).toBeHidden();
-  await expect(page).toHaveTitle("Factory Engineer · FDLC");
+  await expect(page).toHaveTitle("AI-FDE · FDLC");
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "Turn enterprise reality into a deployable software factory.",
+      name: "Define the factory before Mission Control runs it.",
     }),
   ).toBeVisible();
   const ecosystemNavigation = page.getByRole("navigation", {
@@ -85,13 +85,13 @@ test("synthetic Acme reaches the governed package-retrieval boundary", async ({
   });
   await expect(
     ecosystemNavigation.getByRole("link", { name: /Framework/ }),
-  ).toHaveAttribute("href", "https://fdlc.ai/framework");
+  ).toHaveAttribute("href", "/framework");
   await expect(
     ecosystemNavigation.getByRole("link", { name: /^Guide/ }),
-  ).toHaveAttribute("href", "https://ai-software-factory-mastery.vercel.app");
+  ).toHaveAttribute("href", "/guide");
   await expect(
     ecosystemNavigation.getByRole("link", { name: /Mission Control/ }),
-  ).toHaveAttribute("href", "https://fdlc.ai/mission-control");
+  ).toHaveAttribute("href", "/mission-control");
 
   const engagementLink = page
     .getByRole("link", {
@@ -100,7 +100,19 @@ test("synthetic Acme reaches the governed package-retrieval boundary", async ({
     .last();
   await expect(engagementLink).toContainText("synthetic");
   await engagementLink.click();
+  await expect(page).toHaveURL(/\/deploy\/app\/engagements\//);
 
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Acme Manufacturing" }),
+  ).toBeVisible();
+  await page.goBack();
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: "Define the factory before Mission Control runs it.",
+    }),
+  ).toBeVisible();
+  await page.goForward();
   await expect(
     page.getByRole("heading", { level: 1, name: "Acme Manufacturing" }),
   ).toBeVisible();
@@ -197,7 +209,7 @@ test("synthetic Acme reaches the governed package-retrieval boundary", async ({
 
   await page.getByRole("button", { name: "Approve customer model v1" }).click();
   await expect(
-    page.getByText("Customer Factory Model v1 was approved"),
+    page.getByText("Factory Definition source model v1 was approved"),
   ).toBeVisible();
 
   await page.getByRole("button", { name: "Assess opportunity" }).click();
@@ -271,9 +283,7 @@ test("synthetic Acme reaches the governed package-retrieval boundary", async ({
   await page.screenshot({ path: screenshotPath });
 
   expect(apiRequests, "hosted demo API requests").toEqual([]);
-  expect(failedApiResponses, "Factory Engineer API responses").toEqual([]);
-  expect(failedApiRequests, "Factory Engineer API request failures").toEqual(
-    [],
-  );
+  expect(failedApiResponses, "AI-FDE API responses").toEqual([]);
+  expect(failedApiRequests, "AI-FDE API request failures").toEqual([]);
   expect(consoleErrors, "browser console errors").toEqual([]);
 });
