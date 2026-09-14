@@ -17,7 +17,7 @@ Adding a third project to the managed Vercel Microfrontends group would add a $2
 
 - Keep managed Microfrontends unchanged for FDLC and the Guide.
 - Route only `/deploy/app/:path*` through a Vercel external rewrite.
-- Pin Preview to the qualified immutable child deployment `dpl_5dZYnmLEixasnyXjzQki6KDedHox` (`ai-64p4dfzr2-jaydubya818.vercel.app`).
+- Pin Preview to the qualified immutable child deployment `dpl_GKGuLiaoyDhULK6rrfSj9o76nKrD` (`ai-pvrsq6rnm-jaydubya818.vercel.app`), which includes the verified cockpit brand-lockup correction.
 - Keep the FDLC Preview protected. Expose only the browser-local AI-FDE synthetic Preview so the platform rewrite can retrieve it without an authentication redirect; its Vercel build is locked to the invalid API origin, makes no live API or model calls, contains no customer data or Production credentials, and remains `noindex`.
 - Keep `git.deploymentEnabled.main=false` for both projects; merge remains distinct from Production release.
 - Treat the pinned child URL and FDLC shell deployment as a qualified pair. Roll back by restoring the prior compatible shell deployment; its rewrite remains bound to the prior child.
