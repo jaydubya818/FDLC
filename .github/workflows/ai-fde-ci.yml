@@ -100,7 +100,7 @@ jobs:
           < docker/postgres/init/001-roles.sql
       - name: Start and wait for MinIO
         run: |
-          minio_image="quay.io/minio/minio@sha256:46b3009bf7041eefbd90bd0d2b38c6ddc24d20a35d609551a1802c558c1c958f"
+          minio_image="cgr.dev/chainguard/minio@sha256:ad4a4c0a39ad7b71408124fe3df07b1b2e9d2959a369fac8754d2ef3311b5c20"
           for pull_attempt in {1..3}; do
             if docker pull "${minio_image}"; then break; fi
             if [[ "${pull_attempt}" == "3" ]]; then exit 1; fi

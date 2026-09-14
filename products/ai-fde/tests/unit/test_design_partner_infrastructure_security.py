@@ -84,7 +84,7 @@ def test_ci_retries_the_immutable_minio_pull_without_falling_back_to_a_tag() -> 
 
     assert "for pull_attempt in {1..3}" in minio
     assert 'docker pull "${minio_image}"' in minio
-    assert "quay.io/minio/minio@sha256:46b3009bf7041eef" in minio
+    assert "cgr.dev/chainguard/minio@sha256:ad4a4c0a39ad7b71" in minio
     assert "minio/minio:RELEASE" not in minio
 
 

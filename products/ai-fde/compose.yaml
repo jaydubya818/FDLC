@@ -20,7 +20,7 @@ services:
       start_period: 5s
 
   minio:
-    image: quay.io/minio/minio@sha256:46b3009bf7041eefbd90bd0d2b38c6ddc24d20a35d609551a1802c558c1c958f
+    image: cgr.dev/chainguard/minio@sha256:ad4a4c0a39ad7b71408124fe3df07b1b2e9d2959a369fac8754d2ef3311b5c20
     command: server /data --console-address ":9001"
     environment:
       MINIO_ROOT_USER: ai-fde-dev
