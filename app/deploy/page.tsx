@@ -6,6 +6,7 @@ import { SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { factoryDefinitionConcerns, missionControlHandoffBoundary } from "../../data/ai-fde";
 import { pageHandoffs } from "../../data/page-handoffs";
+import { syntheticDemoHref } from "../../lib/ai-fde-demo";
 import { pageMetadata } from "../../lib/metadata";
 import { FdeIcon } from "./fde-icon";
 import {
@@ -42,7 +43,7 @@ export default function DeployPage() {
               <span>A governed bridge from enterprise source evidence to inspectable implementation intent.</span>
             </div>
             <div className="hero-actions">
-              <a className="button button-dark" href="https://ai-fde-agent.vercel.app" rel="noreferrer" target="_blank">Launch synthetic demo <span aria-hidden="true">↗</span></a>
+              <a className="button button-dark" href={syntheticDemoHref()} rel="noreferrer" target="_blank">Launch synthetic demo <span aria-hidden="true">↗</span></a>
               <a className="button button-light" href="#how-ai-fde-works">See how AI-FDE works</a>
               <Link className="text-action" href="/maturity">Assess readiness <span aria-hidden="true">→</span></Link>
               <Link className="text-action" href="/start">Build a Factory Definition <span aria-hidden="true">→</span></Link>

@@ -407,6 +407,8 @@ test("AI-FDE publishes the product model and its synthetic boundary", async () =
   assert.match(html, /Live qualification.*Not activated/is);
   assert.match(html, /Live model calls.*0/is);
   assert.match(html, /AI-FDE may.*prepare qualification material.*AI-FDE may not.*create a Factory Version.*Mission Control owns.*Factory Version qualification/is);
+  assert.match(html, /href=["']https:\/\/ai-fde-agent\.vercel\.app["'][^>]*>Launch synthetic demo/i);
+  assert.doesNotMatch(html, /ai-software-factory-mastery\.vercel\.app/i);
   assert.doesNotMatch(html, /083665737366|calm-buffalo-854|dpl_BHi24iX4NmZZ8WNyuspDHaYg5DX2/i);
   assert.match(html, /Synthetic qualification is not live operational proof/is);
   assert.match(html, /href=["']\/deploy["'][^>]*>AI-FDE</i);
