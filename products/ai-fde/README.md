@@ -1,16 +1,16 @@
-# FDLC Factory Deployed Engineer
+# AI-FDE — AI Factory Deployed Engineer
 
 ## Turn enterprise reality into a deployable software factory
 
-The **FDLC Factory Deployed Engineer**, or **Factory Engineer**, is the evidence-backed operating workspace for a human Factory Deployed Engineer. It turns fragmented enterprise source evidence into a verified operating model, helps redesign a workflow, quantifies the business case, and produces a version-pinned implementation packet for engineering.
+**AI-FDE** is the evidence-backed operating workspace for an accountable human Factory Deployed Engineer. It turns fragmented enterprise source evidence into a reviewed operating model, helps redesign a workflow, quantifies the business case, and produces an approved, digest-bound Factory Definition for Mission Control validation.
 
-The repository and internal compatibility identifiers remain **AI-FDE** where renaming would add migration risk.
+The product is AI-FDE. A **Factory Deployed Engineer (FDE)** is the human who owns architecture, judgment, authority, adoption, and outcomes. Internal `ai_fde`, `AI_FDE_*`, and historical Factory Engineer identifiers remain compatibility names where broad renaming would add migration risk.
 
 The project explores a core problem in AI-native delivery:
 
 > Before autonomous agents can safely build or automate a business workflow, the system needs trustworthy implementation intent.
 
-Factory Engineer is the governed layer between messy enterprise reality and downstream execution.
+AI-FDE is the governed product boundary between messy enterprise reality and downstream qualification. Mission Control remains the governed execution boundary.
 
 ```text
 Source evidence
@@ -23,15 +23,15 @@ Source evidence
   → reproducible economics
   → ranked factory opportunities
   → explainable FDLC readiness
-  → approved immutable deployment package
-  → authenticated Mission Control handoff
+  → approved Factory Definition
+  → typed Mission Control validation request
 ```
 
 ## Why this matters
 
 Enterprise AI projects rarely fail because a model cannot generate code. They fail because implementation begins from incomplete context, undocumented exceptions, weak economics, unclear authority, or requirements that were never verified against how the business actually operates.
 
-Factory Engineer is designed to make that discovery-to-delivery path **repeatable, auditable, evidence-backed, and measurable**.
+AI-FDE is designed to make that discovery-to-delivery path **repeatable, auditable, evidence-backed, and measurable**.
 
 ## What the system does
 
@@ -51,7 +51,7 @@ Factory Engineer is designed to make that discovery-to-delivery path **repeatabl
 
 A coding agent can implement a precise specification that is precisely wrong.
 
-Factory Engineer therefore keeps four things separate:
+AI-FDE therefore keeps four things separate:
 
 1. **Source evidence** — what customer material actually says
 2. **Inference** — what AI proposes from that evidence
@@ -75,20 +75,20 @@ That separation creates a safer bridge from enterprise discovery to AI-native en
 
 ## Relationship to autonomous software delivery
 
-Factory Engineer, the [FDLC Framework](https://fdlc.ai/framework), the [AI Software Factory Guide](https://ai-software-factory-mastery.vercel.app), and [Mission Control](https://fdlc.ai/mission-control) solve different layers of the same broader problem.
+AI-FDE, the [FDLC Framework](https://fdlc.ai/framework), the [AI Software Factory Guide](https://fdlc.ai/guide), and [Mission Control](https://fdlc.ai/mission-control) solve different layers of the same broader problem.
 
-**Factory Engineer** turns uncertain enterprise evidence into governed implementation intent.
+**AI-FDE** turns uncertain enterprise evidence into governed implementation intent under human FDE review.
 
 **Mission Control** turns governed implementation intent into bounded agent execution, verification, evidence, pull requests, and human decisions.
 
 ```text
 Enterprise evidence
       ↓
-Factory Engineer
+AI-FDE + human FDE review
       ↓
-Verified implementation intent
+Approved Factory Definition
       ↓
- Mission Control / Software Factory
+Mission Control validation and qualification
       ↓
 Bounded agent execution
       ↓
@@ -109,11 +109,11 @@ The repository does not claim production readiness or realized customer ROI. Cur
 
 [Open the current production demonstration](https://ai-fde-agent.vercel.app).
 
-The production alias runs the verified Phase 2 hosted demo from revision `196ab3a`. It adds factory-opportunity comparison and selection, seven-stage FDLC readiness, digest-bound package approval/publication, and a simulated Mission Control retrieval to the explicitly labeled, deterministic, synthetic operator workflow. The release was promoted and acceptance-tested on 2026-09-04; see the [Phase 2 production promotion record](docs/fdlc-factory-engineer/phase-2/production-promotion-2026-09-04.md).
+The alias runs the explicitly labeled, deterministic, synthetic operator workflow. Source revision `21305bbdb64b86bade75f4673d3e1a8233a2922e` passed the full trust, contract, build, browser, accessibility, and design-partner gates on 2026-09-14 before the subtree import. This qualifies that exact source revision; it does not qualify later FDLC changes or live operation.
 
 Demo state is stored in the evaluator's browser. It can be reset by clearing site data. The hosted demo makes no model call, accepts no customer data, and does not claim live PostgreSQL isolation, Auth0 validation, a persistent worker, AWS object storage, Bedrock extraction, or production readiness. Those capabilities remain on the real FastAPI deployment path and fail closed until their external gates are satisfied.
 
-Preview builds are deployed from the repository root with the Vercel project root configured as `apps/web`. The checked-in Vercel build command supplies the two non-secret safety values below, and the Next.js configuration fails the build if either value is absent or changed:
+After the FDLC subtree import, run product commands from `products/ai-fde/`. The standalone Vercel project root remains `apps/web` relative to that product directory. The checked-in Vercel build command supplies two non-secret safety values, and the Next.js configuration fails the build if either value is absent or changed:
 
 ```bash
 vercel link --yes --project ai-fde-agent
@@ -166,6 +166,6 @@ Prior Phase 1 production browser evidence:
 
 Make deploying an AI software factory faster without sacrificing evidence, verification, economics, security, accountability, or human authority.
 
-## Factory Engineer evolution
+## AI-FDE evolution
 
 The evidence-backed audit, ecosystem boundary, target domain model, UX map, Mission Control contract, and incremental plan are indexed in [docs/fdlc-factory-engineer/README.md](docs/fdlc-factory-engineer/README.md).

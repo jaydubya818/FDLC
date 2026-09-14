@@ -103,15 +103,15 @@ Keep the FDLC root npm toolchain and AI-FDE's uv/pnpm toolchains explicit. Do no
 - [x] Create a clean isolated branch/worktree from current `origin/main`; preserve the dirty checkout.
 - [x] Fix AI-FDE current-source full CI, including the unavailable MinIO dependency, and diagnose the current-source Vercel failure.
 - [x] Run migrations, integration/isolation tests, static checks, builds, browser tests, and accessibility tests against the fixed source.
-- [ ] Import AI-FDE into `products/ai-fde/` using a provenance-preserving subtree or unrelated-history merge.
-- [ ] Record original repository, source SHA, tree digest, timestamp, MIT license, and import strategy in `docs/migrations/ai-fde-repository-import.md`.
-- [ ] Move executable AI-FDE workflows to root `.github/workflows/` with explicit path filters; make the full gate required and tier/remove misleading duplicates.
-- [ ] Update build contexts, scripts, Compose, migrations, Terraform paths, documentation, ownership, and release boundaries for the prefix.
-- [ ] Add a typed Factory Definition product model and typed AI-FDE → Mission Control handoff contract.
-- [ ] Rebrand `/deploy` using eyebrow “AI FACTORY DEPLOYED ENGINEER” and H1 “Turn how your organization builds software into a governed AI software factory.”
-- [ ] Add primary “Launch synthetic demo” and secondary “See how AI-FDE works,” “Assess readiness,” and “Build a Factory Definition” actions.
-- [ ] Update global/mobile/footer navigation, homepage ecosystem, About, Enterprise, Guide mappings, Start, Maturity, sitemap, metadata, structured data, tests, and corpus references.
-- [ ] Remove raw infrastructure coordinates from public UI and replace them with bounded status, qualification date, limitations, and a sanitized evidence link.
+- [x] Import AI-FDE into `products/ai-fde/` using a provenance-preserving subtree or unrelated-history merge.
+- [x] Record original repository, source SHA, tree digest, timestamp, MIT license, and import strategy in `docs/migrations/ai-fde-repository-import.md`.
+- [x] Move executable AI-FDE workflows to root `.github/workflows/` with explicit path filters; make the full gate required and tier/remove misleading duplicates.
+- [x] Update build contexts, scripts, Compose, migrations, Terraform paths, documentation, ownership, and release boundaries for the prefix.
+- [x] Add a typed Factory Definition product model and typed AI-FDE → Mission Control handoff contract.
+- [x] Rebrand `/deploy` using eyebrow “AI FACTORY DEPLOYED ENGINEER” and H1 “Turn how your organization builds software into a governed AI software factory.”
+- [x] Add primary “Launch synthetic demo” and secondary “See how AI-FDE works,” “Assess readiness,” and “Build a Factory Definition” actions.
+- [x] Update global/mobile/footer navigation, homepage ecosystem, About, Enterprise, Guide mappings, Start, Maturity, sitemap, metadata, structured data, tests, and corpus references.
+- [x] Remove raw infrastructure coordinates from public UI and replace them with bounded status, qualification date, limitations, and a sanitized evidence link.
 - [ ] Commit, push, open a Milestone A PR, pass CI, merge when qualified, and run exact-main qualification without releasing Production.
 
 **Complete when:** AI-FDE is canonical in FDLC source, docs, navigation, terminology, Factory Definition architecture, and public Preview.

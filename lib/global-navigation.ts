@@ -16,7 +16,7 @@ export const guide = [
 
 export const afterGuide = [
   ["Mission Control", "/mission-control"],
-  ["FDE", "/deploy"],
+  ["AI-FDE", "/deploy"],
   ["Maturity", "/maturity"],
 ] as const satisfies readonly NavLink[];
 
@@ -32,6 +32,6 @@ export const secondary = [
 export const footerGroups = [
   ["Learn", [["Framework", "/framework"], ["Architecture", "/architecture"], ["Guide", "/guide"], ["Learning Library (Preview)", "/corpus-preview"], ["Manifesto", "/manifesto"]]],
   ["Build", [["FDLC in 5 Minutes", "/in-5-minutes"], ["Mission Control", "/mission-control"], ["Specification", "/specification"], ["Start", "/start"], ["GitHub", "https://github.com/jaydubya818/MissionControl"]]],
-  ["Adopt", [["Maturity", "/maturity"], ["Benchmarks", "/benchmarks"], ["Enterprise", "/enterprise"], ["FDE", "/deploy"]]],
+  ["Adopt", [["Maturity", "/maturity"], ["Benchmarks", "/benchmarks"], ["Enterprise", "/enterprise"], ["AI-FDE", "/deploy"]]],
   ["Project", [["About", "/about"], ["Source audit", "https://github.com/jaydubya818/ai-software-factory-mastery"], ["Mission Control status", "https://github.com/jaydubya818/MissionControl/blob/main/docs/product/software-factory-capability-maturity.md"]]],
 ] as const;

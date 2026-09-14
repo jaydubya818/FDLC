@@ -4,6 +4,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+REPOSITORY_ROOT = ROOT.parents[1]
 TERRAFORM = ROOT / "infrastructure" / "terraform" / "design-partner"
 RDS_CA_SHA256 = "e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3"
 RDS_CA_PATH = "/opt/ai-fde/certs/aws-rds-global-bundle.pem"
@@ -41,7 +42,7 @@ def _workflow_step(source: str, name: str) -> str:
 
 
 def test_ci_validates_terraform_offline_with_immutable_tooling() -> None:
-    workflow = _read(ROOT / ".github" / "workflows" / "ci.yml")
+    workflow = _read(REPOSITORY_ROOT / ".github" / "workflows" / "ai-fde-ci.yml")
     setup = _workflow_step(workflow, "Install Terraform")
     validation = _workflow_step(workflow, "Validate design-partner Terraform")
     containers = _workflow_step(
@@ -56,7 +57,7 @@ def test_ci_validates_terraform_offline_with_immutable_tooling() -> None:
     assert "# v4.0.1" in setup
     assert 'terraform_version: "1.16.1"' in setup
     assert "terraform_wrapper: false" in setup
-    assert "working-directory: infrastructure/terraform/design-partner" in validation
+    assert "working-directory: products/ai-fde/infrastructure/terraform/design-partner" in validation
     assert 'AWS_EC2_METADATA_DISABLED: "true"' in validation
     assert 'TF_IN_AUTOMATION: "true"' in validation
     assert "terraform fmt -check -recursive" in validation

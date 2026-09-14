@@ -228,7 +228,7 @@ test("global navigation exposes the canonical Guide disclosure in desktop and mo
   const html = await (await render("/guide")).text();
   const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
   assert.ok(header, "renders the persistent FDLC global header");
-  for (const label of ["Framework", "Architecture", "Guide", "Mission Control", "FDE", "Maturity", "More"]) {
+  for (const label of ["Framework", "Architecture", "Guide", "Mission Control", "AI-FDE", "Maturity", "More"]) {
     assert.match(header, new RegExp(`>${label}(?:\\s|<)`), label);
   }
   for (const [label, href] of [
@@ -369,27 +369,27 @@ test("interactive routes have complete server-rendered entry states", async () =
   assert.match(start, /Factory Definition/i);
 });
 
-test("FDE publishes the qualification state and its dormant live boundary", async () => {
+test("AI-FDE publishes the product model and its synthetic boundary", async () => {
   const html = await (await render("/deploy")).text();
-  assert.match(html, /Factory Deployed Engineer \(FDE\)/i);
-  assert.match(html, /Build your software factory.*Factory Deployed Engineer/is);
-  assert.match(html, /works inside your engineering environment.*identify the right automation opportunity.*design the Factory Definition.*assemble the governed production line.*prove it against real outcomes/is);
-  assert.match(html, /Not another coding agent.*Not a consulting deck.*working factory line/is);
-  assert.match(html, /Humans lead.*Digital workers execute/is);
-  assert.match(html, /Factory Deployed Engineer.*Discovery.*Architecture.*Trust boundaries.*Digital workers.*Implementation.*Evidence collection.*Mission Control.*Authority.*Recovery.*Economics/is);
-  assert.match(html, /FDLC.*Defines the operating model.*The Guide.*Teaches the practices.*Mission Control.*Governs execution.*Factory Deployed Engineer.*Applies the system.*Factory line.*Solves a real workflow.*Outcomes.*Prove whether it worked/is);
-  assert.match(html, /What a Factory Deployed Engineer does.*Discover.*Define.*Assemble.*Qualify.*Operate.*Transfer &amp; Scale/is);
-  assert.match(html, /Factory Definition.*Intent.*Workflow.*Agents.*Models.*Tools.*Context.*Execution.*Verification.*Policy.*Human Authority.*Economics.*Outcomes/is);
+  assert.match(html, /AI-FDE — AI Factory Deployed Engineer/i);
+  assert.match(html, /Turn how your organization builds software into a.*governed AI software factory/is);
+  assert.match(html, /AI-FDE is the evidence-driven workspace.*accountable human Factory Deployed Engineer.*Factory Definition.*Mission Control/is);
+  assert.match(html, /Not another coding agent.*Not an autonomous control plane.*governed bridge/is);
+  assert.match(html, /AI-FDE assists.*human FDE remains accountable/is);
+  assert.match(html, /Factory Deployed Engineer.*Discovery.*Architecture.*Trust boundaries.*AI-FDE.*Evidence ingestion.*Candidate claims.*Mission Control.*Authority.*Recovery.*Economics/is);
+  assert.match(html, /FDLC.*Defines the operating model.*AI-FDE.*Discovers and designs it.*Human FDE.*Owns it.*Mission Control.*Governs it.*Factory.*Executes it.*Outcome.*Proves it/is);
+  assert.match(html, /How AI-FDE works.*Discover.*Define.*Assemble.*Qualify.*Operate.*Transfer &amp; Scale/is);
+  assert.match(html, /Factory Definition.*Objective.*Workflow.*Source lineage.*Capabilities.*Context.*Execution.*Authority.*Verification.*Economics.*Reliability.*Outcomes.*Readiness/is);
   assert.match(html, /Three phases.*One evidence trail/is);
   assert.match(html, /FDLC Readiness.*qualified Lighthouse candidate/is);
   assert.match(html, /FDLC Lighthouse.*Evidence that the operating model works—or evidence that it does not/is);
   assert.match(html, /FDLC Scale.*conditional on Lighthouse evidence/is);
-  assert.match(html, /What you leave with.*Governed production line.*Mission Control configuration.*Evaluation suite.*Verification contract.*Outcome baseline.*Economics model.*Operating playbook.*Reusable capabilities.*Scale roadmap/is);
+  assert.match(html, /What AI-FDE produces.*Current-state model.*Authority model.*Qualification requirements.*Verification contract.*Outcome baseline.*Economics model.*Rollout and recovery plan.*Capability requirements.*Handoff material/is);
   assert.match(html, /Dependency modernization.*API migration.*Vulnerability remediation.*Quality remediation.*Documentation maintenance.*Code review assistance.*Test modernization.*Framework migration.*CI\/CD remediation/is);
   assert.match(html, /Good first factory lines have.*Bounded scope.*Independent verification.*Safe rollback.*Build our next product autonomously/is);
-  assert.match(html, /Before FDE.*Human receives work.*After factory line.*Governed planning.*Measured outcome/is);
+  assert.match(html, /Before AI-FDE.*Evidence is scattered.*After factory line.*Governed planning.*Measured outcome/is);
   assert.match(html, /Representative Lighthouse.*Dependency modernization.*Illustrative contract—no performance result claimed.*Independent verification.*human release authority/is);
-  assert.match(html, /Prove the factory with outcomes.*Cycle time.*Human engineering minutes.*Defect escape rate.*Cost per released outcome/is);
+  assert.match(html, /Define proof before execution.*Cycle time.*Human engineering minutes.*Defect escape rate.*Cost per released outcome/is);
   assert.match(html, /From developers to builders.*Managers increasingly lead humans.*digital workers/is);
   assert.match(html, /The FDE.*Software architecture.*AI \/ agent engineering.*Change leadership.*Operating-model design/is);
   assert.match(html, /You bring.*We build together.*You keep.*The factory line.*The operating playbook.*ability to scale/is);
@@ -397,17 +397,14 @@ test("FDE publishes the qualification state and its dormant live boundary", asyn
   assert.match(html, /Command Center.*Work Orders.*Approvals &amp; Audit.*What these screens show.*deterministic Software Factory demo.*not a live customer engagement/is);
   assert.match(html, /Autonomy without abdicating control.*See what ran, why it advanced, and how to recover.*Mission Control gives the team visibility.*Agents may propose.*Humans retain consequential authority/is);
   assert.match(html, /Bring one real workflow.*current baseline/is);
-  assert.match(html, /Production.*Qualified \/ Healthy/is);
-  assert.match(html, /Qualification environment.*Ready/is);
-  assert.match(html, /083665737366.*us-east-1.*qual\.factory-engineer\.fdlc\.ai/is);
-  assert.match(html, /calm-buffalo-854.*mission-control:\/\/qualification\/fdlc-phase-3/is);
-  assert.match(html, /dpl_BHi24iX4NmZZ8WNyuspDHaYg5DX2/is);
-  assert.match(html, /dpl_3dH5VgLN9abgG9B8L9vdGKNnHiCn/is);
-  assert.match(html, /Immutable ECR image digests.*secret-version references are pinned/is);
-  assert.match(html, /Phase 3.*Dormant \/ Not activated/is);
-  assert.match(html, /Bedrock live calls.*0/is);
-  assert.match(html, /Qualification-ready infrastructure is not live qualification/is);
-  assert.match(html, /href=["']\/deploy["'][^>]*>FDE</i);
+  assert.match(html, /Product stage.*Internal alpha/is);
+  assert.match(html, /Public path.*Synthetic demo/is);
+  assert.match(html, /Live qualification.*Not activated/is);
+  assert.match(html, /Live model calls.*0/is);
+  assert.match(html, /AI-FDE may.*prepare qualification material.*AI-FDE may not.*create a Factory Version.*Mission Control owns.*Factory Version qualification/is);
+  assert.doesNotMatch(html, /083665737366|calm-buffalo-854|dpl_BHi24iX4NmZZ8WNyuspDHaYg5DX2/i);
+  assert.match(html, /Synthetic qualification is not live operational proof/is);
+  assert.match(html, /href=["']\/deploy["'][^>]*>AI-FDE</i);
 });
 
 test("preview products are explicitly labeled", async () => {
