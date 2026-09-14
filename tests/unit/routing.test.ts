@@ -138,6 +138,8 @@ test("keeps the AI-FDE marketing handoff and child build on one exact prefix", (
   assert.equal(childPackage.dependencies["@vercel/microfrontends"], "2.4.0");
   assert.match(childPackage.scripts.build, /^VC_MICROFRONTENDS_CONFIG=\.\.\/\.\.\/\.\.\/\.\.\/microfrontends\.json next build --webpack$/);
   assert.match(productContract, /export const APP_BASE_PATH = "\/deploy\/app"/);
+  assert.match(childVercel.buildCommand, /NEXT_PUBLIC_AI_FDE_HOSTED_DEMO=true/);
+  assert.match(childVercel.buildCommand, /NEXT_PUBLIC_AI_FDE_API_URL=https:\/\/api\.ai-fde\.invalid\/api/);
   assert.equal(childVercel.git.deploymentEnabled.main, false);
 });
 

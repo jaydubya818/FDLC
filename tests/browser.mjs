@@ -95,7 +95,7 @@ try {
         report.flows.push({ name: "architecture-system-flow-readable-width", width, result: "PASS" });
       }
       for (const href of await page.locator("a[href]").evaluateAll(nodes => nodes.map(n => n.getAttribute("href")))) {
-        if (href.startsWith("/") && !href.startsWith("//") && !href.startsWith("/guide")) links.add(href.split("#")[0]);
+        if (href.startsWith("/") && !href.startsWith("//") && !href.startsWith("/guide") && !href.startsWith("/deploy/app")) links.add(href.split("#")[0]);
       }
       if (["/", "/start", "/mission-control"].includes(route)) {
         await page.screenshot({ path: new URL(`${route === "/" ? "home" : route.slice(1)}-${width}.png`, output).pathname, fullPage: true });
