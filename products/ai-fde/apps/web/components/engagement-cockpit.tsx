@@ -560,7 +560,7 @@ export function EngagementCockpit({ engagementId }: { engagementId: string }) {
         aria-label="Engagement navigation"
         className="cockpit-rail sticky top-0 flex h-screen w-[248px] flex-col border-r border-[var(--line)] bg-[var(--paper)] px-5 py-6"
       >
-        <Brand />
+        <Brand rail />
         <div className="mt-4 border-b border-[var(--line)] pb-4">
           <EcosystemLinks compact />
         </div>
