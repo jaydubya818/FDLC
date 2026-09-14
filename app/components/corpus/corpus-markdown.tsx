@@ -48,7 +48,9 @@ export function CorpusMarkdown({ document }: { document: CorpusDocument }) {
           if (isValidElement<{ children?: ReactNode; className?: string }>(child) && child.props.className === "language-mermaid") {
             return <CorpusMermaid source={childText(child.props.children).replace(/\n$/, "")} />;
           }
-          return <pre>{children}</pre>;
+          // Keyboard users need a focus target when a narrow viewport makes a code block scrollable.
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+          return <pre aria-label="Scrollable code example" tabIndex={0}>{children}</pre>;
         },
         table: ({ children }) => (
           // A focusable container lets keyboard readers scroll wide technical tables.

@@ -19,7 +19,7 @@ test("corpus preview renders a noindex catalog without entering the public sitem
   assert.match(html, /Choose a path through FDLC/i);
   assert.match(html, /What the library gives the community/i);
   assert.match(html, /Search the full library/i);
-  assert.match(html, /157<\/strong>.*Manifest-backed routes/is);
+  assert.match(html, /158<\/strong>.*Manifest-backed routes/is);
   assert.match(html, /Review candidate.*not FDLC canon/i);
   for (const href of [
     "/corpus-preview/start",
@@ -46,6 +46,33 @@ test("corpus documents share link and custom-anchor behavior while canonical pag
   const canonicalFramework = await (await render("/framework")).text();
   assert.match(canonicalFramework, /Six operating shifts/i);
   assert.doesNotMatch(canonicalFramework, /Draft corpus preview/i);
+});
+
+test("first-factory quickstart separates a beginner definition from the production blueprint", async () => {
+  const quickstartResponse = await render("/corpus-preview/guides/build-your-first-factory");
+  assert.equal(quickstartResponse.status, 200);
+  const quickstart = await quickstartResponse.text();
+  assert.match(quickstart, /Build your first factory: guided quickstart/i);
+  assert.match(quickstart, /A factory is built in stages/i);
+  assert.match(quickstart, /Define one factory.*10 minutes.*Inspect a governed run.*30–45 minutes/is);
+  assert.match(quickstart, /href="https:\/\/fdlc\.ai\/start#factory-builder"/);
+  assert.match(quickstart, /pnpm run dev:demo/);
+  assert.match(quickstart, /pnpm run convex:seed:demo:force/);
+  assert.match(quickstart, /http:\/\/localhost:5199\/v2\/command-center/);
+  assert.match(quickstart, /Execute Code Review Wizard Automation/);
+  assert.match(quickstart, /seeded fixtures.*not a live agent execution/is);
+  assert.match(quickstart, /<pre aria-label="Scrollable code example" tabindex="0">/);
+  assert.match(quickstart, /href="\/corpus-preview\/guides\/production-bounded-fix-factory"/);
+
+  const blueprintResponse = await render("/corpus-preview/guides/production-bounded-fix-factory");
+  assert.equal(blueprintResponse.status, 200);
+  const blueprint = await blueprintResponse.text();
+  assert.match(blueprint, /Production bounded-fix factory blueprint/i);
+  assert.match(blueprint, /not a copy-and-run sample application/i);
+  assert.match(blueprint, /Factory Manifest/i);
+  assert.match(blueprint, /Verification contract/i);
+  assert.match(blueprint, /Sandbox.*worktree-only/is);
+  assert.match(blueprint, /href="\/corpus-preview\/guides\/build-your-first-factory"/);
 });
 
 test("corpus raw artifacts are allowlisted and unknown targets fail closed", async () => {
