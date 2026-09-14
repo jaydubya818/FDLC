@@ -119,7 +119,7 @@ Keep the FDLC root npm toolchain and AI-FDE's uv/pnpm toolchains explicit. Do no
 ## Milestone B — AI-FDE becomes usable from FDLC
 
 - [x] Make the AI-FDE web app prefix-native beneath `/deploy/app`; verify Links, router navigation, forms, return URLs, errors, assets, callbacks, refresh, deep links, 404, logout, and back/forward.
-- [x] Proxy the exact `/deploy/app/:path*` namespace to an independently deployed AI-FDE child through a stable Preview alias; keep the paid Microfrontends group limited to the existing Guide applications and preserve paired rollback by moving the alias only after child qualification.
+- [x] Proxy the exact `/deploy/app/:path*` namespace to an independently deployed AI-FDE child pinned by immutable Preview URL; keep the paid Microfrontends group limited to the existing Guide applications and preserve paired rollback through the shell's exact child binding.
 - [x] Preserve the synthetic adapter's zero live API calls, zero customer data, zero Production credentials, zero model calls, zero Mission Control writes, invalid fallback origin, explicit simulated labels, and fail-the-build safety configuration.
 - [x] Align the cockpit to the FDLC logo, paper/surface/ink/green/amber tokens, semantic states, typography hierarchy, buttons, focus, borders, and spacing through a versioned/shared token contract.
 - [x] Preserve operational density and a compact AI-FDE shell with a clear return to FDLC; do not flatten the cockpit into a marketing page.

@@ -7,7 +7,7 @@ topic: ai-fde-no-fee-proxy
 
 ## What we're building
 
-FDLC keeps `/deploy/app` on its canonical origin while forwarding that exact prefix to the independently deployed AI-FDE Next.js application. The child remains built with `basePath: "/deploy/app"`, and a stable Preview alias moves only after a candidate child deployment qualifies.
+FDLC keeps `/deploy/app` on its canonical origin while forwarding that exact prefix to the independently deployed AI-FDE Next.js application. The child remains built with `basePath: "/deploy/app"`, and the shell pins an immutable child Preview URL only after that candidate qualifies.
 
 ## Why this approach
 
@@ -17,10 +17,10 @@ Adding a third project to the managed Vercel Microfrontends group would add a $2
 
 - Keep managed Microfrontends unchanged for FDLC and the Guide.
 - Route only `/deploy/app/:path*` through a Vercel external rewrite.
-- Point Preview at `ai-fde-fdlc-preview.vercel.app`, a stable alias in the same Vercel team.
+- Pin Preview to the qualified immutable child deployment `dpl_5dZYnmLEixasnyXjzQki6KDedHox` (`ai-64p4dfzr2-jaydubya818.vercel.app`).
 - Keep Vercel Authentication enabled. Vercel supports authenticated rewrites between protected deployments in the same team.
 - Keep `git.deploymentEnabled.main=false` for both projects; merge remains distinct from Production release.
-- Treat the alias and FDLC shell deployment as a qualified pair. Roll back by restoring the prior child alias target and compatible shell deployment.
+- Treat the pinned child URL and FDLC shell deployment as a qualified pair. Roll back by restoring the prior compatible shell deployment; its rewrite remains bound to the prior child.
 
 ## Open questions
 
@@ -28,4 +28,4 @@ Adding a third project to the managed Vercel Microfrontends group would add a $2
 
 ## Next steps
 
-Implement the narrow rewrite, remove the AI-FDE child dependency on managed Microfrontends, deploy and bind the qualified child Preview alias, then qualify the composed FDLC Preview.
+Implement the narrow rewrite, remove the AI-FDE child dependency on managed Microfrontends, pin the qualified child Preview, then qualify the composed FDLC Preview.
