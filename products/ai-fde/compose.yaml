@@ -1,0 +1,36 @@
+name: ai-fde
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_DB: ai_fde
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "${AI_FDE_POSTGRES_HOST_PORT:-55432}:5432"
+    volumes:
+      - ai_fde_postgres:/var/lib/postgresql/data
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d ai_fde"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+
+  minio:
+    image: quay.io/minio/minio@sha256:46b3009bf7041eefbd90bd0d2b38c6ddc24d20a35d609551a1802c558c1c958f
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ai-fde-dev
+      MINIO_ROOT_PASSWORD: ai-fde-dev-secret
+    ports:
+      - "${AI_FDE_MINIO_API_HOST_PORT:-59000}:9000"
+      - "${AI_FDE_MINIO_CONSOLE_HOST_PORT:-59001}:9001"
+    volumes:
+      - ai_fde_minio:/data
+
+volumes:
+  ai_fde_postgres:
+  ai_fde_minio:
