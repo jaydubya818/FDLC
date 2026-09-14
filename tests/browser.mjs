@@ -136,8 +136,12 @@ try {
       report.flows.push({ name: "global-navigation-stable-across-active-routes", width, result: "PASS" });
     }
 
+    await page.goto(`${origin}/about`);
+    await page.evaluate(() => sessionStorage.removeItem("fdlc.factory-definition.draft.v1"));
     await page.goto(`${origin}/start`);
-    assert.ok(await page.getByRole("button", { name: "Continue", exact: true }).isDisabled());
+    const continueButton = page.getByRole("button", { name: "Continue", exact: true });
+    await continueButton.waitFor();
+    assert.ok(await continueButton.isDisabled());
     await page.getByRole("combobox").selectOption("Test repair");
     await page.getByLabel("Describe the outcome", { exact: true }).fill("Repair the synthetic date conversion regression.");
     await page.getByRole("button", { name: "Continue", exact: true }).click();
