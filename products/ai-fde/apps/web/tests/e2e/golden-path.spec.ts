@@ -88,7 +88,7 @@ test("synthetic Acme reaches the governed package-retrieval boundary", async ({
   ).toHaveAttribute("href", "https://fdlc.ai/framework");
   await expect(
     ecosystemNavigation.getByRole("link", { name: /^Guide/ }),
-  ).toHaveAttribute("href", "https://ai-software-factory-mastery.vercel.app");
+  ).toHaveAttribute("href", "https://fdlc.ai/guide");
   await expect(
     ecosystemNavigation.getByRole("link", { name: /Mission Control/ }),
   ).toHaveAttribute("href", "https://fdlc.ai/mission-control");

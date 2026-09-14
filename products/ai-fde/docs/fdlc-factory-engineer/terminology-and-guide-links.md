@@ -42,21 +42,21 @@ Use the Guide’s L0–L5 operational autonomy model. Do not introduce A0–A5 a
 
 ## Curated Guide links
 
-Base: `https://ai-software-factory-mastery.vercel.app`
+Base: `https://fdlc.ai`
 
 | Topic key | UI context | Canonical URL | Last reviewed |
 |---|---|---|---|
-| `autonomy.lowest-ceiling` | Autonomy selection | `/docs/01-understand/03-first-principles-trust-evidence-and-authority#autonomy-is-scoped-and-the-lowest-ceiling-wins` | 2026-09-04 |
-| `authority.permission` | Authority matrix | `/docs/02-design/07-governance-policy-and-risk-proportional-approval#permission-is-not-authority` | 2026-09-04 |
-| `autonomy.per-action` | Action grants | `/docs/02-design/07-governance-policy-and-risk-proportional-approval#autonomy-per-action-class` | 2026-09-04 |
-| `trust.evidence-record` | Claim/source support | `/docs/04-prove/27-quality-and-evidence-architecture#the-evidence-record` | 2026-09-04 |
-| `trust.independent-verification` | Verification design | `/docs/04-prove/27-quality-and-evidence-architecture#validation-must-be-independent` | 2026-09-04 |
-| `trust.verification-contract` | Package verification | `/docs/04-prove/27-quality-and-evidence-architecture#the-verification-contract` | 2026-09-04 |
-| `records.traceability` | Staleness/impact | `/docs/02-design/05-authoritative-records#the-traceability-chain` | 2026-09-04 |
-| `capability.agent-definition` | Required capability | `/docs/03-build/11-the-agent-factory#the-agent-definition-is-a-contract-not-a-prompt` | 2026-09-04 |
-| `capability.factory-boundary` | Capability productization | `/docs/03-build/11-the-agent-factory#two-factories-one-boundary` | 2026-09-04 |
-| `context.retrieval-contract` | Future Guide retrieval | `/docs/03-build/20-context-engineering#the-retrieval-contract` | 2026-09-04 |
-| `field.forward-deployed-loop` | Field signals | `/docs/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape#forward-deployed-engineering-and-its-failure-mode` | 2026-09-04 |
+| `autonomy.lowest-ceiling` | Autonomy selection | `/guide/01-understand/03-first-principles-trust-evidence-and-authority#autonomy-is-scoped-and-the-lowest-ceiling-wins` | 2026-09-14 |
+| `authority.permission` | Authority matrix | `/guide/02-design/07-governance-policy-and-risk-proportional-approval#permission-is-not-authority` | 2026-09-14 |
+| `autonomy.per-action` | Action grants | `/guide/02-design/07-governance-policy-and-risk-proportional-approval#autonomy-per-action-class` | 2026-09-14 |
+| `trust.evidence-record` | Claim/source support | `/guide/04-prove/27-quality-and-evidence-architecture#the-evidence-record` | 2026-09-14 |
+| `trust.independent-verification` | Verification design | `/guide/04-prove/27-quality-and-evidence-architecture#validation-must-be-independent` | 2026-09-14 |
+| `trust.verification-contract` | Package verification | `/guide/04-prove/27-quality-and-evidence-architecture#the-verification-contract` | 2026-09-14 |
+| `records.traceability` | Staleness/impact | `/guide/02-design/05-authoritative-records#the-traceability-chain` | 2026-09-14 |
+| `capability.agent-definition` | Required capability | `/guide/03-build/11-the-agent-factory#the-agent-definition-is-a-contract-not-a-prompt` | 2026-09-14 |
+| `capability.factory-boundary` | Capability productization | `/guide/03-build/11-the-agent-factory#two-factories-one-boundary` | 2026-09-14 |
+| `context.retrieval-contract` | Future Guide retrieval | `/guide/03-build/20-context-engineering#the-retrieval-contract` | 2026-09-14 |
+| `field.forward-deployed-loop` | Field signals | `/guide/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape#forward-deployed-engineering-and-its-failure-mode` | 2026-09-14 |
 
 The code registry stores stable topic keys and URLs; UI components consume topic keys. Raw anchors are generated from mutable headings, so a scheduled/manual link-health check is required before treating them as durable. Guide content is linked, not copied.
 
