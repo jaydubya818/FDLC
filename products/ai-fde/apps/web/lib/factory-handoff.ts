@@ -161,7 +161,7 @@ export function buildCustomerFactoryModelInput(
         key: "human-governed-handoff",
         label: "Human-governed draft handoff",
         description:
-          "Factory Engineer may prepare and publish a reviewed package; Mission Control receives draft intent and retains all execution authority.",
+          "AI-FDE may prepare and publish a reviewed Factory Definition projection; Mission Control receives draft intent and retains all execution authority.",
         provenance_refs: provenance,
         attributes: {
           maximum_authority: "DEPLOYMENT_PACKAGE_PUBLISH",
@@ -302,7 +302,7 @@ export function buildReadinessAssessmentInput({
               satisfied,
               blocking: true,
               explanation: satisfied
-                ? "Confirmed by the human operator against this criterion's listed immutable Factory Engineer basis."
+                ? "Confirmed by the human operator against this criterion's listed immutable AI-FDE basis."
                 : "This criterion has not been confirmed by the human operator.",
               basis_refs: satisfied ? basis : [],
               next_action: satisfied
@@ -470,7 +470,7 @@ export function buildDeploymentPackageInput({
         {
           key: "approved-source-context",
           statement:
-            "Use only version-pinned Factory Engineer sources resolved by Mission Control.",
+            "Use only version-pinned AI-FDE sources resolved by Mission Control.",
         },
       ],
       environment_requirements: [
@@ -483,7 +483,7 @@ export function buildDeploymentPackageInput({
       authority_boundaries: [
         {
           key: "draft-only-handoff",
-          subject: "Factory Engineer",
+          subject: "AI-FDE",
           maximum_authority: "Propose a Mission and Plan draft only.",
           prohibited_actions: [
             "approve a Plan",

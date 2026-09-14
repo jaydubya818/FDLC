@@ -1,7 +1,9 @@
 import { defineConfig } from "@playwright/test";
 
-const baseURL =
+const configuredBaseURL =
   process.env.AI_FDE_PLAYWRIGHT_BASE_URL ?? "http://localhost:3000";
+const baseURL = new URL("/", configuredBaseURL).origin;
+const appURL = new URL("/deploy/app", baseURL).toString();
 const usesExternalServer =
   process.env.AI_FDE_PLAYWRIGHT_EXTERNAL_SERVER === "true";
 const usesMockApi = process.env.AI_FDE_PLAYWRIGHT_MOCK_API === "true";
@@ -26,6 +28,6 @@ export default defineConfig({
           : "pnpm --dir ../.. dev",
         reuseExistingServer: true,
         timeout: 120_000,
-        url: baseURL,
+        url: appURL,
       },
 });

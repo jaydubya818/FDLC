@@ -29,9 +29,9 @@ export function AuthenticationRequired({ returnTo }: { returnTo: string }) {
                 Return to the verified operating state.
               </h1>
               <p className="mt-6 max-w-xl text-base leading-7 text-[var(--ink-soft)]">
-                Authenticate as an approved Forward Deployed Engineer. Identity
-                establishes the operator; Factory Engineer engagement
-                memberships remain the authority for every action.
+                Authenticate as an approved Factory Deployed Engineer (FDE).
+                Identity establishes the operator; AI-FDE engagement memberships
+                remain the authority for every action.
               </p>
               <a
                 className="mt-9 inline-flex items-center gap-3 rounded-full bg-[var(--ink)] px-6 py-3.5 text-sm font-extrabold text-white no-underline transition hover:-translate-y-0.5 hover:shadow-[var(--shadow)]"
@@ -49,7 +49,7 @@ export function AuthenticationRequired({ returnTo }: { returnTo: string }) {
                 <TrustPoint
                   number="01"
                   title="Provider tokens stay server-side"
-                  detail="The browser receives only a random, HTTP-only Factory Engineer session cookie."
+                  detail="The browser receives only a random, HTTP-only AI-FDE session cookie."
                 />
                 <TrustPoint
                   number="02"

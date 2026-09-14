@@ -129,15 +129,15 @@ Run the Phase 2 golden path and accessibility checks against the intended deploy
 Vercel (replace the example host below):
 
 ```bash
-AI_FDE_PLAYWRIGHT_BASE_URL=https://replace-with-preview.vercel.app \
+AI_FDE_PLAYWRIGHT_BASE_URL=https://replace-with-preview.vercel.app/deploy/app \
 AI_FDE_PLAYWRIGHT_EXTERNAL_SERVER=true \
 pnpm --dir apps/web run test:e2e:golden
 
-AI_FDE_PLAYWRIGHT_BASE_URL=https://replace-with-preview.vercel.app \
+AI_FDE_PLAYWRIGHT_BASE_URL=https://replace-with-preview.vercel.app/deploy/app \
 AI_FDE_PLAYWRIGHT_EXTERNAL_SERVER=true \
 pnpm --dir apps/web run test:e2e:alpha
 
-AI_FDE_PLAYWRIGHT_BASE_URL=https://replace-with-preview.vercel.app \
+AI_FDE_PLAYWRIGHT_BASE_URL=https://replace-with-preview.vercel.app/deploy/app \
 AI_FDE_PLAYWRIGHT_EXTERNAL_SERVER=true \
 pnpm --dir apps/web run test:a11y
 ```

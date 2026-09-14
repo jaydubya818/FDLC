@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 import { validateSchema } from "@vercel/microfrontends/validation";
 
 const configPath = resolve(process.cwd(), "microfrontends.json");
-const expectedDigest = "e63f913563c1864feac38c7786e06d146892d34a4f0f74179999ff1d565e7e8b";
+const expectedDigest = "7b30b9c4ac7c63ece56bb8fb6052e95a58cb38f03e7aeb1b4012f44b748e937f";
 
 function canonicalize(value) {
   if (Array.isArray(value)) return value.map(canonicalize);

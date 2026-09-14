@@ -43,7 +43,7 @@ body {
       transparent 30rem
     ),
     var(--canvas);
-  font-family: "Manrope Variable", system-ui, sans-serif;
+  font-family: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -104,7 +104,7 @@ summary:focus-visible,
 }
 
 .display-font {
-  font-family: "Newsreader Variable", Georgia, serif;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
 }
 
 .surface {

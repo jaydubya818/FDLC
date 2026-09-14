@@ -12,7 +12,7 @@ async function expectNoAccessibilityViolations(page: Page) {
 }
 
 async function openEngagementList(page: Page) {
-  await page.goto("/");
+  await page.goto("/deploy/app");
   await expect(page.getByText("Checking operator session")).toBeHidden();
   await expect(page.getByText("Loading engagements…")).toBeHidden();
 }
@@ -35,11 +35,26 @@ test("engagement list has no WCAG A or AA axe violations", async ({ page }) => {
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "Turn enterprise reality into a deployable software factory.",
+      name: "Define the factory before Mission Control runs it.",
     }),
   ).toBeVisible();
 
   await expectNoAccessibilityViolations(page);
+});
+
+test("unknown prefixed routes fail closed inside the AI-FDE shell", async ({
+  page,
+}) => {
+  const response = await page.goto("/deploy/app/not-a-real-workspace");
+  expect(response?.status()).toBe(404);
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: "That AI-FDE route does not exist.",
+    }),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "AI-FDE home" }).last().click();
+  await expect(page).toHaveURL(/\/deploy\/app\/?$/);
 });
 
 test("FDLC ecosystem navigation remains visible on mobile", async ({
@@ -58,6 +73,43 @@ test("FDLC ecosystem navigation remains visible on mobile", async ({
     navigation.getByRole("link", { name: /Mission Control/ }),
   ).toBeVisible();
   await expectNoAccessibilityViolations(page);
+});
+
+test("tablet and 200 percent reflow avoid horizontal page overflow", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 768, height: 1024 });
+  await openEngagementList(page);
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    )
+    .toBe(true);
+
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.evaluate(() => {
+    document.documentElement.style.zoom = "2";
+  });
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+    )
+    .toBe(true);
+});
+
+test("a prefixed engagement deep link survives hard refresh", async ({
+  page,
+}) => {
+  await openAcmeEngagement(page);
+  await page.reload();
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Acme Manufacturing" }),
+  ).toBeVisible();
+  await expect(page).toHaveURL(/\/deploy\/app\/engagements\//);
 });
 
 test("engagement list preserves keyboard focus through disclosures", async ({

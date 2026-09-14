@@ -112,22 +112,22 @@ Keep the FDLC root npm toolchain and AI-FDE's uv/pnpm toolchains explicit. Do no
 - [x] Add primary “Launch synthetic demo” and secondary “See how AI-FDE works,” “Assess readiness,” and “Build a Factory Definition” actions.
 - [x] Update global/mobile/footer navigation, homepage ecosystem, About, Enterprise, Guide mappings, Start, Maturity, sitemap, metadata, structured data, tests, and corpus references.
 - [x] Remove raw infrastructure coordinates from public UI and replace them with bounded status, qualification date, limitations, and a sanitized evidence link.
-- [ ] Commit, push, open a Milestone A PR, pass CI, merge when qualified, and run exact-main qualification without releasing Production.
+- [x] Commit, push, open a Milestone A PR, pass CI, merge when qualified, and run exact-main qualification without releasing Production.
 
 **Complete when:** AI-FDE is canonical in FDLC source, docs, navigation, terminology, Factory Definition architecture, and public Preview.
 
 ## Milestone B — AI-FDE becomes usable from FDLC
 
-- [ ] Make the AI-FDE web app prefix-native beneath `/deploy/app`; verify Links, router navigation, forms, return URLs, errors, assets, callbacks, refresh, deep links, 404, logout, and back/forward.
+- [x] Make the AI-FDE web app prefix-native beneath `/deploy/app`; verify Links, router navigation, forms, return URLs, errors, assets, callbacks, refresh, deep links, 404, logout, and back/forward.
 - [ ] Add AI-FDE to the root Microfrontends configuration with schema validation, reviewed content digest, exact route ownership, Preview composition, independent deployment, and paired rollback.
-- [ ] Preserve the synthetic adapter's zero live API calls, zero customer data, zero Production credentials, zero model calls, zero Mission Control writes, invalid fallback origin, explicit simulated labels, and fail-the-build safety configuration.
-- [ ] Align the cockpit to the FDLC logo, paper/surface/ink/green/amber tokens, semantic states, typography hierarchy, buttons, focus, borders, and spacing through a versioned/shared token contract.
-- [ ] Preserve operational density and a compact AI-FDE shell with a clear return to FDLC; do not flatten the cockpit into a marketing page.
-- [ ] Add/promote a first-class Factory Definition surface with version, status, lineage, unresolved claims, workflows, capabilities, implementations, execution architecture, verification, authority, economics, rollout, rollback, outcomes, readiness, review, diff, approval/rejection, export, copy, download, and handoff preparation.
+- [x] Preserve the synthetic adapter's zero live API calls, zero customer data, zero Production credentials, zero model calls, zero Mission Control writes, invalid fallback origin, explicit simulated labels, and fail-the-build safety configuration.
+- [x] Align the cockpit to the FDLC logo, paper/surface/ink/green/amber tokens, semantic states, typography hierarchy, buttons, focus, borders, and spacing through a versioned/shared token contract.
+- [x] Preserve operational density and a compact AI-FDE shell with a clear return to FDLC; do not flatten the cockpit into a marketing page.
+- [x] Add/promote a first-class Factory Definition surface with version, status, lineage, unresolved claims, workflows, capabilities, implementations, execution architecture, verification, authority, economics, rollout, rollback, outcomes, readiness, review, diff, approval/rejection, export, copy, download, and handoff preparation.
 - [ ] Qualify visitor, synthetic evaluator, returning operator, real authorized operator, and failure/recovery flows.
 - [ ] Test loading, not-started, none-found, blocked, error, partial, stale, conflict, permission-denied, degraded-sync, success, and durable-success states without color-only meaning.
-- [ ] Validate desktop, tablet, 390×844 mobile, 200% reflow, keyboard, reduced motion, contrast, targeted screen reader, hard refresh, and deep links.
-- [ ] Capture before/after and operational screenshots for PR review.
+- [x] Validate desktop, tablet, 390×844 mobile, 200% reflow, keyboard, reduced motion, contrast, targeted screen reader, hard refresh, and deep links.
+- [x] Capture before/after and operational screenshots for PR review.
 - [ ] Commit, push, open a Milestone B PR, pass child/site/composed CI, merge when qualified, and run exact-main qualification without releasing Production.
 
 **Complete when:** a visitor can move from FDLC → AI-FDE → synthetic demo → source evidence → claim review → Factory Definition → explained Mission Control handoff without leaving the canonical FDLC experience.

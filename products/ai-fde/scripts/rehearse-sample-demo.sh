@@ -161,7 +161,7 @@ HOSTNAME=127.0.0.1 PORT="${demo_web_port}" node "${demo_standalone_directory}/se
 demo_web_pid=$!
 
 wait_for_url "http://localhost:${demo_api_port}/api/health" "API"
-wait_for_url "http://localhost:${demo_web_port}" "Operator Cockpit"
+wait_for_url "http://localhost:${demo_web_port}/deploy/app" "AI-FDE Cockpit"
 
 mkdir -p "output/playwright/${demo_evidence_name}"
 AI_FDE_PLAYWRIGHT_BASE_URL="http://localhost:${demo_web_port}" \

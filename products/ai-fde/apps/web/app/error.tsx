@@ -18,7 +18,8 @@ export default function GlobalError({
           The cockpit could not load.
         </h1>
         <p className="mt-4 text-sm leading-6 text-[var(--ink-soft)]">
-          Check that the local API and database are running, then try again.
+          Retry the workspace. If this persists, return to AI-FDE and confirm
+          the operator service is available.
         </p>
         <button
           className="mt-7 rounded-full bg-[var(--ink)] px-5 py-3 text-sm font-bold text-white"

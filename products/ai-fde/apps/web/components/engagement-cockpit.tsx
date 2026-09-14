@@ -16,6 +16,7 @@ import { EcosystemLinks } from "@/components/ecosystem-links";
 import { DataLifecycleWorkspace } from "@/components/data-lifecycle-workspace";
 import { DeliveryEvaluationWorkspace } from "@/components/delivery-evaluation-workspace";
 import { FactoryHandoffWorkspace } from "@/components/factory-handoff-workspace";
+import { APP_BASE_PATH } from "@/lib/product";
 import {
   CheckIcon,
   FileIcon,
@@ -502,7 +503,11 @@ export function EngagementCockpit({ engagementId }: { engagementId: string }) {
   if (loading) return <LoadingWorkspace />;
 
   if (authenticationRequired) {
-    return <AuthenticationRequired returnTo={`/engagements/${engagementId}`} />;
+    return (
+      <AuthenticationRequired
+        returnTo={`${APP_BASE_PATH}/engagements/${engagementId}`}
+      />
+    );
   }
 
   if (deletedReceipt) {
@@ -1113,12 +1118,12 @@ export function EngagementCockpit({ engagementId }: { engagementId: string }) {
               />
             </dl>
             <p className="mt-3 max-w-3xl text-xs leading-5 text-white/60">
-              Factory Engineer never dispatches coding agents or treats source
-              evidence as execution proof. Mission Control independently owns
-              Plan approval, WorkOrders, Attempts, verification, acceptance,
-              release, and deployment. Qualified customer-data access for this
-              engagement is not design-partner production qualification and does
-              not authorize broader customer production.
+              AI-FDE never dispatches coding agents or treats source evidence as
+              execution proof. Mission Control independently owns Plan approval,
+              WorkOrders, Attempts, verification, acceptance, release, and
+              deployment. Qualified customer-data access for this engagement is
+              not design-partner production qualification and does not authorize
+              broader customer production.
             </p>
           </section>
         </div>
@@ -1142,9 +1147,8 @@ function DeletedWorkspace({ receipt }: { receipt: EngagementDeletionReceipt }) {
             Engagement data was permanently removed.
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-[var(--ink-soft)]">
-            Customer content is no longer available in Factory Engineer. This
-            page shows only the content-free receipt retained for operational
-            proof.
+            Customer content is no longer available in AI-FDE. This page shows
+            only the content-free receipt retained for operational proof.
           </p>
         </div>
         <div className="grid gap-6 px-7 py-7 md:grid-cols-2 md:px-10">

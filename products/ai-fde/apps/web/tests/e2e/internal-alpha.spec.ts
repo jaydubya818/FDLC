@@ -87,7 +87,7 @@ async function reviewClaim(
 }
 
 async function completeProfile(page: Page, profile: Profile) {
-  await page.goto("/");
+  await page.goto("/deploy/app");
   await expect(page.getByText("Loading engagements…")).toBeHidden();
   await page
     .getByRole("link", {
@@ -160,7 +160,7 @@ async function completeProfile(page: Page, profile: Profile) {
   await page.getByRole("button", { name: "Record assessment" }).click();
   await expect(page.getByText(/Assessment saved/)).toBeVisible();
   await expect(
-    page.getByText("Factory Engineer · operator · completed", { exact: true }),
+    page.getByText("AI-FDE · operator · completed", { exact: true }),
   ).toBeVisible();
 }
 
@@ -199,7 +199,7 @@ test("three synthetic workflows complete an internal alpha rehearsal", async ({
     await completeProfile(page, profile);
   }
 
-  await page.getByRole("link", { name: "Factory Engineer home" }).click();
+  await page.getByRole("link", { name: "AI-FDE home" }).click();
   await expect(
     page.getByRole("heading", {
       level: 2,
@@ -208,7 +208,7 @@ test("three synthetic workflows complete an internal alpha rehearsal", async ({
   ).toBeVisible();
   await expect(page.getByText("3/3", { exact: true })).toBeVisible();
   await expect(
-    page.getByText(/Factory Engineer completed operator cohort: 3\/3/),
+    page.getByText(/AI-FDE completed operator cohort: 3\/3/),
   ).toBeVisible();
   await expect(page.getByText(/Conventional baseline: 0\/3/)).toBeVisible();
   await expect(
@@ -221,9 +221,7 @@ test("three synthetic workflows complete an internal alpha rehearsal", async ({
   await page.screenshot({ fullPage: true, path: screenshotPath });
 
   expect(apiRequests, "hosted demo API requests").toEqual([]);
-  expect(failedApiResponses, "Factory Engineer API responses").toEqual([]);
-  expect(failedApiRequests, "Factory Engineer API request failures").toEqual(
-    [],
-  );
+  expect(failedApiResponses, "AI-FDE API responses").toEqual([]);
+  expect(failedApiRequests, "AI-FDE API request failures").toEqual([]);
   expect(consoleErrors, "browser console errors").toEqual([]);
 });

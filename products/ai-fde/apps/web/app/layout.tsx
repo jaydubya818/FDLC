@@ -1,5 +1,3 @@
-import "@fontsource-variable/manrope";
-import "@fontsource-variable/newsreader";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 

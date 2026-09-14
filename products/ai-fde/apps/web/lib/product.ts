@@ -1,33 +1,34 @@
 export const PRODUCT = {
-  name: "FDLC Factory Deployed Engineer",
-  shortName: "Factory Engineer",
+  name: "AI-FDE",
+  shortName: "AI-FDE",
   description:
-    "The evidence-backed operating workspace that turns customer reality into approved software-factory deployment intent.",
-  conciseDescription:
-    "Turn enterprise reality into a deployable software factory.",
+    "The evidence-backed AI Factory Deployed Engineer that helps a human FDE turn customer reality into an approved Factory Definition.",
+  conciseDescription: "Define the factory before Mission Control runs it.",
   northStar:
     "Make deploying an AI software factory faster without sacrificing evidence, verification, economics, security, accountability, or human authority.",
 } as const;
+
+export const APP_BASE_PATH = "/deploy/app" as const;
 
 export const ECOSYSTEM_LINKS = [
   {
     key: "framework",
     label: "Framework",
-    href: "https://fdlc.ai/framework",
+    href: "/framework",
   },
   {
     key: "guide",
     label: "Guide",
-    href: "https://ai-software-factory-mastery.vercel.app",
+    href: "/guide",
   },
   {
     key: "mission-control",
     label: "Mission Control",
-    href: "https://fdlc.ai/mission-control",
+    href: "/mission-control",
   },
 ] as const;
 
-const GUIDE_BASE_URL = "https://ai-software-factory-mastery.vercel.app";
+const GUIDE_BASE_URL = "/guide";
 
 export const GUIDE_LINKS = {
   "autonomy.lowest-ceiling": {

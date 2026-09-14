@@ -42,12 +42,14 @@ import {
 } from "@/lib/factory-handoff";
 import type {
   DesignPartnerQualification,
+  CustomerFactoryModel,
   DeploymentPackage,
   EconomicCase,
   FactoryHandoffPrerequisites,
   FactoryHandoffWorkspace as FactoryHandoffState,
   FactoryOpportunity,
   FactoryOpportunityFactors,
+  FDLCReadinessAssessment,
   FDLCReadinessStage,
   ImplementationArtifact,
 } from "@/lib/types";
@@ -270,6 +272,13 @@ export function FactoryHandoffWorkspace({
   const currentPackage = [...data.packages]
     .filter((deploymentPackage) => deploymentPackage.status !== "STALE")
     .sort((left, right) => right.package_version - left.package_version)[0];
+  const previousPackage = [...data.packages]
+    .filter(
+      (deploymentPackage) =>
+        deploymentPackage.id !== currentPackage?.id &&
+        deploymentPackage.status !== "STALE",
+    )
+    .sort((left, right) => right.package_version - left.package_version)[0];
   const governedDraftUrl = missionControlDraftUrl(currentPackage);
   const qualification = qualifiedContext?.qualification ?? null;
   const qualifiedPartner = Boolean(
@@ -311,9 +320,18 @@ export function FactoryHandoffWorkspace({
         />
       )}
 
+      <FactoryDefinitionSummary
+        currentPackage={currentPackage}
+        customerModel={data.customer_model}
+        opportunities={data.opportunities}
+        previousPackage={previousPackage}
+        readiness={data.readiness}
+        selectedOpportunity={selectedOpportunity}
+      />
+
       <section className="mt-14 scroll-mt-6" id="factory-opportunities">
         <HandoffHeading
-          eyebrow="08 / Customer truth to candidate line"
+          eyebrow="08 / Factory Definition inputs"
           title="Factory opportunity portfolio"
           detail="Freeze the verified customer model, compare one explainable candidate for this workflow, and record the human selection before final readiness."
         />
@@ -336,13 +354,13 @@ export function FactoryHandoffWorkspace({
                   prerequisites.evidence_refs.length === 0 ||
                   prerequisites.verified_claim_refs.length === 0))
             }
-            eyebrow="Customer Factory Model"
+            eyebrow="Factory Definition source model"
             onClick={() => {
               if (synthetic) {
                 void runAction(
                   "customer-model",
                   () => approveSyntheticCustomerModel(engagementId),
-                  "Customer Factory Model v1 was approved with immutable provenance.",
+                  "Factory Definition source model v1 was approved with immutable provenance.",
                 );
                 return;
               }
@@ -357,7 +375,7 @@ export function FactoryHandoffWorkspace({
                       qualification,
                     ),
                   ),
-                "A traceable Customer Factory Model draft was built. Review and approve it separately.",
+                "A traceable Factory Definition source-model draft was built. Review and approve it separately.",
               );
             }}
             title={
@@ -400,7 +418,7 @@ export function FactoryHandoffWorkspace({
                           engagementId,
                           data.customer_model!.id,
                         ),
-                      "The human operator approved the Customer Factory Model and its immutable provenance.",
+                      "The human operator approved the Factory Definition source model and its immutable provenance.",
                     )
                   }
                 />
@@ -600,16 +618,16 @@ export function FactoryHandoffWorkspace({
 
       <section className="mt-14 scroll-mt-6" id="deployment-package">
         <HandoffHeading
-          eyebrow="10 / Approved deployment intent"
-          title="Factory Deployment Package"
-          detail="Review exact source versions, approved intent, authority, verification, economics, risks, and provenance before publishing immutable bytes."
+          eyebrow="10 / Mission Control bridge"
+          title="Factory Definition handoff projection"
+          detail="Review the exact Factory Definition sources, approved intent, authority, verification, economics, risks, and provenance before publishing a data-minimized immutable projection. This projection is not a Factory Version."
         />
 
         {!currentPackage ? (
           <>
             <ActionState
               button="Generate package draft"
-              detail="Only approved current sources and final READY assessment may enter the package. Raw customer evidence stays in Factory Engineer."
+              detail="Only approved current sources and final READY assessment may enter the handoff projection. Raw customer evidence stays in AI-FDE."
               disabled={
                 busy !== null ||
                 !actionsEnabled ||
@@ -727,7 +745,7 @@ export function FactoryHandoffWorkspace({
                 </span>
               </div>
               <h3 className="display-font mt-4 text-3xl font-medium">
-                Factory Engineer proposes. Mission Control governs.
+                AI-FDE proposes. Mission Control governs.
               </h3>
               <p className="mt-3 max-w-3xl text-xs leading-5 text-white/60">
                 No WorkOrder, Attempt, approval, verification, merge, release,
@@ -831,6 +849,226 @@ export function FactoryHandoffWorkspace({
         </div>
       </section>
     </>
+  );
+}
+
+function FactoryDefinitionSummary({
+  currentPackage,
+  customerModel,
+  opportunities,
+  previousPackage,
+  readiness,
+  selectedOpportunity,
+}: {
+  currentPackage: DeploymentPackage | undefined;
+  customerModel: CustomerFactoryModel | null;
+  opportunities: FactoryOpportunity[];
+  previousPackage: DeploymentPackage | undefined;
+  readiness: FDLCReadinessAssessment | null;
+  selectedOpportunity: FactoryOpportunity | undefined;
+}) {
+  const [exportState, setExportState] = useState<
+    "idle" | "copied" | "downloaded" | "error"
+  >("idle");
+  const definitionVersion =
+    currentPackage?.package_version ?? customerModel?.version_number ?? 0;
+  const definitionStatus =
+    currentPackage?.status ??
+    readiness?.status ??
+    customerModel?.status ??
+    "NOT STARTED";
+  const unresolvedClaims =
+    (customerModel?.assumption_refs.length ?? 0) +
+    (selectedOpportunity?.blockers.length ?? 0) +
+    (readiness?.stages.reduce(
+      (count, stage) => count + stage.blockers.length,
+      0,
+    ) ?? 0);
+  const rejectedCandidates = opportunities.filter(
+    (opportunity) => opportunity.status === "REJECTED",
+  ).length;
+  const exportPayload = {
+    artifact_type: "fdlc.factory-definition/v1",
+    statement:
+      "Canonical AI-FDE output for human review and Mission Control handoff preparation; not a Factory Version or execution record.",
+    version: definitionVersion,
+    status: definitionStatus,
+    customer_model: customerModel,
+    selected_opportunity: selectedOpportunity ?? null,
+    readiness,
+    handoff_projection: currentPackage ?? null,
+  };
+
+  async function copyDefinition() {
+    try {
+      await navigator.clipboard.writeText(
+        JSON.stringify(exportPayload, null, 2),
+      );
+      setExportState("copied");
+    } catch {
+      setExportState("error");
+    }
+  }
+
+  function downloadDefinition() {
+    const blob = new Blob([JSON.stringify(exportPayload, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `factory-definition-v${definitionVersion || "draft"}.json`;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    setExportState("downloaded");
+  }
+
+  return (
+    <section className="mt-10 scroll-mt-6" id="factory-definition">
+      <div className="overflow-hidden rounded-xl border border-[var(--line-strong)] bg-[var(--paper)]">
+        <div className="grid gap-6 border-b border-[var(--line)] bg-[var(--ink)] px-6 py-7 text-white lg:grid-cols-[1fr_auto] lg:items-start">
+          <div>
+            <p className="text-[0.65rem] font-extrabold uppercase tracking-[0.14em] text-[#9dc8c2]">
+              Canonical AI-FDE output
+            </p>
+            <h2 className="display-font mt-3 text-3xl font-medium md:text-4xl">
+              Factory Definition
+            </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-white/65">
+              The reviewable definition of outcomes, workflow, capabilities,
+              implementation inputs, verification, authority, economics, and
+              rollout constraints. A Factory Definition is not a Factory
+              Version; Mission Control owns qualification and execution.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2 lg:justify-end">
+            <span className="rounded bg-white/10 px-3 py-2 text-[0.65rem] font-extrabold uppercase tracking-[0.1em]">
+              {definitionVersion ? `v${definitionVersion}` : "Unversioned"}
+            </span>
+            <span className="rounded bg-white/10 px-3 py-2 text-[0.65rem] font-extrabold uppercase tracking-[0.1em]">
+              {humanize(definitionStatus)}
+            </span>
+          </div>
+        </div>
+
+        <dl className="grid border-b border-[var(--line)] sm:grid-cols-2 xl:grid-cols-4">
+          <DefinitionField
+            label="Lineage"
+            value={`${customerModel?.evidence_refs.length ?? 0} source evidence · ${customerModel?.verified_claim_refs.length ?? 0} verified claims`}
+          />
+          <DefinitionField
+            label="Unresolved claims"
+            value={`${unresolvedClaims} assumptions or blockers`}
+          />
+          <DefinitionField
+            label="Workflow & outcome"
+            value={
+              selectedOpportunity?.name ??
+              customerModel?.workflows[0]?.description ??
+              "Awaiting verified workflow"
+            }
+          />
+          <DefinitionField
+            label="Readiness"
+            value={
+              readiness
+                ? `${humanize(readiness.overall_status)} · ${readiness.stages.length} FDLC stages`
+                : "Assessment pending"
+            }
+          />
+          <DefinitionField
+            label="Capabilities"
+            value={`${currentPackage?.deployment_intent.required_capabilities.length ?? 0} required · ${currentPackage?.deployment_intent.required_agents.length ?? 0} agent contracts`}
+          />
+          <DefinitionField
+            label="Implementation & execution architecture"
+            value={`${currentPackage?.deployment_intent.work_order_blueprints.length ?? 0} proposed work-order blueprints · no dispatch`}
+          />
+          <DefinitionField
+            label="Verification"
+            value={`${currentPackage?.deployment_intent.verification_contract.length ?? 0} contracts · ${currentPackage?.deployment_intent.plan_assertions.length ?? 0} assertions`}
+          />
+          <DefinitionField
+            label="Authority"
+            value={`${currentPackage?.deployment_intent.authority_boundaries.length ?? customerModel?.authority_boundaries.length ?? 0} bounded authorities · human approval required`}
+          />
+          <DefinitionField
+            label="Economics"
+            value={`${Object.keys(currentPackage?.deployment_intent.economics_baseline ?? {}).length} labeled baseline outputs`}
+          />
+          <DefinitionField
+            label="Rollout & rollback"
+            value={
+              currentPackage?.deployment_intent.rollback_approach ??
+              "Defined before handoff publication"
+            }
+          />
+          <DefinitionField
+            label="Review decisions"
+            value={`${rejectedCandidates} rejected candidates · ${currentPackage?.approval ? "approved projection" : "approval pending"}`}
+          />
+          <DefinitionField
+            label="Version diff"
+            value={
+              previousPackage
+                ? `v${previousPackage.package_version} → v${currentPackage?.package_version}; immutable digests preserved`
+                : "First version · no prior projection"
+            }
+          />
+        </dl>
+
+        <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-5">
+          <p className="max-w-2xl text-xs leading-5 text-[var(--ink-soft)]">
+            Copy or download exports the reviewed definition snapshot for human
+            inspection. Publishing the handoff projection still requires the
+            separate staged approval flow below.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <button
+              className="rounded border border-[var(--line-strong)] bg-white px-4 py-2.5 text-xs font-extrabold"
+              onClick={() => void copyDefinition()}
+              type="button"
+            >
+              {exportState === "copied" ? "Copied" : "Copy JSON"}
+            </button>
+            <button
+              className="rounded border border-[var(--line-strong)] bg-white px-4 py-2.5 text-xs font-extrabold"
+              onClick={downloadDefinition}
+              type="button"
+            >
+              {exportState === "downloaded" ? "Downloaded" : "Download JSON"}
+            </button>
+            <a
+              className="rounded bg-[var(--ink)] px-4 py-2.5 text-xs font-extrabold text-white no-underline"
+              href="#deployment-package"
+            >
+              Prepare handoff
+            </a>
+          </div>
+          {exportState === "error" && (
+            <p
+              className="w-full text-xs font-bold text-[var(--red)]"
+              role="alert"
+            >
+              Copy was blocked by the browser. Use Download JSON instead.
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DefinitionField({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="border-b border-[var(--line)] p-5 sm:border-r xl:[&:nth-child(4n)]:border-r-0">
+      <dt className="text-[0.62rem] font-extrabold uppercase tracking-[0.1em] text-[var(--ink-soft)]">
+        {label}
+      </dt>
+      <dd className="mt-2 text-xs font-bold leading-5">{value}</dd>
+    </div>
   );
 }
 

@@ -960,7 +960,7 @@ async function buildSyntheticPackage(
     authority_boundaries: [
       {
         key: "draft-only-handoff",
-        subject: "Factory Engineer",
+        subject: "AI-FDE",
         maximum_authority: "Propose Mission and Plan drafts only.",
         prohibited_actions: [
           "approve Plan",
