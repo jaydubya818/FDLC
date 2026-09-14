@@ -57,7 +57,10 @@ def test_ci_validates_terraform_offline_with_immutable_tooling() -> None:
     assert "# v4.0.1" in setup
     assert 'terraform_version: "1.16.1"' in setup
     assert "terraform_wrapper: false" in setup
-    assert "working-directory: products/ai-fde/infrastructure/terraform/design-partner" in validation
+    assert (
+        "working-directory: products/ai-fde/infrastructure/terraform/design-partner"
+        in validation
+    )
     assert 'AWS_EC2_METADATA_DISABLED: "true"' in validation
     assert 'TF_IN_AUTOMATION: "true"' in validation
     assert "terraform fmt -check -recursive" in validation
