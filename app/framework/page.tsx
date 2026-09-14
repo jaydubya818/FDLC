@@ -27,7 +27,7 @@ const frameworkPieces = [
   ["FDLC Specification", "Proposed standard", "Formal definitions and invariants for portable artifacts and state transitions.", "/specification"],
   ["AI Software Factory Guide", "Open field guide", "The detailed methodology from first principles through production.", "/guide"],
   ["Mission Control", "Open-source reference", "The reference implementation that makes the FDLC protocol concrete.", "/mission-control"],
-  ["AI-FDE", "Preview product", "The product/system for discovering and designing a Factory Definition. The Factory Deployed Engineer remains the accountable human role.", "/deploy"],
+  ["AI-FDE", "Preview product", "The evidence-driven product for turning reviewed enterprise reality into an approved Factory Definition, led by an accountable human Factory Deployed Engineer.", "/deploy"],
   ["FDLC Enterprise", "Proposed product", "The commercial control plane for operating proven factories at organizational scale.", "/enterprise"],
 ] as const;
 

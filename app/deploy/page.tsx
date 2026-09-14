@@ -1,107 +1,101 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CopyValue } from "../components/copy-value";
 import { MissionControlProductTour } from "../components/mission-control-experience";
 import { NextSteps } from "../components/next-steps";
 import { SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
+import { factoryDefinitionConcerns, missionControlHandoffBoundary } from "../../data/ai-fde";
 import { pageHandoffs } from "../../data/page-handoffs";
 import { pageMetadata } from "../../lib/metadata";
 import { FdeIcon } from "./fde-icon";
 import {
   deliverables,
   engagementPhases,
-  factoryDefinition,
   fdeWorkflow,
   lighthouseCandidates,
-  qualificationFacts,
-  qualifiedBaselineDeployment,
-  rollbackDeployment,
 } from "./fde-content";
 
 export const metadata: Metadata = pageMetadata(
-  "AI-FDE — Factory Deployed Engineer",
-  "Work with AI-FDE to discover and design a Factory Definition. A Factory Deployed Engineer remains the accountable human role.",
+  "AI-FDE — AI Factory Deployed Engineer",
+  "AI-FDE turns enterprise evidence into an approved Factory Definition for governed qualification in Mission Control, with an accountable human Factory Deployed Engineer in control.",
   "/deploy",
 );
 
 const humanResponsibilities = ["Discovery", "Architecture", "Factory Definition", "Workflow decomposition", "Trust boundaries", "Evaluation strategy", "Rollout", "Organizational adoption"];
-const workerResponsibilities = ["Planning", "Implementation", "Testing", "Migration", "Remediation", "Verification", "Evidence collection"];
+const workerResponsibilities = ["Evidence ingestion", "Candidate claims", "Current-state modeling", "Target workflow design", "Economics", "Readiness", "Handoff preparation"];
 const controlResponsibilities = ["Authority", "Orchestration", "Execution", "Evidence", "Verification", "Recovery", "Approval", "Economics"];
 const selectionCriteria = ["Bounded scope", "Repetitive work", "Clear acceptance criteria", "Existing baseline", "Independent verification", "Measurable business value", "Safe rollback"];
 const missionControlObjects = ["WorkOrders", "Attempts", "Factory Versions", "Execution Profiles", "Evidence", "Verification", "Human Authority", "Recovery", "Economics"];
 
 export default function DeployPage() {
-  const productionDeployment = process.env.VERCEL_DEPLOYMENT_ID ?? qualifiedBaselineDeployment;
-
   return (
     <SiteShell>
       <div className="page-wrap fde-page">
         <header className="fde-product-hero">
           <div className="fde-product-hero-copy">
-            <p className="section-label">AI-FDE / AI Factory Deployed Engineer</p>
-            <h1>Build your software factory with a <em>Factory Deployed Engineer.</em></h1>
-            <p className="fde-product-lede">AI-FDE is the product/system for discovering and designing a Factory Definition. A Factory Deployed Engineer (FDE) works inside your engineering environment to identify the right automation opportunity, design the Factory Definition, assemble the governed production line, prove it against real outcomes, and help your organization scale what works.</p>
-            <div className="fde-product-proof" aria-label="What Factory Deployed Engineer is">
+            <p className="section-label">AI FACTORY DEPLOYED ENGINEER</p>
+            <h1>Turn how your organization builds software into a <em>governed AI software factory.</em></h1>
+            <p className="fde-product-lede">AI-FDE is the evidence-driven workspace for an accountable human Factory Deployed Engineer. It discovers how work happens, turns reviewed evidence into a Factory Definition, and prepares that approved intent for validation in Mission Control.</p>
+            <div className="fde-product-proof" aria-label="What AI-FDE is">
               <strong>Not another coding agent.</strong>
-              <strong>Not a consulting deck.</strong>
-              <span>A working factory line, operating against your real engineering system, with measurable evidence.</span>
+              <strong>Not an autonomous control plane.</strong>
+              <span>A governed bridge from enterprise source evidence to inspectable implementation intent.</span>
             </div>
             <div className="hero-actions">
-              <Link className="button button-dark" href="/maturity">Assess your factory readiness</Link>
-              <a className="button button-light" href="#how-fde-works">See how FDE works</a>
-              <Link className="text-action" href="/start">Explore a Factory Definition <span aria-hidden="true">→</span></Link>
-              <Link className="text-action" href="/enterprise#pricing">Contact FDLC Enterprise for pricing <span aria-hidden="true">→</span></Link>
+              <a className="button button-dark" href="https://ai-fde-agent.vercel.app" rel="noreferrer" target="_blank">Launch synthetic demo <span aria-hidden="true">↗</span></a>
+              <a className="button button-light" href="#how-ai-fde-works">See how AI-FDE works</a>
+              <Link className="text-action" href="/maturity">Assess readiness <span aria-hidden="true">→</span></Link>
+              <Link className="text-action" href="/start">Build a Factory Definition <span aria-hidden="true">→</span></Link>
             </div>
           </div>
 
-          <figure className="fde-factory-map" aria-label="How a Factory Deployed Engineer turns an engineering system into measurable outcomes">
-            <div className="fde-map-chrome"><span>FDE engagement / Factory line</span><span>Intent → outcome</span></div>
+          <figure className="fde-factory-map" aria-label="How AI-FDE turns enterprise evidence into governed implementation intent">
+            <div className="fde-map-chrome"><span>AI-FDE / Evidence workspace</span><span>Source → definition</span></div>
             <div className="fde-map-layer is-input">
               <span>Your engineering system</span>
               <div>{["Repositories", "Teams", "CI/CD", "Backlog", "Standards", "Context"].map((item) => <b key={item}>{item}</b>)}</div>
             </div>
             <span className="fde-map-arrow" aria-hidden="true">↓</span>
             <div className="fde-map-layer is-fde">
-              <span>Factory Deployed Engineer</span>
-              <div>{["Discover", "Define", "Assemble", "Qualify", "Operate", "Transfer"].map((item, index) => <b key={item}><i>{String(index + 1).padStart(2, "0")}</i>{item}</b>)}</div>
+              <span>AI-FDE + accountable FDE</span>
+              <div>{["Ingest", "Model", "Review", "Design", "Approve", "Prepare"].map((item, index) => <b key={item}><i>{String(index + 1).padStart(2, "0")}</i>{item}</b>)}</div>
             </div>
             <span className="fde-map-arrow" aria-hidden="true">↓</span>
             <div className="fde-map-layer is-line">
-              <span>Governed factory line</span>
-              <div>{["Intent", "Plan", "Execute", "Verify", "Approve", "Release", "Learn"].map((item) => <b key={item}>{item}</b>)}</div>
+              <span>Factory Definition</span>
+              <div>{["Objective", "Workflow", "Capabilities", "Authority", "Verification", "Economics"].map((item) => <b key={item}>{item}</b>)}</div>
             </div>
             <span className="fde-map-arrow" aria-hidden="true">↓</span>
             <div className="fde-map-outcomes">
-              <span>Measurable outcomes</span>
-              <div><b>Cycle time ↓</b><b>Defects ↓</b><b>Cost / outcome ↓</b><b>Human toil ↓</b><b>Verification reliability ↑</b></div>
+              <span>Mission Control boundary</span>
+              <div><b>Validate</b><b>Qualify</b><b>Version</b><b>Execute</b><b>Verify</b><b>Release</b></div>
             </div>
           </figure>
         </header>
 
         <section className="fde-human-system" id="human-digital-system">
-          <header><p className="section-label">The operating team</p><h2>Humans lead.<br />Digital workers execute.</h2><p>The FDE is the human implementation layer—not another autonomous agent. People design the system and retain consequential authority; workers perform bounded operations; Mission Control makes the boundary enforceable.</p></header>
+          <header><p className="section-label">The operating team</p><h2>AI-FDE assists.<br />The human FDE remains accountable.</h2><p>AI-FDE is the product. The Factory Deployed Engineer is the human role that owns architecture, judgment, authority, adoption, and outcomes. Mission Control owns governed runtime qualification and execution.</p></header>
           <div className="fde-responsibility-grid">
             <article className="is-human"><span>01 / Human lead</span><h3>Factory Deployed Engineer</h3><p>Owns the factory design and organizational outcome.</p><ul>{humanResponsibilities.map((item) => <li key={item}>{item}</li>)}</ul></article>
-            <article className="is-workers"><span>02 / Bounded execution</span><h3>Digital workers</h3><p>Perform authorized work and return attributable evidence.</p><ul>{workerResponsibilities.map((item) => <li key={item}>{item}</li>)}</ul></article>
+            <article className="is-workers"><span>02 / Evidence product</span><h3>AI-FDE</h3><p>Discovers and designs from reviewed enterprise evidence.</p><ul>{workerResponsibilities.map((item) => <li key={item}>{item}</li>)}</ul></article>
             <article className="is-control"><span>03 / Control plane</span><h3>Mission Control</h3><p>Governs the runtime and preserves the operating record.</p><ul>{controlResponsibilities.map((item) => <li key={item}>{item}</li>)}</ul></article>
           </div>
         </section>
 
         <section className="section-block fde-ecosystem-section" id="ecosystem">
-          <SectionHeader eyebrow="FDE in the FDLC ecosystem" title="From operating model to proven outcome." description="Factory Deployed Engineers join the open framework, methodology, and control plane into one real, measurable workflow." />
+          <SectionHeader eyebrow="AI-FDE in the FDLC ecosystem" title="One product boundary at every stage." description="FDLC defines the model. AI-FDE discovers and designs the factory. The human FDE owns the judgment. Mission Control governs qualification and execution." />
           <ol className="fde-ecosystem-flow">
             <li><span>01</span><strong>FDLC</strong><p>Defines the operating model.</p></li>
-            <li><span>02</span><strong>The Guide</strong><p>Teaches the practices.</p></li>
-            <li><span>03</span><strong>Mission Control</strong><p>Governs execution.</p></li>
-            <li className="is-fde"><span>04</span><strong>Factory Deployed Engineer</strong><p>Applies the system.</p></li>
-            <li><span>05</span><strong>Factory line</strong><p>Solves a real workflow.</p></li>
-            <li className="is-outcome"><span>06</span><strong>Outcomes</strong><p>Prove whether it worked.</p></li>
+            <li><span>02</span><strong>AI-FDE</strong><p>Discovers and designs it.</p></li>
+            <li className="is-fde"><span>03</span><strong>Human FDE</strong><p>Owns it.</p></li>
+            <li><span>04</span><strong>Mission Control</strong><p>Governs it.</p></li>
+            <li><span>05</span><strong>Factory</strong><p>Executes it.</p></li>
+            <li className="is-outcome"><span>06</span><strong>Outcome</strong><p>Proves it.</p></li>
           </ol>
         </section>
 
-        <section className="section-block fde-workflow-section" id="how-fde-works">
-          <SectionHeader eyebrow="What a Factory Deployed Engineer does" title="Understand. Design. Build. Prove. Scale." description="The work moves through six explicit stages. Every stage produces a durable artifact and evidence for the next decision." />
+        <section className="section-block fde-workflow-section" id="how-ai-fde-works">
+          <SectionHeader eyebrow="How AI-FDE works" title="Evidence in. Governed intent out." description="AI-FDE assists the human FDE through six explicit stages. It does not silently promote inference to truth or approved intent to runtime." />
           <ol className="fde-workflow-grid">
             {fdeWorkflow.map((stage) => (
               <li key={stage.name}>
@@ -117,27 +111,27 @@ export default function DeployPage() {
           <div className="fde-definition-copy">
             <p className="section-label">The primary design artifact</p>
             <h2>Begin with the factory required to produce the outcome safely.</h2>
-            <p>The FDE does not begin by choosing a model. The FDE begins by defining the full factory: what it must produce, what may act, what evidence must return, where people decide, and how value will be measured.</p>
+            <p>AI-FDE does not begin by choosing a model. It helps the human FDE define what the factory must produce, what may act, what evidence must return, where people decide, and how value will be measured.</p>
             <div className="hero-actions"><Link className="button button-light" href="/start">Explore Factory Definition <span aria-hidden="true">→</span></Link><Link className="text-action light-link" href="/architecture">Inspect the architecture <span aria-hidden="true">→</span></Link></div>
           </div>
           <div className="fde-definition-card">
             <div className="fde-definition-chrome"><span>Factory Definition</span><span>12 required concerns</span></div>
             <div className="fde-definition-core"><span>Outcome</span><strong>A governed factory line</strong><small>Select a component to inspect its responsibility.</small></div>
             <div className="fde-definition-grid">
-              {factoryDefinition.map(([name, description], index) => <details key={name}><summary><span>{String(index + 1).padStart(2, "0")}</span>{name}</summary><p>{description}</p></details>)}
+              {factoryDefinitionConcerns.map(({ name, description }, index) => <details key={name}><summary><span>{String(index + 1).padStart(2, "0")}</span>{name}</summary><p>{description}</p></details>)}
             </div>
           </div>
         </section>
 
         <section className="section-block fde-engagement-v2" id="engagement-model">
-          <SectionHeader eyebrow="The FDE engagement model" title="Three phases. One evidence trail." description="Readiness selects the line. Lighthouse proves it. Scale remains conditional on evidence from real operation." />
+          <SectionHeader eyebrow="The human-led engagement model" title="Three phases. One evidence trail." description="AI-FDE supports the evidence and design work. The human FDE owns the decisions. Scale remains conditional on evidence from real operation." />
           <ol className="fde-phase-journey">
             {engagementPhases.map((phase, index) => (
               <li className={index === 1 ? "is-lighthouse" : ""} key={phase.name}>
                 <header><span>{phase.number}</span><div><h3>{phase.name}</h3><p>{phase.purpose}</p></div></header>
                 <div className="fde-phase-body">
                   <div><strong>{index === 1 ? "Factory path" : "Inputs"}</strong><ul>{phase.inputs.map((item) => <li key={item}>{item}</li>)}</ul></div>
-                  <div><strong>{index === 1 ? "Measure" : "FDE work"}</strong><ul>{phase.work.map((item) => <li key={item}>{item}</li>)}</ul></div>
+                  <div><strong>{index === 1 ? "Measure" : "Human + AI-FDE work"}</strong><ul>{phase.work.map((item) => <li key={item}>{item}</li>)}</ul></div>
                 </div>
                 <footer><span>Output</span><strong>{phase.output}</strong></footer>
               </li>
@@ -146,7 +140,7 @@ export default function DeployPage() {
         </section>
 
         <section className="section-block fde-deliverables" id="deliverables">
-          <SectionHeader eyebrow="What you leave with" title="A working system—not a recommendation deck." description="The engagement leaves behind the line, the controls, the proof, and the organizational capability to operate and extend it." />
+          <SectionHeader eyebrow="What AI-FDE produces" title="A governed definition—not an unreviewed recommendation." description="The primary output is an inspectable, attributable Factory Definition. Runtime qualification and execution remain separate Mission Control responsibilities." />
           <div className="fde-deliverable-grid">{deliverables.map(([icon, name, description], index) => <article key={name}><div><FdeIcon name={icon} /><span>{String(index + 1).padStart(2, "0")}</span></div><h3>{name}</h3><p>{description}</p></article>)}</div>
         </section>
 
@@ -166,13 +160,13 @@ export default function DeployPage() {
             <dl><div><dt>Input</dt><dd>Upgrade backlog + current baseline</dd></div><div><dt>Artifacts</dt><dd>Factory Definition, Factory Version, evaluation suite</dd></div><div><dt>Decision gates</dt><dd>Independent verification + human release authority</dd></div><div><dt>Outcome contract</dt><dd>Cycle time, defects, human minutes, accepted-upgrade cost</dd></div></dl>
           </aside>
           <div className="fde-before-after">
-            <article><span>Before FDE</span><ol>{["Human receives work", "Manually investigates", "Edits", "Tests", "Reviews", "Waits", "Repeats"].map((item) => <li key={item}>{item}</li>)}</ol><strong>Humans perform every operation.</strong></article>
+            <article><span>Before AI-FDE</span><ol>{["Evidence is scattered", "Claims are implicit", "Workflow is undocumented", "Economics are assumed", "Authority is unclear", "Requirements drift", "Implementation starts"].map((item) => <li key={item}>{item}</li>)}</ol><strong>Engineering starts from uncertain intent.</strong></article>
             <article className="is-after"><span>After factory line</span><ol>{["Intent", "Governed planning", "Bounded execution", "Independent verification", "Human authority", "Delivery", "Measured outcome"].map((item) => <li key={item}>{item}</li>)}</ol><strong>Humans govern outcomes and exceptions.</strong></article>
           </div>
         </section>
 
         <section className="section-block fde-measurement-section" id="measurement">
-          <SectionHeader eyebrow="Prove the factory with outcomes" title="Compare the line with the baseline it replaces." description="FDE uses a measurement contract, not invented improvement claims. Real values appear only after the line produces attributable evidence." />
+          <SectionHeader eyebrow="Define proof before execution" title="Compare the future line with the baseline it replaces." description="AI-FDE captures a measurement contract, not invented improvement claims. Real values appear only after Mission Control produces attributable execution evidence." />
           <div className="fde-measurement-grid">
             {["Cycle time", "Human engineering minutes", "Defect escape rate", "Verification pass rate", "Cost per accepted WorkOrder", "Cost per released outcome"].map((metric, index) => <article key={metric}><span>{String(index + 1).padStart(2, "0")}</span><h3>{metric}</h3><div><b>Baseline</b><i aria-hidden="true">→</i><b>Factory outcome</b></div><small>Measured, not assumed</small></article>)}
           </div>
@@ -194,7 +188,7 @@ export default function DeployPage() {
         </section>
 
         <section className="section-block fde-collaboration-section" id="collaboration">
-          <SectionHeader eyebrow="How we work together" title="Your domain. One shared factory. Capability you keep." description="FDE is embedded implementation with your experts—not a black-box handoff and not permanent dependency on an outside team." />
+          <SectionHeader eyebrow="How the human FDE works with you" title="Your domain. Reviewed evidence. Accountable decisions." description="The human FDE leads the engagement with your experts while AI-FDE makes evidence, claims, decisions, and implementation intent inspectable." />
           <div className="fde-collaboration-grid">
             <article><span>01 / You bring</span><ul>{["A real workflow", "A baseline", "Domain experts", "Engineering constraints"].map((item) => <li key={item}>{item}</li>)}</ul></article>
             <article className="is-together"><span>02 / We build together</span><ul>{["Factory Definition", "Lighthouse", "Evidence", "Operating model"].map((item) => <li key={item}>{item}</li>)}</ul></article>
@@ -222,28 +216,31 @@ export default function DeployPage() {
         </section>
 
         <section className="section-block fde-qualification-v2" id="qualification-status">
-          <SectionHeader eyebrow="Current FDE qualification environment" title="Prepared and verified. Deliberately dormant." description="This supporting evidence records the prepared qualification environment and public release posture. It is not presented as customer-operation evidence." />
+          <SectionHeader eyebrow="Current AI-FDE status" title="Synthetic product path qualified. Live operation not claimed." description="The public demo is deterministic and synthetic. Its source and browser gates are current, but this is not customer-operation, live-model, or Production-runtime evidence." />
           <div className="fde-qualification-states">
-            <article><span>Production</span><strong>Qualified / Healthy</strong></article>
-            <article><span>Qualification environment</span><strong>Ready</strong></article>
-            <article className="is-dormant"><span>Phase 3</span><strong>Dormant / Not activated</strong></article>
-            <article><span>Bedrock live calls</span><strong>0</strong></article>
+            <article><span>Product stage</span><strong>Internal alpha</strong></article>
+            <article><span>Public path</span><strong>Synthetic demo</strong></article>
+            <article className="is-dormant"><span>Live qualification</span><strong>Not activated</strong></article>
+            <article><span>Live model calls</span><strong>0</strong></article>
           </div>
           <div className="fde-evidence-ledger">
-            <div><p className="section-label">Qualification identity</p><dl>{qualificationFacts.map(([label, value]) => <div key={label}><dt>{label}</dt><dd><CopyValue label={label} value={value} /></dd></div>)}</dl></div>
-            <div><p className="section-label">Release and recovery</p><dl>
-              <div><dt>Current Production deployment</dt><dd><CopyValue label="current Production deployment" value={productionDeployment} /></dd></div>
-              <div><dt>Qualified baseline</dt><dd><CopyValue label="qualified baseline" value={qualifiedBaselineDeployment} /></dd></div>
-              <div><dt>Retained rollback target</dt><dd><CopyValue label="retained rollback target" value={rollbackDeployment} /></dd></div>
-              <div><dt>Production aliases</dt><dd><code>fdlc.ai · www.fdlc.ai</code></dd></div>
-              <div><dt>Immutable runtime supply chain</dt><dd>Immutable ECR image digests and exact secret-version references are pinned. No secret values are published.</dd></div>
+            <div><p className="section-label">Evidence boundary</p><dl>
+              <div><dt>Qualified source</dt><dd>Exact merged revision; full trust, contract, build, browser, and accessibility gates passed 2026-09-14.</dd></div>
+              <div><dt>Demo data</dt><dd>Deterministic synthetic fixtures only. Browser-local demo state.</dd></div>
+              <div><dt>Network boundary</dt><dd>Invalid fallback API origin; hosted demo must not make live service calls.</dd></div>
+            </dl></div>
+            <div><p className="section-label">Factory Definition handoff</p><dl>
+              <div><dt>AI-FDE may</dt><dd>{missionControlHandoffBoundary.aiFdeMay.join(" · ")}</dd></div>
+              <div><dt>AI-FDE may not</dt><dd>{missionControlHandoffBoundary.aiFdeMayNot.join(" · ")}</dd></div>
+              <div><dt>Mission Control owns</dt><dd>{missionControlHandoffBoundary.missionControlOwns.join(" · ")}</dd></div>
+              <div><dt>Sanitized evidence</dt><dd><a href="https://github.com/jaydubya818/AI-FDE-Agent/actions/runs/34879502699" rel="noreferrer" target="_blank">Inspect the exact-source qualification run ↗</a></dd></div>
             </dl></div>
           </div>
         </section>
 
-        <aside className="fde-maturity-boundary" aria-label="Factory Deployed Engineer maturity boundary">
-          <div><p className="section-label">Maturity boundary</p><h2>Qualification-ready infrastructure is not live qualification.</h2></div>
-          <p>The current evidence proves a prepared, no-drift qualification environment and a healthy public FDLC release. It does not prove Phase 3 execution, Bedrock inference, sustained customer operation, provider economics, or fleet-scale reliability. Those claims require separately authorized live evidence.</p>
+        <aside className="fde-maturity-boundary" aria-label="AI-FDE maturity boundary">
+          <div><p className="section-label">Maturity boundary</p><h2>Synthetic qualification is not live operational proof.</h2></div>
+          <p>The current evidence proves the deterministic synthetic workflow and its release safety controls. It does not prove customer operation, live inference, runtime convergence with Mission Control, realized ROI, or fleet-scale reliability.</p>
         </aside>
         <NextSteps {...pageHandoffs.deploy} />
       </div>

@@ -24,7 +24,7 @@ export const whatsRealToday = [
     name: "AI-FDE",
     kind: "Product",
     status: "Preview",
-    meaning: "Product/system for discovering and designing a Factory Definition. The Factory Deployed Engineer is the accountable human role.",
+    meaning: "Internal alpha with a synthetic demo. Discovers and designs a Factory Definition; a Factory Deployed Engineer remains the accountable human.",
     href: "/deploy",
   },
   {

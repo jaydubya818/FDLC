@@ -475,7 +475,8 @@ Crosswalk from current names: L3 "Orchestrated Workflows" → Orchestrated Deliv
 | Stage 4/5 | **Assemble**, **Qualify** | "Build", "Validate" | Avoids Builder collision; qualification first-class |
 | Human role | **Builder** (human only) | "Requester" (alias in glossary) | User direction; collision noted in glossary |
 | Metrics | cost per **verified** / **accepted** / **released** outcome as three metrics | FDE renames | Decision 05 denominators |
-| Services | **Factory Deployed Engineer (FDE)** | "Forward-Deployed" | Site decision; fix `guide.ts` |
+| Product | **AI-FDE (AI Factory Deployed Engineer)** | "Factory Engineer", "FDLC Deploy" | Product turns reviewed evidence into a Factory Definition |
+| Human role | **Factory Deployed Engineer (FDE)** | "Forward-Deployed" | Accountable for architecture, judgment, authority, adoption, and outcomes |
 | Canonical host | one host (recommend apex `fdlc.ai`), the other 308s | — | Host consolidation |
 
 Five terms to own publicly (per landscape): Work Order · Evidence · Verification (vs Approval) · Factory Version · Control Plane (as authority). Everything else is reference vocabulary with crosswalks (harness ↔ OpenAI/Anthropic usage; capability ↔ skill/tool; evidence ↔ SLSA/in-toto/OTel).

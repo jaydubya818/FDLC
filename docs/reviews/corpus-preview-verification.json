@@ -1,10 +1,10 @@
 {
   "schema": "fdlc-corpus-verification/v1",
-  "generatedAt": "2026-09-12T21:24:54.210Z",
+  "generatedAt": "2026-09-14T18:24:32.204Z",
   "generatorVersion": "1.0.1",
   "reproduce": "npm run corpus:sync && npm run corpus:verify",
   "archiveSha256": "54583e8f18d3e474617b6d63b25ddac1c58ff196c8271a2dcb22f7f4a6e38a49",
-  "sourceDigest": "1ed4d658726690d63c2ae8dff0dfdd288af0807da0c79240ac9067737d3e6023",
+  "sourceDigest": "a36df371d3987981db99cccae43a2706c078c016ae3f87b5a8a4bf7a8f058e2c",
   "toolVersions": {
     "node": ">=22.13.0",
     "ajv": "8.20.0",
@@ -55,7 +55,7 @@
     "corpusMarkdownFiles": 161,
     "reviewMarkdownFiles": 10,
     "routedDocuments": 158,
-    "words": 371663,
+    "words": 371709,
     "schemas": 19,
     "examples": 19,
     "mermaidSources": 33,

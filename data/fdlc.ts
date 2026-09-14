@@ -74,7 +74,7 @@ export const ecosystemRoles = [
   { name: "FDLC", role: "Defines it.", description: "The open operating model, engineering discipline, and reference architecture.", status: "Open framework", href: "/framework" },
   { name: "Mission Control", role: "Demonstrates it.", description: "The open-source reference implementation with current capability boundaries visible.", status: "Available reference", href: "/mission-control" },
   { name: "The Guide", role: "Teaches it.", description: "The methodology and engineering practices from first principles through operation.", status: "Open methodology", href: "/guide" },
-  { name: "AI-FDE", role: "Applies it.", description: "The product/system for discovering and designing a Factory Definition. A Factory Deployed Engineer is the accountable human role.", status: "Design partnership", href: "/deploy" },
+  { name: "AI-FDE", role: "Discovers and designs it.", description: "The evidence-driven product for turning reviewed enterprise reality into an approved Factory Definition, led by an accountable human Factory Deployed Engineer.", status: "Internal alpha · synthetic demo", href: "/deploy" },
   { name: "FDLC Enterprise", role: "Industrializes it.", description: "The proposed commercial control plane for organizational scale and reliability.", status: "Proposed", href: "/enterprise" },
 ] as const;
 

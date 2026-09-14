@@ -296,15 +296,15 @@ try {
     assert.equal(await definitionDetail.getAttribute("open"), null);
     await definitionDetail.locator("summary").click();
     assert.notEqual(await definitionDetail.getAttribute("open"), null);
-    assert.match(await definitionDetail.innerText(), /Intent.*outcome the factory exists to produce/is);
+    assert.match(await definitionDetail.innerText(), /Objective.*measurable outcome the factory should produce/is);
     await audit("factory-definition-component-open");
-    report.flows.push({ name: "fde-factory-definition-disclosure", width, result: "PASS" });
+    report.flows.push({ name: "ai-fde-factory-definition-disclosure", width, result: "PASS" });
 
     const fdeProductTour = page.getByLabel("Mission Control operator views");
     await fdeProductTour.getByRole("tab", { name: /Work Orders/ }).click();
     assert.match(await page.locator("#mc-product-panel").innerText(), /Keep scope, authority, and verification on one record/i);
     await audit("fde-customer-product-work-orders");
-    report.flows.push({ name: "fde-customer-product-tour", width, result: "PASS" });
+    report.flows.push({ name: "ai-fde-mission-control-boundary-tour", width, result: "PASS" });
 
     if (width === 390) {
       await page.getByLabel("Open navigation", { exact: true }).click();

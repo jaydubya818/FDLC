@@ -130,7 +130,7 @@ Levels are scored per scope (repository, workflow, risk class, environment), nev
 
 ### One delivery vehicle
 
-The [Factory Deployed Engineer (FDE) engagement](/deploy) is one way to run this program: an embedded engineer works from a design-partner team's backlog on its repositories, co-builds the lighthouse factory with the team rather than for it, productizes what generalizes into reusable artifacts, and measures success by how quickly the team no longer needs the engineer. Its phases (Readiness → Lighthouse → Scale) map onto Scope, Prove, and Expand, and its workflow maps onto Factory Lifecycle stages. The engagement is optional; the architecture and the program on this page are open.
+The [AI-FDE product](/deploy) supports this program by turning enterprise source evidence into a reviewed Factory Definition. An accountable human Factory Deployed Engineer leads the engagement, owns architecture and consequential decisions, and works with the design-partner team rather than operating as a black box. Mission Control separately validates the approved definition and owns runtime qualification and execution. The engagement is optional; the architecture and the program on this page are open.
 
 ## Tradeoffs
 

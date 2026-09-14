@@ -73,7 +73,8 @@ Spelling rules: **Work Order** in prose, `WorkOrder` in code. American spelling 
 | **Execution manifest** | The frozen per-Attempt record of exact identities (model route, agent, harness, skills, tools, context, sandbox, policy) with a digest. The Execution Profile as admitted for one Attempt. | C Execution | Execution Profile, Attempt | `workflowRuns.executionManifest` |
 | **Execution Profile** | The admitted per-Attempt composition: which Model, Agent, Harness, Work Graph, Runtime, Sandbox, Capability Implementations, and policy identities apply, plus autonomy ceiling and resource limits. States: DISABLED → OFFLINE_ELIGIBLE / PRODUCTION_PILOT_ELIGIBLE → REVOKED. | B Factory | Factory Version, Route | `factoryExecutionProfiles` |
 | **Factory (AI Software Factory)** | A governed production system that converts intent into independently verified software outcomes, composing agents, models, skills, tools, context, harnesses, execution environments, verification, evidence, policy, human authority, delivery, and learning under a control plane. More durable than any model, agent, or harness inside it. | Architecture | Factory Version, Specialized factory | `factoryDefinitions` |
-| **Factory Deployed Engineer (FDE)** | The services role that applies FDLC in an engagement: Discover, Define, Assemble, Qualify, Operate, Transfer & Scale. | Role | Factory Lifecycle | — |
+| **AI-FDE (AI Factory Deployed Engineer)** | The evidence-driven product that turns enterprise source evidence and reviewed claims into a versioned Factory Definition and typed Mission Control handoff material. It does not own runtime qualification or execution. | Product | Factory Definition, Factory Deployed Engineer, Mission Control | Internal alpha |
+| **Factory Deployed Engineer (FDE)** | The accountable human role that owns architecture, judgment, authority, adoption, and outcomes while using AI-FDE. | Role | AI-FDE, Factory Lifecycle | — |
 | **Factory Development Lifecycle (FDLC)** | The lifecycle, architecture, vocabulary, artifact model, governance model, and learning model for designing, assembling, qualifying, operating, and continuously improving autonomous AI software factories. | Governance | Factory Lifecycle, Delivery Loop | — |
 | **Factory Ecosystem** | Many specialized factories coordinated through one enterprise control plane with shared identity, policy, routing, verification, evidence, observability, and organizational authority. Also maturity level L5. | Architecture; Maturity | Factory Platform, Objective Planner | Planned |
 | **Factory Engineer** | The role that designs, assembles, and qualifies Factory Versions. | Role | Factory Lifecycle | — |
@@ -196,7 +197,8 @@ Non-canonical terms and the canonical term to use instead. Terms marked *warning
 | meta-harness, meta-factory control plane | Control Plane | *warning* — the enterprise control plane |
 | Harness (as an area name) | Execution (area) | The area contains Orchestrator, Runtime, Sandbox, which are not the Harness |
 | Agent Factory | Capability Registry + Capability lifecycle | Guide term for the capability supply side |
-| Forward-Deployed Engineer / Engineering | Factory Deployed Engineer (FDE) | Site decision |
+| Forward-Deployed Engineer / Engineering | Factory Deployed Engineer (FDE), human role | Site decision |
+| Factory Engineer, FDLC Deploy | AI-FDE, product | Product naming decision |
 | runtime lifecycle, inner lifecycle, value stream | Delivery Loop | "inner loop" allowed informally |
 | outer lifecycle | Factory Lifecycle | "outer loop" allowed informally |
 | Define Agent (stage) | Route (step 4), mechanic: capability binding | Guide stage retired as a phase |

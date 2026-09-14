@@ -1,0 +1,6 @@
+# Default repository ownership
+* @jaydubya818
+
+# AI-FDE product and its independent runtime surfaces
+/products/ai-fde/ @jaydubya818
+/.github/workflows/ai-fde-*.yml @jaydubya818
