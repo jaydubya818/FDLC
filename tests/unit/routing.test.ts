@@ -135,6 +135,10 @@ test("keeps the AI-FDE handoff and independent child behind one narrow proxy pre
   assert.equal(childVercel.git.deploymentEnabled.main, false);
   assert.deepEqual(rootVercel.rewrites, [
     {
+      source: "/deploy/app",
+      destination: "https://ai-64p4dfzr2-jaydubya818.vercel.app/deploy/app",
+    },
+    {
       source: "/deploy/app/:path*",
       destination: "https://ai-64p4dfzr2-jaydubya818.vercel.app/deploy/app/:path*",
     },
