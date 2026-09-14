@@ -107,7 +107,7 @@ try {
   await page.waitForURL(/collection=architecture.*q=verification/);
   assert.ok(await page.locator(".corpus-results a").count() > 0);
   await page.locator(".corpus-results a").first().click();
-  await page.getByRole("link", { name: "Corpus catalog" }).first().click();
+  await page.getByRole("link", { name: "← Learning Library" }).click();
   await page.waitForURL(/\/corpus-preview\?collection=architecture/);
   assert.match(page.url(), /collection=architecture/);
   assert.match(page.url(), /q=verification/);
@@ -144,7 +144,7 @@ try {
   assert.match(raw.headers()["content-type"], /^application\/json/);
   assert.equal((await page.request.get(`${origin}/corpus-artifacts/corpus/specification/schemas/nope.schema.json`)).status(), 404);
   assert.equal((await page.goto(`${origin}/corpus-preview/not-a-real-document`)).status(), 404);
-  await page.getByRole("link", { name: "Return to the corpus catalog" }).waitFor();
+  await page.getByRole("link", { name: "Return to the Learning Library" }).waitFor();
   report.checks.push({ label: "raw-artifact-and-contextual-404", result: "PASS" });
 
   await page.goto(`${origin}/start#factory-builder`);

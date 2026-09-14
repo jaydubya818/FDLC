@@ -3,6 +3,7 @@ import test from "node:test";
 import { factoryExplorerCapabilities, factoryExplorerStages } from "../../data/factory-explorer.ts";
 import { architectureAreas, canonicalDefinition, categoryComparison, ecosystemRoles, evidencePositioning, factoryControls, guideValueStream, lifecycleStages, manifesto, primaryPositioning, protocolSteps, runtimeLifecycle } from "../../data/fdlc.ts";
 import { dependencyModernizationExample } from "../../data/dependency-modernization-example.ts";
+import { guideDiscovery } from "../../data/guide-discovery.ts";
 import { guideEntryPaths, guideParts, proposedGuideMap } from "../../data/guide.ts";
 
 test("keeps the canonical category positioning stable", () => {
@@ -56,6 +57,11 @@ test("preserves the manifesto and complete guide map", () => {
   assert.equal(guideValueStream.length, 8);
   assert.equal(guideEntryPaths.length, 6);
   assert.equal(proposedGuideMap.length, 25);
+  const mapHrefs = new Set(proposedGuideMap.map(([, href]) => href));
+  for (const [page, links] of Object.entries(guideDiscovery)) {
+    assert.equal(links.length, 3, page);
+    for (const [, href] of links) assert.ok(href.startsWith("/guide/") && mapHrefs.has(href), `${page} ${href}`);
+  }
 });
 
 test("maps the worked example to every canonical model", () => {

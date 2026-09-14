@@ -17,13 +17,13 @@ export function CorpusDocument({ document, returnState = "" }: { document: Corpu
   const catalogHref = `/corpus-preview${returnState ? `?${returnState}` : ""}`;
   const toc = document.headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3);
   return <><SiteHeader /><CorpusStatus compact /><main id="main-content" className="docs-layout corpus-document-layout">
-    <aside className="docs-sidebar corpus-sidebar" aria-label="Corpus collection navigation">
-      <Link className="docs-back" href={catalogHref}>← Corpus catalog</Link>
+    <aside className="docs-sidebar corpus-sidebar" aria-label="Learning Library collection navigation">
+      <Link className="docs-back" href={catalogHref}>← Learning Library</Link>
       <p>{corpusCollectionLabel(collection)}</p>
       <nav aria-label={`${corpusCollectionLabel(collection)} documents`}>{siblings.map((item, index) => <Link aria-current={item.path === document.path ? "page" : undefined} href={`${item.previewHref}${preserve}`} key={item.path}><span>{String(index + 1).padStart(2, "0")}</span>{item.title}</Link>)}</nav>
     </aside>
     <article className="docs-article corpus-article">
-      <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/corpus-preview">Corpus preview</Link><span>/</span><Link href={`/corpus-preview?collection=${collection}`}>{corpusCollectionLabel(collection)}</Link><span>/</span><span>{document.title}</span></nav>
+      <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/corpus-preview">Learning Library</Link><span>/</span><Link href={`/corpus-preview?collection=${collection}`}>{corpusCollectionLabel(collection)}</Link><span>/</span><span>{document.title}</span></nav>
       <header>
         <p className="section-label">{corpusCollectionLabel(collection)} · {document.status}</p>
         <h1>{document.title}</h1>
@@ -35,7 +35,7 @@ export function CorpusDocument({ document, returnState = "" }: { document: Corpu
         const resolved = document.links.find((link) => link.href === href)?.resolvedHref ?? href;
         return <li key={href}>{/^(https?:|mailto:)/i.test(resolved) ? <a href={resolved} rel="noreferrer" target={resolved.startsWith("http") ? "_blank" : undefined}>{href}</a> : <Link href={resolved}>{href}</Link>}</li>;
       })}</ul></aside>}
-      <nav className="docs-pagination" aria-label="Corpus pagination">{previous ? <Link href={`${previous.previewHref}${preserve}`}><span>Previous</span>{previous.title}</Link> : <span />}{next ? <Link href={`${next.previewHref}${preserve}`}><span>Next</span>{next.title}</Link> : <Link href={catalogHref}><span>Return</span>Corpus catalog</Link>}</nav>
+      <nav className="docs-pagination" aria-label="Learning Library pagination">{previous ? <Link href={`${previous.previewHref}${preserve}`}><span>Previous</span>{previous.title}</Link> : <span />}{next ? <Link href={`${next.previewHref}${preserve}`}><span>Next</span>{next.title}</Link> : <Link href={catalogHref}><span>Return</span>Learning Library</Link>}</nav>
     </article>
     <aside className="docs-toc corpus-toc" aria-label="On this page"><p>On this page</p>{toc.map((heading) => <a className={`depth-${heading.depth}`} href={`#${heading.id}`} key={heading.id}>{heading.text}</a>)}</aside>
   </main><SiteFooter /></>;

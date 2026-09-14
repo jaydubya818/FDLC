@@ -99,7 +99,7 @@ function CorpusCatalogContent({ documents, searchString }: { documents: CatalogD
         {(query || collection !== "all" || audience !== "all" || level !== "all" || invalidFilter) && <button className="corpus-clear" onClick={clearFilters} type="button">Clear</button>}
       </form>
       {invalidFilter && <p className="corpus-filter-note" role="status">One or more requested filters do not exist. Valid filters are still applied.</p>}
-      <p className="visually-hidden" aria-live="polite">{pending ? "Updating corpus results" : `${visible.length} of ${filtered.length} corpus documents shown`}</p>
+      <p className="visually-hidden" aria-live="polite">{pending ? "Updating library results" : `${visible.length} of ${filtered.length} library documents shown`}</p>
       {filtered.length ? <><ol className="corpus-results">{visible.map((document) => {
         const href = `${document.previewHref}${returnState.size ? `?from=${encodeURIComponent(returnState.toString())}` : ""}`;
         return <li key={document.path}><Link href={href}><span>{formatLabel(document.collection)} · {document.status}</span><h3>{document.title}</h3><p>{document.description}</p><small>{document.path} · {document.wordCount.toLocaleString()} words</small></Link></li>;

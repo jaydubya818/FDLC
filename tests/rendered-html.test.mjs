@@ -21,6 +21,7 @@ test("corpus preview renders a noindex catalog without entering the public sitem
   assert.match(html, /Search the full library/i);
   assert.match(html, /158<\/strong>.*Manifest-backed routes/is);
   assert.match(html, /Review candidate.*not FDLC canon/i);
+  assert.doesNotMatch(html, /Corpus catalog|read the corpus/i);
   for (const href of [
     "/corpus-preview/start",
     "/corpus-preview/guides/build-your-first-factory",
@@ -39,6 +40,8 @@ test("corpus documents share link and custom-anchor behavior while canonical pag
   assert.equal(framework.status, 200);
   const frameworkHtml = await framework.text();
   assert.match(frameworkHtml, /The FDLC Framework/);
+  assert.match(frameworkHtml, /Learning Library Preview/);
+  assert.doesNotMatch(frameworkHtml, /Corpus catalog/i);
   assert.match(frameworkHtml, /href="\/corpus-preview\/architecture\/execution-vocabulary"/);
   assert.match(frameworkHtml, /content="noindex, nofollow/i);
   const start = await (await render("/corpus-preview/start")).text();
