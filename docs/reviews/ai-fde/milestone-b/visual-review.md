@@ -28,5 +28,6 @@ Desktop and 390×844 layouts preserve hierarchy, readable measure, visible state
 - Synthetic mode makes no API or model calls.
 - AI-FDE prepares definition and handoff intent; it does not create a Factory Version or dispatch a WorkOrder.
 - Mission Control remains the owner of qualification, execution evidence, governed execution, release, and deployment state.
-- `/deploy/app/:path*` is composed through a narrow same-origin external rewrite pinned to an immutable, independently deployed, protected AI-FDE child; no paid Microfrontends project was added.
+- `/deploy/app/:path*` is composed through a narrow same-origin external rewrite pinned to an immutable, independently deployed AI-FDE child; no paid Microfrontends project was added.
+- The FDLC Preview remains protected. The pinned AI-FDE Preview is intentionally public only in its fail-closed hosted synthetic mode and remains `noindex`; it has no customer data, Production credentials, live API, provider/model call, or Mission Control write path.
 - No production release was performed.
