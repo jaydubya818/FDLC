@@ -315,6 +315,16 @@ try {
       report.flows.push({ name: "mobile-navigation-and-keyboard-table-scroll", width, result: "PASS" });
     }
   }
+
+  // WCAG 1.4.10: 200% zoom of a 1280px layout is 640 CSS pixels.
+  await page.setViewportSize({ width: 640, height: 512 });
+  for (const route of ["/", "/in-5-minutes", "/framework", "/architecture", "/start", "/maturity", "/deploy", "/mission-control"]) {
+    const response = await page.goto(`${origin}${route}`);
+    assert.equal(response.status(), 200, `${route} @200%`);
+    await page.getByRole("heading", { level: 1 }).waitFor();
+    await audit(`${route}@200%`);
+  }
+  report.flows.push({ name: "reflow-200-percent-key-journeys", width: 640, result: "PASS" });
   for (const route of [...links].sort()) {
     const response = await page.request.get(`${origin}${route}`);
     report.links.push({ route, status: response.status() });
