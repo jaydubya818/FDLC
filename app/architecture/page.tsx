@@ -5,6 +5,9 @@ import { systemDesignDecisions } from "../../data/system-design";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArchitectureDiagram } from "../components/architecture-diagram";
+import { GuideReading } from "../components/guide-reading";
+import { LensSwitcher } from "../components/lens-switcher";
+import { NextSteps } from "../components/next-steps";
 import { PageContentsNav } from "../components/page-contents-nav";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { ResponsiveDetails } from "../components/responsive-details";
@@ -13,6 +16,8 @@ import { StateBoundary } from "../components/state-boundary";
 import { architectureAreas } from "../../data/fdlc";
 import { executionRelationship, executionTaxonomy } from "../../data/execution-taxonomy";
 import { agenticSystemLayers, sdkBoundaryComparisons } from "../../data/agentic-system-taxonomy";
+import { pageHandoffs } from "../../data/page-handoffs";
+import { systemLenses } from "../../data/system-lenses";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Architecture", "Explore the six capability areas of the FDLC architecture: Intent, Harness, Capability, Model, Trust, and Learning.", "/architecture");
@@ -49,6 +54,7 @@ export default function ArchitecturePage() {
     <div className="longform-layout">
     <PageContentsNav items={contents} mobileTitle="Jump to area" title="Architecture areas" variant="rail" />
     <div className="longform-content">
+    <LensSwitcher items={systemLenses} />
     <section className="architecture-overview" id="overview"><ArchitectureDiagram /><p>Trust constrains every area. Learning closes the loop only through governed promotion. The model is replaceable; the control contract is not.</p><p><a href="/guide/appendix/principles#fifty-concepts-to-have-cold">Learn the fifty core concepts →</a> <a href="/guide/appendix/glossary">Open the canonical glossary →</a></p></section>
 
     <section className="architecture-control-boundary" id="control-boundary">
@@ -164,7 +170,8 @@ export default function ArchitecturePage() {
       </div>
     </section>
 
-    <section className="reading-next"><p className="section-label">Continue</p><h2>Move from architecture to implementation.</h2><div><Link href="/specification">Read the Specification →</Link><a href="/guide/03-build/11-the-agent-factory">Build the capability stack →</a><Link href="/mission-control">Inspect Mission Control →</Link><Link href="/start">Design a factory line →</Link></div></section>
+    <GuideReading page="architecture" />
+    <NextSteps {...pageHandoffs.architecture} />
     </div>
     </div>
   </div></SiteShell>;

@@ -20,7 +20,7 @@ test("keeps the four canonical system views stable", () => {
   assert.deepEqual(protocolSteps.map((item) => item.name), ["Intent", "Specification", "Plan", "Work Order", "Attempt", "Evidence", "Verification", "Approval", "Release", "Outcome", "Learning Signal"]);
 });
 
-test("keeps the homepage factory explorer complete and internally linked", () => {
+test("keeps the factory explorer complete and internally linked", () => {
   assert.deepEqual(factoryExplorerStages.map((stage) => stage.id), runtimeLifecycle.map((stage) => stage.id));
   assert.deepEqual(factoryExplorerStages.map((stage) => stage.artifact), runtimeLifecycle.map((stage) => stage.artifact));
   assert.equal(factoryExplorerCapabilities.length, 10);

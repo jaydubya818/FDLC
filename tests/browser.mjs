@@ -165,6 +165,10 @@ try {
     await page.screenshot({ path: new URL(`factory-definition-result-${width}.png`, output).pathname, fullPage: true });
     await page.getByRole("button", { name: "Start over" }).click();
     assert.equal(await page.getByLabel("Describe the outcome", { exact: true }).inputValue(), "");
+    await page.getByRole("combobox").selectOption("Test repair");
+    await page.getByLabel("Describe the outcome", { exact: true }).fill("Persist this draft across refresh.");
+    await page.reload();
+    assert.equal(await page.getByLabel("Describe the outcome", { exact: true }).inputValue(), "Persist this draft across refresh.");
     report.flows.push({ name: "factory-builder-validation-export-reset", width, result: "PASS" });
 
     await page.goto(`${origin}/start`);
@@ -213,7 +217,7 @@ try {
     }
     await page.getByRole("button", { name: "Retake assessment" }).waitFor();
     assert.match(await page.locator(".assessment-result").innerText(), /Level 0/);
-    for (const name of ["Define one bounded factory line", "Use the Guide", "Explore FDE"]) assert.ok(await page.getByRole("link", { name }).isVisible());
+    for (const name of ["Define one bounded factory line", "Use the Guide", "Explore AI-FDE"]) assert.ok(await page.getByRole("link", { name }).isVisible());
     await audit("maturity-result");
     await page.screenshot({ path: new URL(`maturity-result-${width}.png`, output).pathname, fullPage: true });
     await page.getByRole("button", { name: "Retake assessment" }).click();
@@ -265,6 +269,23 @@ try {
     await page.waitForURL(`${origin}/#worked-example`);
     assert.ok(await page.getByRole("list", { name: "Dependency modernization factory flow" }).isVisible());
     report.flows.push({ name: "homepage-problem-to-worked-example", width, result: "PASS" });
+
+    const explorer = page.locator("#factory-explorer");
+    await explorer.scrollIntoViewIfNeeded();
+    const verifyTab = explorer.getByRole("tab", { name: /Verify/ });
+    assert.equal(await verifyTab.getAttribute("aria-selected"), "true");
+    await verifyTab.focus();
+    await page.keyboard.press("ArrowRight");
+    assert.equal(await explorer.getByRole("tab", { name: /Approve/ }).getAttribute("aria-selected"), "true");
+    await explorer.getByRole("button", { name: /Evals/ }).click();
+    assert.match(await explorer.locator(".factory-explorer-capability-detail").innerText(), /Evals/);
+    const exampleRecord = explorer.locator(".factory-explorer-example a").first();
+    assert.match(await exampleRecord.getAttribute("href") ?? "", /in-5-minutes/);
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await explorer.getByRole("tab", { name: /Verify/ }).click();
+    assert.equal(await verifyTab.getAttribute("aria-selected"), "true");
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    report.flows.push({ name: "factory-explorer-keyboard-capabilities-example-links", width, result: "PASS" });
 
     await page.goto(`${origin}/deploy`);
     const definitionDetail = page.locator(".fde-definition-grid details").first();

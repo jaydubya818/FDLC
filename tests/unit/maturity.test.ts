@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { maturityDimensions } from "../../data/fdlc.ts";
 import { assessmentIsComplete, scoreMaturity } from "../../lib/maturity.ts";
+import { formatMaturityMarkdown, parseMaturityAnswers, serializeMaturityAnswers } from "../../lib/maturity-share.ts";
 
 test("scores an all-level-four factory as Level 4", () => {
   const answers = Object.fromEntries(maturityDimensions.map((dimension) => [dimension.id, 4]));
@@ -26,5 +27,20 @@ test("rounds down and identifies the lowest-scoring gaps", () => {
 test("does not treat a partial assessment as complete", () => {
   assert.equal(assessmentIsComplete({ intent: 3 }), false);
   assert.equal(scoreMaturity({ intent: 3 }).answered, 1);
+});
+
+test("serializes shareable results and exports markdown without claiming certification", () => {
+  const answers = Object.fromEntries(maturityDimensions.map((dimension) => [dimension.id, 2]));
+  answers.verification = 0;
+  answers.security = 1;
+  answers.intent = 5;
+  const encoded = serializeMaturityAnswers(answers);
+  assert.deepEqual(parseMaturityAnswers(`?${encoded}`), answers);
+  const result = scoreMaturity(answers);
+  const markdown = formatMaturityMarkdown(result, ["Build a Factory Definition"]);
+  assert.match(markdown, /Not certification/);
+  assert.match(markdown, /## Top three gaps/);
+  assert.match(markdown, /- Verification/);
+  assert.match(markdown, /- Build a Factory Definition/);
 });
 

@@ -3,14 +3,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArchitectureDiagram } from "../components/architecture-diagram";
 import { CategoryDistinction } from "../components/category-distinction";
+import { FactoryExplorer } from "../components/factory-explorer";
+import { GuideReading } from "../components/guide-reading";
+import { LensSwitcher } from "../components/lens-switcher";
 import { LifecycleDiagram } from "../components/lifecycle-diagram";
+import { NextSteps } from "../components/next-steps";
 import { PageContentsNav } from "../components/page-contents-nav";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { ProtocolDiagram } from "../components/protocol-diagram";
 import { RuntimeLifecycleDiagram } from "../components/runtime-lifecycle-diagram";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
+import { WhatsRealToday } from "../components/whats-real-today";
 import { canonicalDefinition, manifesto, metrics } from "../../data/fdlc";
+import { pageHandoffs } from "../../data/page-handoffs";
+import { systemLenses } from "../../data/system-lenses";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Framework", canonicalDefinition, "/framework");
@@ -20,6 +27,7 @@ const frameworkPieces = [
   ["FDLC Specification", "Proposed standard", "Formal definitions and invariants for portable artifacts and state transitions.", "/specification"],
   ["AI Software Factory Guide", "Open field guide", "The detailed methodology from first principles through production.", "/guide"],
   ["Mission Control", "Open-source reference", "The reference implementation that makes the FDLC protocol concrete.", "/mission-control"],
+  ["AI-FDE", "Preview product", "The product/system for discovering and designing a Factory Definition. The Factory Deployed Engineer remains the accountable human role.", "/deploy"],
   ["FDLC Enterprise", "Proposed product", "The commercial control plane for operating proven factories at organizational scale.", "/enterprise"],
 ] as const;
 
@@ -41,9 +49,11 @@ const contents = [
   { label: "Runtime", href: "#runtime" },
   { label: "Architecture", href: "#architecture" },
   { label: "Artifacts", href: "#protocol" },
+  { label: "Factory Explorer", href: "#explorer" },
   { label: "Principles", href: "#governance" },
   { label: "Measurement", href: "#measurement" },
   { label: "How the pieces fit", href: "#ecosystem" },
+  { label: "What's real today", href: "#whats-real" },
   { label: "Mission Control", href: "#mission-control" },
   { label: "Start here", href: "#start-here" },
 ] as const;
@@ -57,6 +67,7 @@ export default function FrameworkPage() {
       <div className="longform-layout">
       <PageContentsNav items={contents} mobileTitle="Jump to section" title="Framework sections" variant="rail" />
       <div className="longform-content">
+      <LensSwitcher items={systemLenses} />
 
       <section className="definition-block" id="definition" aria-labelledby="definition-title">
         <p className="section-label">Canonical definition</p>
@@ -117,6 +128,11 @@ export default function FrameworkPage() {
         <div className="section-links"><Link href="/mission-control">See Mission Control objects →</Link><Link href="/in-5-minutes#artifacts">Inspect all eleven example records →</Link></div>
       </section>
 
+      <section className="section-block" id="explorer">
+        <SectionHeader eyebrow="Interactive explorer" title="Inspect one unit of work through the runtime." description="Start at Verify. Move across stages, inspect participating capabilities, and open the matching records from the worked example." />
+        <FactoryExplorer id="framework-factory-explorer" showFrameworkLink={false} />
+      </section>
+
       <StateBoundary mode="primary" />
 
       <section className="section-block governance-principles" id="governance">
@@ -137,6 +153,8 @@ export default function FrameworkPage() {
           : <Link href={href} key={name}><span>{String(index + 1).padStart(2, "0")} / {status}</span><h3>{name}</h3><p>{description}</p><small>Explore →</small></Link>)}</div>
       </section>
 
+      <WhatsRealToday />
+
       <section className="reference-callout" id="mission-control"><div><p className="section-label">Reference implementation</p><h2>Mission Control makes the protocol concrete.</h2></div><div><p>Inspect how one open-source control plane models governed Plans, WorkOrders, Attempts, evidence, verification, and human acceptance—with current limitations visible.</p><div className="hero-actions"><Link className="button button-light" href="/mission-control">Explore Mission Control</Link><Link className="text-action light-link" href="/in-5-minutes">See the walkthrough →</Link></div></div></section>
 
       <section className="framework-start" id="start-here">
@@ -144,6 +162,8 @@ export default function FrameworkPage() {
         <div className="framework-start-grid"><Link href="/in-5-minutes"><span>01</span><strong>FDLC in 5 Minutes</strong><small>One factory line end to end →</small></Link><Link href="/architecture"><span>02</span><strong>Architecture</strong><small>Six capability areas →</small></Link><Link href="/manifesto"><span>03</span><strong>Manifesto</strong><small>Ten governing principles →</small></Link><Link href="/mission-control"><span>04</span><strong>Mission Control</strong><small>Reference implementation →</small></Link><Link href="/maturity"><span>05</span><strong>Maturity</strong><small>Assess what is true today →</small></Link><a href="/guide"><span>06</span><strong>Guide</strong><small>Full methodology →</small></a></div>
         <blockquote>Verified delivery, not merely generated code.</blockquote>
       </section>
+      <GuideReading page="framework" />
+      <NextSteps {...pageHandoffs.framework} />
       </div>
       </div>
     </div>

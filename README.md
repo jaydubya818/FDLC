@@ -53,9 +53,11 @@ The Guide does not fetch Microfrontends configuration dynamically during every b
 
 Treat an FDLC/Guide release as a qualified pair: verify the exact source revisions and deployments, preserve the previous pair as rollback targets, and run browser acceptance against the composed canonical domain before considering Production complete.
 
-## Factory Deployed Engineer (FDE)
+## AI-FDE and the Factory Deployed Engineer
 
-The [Factory Deployed Engineer experience](https://fdlc.ai/deploy) is the human implementation layer of FDLC. An FDE works inside an engineering environment to discover the right opportunity, create the Factory Definition, assemble and qualify a governed line in Mission Control, prove it against real outcomes, and transfer the resulting operating capability to the organization.
+**AI-FDE** is the public product/system name for discovering and designing a Factory Definition. **AI Factory Deployed Engineer** is the expansion of that product name. A **Factory Deployed Engineer (FDE)** is the accountable human role.
+
+The [AI-FDE experience](https://fdlc.ai/deploy) is the implementation layer of FDLC. A Factory Deployed Engineer works inside an engineering environment to discover the right opportunity, create the Factory Definition, assemble and qualify a governed line in Mission Control, prove it against real outcomes, and transfer the resulting operating capability to the organization.
 
 The engagement advances through three evidence-gated phases: **FDLC Readiness → FDLC Lighthouse → FDLC Scale**. Readiness establishes the baseline and selects a suitable first line; Lighthouse proves one bounded workflow; Scale expands only what the evidence supports. The organization keeps the factory line, evidence, reusable capabilities, operating playbook, and scale path.
 

@@ -86,7 +86,7 @@ test("corpus raw artifacts are allowlisted and unknown targets fail closed", asy
 });
 
 test("global More exposes the preview while contextual artifacts remain focused", async () => {
-  const expected = ["FDLC in 5 Minutes", "Learning Library (Preview)", "Manifesto", "Start", "Enterprise", "About"];
+  const expected = ["In 5 Minutes", "Start", "Learning Library (Preview)", "Manifesto", "Enterprise", "About"];
   for (const route of routes) {
     const html = await (await render(route)).text();
     const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
@@ -166,15 +166,17 @@ test("homepage answers the category boundary and links to primary destinations",
   assert.match(html, /Intent.*Factory.*Evidence.*Outcome/is);
   assert.match(html, /Plan.*Modify.*Test.*Verify.*Approve/is);
   assert.match(html, /Choose the next useful step/i);
-  assert.match(html, /Understand.*Assess.*Build.*Go deeper.*Explore/is);
-  assert.match(html, /Explore the Learning Library \(Preview\)/i);
+  assert.match(html, /Understand.*Assess.*Build.*Read/is);
+  assert.doesNotMatch(html, /Explore the Learning Library \(Preview\)/i);
   assert.match(html, /Need help applying FDLC.*Start with one bounded factory line/is);
+  assert.match(html, /id="factory-explorer"/);
+  assert.match(html, /Open on Framework/);
   for (const href of ["/framework", "/architecture", "/in-5-minutes", "/guide", "/mission-control", "/maturity", "/start", "/corpus-preview"]) assert.match(html, new RegExp(`href=["']${href}["']`));
   const homeHeader = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0] ?? "";
   const homeMain = html.match(/<main\b[^>]*>[\s\S]*?<\/main>/)?.[0] ?? "";
   const homeFooter = html.match(/<footer class="global-footer">[\s\S]*?<\/footer>/)?.[0] ?? "";
   assert.equal([...homeHeader.matchAll(/href="\/corpus-preview"/g)].length, 2, "desktop and mobile navigation expose the preview");
-  assert.equal([...homeMain.matchAll(/href="\/corpus-preview"/g)].length, 1, "homepage action exposes the preview");
+  assert.equal([...homeMain.matchAll(/href="\/corpus-preview"/g)].length, 0, "homepage primary path does not promote the preview");
   assert.equal([...homeFooter.matchAll(/href="\/corpus-preview"/g)].length, 1, "footer exposes the preview");
 });
 
@@ -228,7 +230,7 @@ test("global navigation exposes the canonical Guide disclosure in desktop and mo
   const html = await (await render("/guide")).text();
   const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
   assert.ok(header, "renders the persistent FDLC global header");
-  for (const label of ["Framework", "Architecture", "Guide", "Mission Control", "FDE", "Maturity", "More"]) {
+  for (const label of ["Framework", "Architecture", "Guide", "AI-FDE", "Mission Control", "Maturity", "More"]) {
     assert.match(header, new RegExp(`>${label}(?:\\s|<)`), label);
   }
   for (const [label, href] of [
@@ -278,7 +280,7 @@ test("worked example connects all four models without claiming production proof"
   assert.match(html, /Cost per verified outcome.*First-pass verification rate.*Reopen.*rollback rate/is);
   assert.match(html, /accepted dependency upgrades.*eligible dependency-upgrade missions/is);
   assert.match(html, /canonical example.*not a certification of production readiness.*discipline is open.*value is determined by verified outcomes/is);
-  for (const href of ["/framework", "/maturity", "/mission-control#quickstart", "/deploy"]) assert.match(html, new RegExp(`href=["']${href}["']`));
+  for (const href of ["/#factory-explorer", "/start", "/mission-control"]) assert.match(html, new RegExp(`href=["']${href}["']`));
 });
 
 test("legacy worked-example route redirects to the canonical five-minute path", async () => {
@@ -298,11 +300,11 @@ test("legacy specification route redirects to the canonical path", async () => {
 
 test("discovery metadata separates the composed Guide sitemap", async () => {
   const sitemap = await (await render("/sitemap.xml")).text();
-  assert.match(sitemap, /https:\/\/www\.fdlc\.ai\/specification/);
-  assert.doesNotMatch(sitemap, /https:\/\/www\.fdlc\.ai\/guide|https:\/\/www\.fdlc\.ai\/spec<\/loc>/);
+  assert.match(sitemap, /https:\/\/fdlc\.ai\/specification/);
+  assert.doesNotMatch(sitemap, /https:\/\/fdlc\.ai\/guide|https:\/\/fdlc\.ai\/spec<\/loc>/);
   const robots = await (await render("/robots.txt")).text();
-  assert.match(robots, /Sitemap: https:\/\/www\.fdlc\.ai\/sitemap\.xml/i);
-  assert.match(robots, /Sitemap: https:\/\/www\.fdlc\.ai\/guide\/sitemap\.xml/i);
+  assert.match(robots, /Sitemap: https:\/\/fdlc\.ai\/sitemap\.xml/i);
+  assert.match(robots, /Sitemap: https:\/\/fdlc\.ai\/guide\/sitemap\.xml/i);
 });
 
 test("core technical pages preserve distinct delivery states", async () => {
@@ -407,7 +409,7 @@ test("FDE publishes the qualification state and its dormant live boundary", asyn
   assert.match(html, /Phase 3.*Dormant \/ Not activated/is);
   assert.match(html, /Bedrock live calls.*0/is);
   assert.match(html, /Qualification-ready infrastructure is not live qualification/is);
-  assert.match(html, /href=["']\/deploy["'][^>]*>FDE</i);
+  assert.match(html, /href=["']\/deploy["'][^>]*>AI-FDE</i);
 });
 
 test("preview products are explicitly labeled", async () => {

@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CopyValue } from "../components/copy-value";
 import { MissionControlProductTour } from "../components/mission-control-experience";
+import { NextSteps } from "../components/next-steps";
 import { SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
+import { pageHandoffs } from "../../data/page-handoffs";
 import { pageMetadata } from "../../lib/metadata";
 import { FdeIcon } from "./fde-icon";
 import {
@@ -18,8 +20,8 @@ import {
 } from "./fde-content";
 
 export const metadata: Metadata = pageMetadata(
-  "Factory Deployed Engineer (FDE)",
-  "Work with a Factory Deployed Engineer to design, build, prove, and scale a governed AI software factory line.",
+  "AI-FDE — Factory Deployed Engineer",
+  "Work with AI-FDE to discover and design a Factory Definition. A Factory Deployed Engineer remains the accountable human role.",
   "/deploy",
 );
 
@@ -37,9 +39,9 @@ export default function DeployPage() {
       <div className="page-wrap fde-page">
         <header className="fde-product-hero">
           <div className="fde-product-hero-copy">
-            <p className="section-label">Factory Deployed Engineer</p>
+            <p className="section-label">AI-FDE / AI Factory Deployed Engineer</p>
             <h1>Build your software factory with a <em>Factory Deployed Engineer.</em></h1>
-            <p className="fde-product-lede">A Factory Deployed Engineer works inside your engineering environment to identify the right automation opportunity, design the Factory Definition, assemble the governed production line, prove it against real outcomes, and help your organization scale what works.</p>
+            <p className="fde-product-lede">AI-FDE is the product/system for discovering and designing a Factory Definition. A Factory Deployed Engineer (FDE) works inside your engineering environment to identify the right automation opportunity, design the Factory Definition, assemble the governed production line, prove it against real outcomes, and help your organization scale what works.</p>
             <div className="fde-product-proof" aria-label="What Factory Deployed Engineer is">
               <strong>Not another coding agent.</strong>
               <strong>Not a consulting deck.</strong>
@@ -243,6 +245,7 @@ export default function DeployPage() {
           <div><p className="section-label">Maturity boundary</p><h2>Qualification-ready infrastructure is not live qualification.</h2></div>
           <p>The current evidence proves a prepared, no-drift qualification environment and a healthy public FDLC release. It does not prove Phase 3 execution, Bedrock inference, sustained customer operation, provider economics, or fleet-scale reliability. Those claims require separately authorized live evidence.</p>
         </aside>
+        <NextSteps {...pageHandoffs.deploy} />
       </div>
     </SiteShell>
   );

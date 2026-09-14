@@ -65,6 +65,45 @@ function markdownList(items: string[]) {
   return items.map((item) => `- ${item}`).join("\n");
 }
 
+export function formatFactoryDefinitionJson(definition: FactoryDefinition) {
+  return `${JSON.stringify(definition, null, 2)}\n`;
+}
+
+export function formatFactoryDefinitionYaml(definition: FactoryDefinition) {
+  const workOrders = definition.candidateWorkOrders
+    .map((item) => `  - name: ${yamlScalar(item.name)}\n    outcome: ${yamlScalar(item.outcome)}`)
+    .join("\n");
+  return `version: ${yamlScalar(definition.version)}
+intent:
+  workType: ${yamlScalar(definition.intent.workType)}
+  outcome: ${yamlScalar(definition.intent.outcome)}
+acceptanceCriteria:
+${yamlList(definition.acceptanceCriteria)}
+planBoundaries:
+${yamlList(definition.planBoundaries)}
+candidateWorkOrders:
+${workOrders}
+requiredCapabilities:
+${yamlList(definition.requiredCapabilities)}
+authority:
+${yamlList(definition.authority)}
+verificationContract:
+${yamlList(definition.verificationContract)}
+humanControls:
+${yamlList(definition.humanControls)}
+outcomeMetrics:
+${yamlList(definition.outcomeMetrics)}
+`;
+}
+
+function yamlScalar(value: string) {
+  return /[:#{}[\],&*?|<>=!%@`'"\\\n]/.test(value) || value === "" ? JSON.stringify(value) : value;
+}
+
+function yamlList(items: string[]) {
+  return items.map((item) => `  - ${yamlScalar(item)}`).join("\n");
+}
+
 export function formatFactoryDefinitionMarkdown(definition: FactoryDefinition) {
   const workOrders = definition.candidateWorkOrders
     .map((item) => `- **${item.name}:** ${item.outcome}`)
