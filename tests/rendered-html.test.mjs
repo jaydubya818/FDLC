@@ -377,9 +377,9 @@ test("interactive routes have complete server-rendered entry states", async () =
 test("AI-FDE publishes the product model and its synthetic boundary", async () => {
   const html = await (await render("/deploy")).text();
   assert.match(html, /AI-FDE — AI Factory Deployed Engineer/i);
-  assert.match(html, /Turn how your organization builds software into a.*governed AI software factory/is);
-  assert.match(html, /AI-FDE is the evidence-driven workspace.*accountable human Factory Deployed Engineer.*Factory Definition.*Mission Control/is);
-  assert.match(html, /Not another coding agent.*Not an autonomous control plane.*governed bridge/is);
+  assert.match(html, /Design your.*software factory/is);
+  assert.match(html, /Use AI-FDE.*reviewed Factory Definition.*accountable human Factory Deployed Engineer.*Mission Control qualifies the runtime/is);
+  assert.match(html, /Evidence.*Reviewed design.*Runtime qualification.*Internal alpha/is);
   assert.match(html, /AI-FDE assists.*human FDE remains accountable/is);
   assert.match(html, /Factory Deployed Engineer.*Discovery.*Architecture.*Trust boundaries.*AI-FDE.*Evidence ingestion.*Candidate claims.*Mission Control.*Authority.*Recovery.*Economics/is);
   assert.match(html, /FDLC.*Defines the operating model.*AI-FDE.*Discovers and designs it.*Human FDE.*Owns it.*Mission Control.*Governs it.*Factory.*Executes it.*Outcome.*Proves it/is);
@@ -392,7 +392,7 @@ test("AI-FDE publishes the product model and its synthetic boundary", async () =
   assert.match(html, /What AI-FDE produces.*Current-state model.*Authority model.*Qualification requirements.*Verification contract.*Outcome baseline.*Economics model.*Rollout and recovery plan.*Capability requirements.*Handoff material/is);
   assert.match(html, /Dependency modernization.*API migration.*Vulnerability remediation.*Quality remediation.*Documentation maintenance.*Code review assistance.*Test modernization.*Framework migration.*CI\/CD remediation/is);
   assert.match(html, /Good first factory lines have.*Bounded scope.*Independent verification.*Safe rollback.*Build our next product autonomously/is);
-  assert.match(html, /Before AI-FDE.*Evidence is scattered.*After factory line.*Governed planning.*Measured outcome/is);
+  assert.match(html, /Before AI-FDE.*Scattered source material.*After the AI-FDE handoff.*reviewable claims.*approves a Factory Definition.*qualifies a Factory Version/is);
   assert.match(html, /Representative Lighthouse.*Dependency modernization.*Illustrative contract—no performance result claimed.*Independent verification.*human release authority/is);
   assert.match(html, /Define proof before execution.*Cycle time.*Human engineering minutes.*Defect escape rate.*Cost per released outcome/is);
   assert.match(html, /From developers to builders.*Managers increasingly lead humans.*digital workers/is);
@@ -433,8 +433,8 @@ test("key learning pages show the canonical governing lifecycle in order", async
     const html = await (await render(path)).text();
     const figure = html.match(/<figure class="governing-lifecycle"[\s\S]*?<\/figure>/)?.[0];
     assert.ok(figure, `${path} must explain the governing lifecycle`);
-    const headings = [...figure.matchAll(/<h3>(.*?)<\/h3>/g)].map((match) => match[1]);
+    const headings = [...figure.matchAll(/<h3><button[^>]*><span[^>]*>.*?<\/span><span>(.*?)<\/span><\/button><\/h3>/g)].map((match) => match[1]);
     assert.deepEqual(headings, stages);
-    assert.match(figure, /Changes return through the same verification and approval controls/);
+    assert.match(figure, /Improvements return through verification and approval/);
   }
 });

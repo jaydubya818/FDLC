@@ -385,6 +385,59 @@ try {
     await audit(`${route}@200%`);
   }
   report.flows.push({ name: "reflow-200-percent-key-journeys", width: 640, result: "PASS" });
+  // The lifecycle is an educational explorer: selection changes explanation,
+  // never execution state or release authority.
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto(origin);
+    const explorer = page.locator(".governing-lifecycle");
+    const stages = ["Intent", "Planning", "Execution", "Evidence", "Verification", "Approval", "Release", "Outcomes", "Learning"];
+    for (const stage of stages) {
+      const button = explorer.getByRole("button", { name: stage, exact: true });
+      await button.focus();
+      await page.keyboard.press("Enter");
+      assert.equal(await button.getAttribute("aria-pressed"), "true");
+      assert.equal(await explorer.locator('button[aria-pressed="true"]').count(), 1);
+      const panel = page.locator(`[id="${await button.getAttribute("aria-controls")}"]`);
+      assert.equal(await panel.locator("h4").innerText(), stage);
+      assert.equal(await panel.locator("dt").allTextContents().then(items => items.join(",")), "Input,Output");
+      assert.ok((await panel.locator(".governing-example p").innerText()).length > 40);
+    }
+    await explorer.getByRole("button", { name: "Return to Intent" }).click();
+    assert.equal(await explorer.getByRole("button", { name: "Intent", exact: true }).getAttribute("aria-pressed"), "true");
+    await explorer.getByRole("button", { name: "Previous stage" }).click();
+    assert.equal(await explorer.getByRole("button", { name: "Learning", exact: true }).getAttribute("aria-pressed"), "true");
+    await audit(`interactive-lifecycle@${width}`);
+    await page.goto(`${origin}/architecture#context-skills`);
+    const practice = page.locator(".skills-practices details").nth(1);
+    await practice.locator("summary").focus();
+    await page.keyboard.press("Enter");
+    assert.equal(await practice.getAttribute("open"), "");
+    await audit(`skills-disclosure@${width}`);
+    await page.goto(`${origin}/architecture`);
+    const harness = page.locator("details#harness");
+    await harness.locator(":scope > summary").waitFor();
+    assert.equal(await harness.getAttribute("open"), null);
+    await page.goto(`${origin}/architecture#harness`);
+    await page.waitForFunction(() => document.querySelector("details#harness")?.open);
+    await harness.locator(":scope > summary").focus();
+    await page.keyboard.press("Enter");
+    assert.equal(await harness.getAttribute("open"), null);
+    await page.keyboard.press("Enter");
+    assert.equal(await harness.getAttribute("open"), "");
+    await page.goto(`${origin}/maturity`);
+    const journey = page.locator(".maturity-journey");
+    for (const button of await journey.getByRole("button").all()) {
+      await button.focus();
+      await page.keyboard.press("Enter");
+      assert.equal(await button.getAttribute("aria-pressed"), "true");
+      assert.equal(await journey.locator('button[aria-pressed="true"]').count(), 1);
+      assert.equal(await journey.locator("h3").innerText(), await button.locator("strong").innerText());
+    }
+    await audit(`maturity-explorer@${width}`);
+
+  }
+  report.flows.push({ name: "interactive-lifecycle-and-skills-keyboard", result: "PASS" });
   for (const route of [...links].sort()) {
     const response = await page.request.get(`${origin}${route}`);
     report.links.push({ route, status: response.status() });

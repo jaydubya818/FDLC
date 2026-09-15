@@ -34,12 +34,11 @@ export default function DeployPage() {
         <header className="fde-product-hero">
           <div className="fde-product-hero-copy">
             <p className="section-label">AI FACTORY DEPLOYED ENGINEER</p>
-            <h1>Turn how your organization builds software into a <em>governed AI software factory.</em></h1>
-            <p className="fde-product-lede">AI-FDE is the evidence-driven workspace for an accountable human Factory Deployed Engineer. It discovers how work happens, turns reviewed evidence into a Factory Definition, and prepares that approved intent for validation in Mission Control.</p>
+            <h1>Design your <em>software factory.</em></h1>
+            <p className="fde-product-lede">Use AI-FDE to turn evidence about your engineering workflow into a reviewed Factory Definition. An accountable human Factory Deployed Engineer owns the design; Mission Control qualifies the runtime.</p>
             <div className="fde-product-proof" aria-label="What AI-FDE is">
-              <strong>Not another coding agent.</strong>
-              <strong>Not an autonomous control plane.</strong>
-              <span>A governed bridge from enterprise source evidence to inspectable implementation intent.</span>
+              <strong>Evidence → Reviewed design → Runtime qualification</strong>
+              <span>Internal alpha · Explore a synthetic workspace.</span>
             </div>
             <div className="hero-actions">
               <a className="button button-dark" href="/deploy/app">Open engagement workspace <span aria-hidden="true">→</span></a>
@@ -154,14 +153,14 @@ export default function DeployPage() {
         </section>
 
         <section className="fde-transformation-section" id="transformation">
-          <header><p className="section-label">Before / after</p><h2>Move human attention from every operation to outcomes and exceptions.</h2></header>
+          <header><p className="section-label">Before / after</p><h2>Make the handoff explicit.</h2></header>
           <aside className="fde-representative-example" aria-label="Representative Lighthouse engagement example">
             <div><span>Representative Lighthouse</span><strong>Dependency modernization</strong><small>Illustrative contract—no performance result claimed</small></div>
             <dl><div><dt>Input</dt><dd>Upgrade backlog + current baseline</dd></div><div><dt>Artifacts</dt><dd>Factory Definition, Factory Version, evaluation suite</dd></div><div><dt>Decision gates</dt><dd>Independent verification + human release authority</dd></div><div><dt>Outcome contract</dt><dd>Cycle time, defects, human minutes, accepted-upgrade cost</dd></div></dl>
           </aside>
           <div className="fde-before-after">
-            <article><span>Before AI-FDE</span><ol>{["Evidence is scattered", "Claims are implicit", "Workflow is undocumented", "Economics are assumed", "Authority is unclear", "Requirements drift", "Implementation starts"].map((item) => <li key={item}>{item}</li>)}</ol><strong>Engineering starts from uncertain intent.</strong></article>
-            <article className="is-after"><span>After factory line</span><ol>{["Intent", "Governed planning", "Bounded execution", "Independent verification", "Human authority", "Delivery", "Measured outcome"].map((item) => <li key={item}>{item}</li>)}</ol><strong>Humans govern outcomes and exceptions.</strong></article>
+            <article><span>Before AI-FDE</span><ol>{["Scattered source material obscures the current workflow.", "Unstated assumptions become implementation decisions.", "Teams start work without agreed acceptance criteria."].map((item) => <li key={item}>{item}</li>)}</ol><strong>Engineering starts from uncertain intent.</strong></article>
+            <article className="is-after"><span>After the AI-FDE handoff</span><ol>{["AI-FDE links source evidence to reviewable claims.", "The human FDE approves a Factory Definition.", "Mission Control qualifies a Factory Version before execution."].map((item) => <li key={item}>{item}</li>)}</ol><strong>Reviewed intent. Qualified execution.</strong></article>
           </div>
         </section>
 

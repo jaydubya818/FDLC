@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
-import { contextSkillsPractices } from "../../data/context-skills-practices";
+import { ContextSkillsMap } from "../components/context-skills-map";
 import { productionOperatingContracts } from "../../data/production-operations";
 import { systemDesignDecisions } from "../../data/system-design";
 import type { Metadata } from "next";
@@ -113,7 +113,7 @@ export default function ArchitecturePage() {
 
     <section className="section-block architecture-details">
       <SectionHeader eyebrow="Capability map" title="Inspect each area as an operating contract." description="Purpose describes why the area exists. Responsibilities and components describe what it owns. Decisions and failure modes reveal what must remain explicit." />
-      {architectureAreas.map((area) => <ResponsiveDetails className={`architecture-area area-${area.id}`} collapseAt="tablet" id={area.id} key={area.id}>
+      {architectureAreas.map((area) => <ResponsiveDetails defaultCollapsed className={`architecture-area area-${area.id}`} collapseAt="tablet" id={area.id} key={area.id}>
         <summary><span>{String(area.number).padStart(2, "0")}</span><div><p>Architecture area</p><h2>{area.name}</h2><strong>{area.short}</strong></div><p>{area.purpose}</p><small className="disclosure-status"><span className="when-closed">Expand area</span><span className="when-open">Collapse area</span></small></summary>
         <div className="architecture-area-body">
           <div className="architecture-detail-grid">
@@ -131,11 +131,8 @@ export default function ArchitecturePage() {
     </section>
 
     <section className="section-block" id="context-skills">
-      <SectionHeader eyebrow="Five operating practices" title="Engineer the context. Prove the behavior." description="Skills are production dependencies. Version them, evaluate them, and govern their use. These practices connect Capability, Trust, and Learning across the existing factory lifecycle." />
-      <p>Author → Package → Evaluate → Admit → Activate → Observe → Compare → Promote or roll back → Improve. Approval selects a package for a defined use; runtime admission, work acceptance, and release remain separate decisions.</p>
-      <div className="architecture-areas">
-        {contextSkillsPractices.map((practice) => <ResponsiveDetails key={practice.number} className="architecture-area" collapseAt="tablet"><summary><span>{practice.number}</span><div><p>Operating practice</p><h3>{practice.title}</h3></div><p>{practice.purpose}</p><small className="disclosure-status"><span className="when-closed">Read practice</span><span className="when-open">Collapse practice</span></small></summary><div className="architecture-area-body"><p>{practice.practice}</p><p><strong>Evidence required: </strong>{practice.evidence}</p><p><strong>Failure to watch: </strong>{practice.failure}</p></div></ResponsiveDetails>)}
-      </div>
+      <SectionHeader eyebrow="Context & skills" title="Treat skills as production dependencies." description="A skill changes how an agent works. Give it an owner, pin its version, test its behavior, and control where it can run." />
+      <ContextSkillsMap />
       <p><a href="/guide/appendix/context-skills-engineering">Read the complete practices and worked playbook in the Guide →</a></p>
       <p>The worked local example records a harness-version mismatch and zero executed trials. It demonstrates an honest stop condition, not improved performance or production qualification.</p>
     </section>
@@ -143,7 +140,7 @@ export default function ArchitecturePage() {
     <section className="section-block" id="design-decisions">
       <SectionHeader eyebrow="Architecture in practice" title="Six decisions before a factory takes on real work." description="Use these checks when designing a new workflow or reviewing an existing one. Each connects a design choice to the evidence needed to operate it. They refine the six architecture areas without adding another lifecycle." />
       <div className="architecture-areas">
-        {systemDesignDecisions.map((decision) => <ResponsiveDetails key={decision.number} className="architecture-area" collapseAt="tablet"><summary><span>{decision.number}</span><div><p>Operating decision</p><h3>{decision.title}</h3></div><p>{decision.question}</p><small className="disclosure-status"><span className="when-closed">Read decision</span><span className="when-open">Collapse decision</span></small></summary><div className="architecture-area-body"><div className="architecture-detail-grid"><section><h3>Problem</h3><p>{decision.problem}</p></section><section><h3>Architectural decision</h3><p>{decision.decision}</p></section><section><h3>Why it exists</h3><p>{decision.rationale}</p></section><section><h3>Governing invariant</h3><p>{decision.invariant}</p></section><section><h3>Failure behavior</h3><p>{decision.failure}</p></section><section><h3>Maturity and implementation</h3><p>{decision.status}</p></section></div><p><strong>Evidence required: </strong>{decision.evidence}</p><p className="relationship"><span>Implementation relationship</span>{decision.relationship}</p></div></ResponsiveDetails>)}
+        {systemDesignDecisions.map((decision) => <ResponsiveDetails key={decision.number} className="architecture-area" defaultCollapsed collapseAt="tablet"><summary><span>{decision.number}</span><div><p>Operating decision</p><h3>{decision.title}</h3></div><p>{decision.question}</p><small className="disclosure-status"><span className="when-closed">Read decision</span><span className="when-open">Collapse decision</span></small></summary><div className="architecture-area-body"><div className="architecture-detail-grid"><section><h3>Problem</h3><p>{decision.problem}</p></section><section><h3>Architectural decision</h3><p>{decision.decision}</p></section><section><h3>Why it exists</h3><p>{decision.rationale}</p></section><section><h3>Governing invariant</h3><p>{decision.invariant}</p></section><section><h3>Failure behavior</h3><p>{decision.failure}</p></section><section><h3>Maturity and implementation</h3><p>{decision.status}</p></section></div><p><strong>Evidence required: </strong>{decision.evidence}</p><p className="relationship"><span>Implementation relationship</span>{decision.relationship}</p></div></ResponsiveDetails>)}
       </div>
       <p><a href="/guide/appendix/factory-system-design-playbook">Use the design worksheet, recovery drills, and worked example in the Guide →</a></p>
       <p><Link href="/mission-control#enhancements">See the implementation priorities for Mission Control →</Link></p>
@@ -152,7 +149,7 @@ export default function ArchitecturePage() {
     <section className="section-block" id="production-operations">
       <SectionHeader eyebrow="Production reliability" title="Treat failure as governed work." description="A factory can remain trustworthy while a model, worker, dependency, or release is unhealthy only when impact, containment, effects, recovery, and closure are explicit operating records." />
       <div className="architecture-areas">
-        {productionOperatingContracts.map((contract) => <ResponsiveDetails key={contract.number} className="architecture-area" collapseAt="tablet"><summary><span>{contract.number}</span><div><p>Operating contract</p><h3>{contract.title}</h3></div><p>{contract.question}</p><small className="disclosure-status"><span className="when-closed">Read contract</span><span className="when-open">Collapse contract</span></small></summary><div className="architecture-area-body"><div className="architecture-detail-grid"><section><h3>Required behavior</h3><p>{contract.decision}</p></section><section><h3>Governing invariant</h3><p>{contract.invariant}</p></section><section><h3>Required record</h3><p>Bind the decision, actor, authority, exact subject, observed effect, evidence, unknowns, deadline, and next permitted action.</p></section></div></div></ResponsiveDetails>)}
+        {productionOperatingContracts.map((contract) => <ResponsiveDetails key={contract.number} className="architecture-area" defaultCollapsed collapseAt="tablet"><summary><span>{contract.number}</span><div><p>Operating contract</p><h3>{contract.title}</h3></div><p>{contract.question}</p><small className="disclosure-status"><span className="when-closed">Read contract</span><span className="when-open">Collapse contract</span></small></summary><div className="architecture-area-body"><div className="architecture-detail-grid"><section><h3>Required behavior</h3><p>{contract.decision}</p></section><section><h3>Governing invariant</h3><p>{contract.invariant}</p></section><section><h3>Required record</h3><p>Bind the decision, actor, authority, exact subject, observed effect, evidence, unknowns, deadline, and next permitted action.</p></section></div></div></ResponsiveDetails>)}
       </div>
       <p><a href="/guide/appendix/production-reliability-operations-playbook">Use the incident packet, degraded-mode matrix, saga contract, and failure drills in the Guide →</a></p>
       <p><Link href="/mission-control#incident-operations">See what Mission Control must add to support these controls →</Link></p>
