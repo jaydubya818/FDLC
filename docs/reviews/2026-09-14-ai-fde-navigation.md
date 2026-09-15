@@ -13,7 +13,17 @@ Local screenshots at 1440px, 1024px, and 390×844 are in [the screenshot directo
 - AI-FDE formatting, lint, TypeScript, and hosted synthetic production build pass.
 - AI-FDE golden-path, internal-alpha, accessibility, and shell suites: 17 pass, including nested menu keyboard behavior, five viewport widths, 200% reflow, engagement reload/back/forward, zero console/page errors, and zero API requests.
 - FDLC lint, TypeScript, unit tests, Vinext build, 27 rendered-HTML checks, and native Next production build pass.
-- Exact-commit CI, immutable child Preview inspection, and the separate composed binding remain delivery gates until their results are recorded.
+- FDLC browser qualification: 60 checks across 25 flows pass in both Vinext and native Next.
+
+## Qualified UI and immutable child
+
+[UI PR #51](https://github.com/jaydubya818/FDLC/pull/51) merged source `2543ee4ea2ffddebd1eb9ec8212f27ae8e6549bd` as `53017b83aa615b593207962f7d9c3ccde0beb988`; the trees are identical. Exact PR [FDLC/Fab CI](https://github.com/jaydubya818/FDLC/actions/runs/34925025806) and [AI-FDE trust/contract/browser CI](https://github.com/jaydubya818/FDLC/actions/runs/34925025808) passed.
+
+Both exact-main gates passed on `53017b83aa615b593207962f7d9c3ccde0beb988`: [FDLC/Fab](https://github.com/jaydubya818/FDLC/actions/runs/34925351493) and [AI-FDE](https://github.com/jaydubya818/FDLC/actions/runs/34925351517).
+
+The inspected child is `https://ai-of84ak7sr-jaydubya818.vercel.app`, deployment `dpl_5FfyMrXQr4FydCuV8cEH5yNGZRN3`. Its five-width shell suite passes, including keyboard dropdown behavior, engagement reload/back/forward, zero console/page errors, and zero API requests. The protected root UI Preview `https://fdlc-6dz52knts-jaydubya818.vercel.app/deploy` passes authenticated explanatory-page/menu inspection at 1440px, 1024px, and 390×844 with zero errors.
+
+The separate binding changes both `/deploy/app` rewrites together to that immutable child. Rollback restores both rewrites to `https://ai-hu09aqvzj-jaydubya818.vercel.app`, deployment `dpl_Gyrz6d2GxRA7TxsBSMq81C8DSH63`. Binding CI, composed Preview checks, and exact-main results must be recorded before declaring delivery complete.
 
 The browser qualification runner accepts `FDLC_BROWSER_PORT` so an existing task's server cannot supply the wrong artifact during parallel local work. No other task's server or checkout was changed.
 

@@ -181,3 +181,5 @@ The unified child UI was qualified at source `065563d5feffb2efe8752603c7324acfcb
 ### AI-FDE navigation correction
 
 AI-FDE must first explain the product at `/deploy`. An adjacent dropdown exposes **Engagement workspace** at `/deploy/app`, with the same hierarchy on desktop, mobile, and the independently deployed child. Implementation and qualification evidence are tracked in [the navigation review](../reviews/2026-09-14-ai-fde-navigation.md). This correction does not complete any real Auth0 or live operational Milestone C items.
+
+UI PR #51 merged the correction as `53017b83aa615b593207962f7d9c3ccde0beb988`. Its inspected immutable child is `ai-of84ak7sr-jaydubya818.vercel.app` (`dpl_5FfyMrXQr4FydCuV8cEH5yNGZRN3`). The follow-up binding replaces both rewrites together; the compatible prior child is `ai-hu09aqvzj-jaydubya818.vercel.app`. Exact qualification and composed evidence remain linked from the navigation review.
