@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MissionControlProductTour } from "../components/mission-control-experience";
+import { NextSteps } from "../components/next-steps";
 import { SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { factoryDefinitionConcerns, missionControlHandoffBoundary } from "../../data/ai-fde";
+import { pageHandoffs } from "../../data/page-handoffs";
 import { pageMetadata } from "../../lib/metadata";
 import { FdeIcon } from "./fde-icon";
 import {
@@ -240,6 +242,7 @@ export default function DeployPage() {
           <div><p className="section-label">Maturity boundary</p><h2>Synthetic qualification is not live operational proof.</h2></div>
           <p>The current evidence proves the deterministic synthetic workflow and its release safety controls. It does not prove customer operation, live inference, runtime convergence with Mission Control, realized ROI, or fleet-scale reliability.</p>
         </aside>
+        <NextSteps {...pageHandoffs.deploy} />
       </div>
     </SiteShell>
   );

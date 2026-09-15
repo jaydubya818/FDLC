@@ -136,8 +136,12 @@ try {
       report.flows.push({ name: "global-navigation-stable-across-active-routes", width, result: "PASS" });
     }
 
+    await page.goto(`${origin}/about`);
+    await page.evaluate(() => sessionStorage.removeItem("fdlc.factory-definition.draft.v1"));
     await page.goto(`${origin}/start`);
-    assert.ok(await page.getByRole("button", { name: "Continue", exact: true }).isDisabled());
+    const continueButton = page.getByRole("button", { name: "Continue", exact: true });
+    await continueButton.waitFor();
+    assert.ok(await continueButton.isDisabled());
     await page.getByRole("combobox").selectOption("Test repair");
     await page.getByLabel("Describe the outcome", { exact: true }).fill("Repair the synthetic date conversion regression.");
     await page.getByRole("button", { name: "Continue", exact: true }).click();
@@ -165,6 +169,10 @@ try {
     await page.screenshot({ path: new URL(`factory-definition-result-${width}.png`, output).pathname, fullPage: true });
     await page.getByRole("button", { name: "Start over" }).click();
     assert.equal(await page.getByLabel("Describe the outcome", { exact: true }).inputValue(), "");
+    await page.getByRole("combobox").selectOption("Test repair");
+    await page.getByLabel("Describe the outcome", { exact: true }).fill("Persist this draft across refresh.");
+    await page.reload();
+    assert.equal(await page.getByLabel("Describe the outcome", { exact: true }).inputValue(), "Persist this draft across refresh.");
     report.flows.push({ name: "factory-builder-validation-export-reset", width, result: "PASS" });
 
     await page.goto(`${origin}/start`);
@@ -201,6 +209,25 @@ try {
     await page.getByRole("button", { name: "Download Factory Definition" }).focus();
     await page.keyboard.press("Enter");
     assert.equal((await keyboardDownloadPromise).suggestedFilename(), "test-repair-factory-definition.md");
+    // Verify every reusable format, including the browser's denied-clipboard fallback.
+    const exported = {};
+    for (const format of ["JSON", "YAML"]) {
+      await page.getByRole("button", { name: format, exact: true }).click();
+      await page.getByText(`View reusable ${format}`, { exact: true }).click();
+      exported[format] = await page.getByRole("textbox", { name: `${format} artifact`, exact: true }).inputValue();
+      const download = page.waitForEvent("download");
+      await page.getByRole("button", { name: `Download ${format}`, exact: true }).click();
+      assert.match((await download).suggestedFilename(), new RegExp(format.toLowerCase() + "$"));
+      await page.getByText(`View reusable ${format}`, { exact: true }).click();
+    }
+    const { parse } = await import("yaml");
+    assert.deepEqual(parse(exported.YAML), JSON.parse(exported.JSON));
+    await page.evaluate(() => { navigator.clipboard.writeText = async () => { throw new DOMException("Denied", "NotAllowedError"); }; });
+    await page.getByRole("button", { name: "Copy YAML", exact: true }).click();
+    const fallback = page.getByRole("textbox", { name: "YAML artifact", exact: true });
+    assert.ok(await fallback.isVisible());
+    assert.ok(await fallback.evaluate(field => field === document.activeElement && field.selectionEnd === field.value.length));
+    await page.reload();
     report.flows.push({ name: "factory-builder-keyboard-only-complete-copy-download", width, result: "PASS" });
 
     await page.goto(`${origin}/maturity`);
@@ -216,6 +243,15 @@ try {
     for (const name of ["Define one bounded factory line", "Use the Guide", "Explore AI-FDE"]) assert.ok(await page.getByRole("link", { name }).isVisible());
     await audit("maturity-result");
     await page.screenshot({ path: new URL(`maturity-result-${width}.png`, output).pathname, fullPage: true });
+    const shared = new URL(page.url());
+    assert.equal(shared.search, "");
+    assert.ok(shared.hash.includes("intent="));
+    await page.reload();
+    await page.getByRole("button", { name: "Retake assessment" }).waitFor();
+    assert.match(await page.locator(".assessment-result").innerText(), /Level 0/);
+    const maturityDownload = page.waitForEvent("download");
+    await page.getByRole("button", { name: "Download Markdown", exact: true }).click();
+    assert.match((await maturityDownload).suggestedFilename(), /fdlc-maturity-l0\.md/);
     await page.getByRole("button", { name: "Retake assessment" }).click();
     await page.getByRole("button", { name: "Start assessment", exact: true }).waitFor();
     report.flows.push({ name: "eleven-dimension-assessment-result-reset", width, result: "PASS" });
@@ -266,6 +302,23 @@ try {
     assert.ok(await page.getByRole("list", { name: "Dependency modernization factory flow" }).isVisible());
     report.flows.push({ name: "homepage-problem-to-worked-example", width, result: "PASS" });
 
+    const explorer = page.locator("#factory-explorer");
+    await explorer.scrollIntoViewIfNeeded();
+    const verifyTab = explorer.getByRole("tab", { name: /Verify/ });
+    assert.equal(await verifyTab.getAttribute("aria-selected"), "true");
+    await verifyTab.focus();
+    await page.keyboard.press("ArrowRight");
+    assert.equal(await explorer.getByRole("tab", { name: /Approve/ }).getAttribute("aria-selected"), "true");
+    await explorer.getByRole("button", { name: /Evals/ }).click();
+    assert.match(await explorer.locator(".factory-explorer-capability-detail").innerText(), /Evals/);
+    const exampleRecord = explorer.locator(".factory-explorer-example a").first();
+    assert.match(await exampleRecord.getAttribute("href") ?? "", /in-5-minutes/);
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await explorer.getByRole("tab", { name: /Verify/ }).click();
+    assert.equal(await verifyTab.getAttribute("aria-selected"), "true");
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    report.flows.push({ name: "factory-explorer-keyboard-capabilities-example-links", width, result: "PASS" });
+
     await page.goto(`${origin}/deploy`);
     const definitionDetail = page.locator(".fde-definition-grid details").first();
     assert.equal(await definitionDetail.getAttribute("open"), null);
@@ -294,6 +347,43 @@ try {
       report.flows.push({ name: "mobile-navigation-and-keyboard-table-scroll", width, result: "PASS" });
     }
   }
+
+  // Storage failure must leave the builder usable, and malformed drafts must be ignored.
+  const denied = await browser.newPage();
+  await denied.addInitScript(() => {
+    Storage.prototype.setItem = () => { throw new DOMException("Storage denied", "SecurityError"); };
+    Storage.prototype.removeItem = () => { throw new DOMException("Storage denied", "SecurityError"); };
+  });
+  await denied.goto(`${origin}/start`);
+  await denied.getByText("Draft could not be saved in this browser. Keep this page open until you export your result.", { exact: true }).waitFor();
+  await denied.getByRole("combobox").selectOption("Test repair");
+  await denied.getByLabel("Describe the outcome", { exact: true }).fill("Repair the storage-denial test case.");
+  await denied.getByRole("button", { name: "Continue", exact: true }).click();
+  await denied.getByLabel("What proves the work succeeded?").waitFor();
+  await denied.close();
+  const malformed = await browser.newPage();
+  await malformed.addInitScript(() => sessionStorage.setItem("fdlc.factory-definition.draft.v1", JSON.stringify({ step: 2, form: { outcome: null, authority: "broken" }, submitted: true })));
+  await malformed.goto(`${origin}/start`);
+  await malformed.getByLabel("Describe the outcome", { exact: true }).waitFor();
+  assert.equal(await malformed.getByLabel("Describe the outcome", { exact: true }).inputValue(), "");
+  await malformed.close();
+  report.flows.push({ name: "builder-storage-denial-and-malformed-draft", result: "PASS" });
+
+  // Verify local fragment targets rather than accepting only a page-level 200.
+  const { maturityGapLinks } = await import("../data/maturity-actions.ts");
+  for (const href of new Set(Object.values(maturityGapLinks).flat().map(([, href]) => href).filter(href => href.includes("#") && !href.startsWith("/guide")))) {
+    await page.goto(`${origin}${href}`);
+    assert.equal(await page.locator(`[id="${href.split("#")[1]}"]`).count(), 1, `Missing fragment target: ${href}`);
+  }
+  // WCAG 1.4.10: 200% zoom of a 1280px layout is 640 CSS pixels.
+  await page.setViewportSize({ width: 640, height: 512 });
+  for (const route of ["/", "/in-5-minutes", "/framework", "/architecture", "/start", "/maturity", "/deploy", "/mission-control"]) {
+    const response = await page.goto(`${origin}${route}`);
+    assert.equal(response.status(), 200, `${route} @200%`);
+    await page.getByRole("heading", { level: 1 }).waitFor();
+    await audit(`${route}@200%`);
+  }
+  report.flows.push({ name: "reflow-200-percent-key-journeys", width: 640, result: "PASS" });
   for (const route of [...links].sort()) {
     const response = await page.request.get(`${origin}${route}`);
     report.links.push({ route, status: response.status() });

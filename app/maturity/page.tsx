@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MaturityAssessment } from "../components/maturity-assessment";
+import { NextSteps } from "../components/next-steps";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { maturityLevels } from "../../data/fdlc";
+import { pageHandoffs } from "../../data/page-handoffs";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Maturity", "Assess the maturity of your AI software factory across eleven operating dimensions.", "/maturity");
@@ -22,6 +24,6 @@ export default function MaturityPage() {
       <ol className="maturity-overview">{maturityLevels.map((level) => <li key={level.level}><span>L{level.level}</span><div><h3>{level.name}</h3><p>{level.description}</p><dl><div><dt>Operating model</dt><dd>{level.operatingModel}</dd></div><div><dt>Next capability to earn</dt><dd>{level.nextMove}</dd></div></dl></div></li>)}</ol>
     </section>
     <section className="section-block" id="assessment"><SectionHeader eyebrow="Assessment" title="Score what is demonstrably true today." description="This is an educational diagnostic, not certification. The useful output is the next control or evidence gap to close." /><MaturityAssessment /></section>
-    <section className="reading-next"><p className="section-label">Turn the result into work</p><h2>Improve one control boundary at a time.</h2><div><Link href="/start">Define a factory line →</Link><Link href="/architecture">Inspect the architecture →</Link><Link href="/benchmarks">Establish outcome measures →</Link></div></section>
+    <NextSteps {...pageHandoffs.maturity} />
   </div></SiteShell>;
 }

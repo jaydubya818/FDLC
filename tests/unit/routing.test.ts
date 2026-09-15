@@ -14,11 +14,12 @@ function sourceFiles(directory: string): string[] {
   });
 }
 
-test("publishes one www origin and delegates Guide discovery", () => {
+test("publishes one apex origin and delegates Guide discovery", () => {
   const siteSource = readFileSync("lib/site.ts", "utf8");
   const sitemapSource = readFileSync("app/sitemap.ts", "utf8");
   const robotsSource = readFileSync("app/robots.ts", "utf8");
-  assert.match(siteSource, /https:\/\/www\.fdlc\.ai/);
+  assert.match(siteSource, /https:\/\/fdlc\.ai/);
+  assert.doesNotMatch(siteSource, /https:\/\/www\.fdlc\.ai/);
   assert.match(sitemapSource, /"\/specification"/);
   assert.doesNotMatch(sitemapSource, /"\/guide(?:\/|"|`)/);
   assert.doesNotMatch(sitemapSource, /"\/spec"/);
@@ -50,7 +51,7 @@ test("declares the default app, package names, and production development fallba
   ]);
   assert.deepEqual(microfrontends.applications.fdlc, {
     packageName: "fdlc-site",
-    development: { fallback: "https://www.fdlc.ai" },
+    development: { fallback: "https://fdlc.ai" },
   });
   const guideApplication = microfrontends.applications["ai-software-factory-mastery"];
   assert.equal(
@@ -202,15 +203,15 @@ test("enables retired Guide-host redirects only for the exact true value", () =>
       new NextRequest("https://ai-software-factory-mastery.vercel.app/"),
     );
     assert.equal(response.status, 308);
-    assert.equal(response.headers.get("location"), "https://www.fdlc.ai/guide");
+    assert.equal(response.headers.get("location"), "https://fdlc.ai/guide");
   });
 });
 
 test("redirects allowlisted legacy Guide-host requests without forwarding queries when enabled", () => {
   withLegacyGuideRedirects("true", () => {
     for (const [method, pathname, destination] of [
-      ["GET", "/", "https://www.fdlc.ai/guide"],
-      ["HEAD", "/architecture/", "https://www.fdlc.ai/guide/architecture"],
+      ["GET", "/", "https://fdlc.ai/guide"],
+      ["HEAD", "/architecture/", "https://fdlc.ai/guide/architecture"],
     ]) {
       const request = new NextRequest(
         `https://preview.invalid${pathname}?token=private&token=again`,
@@ -229,7 +230,7 @@ test("redirects allowlisted legacy Guide-host requests without forwarding querie
 
 test("does not redirect other hosts, paths, or unsafe methods when enabled", () => {
   const requests = [
-    new NextRequest("https://www.fdlc.ai/"),
+    new NextRequest("https://fdlc.ai/"),
     new NextRequest("https://ai-software-factory-mastery.vercel.app/framework"),
     new NextRequest("https://ai-software-factory-mastery.vercel.app/", {
       method: "POST",

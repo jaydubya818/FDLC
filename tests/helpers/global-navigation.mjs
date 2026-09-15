@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 
-const moreLabels = ["FDLC in 5 Minutes", "Learning Library (Preview)", "Manifesto", "Start", "Enterprise", "About"];
-const morePaths = ["/in-5-minutes", "/corpus-preview", "/manifesto", "/start", "/enterprise", "/about"];
-const primaryLabels = ["Framework", "Architecture", "Guide", "Mission Control", "AI-FDE", "Maturity", "More"];
+const moreLabels = ["In 5 Minutes", "Start", "Learning Library (Preview)", "Manifesto", "Enterprise", "About"];
+const morePaths = ["/in-5-minutes", "/start", "/corpus-preview", "/manifesto", "/enterprise", "/about"];
+const primaryLabels = ["Framework", "Architecture", "Guide", "AI-FDE", "Mission Control", "Maturity", "More"];
 
 export async function checkGlobalNavigation(page, { mobile, keyboard = false, touch = false }) {
   const header = page.locator("header").first();
@@ -69,7 +69,7 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
     if (!mobile) {
       await trigger.focus();
       await page.keyboard.press("ArrowDown");
-      await page.waitForFunction(() => document.activeElement?.textContent === "FDLC in 5 Minutes");
+      await page.waitForFunction(() => document.activeElement?.textContent === "In 5 Minutes");
       for (const label of moreLabels.slice(1)) {
         await page.keyboard.press("Tab");
         assert.equal(await page.evaluate(() => document.activeElement.textContent), label);
@@ -79,7 +79,7 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
       assert.equal(await panel.evaluate(node => node.contains(document.activeElement)), false, "Tab leaves the dropdown");
       await trigger.focus();
       await page.keyboard.press("ArrowDown");
-      await page.waitForFunction(() => document.activeElement?.textContent === "FDLC in 5 Minutes");
+      await page.waitForFunction(() => document.activeElement?.textContent === "In 5 Minutes");
       await page.keyboard.press("Shift+Tab");
       assert.ok(await trigger.evaluate(node => document.activeElement === node), "Shift+Tab returns to the trigger");
       await page.keyboard.press("Shift+Tab");

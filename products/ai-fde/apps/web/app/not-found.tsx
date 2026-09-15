@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import { Brand } from "@/components/brand";
-
 export default function NotFound() {
   return (
     <main
@@ -10,9 +8,6 @@ export default function NotFound() {
       tabIndex={-1}
     >
       <section className="surface max-w-xl rounded-xl p-10 text-center">
-        <div className="flex justify-center">
-          <Brand />
-        </div>
         <p className="eyebrow mt-10">404 / Workspace not found</p>
         <h1 className="display-font mt-3 text-4xl font-medium">
           That AI-FDE route does not exist.

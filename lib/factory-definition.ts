@@ -1,3 +1,5 @@
+import { stringify } from "yaml";
+
 export type FactoryForm = {
   workType: string;
   outcome: string;
@@ -63,6 +65,14 @@ export function generateFactoryDefinition(form: FactoryForm): FactoryDefinition 
 
 function markdownList(items: string[]) {
   return items.map((item) => `- ${item}`).join("\n");
+}
+
+export function formatFactoryDefinitionJson(definition: FactoryDefinition) {
+  return `${JSON.stringify(definition, null, 2)}\n`;
+}
+
+export function formatFactoryDefinitionYaml(definition: FactoryDefinition) {
+  return stringify(definition);
 }
 
 export function formatFactoryDefinitionMarkdown(definition: FactoryDefinition) {

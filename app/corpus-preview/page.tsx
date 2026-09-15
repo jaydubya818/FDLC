@@ -41,7 +41,7 @@ export default function CorpusPreviewPage() {
     <CorpusStatus />
 
     <section className="corpus-journeys" id="paths" aria-labelledby="corpus-paths-heading">
-      <header className="corpus-section-heading"><div><p className="section-label">Start with your outcome</p><h2 id="corpus-paths-heading">Choose a path through FDLC.</h2></div><p>You do not need to read the corpus front to back. Each path connects a question to a short, deliberate sequence.</p></header>
+        <header className="corpus-section-heading"><div><p className="section-label">Start with your outcome</p><h2 id="corpus-paths-heading">Choose a path through FDLC.</h2></div><p>You do not need to read the library front to back. Each path connects a question to a short, deliberate sequence.</p></header>
       <div className="corpus-journey-grid">{corpusJourneys.map((journey) => <article className="corpus-journey" key={journey.id}>
         <header><span>{journey.audience}</span><small>About {journey.readingMinutes} min</small></header>
         <h3>{journey.title}</h3><p>{journey.description}</p>
@@ -54,7 +54,7 @@ export default function CorpusPreviewPage() {
 
     <section className="corpus-topics" aria-labelledby="corpus-topics-heading"><header className="corpus-section-heading"><div><p className="section-label">Explore by topic</p><h2 id="corpus-topics-heading">Use the library as a reference.</h2></div><p>Go directly to the part of FDLC that matches the decision or implementation work in front of you.</p></header><div>{topics.map((topic) => <Link href={`/corpus-preview?collection=${topic.collection}#catalog`} key={topic.collection}><span>{topic.count} documents</span><h3>{topic.title}</h3><p>{topic.description}</p><strong>Browse {topic.title.toLowerCase()} →</strong></Link>)}</div></section>
 
-    <div id="catalog"><Suspense fallback={<div className="corpus-loading" role="status">Loading the corpus catalog…</div>}><CorpusCatalog documents={catalog} /></Suspense></div>
+    <div id="catalog"><Suspense fallback={<div className="corpus-loading" role="status">Loading the Learning Library…</div>}><CorpusCatalog documents={catalog} /></Suspense></div>
 
     <section className="corpus-review" id="review-evidence" aria-labelledby="corpus-review-heading">
       <header className="corpus-section-heading"><div><p className="section-label">For reviewers and maintainers</p><h2 id="corpus-review-heading">Inspect the evidence behind the preview.</h2></div><p>These checks establish integrity and publication boundaries. They do not qualify the draft or replace Product Owner review.</p></header>

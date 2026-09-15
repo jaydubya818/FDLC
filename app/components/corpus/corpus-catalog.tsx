@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-html-link-for-pages -- Guide search is owned by the Guide microfrontend. */
+
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState, useTransition } from "react";
@@ -97,11 +99,11 @@ function CorpusCatalogContent({ documents, searchString }: { documents: CatalogD
         {(query || collection !== "all" || audience !== "all" || level !== "all" || invalidFilter) && <button className="corpus-clear" onClick={clearFilters} type="button">Clear</button>}
       </form>
       {invalidFilter && <p className="corpus-filter-note" role="status">One or more requested filters do not exist. Valid filters are still applied.</p>}
-      <p className="visually-hidden" aria-live="polite">{pending ? "Updating corpus results" : `${visible.length} of ${filtered.length} corpus documents shown`}</p>
+      <p className="visually-hidden" aria-live="polite">{pending ? "Updating library results" : `${visible.length} of ${filtered.length} library documents shown`}</p>
       {filtered.length ? <><ol className="corpus-results">{visible.map((document) => {
         const href = `${document.previewHref}${returnState.size ? `?from=${encodeURIComponent(returnState.toString())}` : ""}`;
         return <li key={document.path}><Link href={href}><span>{formatLabel(document.collection)} · {document.status}</span><h3>{document.title}</h3><p>{document.description}</p><small>{document.path} · {document.wordCount.toLocaleString()} words</small></Link></li>;
-      })}</ol>{visible.length < filtered.length && <div className="corpus-more"><p>Showing {visible.length} of {filtered.length} matching documents.</p><button className="button button-light" onClick={() => setVisibleCount((count) => count + pageSize)} type="button">Show {Math.min(pageSize, filtered.length - visible.length)} more</button></div>}</> : <div className="corpus-empty"><p className="section-label">No results</p><h3>No document matches those filters.</h3><p>Try a broader phrase or clear the selected collection.</p><button className="button button-dark" onClick={clearFilters} type="button">Clear filters</button></div>}
+      })}</ol>{visible.length < filtered.length && <div className="corpus-more"><p>Showing {visible.length} of {filtered.length} matching documents.</p><button className="button button-light" onClick={() => setVisibleCount((count) => count + pageSize)} type="button">Show {Math.min(pageSize, filtered.length - visible.length)} more</button></div>}</> : <div className="corpus-empty"><p className="section-label">No results</p><h3>No document matches those filters.</h3><p>Try a broader phrase or clear the selected collection. The Learning Library is a Preview surface; the Guide remains the field book.</p><div className="corpus-empty-actions"><button className="button button-dark" onClick={clearFilters} type="button">Clear filters</button><a className="button button-light" href="/guide/search">Search the Guide</a></div></div>}
     </section>
   );
 }

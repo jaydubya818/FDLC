@@ -55,7 +55,9 @@ Treat an FDLC/Guide release as a qualified pair: verify the exact source revisio
 
 ## AI-FDE — AI Factory Deployed Engineer
 
-The [AI-FDE product](https://fdlc.ai/deploy) is the evidence-driven workspace for an accountable human Factory Deployed Engineer. AI-FDE discovers how work happens and produces a reviewable Factory Definition. The human FDE owns architecture, judgment, authority, adoption, and outcomes. Mission Control separately validates approved intent, qualifies immutable Factory Versions, and governs execution.
+**AI-FDE** is the public product/system name. **AI Factory Deployed Engineer** is the expansion of that product name. A **Factory Deployed Engineer (FDE)** is the accountable human role.
+
+The [AI-FDE product](https://fdlc.ai/deploy) is the evidence-driven workspace for that human role. AI-FDE discovers how work happens and produces a reviewable Factory Definition. The human FDE owns architecture, judgment, authority, adoption, and outcomes. Mission Control separately validates approved intent, qualifies immutable Factory Versions, and governs execution.
 
 The engagement advances through three evidence-gated phases: **FDLC Readiness → FDLC Lighthouse → FDLC Scale**. Readiness establishes the baseline and selects a suitable first line; Lighthouse proves one bounded workflow; Scale expands only what the evidence supports. The organization keeps the factory line, evidence, reusable capabilities, operating playbook, and scale path.
 

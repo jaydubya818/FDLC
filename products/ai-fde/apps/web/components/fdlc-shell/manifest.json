@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "sources": {
+    "app/components/site-header.tsx": "19fcd90d3ce5ac9c50585fcc9f8e7858e66cf2c93e6b363e58dc5a926f43dec6",
+    "app/design-system.css": "2c7a58b2fea18e31990c9ba46dbb53e560a16c8484c9319f48dd0e5fc29f049e",
+    "lib/global-navigation.ts": "a229f2287d1d1d4c925c24a2d638a8c297baf497fe4cd5ec34bd04cb7d0bae93",
+    "public/fdlc-logo-transparent.png": "8ce5db993f13d466f8df90c1520e97dd8118fa4206e4e90256a3c43b7863914c"
+  }
+}

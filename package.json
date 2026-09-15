@@ -20,7 +20,7 @@
     "pretest:next": "npm run corpus:verify",
     "test:next": "next build --webpack && npm run test:next-runtime",
     "test:next-runtime": "node scripts/check-next-runtime.mjs",
-    "pretest:unit": "npm run corpus:verify",
+    "pretest:unit": "npm run corpus:verify && npm run shell:check",
     "test:unit": "node --experimental-strip-types --test tests/unit/**/*.test.ts",
     "pretypecheck": "npm run corpus:verify",
     "typecheck": "next typegen && tsc --noEmit && npm run typecheck --prefix packages/fab",
@@ -30,7 +30,8 @@
     "pretest:corpus-browser": "npm run corpus:verify",
     "test:corpus-browser": "node tests/corpus-browser.mjs",
     "pretest:corpus-browser:vercel": "npm run corpus:verify",
-    "test:corpus-browser:vercel": "node tests/corpus-browser.mjs next"
+    "test:corpus-browser:vercel": "node tests/corpus-browser.mjs next",
+    "shell:check": "node scripts/sync-ai-fde-shell.mjs --check"
   },
   "dependencies": {
     "@vercel/microfrontends": "2.4.0",

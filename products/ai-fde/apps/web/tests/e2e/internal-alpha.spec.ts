@@ -199,7 +199,9 @@ test("three synthetic workflows complete an internal alpha rehearsal", async ({
     await completeProfile(page, profile);
   }
 
-  await page.getByRole("link", { name: "AI-FDE home" }).click();
+  await page
+    .getByRole("link", { name: "Factory Definition Workspace" })
+    .click();
   await expect(
     page.getByRole("heading", {
       level: 2,

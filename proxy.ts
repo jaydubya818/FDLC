@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server.js";
 
 const legacyGuideHostname = "ai-software-factory-mastery.vercel.app";
-const canonicalOrigin = "https://www.fdlc.ai";
+const canonicalOrigin = "https://fdlc.ai";
 const legacyGuideRedirects = new Map([
   ["/", "/guide"],
   ["/architecture", "/guide/architecture"],

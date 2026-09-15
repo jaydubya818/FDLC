@@ -169,3 +169,7 @@ Live customer data, design-partner activation, live Bedrock qualification, billi
 - [ ] The synthetic demo makes zero live calls and cannot fall through to a live service.
 - [ ] The public site and every AI-FDE operational service remain independently deployable and recoverable.
 - [ ] No Production release or live-system activation occurs without separate explicit authorization.
+
+## 2026-09-14 UX follow-up
+
+The PR45 reconciliation adds a byte-checked FDLC shell contract in the independently built child, removes duplicate branding, and retains the operational rail. The governing lifecycle is **intent → planning → execution → evidence → verification → approval → release → outcomes → learning**; the Factory Definition handoff is a narrower design/qualification boundary within that lifecycle. Local evidence and unresolved deployment gates are recorded in [the acceptance review](../reviews/2026-09-14-ux-acceptance.md). Milestone C live operational items remain unqualified.

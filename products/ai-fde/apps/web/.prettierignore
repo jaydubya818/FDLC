@@ -1,1 +1,7 @@
 lib/backend-contract.generated.ts
+
+components/fdlc-shell/
+.next/
+playwright-report/
+test-results/
+*.tsbuildinfo

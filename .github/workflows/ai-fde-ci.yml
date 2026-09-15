@@ -170,6 +170,7 @@ jobs:
           pnpm --dir apps/web run test:e2e:golden
           pnpm --dir apps/web run test:e2e:alpha
           pnpm --dir apps/web run test:a11y
+          pnpm --dir apps/web run test:e2e:shell
       - name: Run qualified design-partner browser gate
         working-directory: products/ai-fde
         env:

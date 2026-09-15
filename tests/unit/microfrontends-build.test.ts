@@ -38,7 +38,7 @@ test("accepts only the approved root Microfrontends configuration", () => {
   });
 
   assert.equal(result.status, 0, result.stderr);
-  assert.match(result.stdout, /e63f913563c1864feac38c7786e06d146892d34a4f0f74179999ff1d565e7e8b/);
+  assert.match(result.stdout, /6520e43f55c4dc03c3c51b1ae69a4ee11788b4d6b2175511a98b2a9e8dcace6e/);
 });
 
 test("fails closed when the Microfrontends configuration is absent or moved", () => {

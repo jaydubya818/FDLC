@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 import { AuthenticationRequired } from "@/components/authentication-required";
-import { Brand } from "@/components/brand";
-import { EcosystemLinks } from "@/components/ecosystem-links";
 import { ArrowIcon, PlusIcon, ShieldIcon } from "@/components/icons";
 import {
   ApiError,
@@ -128,8 +126,7 @@ export default function EngagementsPage() {
     >
       <header className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-4">
         <div className="flex w-full flex-wrap items-center gap-x-7 gap-y-3 lg:w-auto lg:flex-nowrap">
-          <Brand />
-          <EcosystemLinks />
+          <p className="eyebrow">Engagement workspace</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-3 rounded-full border border-[var(--line)] bg-[var(--paper)] px-4 py-2 text-xs font-bold text-[var(--ink-soft)]">
@@ -152,20 +149,18 @@ export default function EngagementsPage() {
         </div>
       </header>
 
-      <section className="mx-auto grid max-w-[1240px] gap-14 pb-16 pt-20 lg:grid-cols-[1fr_0.78fr] lg:items-end lg:pt-28">
+      <section className="mx-auto grid max-w-[1240px] gap-7 pb-8 pt-8 lg:grid-cols-[1fr_0.9fr] lg:items-start lg:pt-10">
         <div>
-          <p className="eyebrow">FDLC Deploy · AI-FDE</p>
-          <h1 className="display-font mt-5 max-w-3xl text-5xl font-medium leading-[0.95] tracking-[-0.04em] md:text-7xl">
+          <p className="eyebrow">AI Factory Deployed Engineer</p>
+          <h1 className="display-font mt-3 max-w-3xl text-4xl font-medium leading-[1.05] tracking-[-0.025em] md:text-5xl">
             {PRODUCT.conciseDescription}
           </h1>
         </div>
         <div className="max-w-xl lg:pb-2">
           <p className="text-base leading-7 text-[var(--ink-soft)]">
-            AI-FDE helps the accountable human Factory Deployed Engineer turn
-            source evidence into a reviewable Factory Definition: verified
-            operating intent, economics, authority, and version-pinned
-            implementation inputs. Mission Control alone owns qualification,
-            execution evidence, and Factory Versions.
+            Review evidence, model the workflow, and prepare a Factory
+            Definition. The human FDE approves the intent and authority. Mission
+            Control separately qualifies the runtime and governs execution.
           </p>
           {hostedDemoEnabled && (
             <p className="mt-4 rounded-xl border border-[var(--amber)]/25 bg-[var(--amber-soft)] px-4 py-3 text-xs font-bold leading-5 text-[var(--amber)]">
@@ -187,127 +182,6 @@ export default function EngagementsPage() {
             </button>
           </div>
         </div>
-      </section>
-
-      <section
-        aria-labelledby="alpha-scorecard-heading"
-        className="surface mx-auto mb-12 max-w-[1240px] overflow-hidden rounded-2xl"
-      >
-        <div className="grid gap-6 border-b border-[var(--line)] bg-[var(--ink)] px-6 py-7 text-white md:px-8 lg:grid-cols-[1fr_0.9fr] lg:items-end">
-          <div>
-            <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.15em] text-[#9dc8c2]">
-              Internal alpha evidence
-            </p>
-            <h2
-              className="display-font mt-3 text-3xl font-medium md:text-4xl"
-              id="alpha-scorecard-heading"
-            >
-              Delivery proof before production claims.
-            </h2>
-          </div>
-          <p className="text-sm leading-6 text-white/65">
-            Three distinct workflow shapes, objective stage gates, and
-            structured evaluator observations. Time and token economics remain
-            absolute until a complete conventional baseline exists.
-          </p>
-        </div>
-
-        {loading ? (
-          <div
-            aria-live="polite"
-            className="p-8 text-sm font-bold text-[var(--ink-soft)]"
-            role="status"
-          >
-            Loading internal alpha scorecard…
-          </div>
-        ) : !alphaScorecard ? (
-          <div
-            aria-live="polite"
-            className="p-8 text-sm font-bold text-[var(--ink-soft)]"
-            role="status"
-          >
-            Internal alpha scorecard unavailable until the operator service
-            connects.
-          </div>
-        ) : (
-          <div className="p-6 md:p-8">
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-              <AlphaMetric
-                label="Workflow profiles"
-                value={alphaScorecard.profile_count}
-              />
-              <AlphaMetric
-                label="Complete packets"
-                value={
-                  String(alphaScorecard.packet_complete_count) +
-                  "/" +
-                  String(alphaScorecard.profile_count)
-                }
-              />
-              <AlphaMetric
-                label="Accepted material claims"
-                value={alphaScorecard.accepted_material_claim_count}
-              />
-              <AlphaMetric
-                label="Measured provider tokens"
-                value={alphaScorecard.total_provider_tokens.toLocaleString()}
-              />
-            </div>
-
-            <div className="mt-6 grid gap-3 lg:grid-cols-3">
-              {alphaScorecard.engagements.map((card) => (
-                <Link
-                  className="rounded-xl border border-[var(--line)] bg-white p-4 text-[var(--ink)] no-underline transition hover:-translate-y-0.5 hover:border-[var(--line-strong)]"
-                  href={"/engagements/" + card.engagement.id + "#evaluation"}
-                  key={card.engagement.id}
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="status-dot text-[var(--teal)]" />
-                    <span className="text-[0.6rem] font-extrabold uppercase tracking-[0.09em] text-[var(--ink-soft)]">
-                      {card.packet.artifact_count}/7 artifacts
-                    </span>
-                  </div>
-                  <p className="mt-4 text-sm font-extrabold">
-                    {card.engagement.workflow_name}
-                  </p>
-                  <p className="mt-1 text-xs font-semibold text-[var(--ink-soft)]">
-                    {card.engagement.name} · {card.claims.material_accepted}{" "}
-                    material claims
-                  </p>
-                </Link>
-              ))}
-            </div>
-
-            <div
-              className={
-                "mt-6 rounded-xl border px-4 py-4 text-sm font-bold " +
-                (alphaScorecard.comparison.ready
-                  ? "border-[var(--teal)]/25 bg-[var(--teal-soft)] text-[var(--teal)]"
-                  : "border-[var(--amber)]/25 bg-[var(--amber-soft)] text-[var(--amber)]")
-              }
-            >
-              <p>
-                {alphaScorecard.comparison.ready
-                  ? "Comparison cohort complete. Absolute method differences are available for internal review."
-                  : alphaScorecard.comparison.reason}
-              </p>
-              <p className="mt-2 text-xs font-extrabold uppercase tracking-[0.08em]">
-                AI-FDE completed operator cohort:{" "}
-                {
-                  alphaScorecard.comparison.methods.ai_fde
-                    .completed_operator_assessment_count
-                }
-                /3
-                {" · "}Conventional baseline:{" "}
-                {
-                  alphaScorecard.comparison.methods.conventional
-                    .completed_operator_assessment_count
-                }
-                /3
-              </p>
-            </div>
-          </div>
-        )}
       </section>
 
       {error && (
@@ -457,6 +331,126 @@ export default function EngagementsPage() {
                 </div>
               </Link>
             ))}
+          </div>
+        )}
+      </section>
+      <section
+        aria-labelledby="alpha-scorecard-heading"
+        className="surface mx-auto mb-12 mt-10 max-w-[1240px] overflow-hidden rounded-2xl"
+      >
+        <div className="grid gap-6 border-b border-[var(--line)] bg-[var(--ink)] px-6 py-7 text-white md:px-8 lg:grid-cols-[1fr_0.9fr] lg:items-end">
+          <div>
+            <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.15em] text-[#9dc8c2]">
+              Internal alpha evidence
+            </p>
+            <h2
+              className="display-font mt-3 text-3xl font-medium md:text-4xl"
+              id="alpha-scorecard-heading"
+            >
+              Delivery proof before production claims.
+            </h2>
+          </div>
+          <p className="text-sm leading-6 text-white/65">
+            Three distinct workflow shapes, objective stage gates, and
+            structured evaluator observations. Time and token economics remain
+            absolute until a complete conventional baseline exists.
+          </p>
+        </div>
+
+        {loading ? (
+          <div
+            aria-live="polite"
+            className="p-8 text-sm font-bold text-[var(--ink-soft)]"
+            role="status"
+          >
+            Loading internal alpha scorecard…
+          </div>
+        ) : !alphaScorecard ? (
+          <div
+            aria-live="polite"
+            className="p-8 text-sm font-bold text-[var(--ink-soft)]"
+            role="status"
+          >
+            Internal alpha scorecard unavailable until the operator service
+            connects.
+          </div>
+        ) : (
+          <div className="p-6 md:p-8">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+              <AlphaMetric
+                label="Workflow profiles"
+                value={alphaScorecard.profile_count}
+              />
+              <AlphaMetric
+                label="Complete packets"
+                value={
+                  String(alphaScorecard.packet_complete_count) +
+                  "/" +
+                  String(alphaScorecard.profile_count)
+                }
+              />
+              <AlphaMetric
+                label="Accepted material claims"
+                value={alphaScorecard.accepted_material_claim_count}
+              />
+              <AlphaMetric
+                label="Measured provider tokens"
+                value={alphaScorecard.total_provider_tokens.toLocaleString()}
+              />
+            </div>
+
+            <div className="mt-6 grid gap-3 lg:grid-cols-3">
+              {alphaScorecard.engagements.map((card) => (
+                <Link
+                  className="rounded-xl border border-[var(--line)] bg-white p-4 text-[var(--ink)] no-underline transition hover:-translate-y-0.5 hover:border-[var(--line-strong)]"
+                  href={"/engagements/" + card.engagement.id + "#evaluation"}
+                  key={card.engagement.id}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="status-dot text-[var(--teal)]" />
+                    <span className="text-[0.6rem] font-extrabold uppercase tracking-[0.09em] text-[var(--ink-soft)]">
+                      {card.packet.artifact_count}/7 artifacts
+                    </span>
+                  </div>
+                  <p className="mt-4 text-sm font-extrabold">
+                    {card.engagement.workflow_name}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold text-[var(--ink-soft)]">
+                    {card.engagement.name} · {card.claims.material_accepted}{" "}
+                    material claims
+                  </p>
+                </Link>
+              ))}
+            </div>
+
+            <div
+              className={
+                "mt-6 rounded-xl border px-4 py-4 text-sm font-bold " +
+                (alphaScorecard.comparison.ready
+                  ? "border-[var(--teal)]/25 bg-[var(--teal-soft)] text-[var(--teal)]"
+                  : "border-[var(--amber)]/25 bg-[var(--amber-soft)] text-[var(--amber)]")
+              }
+            >
+              <p>
+                {alphaScorecard.comparison.ready
+                  ? "Comparison cohort complete. Absolute method differences are available for internal review."
+                  : alphaScorecard.comparison.reason}
+              </p>
+              <p className="mt-2 text-xs font-extrabold uppercase tracking-[0.08em]">
+                AI-FDE completed operator cohort:{" "}
+                {
+                  alphaScorecard.comparison.methods.ai_fde
+                    .completed_operator_assessment_count
+                }
+                /3
+                {" · "}Conventional baseline:{" "}
+                {
+                  alphaScorecard.comparison.methods.conventional
+                    .completed_operator_assessment_count
+                }
+                /3
+              </p>
+            </div>
           </div>
         )}
       </section>

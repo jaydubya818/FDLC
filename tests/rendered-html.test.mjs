@@ -21,6 +21,7 @@ test("corpus preview renders a noindex catalog without entering the public sitem
   assert.match(html, /Search the full library/i);
   assert.match(html, /158<\/strong>.*Manifest-backed routes/is);
   assert.match(html, /Review candidate.*not FDLC canon/i);
+  assert.doesNotMatch(html, /Corpus catalog|read the corpus/i);
   for (const href of [
     "/corpus-preview/start",
     "/corpus-preview/guides/build-your-first-factory",
@@ -39,6 +40,8 @@ test("corpus documents share link and custom-anchor behavior while canonical pag
   assert.equal(framework.status, 200);
   const frameworkHtml = await framework.text();
   assert.match(frameworkHtml, /The FDLC Framework/);
+  assert.match(frameworkHtml, /Learning Library Preview/);
+  assert.doesNotMatch(frameworkHtml, /Corpus catalog/i);
   assert.match(frameworkHtml, /href="\/corpus-preview\/architecture\/execution-vocabulary"/);
   assert.match(frameworkHtml, /content="noindex, nofollow/i);
   const start = await (await render("/corpus-preview/start")).text();
@@ -86,7 +89,7 @@ test("corpus raw artifacts are allowlisted and unknown targets fail closed", asy
 });
 
 test("global More exposes the preview while contextual artifacts remain focused", async () => {
-  const expected = ["FDLC in 5 Minutes", "Learning Library (Preview)", "Manifesto", "Start", "Enterprise", "About"];
+  const expected = ["In 5 Minutes", "Start", "Learning Library (Preview)", "Manifesto", "Enterprise", "About"];
   for (const route of routes) {
     const html = await (await render(route)).text();
     const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
@@ -166,15 +169,17 @@ test("homepage answers the category boundary and links to primary destinations",
   assert.match(html, /Intent.*Factory.*Evidence.*Outcome/is);
   assert.match(html, /Plan.*Modify.*Test.*Verify.*Approve/is);
   assert.match(html, /Choose the next useful step/i);
-  assert.match(html, /Understand.*Assess.*Build.*Go deeper.*Explore/is);
-  assert.match(html, /Explore the Learning Library \(Preview\)/i);
+  assert.match(html, /Understand.*Assess.*Build.*Read/is);
+  assert.doesNotMatch(html, /Explore the Learning Library \(Preview\)/i);
   assert.match(html, /Need help applying FDLC.*Start with one bounded factory line/is);
+  assert.match(html, /id="factory-explorer"/);
+  assert.match(html, /Open on Framework/);
   for (const href of ["/framework", "/architecture", "/in-5-minutes", "/guide", "/mission-control", "/maturity", "/start", "/corpus-preview"]) assert.match(html, new RegExp(`href=["']${href}["']`));
   const homeHeader = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0] ?? "";
   const homeMain = html.match(/<main\b[^>]*>[\s\S]*?<\/main>/)?.[0] ?? "";
   const homeFooter = html.match(/<footer class="global-footer">[\s\S]*?<\/footer>/)?.[0] ?? "";
   assert.equal([...homeHeader.matchAll(/href="\/corpus-preview"/g)].length, 2, "desktop and mobile navigation expose the preview");
-  assert.equal([...homeMain.matchAll(/href="\/corpus-preview"/g)].length, 1, "homepage action exposes the preview");
+  assert.equal([...homeMain.matchAll(/href="\/corpus-preview"/g)].length, 0, "homepage primary path does not promote the preview");
   assert.equal([...homeFooter.matchAll(/href="\/corpus-preview"/g)].length, 1, "footer exposes the preview");
 });
 
@@ -228,7 +233,7 @@ test("global navigation exposes the canonical Guide disclosure in desktop and mo
   const html = await (await render("/guide")).text();
   const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
   assert.ok(header, "renders the persistent FDLC global header");
-  for (const label of ["Framework", "Architecture", "Guide", "Mission Control", "AI-FDE", "Maturity", "More"]) {
+  for (const label of ["Framework", "Architecture", "Guide", "AI-FDE", "Mission Control", "Maturity", "More"]) {
     assert.match(header, new RegExp(`>${label}(?:\\s|<)`), label);
   }
   for (const [label, href] of [
@@ -278,7 +283,7 @@ test("worked example connects all four models without claiming production proof"
   assert.match(html, /Cost per verified outcome.*First-pass verification rate.*Reopen.*rollback rate/is);
   assert.match(html, /accepted dependency upgrades.*eligible dependency-upgrade missions/is);
   assert.match(html, /canonical example.*not a certification of production readiness.*discipline is open.*value is determined by verified outcomes/is);
-  for (const href of ["/framework", "/maturity", "/mission-control#quickstart", "/deploy"]) assert.match(html, new RegExp(`href=["']${href}["']`));
+  for (const href of ["/#factory-explorer", "/start", "/mission-control"]) assert.match(html, new RegExp(`href=["']${href}["']`));
 });
 
 test("legacy worked-example route redirects to the canonical five-minute path", async () => {
@@ -298,11 +303,11 @@ test("legacy specification route redirects to the canonical path", async () => {
 
 test("discovery metadata separates the composed Guide sitemap", async () => {
   const sitemap = await (await render("/sitemap.xml")).text();
-  assert.match(sitemap, /https:\/\/www\.fdlc\.ai\/specification/);
-  assert.doesNotMatch(sitemap, /https:\/\/www\.fdlc\.ai\/guide|https:\/\/www\.fdlc\.ai\/spec<\/loc>/);
+  assert.match(sitemap, /https:\/\/fdlc\.ai\/specification/);
+  assert.doesNotMatch(sitemap, /https:\/\/fdlc\.ai\/guide|https:\/\/fdlc\.ai\/spec<\/loc>/);
   const robots = await (await render("/robots.txt")).text();
-  assert.match(robots, /Sitemap: https:\/\/www\.fdlc\.ai\/sitemap\.xml/i);
-  assert.match(robots, /Sitemap: https:\/\/www\.fdlc\.ai\/guide\/sitemap\.xml/i);
+  assert.match(robots, /Sitemap: https:\/\/fdlc\.ai\/sitemap\.xml/i);
+  assert.match(robots, /Sitemap: https:\/\/fdlc\.ai\/guide\/sitemap\.xml/i);
 });
 
 test("core technical pages preserve distinct delivery states", async () => {
@@ -402,6 +407,8 @@ test("AI-FDE publishes the product model and its synthetic boundary", async () =
   assert.match(html, /Live qualification.*Not activated/is);
   assert.match(html, /Live model calls.*0/is);
   assert.match(html, /AI-FDE may.*prepare qualification material.*AI-FDE may not.*create a Factory Version.*Mission Control owns.*Factory Version qualification/is);
+  assert.match(html, /href=["']\/deploy\/app["'][^>]*>Open AI-FDE/i);
+  assert.doesNotMatch(html, /ai-software-factory-mastery\.vercel\.app/i);
   assert.doesNotMatch(html, /083665737366|calm-buffalo-854|dpl_BHi24iX4NmZZ8WNyuspDHaYg5DX2/i);
   assert.match(html, /Synthetic qualification is not live operational proof/is);
   assert.match(html, /href=["']\/deploy["'][^>]*>AI-FDE</i);
@@ -418,4 +425,16 @@ test("enterprise pricing inquiries have a working contact destination", async ()
   const html = await (await render("/enterprise")).text();
   assert.match(html, /support@fdlc\.ai/);
   assert.match(html, /href="mailto:support@fdlc\.ai\?subject=FDLC%20Enterprise%20pricing%20and%20scope"/);
+});
+
+test("key learning pages show the canonical governing lifecycle in order", async () => {
+  const stages = ["Intent", "Planning", "Execution", "Evidence", "Verification", "Approval", "Release", "Outcomes", "Learning"];
+  for (const path of ["/", "/framework", "/in-5-minutes"]) {
+    const html = await (await render(path)).text();
+    const figure = html.match(/<figure class="governing-lifecycle"[\s\S]*?<\/figure>/)?.[0];
+    assert.ok(figure, `${path} must explain the governing lifecycle`);
+    const headings = [...figure.matchAll(/<h3>(.*?)<\/h3>/g)].map((match) => match[1]);
+    assert.deepEqual(headings, stages);
+    assert.match(figure, /Changes return through the same verification and approval controls/);
+  }
 });
