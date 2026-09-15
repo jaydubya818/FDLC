@@ -10,8 +10,7 @@ const styles = await read("app/design-system.css");
 const source = await read("app/components/site-header.tsx");
 // Global destinations cross the child basePath; document links must remain at the public origin.
 const header = source.replace('import Link from "next/link";\n', "")
-  .replace('import { usePathname } from "next/navigation";\n', "")
-  .replaceAll('usePathname() ?? ""', '"/deploy"')
+  .replaceAll('usePathname() ?? ""', '"/deploy/app" + (usePathname() ?? "")')
   .replace('"../../lib/global-navigation"', '"./global-navigation"')
   .replaceAll('<Link ', '<a ').replaceAll('</Link>', '</a>')
   .replace('src="/fdlc-logo-transparent.png"', 'src="/deploy/app/fdlc-logo-transparent.png"');

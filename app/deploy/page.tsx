@@ -42,7 +42,7 @@ export default function DeployPage() {
               <span>A governed bridge from enterprise source evidence to inspectable implementation intent.</span>
             </div>
             <div className="hero-actions">
-              <a className="button button-dark" href="/deploy/app">Open AI-FDE <span aria-hidden="true">→</span></a>
+              <a className="button button-dark" href="/deploy/app">Open engagement workspace <span aria-hidden="true">→</span></a>
               <a className="button button-light" href="#how-ai-fde-works">See how AI-FDE works</a>
               <Link className="text-action" href="/maturity">Assess readiness <span aria-hidden="true">→</span></Link>
               <Link className="text-action" href="/start">Build a Factory Definition <span aria-hidden="true">→</span></Link>

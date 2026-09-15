@@ -19,6 +19,43 @@ for (const width of [1440, 1024, 768, 640, 390]) {
       name: /Acme Manufacturing.*ACCOUNTS PAYABLE/i,
     });
     await expect(engagement).toBeVisible();
+    const mobile = width <= 1100;
+    if (mobile)
+      await page
+        .getByRole("button", { name: "Open navigation", exact: true })
+        .click();
+    const navigation = page.getByRole("navigation", {
+      name: mobile ? "Mobile navigation" : "Primary navigation",
+      exact: true,
+    });
+    await expect(
+      navigation.getByRole("link", { name: "AI-FDE", exact: true }),
+    ).toHaveAttribute("href", "/deploy");
+    const workspaceMenu = navigation.getByRole("button", {
+      name: "AI-FDE navigation",
+      exact: true,
+    });
+    await workspaceMenu.focus();
+    await page.keyboard.press("ArrowDown");
+    const workspaceLink = navigation.getByRole("link", {
+      name: "Engagement workspace",
+      exact: true,
+    });
+    await expect(workspaceLink).toBeFocused();
+    await expect(workspaceLink).toHaveAttribute("href", "/deploy/app");
+    await expect(workspaceLink).toHaveAttribute("aria-current", "page");
+    await page.screenshot({
+      path: testInfo.outputPath(`workspace-menu-${width}.png`),
+      fullPage: false,
+    });
+    await page.keyboard.press("Escape");
+    await expect(workspaceMenu).toBeFocused();
+    await expect(workspaceMenu).toHaveAttribute("aria-expanded", "false");
+    if (mobile) await expect(navigation).toBeVisible();
+    await workspaceMenu.click();
+    await workspaceLink.click();
+    await expect(engagement).toBeVisible();
+    if (mobile) await expect(navigation).toBeHidden();
     await expect(
       page.getByRole("link", { name: "FDLC.ai home", exact: true }),
     ).toHaveCount(1);

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEventHandler, type ReactNode } from "react";
 
-import { primary, guide, afterGuide, secondary, type NavLink } from "../../lib/global-navigation";
+import { primary, guide, aiFde, afterGuide, secondary, type NavLink } from "../../lib/global-navigation";
 
 function isCurrent(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
@@ -19,7 +19,10 @@ function focusAt(container: HTMLElement | null, index: number) {
 }
 
 function onMenuKeyDown(event: globalThis.KeyboardEvent, container: HTMLElement | null, close: () => void, returnFocus: () => void) {
+  if (event.defaultPrevented) return;
   if (!container?.contains(document.activeElement)) return;
+  const nestedDropdown = document.activeElement?.closest(".nav-dropdown.is-open");
+  if (nestedDropdown && !nestedDropdown.contains(container)) return;
   const links = Array.from(container.querySelectorAll<HTMLAnchorElement>("a[href]"));
   const index = links.indexOf(document.activeElement as HTMLAnchorElement);
   if (event.key === "Escape") {
@@ -38,7 +41,7 @@ function onMenuKeyDown(event: globalThis.KeyboardEvent, container: HTMLElement |
   }
 }
 
-function NavDropdown({ active, id, label, links }: { active: boolean; id: string; label: string; links: readonly NavLink[] }) {
+function NavDropdown({ active, id, label, links, href, onNavigate }: { active: boolean; id: string; label: string; links: readonly NavLink[]; href?: string; onNavigate?: () => void }) {
   const pathname = usePathname() ?? "";
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
@@ -78,19 +81,20 @@ function NavDropdown({ active, id, label, links }: { active: boolean; id: string
   }
 
   return (
-    <div className={`nav-dropdown${active ? " is-active" : ""}${open ? " is-open" : ""}`} ref={root} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}>
-      <button aria-controls={id} aria-expanded={open} onClick={() => setOpen((value) => !value)} onKeyDown={handleTriggerKeyDown} ref={trigger} type="button">
-        {label} <span aria-hidden="true">⌄</span>
+    <div className={`nav-dropdown${href ? " nav-dropdown-linked" : ""}${active ? " is-active" : ""}${open ? " is-open" : ""}`} ref={root} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}>
+      {href && <GlobalLink current={pathname === href} href={href} onClick={onNavigate}>{label}</GlobalLink>}
+      <button aria-label={href ? `${label} navigation` : undefined} aria-controls={id} aria-expanded={open} onClick={() => setOpen((value) => !value)} onKeyDown={handleTriggerKeyDown} ref={trigger} type="button">
+        {!href && label} <span aria-hidden="true">⌄</span>
       </button>
       <div className="nav-dropdown-panel" hidden={!open} id={id} ref={panel}>
-        {links.map(([itemLabel, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setOpen(false)}>{itemLabel}</GlobalLink>)}
+        {links.map(([itemLabel, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => { setOpen(false); onNavigate?.(); }}>{itemLabel}</GlobalLink>)}
       </div>
     </div>
   );
 }
 
 function GlobalLink({ children, current, href, onClick }: { children: ReactNode; current: boolean; href: string; onClick?: MouseEventHandler<HTMLAnchorElement> }) {
-  return href.startsWith("/guide")
+  return href.startsWith("/guide") || isCurrent(href, "/deploy/app")
     ? <a aria-current={current ? "page" : undefined} href={href} onClick={onClick}>{children}</a>
     : <Link aria-current={current ? "page" : undefined} href={href} onClick={onClick}>{children}</Link>;
 }
@@ -127,6 +131,7 @@ export function SiteHeader() {
         <nav className="desktop-nav" aria-label="Primary navigation">
           {primary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
           <NavDropdown active={guideActive} id="guide-navigation" label="Guide" links={guide} />
+          <NavDropdown active={isCurrent(pathname, "/deploy")} id="ai-fde-navigation" label="AI-FDE" href="/deploy" links={aiFde} />
           {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
           <NavDropdown active={secondaryActive} id="more-navigation" label="More" links={secondary} />
         </nav>
@@ -142,6 +147,7 @@ export function SiteHeader() {
               {guide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
             </div>
             <a className="mobile-guide-search" href="/guide/search" onClick={() => setMobileOpen(false)}>Search the Guide</a>
+            <NavDropdown active={isCurrent(pathname, "/deploy")} id="mobile-ai-fde-navigation" label="AI-FDE" href="/deploy" links={aiFde} onNavigate={() => setMobileOpen(false)} />
             {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
             <span>More</span>
             {secondary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}

@@ -11,11 +11,12 @@ import { checkGlobalNavigation } from "./helpers/global-navigation.mjs";
 const require = createRequire(import.meta.url);
 const runtime = process.argv[2] ?? "vinext";
 assert.ok(["vinext", "next"].includes(runtime), "Browser runtime must be vinext or next");
-const origin = "http://127.0.0.1:4186";
+const port = process.env.FDLC_BROWSER_PORT ?? "4186";
+const origin = `http://127.0.0.1:${port}`;
 const output = new URL(runtime === "next" ? "../output/playwright/site-next/" : "../output/playwright/site/", import.meta.url);
 await mkdir(output, { recursive: true });
 const serverCli = runtime === "next" ? "../node_modules/next/dist/bin/next" : "../node_modules/vinext/dist/cli.js";
-const server = spawn(process.execPath, [new URL(serverCli, import.meta.url).pathname, "start", "--hostname", "127.0.0.1", "--port", "4186"], {
+const server = spawn(process.execPath, [new URL(serverCli, import.meta.url).pathname, "start", "--hostname", "127.0.0.1", "--port", port], {
   cwd: new URL("..", import.meta.url),
   env: { ...process.env, WRANGLER_LOG_PATH: ".wrangler/browser.log" },
   stdio: ["ignore", "pipe", "pipe"],

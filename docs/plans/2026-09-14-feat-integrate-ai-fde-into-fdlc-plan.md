@@ -177,3 +177,7 @@ The PR45 reconciliation adds a byte-checked FDLC shell contract in the independe
 ### Immutable shell binding follow-up
 
 The unified child UI was qualified at source `065563d5feffb2efe8752603c7324acfcb10891c` and merged by #45. Both `/deploy/app` rewrites now target `https://ai-hu09aqvzj-jaydubya818.vercel.app` (`dpl_Gyrz6d2GxRA7TxsBSMq81C8DSH63`). The old compatible child is `ai-pvrsq6rnm-jaydubya818.vercel.app`; restore both rewrite entries together to roll back. Keep the Guide's compatible canonical snapshot with its shell. This binding is Preview-only; Production promotion and Milestone C remain separately controlled.
+
+### AI-FDE navigation correction
+
+AI-FDE must first explain the product at `/deploy`. An adjacent dropdown exposes **Engagement workspace** at `/deploy/app`, with the same hierarchy on desktop, mobile, and the independently deployed child. Implementation and qualification evidence are tracked in [the navigation review](../reviews/2026-09-14-ai-fde-navigation.md). This correction does not complete any real Auth0 or live operational Milestone C items.
