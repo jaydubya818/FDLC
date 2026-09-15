@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { factoryFormErrors, formatFactoryDefinitionMarkdown, generateFactoryDefinition, splitLines } from "../../lib/factory-definition.ts";
+import { factoryFormErrors, formatFactoryDefinitionJson, formatFactoryDefinitionMarkdown, formatFactoryDefinitionYaml, generateFactoryDefinition, splitLines } from "../../lib/factory-definition.ts";
 
 const completeForm = {
   workType: "API migration",
@@ -33,7 +33,24 @@ test("exports a reusable Markdown artifact with its status boundary", () => {
   assert.match(markdown, /not an executable Mission Control manifest/);
 });
 
+test("exports reusable JSON and YAML artifacts", () => {
+  const definition = generateFactoryDefinition(completeForm);
+  const json = formatFactoryDefinitionJson(definition);
+  const yaml = formatFactoryDefinitionYaml(definition);
+  assert.match(json, /"workType": "API migration"/);
+  assert.match(yaml, /workType: API migration/);
+  assert.match(yaml, /acceptanceCriteria:\n {2}- All contract tests pass/);
+});
+
 test("requires all five teaching boundaries", () => {
   const errors = factoryFormErrors({ workType: "", outcome: "", criteria: "", authority: [], verification: [], humanControls: [] });
   assert.equal(errors.length, 6);
+});
+
+test("YAML round-trips string types, punctuation and empty collections", async () => {
+  const { parse } = await import("yaml");
+  const definition = generateFactoryDefinition({ ...completeForm, criteria: "true\nnull\n123\n1e3\nA: B\n# literal" });
+  definition.humanControls = [];
+  assert.deepEqual(parse(formatFactoryDefinitionYaml(definition)), definition);
+  assert.deepEqual(JSON.parse(formatFactoryDefinitionJson(definition)), definition);
 });

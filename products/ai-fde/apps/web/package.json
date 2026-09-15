@@ -11,7 +11,8 @@
     "test:e2e:alpha": "playwright test tests/e2e/internal-alpha.spec.ts",
     "test:e2e:golden": "playwright test tests/e2e/golden-path.spec.ts",
     "test:e2e:partner": "AI_FDE_PLAYWRIGHT_MOCK_API=true AI_FDE_PLAYWRIGHT_BASE_URL=http://127.0.0.1:3001 playwright test tests/e2e/design-partner-handoff.spec.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:e2e:shell": "playwright test tests/e2e/shell.spec.ts"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.3.0",

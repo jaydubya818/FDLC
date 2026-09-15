@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { dependencyModernizationExample } from "../../data/dependency-modernization-example";
 import {
   factoryExplorerCapabilities,
   factoryExplorerStages,
   type FactoryCapabilityId,
 } from "../../data/factory-explorer";
-import { dependencyModernizationExample } from "../../data/dependency-modernization-example";
+import { preferredScrollBehavior } from "../../lib/motion";
 
 const defaultStageId = "verify";
 const defaultCapabilityId: FactoryCapabilityId = "evals";
@@ -16,7 +17,7 @@ function stageHasCapability(stage: (typeof factoryExplorerStages)[number], capab
   return (stage.capabilities as ReadonlyArray<FactoryCapabilityId>).includes(capabilityId);
 }
 
-export function FactoryExplorer() {
+export function FactoryExplorer({ id = "factory-explorer", showFrameworkLink = true }: { id?: string; showFrameworkLink?: boolean }) {
   const [selectedStageId, setSelectedStageId] = useState(defaultStageId);
   const [selectedCapabilityId, setSelectedCapabilityId] = useState<FactoryCapabilityId>(defaultCapabilityId);
   const stageList = useRef<HTMLDivElement | null>(null);
@@ -49,7 +50,7 @@ export function FactoryExplorer() {
       const button = stageButtons.current[index];
       if (container && button && container.scrollWidth > container.clientWidth) {
         container.scrollTo({
-          behavior: "smooth",
+          behavior: preferredScrollBehavior(),
           left: button.offsetLeft - ((container.clientWidth - button.offsetWidth) / 2),
         });
       }
@@ -69,11 +70,12 @@ export function FactoryExplorer() {
   }
 
   return (
-    <section className="factory-explorer" aria-labelledby="factory-explorer-title">
+    <section className="factory-explorer" aria-labelledby="factory-explorer-title" id={id}>
       <div className="factory-explorer-chrome">
         <div>
           <p className="orientation-label" id="factory-explorer-title">Interactive factory explorer</p>
           <strong>Follow one unit of work</strong>
+          {showFrameworkLink ? <Link className="factory-explorer-framework" href="/framework#explorer">Open on Framework →</Link> : null}
         </div>
         <div className="factory-explorer-controls">
           <p id="factory-explorer-instructions">
@@ -170,7 +172,7 @@ export function FactoryExplorer() {
           <div>
             <p>{exampleStep?.action}</p>
             <ul aria-label="Example records created at this stage">
-              {exampleRecords.map((record) => <li key={record}>{record}</li>)}
+              {exampleRecords.map((record) => <li key={record}><Link href="/in-5-minutes#artifacts">{record}</Link></li>)}
             </ul>
           </div>
           <nav aria-label="Explore this stage in depth">

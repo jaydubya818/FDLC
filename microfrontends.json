@@ -5,7 +5,7 @@
     "fdlc": {
       "packageName": "fdlc-site",
       "development": {
-        "fallback": "https://www.fdlc.ai"
+        "fallback": "https://fdlc.ai"
       }
     },
     "ai-software-factory-mastery": {

@@ -2,28 +2,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { FactoryExplorer } from "./components/factory-explorer";
+import { GoverningLifecycleDiagram } from "./components/governing-lifecycle-diagram";
 import { SectionHeader } from "./components/page-hero";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
+import { WhatsRealToday } from "./components/whats-real-today";
+import { homepageActions, homepageExampleSteps, homepageThesis, operatingModelBridge, operatingModelMoves } from "../data/homepage";
 import { evidencePositioning, primaryPositioning } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "FDLC is the open operating model and technical foundation for designing, governing, and operating trusted AI software factories.", "/");
-
-const exampleSteps = [
-  ["Intent", "Upgrade a dependency across approved repositories without changing public behavior."],
-  ["Factory", "Plan → Modify → Test → Verify → Approve"],
-  ["Evidence", "Compatibility · Tests · Security · Cost · Human authority"],
-  ["Outcome", "A production-ready modernization candidate with an attributable evidence trail."],
-] as const;
-
-const actions = [
-  ["Understand", "See one workflow move from intent to verified outcome.", "/in-5-minutes", "Follow the five-minute example"],
-  ["Assess", "Identify your current factory maturity and the next capability to earn.", "/maturity", "Assess your factory"],
-  ["Build", "Turn one engineering outcome into a reusable Factory Definition.", "/start", "Build a Factory Definition"],
-  ["Go deeper", "Use the Framework, Architecture, and Guide as the technical reference.", "/framework", "Explore the Framework"],
-  ["Explore", "Follow guided learning paths or search the complete draft FDLC reference.", "/corpus-preview", "Explore the Learning Library (Preview)"],
-] as const;
 
 export default function Home() {
   return (
@@ -42,19 +31,20 @@ export default function Home() {
               <div><span>FDLC</span><p>Governs the <strong>factory that builds it.</strong></p></div>
             </div>
             <div className="hero-actions">
-              <a className="button button-dark" href="#worked-example">See a factory in action</a>
-              <Link className="button button-light" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
+              <Link className="button button-dark" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
+              <a className="button button-light" href="#worked-example">See a factory in action</a>
             </div>
           </div>
           <aside className="hero-model hero-value-model" aria-labelledby="hero-model-title">
             <div className="model-chrome"><span>FDLC / OPERATING MODEL</span><span>01—04</span></div>
             <h2 id="hero-model-title">Make autonomous delivery governable.</h2>
             <ol>
-              <li><span>01</span><div><strong>Define the outcome</strong><p>State what should happen and how success will be judged.</p></div></li>
-              <li><span>02</span><div><strong>Bound the work</strong><p>Give each attempt explicit scope, identity, and authority.</p></div></li>
-              <li><span>03</span><div><strong>Require evidence</strong><p>Verify the exact candidate before it advances.</p></div></li>
-              <li><span>04</span><div><strong>Learn from outcomes</strong><p>Improve the factory only from validated results.</p></div></li>
+              {operatingModelMoves.map(([number, title, description]) => <li key={number}><span>{number}</span><div><strong>{title}</strong><p>{description}</p></div></li>)}
             </ol>
+            <p className="model-bridge">{operatingModelBridge.summary}</p>
+            <nav aria-label="Deeper system lenses" className="model-bridge-links">
+              {operatingModelBridge.links.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
+            </nav>
             <div className="model-outcome"><span>Unit of value</span><strong>Verified outcome</strong></div>
           </aside>
         </section>
@@ -63,27 +53,33 @@ export default function Home() {
           <p>FDLC / Category promise</p><strong>{primaryPositioning}</strong><span>{evidencePositioning}</span>
         </section>
 
+        <section className="content-section"><GoverningLifecycleDiagram /></section>
+
         <section className="content-section adoption-example" id="worked-example">
           <SectionHeader eyebrow="One illustrative example" title="Modernize a dependency without surrendering control." description="A software factory does more than generate a patch. It coordinates bounded work, returns evidence, preserves human authority, and produces a candidate that can earn release." />
           <ol className="adoption-example-flow" aria-label="Dependency modernization factory flow">
-            {exampleSteps.map(([name, description], index) => <li key={name}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{name}</strong><p>{description}</p></div></li>)}
+            {homepageExampleSteps.map(([name, description], index) => <li key={name}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{name}</strong><p>{description}</p></div></li>)}
           </ol>
           <div className="adoption-example-actions"><Link className="button button-dark" href="/in-5-minutes">Follow the complete example</Link><Link className="button button-light" href="/start">Build your Factory Definition</Link></div>
         </section>
 
+        <div className="content-section factory-explorer-home">
+          <FactoryExplorer />
+        </div>
+
         <section className="adoption-thesis">
           <div><p className="section-label">Why FDLC</p><h2>Autonomy becomes useful when the surrounding system is trustworthy.</h2></div>
           <div className="adoption-thesis-grid">
-            <article><span>01</span><h3>Intent stays explicit.</h3><p>The factory begins with a governed outcome and acceptance contract.</p></article>
-            <article><span>02</span><h3>Authority stays bounded.</h3><p>Agents, models, and tools act inside declared operational limits.</p></article>
-            <article><span>03</span><h3>Evidence earns progress.</h3><p>Execution, verification, approval, release, and outcomes remain distinct.</p></article>
+            {homepageThesis.map(([number, title, description]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{description}</p></article>)}
           </div>
         </section>
 
         <section className="content-section adoption-actions">
           <SectionHeader eyebrow="Use FDLC now" title="Choose the next useful step." description="Start with the depth that matches your question. Every path leads back to one governed system." />
           <div className="adoption-action-grid">
-            {actions.map(([label, description, href, action]) => <Link href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></Link>)}
+            {homepageActions.map(([label, description, href, action]) => href.startsWith("/guide")
+              ? <a href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></a>
+              : <Link href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></Link>)}
           </div>
           <nav className="adoption-reference-links" aria-label="FDLC technical references"><Link href="/architecture">Architecture</Link><a href="/guide">Guide</a><Link href="/mission-control">Mission Control</Link><Link href="/manifesto">Manifesto</Link></nav>
         </section>
@@ -95,6 +91,10 @@ export default function Home() {
             <div className="hero-actions"><Link className="button button-dark" href="/mission-control">Inspect Mission Control</Link><a className="button button-light" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View source ↗</a></div>
           </div>
           <figure className="product-frame"><div><span>MISSION CONTROL / COMMAND CENTER</span><span>DEMO VIEW</span></div><Image src="/mission-control/command-center.png" alt="Mission Control command center showing ranked work that needs operator attention" width={1600} height={1050} sizes="(max-width: 980px) 100vw, 65vw" /><figcaption>Deterministic demo view. Current capability status is documented on the Mission Control page.</figcaption></figure>
+        </section>
+
+        <section className="content-section">
+          <WhatsRealToday compact />
         </section>
 
         <section className="content-section adoption-enterprise">

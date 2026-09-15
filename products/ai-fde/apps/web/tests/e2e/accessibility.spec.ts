@@ -57,21 +57,24 @@ test("unknown prefixed routes fail closed inside the AI-FDE shell", async ({
   await expect(page).toHaveURL(/\/deploy\/app\/?$/);
 });
 
-test("FDLC ecosystem navigation remains visible on mobile", async ({
-  page,
-}) => {
+test("FDLC global navigation is usable on mobile", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await openEngagementList(page);
-
-  const navigation = page.getByRole("navigation", { name: "FDLC ecosystem" });
-  await expect(navigation.getByRole("link")).toHaveCount(3);
+  await page
+    .getByRole("button", { name: "Open navigation", exact: true })
+    .click();
+  const navigation = page.getByRole("navigation", {
+    name: "Mobile navigation",
+  });
   await expect(
-    navigation.getByRole("link", { name: /Framework/ }),
-  ).toBeVisible();
-  await expect(navigation.getByRole("link", { name: /^Guide/ })).toBeVisible();
+    navigation.getByRole("link", { name: "Framework", exact: true }),
+  ).toHaveAttribute("href", "/framework");
   await expect(
-    navigation.getByRole("link", { name: /Mission Control/ }),
-  ).toBeVisible();
+    navigation.getByRole("link", { name: "AI-FDE", exact: true }),
+  ).toHaveAttribute("aria-current", "page");
+  await expect(
+    navigation.getByRole("link", { name: "Search the Guide", exact: true }),
+  ).toHaveAttribute("href", "/guide/search");
   await expectNoAccessibilityViolations(page);
 });
 
@@ -142,26 +145,27 @@ test("full Operator Cockpit has no WCAG A or AA axe violations", async ({
   await expectNoAccessibilityViolations(page);
 });
 
-test("desktop cockpit brand lockup stays inside the navigation rail", async ({
+test("cockpit has one global masthead and an operational rail", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 1440, height: 960 });
   await openAcmeEngagement(page);
-
-  const descriptor = page.getByText("Factory Definition cockpit", {
-    exact: true,
+  await expect(
+    page.getByRole("link", { name: "FDLC.ai home", exact: true }),
+  ).toHaveCount(1);
+  const rail = page.getByRole("complementary", {
+    name: "Engagement navigation",
   });
-  await expect(descriptor).toBeVisible();
-  expect(
-    await descriptor.evaluate((element) => {
-      const rail = element.closest("aside");
-      if (!rail) return false;
-
-      const descriptorBounds = element.getBoundingClientRect();
-      const railBounds = rail.getBoundingClientRect();
-      return descriptorBounds.right <= railBounds.right - 16;
+  await expect(rail.getByRole("img")).toHaveCount(0);
+  await expect(
+    rail.getByRole("navigation", { name: "Engagement stages" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", {
+      name: "Factory Definition Workspace",
+      exact: true,
     }),
-  ).toBe(true);
+  ).toBeVisible();
 });
 
 test("cockpit landmarks, disclosures, and scroll regions are keyboard reachable", async ({

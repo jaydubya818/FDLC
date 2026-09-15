@@ -120,7 +120,7 @@ export const proposedGuideMap = [
   ["Failure Taxonomy", `${guideRoot}/05-operate/36-resilience-incidents-and-the-control-tower`, "Guide chapter"],
   ["Continuous Learning", `${guideRoot}/06-improve/40-governed-learning`, "Guide chapter"],
   ["Organizational Operating Model", `${guideRoot}/02-design/04-the-human-agent-operating-model`, "Guide chapter"],
-  ["Forward-Deployed Engineering", "/deploy", "FDLC offering"],
+  ["AI-FDE", "/deploy", "FDLC product"],
   ["Build vs. Buy", `${guideRoot}/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape`, "Guide chapter"],
   ["Factory Maturity Model", "/maturity", "FDLC assessment"],
   ["Implementation Playbook", `${guideRoot}/06-improve/43-mastering-the-factory`, "Guide chapter"],

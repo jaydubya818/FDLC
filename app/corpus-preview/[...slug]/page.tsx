@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const document = getCorpusDocument(slug);
   if (!document) return {};
   return {
-    title: `${document.title} · Corpus Preview`,
+    title: `${document.title} · Learning Library Preview`,
     description: document.description,
     robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false, noarchive: true } },
   };

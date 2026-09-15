@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { GuideReading } from "../components/guide-reading";
+import { NextSteps } from "../components/next-steps";
 import { PageContentsNav } from "../components/page-contents-nav";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
 import { manifesto } from "../../data/fdlc";
+import { pageHandoffs } from "../../data/page-handoffs";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Manifesto", "Ten principles for designing AI software factories that are bounded, inspectable, recoverable, and accountable to real outcomes.", "/manifesto");
@@ -43,6 +46,8 @@ export default function ManifestoPage() {
     <section className="manifesto-invariant">
       <StateBoundary eyebrow="The operational invariant" explanation="These are distinct states with distinct owners and evidence requirements. Collapsing them turns a governed factory into faster guessing." mode="primary" warning="Autonomy without evidence is just faster guessing." />
     </section>
+    <GuideReading page="manifesto" />
+    <NextSteps {...pageHandoffs.manifesto} />
     <section className="manifesto-close"><p>Build the system around the agent.</p><h2>Verified delivery,<br />not merely generated code.</h2><div><Link className="button button-light" href="/in-5-minutes">Understand FDLC in 5 minutes</Link><Link className="button button-light" href="/framework">Explore the Framework</Link><Link className="text-action light-link" href="/architecture">Architecture →</Link><Link className="text-action light-link" href="/mission-control">Mission Control →</Link></div></section>
   </div></SiteShell>;
 }

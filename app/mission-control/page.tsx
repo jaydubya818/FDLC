@@ -1,9 +1,12 @@
+import { FactoryHandoffDiagram } from "../components/factory-handoff-diagram";
 /* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CopyButton } from "../components/copy-button";
 import { MissionControlFlow, MissionControlProductTour } from "../components/mission-control-experience";
+import { GuideReading } from "../components/guide-reading";
+import { NextSteps } from "../components/next-steps";
 import { SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { StateBoundary } from "../components/state-boundary";
@@ -11,6 +14,7 @@ import { StatusBadge } from "../components/status-badge";
 import { missionControlCapabilities, missionControlObjects } from "../../data/mission-control";
 import { missionControlEnhancements } from "../../data/system-design";
 import { missionControlIncidentRequirements } from "../../data/production-operations";
+import { pageHandoffs } from "../../data/page-handoffs";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Mission Control", "The open-source reference implementation of the Factory Development Lifecycle.", "/mission-control");
@@ -112,6 +116,9 @@ export default function MissionControlPage() {
       <p className="quickstart-note">Then open <code>http://localhost:5199/v2/command-center</code> and select <strong>Software Factory Demo</strong>. The seeded path runs without live model providers.</p>
     </section>
 
-    <section className="reading-next" id="build-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/spec">Preview the Specification →</Link></div></section>
+    <FactoryHandoffDiagram />
+    <GuideReading page="mission-control" />
+    <NextSteps {...pageHandoffs["mission-control"]} />
+    <section className="reading-next" id="build-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/specification">Preview the Specification →</Link></div></section>
   </div></SiteShell>;
 }

@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -81,14 +83,16 @@ function NavDropdown({ active, id, label, links }: { active: boolean; id: string
         {label} <span aria-hidden="true">⌄</span>
       </button>
       <div className="nav-dropdown-panel" hidden={!open} id={id} ref={panel}>
-        {links.map(([itemLabel, href]) => <Link aria-current={isCurrent(pathname, href) ? "page" : undefined} href={href} key={href} onClick={() => setOpen(false)}>{itemLabel}</Link>)}
+        {links.map(([itemLabel, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setOpen(false)}>{itemLabel}</GlobalLink>)}
       </div>
     </div>
   );
 }
 
 function GlobalLink({ children, current, href, onClick }: { children: ReactNode; current: boolean; href: string; onClick?: MouseEventHandler<HTMLAnchorElement> }) {
-  return <Link aria-current={current ? "page" : undefined} href={href} onClick={onClick}>{children}</Link>;
+  return href.startsWith("/guide")
+    ? <a aria-current={current ? "page" : undefined} href={href} onClick={onClick}>{children}</a>
+    : <Link aria-current={current ? "page" : undefined} href={href} onClick={onClick}>{children}</Link>;
 }
 
 export function SiteHeader() {
@@ -126,7 +130,9 @@ export function SiteHeader() {
           {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
           <NavDropdown active={secondaryActive} id="more-navigation" label="More" links={secondary} />
         </nav>
-        <a className="header-github" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">GitHub <span aria-hidden="true">↗</span></a>
+        <div className="header-utilities">
+          <a className="header-github" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">GitHub <span aria-hidden="true">↗</span></a>
+        </div>
         <div className={`global-mobile${mobileOpen ? " is-open" : ""}`} ref={mobileRoot} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setMobileOpen(false); }}>
           <button aria-controls="mobile-navigation" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)} onKeyDown={(event) => { if (event.key === "Escape") setMobileOpen(false); }} type="button" ref={mobileTrigger}>Menu</button>
           <nav aria-label="Mobile navigation" hidden={!mobileOpen} id="mobile-navigation">
@@ -135,6 +141,7 @@ export function SiteHeader() {
             <div className="mobile-guide-links" hidden={!mobileGuideOpen} id="mobile-guide-navigation">
               {guide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
             </div>
+            <a className="mobile-guide-search" href="/guide/search" onClick={() => setMobileOpen(false)}>Search the Guide</a>
             {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
             <span>More</span>
             {secondary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}

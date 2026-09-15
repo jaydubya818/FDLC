@@ -80,18 +80,18 @@ test("synthetic Acme reaches the governed package-retrieval boundary", async ({
       name: "Define the factory before Mission Control runs it.",
     }),
   ).toBeVisible();
-  const ecosystemNavigation = page.getByRole("navigation", {
-    name: "FDLC ecosystem",
+  const globalNavigation = page.getByRole("navigation", {
+    name: "Primary navigation",
   });
   await expect(
-    ecosystemNavigation.getByRole("link", { name: /Framework/ }),
+    globalNavigation.getByRole("link", { name: "AI-FDE", exact: true }),
+  ).toHaveAttribute("aria-current", "page");
+  await expect(
+    globalNavigation.getByRole("link", { name: "Framework", exact: true }),
   ).toHaveAttribute("href", "/framework");
   await expect(
-    ecosystemNavigation.getByRole("link", { name: /^Guide/ }),
-  ).toHaveAttribute("href", "/guide");
-  await expect(
-    ecosystemNavigation.getByRole("link", { name: /Mission Control/ }),
-  ).toHaveAttribute("href", "/mission-control");
+    page.getByRole("link", { name: "FDLC.ai home", exact: true }),
+  ).toHaveCount(1);
 
   const engagementLink = page
     .getByRole("link", {

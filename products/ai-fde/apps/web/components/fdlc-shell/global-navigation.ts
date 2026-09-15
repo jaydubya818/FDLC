@@ -1,0 +1,37 @@
+// Canonical FDLC global navigation. The Guide consumes a generated copy.
+export type NavLink = readonly [label: string, href: string];
+
+export const primary = [
+  ["Framework", "/framework"],
+  ["Architecture", "/architecture"],
+] as const satisfies readonly NavLink[];
+
+export const guide = [
+  ["Overview", "/guide"],
+  ["Atlas", "/guide/atlas"],
+  ["Reference", "/guide/topics"],
+  ["Glossary", "/guide/glossary"],
+  ["Search", "/guide/search"],
+] as const satisfies readonly NavLink[];
+
+export const afterGuide = [
+  ["AI-FDE", "/deploy"],
+  ["Mission Control", "/mission-control"],
+  ["Maturity", "/maturity"],
+] as const satisfies readonly NavLink[];
+
+export const secondary = [
+  ["In 5 Minutes", "/in-5-minutes"],
+  ["Start", "/start"],
+  ["Learning Library (Preview)", "/corpus-preview"],
+  ["Manifesto", "/manifesto"],
+  ["Enterprise", "/enterprise"],
+  ["About", "/about"],
+] as const satisfies readonly NavLink[];
+
+export const footerGroups = [
+  ["Learn", [["Framework", "/framework"], ["Architecture", "/architecture"], ["Guide", "/guide"], ["Learning Library (Preview)", "/corpus-preview"], ["Manifesto", "/manifesto"]]],
+  ["Build", [["In 5 Minutes", "/in-5-minutes"], ["Mission Control", "/mission-control"], ["Specification", "/specification"], ["Start", "/start"], ["GitHub", "https://github.com/jaydubya818/MissionControl"]]],
+  ["Adopt", [["Maturity", "/maturity"], ["Benchmarks", "/benchmarks"], ["Enterprise", "/enterprise"], ["AI-FDE", "/deploy"]]],
+  ["Project", [["About", "/about"], ["What's real today", "/framework#whats-real"], ["Source audit", "https://github.com/jaydubya818/ai-software-factory-mastery"], ["Mission Control status", "https://github.com/jaydubya818/MissionControl/blob/main/docs/product/software-factory-capability-maturity.md"]]],
+] as const;

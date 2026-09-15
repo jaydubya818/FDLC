@@ -11,8 +11,6 @@ import {
 import Link from "next/link";
 
 import { AuthenticationRequired } from "@/components/authentication-required";
-import { Brand } from "@/components/brand";
-import { EcosystemLinks } from "@/components/ecosystem-links";
 import { DataLifecycleWorkspace } from "@/components/data-lifecycle-workspace";
 import { DeliveryEvaluationWorkspace } from "@/components/delivery-evaluation-workspace";
 import { FactoryHandoffWorkspace } from "@/components/factory-handoff-workspace";
@@ -560,11 +558,7 @@ export function EngagementCockpit({ engagementId }: { engagementId: string }) {
         aria-label="Engagement navigation"
         className="cockpit-rail sticky top-0 flex h-screen w-[248px] flex-col border-r border-[var(--line)] bg-[var(--paper)] px-5 py-6"
       >
-        <Brand rail />
-        <div className="mt-4 border-b border-[var(--line)] pb-4">
-          <EcosystemLinks compact />
-        </div>
-        <div className="cockpit-engagement-context mt-10 border-y border-[var(--line)] py-5">
+        <div className="cockpit-engagement-context mt-0 border-y border-[var(--line)] py-5">
           <p className="text-[0.65rem] font-extrabold uppercase tracking-[0.13em] text-[var(--ink-soft)]">
             Active engagement
           </p>
@@ -660,7 +654,7 @@ export function EngagementCockpit({ engagementId }: { engagementId: string }) {
           <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-5">
             <div className="min-w-0 flex-1">
               <p className="text-[0.63rem] font-extrabold uppercase tracking-[0.13em] text-[var(--ink-soft)]">
-                FDE workspace / {engagement.lifecycle_stage}
+                AI-FDE / {engagement.name} / {engagement.lifecycle_stage}
               </p>
               <p className="mt-1 max-w-3xl truncate text-xs font-bold text-[var(--ink-soft)]">
                 {engagement.primary_outcome}

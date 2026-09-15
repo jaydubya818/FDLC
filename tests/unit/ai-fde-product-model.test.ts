@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 import {
   factoryDefinitionConcerns,
@@ -45,4 +46,12 @@ test("Mission Control handoff binds one approved Factory Definition revision", (
   assert.equal(handoff.factoryDefinition.contentDigest, definition.contentDigest);
   assert.equal(handoff.requestedEnvironment, "qualification");
   assert.equal(handoff.requestedAction, "validate_factory_definition");
+});
+
+test("AI-FDE cockpit links use the canonical FDLC Guide, not the retired Guide host", () => {
+  const source = readFileSync("products/ai-fde/apps/web/lib/product.ts", "utf8");
+  assert.match(source, /href: "\/guide"/);
+  assert.match(source, /return GUIDE_LINKS\[topic\]\.path/);
+  assert.doesNotMatch(source, /ai-software-factory-mastery\.vercel\.app/);
+  assert.doesNotMatch(source, /path: "\/docs\//);
 });

@@ -1,5 +1,3 @@
-import { Brand } from "@/components/brand";
-import { EcosystemLinks } from "@/components/ecosystem-links";
 import { ArrowIcon, ShieldIcon } from "@/components/icons";
 import { getAuthLoginUrl } from "@/lib/api";
 
@@ -12,8 +10,7 @@ export function AuthenticationRequired({ returnTo }: { returnTo: string }) {
     >
       <header className="mx-auto flex max-w-[1120px] flex-wrap items-center justify-between gap-4">
         <div className="flex w-full flex-wrap items-center gap-x-7 gap-y-3 lg:w-auto lg:flex-nowrap">
-          <Brand />
-          <EcosystemLinks />
+          <p className="eyebrow">Engagement workspace</p>
         </div>
         <div className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--paper)] px-4 py-2 text-xs font-bold text-[var(--ink-soft)]">
           <ShieldIcon /> Protected workspace
