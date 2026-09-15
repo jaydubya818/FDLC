@@ -43,6 +43,7 @@ const operatingShifts = [
 
 const contents = [
   { label: "Definition", href: "#definition" },
+  { label: "Governing lifecycle", href: "#governing-lifecycle" },
   { label: "Category boundary", href: "#category" },
   { label: "Why FDLC", href: "#why" },
   { label: "Four views", href: "#models" },
@@ -76,6 +77,8 @@ export default function FrameworkPage() {
         <div><p>SDLC manages the lifecycle of software.</p><p><strong>FDLC manages the lifecycle of the factory that produces software.</strong></p><p>It is the factory operating system: the disciplined layer around agents, models, tools, people, policies, evidence, and workflows.</p><p><strong>Verified delivery, not merely generated code.</strong></p></div>
       </section>
 
+      <section className="section-block" id="governing-lifecycle"><GoverningLifecycleDiagram /></section>
+
       <section className="section-block framework-category" id="category">
         <SectionHeader eyebrow="The category boundary" title="Two transitions, then a new discipline." description="First, agents participate across the software lifecycle. Then those workflows become a persistent, governed production system. FDLC is the engineering discipline for that factory." />
         <CategoryDistinction />
@@ -103,7 +106,6 @@ export default function FrameworkPage() {
         </div>
       </section>
 
-      <section className="section-block" id="governing-lifecycle"><GoverningLifecycleDiagram /></section>
 
       <section className="section-block" id="lifecycle">
         <SectionHeader eyebrow="Model 01 / Factory lifecycle" title="How the factory evolves." description="The outer lifecycle applies when creating a factory line and whenever validated evidence says the existing line should change. Its continuous controls span every stage." />
