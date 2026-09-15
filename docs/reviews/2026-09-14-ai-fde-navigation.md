@@ -25,6 +25,12 @@ The inspected child is `https://ai-of84ak7sr-jaydubya818.vercel.app`, deployment
 
 The separate binding changes both `/deploy/app` rewrites together to that immutable child. Rollback restores both rewrites to `https://ai-hu09aqvzj-jaydubya818.vercel.app`, deployment `dpl_Gyrz6d2GxRA7TxsBSMq81C8DSH63`. Binding CI, composed Preview checks, and exact-main results must be recorded before declaring delivery complete.
 
+## Composed journey verified
+
+The protected [binding Preview](https://fdlc-qkejscgde-jaydubya818.vercel.app/deploy), deployment `dpl_Cwn55ErYmgL3kDtuktjrjo9TZXVy`, was inspected at binding source `bd14d20380498e844ebd83483f7a7b35581b8338`. Authenticated browser checks pass at 1440px, 1024px, and 390×844: explanatory page → engagement workspace dropdown → engagement → hard refresh → list → browser back/forward → explanatory page. The workspace also passes 200% reflow. There is one FDLC masthead, zero console/page errors, and zero API requests. All 12 proxied child scripts match the pinned immutable child byte-for-byte.
+
+[The composed report](2026-09-14-ai-fde-navigation/composed-report.json) and `composed-` screenshots record this result. The following documentation-only commit does not change the qualified routing or UI. [Binding PR #52](https://github.com/jaydubya818/FDLC/pull/52) is the acceptance ledger for final exact-head CI, the final Preview, and exact-main qualification links; merge and delivery remain gated on those results. Live Auth0 and operational Milestone C remain unqualified.
+
 The browser qualification runner accepts `FDLC_BROWSER_PORT` so an existing task's server cannot supply the wrong artifact during parallel local work. No other task's server or checkout was changed.
 
 ## Boundaries
