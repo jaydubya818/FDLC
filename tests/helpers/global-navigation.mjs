@@ -16,7 +16,7 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
   assert.ok(headerLayout.height >= 72 && headerLayout.height <= 90, "Header height stays within the responsive design system");
   assert.ok(headerLayout.logoWidth >= 180 && headerLayout.logoWidth <= 220, "The logo retains its intended size");
   const desktop = header.getByRole("navigation", { name: "Primary navigation", includeHidden: true });
-  assert.deepEqual(await desktop.locator(":scope > a, :scope > .nav-dropdown > button").allTextContents().then(labels => labels.map(label => label.replace("⌄", "").trim())), primaryLabels);
+  assert.deepEqual(await desktop.locator(":scope > a, :scope > .nav-dropdown:not(.nav-dropdown-linked) > button, :scope > .nav-dropdown-linked > a").allTextContents().then(labels => labels.map(label => label.replace("⌄", "").trim())), primaryLabels);
   const more = header.locator("#more-navigation");
   assert.deepEqual(await more.locator("a").allTextContents(), moreLabels);
   assert.deepEqual(await more.locator("a").evaluateAll(nodes => nodes.map(node => new URL(node.href).pathname)), morePaths);
@@ -85,6 +85,25 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
       await page.keyboard.press("Shift+Tab");
       await panel.waitFor({ state: "hidden" });
     }
+  }
+  const productNavigation = mobile ? header.locator("#mobile-navigation") : desktop;
+  if (mobile) await header.getByLabel("Open navigation", { exact: true }).click();
+  const productLink = productNavigation.getByRole("link", { name: "AI-FDE", exact: true });
+  assert.equal(await productLink.getAttribute("href"), "/deploy", "AI-FDE opens the explanatory product page");
+  const productTrigger = productNavigation.getByRole("button", { name: "AI-FDE navigation", exact: true });
+  await productTrigger.focus();
+  await page.keyboard.press("ArrowDown");
+  const workspaceLink = productNavigation.getByRole("link", { name: "Engagement workspace", exact: true });
+  await workspaceLink.waitFor({ state: "visible" });
+  assert.equal(await workspaceLink.getAttribute("href"), "/deploy/app");
+  await page.waitForFunction(() => document.activeElement?.textContent === "Engagement workspace");
+  assert.ok(await workspaceLink.evaluate(node => document.activeElement === node));
+  await page.keyboard.press("Escape");
+  await workspaceLink.waitFor({ state: "hidden" });
+  assert.ok(await productTrigger.evaluate(node => document.activeElement === node));
+  if (mobile) {
+    assert.ok(await productNavigation.isVisible(), "Escape closes the product dropdown before the mobile menu");
+    await header.getByLabel("Open navigation", { exact: true }).click();
   }
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
 }
