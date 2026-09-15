@@ -173,3 +173,7 @@ Live customer data, design-partner activation, live Bedrock qualification, billi
 ## 2026-09-14 UX follow-up
 
 The PR45 reconciliation adds a byte-checked FDLC shell contract in the independently built child, removes duplicate branding, and retains the operational rail. The governing lifecycle is **intent → planning → execution → evidence → verification → approval → release → outcomes → learning**; the Factory Definition handoff is a narrower design/qualification boundary within that lifecycle. Local evidence and unresolved deployment gates are recorded in [the acceptance review](../reviews/2026-09-14-ux-acceptance.md). Milestone C live operational items remain unqualified.
+
+### Immutable shell binding follow-up
+
+The unified child UI was qualified at source `065563d5feffb2efe8752603c7324acfcb10891c` and merged by #45. Both `/deploy/app` rewrites now target `https://ai-hu09aqvzj-jaydubya818.vercel.app` (`dpl_Gyrz6d2GxRA7TxsBSMq81C8DSH63`). The old compatible child is `ai-pvrsq6rnm-jaydubya818.vercel.app`; restore both rewrite entries together to roll back. Keep the Guide's compatible canonical snapshot with its shell. This binding is Preview-only; Production promotion and Milestone C remain separately controlled.

@@ -5,11 +5,11 @@
   "rewrites": [
     {
       "source": "/deploy/app",
-      "destination": "https://ai-pvrsq6rnm-jaydubya818.vercel.app/deploy/app"
+      "destination": "https://ai-hu09aqvzj-jaydubya818.vercel.app/deploy/app"
     },
     {
       "source": "/deploy/app/:path*",
-      "destination": "https://ai-pvrsq6rnm-jaydubya818.vercel.app/deploy/app/:path*"
+      "destination": "https://ai-hu09aqvzj-jaydubya818.vercel.app/deploy/app/:path*"
     }
   ],
   "git": {

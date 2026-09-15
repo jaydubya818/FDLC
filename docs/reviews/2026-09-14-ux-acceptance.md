@@ -42,3 +42,15 @@ Visual review corrected compressed mobile operator context and header reflow at 
 4. A separate immutable child binding PR, protected composed checks and exact-main qualification.
 
 No production deployment or live Auth0/customer-data qualification is claimed. Existing rollback pair: FDLC `fdlc-5gm0p5x8s-jaydubya818.vercel.app` with child `ai-pvrsq6rnm-jaydubya818.vercel.app` (`dpl_GKGuLiaoyDhULK6rrfSj9o76nKrD`). Preserve both together.
+
+## Qualified UI source and immutable child
+
+UI PR #45 merged as `c1f13fe45090cf23a480825fba298e3ae93881b4`, with the same tree as qualified PR head `065563d5feffb2efe8752603c7324acfcb10891c`. Exact PR CI passed: FDLC/Fab run `34912499254` and AI-FDE trust/contract/browser run `34912499238`, including the database/container gates skipped locally. Exact merged-tree unit checks also pass.
+
+The final immutable child is `https://ai-hu09aqvzj-jaydubya818.vercel.app`, deployment `dpl_Gyrz6d2GxRA7TxsBSMq81C8DSH63`, built from that UI source. Its five-width browser suite passes with zero console/page errors and zero API requests, including deep-link reload and back/forward. Child Preview feedback injection was disabled because Vercel's toolbar violated the unchanged strict CSP. The initially built `ai-16njnpbau` deployment is superseded and must not be pinned.
+
+The protected root Preview `https://fdlc-2gzlx983j-jaydubya818.vercel.app` passes actual rendering, single masthead, responsive `/deploy` screenshots and lifecycle infographic review with zero errors. Access was authenticated; anonymous access is not claimed.
+
+Guide PR #34 synchronizes the shell and canonical snapshot. Its local native Next runtime and CI pass on initial source `9e75298`. A small follow-up enables explicit exact-main workflow dispatch. The group supports polyrepo branch routing; the binding branch uses the same name in both repositories so the composed Preview selects the updated Guide rather than the unchanged Production fallback. Production group routing is unchanged.
+
+Both repositories now expose manual CI dispatch because no push-triggered run was emitted for the first UI merge. The final merged source must receive explicit exact-main qualification. Binding/composed acceptance and final exact-main evidence are recorded below only after completion.
