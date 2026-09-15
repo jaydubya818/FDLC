@@ -85,7 +85,7 @@ test("synthetic Acme reaches the governed package-retrieval boundary", async ({
   });
   await expect(
     globalNavigation.getByRole("link", { name: "AI-FDE", exact: true }),
-  ).toHaveAttribute("aria-current", "page");
+  ).toHaveAttribute("href", "/deploy");
   await expect(
     globalNavigation.getByRole("link", { name: "Framework", exact: true }),
   ).toHaveAttribute("href", "/framework");
