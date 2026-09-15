@@ -36,3 +36,13 @@ Use rendered HTML checks for the canonical stage sequence and product boundaries
 ## Delivery boundary
 
 Preview only. Keep production auto-deployment disabled and retain the existing AI-FDE proxy binding. No backend, runtime, credential, or release-authority changes.
+
+## Main-navigation compact-layout follow-up
+
+The approved standard is interactive diagrams, clear technical explanations, compact layouts, and expandable detail. Shared section spacing now uses 40px desktop / 28px mobile, with smaller transitions between adjacent sections. Removed viewport-sized hero minimums and oversized reference headings across Framework, Architecture, AI-FDE, Mission Control, Maturity, In 5 Minutes, Start, Learning Library, Manifesto, Enterprise, and About.
+
+Architecture areas, design decisions, and production operations start collapsed; targeted section hashes open the corresponding detail. Maturity now provides a keyboard-operable six-level diagram with one technical explanation panel. Exploring levels does not change assessment answers or scores.
+
+The companion Guide change aligns its AI-FDE menu and tightens Overview, Atlas, Reference, Glossary, Search, and reader section spacing: https://github.com/jaydubya818/ai-software-factory-mastery/pull/35.
+
+Local main navigation audit: 22 actual destination clicks across desktop and mobile, zero page errors and no horizontal overflow. Guide: 88 tests, native runtime checks, and reader browser checks passed. Production deployment guards and the latest qualified AI-FDE child binding are preserved.

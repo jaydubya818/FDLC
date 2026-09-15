@@ -4,7 +4,7 @@ import { MaturityAssessment } from "../components/maturity-assessment";
 import { NextSteps } from "../components/next-steps";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
-import { maturityLevels } from "../../data/fdlc";
+import { MaturityJourney } from "../components/maturity-journey";
 import { pageHandoffs } from "../../data/page-handoffs";
 import { pageMetadata } from "../../lib/metadata";
 
@@ -21,7 +21,7 @@ export default function MaturityPage() {
         <h2 id="maturity-model-title">Capability must be earned in sequence.</h2>
         <p>Each level describes what the factory can reliably operate today and the next capability needed to progress. More agents do not create maturity; stronger controls and better evidence do.</p>
       </div>
-      <ol className="maturity-overview">{maturityLevels.map((level) => <li key={level.level}><span>L{level.level}</span><div><h3>{level.name}</h3><p>{level.description}</p><dl><div><dt>Operating model</dt><dd>{level.operatingModel}</dd></div><div><dt>Next capability to earn</dt><dd>{level.nextMove}</dd></div></dl></div></li>)}</ol>
+      <MaturityJourney />
     </section>
     <section className="section-block" id="assessment"><SectionHeader eyebrow="Assessment" title="Score what is demonstrably true today." description="This is an educational diagnostic, not certification. The useful output is the next control or evidence gap to close." /><MaturityAssessment /></section>
     <NextSteps {...pageHandoffs.maturity} />

@@ -414,6 +414,28 @@ try {
     await page.keyboard.press("Enter");
     assert.equal(await practice.getAttribute("open"), "");
     await audit(`skills-disclosure@${width}`);
+    await page.goto(`${origin}/architecture`);
+    const harness = page.locator("details#harness");
+    await harness.locator(":scope > summary").waitFor();
+    assert.equal(await harness.getAttribute("open"), null);
+    await page.goto(`${origin}/architecture#harness`);
+    await page.waitForFunction(() => document.querySelector("details#harness")?.open);
+    await harness.locator(":scope > summary").focus();
+    await page.keyboard.press("Enter");
+    assert.equal(await harness.getAttribute("open"), null);
+    await page.keyboard.press("Enter");
+    assert.equal(await harness.getAttribute("open"), "");
+    await page.goto(`${origin}/maturity`);
+    const journey = page.locator(".maturity-journey");
+    for (const button of await journey.getByRole("button").all()) {
+      await button.focus();
+      await page.keyboard.press("Enter");
+      assert.equal(await button.getAttribute("aria-pressed"), "true");
+      assert.equal(await journey.locator('button[aria-pressed="true"]').count(), 1);
+      assert.equal(await journey.locator("h3").innerText(), await button.locator("strong").innerText());
+    }
+    await audit(`maturity-explorer@${width}`);
+
   }
   report.flows.push({ name: "interactive-lifecycle-and-skills-keyboard", result: "PASS" });
   for (const route of [...links].sort()) {
