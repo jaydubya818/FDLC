@@ -26,6 +26,14 @@ export default function BenchmarksPage() {
       <p><a href={`${guideRoot}/02-design/09-tokenomics-and-factory-economics`}>Read the Guide’s economics contract →</a></p>
       <p><a href={`${guideRoot}/04-prove/29-evaluation-engineering`}>Evaluate the execution path and the outcome →</a></p>
     </section>
+    <section className="section-block" id="evaluation-boundaries">
+      <SectionHeader eyebrow="Evaluation boundaries" title="Find the failed decision, then prove the outcome." description="Assess routing, planning, retrieval, tool arguments and effects, final claims, and production outcomes. A correct answer reached through an unauthorized action still fails." />
+      <div className="do-dont-grid">
+        <article><span>Retain the evidence</span><p>Record the expected behavior, observed decision, configuration, evaluator, failures, and full cost. Compare the same work cohort against a baseline; report uncertainty and coverage beside the score.</p></article>
+        <article><span>Protect the evaluation</span><p>Review agent-generated tests. Keep repair cases separate from protected holdouts, freeze acceptance criteria, and bound repair loops. Twenty passing examples or a framework label cannot establish production readiness.</p></article>
+      </div>
+      <p><a href={`${guideRoot}/appendix/agentic-system-operating-checks#evaluate-decisions-and-outcomes-independently`}>Apply the Guide’s independent evaluation checks →</a></p>
+    </section>
     <section className="reading-next"><p className="section-label">Start with your baseline</p><h2>Know what improves before automating it.</h2><div><Link href="/maturity">Assess maturity →</Link><Link href="/start">Define a factory line →</Link></div></section>
   </div></SiteShell>;
 }

@@ -37,6 +37,7 @@ const contents = [
   { label: "Context & skills", href: "#context-skills" },
   { label: "Design decisions", href: "#design-decisions" },
   { label: "Production operations", href: "#production-operations" },
+  { label: "Operating checks", href: "#operating-checks" },
   { label: "System flow", href: "#system-flow" },
 ] as const;
 
@@ -156,6 +157,17 @@ export default function ArchitecturePage() {
       </div>
       <p><a href="/guide/appendix/production-reliability-operations-playbook">Use the incident packet, degraded-mode matrix, saga contract, and failure drills in the Guide →</a></p>
       <p><Link href="/mission-control#incident-operations">See what Mission Control must add to support these controls →</Link></p>
+    </section>
+
+    <section className="section-block" id="operating-checks">
+      <SectionHeader eyebrow="Practical qualification" title="Prove the behavior behind the architecture." description="Start with one outcome, an accountable owner, a baseline, and explicit stop conditions. Qualify the exact implementation against that workload." />
+      <div className="metric-grid is-full">
+        <article><span>01</span><h3>Diagnose retrieval</h3><p>Trace source freshness, permissions, candidate recall, assembled context, and claim support separately. Citations alone do not prove an answer; cached evidence must remain eligible.</p></article>
+        <article><span>02</span><h3>Choose recovery</h3><p>Retry transient failures within limits. Reconcile unknown write effects before repeating them. Replan within scope, use qualified fallbacks, and stop when authority or budget is missing.</p></article>
+        <article><span>03</span><h3>Qualify the runtime</h3><p>Test cancellation, recovery, tool contracts, isolation, traceability, and upgrades. Tool discovery is inventory; execution still needs a qualified version and current authorization.</p></article>
+        <article><span>04</span><h3>Decide on outcomes</h3><p>Compare accepted results, human effort, quality, and total cost against the baseline. Expand, revise, or stop on evidence; a calendar milestone does not prove readiness.</p></article>
+      </div>
+      <p><a href="/guide/appendix/agentic-system-operating-checks">Use the operating tables, outcome brief, and source review in the Guide →</a></p>
     </section>
 
     <section className="factory-system-diagram" id="system-flow">
