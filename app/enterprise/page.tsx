@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ReferenceDiagram } from "../components/reference-diagrams";
 import Link from "next/link";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { PageContentsNav } from "../components/page-contents-nav";
@@ -28,21 +28,19 @@ export default function EnterprisePage() {
 
     <section className="section-block" id="operating-model">
       <SectionHeader eyebrow="Enterprise operating model" title="Centralize infrastructure. Specialize outcomes." description="The architecture separates a singular enterprise platform from outcome-specific factories and reusable execution capabilities. Scale increases capacity and concurrency without requiring a factory per team or repository." />
-      <figure className="enterprise-diagram">
-        <a href="/enterprise/multi-factory-software-delivery.png" target="_blank" rel="noreferrer" aria-label="Open the enterprise multi-factory software delivery diagram at full resolution in a new tab">
-          <Image src="/enterprise/multi-factory-software-delivery.png" alt="Enterprise AI software factory platform: one shared infrastructure layer, a portfolio of outcome-specific factories, reusable agents and execution capabilities, and a flow from builder intent to verified outcomes. The full text explanation follows." width={1521} height={908} sizes="(max-width: 1280px) 100vw, 1240px" priority />
-        </a>
-        <figcaption>Enterprise platform reference architecture supplied by Jay West. <a href="/enterprise/multi-factory-software-delivery.png" target="_blank" rel="noreferrer">Open full-resolution diagram ↗</a> The 100+ builder and repository figures are an architecture scenario, not a published FDLC capacity benchmark or customer claim.</figcaption>
-      </figure>
+      <ReferenceDiagram name="enterprise" />
+      <p className="enterprise-note"><a href="/enterprise/multi-factory-software-delivery.png" target="_blank" rel="noreferrer">Original reference illustration ↗</a> · Its scale figures are illustrative, not a capacity benchmark.</p>
       <div className="enterprise-thesis" aria-label="Enterprise architecture thesis"><strong>One platform.</strong><strong>Composable factories.</strong><strong>Reusable capabilities.</strong></div>
       <p className="enterprise-note"><strong>Organizational scale and factory count are different dimensions.</strong> Builder scale is primarily a scheduling, quota, and concurrency problem. Repository scale is primarily a context, policy, ownership, and configuration problem. Workload scale is handled through WorkOrders, Tasks, Attempts, queues, sandboxes, and horizontal execution. Create another Factory Definition only when the governed outcome contract materially changes.</p>
       <div className="enterprise-routing">{enterpriseScale.map(([dimension, response], index) => <article key={dimension}><p className="section-label">Scale dimension {index + 1}</p><h3>{dimension}</h3><p>{response}</p></article>)}</div>
       <SectionHeader eyebrow="Example flow" title="From builder intent to a verified outcome." description="The builder states the result. Mission Control materializes and coordinates the durable execution contract. Factories perform bounded work; evidence and authority govern what advances." />
-      <ol className="enterprise-stages">{enterpriseStages.map(([title, description], index) => <li key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{description}</p></div></li>)}</ol>
+      <ReferenceDiagram name="delivery" />
+      <details><summary>Read the stage responsibilities</summary><ol className="enterprise-stages">{enterpriseStages.map(([title, description], index) => <li key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{description}</p></div></li>)}</ol></details>
     </section>
 
     <section className="section-block" id="platform">
       <SectionHeader eyebrow="Shared enterprise infrastructure" title="One control plane and one governed capability ecosystem." description="Factories consume common platform services instead of duplicating orchestration, identity, inference, context, sandboxes, observability, policy, and evidence systems." />
+      <ReferenceDiagram name="shared-platform" />
       <div className="enterprise-platform-grid">{enterprisePlatformServices.map(([name, description]) => <article key={name}><h3>{name}</h3><p>{description}</p></article>)}</div>
       <p className="enterprise-note"><strong>Mission Control is the meta-factory control plane.</strong> It owns Objective → Plan → WorkOrders → routing → state → evidence → authority → outcomes, including the cross-factory dependency graph. Factories do not form an uncontrolled peer-to-peer orchestration network. Every Objective, WorkOrder, Task, Attempt, tool call, and consequential action remains attributable to a human or service principal and bounded by delegated authority.</p>
       <p className="enterprise-note"><strong>Inference is not execution, and policy is not a prompt.</strong> Logical model routes select approved inference under quality, cost, availability, and regional constraints. Actual code changes, tests, scans, and builds run in isolated execution environments with filesystem, network, resource, and credential controls. Gateways, brokers, sandboxes, and release boundaries enforce policy outside the model.</p>
@@ -59,6 +57,7 @@ export default function EnterprisePage() {
 
     <section className="section-block" id="routing">
       <SectionHeader eyebrow="Routing and dependencies" title="Three decisions, with qualification before optimization." description="A routing score can rank eligible choices. It cannot override policy, missing qualification, expired evidence, or the builder’s authority." />
+      <ReferenceDiagram name="routing" />
       <div className="enterprise-routing">{enterpriseRouting.map(([level, question, description], index) => <article key={level}><p className="section-label">Level {index + 1} / {level}</p><h3>{question}</h3><p>{description}</p></article>)}</div>
       <div className="enterprise-example">
         <div><p className="section-label">Worked objective</p><h3>Modernize payments to Java 21, remediate vulnerabilities, improve tests, and deploy safely.</h3><p>The planner proposes the decomposition. Approval binds the exact Plan revision. Mission Control can recover from durable records even if the planner’s session is gone.</p></div>
@@ -77,6 +76,7 @@ export default function EnterprisePage() {
 
     <section className="section-block" id="verification">
       <SectionHeader eyebrow="Two levels of evidence" title="Local PASS does not imply objective PASS." description="Execution produces a Candidate. Verification supports or rejects its claims. Release authorization remains a separate decision." />
+      <ReferenceDiagram name="verification" />
       <div className="enterprise-verification">
         <article><p className="section-label">Local / WorkOrder</p><h3>Did this factory satisfy its contract?</h3><ul><li>Exact input and Candidate artifact identities</li><li>WorkOrder acceptance criteria and required evidence</li><li>Build, tests, scans, policy, and artifact integrity</li><li>Independent verifier Attempt and attributable verdict</li></ul><p>A failure enters a bounded remediation path. Missing evidence is a blocked or incomplete result.</p></article>
         <article><p className="section-label">Global / Objective</p><h3>Does the composition achieve the outcome?</h3><ul><li>Required upstream WorkOrders complete with current evidence</li><li>Correct versions combined into one integrated Candidate</li><li>End-to-end behavior, regression, security, and performance</li><li>Objective acceptance criteria and release readiness</li></ul><p>Pre-release verification establishes eligibility. If the objective includes production outcomes, completion also requires post-release observation.</p></article>
@@ -86,6 +86,7 @@ export default function EnterprisePage() {
 
     <section className="section-block" id="factory-versioning">
       <SectionHeader eyebrow="Factory versioning" title="Qualify immutable compositions and activate them for a declared scope." description="A Factory Definition names the governed outcome capability. A Factory Version identifies its immutable composition. An Execution Profile specializes the qualified operating envelope for a workload and environment." />
+      <ReferenceDiagram name="composition" />
       <div className="enterprise-version"><p className="section-label">Version lifecycle</p><h3>Develop → Qualify → Promote → Activate → Observe → Improve</h3><p>Pin the supervisor recipe, skills, model routes, harnesses, tools, context policies, sandbox, and verification contract. Qualify the composition as well as its components. A published version is not automatically eligible for routing.</p><p>Improvements create new candidates. Suspending a bad version stops new admissions; routing can return to a previously qualified version that remains eligible. Reverting factory routing does not undo an application deployment or a database change.</p></div>
     </section>
 

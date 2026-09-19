@@ -3,6 +3,7 @@ import { canonicalDefinition } from "../data/fdlc";
 import { siteUrl } from "../lib/site";
 import "./design-system.css";
 import "./globals.css";
+import "./components/reference-diagrams/diagrams.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

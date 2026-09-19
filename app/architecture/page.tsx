@@ -1,3 +1,4 @@
+import { ReferenceDiagram } from "../components/reference-diagrams";
 /* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
 import { ContextSkillsMap } from "../components/context-skills-map";
 import { productionOperatingContracts } from "../../data/production-operations";
@@ -71,6 +72,8 @@ export default function ArchitecturePage() {
       </div>
       <p className="control-boundary-rule">Every Attempt returns attributable evidence. No producing system may promote its own result.</p>
     </section>
+
+    <section id="factory-composition" className="section-block"><ReferenceDiagram name="composition" /></section>
 
     <section className="section-block architecture-details" id="execution-vocabulary">
       <SectionHeader eyebrow="Canonical execution vocabulary" title="Name the boundary before assigning the responsibility." description="Most disagreement about agent harnesses is a boundary disagreement. FDLC separates the worker, its iteration loop, its operating envelope, workflow coordination, execution infrastructure, isolation, and enterprise authority so each has a clear owner, lifecycle, identity, and qualification boundary." />
