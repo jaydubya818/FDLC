@@ -167,7 +167,7 @@ export default function ArchitecturePage() {
         <article><span>03</span><h3>Qualify the runtime</h3><p>Test cancellation, recovery, tool contracts, isolation, traceability, and upgrades. Tool discovery is inventory; execution still needs a qualified version and current authorization.</p></article>
         <article><span>04</span><h3>Decide on outcomes</h3><p>Compare accepted results, human effort, quality, and total cost against the baseline. Expand, revise, or stop on evidence; a calendar milestone does not prove readiness.</p></article>
       </div>
-      <p><a href="/guide/appendix/agentic-system-operating-checks">Use the operating tables, outcome brief, and source review in the Guide →</a></p>
+      <p><a href="/guide/appendix/agentic-system-operating-checks">Use the operating tables and outcome brief in the Guide →</a></p>
     </section>
 
     <section className="factory-system-diagram" id="system-flow">
