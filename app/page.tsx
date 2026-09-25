@@ -32,7 +32,8 @@ export default function Home() {
             </div>
             <div className="hero-actions">
               <Link className="button button-dark" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
-              <a className="button button-light" href="#worked-example">See a factory in action</a>
+              <a className="button button-light" href="/guide">Read the Guide</a>
+              <a className="text-action" href="#worked-example">See a factory in action →</a>
             </div>
           </div>
           <aside className="hero-model hero-value-model" aria-labelledby="hero-model-title">

@@ -105,7 +105,7 @@ try {
 
     if (width === 1440) {
       await page.goto(origin);
-      const guideTrigger = page.getByRole("navigation", { name: "Primary navigation" }).getByRole("button", { name: "Guide", exact: true });
+      const guideTrigger = page.getByRole("navigation", { name: "Primary navigation" }).getByRole("button", { name: "Guide navigation", exact: true });
       await guideTrigger.focus();
       await page.keyboard.press("Enter");
       assert.equal(await guideTrigger.getAttribute("aria-expanded"), "true");
