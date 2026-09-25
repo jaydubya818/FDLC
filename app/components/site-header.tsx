@@ -104,7 +104,6 @@ export function SiteHeader() {
   const guideActive = isCurrent(pathname, "/guide");
   const secondaryActive = secondary.some(([, href]) => isCurrent(pathname, href));
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileGuideOpen, setMobileGuideOpen] = useState(guideActive);
   const mobileRoot = useRef<HTMLDivElement>(null);
   const mobileTrigger = useRef<HTMLButtonElement>(null);
 
@@ -130,7 +129,7 @@ export function SiteHeader() {
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {primary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
-          <NavDropdown active={guideActive} id="guide-navigation" label="Guide" links={guide} />
+          <NavDropdown active={guideActive} id="guide-navigation" label="Guide" href="/guide" links={guide} />
           <NavDropdown active={isCurrent(pathname, "/deploy")} id="ai-fde-navigation" label="AI-FDE" href="/deploy" links={aiFde} />
           {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
           <NavDropdown active={secondaryActive} id="more-navigation" label="More" links={secondary} />
@@ -142,11 +141,7 @@ export function SiteHeader() {
           <button aria-controls="mobile-navigation" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)} onKeyDown={(event) => { if (event.key === "Escape") setMobileOpen(false); }} type="button" ref={mobileTrigger}>Menu</button>
           <nav aria-label="Mobile navigation" hidden={!mobileOpen} id="mobile-navigation">
             {primary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
-            <button aria-controls="mobile-guide-navigation" aria-expanded={mobileGuideOpen} className={guideActive ? "is-active" : ""} onClick={() => setMobileGuideOpen((value) => !value)} type="button">Guide <span aria-hidden="true">⌄</span></button>
-            <div className="mobile-guide-links" hidden={!mobileGuideOpen} id="mobile-guide-navigation">
-              {guide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
-            </div>
-            <a className="mobile-guide-search" href="/guide/search" onClick={() => setMobileOpen(false)}>Search the Guide</a>
+            <NavDropdown active={guideActive} id="mobile-guide-navigation" label="Guide" href="/guide" links={guide} onNavigate={() => setMobileOpen(false)} />
             <NavDropdown active={isCurrent(pathname, "/deploy")} id="mobile-ai-fde-navigation" label="AI-FDE" href="/deploy" links={aiFde} onNavigate={() => setMobileOpen(false)} />
             {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
             <span>More</span>

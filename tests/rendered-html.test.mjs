@@ -245,8 +245,9 @@ test("global navigation exposes the canonical Guide disclosure in desktop and mo
   ]) {
     assert.equal([...header.matchAll(new RegExp(`href="${href}"[^>]*>${label}<`, "g"))].length, 2, `${label} exists in desktop and mobile navigation`);
   }
-  assert.match(header, /<button aria-controls="guide-navigation" aria-expanded="false"[^>]*>Guide/);
-  assert.match(header, /<button aria-controls="mobile-guide-navigation" aria-expanded="true" class="is-active"[^>]*>Guide/);
+  assert.equal([...header.matchAll(/href="\/guide"[^>]*>Guide<\/a>/g)].length, 2, "Guide opens directly on desktop and mobile");
+  assert.match(header, /<button aria-label="Guide navigation" aria-controls="guide-navigation" aria-expanded="false"/);
+  assert.match(header, /<button aria-label="Guide navigation" aria-controls="mobile-guide-navigation" aria-expanded="false"/);
   for (const id of ["guide-navigation", "more-navigation", "mobile-navigation", "mobile-guide-navigation"]) {
     assert.equal([...header.matchAll(new RegExp(`id="${id}"`, "g"))].length, 1, `${id} is unique`);
   }
