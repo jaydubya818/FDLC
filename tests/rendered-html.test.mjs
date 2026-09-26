@@ -159,7 +159,7 @@ test("robots explicitly permits search and AI fetch agents", async () => {
 test("homepage answers the category boundary and links to primary destinations", async () => {
   const response = await render("/");
   const html = await response.text();
-  assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?Code generation is becoming abundant\. Trusted autonomous software delivery is not\.[\s\S]*?operating model and technical foundation[\s\S]*?<\/section>/i);
+  assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?operating model and technical foundation[\s\S]*?Code generation is becoming abundant\. Trusted autonomous software delivery is not\.[\s\S]*?<\/section>/i);
   assert.match(html, /Build the factory that builds your software/i);
   assert.match(html, /For engineering leaders, platform teams, software-factory architects, and builders/i);
   assert.match(html, /SDLC.*Governs the lifecycle of.*software.*FDLC.*Governs the.*factory that builds it/is);

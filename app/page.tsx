@@ -19,22 +19,26 @@ export default function Home() {
     <>
       <SiteHeader />
       <main id="main-content">
+        <a className="home-guide-banner" href="/guide">
+          <span>The AI Software Factory Guide</span>
+          <strong>Open Guide <span aria-hidden="true">→</span></strong>
+        </a>
         <section className="hero-shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>Factory Development Lifecycle (FDLC)</span><span>Open framework · v0.1</span></p>
-            <p className="hero-problem">Code generation is becoming abundant. Trusted autonomous software delivery is not.</p>
             <h1>Build the factory that builds your software.</h1>
-            <p className="hero-lede">FDLC is the operating model and technical foundation for designing, governing, and operating AI software factories that turn intent into verified software.</p>
+            <p className="hero-lede">The operating model and technical foundation for AI software factories that turn intent into verified software.</p>
+            <div className="hero-actions">
+              <a className="button button-dark" href="/guide">Read the Guide</a>
+              <Link className="button button-light" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
+            </div>
+            <a className="text-action hero-example-link" href="#worked-example">See a factory in action →</a>
             <p className="hero-audience">For engineering leaders, platform teams, software-factory architects, and builders evaluating governed AI delivery.</p>
             <div className="hero-category-contrast" aria-label="Difference between SDLC and FDLC" role="group">
               <div><span>SDLC</span><p>Governs the lifecycle of <strong>software.</strong></p></div>
               <div><span>FDLC</span><p>Governs the <strong>factory that builds it.</strong></p></div>
             </div>
-            <div className="hero-actions">
-              <Link className="button button-dark" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
-              <a className="button button-light" href="/guide">Read the Guide</a>
-              <a className="text-action" href="#worked-example">See a factory in action →</a>
-            </div>
+            <p className="hero-problem">Code generation is becoming abundant. Trusted autonomous software delivery is not.</p>
           </div>
           <aside className="hero-model hero-value-model" aria-labelledby="hero-model-title">
             <div className="model-chrome"><span>FDLC / OPERATING MODEL</span><span>01—04</span></div>
