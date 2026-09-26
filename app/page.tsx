@@ -19,9 +19,9 @@ export default function Home() {
     <>
       <SiteHeader />
       <main id="main-content">
-        <a className="home-guide-banner" href="/guide">
-          <span>The AI Software Factory Guide</span>
-          <strong>Open Guide <span aria-hidden="true">→</span></strong>
+        <a className="home-guide-banner" href="/guide/00-front-matter/00-how-to-read-this-guide">
+          <span>New to FDLC? Start with the Guide.</span>
+          <strong>Start here <span aria-hidden="true">→</span></strong>
         </a>
         <section className="hero-shell">
           <div className="hero-copy">
@@ -29,7 +29,7 @@ export default function Home() {
             <h1>Build the factory that builds your software.</h1>
             <p className="hero-lede">The operating model and technical foundation for AI software factories that turn intent into verified software.</p>
             <div className="hero-actions">
-              <a className="button button-dark" href="/guide">Read the Guide</a>
+              <a className="button button-dark" href="/guide/00-front-matter/00-how-to-read-this-guide">Start reading the Guide</a>
               <Link className="button button-light" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
             </div>
             <a className="text-action hero-example-link" href="#worked-example">See a factory in action →</a>
@@ -66,7 +66,7 @@ export default function Home() {
             <h2 id="home-guide-invite-title">Follow the complete guide.</h2>
             <p>Move from the factory overview to the chapters on design, agents, evidence, operations, and improvement.</p>
           </div>
-          <a className="button button-dark" href="/guide">Explore the Guide →</a>
+          <a className="button button-dark" href="/guide">Browse all chapters →</a>
         </section>
 
         <section className="content-section adoption-example" id="worked-example">
