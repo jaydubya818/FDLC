@@ -56,6 +56,15 @@ export default function Home() {
 
         <section className="content-section"><GoverningLifecycleDiagram /></section>
 
+        <section className="home-guide-invite" aria-labelledby="home-guide-invite-title">
+          <div>
+            <p className="section-label">Go deeper</p>
+            <h2 id="home-guide-invite-title">Follow the complete guide.</h2>
+            <p>Move from the factory overview to the chapters on design, agents, evidence, operations, and improvement.</p>
+          </div>
+          <a className="button button-dark" href="/guide">Explore the Guide →</a>
+        </section>
+
         <section className="content-section adoption-example" id="worked-example">
           <SectionHeader eyebrow="One illustrative example" title="Modernize a dependency without surrendering control." description="A software factory does more than generate a patch. It coordinates bounded work, returns evidence, preserves human authority, and produces a candidate that can earn release." />
           <ol className="adoption-example-flow" aria-label="Dependency modernization factory flow">
