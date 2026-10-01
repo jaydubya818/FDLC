@@ -1,6 +1,6 @@
 {
   "schema": "fdlc-corpus-verification/v1",
-  "generatedAt": "2026-09-14T18:24:32.204Z",
+  "generatedAt": "2026-10-01T03:45:48.427Z",
   "generatorVersion": "1.0.1",
   "reproduce": "npm run corpus:sync && npm run corpus:verify",
   "archiveSha256": "54583e8f18d3e474617b6d63b25ddac1c58ff196c8271a2dcb22f7f4a6e38a49",
@@ -10,7 +10,7 @@
     "ajv": "8.20.0",
     "grayMatter": "4.0.3",
     "mermaid": "11.17.2",
-    "next": "16.3.4",
+    "next": "16.3.8",
     "reactMarkdown": "10.1.0",
     "vinext": "1.0.0-beta.9",
     "yaml": "2.9.1"

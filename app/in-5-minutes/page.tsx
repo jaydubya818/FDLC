@@ -1,3 +1,4 @@
+import { GuideReference } from "../components/guide-reference";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -45,6 +46,7 @@ export default function FiveMinuteWalkthroughPage() {
     <PageHero eyebrow="FDLC in 5 Minutes" status="Illustrative" variant="compact" title="One workflow. Four views. Eleven artifacts. One measurable outcome." description={canonicalDefinition} meta={[["Example", "Dependency modernization"], ["Views", "04"], ["Artifacts", "11"]]}>
       <div className="hero-actions"><a className="button button-dark" href="#the-factory-line">Follow the example</a><Link className="button button-light" href="/framework">Explore the Framework</Link><Link className="text-action" href="/mission-control#quickstart">Run Mission Control →</Link></div>
     </PageHero>
+    <GuideReference description="Go beyond this worked example with the complete, chapter-by-chapter explanation of how to build and operate a software factory." />
 
     <div className="example-introduction"><p>This page walks one concrete factory line—dependency modernization—through the full system so you can see how FDLC turns intent into independently verified software.</p><p><strong>This is not a product tour.</strong> It is a concrete walkthrough of the Factory Development Lifecycle applied to one bounded, high-value class of work.</p></div>
     <div className="example-thesis" aria-label="One workflow, four system views, eleven artifacts, and one measurable outcome" role="group">

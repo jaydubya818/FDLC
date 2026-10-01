@@ -1,3 +1,4 @@
+import { GuideReference } from "../components/guide-reference";
 import { ReferenceDiagram } from "../components/reference-diagrams";
 /* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
 import { ContextSkillsMap } from "../components/context-skills-map";
@@ -53,6 +54,7 @@ const guideByArea = {
 export default function ArchitecturePage() {
   return <SiteShell><div className="page-wrap">
     <PageHero eyebrow="Reference architecture / 02" title="Six areas. Explicit boundaries." description="An AI software factory is a system of responsibilities. The architecture makes each responsibility visible so teams can decide what to build, buy, govern, verify, and operate." meta={[["Capability areas", "06"], ["System flow", "Authority ↘ Evidence ↖"], ["Reading time", "≈ 10 min"]]} />
+    <GuideReference description="Learn how the architecture fits together, with detailed chapters on capabilities, harnesses, models, trust, and learning." />
     <div className="longform-layout">
     <PageContentsNav items={contents} mobileTitle="Jump to area" title="Architecture areas" variant="rail" />
     <div className="longform-content">
