@@ -2365,3 +2365,51 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 @media (max-width: 640px) {
   .guide-reference { align-items: stretch; flex-direction: column; gap: 18px; padding: 22px; }
 }
+
+/* Runtime simulator and lab (improvement plan P2.6 / P2.7). */
+.simulator { margin: 32px 0 48px; display: grid; gap: 24px; }
+.simulator-title { margin: 0; font-family: var(--serif); font-size: clamp(26px, 3vw, 36px); font-weight: 500; letter-spacing: -.03em; }
+.simulator-faults { margin: 0; padding: 18px 20px; border: 1px solid var(--line); background: var(--white); }
+.simulator-faults legend { padding: 0 8px; color: var(--green); font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.simulator-faults > div { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+.simulator-faults label { min-height: 48px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); cursor: pointer; font-size: 14px; }
+.simulator-faults label.is-selected { border-color: var(--amber); background: #fbf3e2; }
+.simulator-faults p { margin: 10px 0 0; color: var(--muted); font-size: 13px; }
+.simulator-chain { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.simulator-chain li { padding: 16px; display: grid; gap: 4px; align-content: start; border: 1px solid var(--line); background: var(--white); }
+.simulator-chain li p { margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
+.simulator-chain small { color: var(--muted); font-size: 12px; }
+.simulator-state { color: var(--muted); font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.simulator-chain li.is-produced { border-color: var(--green); background: var(--sage); }
+.simulator-chain li.is-produced .simulator-state { color: var(--green); }
+.simulator-chain li.is-next { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.simulator-chain li.is-blocked { border-color: #a4452c; background: #fbeee9; }
+.simulator-chain li.is-blocked .simulator-state { color: #a4452c; }
+.simulator-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.simulator-actions .button:disabled { opacity: .45; cursor: not-allowed; }
+.simulator-result { padding: 22px 24px; border: 1px solid var(--line); border-left: 4px solid var(--ink); background: var(--white); }
+.simulator-result.is-blocked { border-left-color: #a4452c; }
+.simulator-result.is-complete { border-left-color: var(--green); }
+.simulator-result h3 { margin: 8px 0 0; font-size: 18px; line-height: 1.4; }
+.simulator-result dl { margin: 18px 0; display: grid; gap: 12px; }
+.simulator-result dl div { display: grid; grid-template-columns: 140px 1fr; gap: 16px; }
+.simulator-result dt { color: var(--muted); font-size: 13px; font-weight: 700; }
+.simulator-result dd { margin: 0; line-height: 1.55; }
+.simulator-log summary { cursor: pointer; font-size: 14px; font-weight: 650; }
+.simulator-log ol { margin: 12px 0 0; padding-left: 20px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+@media (max-width: 900px) { .simulator-chain { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .simulator-chain { grid-template-columns: 1fr; } .simulator-result dl div { grid-template-columns: 1fr; gap: 2px; } }
+
+.lab-steps { margin: 28px 0; padding: 0; list-style: none; display: grid; gap: 16px; counter-reset: lab; }
+.lab-steps > li { counter-increment: lab; padding: 22px 24px 22px 76px; position: relative; border: 1px solid var(--line); background: var(--white); }
+.lab-steps > li::before { content: counter(lab, decimal-leading-zero); position: absolute; left: 24px; top: 22px; color: var(--amber); font-family: var(--mono); font-size: 13px; font-weight: 700; }
+.lab-steps h3 { margin: 0 0 6px; font-size: 18px; }
+.lab-steps p { margin: 0 0 10px; color: var(--muted); line-height: 1.6; }
+.lab-steps pre { margin: 0; padding: 12px 14px; overflow-x: auto; background: #1d2520; color: #e9efe9; font-family: var(--mono); font-size: 13px; line-height: 1.55; }
+.lab-expect { margin-top: 10px; font-size: 14px; }
+.lab-expect strong { color: var(--green); }
+.lab-expect.is-block strong { color: #a4452c; }
+
+.builder-import { display: grid; gap: .75rem; margin: 0 0 1.25rem; padding: .9rem 1rem; border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--white); }
+.builder-import details textarea { width: 100%; margin: .5rem 0; font-family: var(--mono); font-size: .85rem; }
+.builder-import p { margin: 0; color: var(--muted); }

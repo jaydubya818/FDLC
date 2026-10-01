@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { factoryDefinitionBridge, factoryDefinitionNextSteps } from "../../data/maturity-actions";
 import { ArtifactExport } from "./artifact-export";
 import { factoryFormErrors, formatFactoryDefinitionJson, formatFactoryDefinitionMarkdown, formatFactoryDefinitionYaml, generateFactoryDefinition, type FactoryForm } from "../../lib/factory-definition";
+import { definitionToForm, exampleFactoryForm, formatFactoryDefinitionV2Json, formatFactoryDefinitionV2Yaml, generateFactoryDefinitionV2, parseFactoryDefinition } from "../../lib/factory-definition-v2";
 
 const workTypes = ["Dependency upgrade", "Vulnerability remediation", "Test repair", "API migration", "Feature implementation", "Documentation update"];
 const authorityOptions = ["Read repositories", "Create branches", "Modify code", "Run tests", "Open pull requests", "Deploy software"];
@@ -57,6 +58,8 @@ export function FactoryBuilder() {
   const [submitted, setSubmitted] = useState(false);
   const [storageFailed, setStorageFailed] = useState(false);
   const [hydrated, setHydrated] = useState(false);
+  const [importText, setImportText] = useState("");
+  const [importMessage, setImportMessage] = useState("");
   const resultRef = useRef<HTMLElement>(null);
   const stepRef = useRef<HTMLElement>(null);
   const errors = useMemo(() => factoryFormErrors(form), [form]);
@@ -66,6 +69,8 @@ export function FactoryBuilder() {
     { id: "markdown", label: "Markdown", filename: `${slug}-factory-definition.md`, mime: "text/markdown", text: formatFactoryDefinitionMarkdown(definition) },
     { id: "json", label: "JSON", filename: `${slug}-factory-definition.json`, mime: "application/json", text: formatFactoryDefinitionJson(definition) },
     { id: "yaml", label: "YAML", filename: `${slug}-factory-definition.yaml`, mime: "text/yaml", text: formatFactoryDefinitionYaml(definition) },
+    { id: "json-v02", label: "JSON (v0.2)", filename: `${slug}-factory-definition-0.2.json`, mime: "application/json", text: formatFactoryDefinitionV2Json(generateFactoryDefinitionV2(form)) },
+    { id: "yaml-v02", label: "YAML (v0.2)", filename: `${slug}-factory-definition-0.2.yaml`, mime: "text/yaml", text: formatFactoryDefinitionV2Yaml(generateFactoryDefinitionV2(form)) },
   ] : [];
 
   useEffect(() => {
@@ -104,6 +109,18 @@ export function FactoryBuilder() {
   function setList(key: "authority" | "verification" | "humanControls", label: string) {
     const value = canonicalValue[label] ?? label;
     setForm((current) => ({ ...current, [key]: toggle(current[key], value) }));
+  }
+  function loadExample() {
+    setForm(exampleFactoryForm);
+    setImportMessage("Loaded the dependency-upgrade example. Edit any step, or continue to see the result.");
+    setStep(0);
+  }
+  function importDefinition() {
+    const result = parseFactoryDefinition(importText);
+    if (!result.ok) { setImportMessage(`Could not import: ${result.errors.join("; ")}`); return; }
+    setForm(definitionToForm(result.definition));
+    setImportMessage(result.upgradedFrom ? `Imported and upgraded from v${result.upgradedFrom} to v0.2.` : "Imported a v0.2 Factory Definition.");
+    setStep(0);
   }
   function moveToStep(next: number) {
     setStep(next);
@@ -155,6 +172,15 @@ export function FactoryBuilder() {
   return <section aria-label={`Factory Definition builder, step ${step + 1} of 5`} className="factory-builder" id="factory-builder" ref={stepRef} tabIndex={-1}>
     {storageFailed && <p role="status">Draft could not be saved in this browser. Keep this page open until you export your result.</p>}
     <div className="builder-progress"><span>Step {step + 1} of 5</span><div aria-hidden="true"><i style={{ width: `${((step + 1) / 5) * 100}%` }} /></div></div>
+    <div className="builder-import">
+      <button className="button button-light" onClick={loadExample} type="button">Load an example</button>
+      <details><summary>Import a Factory Definition (JSON or YAML, v0.1 or v0.2)</summary>
+        <label htmlFor="import-definition">Paste a definition</label>
+        <textarea id="import-definition" rows={6} value={importText} onChange={(event) => setImportText(event.target.value)} />
+        <button className="button button-light" disabled={!importText.trim()} onClick={importDefinition} type="button">Import</button>
+      </details>
+      {importMessage && <p role="status">{importMessage}</p>}
+    </div>
     {panels[step]}
     <div className={`builder-validation${stepValid ? " is-valid" : ""}`} aria-live="polite"><strong>{stepValid ? "Ready to continue" : "Required before continuing"}</strong>{stepErrors.length > 0 && <ul>{stepErrors.map((error) => <li key={error}>{error}</li>)}</ul>}</div>
     <div className="builder-actions"><button className="button button-light" disabled={step === 0} onClick={() => moveToStep(step - 1)} type="button">Previous</button>{step < 4 ? <button className="button button-dark" disabled={!stepValid} onClick={() => moveToStep(step + 1)} type="button">Continue</button> : <button className="button button-dark" disabled={!stepValid} onClick={() => setSubmitted(true)} type="button">Generate Factory Definition</button>}</div>

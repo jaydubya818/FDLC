@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fdlc.ai/schemas/factory-definition-0.2.json",
+  "title": "FDLC Factory Definition (v0.2 draft)",
+  "description": "A conceptual, reviewable definition of one factory line. Not an executable Mission Control manifest; Mission Control imports it as an unapproved draft.",
+  "type": "object",
+  "required": ["$schema", "version", "intent", "acceptanceCriteria", "planBoundaries", "workOrders", "authority", "verification", "humanControls", "budgets", "knownFailureModes", "outcomeMetrics", "provenance"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "const": "0.2-draft" },
+    "intent": {
+      "type": "object",
+      "required": ["outcome", "workType"],
+      "properties": { "outcome": { "type": "string", "minLength": 1 }, "workType": { "type": "string", "minLength": 1 } }
+    },
+    "acceptanceCriteria": {
+      "type": "array", "minItems": 1,
+      "items": { "type": "object", "required": ["id", "text", "verifier"], "properties": { "id": { "type": "string" }, "text": { "type": "string" }, "verifier": { "type": "string" } } }
+    },
+    "planBoundaries": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "workOrders": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "outcome", "scope", "authority", "verifier", "dependsOn"],
+        "properties": {
+          "id": { "type": "string" }, "name": { "type": "string" }, "outcome": { "type": "string" },
+          "scope": { "type": "array", "items": { "type": "string" }, "description": "Path globs the work order may change. Empty means read-only." },
+          "authority": { "type": "array", "items": { "type": "string" } },
+          "verifier": { "type": "string" },
+          "dependsOn": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "authority": {
+      "type": "array", "minItems": 1,
+      "items": { "type": "object", "required": ["capability", "limit"], "properties": { "capability": { "type": "string" }, "limit": { "type": "string" } } }
+    },
+    "verification": {
+      "type": "array", "minItems": 1,
+      "items": { "type": "object", "required": ["check", "command", "independent"], "properties": { "check": { "type": "string" }, "command": { "type": "string" }, "independent": { "type": "boolean" } } }
+    },
+    "humanControls": {
+      "type": "array", "minItems": 1,
+      "items": { "type": "object", "required": ["decision", "when"], "properties": { "decision": { "type": "string" }, "when": { "type": "string" } } }
+    },
+    "budgets": {
+      "type": "object",
+      "required": ["maxAttemptsPerWorkOrder", "stopOnAmbiguity"],
+      "properties": { "maxAttemptsPerWorkOrder": { "type": "integer", "minimum": 1 }, "stopOnAmbiguity": { "type": "boolean" } }
+    },
+    "knownFailureModes": { "type": "array", "items": { "type": "string" } },
+    "outcomeMetrics": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "provenance": {
+      "type": "object",
+      "required": ["generatedBy", "conceptual"],
+      "properties": { "generatedBy": { "type": "string" }, "conceptual": { "type": "boolean" } }
+    }
+  }
+}

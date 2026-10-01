@@ -5,6 +5,7 @@ export const factoryDefinitionBridge = {
 } as const;
 
 export const factoryDefinitionNextSteps = [
+  ["/lab", "Run the reference factory"],
   ["/maturity", "Assess organizational maturity"],
   ["/guide/02-design/06-intent-and-specification-engineering", "Read relevant Guide material"],
   ["/deploy", "Explore AI-FDE"],
