@@ -58,6 +58,16 @@ export default function Home() {
           <p>FDLC / Category promise</p><strong>{primaryPositioning}</strong><span>{evidencePositioning}</span>
         </section>
 
+        <section className="content-section try-it" aria-labelledby="try-it-title">
+          <p className="section-label">Learn by doing</p>
+          <h2 id="try-it-title">Don&apos;t just read about a factory. Break one.</h2>
+          <ol className="try-it-grid">
+            <li><span>5 minutes</span><h3>Inject a fault</h3><p>Step a run through the artifact chain and watch the factory refuse a bad release.</p><Link className="text-action" href="/simulator">Open the simulator →</Link></li>
+            <li><span>30 minutes</span><h3>Run a real gate</h3><p>A zero-dependency Node factory with an independent verifier and a gate you can read in one sitting.</p><Link className="text-action" href="/lab">Run the reference factory →</Link></li>
+            <li><span>An afternoon</span><h3>Define your own</h3><p>Load an example, edit it, and export a v0.2 Factory Definition as JSON or YAML.</p><Link className="text-action" href="/start">Open the builder →</Link></li>
+          </ol>
+        </section>
+
         <section className="content-section"><GoverningLifecycleDiagram /></section>
 
         <section className="home-guide-invite" aria-labelledby="home-guide-invite-title">

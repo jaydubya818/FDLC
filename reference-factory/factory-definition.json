@@ -1,0 +1,5 @@
+{
+  "name": "Reference factory: fix a failing function",
+  "authority": { "pathScopes": ["src/**", "tests/**"], "maxFilesChanged": 2 },
+  "verification": { "command": "tests/add.test.js", "independent": true }
+}

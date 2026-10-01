@@ -6,6 +6,18 @@ The canonical public home of the Factory Development Lifecycle.
 
 FDLC is the engineering discipline for the factory itself: the control system around agents, models, tools, people, policies, evidence, and workflows. Its standard is verified delivery, not merely generated code.
 
+## Start here
+
+Pick a track by how much time you have.
+
+| Time | Do this | You learn |
+| --- | --- | --- |
+| 5 minutes | Run `npm run dev`, open `/in-5-minutes`, then `/simulator` and inject a fault | What a factory is and what blocks a bad release |
+| 30 minutes | `node reference-factory/lab.mjs` and read `gate()` in `reference-factory/lab.mjs` | The gate, scope check and independent verifier as code |
+| An afternoon | Open `/start`, click "Load an example", edit it, export the v0.2 JSON | How to define governed intent for your own work |
+
+Factory Definition v0.2 is described by `public/schemas/factory-definition-0.2.json`. The builder at `/start` imports v0.1 and v0.2 files (JSON or YAML) and upgrades v0.1 on import.
+
 ## Local development
 
 Requires Node.js 22.13 or newer.

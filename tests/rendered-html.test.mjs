@@ -9,7 +9,7 @@ function render(pathname = "/", method = "GET") {
   return worker.fetch(new Request(`http://localhost${pathname}`, { method, headers: { accept: "text/html" } }), { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
 }
 
-const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/specification", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/about"];
+const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/specification", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/lab", "/simulator", "/about"];
 
 test("corpus preview renders a noindex catalog without entering the public sitemap", async () => {
   const response = await render("/corpus-preview");

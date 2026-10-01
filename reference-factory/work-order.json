@@ -1,0 +1,1 @@
+{ "id": "WO-1", "title": "Make add() return the sum of its arguments", "acceptance": ["tests/add.test.js passes"] }

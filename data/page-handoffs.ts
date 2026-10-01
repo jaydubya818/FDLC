@@ -30,9 +30,10 @@ export const pageHandoffs = {
     eyebrow: "What should I do next?",
     title: "A Factory Definition is governed intent, not an executed factory.",
     links: [
+      ["/lab", "Run the reference factory"],
+      ["/simulator", "Break a factory in the simulator"],
       ["/deploy", "Explore AI-FDE"],
       ["/mission-control", "Inspect Mission Control"],
-      ["/guide/02-design/06-intent-and-specification-engineering", "Read intent and specification engineering"],
     ],
   },
   deploy: {
