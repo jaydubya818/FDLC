@@ -1,3 +1,4 @@
+import { GuideReference } from "../components/guide-reference";
 /* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary and require document navigation. */
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -66,6 +67,7 @@ export default function FrameworkPage() {
       <PageHero eyebrow="FDLC Framework / 01" title="The lifecycle for the factory itself." description={canonicalDefinition} meta={[["System views", "04"], ["Protocol artifacts", "11"], ["Reading time", "≈ 12 min"]]}>
         <div className="hero-actions"><Link className="button button-dark" href="/in-5-minutes">Understand FDLC in 5 minutes</Link><Link className="button button-light" href="/architecture">Explore the Architecture</Link><Link className="text-action" href="/manifesto">Read the Manifesto →</Link></div>
       </PageHero>
+    <GuideReference description="Explore the full methodology behind the lifecycle: intent, planning, bounded execution, evidence, and delivery." />
       <div className="longform-layout">
       <PageContentsNav items={contents} mobileTitle="Jump to section" title="Framework sections" variant="rail" />
       <div className="longform-content">

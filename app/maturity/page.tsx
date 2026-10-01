@@ -1,3 +1,4 @@
+import { GuideReference } from "../components/guide-reference";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { MaturityAssessment } from "../components/maturity-assessment";
@@ -15,6 +16,7 @@ export default function MaturityPage() {
     <PageHero eyebrow="FDLC maturity / 11" variant="compact" title="How mature is your software factory?" description="Maturity is the quality of your operating system for autonomous work: intent, authority, execution, verification, oversight, observability, reuse, and learning." meta={[["Levels", "L0–L5"], ["Dimensions", "11"], ["Privacy", "Browser only"]]}>
       <div className="hero-actions"><a className="button button-dark" href="#assessment">Start the assessment</a><Link className="text-action" href="/framework#measurement">How FDLC measures →</Link></div>
     </PageHero>
+    <GuideReference description="Turn assessment gaps into practical next steps with chapters on verification, operations, governance, and continuous improvement." />
     <section className="maturity-model" aria-labelledby="maturity-model-title">
       <div className="maturity-model-intro">
         <p className="section-label">The maturity journey</p>
