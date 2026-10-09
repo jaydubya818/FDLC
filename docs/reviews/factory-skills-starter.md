@@ -44,9 +44,20 @@ and permissions stay unchanged.
 
 ## Release blocker
 
-The existing site's npm audit reports high-severity findings in the website
-and build dependencies. Some suggested fixes involve major-version changes.
-This feature adds no third-party runtime dependencies and does not change the
-lockfile, lower the audit threshold, or bypass qualification. Keep production
-release blocked until the dependency work is separately resolved and the full
-candidate is qualified. The standalone kit remains available for local review.
+The original audit reported 13 high-severity entries. The 2026-10-09
+remediation updates `@cloudflare/vite-plugin` to 1.63.1, `wrangler` to
+4.149.0, and transitive `source-map-js` to 1.2.2. This installs patched
+`sharp` 0.35.5 and reduces the audit to eight high-severity entries.
+All eight remaining entries trace to braces 3.0.3 and its dependents.
+
+[GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
+reports no patched braces version. npm proposes breaking downgrades of
+microfrontends, Vinext, and the Next ESLint plugin; these were not applied.
+This review does not establish that vulnerable pattern parsing is unreachable
+in every build or runtime path.
+
+The audit threshold and release controls remain unchanged. The user authorized
+merge and production publication, but a specific residual-risk decision has
+been requested because qualification still fails. No security exception has
+been approved or implemented. Keep release on hold until remediation or an
+explicitly reviewed exception resolves the qualification gate.
