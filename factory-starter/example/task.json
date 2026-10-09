@@ -1,0 +1,7 @@
+{
+  "task": "Fix batchCount so a partially filled final batch is counted. Five items with capacity two require three batches. Preserve validation and zero-item behavior.",
+  "expectedFailure": "2 !== 3",
+  "regression": "tests/partial-batch.test.mjs",
+  "allow": ["src/batches.mjs"],
+  "baselineTests": ["tests/batches.test.mjs"]
+}

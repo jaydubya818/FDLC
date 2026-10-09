@@ -31,7 +31,10 @@
     "test:corpus-browser": "node tests/corpus-browser.mjs",
     "pretest:corpus-browser:vercel": "npm run corpus:verify",
     "test:corpus-browser:vercel": "node tests/corpus-browser.mjs next",
-    "shell:check": "node scripts/sync-ai-fde-shell.mjs --check"
+    "shell:check": "node scripts/sync-ai-fde-shell.mjs --check",
+    "starter:pack": "python3 scripts/package-factory-starter.py",
+    "starter:check": "python3 scripts/package-factory-starter.py --check",
+    "starter:test": "node --test factory-starter/test/*.test.mjs"
   },
   "dependencies": {
     "@vercel/microfrontends": "2.4.0",

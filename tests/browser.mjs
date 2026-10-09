@@ -43,7 +43,7 @@ try {
   // independently built Guide artifact and are covered by the migration's
   // exact-deployment composition suites, not by a mutable remote dependency
   // during the FDLC local-build gate.
-  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/about"];
+  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/factory-skills", "/about"];
   const links = new Set();
   async function audit(label) {
     // Measure settled styles; entry fades are deliberately below final contrast.
@@ -98,7 +98,7 @@ try {
       for (const href of await page.locator("a[href]").evaluateAll(nodes => nodes.map(n => n.getAttribute("href")))) {
         if (href.startsWith("/") && !href.startsWith("//") && !href.startsWith("/guide") && !href.startsWith("/deploy/app")) links.add(href.split("#")[0]);
       }
-      if (["/", "/start", "/mission-control"].includes(route)) {
+      if (["/", "/start", "/factory-skills", "/mission-control"].includes(route)) {
         await page.screenshot({ path: new URL(`${route === "/" ? "home" : route.slice(1)}-${width}.png`, output).pathname, fullPage: true });
       }
     }
@@ -378,7 +378,7 @@ try {
   }
   // WCAG 1.4.10: 200% zoom of a 1280px layout is 640 CSS pixels.
   await page.setViewportSize({ width: 640, height: 512 });
-  for (const route of ["/", "/in-5-minutes", "/framework", "/architecture", "/start", "/maturity", "/deploy", "/mission-control"]) {
+  for (const route of ["/", "/in-5-minutes", "/framework", "/architecture", "/start", "/factory-skills", "/maturity", "/deploy", "/mission-control"]) {
     const response = await page.goto(`${origin}${route}`);
     assert.equal(response.status(), 200, `${route} @200%`);
     await page.getByRole("heading", { level: 1 }).waitFor();
