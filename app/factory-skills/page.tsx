@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- Guide links cross the microfrontend boundary. */
 import type { Metadata } from "next";
+import "./starter.css";
 import Link from "next/link";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
@@ -24,7 +25,8 @@ export default function FactorySkillsPage() {
     </section>
     <section className="section-block" id="try-it">
       <SectionHeader eyebrow="Start here" title="Run the example first." description="You need Node.js 22.13 or newer, Git, and macOS or Linux. Extract the ZIP, then run these commands from the folder containing factory-starter. Use a new skillz folder." />
-      <div className="starter-setup"><pre aria-label="Example setup commands"><code>{setup}</code></pre><div><h3>What should happen?</h3><p>The example counts only two batches for five items at capacity two. The regression expects three. The script records the mismatch, applies the known fix, and runs the checks again.</p><p><strong>Look for “status”: “verified”.</strong> The output includes the evidence directory.</p><p>This is a scripted demonstration. It does not claim an agent solved a new task.</p></div></div>
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- Scrollable commands need keyboard access on narrow screens. */}
+      <div className="starter-setup"><pre tabIndex={0} aria-label="Example setup commands"><code>{setup}</code></pre><div><h3>What should happen?</h3><p>The example counts only two batches for five items at capacity two. The regression expects three. The script records the mismatch, applies the known fix, and runs the checks again.</p><p><strong>Look for “status”: “verified”.</strong> The output includes the evidence directory.</p><p>This is a scripted demonstration. It does not claim an agent solved a new task.</p></div></div>
     </section>
     <section className="section-block">
       <SectionHeader eyebrow="Your skills, one workflow" title="Five phases. One source of truth." description="The kit references a pinned version of your Skillz repository. Its generated instructions guide your Codex session through the relevant skills, with the original supporting files and attribution intact." />

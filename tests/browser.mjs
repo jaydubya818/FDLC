@@ -81,6 +81,9 @@ try {
       await page.getByRole("heading", { level: 1 }).waitFor();
       await checkGlobalNavigation(page, { mobile: width === 390, keyboard: route === "/" });
       await audit(route);
+      if (route === "/factory-skills") {
+        assert.equal(await page.locator(".starter-outcome").evaluate(node => getComputedStyle(node).display), "grid", "Starter layout styles must reach the browser");
+      }
       if (route === "/architecture") {
         const systemFlow = page.locator("#system-flow");
         const layout = await systemFlow.evaluate(section => {
