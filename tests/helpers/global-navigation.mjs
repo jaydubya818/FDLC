@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 
 const moreLabels = ["In 5 Minutes", "Start", "Factory Skills", "Simulator", "Reference Lab", "Learning Library (Preview)", "Manifesto", "Enterprise", "About"];
-const morePaths = ["/in-5-minutes", "/start", "/simulator", "/lab", "/corpus-preview", "/manifesto", "/enterprise", "/about"];
+const morePaths = ["/in-5-minutes", "/start", "/factory-skills", "/simulator", "/lab", "/corpus-preview", "/manifesto", "/enterprise", "/about"];
 const primaryLabels = ["Framework", "Architecture", "Guide", "AI-FDE", "Mission Control", "Maturity", "More"];
 
 export async function checkGlobalNavigation(page, { mobile, keyboard = false, touch = false }) {
