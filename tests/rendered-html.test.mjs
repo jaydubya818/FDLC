@@ -89,7 +89,7 @@ test("corpus raw artifacts are allowlisted and unknown targets fail closed", asy
 });
 
 test("global More exposes the preview while contextual artifacts remain focused", async () => {
-  const expected = ["In 5 Minutes", "Start", "Simulator", "Reference Lab", "Learning Library (Preview)", "Manifesto", "Enterprise", "About"];
+  const expected = ["In 5 Minutes", "Start", "Simulator", "Reference Lab", "Learning Library (Preview)", "Manifesto", "Enterprise", "Factory Updates", "About"];
   for (const route of routes) {
     const html = await (await render(route)).text();
     const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
