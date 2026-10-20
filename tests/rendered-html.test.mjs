@@ -9,7 +9,7 @@ function render(pathname = "/", method = "GET") {
   return worker.fetch(new Request(`http://localhost${pathname}`, { method, headers: { accept: "text/html" } }), { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } }, { waitUntil() {}, passThroughOnException() {} });
 }
 
-const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/specification", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/lab", "/simulator", "/about"];
+const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/specification", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/lab", "/simulator", "/updates", "/about"];
 
 test("corpus preview renders a noindex catalog without entering the public sitemap", async () => {
   const response = await render("/corpus-preview");
@@ -89,7 +89,7 @@ test("corpus raw artifacts are allowlisted and unknown targets fail closed", asy
 });
 
 test("global More exposes the preview while contextual artifacts remain focused", async () => {
-  const expected = ["In 5 Minutes", "Start", "Simulator", "Reference Lab", "Learning Library (Preview)", "Manifesto", "Enterprise", "About"];
+  const expected = ["In 5 Minutes", "Start", "Simulator", "Reference Lab", "Learning Library (Preview)", "Manifesto", "Enterprise", "Factory Updates", "About"];
   for (const route of routes) {
     const html = await (await render(route)).text();
     const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
