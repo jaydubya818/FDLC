@@ -1,10 +1,15 @@
 import assert from "node:assert/strict";
 
-const moreLabels = ["In 5 Minutes", "Start", "Simulator", "Reference Lab", "Learning Library (Preview)", "Manifesto", "Enterprise", "Factory Updates", "About"];
-const morePaths = ["/in-5-minutes", "/start", "/simulator", "/lab", "/corpus-preview", "/manifesto", "/enterprise", "/updates", "/about"];
-const primaryLabels = ["Framework", "Architecture", "Guide", "AI-FDE", "Mission Control", "Maturity", "More"];
+const allMore = [["In 5 Minutes", "/in-5-minutes"], ["Architecture", "/architecture"], ["AI-FDE", "/deploy"], ["Start", "/start"], ["Simulator", "/simulator"], ["Reference Lab", "/lab"], ["Learning Library (Preview)", "/corpus-preview"], ["Manifesto", "/manifesto"], ["Enterprise", "/enterprise"], ["Factory Updates", "/updates"], ["About", "/about"]];
 
 export async function checkGlobalNavigation(page, { mobile, keyboard = false, touch = false }) {
+  // Inside AI-FDE (/deploy) its menu is promoted to the top level and More omits the duplicate.
+  const pathname = new URL(page.url()).pathname;
+  const inAiFde = pathname === "/deploy" || pathname.startsWith("/deploy/");
+  const more = inAiFde ? allMore.filter(([, href]) => href !== "/deploy") : allMore;
+  const moreLabels = more.map(([label]) => label);
+  const morePaths = more.map(([, href]) => href);
+  const primaryLabels = inAiFde ? ["What is FDLC", "Guide", "AI-FDE", "Mission Control", "Assess", "More"] : ["What is FDLC", "Guide", "Mission Control", "Assess", "More"];
   const header = page.locator("header").first();
   const headerLayout = await header.evaluate(node => {
     const logo = node.querySelector(".global-logo");
@@ -17,16 +22,16 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
   assert.ok(headerLayout.logoWidth >= 180 && headerLayout.logoWidth <= 220, "The logo retains its intended size");
   const desktop = header.getByRole("navigation", { name: "Primary navigation", includeHidden: true });
   assert.deepEqual(await desktop.locator(":scope > a, :scope > .nav-dropdown:not(.nav-dropdown-linked) > button, :scope > .nav-dropdown-linked > a").allTextContents().then(labels => labels.map(label => label.replace("⌄", "").trim())), primaryLabels);
-  const more = header.locator("#more-navigation");
-  assert.deepEqual(await more.locator("a").allTextContents(), moreLabels);
-  assert.deepEqual(await more.locator("a").evaluateAll(nodes => nodes.map(node => new URL(node.href).pathname)), morePaths);
+  const moreMenu = header.locator("#more-navigation");
+  assert.deepEqual(await moreMenu.locator("a").allTextContents(), moreLabels);
+  assert.deepEqual(await moreMenu.locator("a").evaluateAll(nodes => nodes.map(node => new URL(node.href).pathname)), morePaths);
   assert.equal(await header.locator('a[href$="/spec"], a[href$="/specification"], a[href$="/benchmarks"]').count(), 0);
   if (["/spec", "/specification", "/benchmarks"].includes(new URL(page.url()).pathname)) {
     assert.equal(await desktop.locator(".is-active, [aria-current=page]").count(), 0);
   }
 
   const trigger = mobile ? header.getByLabel("Open navigation", { exact: true }) : desktop.getByRole("button", { name: "More", exact: true });
-  const panel = mobile ? header.locator("#mobile-navigation") : more;
+  const panel = mobile ? header.locator("#mobile-navigation") : moreMenu;
   const activate = async () => touch ? trigger.tap() : trigger.click();
   await activate();
   // Retry once only if the initial click arrived before hydration.
@@ -51,7 +56,7 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
       await panel.waitFor({ state: "visible" });
       assert.equal(await trigger.getAttribute("aria-expanded"), "true");
       await page.keyboard.press("Tab");
-      const firstLabel = mobile ? "Framework" : moreLabels[0];
+      const firstLabel = mobile ? "What is FDLC" : moreLabels[0];
       assert.equal(await page.evaluate(() => document.activeElement.textContent), firstLabel);
       await page.keyboard.press("End");
       assert.equal(await page.evaluate(() => document.activeElement.textContent), "About");
@@ -87,6 +92,12 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
     }
   }
   const productNavigation = mobile ? header.locator("#mobile-navigation") : desktop;
+  if (!inAiFde) {
+    // Outside AI-FDE the product is reached from More; its workspace menu is not promoted.
+    assert.equal(await productNavigation.getByRole("button", { name: "AI-FDE navigation", exact: true }).count(), 0);
+    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+    return;
+  }
   if (mobile) await header.getByLabel("Open navigation", { exact: true }).click();
   const productLink = productNavigation.getByRole("link", { name: "AI-FDE", exact: true });
   assert.equal(await productLink.getAttribute("href"), "/deploy", "AI-FDE opens the explanatory product page");

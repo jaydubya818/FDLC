@@ -9,6 +9,7 @@ import { GuideReading } from "../components/guide-reading";
 import { LensSwitcher } from "../components/lens-switcher";
 import { LifecycleDiagram } from "../components/lifecycle-diagram";
 import { GoverningLifecycleDiagram } from "../components/governing-lifecycle-diagram";
+import { GuideStageBridge } from "../components/guide-stage-bridge";
 import { NextSteps } from "../components/next-steps";
 import { PageContentsNav } from "../components/page-contents-nav";
 import { PageHero, SectionHeader } from "../components/page-hero";
@@ -27,7 +28,7 @@ export const metadata: Metadata = pageMetadata("Framework", canonicalDefinition,
 const frameworkPieces = [
   ["FDLC Framework", "Open methodology", "The operating model and engineering discipline defined on this page.", "/framework"],
   ["FDLC Specification", "Proposed standard", "Formal definitions and invariants for portable artifacts and state transitions.", "/specification"],
-  ["AI Software Factory Guide", "Open field guide", "The detailed methodology from first principles through production.", "/guide"],
+  ["The FDLC Guide", "Open field guide", "The AI Software Factory Guide: the detailed methodology from first principles through production.", "/guide"],
   ["Mission Control", "Open-source reference", "The reference implementation that makes the FDLC protocol concrete.", "/mission-control"],
   ["AI-FDE", "Preview product", "The evidence-driven product for turning reviewed enterprise reality into an approved Factory Definition, led by an accountable human Factory Deployed Engineer.", "/deploy"],
   ["FDLC Enterprise", "Proposed product", "The commercial control plane for operating proven factories at organizational scale.", "/enterprise"],
@@ -79,7 +80,7 @@ export default function FrameworkPage() {
         <div><p>SDLC manages the lifecycle of software.</p><p><strong>FDLC manages the lifecycle of the factory that produces software.</strong></p><p>It is the factory operating system: the disciplined layer around agents, models, tools, people, policies, evidence, and workflows.</p><p><strong>Verified delivery, not merely generated code.</strong></p></div>
       </section>
 
-      <section className="section-block" id="governing-lifecycle"><GoverningLifecycleDiagram /></section>
+      <section className="section-block" id="governing-lifecycle"><GoverningLifecycleDiagram /><GuideStageBridge /></section>
 
       <section className="section-block framework-category" id="category">
         <SectionHeader eyebrow="The category boundary" title="Two transitions, then a new discipline." description="First, agents participate across the software lifecycle. Then those workflows become a persistent, governed production system. FDLC is the engineering discipline for that factory." />

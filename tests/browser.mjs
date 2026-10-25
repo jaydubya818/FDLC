@@ -297,25 +297,28 @@ try {
     report.flows.push({ name: "mission-control-delivery-and-operator-tabs", width, result: "PASS" });
 
     await page.goto(origin);
-    assert.match(await page.locator(".hero-problem").innerText(), /Trusted autonomous software delivery is not/);
-    await page.getByRole("link", { name: "See a factory in action" }).click();
-    await page.waitForURL(`${origin}/#worked-example`);
-    assert.ok(await page.getByRole("list", { name: "Dependency modernization factory flow" }).isVisible());
-    report.flows.push({ name: "homepage-problem-to-worked-example", width, result: "PASS" });
+    assert.equal((await page.getByRole("heading", { level: 1 }).innerText()).replace(/\s+/g, " ").trim(), "Factory Development Lifecycle");
+    assert.ok(await page.getByText("The SDLC for software built by autonomous AI agents.").isVisible());
+    const heroBox = await page.locator(".home-hero").boundingBox();
+    assert.ok(heroBox && heroBox.width <= width, "homepage hero fits the viewport");
+    assert.ok(await page.locator(".home-hero").getByRole("link", { name: "Understand FDLC in 5 minutes" }).isVisible());
+    await page.goto(`${origin}/#worked-example`);
+    assert.ok(await page.getByRole("list", { name: "Dependency upgrade, step by step" }).isVisible());
+    report.flows.push({ name: "homepage-name-to-worked-example", width, result: "PASS" });
 
     const explorer = page.locator("#factory-explorer");
     await explorer.scrollIntoViewIfNeeded();
-    const verifyTab = explorer.getByRole("tab", { name: /Verify/ });
+    const verifyTab = explorer.getByRole("tab", { name: /Verification/ });
     assert.equal(await verifyTab.getAttribute("aria-selected"), "true");
     await verifyTab.focus();
     await page.keyboard.press("ArrowRight");
-    assert.equal(await explorer.getByRole("tab", { name: /Approve/ }).getAttribute("aria-selected"), "true");
+    assert.equal(await explorer.getByRole("tab", { name: /Approval/ }).getAttribute("aria-selected"), "true");
     await explorer.getByRole("button", { name: /Evals/ }).click();
     assert.match(await explorer.locator(".factory-explorer-capability-detail").innerText(), /Evals/);
     const exampleRecord = explorer.locator(".factory-explorer-example a").first();
     assert.match(await exampleRecord.getAttribute("href") ?? "", /in-5-minutes/);
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await explorer.getByRole("tab", { name: /Verify/ }).click();
+    await explorer.getByRole("tab", { name: /Verification/ }).click();
     assert.equal(await verifyTab.getAttribute("aria-selected"), "true");
     await page.emulateMedia({ reducedMotion: "no-preference" });
     report.flows.push({ name: "factory-explorer-keyboard-capabilities-example-links", width, result: "PASS" });
@@ -337,7 +340,7 @@ try {
 
     if (width === 390) {
       await page.getByLabel("Open navigation", { exact: true }).click();
-      await page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("link", { name: "Framework", exact: true }).click();
+      await page.getByRole("navigation", { name: "Mobile navigation" }).getByRole("link", { name: "What is FDLC", exact: true }).click();
       await page.waitForURL(`${origin}/framework`);
       await page.waitForFunction(() => document.querySelector(".global-mobile > button")?.getAttribute("aria-expanded") === "false");
       const comparison = page.getByRole("region", { name: "Category comparison" });
@@ -389,7 +392,7 @@ try {
   // never execution state or release authority.
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 1000 });
-    await page.goto(origin);
+    await page.goto(`${origin}/framework`);
     const explorer = page.locator(".governing-lifecycle");
     const stages = ["Intent", "Planning", "Execution", "Evidence", "Verification", "Approval", "Release", "Outcomes", "Learning"];
     for (const stage of stages) {

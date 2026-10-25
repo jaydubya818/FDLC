@@ -10,7 +10,7 @@ import {
 } from "../../data/factory-explorer";
 import { preferredScrollBehavior } from "../../lib/motion";
 
-const defaultStageId = "verify";
+const defaultStageId = "verification";
 const defaultCapabilityId: FactoryCapabilityId = "evals";
 
 function stageHasCapability(stage: (typeof factoryExplorerStages)[number], capabilityId: FactoryCapabilityId) {
@@ -26,11 +26,10 @@ export function FactoryExplorer({ id = "factory-explorer", showFrameworkLink = t
   const selectedStageIndex = factoryExplorerStages.findIndex((stage) => stage.id === selectedStage.id);
   const selectedCapability = factoryExplorerCapabilities.find((capability) => capability.id === selectedCapabilityId) ?? factoryExplorerCapabilities[7];
   const selectedCapabilityParticipates = stageHasCapability(selectedStage, selectedCapability.id);
-  const exampleStep = dependencyModernizationExample.runtimeSteps.find((step) => step.stepId === selectedStage.id);
-  const exampleRecords = exampleStep?.artifacts.flatMap((artifactId) => {
+  const exampleRecords = selectedStage.exampleArtifacts.flatMap((artifactId) => {
     const artifact = dependencyModernizationExample.artifacts.find((item) => item.protocolId === artifactId);
     return artifact ? [artifact.exampleId] : [];
-  }) ?? [];
+  });
 
   useEffect(() => {
     const container = stageList.current;
@@ -74,7 +73,7 @@ export function FactoryExplorer({ id = "factory-explorer", showFrameworkLink = t
       <div className="factory-explorer-chrome">
         <div>
           <p className="orientation-label" id="factory-explorer-title">Interactive factory explorer</p>
-          <strong>Follow one unit of work</strong>
+          <strong>Follow one unit of work through the nine stages</strong>
           {showFrameworkLink ? <Link className="factory-explorer-framework" href="/framework#explorer">Open on Framework →</Link> : null}
         </div>
         <div className="factory-explorer-controls">
@@ -84,7 +83,7 @@ export function FactoryExplorer({ id = "factory-explorer", showFrameworkLink = t
           </p>
           <div className="factory-explorer-progress" aria-label={`Stage ${selectedStage.number} of ${factoryExplorerStages.length}`} role="group">
             <button
-              aria-label="View previous runtime stage"
+              aria-label="View previous lifecycle stage"
               disabled={selectedStageIndex === 0}
               onClick={() => selectStage(selectedStageIndex - 1)}
               type="button"
@@ -93,7 +92,7 @@ export function FactoryExplorer({ id = "factory-explorer", showFrameworkLink = t
             </button>
             <span>{String(selectedStage.number).padStart(2, "0")} / {String(factoryExplorerStages.length).padStart(2, "0")}</span>
             <button
-              aria-label="View next runtime stage"
+              aria-label="View next lifecycle stage"
               disabled={selectedStageIndex === factoryExplorerStages.length - 1}
               onClick={() => selectStage(selectedStageIndex + 1)}
               type="button"
@@ -107,7 +106,7 @@ export function FactoryExplorer({ id = "factory-explorer", showFrameworkLink = t
       <div
         className="factory-explorer-stages"
         aria-describedby="factory-explorer-instructions"
-        aria-label="Runtime lifecycle stages"
+        aria-label="FDLC lifecycle stages"
         ref={stageList}
         role="tablist"
       >
@@ -170,7 +169,7 @@ export function FactoryExplorer({ id = "factory-explorer", showFrameworkLink = t
             <h4>{dependencyModernizationExample.title}</h4>
           </div>
           <div>
-            <p>{exampleStep?.action}</p>
+            <p>{selectedStage.exampleAction}</p>
             <ul aria-label="Example records created at this stage">
               {exampleRecords.map((record) => <li key={record}><Link href="/in-5-minutes#artifacts">{record}</Link></li>)}
             </ul>

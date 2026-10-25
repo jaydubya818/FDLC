@@ -7,7 +7,7 @@ import { guideValueStream } from "../../data/fdlc";
 import { guideEntryPaths, guideParts, guideRoot, proposedGuideMap } from "../../data/guide";
 import { pageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("AI Software Factory Guide", "The field guide to designing, building, proving, operating, and improving an engineering system in which evidence—not an agent saying done—decides what advances.", "/guide");
+export const metadata: Metadata = pageMetadata("The FDLC Guide (The AI Software Factory Guide)", "The field guide to designing, building, proving, operating, and improving an engineering system in which evidence—not an agent saying done—decides what advances.", "/guide");
 
 const contents = [
   { label: "Reading paths", href: "#reading-paths" },
@@ -22,7 +22,7 @@ const contents = [
 export default function GuidePage() {
   const chapterCount = guideParts.reduce((count, part) => count + part.chapters.length, 0);
   return <SiteShell><div className="page-wrap guide-page">
-    <PageHero eyebrow="The AI Software Factory Guide / 04" variant="compact" title="Build the system around the agent." description="The FDLC-native portal into the full field guide for designing, building, proving, operating, and improving an AI software factory.">
+    <PageHero eyebrow="The FDLC Guide · The AI Software Factory Guide" variant="compact" title="Build the system around the agent." description="The FDLC-native portal into the full field guide for designing, building, proving, operating, and improving an AI software factory.">
       <div className="guide-stats is-hero-meta"><span><strong>{chapterCount}</strong> chapters</span><span><strong>6</strong> parts</span><span><strong>8</strong> Guide stages</span></div>
       <div className="hero-actions">
         <a className="button button-dark" href={`${guideRoot}/01-understand/01-why-software-engineering-is-changing`}>Start the full Guide →</a>
@@ -33,7 +33,7 @@ export default function GuidePage() {
 
     <aside className="guide-portal-note" aria-label="Guide hosting note">
       <strong>One framework. One full book.</strong>
-      <div className="guide-identity"><p><strong>FDLC</strong> is the operating model and category definition.</p><p><strong>The AI Software Factory Guide</strong> is the detailed methodology that teaches how to implement it.</p></div>
+      <div className="guide-identity"><p><strong>FDLC</strong> is the operating model and category definition.</p><p><strong>The FDLC Guide</strong> (published as The AI Software Factory Guide) is the detailed methodology that teaches how to implement it.</p></div>
       <p>The complete 44-chapter Guide is part of FDLC.ai and owns every route under <code>/guide</code>. This shadow page remains only as a reversible cutover surface.</p>
       <div className="guide-portal-actions"><a href={guideRoot}>Complete contents →</a><a href={`${guideRoot}/search`}>Search the Guide →</a></div>
     </aside>

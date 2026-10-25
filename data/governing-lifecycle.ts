@@ -9,3 +9,14 @@ export const governingLifecycle = [
   { name: "Outcomes", detail: "Measure the result against the intended outcome.", input: "Release and production observations", output: "Measured outcome", control: "Compare actual behavior with the baseline. A passing test suite alone does not prove production success.", example: "Confirm the vulnerability is resolved without new errors. Record cycle time, human review effort, and cost per accepted upgrade." },
   { name: "Learning", detail: "Use validated outcomes to propose controlled improvements.", input: "Outcomes, failures, and human feedback", output: "Candidate improvement", control: "Evaluate changes to skills, context, routing, or the harness on representative cases and protected holdouts. Qualification and approval precede rollout.", example: "A missed compatibility issue becomes a regression case. A revised upgrade skill returns through the same governed lifecycle before use." },
 ] as const;
+
+// How the Guide's eight-stage value stream (data/fdlc.ts guideValueStream) maps onto
+// the nine governing stages. The Guide reads the same lifecycle from the builder's seat.
+export const guideStageBridge = [
+  { governing: ["Intent"], guide: [["Intent", "/guide/stages/01-builder-intent"]] },
+  { governing: ["Planning"], guide: [["Plan", "/guide/stages/02-plan"], ["Define Agent", "/guide/stages/03-define-agent"]] },
+  { governing: ["Execution"], guide: [["Execute through Harness", "/guide/stages/04-execute-through-harness"], ["Apply Skills", "/guide/stages/05-apply-skills"]] },
+  { governing: ["Evidence", "Verification"], guide: [["Evaluate", "/guide/stages/06-evaluate"]] },
+  { governing: ["Approval", "Release"], guide: [["Deliver Software", "/guide/stages/08-deliver-software"]] },
+  { governing: ["Outcomes", "Learning"], guide: [["Improve", "/guide/stages/07-improve"]] },
+] as const;
