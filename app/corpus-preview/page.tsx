@@ -39,7 +39,7 @@ export default function CorpusPreviewPage() {
     <PageHero eyebrow="FDLC learning library / Review candidate" variant="compact" title="Find the guidance you need to build a trustworthy software factory." description="Choose a practical path, explore a topic, or search the complete FDLC draft reference. The library connects the operating model to concrete architecture, implementation, and adoption work.">
       <div className="hero-actions"><a className="button button-dark" href="#paths">Choose a learning path →</a><a className="button button-light" href="#catalog">Search all {corpusDocuments.length} documents</a></div>
     </PageHero>
-    <GuideReference description="For the structured reading journey, start with the AI Software Factory Guide. This preview library provides additional draft reference material." />
+    <GuideReference description="For the structured reading journey, start with the FDLC Guide. This preview library provides additional draft reference material." />
     <CorpusStatus />
 
     <section className="corpus-journeys" id="paths" aria-labelledby="corpus-paths-heading">

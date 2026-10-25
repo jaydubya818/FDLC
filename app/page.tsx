@@ -7,12 +7,14 @@ import { GoverningLifecycleDiagram } from "./components/governing-lifecycle-diag
 import { SectionHeader } from "./components/page-hero";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
+import { GuideStageBridge } from "./components/guide-stage-bridge";
 import { WhatsRealToday } from "./components/whats-real-today";
-import { homepageActions, homepageExampleSteps, homepageThesis, operatingModelBridge, operatingModelMoves } from "../data/homepage";
+import { governingLifecycle } from "../data/governing-lifecycle";
+import { heroHeadline, heroSubhead, homepageActions, homepageExampleSteps, homepageThesis, sdlcToFdlc, workedExampleContrast } from "../data/homepage";
 import { evidencePositioning, primaryPositioning } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "FDLC is the open operating model and technical foundation for designing, governing, and operating trusted AI software factories.", "/");
+export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): The SDLC for software built by autonomous AI agents", "FDLC is the open framework for delivering software with autonomous AI agents: one lifecycle, clear checkpoints, and an evidence trail, so agent-written changes ship only after they are verified and approved.", "/");
 
 export default function Home() {
   return (
@@ -26,29 +28,30 @@ export default function Home() {
         <section className="hero-shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>Factory Development Lifecycle (FDLC)</span><span>Open framework · v0.1</span></p>
-            <h1>Build the factory that builds your software.</h1>
-            <p className="hero-lede">The operating model and technical foundation for AI software factories that turn intent into verified software.</p>
+            <h1>{heroHeadline}</h1>
+            <p className="hero-lede">{heroSubhead}</p>
             <div className="hero-actions">
-              <a className="button button-dark" href="/guide/00-front-matter/00-how-to-read-this-guide">Start reading the Guide</a>
+              <a className="button button-dark" href="/guide/00-front-matter/00-how-to-read-this-guide">Start reading the FDLC Guide</a>
               <Link className="button button-light" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
             </div>
-            <a className="text-action hero-example-link" href="#worked-example">See a factory in action →</a>
-            <p className="hero-audience">For engineering leaders, platform teams, software-factory architects, and builders evaluating governed AI delivery.</p>
+            <a className="text-action hero-example-link" href="#worked-example">See a before-and-after example →</a>
             <div className="hero-category-contrast" aria-label="Difference between SDLC and FDLC" role="group">
               <div><span>SDLC</span><p>Governs the lifecycle of <strong>software.</strong></p></div>
-              <div><span>FDLC</span><p>Governs the <strong>factory that builds it.</strong></p></div>
+              <div><span>FDLC</span><p>Governs the <strong>factory that builds it</strong>: the agents, tools, checks, and people that turn intent into shipped code.</p></div>
             </div>
             <p className="hero-problem">Code generation is becoming abundant. Trusted autonomous software delivery is not.</p>
           </div>
-          <aside className="hero-model hero-value-model" aria-labelledby="hero-model-title">
-            <div className="model-chrome"><span>FDLC / OPERATING MODEL</span><span>01—04</span></div>
-            <h2 id="hero-model-title">Make autonomous delivery governable.</h2>
-            <ol>
-              {operatingModelMoves.map(([number, title, description]) => <li key={number}><span>{number}</span><div><strong>{title}</strong><p>{description}</p></div></li>)}
+          <aside className="hero-model hero-value-model hero-stage-model" aria-labelledby="hero-model-title">
+            <div className="model-chrome"><span>FDLC / ONE LIFECYCLE</span><span>01—09</span></div>
+            <h2 id="hero-model-title">Nine stages. Work moves on only with evidence.</h2>
+            <ol className="hero-stage-list" aria-label="The nine FDLC stages">
+              {governingLifecycle.map((stage, index) => <li key={stage.name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{stage.name}</strong></li>)}
             </ol>
-            <p className="model-bridge">{operatingModelBridge.summary}</p>
-            <nav aria-label="Deeper system lenses" className="model-bridge-links">
-              {operatingModelBridge.links.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
+            <p className="model-bridge">Each stage has an owner, an output, and a check that must pass before the next one starts.</p>
+            <nav aria-label="Explore the lifecycle" className="model-bridge-links">
+              <a href="#sdlc-to-fdlc">Compare with the SDLC</a>
+              <a href="#lifecycle">Walk through each stage</a>
+              <Link href="/framework">Read the framework</Link>
             </nav>
             <div className="model-outcome"><span>Unit of value</span><strong>Verified outcome</strong></div>
           </aside>
@@ -56,6 +59,58 @@ export default function Home() {
 
         <section className="statement-band" aria-label="FDLC category statement">
           <p>FDLC / Category promise</p><strong>{primaryPositioning}</strong><span>{evidencePositioning}</span>
+        </section>
+
+        <section className="content-section sdlc-map" id="sdlc-to-fdlc" aria-labelledby="sdlc-to-fdlc-title">
+          <SectionHeader eyebrow="If you know the SDLC, you know the shape" id="sdlc-to-fdlc-title" title="The phases you already know, rebuilt for agents doing the work." description="FDLC keeps the familiar software lifecycle. What changes is who does each step and what has to be proven before the work moves on." />
+          <div className="sdlc-map-table" role="table" aria-label="SDLC phases mapped to FDLC stages">
+            <div className="sdlc-map-row sdlc-map-head" role="row"><span role="columnheader">SDLC phase</span><span role="columnheader">FDLC stage</span><span role="columnheader">What changes when agents do the work</span></div>
+            {sdlcToFdlc.map(([phase, stages, change]) => (
+              <div className="sdlc-map-row" role="row" key={phase}>
+                <span role="cell" className="sdlc-map-phase">{phase}</span>
+                <span role="cell" className="sdlc-map-stage">{stages.join(" + ")}</span>
+                <span role="cell" className="sdlc-map-change">{change}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="content-section adoption-example" id="worked-example">
+          <SectionHeader eyebrow="One illustrative example" title="Modernize a dependency without surrendering control." description="The same task, an agent-driven dependency upgrade, run two ways. The difference is not the agent. It is the system around it." />
+          <div className="before-after" aria-label="Dependency upgrade with and without FDLC" role="group">
+            <article className="before-after-card is-before">
+              <p className="section-label">Before · Agents without FDLC</p>
+              <h3>Fast, but you are trusting the agent&apos;s word.</h3>
+              <ul>{workedExampleContrast.before.map((item) => <li key={item}>{item}</li>)}</ul>
+            </article>
+            <article className="before-after-card is-after">
+              <p className="section-label">After · Agents with FDLC</p>
+              <h3>Just as fast, and every step leaves proof.</h3>
+              <ul>{workedExampleContrast.after.map((item) => <li key={item}>{item}</li>)}</ul>
+            </article>
+          </div>
+          <ol className="adoption-example-flow" aria-label="Dependency modernization factory flow">
+            {homepageExampleSteps.map(([name, description], index) => <li key={name}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{name}</strong><p>{description}</p></div></li>)}
+          </ol>
+          <div className="adoption-example-actions"><Link className="button button-dark" href="/in-5-minutes">Follow the complete example</Link><Link className="button button-light" href="/start">Build your Factory Definition</Link></div>
+        </section>
+
+        <section className="content-section" id="lifecycle">
+          <GoverningLifecycleDiagram />
+          <GuideStageBridge />
+        </section>
+
+        <div className="content-section factory-explorer-home">
+          <FactoryExplorer />
+        </div>
+
+        <section className="home-guide-invite" aria-labelledby="home-guide-invite-title">
+          <div>
+            <p className="section-label">Go deeper</p>
+            <h2 id="home-guide-invite-title">Follow the complete FDLC Guide.</h2>
+            <p>Move from the factory overview to the chapters on design, agents, evidence, operations, and improvement.</p>
+          </div>
+          <a className="button button-dark" href="/guide">Browse all chapters →</a>
         </section>
 
         <section className="content-section try-it" aria-labelledby="try-it-title">
@@ -68,53 +123,30 @@ export default function Home() {
           </ol>
         </section>
 
-        <section className="content-section"><GoverningLifecycleDiagram /></section>
-
-        <section className="home-guide-invite" aria-labelledby="home-guide-invite-title">
-          <div>
-            <p className="section-label">Go deeper</p>
-            <h2 id="home-guide-invite-title">Follow the complete guide.</h2>
-            <p>Move from the factory overview to the chapters on design, agents, evidence, operations, and improvement.</p>
-          </div>
-          <a className="button button-dark" href="/guide">Browse all chapters →</a>
-        </section>
-
-        <section className="content-section adoption-example" id="worked-example">
-          <SectionHeader eyebrow="One illustrative example" title="Modernize a dependency without surrendering control." description="A software factory does more than generate a patch. It coordinates bounded work, returns evidence, preserves human authority, and produces a candidate that can earn release." />
-          <ol className="adoption-example-flow" aria-label="Dependency modernization factory flow">
-            {homepageExampleSteps.map(([name, description], index) => <li key={name}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{name}</strong><p>{description}</p></div></li>)}
-          </ol>
-          <div className="adoption-example-actions"><Link className="button button-dark" href="/in-5-minutes">Follow the complete example</Link><Link className="button button-light" href="/start">Build your Factory Definition</Link></div>
-        </section>
-
-        <div className="content-section factory-explorer-home">
-          <FactoryExplorer />
-        </div>
-
         <section className="adoption-thesis">
-          <div><p className="section-label">Why FDLC</p><h2>Autonomy becomes useful when the surrounding system is trustworthy.</h2></div>
+          <div><p className="section-label">Why FDLC</p><h2>Agents become useful when you can trust the system around them.</h2></div>
           <div className="adoption-thesis-grid">
             {homepageThesis.map(([number, title, description]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{description}</p></article>)}
           </div>
         </section>
 
         <section className="content-section adoption-actions">
-          <SectionHeader eyebrow="Use FDLC now" title="Choose the next useful step." description="Start with the depth that matches your question. Every path leads back to one governed system." />
+          <SectionHeader eyebrow="Use FDLC now" title="Choose the next useful step." description="Start with the depth that matches your question. Every path leads back to the same lifecycle." />
           <div className="adoption-action-grid">
             {homepageActions.map(([label, description, href, action]) => href.startsWith("/guide")
               ? <a href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></a>
               : <Link href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></Link>)}
           </div>
-          <nav className="adoption-reference-links" aria-label="FDLC technical references"><Link href="/architecture">Architecture</Link><a href="/guide">Guide</a><Link href="/mission-control">Mission Control</Link><Link href="/manifesto">Manifesto</Link></nav>
+          <nav className="adoption-reference-links" aria-label="FDLC technical references"><Link href="/framework">Framework</Link><Link href="/architecture">Architecture</Link><a href="/guide">Guide</a><Link href="/mission-control">Mission Control</Link><Link href="/manifesto">Manifesto</Link></nav>
         </section>
 
         <section className="mission-preview adoption-mission-preview">
           <div className="mission-preview-copy">
-            <p className="section-label">Open-source reference implementation</p><h2>See the operating model in Mission Control.</h2>
-            <p>Inspect how plans, Work Orders, attempts, evidence, approvals, releases, and outcomes stay visible across autonomous software work.</p>
+            <p className="section-label">Open-source reference implementation</p><h2>See the lifecycle running in Mission Control.</h2>
+            <p>Mission Control is the open-source control plane that shows plans, Work Orders, attempts, evidence, approvals, releases, and outcomes for agent work in one place.</p>
             <div className="hero-actions"><Link className="button button-dark" href="/mission-control">Inspect Mission Control</Link><a className="button button-light" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View source ↗</a></div>
           </div>
-          <figure className="product-frame"><div><span>MISSION CONTROL / COMMAND CENTER</span><span>DEMO VIEW</span></div><Image src="/mission-control/command-center.png" alt="Mission Control command center showing ranked work that needs operator attention" width={1600} height={1050} sizes="(max-width: 980px) 100vw, 65vw" /><figcaption>Deterministic demo view. Current capability status is documented on the Mission Control page.</figcaption></figure>
+          <figure className="product-frame"><div><span>MISSION CONTROL / COMMAND CENTER</span><span>DEMO VIEW</span></div><Image src="/mission-control/command-center.png" alt="Mission Control command center showing ranked work that needs operator attention" width={1600} height={1050} sizes="(max-width: 980px) 100vw, 65vw" /><figcaption>A demo screenshot with sample data. The Mission Control page shows what works today.</figcaption></figure>
         </section>
 
         <section className="content-section">
@@ -123,7 +155,7 @@ export default function Home() {
 
         <section className="content-section adoption-enterprise">
           <div><p className="section-label">Need help applying FDLC?</p><h2>Start with one bounded factory line.</h2></div>
-          <div><p>AI-FDE helps an accountable human Factory Deployed Engineer turn reviewed enterprise evidence into an approved Factory Definition for Mission Control validation.</p><div className="hero-actions"><Link className="button button-dark" href="/deploy">Explore AI-FDE</Link><Link className="text-action" href="/enterprise">Enterprise path →</Link></div></div>
+          <div><p>AI-FDE (preview) helps an engineer on your team turn what they learn about your systems into an approved Factory Definition that Mission Control can check.</p><div className="hero-actions"><Link className="button button-dark" href="/deploy">Explore AI-FDE</Link><Link className="text-action" href="/enterprise">Enterprise path →</Link></div></div>
         </section>
       </main>
       <SiteFooter />

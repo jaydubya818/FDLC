@@ -7,8 +7,8 @@ export function WhatsRealToday({ compact = false }: { compact?: boolean }) {
     <section className={`whats-real${compact ? " is-compact" : ""}`} id="whats-real">
       <div>
         <p className="section-label">What is real today</p>
-        <h2>Framework, product, runtime, and experiments stay distinct.</h2>
-        <p>These labels describe current public status. They are not certification and they do not invent availability.</p>
+        <h2>What you can use today, and what is still a preview.</h2>
+        <p>Some of FDLC is ready to use now and some is early. Each label says plainly which is which, so you know what you can rely on.</p>
       </div>
       <ol>
         {whatsRealToday.map((item) => {

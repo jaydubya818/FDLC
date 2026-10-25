@@ -7,7 +7,7 @@ export const whatsRealToday = [
     href: "/framework",
   },
   {
-    name: "Guide",
+    name: "FDLC Guide",
     kind: "Book",
     status: "Available",
     meaning: "The field guide that teaches how to implement FDLC.",

@@ -44,7 +44,7 @@ export function GoverningLifecycleDiagram() {
         <nav aria-label="Walk through the lifecycle"><button type="button" onClick={() => setSelected((selected + 8) % 9)}>← Previous stage</button><button type="button" onClick={() => setSelected((selected + 1) % 9)}>{selected === 8 ? "Return to Intent ↺" : "Next stage →"}</button></nav>
       </div>
       </div>
-      <p className="governing-feedback"><span aria-hidden="true">↺</span><span><strong>Learning closes the loop.</strong> Improvements return through verification and approval. This explorer illustrates the lifecycle; it does not execute work or grant authority.</span></p>
+      <p className="governing-feedback"><span aria-hidden="true">↺</span><span><strong>Learning closes the loop.</strong> Improvements return through verification and approval before anyone relies on them. This diagram is for learning; clicking through it does not run any work.</span></p>
     </figure>
   );
 }

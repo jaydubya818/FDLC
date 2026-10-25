@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEventHandler, type ReactNode } from "react";
 
-import { primary, guide, aiFde, afterGuide, secondary, type NavLink } from "../../lib/global-navigation";
+import { primary, guide, aiFde, aiFdeHome, afterGuide, secondary, type NavLink } from "../../lib/global-navigation";
 
 function isCurrent(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
@@ -102,7 +102,10 @@ function GlobalLink({ children, current, href, onClick }: { children: ReactNode;
 export function SiteHeader() {
   const pathname = usePathname() ?? "";
   const guideActive = isCurrent(pathname, "/guide");
-  const secondaryActive = secondary.some(([, href]) => isCurrent(pathname, href));
+  // Inside AI-FDE its menu is promoted to the top level, so More omits the duplicate.
+  const inAiFde = isCurrent(pathname, aiFdeHome);
+  const more = inAiFde ? secondary.filter(([, href]) => href !== aiFdeHome) : secondary;
+  const secondaryActive = more.some(([, href]) => isCurrent(pathname, href));
   const [mobileOpen, setMobileOpen] = useState(false);
   const mobileRoot = useRef<HTMLDivElement>(null);
   const mobileTrigger = useRef<HTMLButtonElement>(null);
@@ -130,9 +133,9 @@ export function SiteHeader() {
         <nav className="desktop-nav" aria-label="Primary navigation">
           {primary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
           <NavDropdown active={guideActive} id="guide-navigation" label="Guide" href="/guide" links={guide} />
-          <NavDropdown active={isCurrent(pathname, "/deploy")} id="ai-fde-navigation" label="AI-FDE" href="/deploy" links={aiFde} />
+          {inAiFde && <NavDropdown active id="ai-fde-navigation" label="AI-FDE" href={aiFdeHome} links={aiFde} />}
           {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
-          <NavDropdown active={secondaryActive} id="more-navigation" label="More" links={secondary} />
+          <NavDropdown active={secondaryActive} id="more-navigation" label="More" links={more} />
         </nav>
         <div className="header-utilities">
           <a className="header-github" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">GitHub <span aria-hidden="true">↗</span></a>
@@ -143,10 +146,10 @@ export function SiteHeader() {
             {primary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
             <NavDropdown active={guideActive} id="mobile-guide-navigation" label="Guide" href="/guide" links={guide} onNavigate={() => setMobileOpen(false)} />
             <a className="mobile-guide-search" href="/guide/search" onClick={() => setMobileOpen(false)}>Search the Guide</a>
-            <NavDropdown active={isCurrent(pathname, "/deploy")} id="mobile-ai-fde-navigation" label="AI-FDE" href="/deploy" links={aiFde} onNavigate={() => setMobileOpen(false)} />
+            {inAiFde && <NavDropdown active id="mobile-ai-fde-navigation" label="AI-FDE" href={aiFdeHome} links={aiFde} onNavigate={() => setMobileOpen(false)} />}
             {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
             <span>More</span>
-            {secondary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
+            {more.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
           </nav>
         </div>
       </div>

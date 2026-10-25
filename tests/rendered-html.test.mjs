@@ -89,8 +89,10 @@ test("corpus raw artifacts are allowlisted and unknown targets fail closed", asy
 });
 
 test("global More exposes the preview while contextual artifacts remain focused", async () => {
-  const expected = ["In 5 Minutes", "Start", "Simulator", "Reference Lab", "Learning Library (Preview)", "Manifesto", "Enterprise", "Factory Updates", "About"];
+  const allMore = ["In 5 Minutes", "Architecture", "AI-FDE", "Start", "Simulator", "Reference Lab", "Learning Library (Preview)", "Manifesto", "Enterprise", "Factory Updates", "About"];
   for (const route of routes) {
+    // Inside AI-FDE its menu is promoted to the top level, so More omits the duplicate.
+    const expected = route === "/deploy" ? allMore.filter((label) => label !== "AI-FDE") : allMore;
     const html = await (await render(route)).text();
     const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
     assert.ok(header, route);
@@ -159,15 +161,20 @@ test("robots explicitly permits search and AI fetch agents", async () => {
 test("homepage answers the category boundary and links to primary destinations", async () => {
   const response = await render("/");
   const html = await response.text();
-  assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?operating model and technical foundation[\s\S]*?Code generation is becoming abundant\. Trusted autonomous software delivery is not\.[\s\S]*?<\/section>/i);
-  assert.match(html, /Build the factory that builds your software/i);
-  assert.match(html, /For engineering leaders, platform teams, software-factory architects, and builders/i);
+  assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?The SDLC for software built by autonomous AI agents\.[\s\S]*?for engineering leaders and platform teams[\s\S]*?Code generation is becoming abundant\. Trusted autonomous software delivery is not\.[\s\S]*?<\/section>/i);
+  assert.match(html, /<h1>The SDLC for software built by autonomous AI agents\.<\/h1>/);
   assert.match(html, /SDLC.*Governs the lifecycle of.*software.*FDLC.*Governs the.*factory that builds it/is);
+  const map = html.match(/<section[^>]*id="sdlc-to-fdlc"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(map, /Requirements.*Intent.*Design.*Planning.*Build.*Execution.*Test.*Evidence \+ Verification.*Review and approve.*Approval.*Release.*Release.*Operate.*Outcomes.*Retrospective.*Learning/is);
+  assert.ok(html.indexOf('id="sdlc-to-fdlc"') < html.indexOf('id="worked-example"'), "SDLC map precedes the worked example");
+  assert.ok(html.indexOf('id="worked-example"') < html.indexOf('class="governing-lifecycle"'), "worked example precedes the lifecycle deep dive");
+  assert.match(html, /Before · Agents without FDLC.*After · Agents with FDLC/is);
+  assert.match(html, /Reading the Guide\?.*Planning.*Define Agent.*Evidence \+ Verification.*Evaluate.*Approval \+ Release.*Deliver Software.*Outcomes \+ Learning.*Improve/is);
   assert.match(html, /Verified delivery, not merely generated code/i);
   assert.match(html, /Autonomy without evidence is just faster guessing/i);
   assert.match(html, /One illustrative example.*Modernize a dependency without surrendering control/is);
   assert.match(html, /Intent.*Factory.*Evidence.*Outcome/is);
-  assert.match(html, /Plan.*Modify.*Test.*Verify.*Approve/is);
+  assert.match(html, /Planning → Execution → Evidence → Verification → Approval/is);
   assert.match(html, /Choose the next useful step/i);
   assert.match(html, /Understand.*Assess.*Build.*Read/is);
   assert.doesNotMatch(html, /Explore the Learning Library \(Preview\)/i);
@@ -233,9 +240,12 @@ test("global navigation exposes the canonical Guide disclosure in desktop and mo
   const html = await (await render("/guide")).text();
   const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
   assert.ok(header, "renders the persistent FDLC global header");
-  for (const label of ["Framework", "Architecture", "Guide", "AI-FDE", "Mission Control", "Maturity", "More"]) {
+  for (const label of ["What is FDLC", "Guide", "Mission Control", "Assess", "More"]) {
     assert.match(header, new RegExp(`>${label}(?:\\s|<)`), label);
   }
+  const desktop = header.match(/<nav class="desktop-nav"[\s\S]*?<\/nav>/)?.[0] ?? "";
+  const topLevel = [...desktop.replace(/<div class="nav-dropdown-panel"[\s\S]*?<\/div>/g, "").matchAll(/<(?:a|button)\b[^>]*>([^<]+)</g)].map((match) => match[1].trim()).filter((label) => label && label !== "⌄");
+  assert.deepEqual(topLevel, ["What is FDLC", "Guide", "Mission Control", "Assess", "More"], "primary navigation stays small");
   for (const [label, href] of [
     ["Overview", "/guide"],
     ["Atlas", "/guide/atlas"],
