@@ -26,9 +26,31 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-10-19";
+export const factoryUpdatesReviewed = "2026-10-24";
 
 export const factoryUpdates = [
+  {
+    id: "mabl-agentic-testing-harness",
+    date: "2026-10-21",
+    title: "mabl launches an agentic testing harness for independent verification of agent-written code",
+    source: "PR Newswire (mabl)",
+    url: "https://www.prnewswire.com/news-releases/mabl-introduces-agentic-testing-harness-to-clear-the-verification-bottleneck-created-by-coding-agents-302914831.html",
+    summary: "mabl added agent guardrails, a knowledge graph that maps a change to the tests that verify it, and terminal-based impact checks that run before a pull request is opened. Test cases in Xray, Zephyr, TestRail, and Azure DevOps become the bar every coding agent is held to.",
+    whyItMatters: "Verification: an independent verdict, separate from the agent that wrote the code, is the evidence gate FDLC expects before approval.",
+    touches: "Verification",
+    tags: ["testing", "verification", "guardrails"],
+  },
+  {
+    id: "gitlab-ai-native-engineering-playbook",
+    date: "2026-10-20",
+    title: "GitLab publishes an AI-native engineering playbook built on earned autonomy and layered verification",
+    source: "GitLab Blog",
+    url: "https://about.gitlab.com/blog/redesign-how-your-team-ships-software-with-ai-agents/",
+    summary: "The playbook describes a four-stage autonomy ladder in which no rung is skipped and each step up needs evidence from the rung below. It pairs that with layered review that matches depth to risk and records every agentic review decision.",
+    whyItMatters: "Approval: autonomy is widened only on measured evidence, with a named human accountable, which matches FDLC's gate model.",
+    touches: "Approval",
+    tags: ["autonomy", "code review", "governance"],
+  },
   {
     id: "github-agentic-autofix-ga",
     date: "2026-10-15",
@@ -116,16 +138,5 @@ export const factoryUpdates = [
     whyItMatters: "Execution: coding-agent vendors are moving into the system of record, which changes where the factory's evidence and approvals live.",
     touches: "Execution",
     tags: ["code hosting", "pull requests", "cursor"],
-  },
-  {
-    id: "cursor-aiuc-1-certification",
-    date: "2026-08-13",
-    title: "Cursor earns AIUC-1 certification for agent security and reliability",
-    source: "Cursor",
-    url: "https://cursor.com/blog/aiuc-1",
-    summary: "AIUC-1 pairs an audit of organizational controls with adversarial testing of the live product. Cursor passed after two rounds and several thousand scenarios, and keeping the certification requires testing at least quarterly.",
-    whyItMatters: "Evals: recurring third-party adversarial testing of how agents behave is a model for evidence that outlives a one-time audit.",
-    touches: "Evals",
-    tags: ["certification", "adversarial testing", "standards"],
   },
 ] as const satisfies readonly FactoryUpdate[];
