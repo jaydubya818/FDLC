@@ -32,7 +32,7 @@ export default function Home() {
               <a className="button button-dark" href="/guide/00-front-matter/00-how-to-read-this-guide">Start reading the Guide</a>
               <Link className="button button-light" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
             </div>
-            <a className="text-action hero-example-link" href="#worked-example">See a factory in action →</a>
+            <div><Link className="text-action hero-example-link" href="/factory-skills">Try the Factory Skills Starter Kit →</Link><a className="text-action" href="#worked-example">See a factory in action →</a></div>
             <p className="hero-audience">For engineering leaders, platform teams, software-factory architects, and builders evaluating governed AI delivery.</p>
             <div className="hero-category-contrast" aria-label="Difference between SDLC and FDLC" role="group">
               <div><span>SDLC</span><p>Governs the lifecycle of <strong>software.</strong></p></div>

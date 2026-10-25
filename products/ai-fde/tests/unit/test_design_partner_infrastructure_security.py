@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 REPOSITORY_ROOT = ROOT.parents[1]
 TERRAFORM = ROOT / "infrastructure" / "terraform" / "design-partner"
-RDS_CA_SHA256 = "e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3"
+RDS_CA_SHA256 = "90a6f1a7978a1b1b096dca6c57511ca48d3b8cf052f8e704baf358f34ea2f21b"
 RDS_CA_PATH = "/opt/ai-fde/certs/aws-rds-global-bundle.pem"
 RDS_CA_URL = "https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem"
 

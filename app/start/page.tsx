@@ -17,6 +17,7 @@ export default function StartPage() {
       <div className="hero-actions"><a className="button button-dark" href="#factory-builder">Start the builder</a><Link className="text-action" href="/in-5-minutes">See a completed example →</Link></div>
     </PageHero>
     <aside className="builder-orientation"><strong>Before you begin</strong><p>Bring one outcome, measurable acceptance criteria, and the actions a human must approve. {factoryDefinitionBridge.boundary}</p><span>No account · no upload · conceptual output</span></aside>
+    <aside className="guide-reference" aria-label="Try the Factory Skills Starter Kit"><div><h2>Ready to try a small workflow?</h2><p>Run a bounded bug fix with your Skillz skills, an isolated branch, and before/after test evidence.</p></div><Link className="button button-dark" href="/factory-skills">Try the starter kit →</Link></aside>
     <FactoryBuilder />
     <FactoryHandoffDiagram builder />
     <NextSteps {...pageHandoffs.start} />

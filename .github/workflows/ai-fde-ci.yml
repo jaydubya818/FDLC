@@ -135,7 +135,7 @@ jobs:
       - name: Build containers and verify the non-root RDS trust bundle
         working-directory: products/ai-fde
         run: |
-          expected_ca="e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3  /opt/ai-fde/certs/aws-rds-global-bundle.pem"
+          expected_ca="90a6f1a7978a1b1b096dca6c57511ca48d3b8cf052f8e704baf358f34ea2f21b  /opt/ai-fde/certs/aws-rds-global-bundle.pem"
           docker build --file docker/api.Dockerfile --tag ai-fde-api:ci .
           docker build --file docker/worker.Dockerfile --tag ai-fde-worker:ci .
           for image in ai-fde-api:ci ai-fde-worker:ci; do

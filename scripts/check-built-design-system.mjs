@@ -9,7 +9,7 @@ const files = await readdir(staticRoot, { recursive: true });
 const styles = (await Promise.all(files.filter(file => file.endsWith(".css"))
   .map(file => readFile(new URL(file, staticRoot), "utf8")))).join("\n");
 
-for (const selector of [".global-header", ".global-header-inner", ".global-logo", ".global-mobile", ".global-footer", ".nav-dropdown-panel"]) {
+for (const selector of [".global-header", ".global-header-inner", ".global-logo", ".global-mobile", ".global-footer", ".nav-dropdown-panel", ".starter-outcome", ".starter-setup", ".starter-skills"]) {
   assert.ok(styles.includes(selector), `Built CSS is missing ${selector}`);
 }
 assert.match(styles, /--content-width\s*:\s*1240px/, "Built CSS contains the shared design tokens");

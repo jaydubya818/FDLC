@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/jaydubya818/skillz.git",
+  "commit": "4942dde4b2a442df3ee45879bb22734c658426df",
+  "phases": [
+    { "phase": "Inspect", "skill": "how" },
+    { "phase": "Define", "skill": "blast-radius" },
+    { "phase": "Implement", "skill": "tdd" },
+    { "phase": "Verify", "skill": "principle-prove-it-works" },
+    { "phase": "Handoff", "skill": "make-pr-easy-to-review" }
+  ]
+}

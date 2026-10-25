@@ -31,6 +31,8 @@ jobs:
       - run: npm ci --prefix packages/fab
       - run: npm run typecheck
       - run: npm run lint
+      - run: npm run starter:check
+      - run: npm run starter:test
       - run: npm test
       - run: npm run test:contained --prefix packages/fab
       - name: Build an ephemeral package without replacing the pinned archive

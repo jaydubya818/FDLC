@@ -9,7 +9,7 @@ COPY src ./src
 RUN uv sync --locked --no-editable
 
 FROM python:3.13.7-slim-bookworm AS rds-ca
-ARG AWS_RDS_GLOBAL_BUNDLE_SHA256=e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3
+ARG AWS_RDS_GLOBAL_BUNDLE_SHA256=90a6f1a7978a1b1b096dca6c57511ca48d3b8cf052f8e704baf358f34ea2f21b
 RUN python -c "import urllib.request; urllib.request.urlretrieve('https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem', '/tmp/aws-rds-global-bundle.pem')" \
     && echo "${AWS_RDS_GLOBAL_BUNDLE_SHA256}  /tmp/aws-rds-global-bundle.pem" | sha256sum --check --strict
 
@@ -22,7 +22,7 @@ ENV PATH="/app/.venv/bin:$PATH" \
     PYTHONPATH=/app \
     PYTHONUNBUFFERED=1 \
     AI_FDE_RDS_CA_BUNDLE_PATH=/opt/ai-fde/certs/aws-rds-global-bundle.pem \
-    AI_FDE_RDS_CA_BUNDLE_SHA256=sha256:e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3
+    AI_FDE_RDS_CA_BUNDLE_SHA256=sha256:90a6f1a7978a1b1b096dca6c57511ca48d3b8cf052f8e704baf358f34ea2f21b
 COPY --from=rds-ca --chmod=0444 /tmp/aws-rds-global-bundle.pem /opt/ai-fde/certs/aws-rds-global-bundle.pem
 COPY --from=builder --chown=ai-fde:ai-fde /app/.venv /app/.venv
 COPY --chown=ai-fde:ai-fde src ./src
