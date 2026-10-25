@@ -31,6 +31,7 @@ export const secondary = [
   ["Learning Library (Preview)", "/corpus-preview"],
   ["Manifesto", "/manifesto"],
   ["Enterprise", "/enterprise"],
+  ["Factory Updates", "/updates"],
   ["About", "/about"],
 ] as const satisfies readonly NavLink[];
 
@@ -38,5 +39,5 @@ export const footerGroups = [
   ["Learn", [["Framework", "/framework"], ["Architecture", "/architecture"], ["Guide", "/guide"], ["Learning Library (Preview)", "/corpus-preview"], ["Manifesto", "/manifesto"]]],
   ["Build", [["In 5 Minutes", "/in-5-minutes"], ["Mission Control", "/mission-control"], ["Specification", "/specification"], ["Start", "/start"], ["Factory Skills", "/factory-skills"], ["Simulator", "/simulator"], ["Reference Lab", "/lab"], ["GitHub", "https://github.com/jaydubya818/MissionControl"]]],
   ["Adopt", [["Maturity", "/maturity"], ["Benchmarks", "/benchmarks"], ["Enterprise", "/enterprise"], ["AI-FDE", "/deploy"]]],
-  ["Project", [["About", "/about"], ["What's real today", "/framework#whats-real"], ["Source audit", "https://github.com/jaydubya818/ai-software-factory-mastery"], ["Mission Control status", "https://github.com/jaydubya818/MissionControl/blob/main/docs/product/software-factory-capability-maturity.md"]]],
+  ["Project", [["About", "/about"], ["Factory Updates", "/updates"], ["What's real today", "/framework#whats-real"], ["Source audit", "https://github.com/jaydubya818/ai-software-factory-mastery"], ["Mission Control status", "https://github.com/jaydubya818/MissionControl/blob/main/docs/product/software-factory-capability-maturity.md"]]],
 ] as const;
