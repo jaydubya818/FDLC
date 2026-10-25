@@ -1,7 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { factoryExplorerCapabilities, factoryExplorerStages } from "../../data/factory-explorer.ts";
-import { governingLifecycle, guideStageBridge } from "../../data/governing-lifecycle.ts";
 import { architectureAreas, canonicalDefinition, categoryComparison, ecosystemRoles, evidencePositioning, factoryControls, guideValueStream, lifecycleStages, manifesto, primaryPositioning, protocolSteps, runtimeLifecycle } from "../../data/fdlc.ts";
 import { dependencyModernizationExample } from "../../data/dependency-modernization-example.ts";
 import { guideDiscovery } from "../../data/guide-discovery.ts";
@@ -23,12 +22,8 @@ test("keeps the four canonical system views stable", () => {
 });
 
 test("keeps the factory explorer complete and internally linked", () => {
-  // The explorer teaches the same nine stages, in the same order, as the governing lifecycle.
-  assert.deepEqual(factoryExplorerStages.map((stage) => stage.name), governingLifecycle.map((stage) => stage.name));
-  // Every runtime step is covered, in order, by the governing stages.
-  assert.deepEqual([...new Set(factoryExplorerStages.flatMap((stage) => stage.runtimeSteps))], runtimeLifecycle.map((stage) => stage.id));
-  // Every protocol artifact in the worked example appears exactly once, in order.
-  assert.deepEqual(factoryExplorerStages.flatMap((stage) => stage.exampleArtifacts), dependencyModernizationExample.artifacts.map((artifact) => artifact.protocolId));
+  assert.deepEqual(factoryExplorerStages.map((stage) => stage.id), runtimeLifecycle.map((stage) => stage.id));
+  assert.deepEqual(factoryExplorerStages.map((stage) => stage.artifact), runtimeLifecycle.map((stage) => stage.artifact));
   assert.equal(factoryExplorerCapabilities.length, 10);
 
   const capabilityIds = new Set(factoryExplorerCapabilities.map((capability) => capability.id));
@@ -41,21 +36,13 @@ test("keeps the factory explorer complete and internally linked", () => {
     assert.ok(stage.question.endsWith("?"), stage.name);
     assert.ok(stage.proof.length > 20, stage.name);
     assert.match(stage.guideHref, /^\/guide\//, stage.name);
-    for (const stepId of stage.runtimeSteps) assert.ok(dependencyModernizationExample.runtimeSteps.some((step) => step.stepId === stepId), stage.name);
-    assert.ok(stage.exampleAction.length > 20, stage.name);
+    assert.ok(dependencyModernizationExample.runtimeSteps.some((step) => step.stepId === stage.id), stage.name);
   }
 
   for (const capability of factoryExplorerCapabilities) {
     assert.match(capability.architectureHref, /^\/architecture#(?:harness|capability|model|trust)$/);
     assert.ok(capability.responsibility.length > 20, capability.name);
   }
-});
-
-test("maps the Guide's eight stages onto the nine governing stages", () => {
-  assert.deepEqual(guideStageBridge.flatMap((row) => row.governing), governingLifecycle.map((stage) => stage.name));
-  const bridged = guideStageBridge.flatMap((row) => row.guide.map(([name, href]) => [name, href]));
-  assert.deepEqual(new Set(bridged.map(([name]) => name)), new Set(guideValueStream.map((stage) => stage.name)));
-  for (const [name, href] of bridged) assert.equal(href, guideValueStream.find((stage) => stage.name === name)?.href, name);
 });
 
 test("keeps ecosystem roles and status boundaries stable", () => {

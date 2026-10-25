@@ -87,7 +87,7 @@ test("synthetic Acme reaches the governed package-retrieval boundary", async ({
     globalNavigation.getByRole("link", { name: "AI-FDE", exact: true }),
   ).toHaveAttribute("href", "/deploy");
   await expect(
-    globalNavigation.getByRole("link", { name: "What is FDLC", exact: true }),
+    globalNavigation.getByRole("link", { name: "Framework", exact: true }),
   ).toHaveAttribute("href", "/framework");
   await expect(
     page.getByRole("link", { name: "FDLC.ai home", exact: true }),
