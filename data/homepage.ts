@@ -1,6 +1,23 @@
-export const heroHeadline = "The SDLC for software built by autonomous AI agents.";
+export const heroName = "Factory Development Lifecycle";
 
-export const heroSubhead = "FDLC is an open framework for engineering leaders and platform teams who want AI agents doing real delivery work. It gives you one lifecycle, clear checkpoints, and an evidence trail, so agent-written changes ship only after they are independently verified and approved.";
+export const heroSubhead = "The SDLC for software built by autonomous AI agents.";
+
+export const heroValue = "Your agents do the work; FDLC makes every change they produce verifiable, approved by a named owner, and safe to ship.";
+
+// Plain-language reasons the classic SDLC stops working once agents write most of the code.
+export const homepageProblems = [
+  ["01", "More changes than anyone can review.", "Agents can open pull requests faster than people can read them. Review turns into a skim, or a queue that never empties."],
+  ["02", "Agents grade their own homework.", "The agent that wrote a change often writes its tests and reports that they pass. Too often, that report is the only proof."],
+  ["03", "Nobody can prove why a change was safe.", "When something breaks, there is no record of which run, instructions, or permissions produced the change, or who said it could ship."],
+] as const;
+
+// The hero card: the same questions, answered by the classic SDLC and by FDLC.
+export const heroContrast = [
+  ["Who does the work?", "Developers", "AI agents, inside set limits"],
+  ["Who checks it?", "A teammate's review", "An independent verifier, never the agent that wrote it"],
+  ["Who approves it?", "Whoever merges", "A named owner, for that exact change"],
+  ["What proves it is safe?", "A green build", "A record of every step, tied to the change"],
+] as const;
 
 // One familiar SDLC phase per row, its FDLC stage, and what changes when agents do the work.
 export const sdlcToFdlc = [
@@ -31,20 +48,7 @@ export const workedExampleContrast = {
 
 export const homepageExampleSteps = [
   ["Intent", "Upgrade a dependency across approved repositories without changing public behavior."],
-  ["Factory", "Planning → Execution → Evidence → Verification → Approval"],
-  ["Evidence", "Compatibility · Tests · Security · Cost · Human authority"],
-  ["Outcome", "A production-ready modernization candidate with an attributable evidence trail."],
-] as const;
-
-export const homepageActions = [
-  ["Understand", "See one workflow move from intent to verified outcome.", "/in-5-minutes", "Follow the five-minute example"],
-  ["Assess", "Identify your current factory maturity and the next capability to earn.", "/maturity", "Assess your factory"],
-  ["Build", "Turn one engineering outcome into a reusable Factory Definition.", "/start", "Build a Factory Definition"],
-  ["Read", "Use the Guide as the field book for the deeper system.", "/guide", "Open the Guide"],
-] as const;
-
-export const homepageThesis = [
-  ["01", "Intent stays explicit.", "The factory begins with a governed outcome and acceptance contract."],
-  ["02", "Authority stays bounded.", "Agents, models, and tools act inside declared operational limits."],
-  ["03", "Evidence earns progress.", "Execution, verification, approval, release, and outcomes remain distinct."],
+  ["Lifecycle", "Planning → Execution → Evidence → Verification → Approval"],
+  ["Evidence", "Compatibility · Tests · Security · Cost · Owner approval"],
+  ["Outcome", "An upgrade ready for production, with a record of who did what and why it passed."],
 ] as const;

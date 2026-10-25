@@ -9,6 +9,7 @@ import { GuideReading } from "../components/guide-reading";
 import { LensSwitcher } from "../components/lens-switcher";
 import { LifecycleDiagram } from "../components/lifecycle-diagram";
 import { GoverningLifecycleDiagram } from "../components/governing-lifecycle-diagram";
+import { GuideStageBridge } from "../components/guide-stage-bridge";
 import { NextSteps } from "../components/next-steps";
 import { PageContentsNav } from "../components/page-contents-nav";
 import { PageHero, SectionHeader } from "../components/page-hero";
@@ -79,7 +80,7 @@ export default function FrameworkPage() {
         <div><p>SDLC manages the lifecycle of software.</p><p><strong>FDLC manages the lifecycle of the factory that produces software.</strong></p><p>It is the factory operating system: the disciplined layer around agents, models, tools, people, policies, evidence, and workflows.</p><p><strong>Verified delivery, not merely generated code.</strong></p></div>
       </section>
 
-      <section className="section-block" id="governing-lifecycle"><GoverningLifecycleDiagram /></section>
+      <section className="section-block" id="governing-lifecycle"><GoverningLifecycleDiagram /><GuideStageBridge /></section>
 
       <section className="section-block framework-category" id="category">
         <SectionHeader eyebrow="The category boundary" title="Two transitions, then a new discipline." description="First, agents participate across the software lifecycle. Then those workflows become a persistent, governed production system. FDLC is the engineering discipline for that factory." />

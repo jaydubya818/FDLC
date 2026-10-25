@@ -3,7 +3,7 @@ import { guideStageBridge } from "../../data/governing-lifecycle";
 // Explains how the Guide's eight builder-facing stages line up with the nine governing stages.
 export function GuideStageBridge() {
   return (
-    <aside className="guide-stage-bridge" aria-labelledby="guide-stage-bridge-title">
+    <aside className="guide-stage-bridge" id="guide-stage-bridge" aria-labelledby="guide-stage-bridge-title">
       <div>
         <p className="section-label">Reading the Guide?</p>
         <h3 id="guide-stage-bridge-title">Same lifecycle, eight builder steps.</h3>

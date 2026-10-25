@@ -158,30 +158,45 @@ test("robots explicitly permits search and AI fetch agents", async () => {
   assert.match(body, /Disallow: \/corpus-preview\//i);
 });
 
-test("homepage answers the category boundary and links to primary destinations", async () => {
+test("homepage leads with the FDLC name and tells one tight story", async () => {
   const response = await render("/");
   const html = await response.text();
-  assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?The SDLC for software built by autonomous AI agents\.[\s\S]*?for engineering leaders and platform teams[\s\S]*?Code generation is becoming abundant\. Trusted autonomous software delivery is not\.[\s\S]*?<\/section>/i);
-  assert.match(html, /<h1>The SDLC for software built by autonomous AI agents\.<\/h1>/);
-  assert.match(html, /SDLC.*Governs the lifecycle of.*software.*FDLC.*Governs the.*factory that builds it/is);
+  const hero = html.match(/<section class="hero-shell home-hero"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.ok(hero, "homepage has a hero");
+  assert.match(hero, /<h1 class="fdlc-name">[\s\S]*?<b>F<\/b>actory[\s\S]*?<b>D<\/b>evelopment[\s\S]*?<b>L<\/b>ife<b>c<\/b>ycle[\s\S]*?<\/h1>/);
+  assert.equal(hero.match(/<h1[\s\S]*?<\/h1>/)[0].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim(), "Factory Development Lifecycle");
+  assert.match(hero, /The SDLC for software built by autonomous AI agents\./);
+  assert.match(hero, /verifiable, approved by a named owner, and safe to ship/);
+  assert.match(hero, /href="\/in-5-minutes"[^>]*>Understand FDLC in 5 minutes</);
+  assert.match(hero, /href="\/guide\/00-front-matter\/00-how-to-read-this-guide"[^>]*>Read the FDLC Guide</);
+  assert.equal([...hero.matchAll(/class="button /g)].length, 2, "hero has exactly one primary and one secondary action");
+  assert.match(hero, /Who checks it\?.*independent verifier.*Who approves it\?.*named owner/is);
+  assert.doesNotMatch(hero, /hero-stage-list/, "the hero does not repeat the nine stages");
+  const main = html.match(/<main\b[^>]*>[\s\S]*?<\/main>/)?.[0] ?? "";
+  assert.doesNotMatch(main, /home-guide-banner|New to FDLC\?|Category promise|Unit of value|Factory Definition|bounded factory line|Go deeper|Choose the next useful step|Why FDLC/);
+  const order = ['class="hero-shell home-hero"', 'id="problem"', 'id="sdlc-to-fdlc"', 'id="worked-example"', 'id="lifecycle"', 'id="factory-explorer"', 'class="content-section try-it"', 'class="mission-preview', 'class="home-closing"'].map((marker) => main.indexOf(marker));
+  assert.ok(order.every((index) => index >= 0), `every homepage section renders: ${order}`);
+  assert.deepEqual([...order].sort((x, y) => x - y), order, "homepage sections render in order");
+  assert.match(main, /Why the old SDLC breaks.*More changes than anyone can review.*Agents grade their own homework.*Nobody can prove why a change was safe/is);
   const map = html.match(/<section[^>]*id="sdlc-to-fdlc"[\s\S]*?<\/section>/)?.[0] ?? "";
   assert.match(map, /Requirements.*Intent.*Design.*Planning.*Build.*Execution.*Test.*Evidence \+ Verification.*Review and approve.*Approval.*Release.*Release.*Operate.*Outcomes.*Retrospective.*Learning/is);
-  assert.ok(html.indexOf('id="sdlc-to-fdlc"') < html.indexOf('id="worked-example"'), "SDLC map precedes the worked example");
-  assert.ok(html.indexOf('id="worked-example"') < html.indexOf('class="governing-lifecycle"'), "worked example precedes the lifecycle deep dive");
+  assert.match(map, /href="\/framework#guide-stage-bridge"/);
+  assert.doesNotMatch(main, /class="governing-lifecycle"/, "the explorer is the one lifecycle visualization on the homepage");
+  assert.equal([...main.matchAll(/class="(?:factory-explorer|governing-lifecycle)"/g)].length, 1);
   assert.match(html, /Before · Agents without FDLC.*After · Agents with FDLC/is);
-  assert.match(html, /Reading the Guide\?.*Planning.*Define Agent.*Evidence \+ Verification.*Evaluate.*Approval \+ Release.*Deliver Software.*Outcomes \+ Learning.*Improve/is);
-  assert.match(html, /Verified delivery, not merely generated code/i);
-  assert.match(html, /Autonomy without evidence is just faster guessing/i);
-  assert.match(html, /One illustrative example.*Modernize a dependency without surrendering control/is);
-  assert.match(html, /Intent.*Factory.*Evidence.*Outcome/is);
-  assert.match(html, /Planning → Execution → Evidence → Verification → Approval/is);
-  assert.match(html, /Choose the next useful step/i);
-  assert.match(html, /Understand.*Assess.*Build.*Read/is);
-  assert.doesNotMatch(html, /Explore the Learning Library \(Preview\)/i);
-  assert.match(html, /Need help applying FDLC.*Start with one bounded factory line/is);
-  assert.match(html, /id="factory-explorer"/);
+  assert.match(html, /Upgrade a dependency without losing control/);
+  assert.match(html, /Planning → Execution → Evidence → Verification → Approval/);
+  assert.match(main, /Inject a fault.*Run a real check.*Describe your own/is);
+  assert.match(main, /See FDLC running in Mission Control/);
+  const closing = main.match(/<section class="home-closing"[\s\S]*?<\/section>/)?.[0] ?? "";
+  assert.match(closing, /Read the FDLC Guide.*Assess your maturity.*What&#x27;s available today|Read the FDLC Guide.*Assess your maturity.*What.s available today/is);
+  assert.match(closing, /href="\/maturity"/);
+  assert.match(closing, /href="\/framework#whats-real"/);
+  assert.doesNotMatch(main, /id="whats-real"/, "What is real today lives on the framework page");
+  assert.doesNotMatch(main, /href="\/deploy"/, "AI-FDE is reachable from navigation, not pitched on the homepage");
+  assert.equal([...main.matchAll(/>Read the FDLC Guide</g)].length, 2, "the Guide is offered in the hero and the closing band only");
   assert.match(html, /Open on Framework/);
-  for (const href of ["/framework", "/architecture", "/in-5-minutes", "/guide", "/mission-control", "/maturity", "/start", "/corpus-preview"]) assert.match(html, new RegExp(`href=["']${href}["']`));
+  for (const href of ["/framework", "/architecture", "/in-5-minutes", "/guide", "/mission-control", "/maturity", "/start", "/corpus-preview", "/simulator", "/lab", "/deploy"]) assert.match(html, new RegExp(`href=["']${href}["']`));
   const homeHeader = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0] ?? "";
   const homeMain = html.match(/<main\b[^>]*>[\s\S]*?<\/main>/)?.[0] ?? "";
   const homeFooter = html.match(/<footer class="global-footer">[\s\S]*?<\/footer>/)?.[0] ?? "";
@@ -203,6 +218,7 @@ test("framework publishes the exact category definition and distinction", async 
   assert.match(html, /FDLC Framework.*FDLC Specification.*AI Software Factory Guide.*Mission Control.*FDLC Enterprise/is);
   assert.match(html, /Six operating shifts.*Intent becomes the interface.*Intelligence becomes routable.*Harness becomes the control boundary.*Verification becomes the scarce resource.*Evidence becomes part of the deliverable.*Learning becomes governed promotion/is);
   assert.match(html, /Choose the next depth you need.*FDLC in 5 Minutes.*Architecture.*Manifesto.*Mission Control.*Maturity.*Guide/is);
+  assert.match(html, /id="guide-stage-bridge".*Reading the Guide\?.*Planning.*Define Agent.*Evidence \+ Verification.*Evaluate.*Approval \+ Release.*Deliver Software.*Outcomes \+ Learning.*Improve/is);
 });
 
 test("architecture makes the control boundary and durable operating record explicit", async () => {
@@ -440,7 +456,7 @@ test("enterprise pricing inquiries have a working contact destination", async ()
 
 test("key learning pages show the canonical governing lifecycle in order", async () => {
   const stages = ["Intent", "Planning", "Execution", "Evidence", "Verification", "Approval", "Release", "Outcomes", "Learning"];
-  for (const path of ["/", "/framework", "/in-5-minutes"]) {
+  for (const path of ["/framework", "/in-5-minutes"]) {
     const html = await (await render(path)).text();
     const figure = html.match(/<figure class="governing-lifecycle"[\s\S]*?<\/figure>/)?.[0];
     assert.ok(figure, `${path} must explain the governing lifecycle`);

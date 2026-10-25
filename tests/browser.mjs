@@ -297,11 +297,14 @@ try {
     report.flows.push({ name: "mission-control-delivery-and-operator-tabs", width, result: "PASS" });
 
     await page.goto(origin);
-    assert.match(await page.locator(".hero-problem").innerText(), /Trusted autonomous software delivery is not/);
-    await page.getByRole("link", { name: "See a before-and-after example" }).click();
-    await page.waitForURL(`${origin}/#worked-example`);
-    assert.ok(await page.getByRole("list", { name: "Dependency modernization factory flow" }).isVisible());
-    report.flows.push({ name: "homepage-problem-to-worked-example", width, result: "PASS" });
+    assert.equal((await page.getByRole("heading", { level: 1 }).innerText()).replace(/\s+/g, " ").trim(), "Factory Development Lifecycle");
+    assert.ok(await page.getByText("The SDLC for software built by autonomous AI agents.").isVisible());
+    const heroBox = await page.locator(".home-hero").boundingBox();
+    assert.ok(heroBox && heroBox.width <= width, "homepage hero fits the viewport");
+    assert.ok(await page.locator(".home-hero").getByRole("link", { name: "Understand FDLC in 5 minutes" }).isVisible());
+    await page.goto(`${origin}/#worked-example`);
+    assert.ok(await page.getByRole("list", { name: "Dependency upgrade, step by step" }).isVisible());
+    report.flows.push({ name: "homepage-name-to-worked-example", width, result: "PASS" });
 
     const explorer = page.locator("#factory-explorer");
     await explorer.scrollIntoViewIfNeeded();
@@ -389,7 +392,7 @@ try {
   // never execution state or release authority.
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 1000 });
-    await page.goto(origin);
+    await page.goto(`${origin}/framework`);
     const explorer = page.locator(".governing-lifecycle");
     const stages = ["Intent", "Planning", "Execution", "Evidence", "Verification", "Approval", "Release", "Outcomes", "Learning"];
     for (const stage of stages) {
