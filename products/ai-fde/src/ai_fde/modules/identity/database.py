@@ -7,7 +7,7 @@ WORKER_DATABASE_GROUP = "ai_fde_worker"
 WORKER_DATABASE_USER_PATTERN = re.compile(r"ai_fde_worker_[0-9a-f]{12}")
 AWS_RDS_TLS_CA_PATH = "/opt/ai-fde/certs/aws-rds-global-bundle.pem"
 AWS_RDS_TLS_CA_SHA256 = (
-    "sha256:e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3"
+    "sha256:90a6f1a7978a1b1b096dca6c57511ca48d3b8cf052f8e704baf358f34ea2f21b"
 )
 
 

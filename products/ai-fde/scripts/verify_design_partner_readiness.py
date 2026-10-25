@@ -58,7 +58,7 @@ class ReadinessFailure(RuntimeError):
 
 
 RDS_CA_BUNDLE_PATH = "/opt/ai-fde/certs/aws-rds-global-bundle.pem"
-RDS_CA_BUNDLE_SHA256 = "sha256:e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3"
+RDS_CA_BUNDLE_SHA256 = "sha256:90a6f1a7978a1b1b096dca6c57511ca48d3b8cf052f8e704baf358f34ea2f21b"
 _IAM_ROLE_ARN_PATTERN = re.compile(
     r"arn:aws(?:-us-gov|-cn|-iso|-iso-b)?:iam::[0-9]{12}:"
     r"role/[A-Za-z0-9+=,.@_/-]{1,512}"
