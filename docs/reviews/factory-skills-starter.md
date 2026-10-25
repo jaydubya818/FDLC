@@ -42,22 +42,19 @@ and permissions stay unchanged.
 - The next product validation is an external user completing a real bounded
   task through Codex. Do not describe that milestone as achieved by the demo.
 
-## Release blocker
+## Release qualification — 2026-10-25
 
-The original audit reported 13 high-severity entries. The 2026-10-09
-remediation updates `@cloudflare/vite-plugin` to 1.63.1, `wrangler` to
-4.149.0, and transitive `source-map-js` to 1.2.2. This installs patched
-`sharp` 0.35.5 and reduces the audit to eight high-severity entries.
-All eight remaining entries trace to braces 3.0.3 and its dependents.
+Integrated current main, including dependency remediation from PR #67. The
+resolved candidate audit contains zero high/critical findings and two low
+findings. No security exception or audit-threshold change is required.
 
-[GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
-reports no patched braces version. npm proposes breaking downgrades of
-microfrontends, Vinext, and the Next ESLint plugin; these were not applied.
-This review does not establish that vulnerable pattern parsing is unreachable
-in every build or runtime path.
+Updated the rendered navigation contract to include Factory Skills alongside
+Factory Updates. Refreshed the official AWS RDS global CA bundle SHA-256 to
+`90a6f1a7978a1b1b096dca6c57511ca48d3b8cf052f8e704baf358f34ea2f21b`
+in both Docker builds and CI. The official HTTPS source and strict checksum
+verification remain enabled. This repairs the stale external input that
+blocked the child build; it does not deploy the child backend.
 
-The audit threshold and release controls remain unchanged. The user authorized
-merge and production publication, but a specific residual-risk decision has
-been requested because qualification still fails. No security exception has
-been approved or implemented. Keep release on hold until remediation or an
-explicitly reviewed exception resolves the qualification gate.
+Merge and FDLC production publication are authorized in the chat. Qualification
+must pass on the integrated candidate before merge and on clean main before
+production promotion. Preserve the existing production deployment as rollback.
