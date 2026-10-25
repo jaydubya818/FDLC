@@ -139,15 +139,4 @@ export const factoryUpdates = [
     touches: "Execution",
     tags: ["code hosting", "pull requests", "cursor"],
   },
-  {
-    id: "cursor-aiuc-1-certification",
-    date: "2026-08-13",
-    title: "Cursor earns AIUC-1 certification for agent security and reliability",
-    source: "Cursor",
-    url: "https://cursor.com/blog/aiuc-1",
-    summary: "AIUC-1 pairs an audit of organizational controls with adversarial testing of the live product. Cursor passed after two rounds and several thousand scenarios, and keeping the certification requires testing at least quarterly.",
-    whyItMatters: "Evals: recurring third-party adversarial testing of how agents behave is a model for evidence that outlives a one-time audit.",
-    touches: "Evals",
-    tags: ["certification", "adversarial testing", "standards"],
-  },
 ] as const satisfies readonly FactoryUpdate[];
