@@ -2455,7 +2455,7 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 .sdlc-map { scroll-margin-top: 100px; }
 .sdlc-map-table { border-top: 1px solid var(--ink); }
 .sdlc-map-row { display: grid; grid-template-columns: minmax(150px, .55fr) minmax(170px, .6fr) minmax(0, 1.85fr); gap: 24px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid var(--line); }
-.sdlc-map-head { padding: 12px 0; color: var(--muted); font-family: var(--mono); font-size: var(--text-label); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.sdlc-map-head { padding: 12px 0; color: var(--ink); font-family: var(--mono); font-size: var(--text-label); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .sdlc-map-phase { color: var(--muted); font-size: 16px; }
 .sdlc-map-stage { color: var(--green); font-family: var(--serif); font-size: 22px; font-weight: 500; letter-spacing: -.02em; }
 .sdlc-map-change { color: var(--ink); font-size: 15px; line-height: 1.6; }
@@ -2465,8 +2465,9 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 .before-after-card .section-label { margin: 0; }
 .before-after-card.is-before .section-label { color: var(--amber); }
 .before-after-card h3 { margin: 14px 0 0; font-family: var(--serif); font-size: clamp(22px, 2.2vw, 28px); font-weight: 500; letter-spacing: -.03em; line-height: 1.15; }
-.before-after-card ul { margin: 18px 0 0; padding-left: 18px; display: grid; gap: 10px; color: var(--muted); font-size: 15px; line-height: 1.55; }
-.before-after-card.is-after ul { color: var(--ink); }
+.before-after-card ul { margin: 18px 0 0; padding-left: 20px; display: grid; gap: 10px; color: var(--ink); font-size: 15px; line-height: 1.55; list-style: disc; }
+.before-after-card li::marker { color: var(--green); }
+.before-after-card.is-before li::marker { color: var(--amber); }
 .guide-stage-bridge { margin-top: 28px; padding: 24px 28px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 32px; border: 1px solid var(--line); border-left: 4px solid var(--green); background: var(--surface); }
 .guide-stage-bridge h3 { margin: 10px 0 0; font-family: var(--serif); font-size: clamp(22px, 2.2vw, 28px); font-weight: 500; letter-spacing: -.03em; line-height: 1.15; }
 .guide-stage-bridge div > p:last-child { margin: 12px 0 0; color: var(--muted); font-size: 15px; line-height: 1.6; }
