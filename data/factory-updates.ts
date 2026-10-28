@@ -26,9 +26,31 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-10-24";
+export const factoryUpdatesReviewed = "2026-10-27";
 
 export const factoryUpdates = [
+  {
+    id: "jellyfish-ai-engineering-trends-october",
+    date: "2026-10-27",
+    title: "Jellyfish data: agents touch 27.7% of pull requests, but AI-only merges are just 0.5%",
+    source: "R&D World (Jellyfish report)",
+    url: "https://www.rdworldonline.com/jellyfish-claude-code-bills-hit-252-a-month-per-developer-as-software-factories-automate-code-production-among-early-adopters/",
+    summary: "Jellyfish's October report, covering more than 1,300 companies, found agents opened or committed code to 27.7% of pull requests at the median company in September, while software factories opened 0.0% of pull requests even at the 90th percentile. Only 62% of surveyed developers said their organization manages AI-code risk effectively.",
+    whyItMatters: "Approval: full autonomy is still rare and humans sign off on nearly every merge, which supports FDLC's earned-autonomy gates.",
+    touches: "Approval",
+    tags: ["adoption", "software factory", "governance"],
+  },
+  {
+    id: "akamai-agent-sandbox",
+    date: "2026-10-27",
+    title: "Akamai launches Agent Sandbox with WebAssembly isolation for agent-written code",
+    source: "Akamai Newsroom",
+    url: "https://www.akamai.com/newsroom/press-release/akamai-launches-ai-inference-service-and-agent-execution-environment",
+    summary: "Akamai Agent Sandbox, an open source component of the Spin framework, runs agent-written code in its own isolated environment with set limits on compute, memory, outbound connections, and system capabilities. It is in beta alongside Akamai Inference.",
+    whyItMatters: "Runtime: another vendor puts a hard boundary around what agent-generated code can reach, a core control for the Execution stage.",
+    touches: "Runtime",
+    tags: ["sandboxes", "isolation", "infrastructure"],
+  },
   {
     id: "mabl-agentic-testing-harness",
     date: "2026-10-21",
