@@ -26,9 +26,31 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-10-24";
+export const factoryUpdatesReviewed = "2026-10-27";
 
 export const factoryUpdates = [
+  {
+    id: "jellyfish-ai-engineering-trends-october",
+    date: "2026-10-27",
+    title: "Jellyfish data: agents touch 27.7% of pull requests, but AI-only merges are just 0.5%",
+    source: "R&D World (Jellyfish report)",
+    url: "https://www.rdworldonline.com/jellyfish-claude-code-bills-hit-252-a-month-per-developer-as-software-factories-automate-code-production-among-early-adopters/",
+    summary: "Jellyfish's October report, covering more than 1,300 companies, found agents opened or committed code to 27.7% of pull requests at the median company in September, while software factories opened 0.0% of pull requests even at the 90th percentile. Only 62% of surveyed developers said their organization manages AI-code risk effectively.",
+    whyItMatters: "Approval: full autonomy is still rare and humans sign off on nearly every merge, which supports FDLC's earned-autonomy gates.",
+    touches: "Approval",
+    tags: ["adoption", "software factory", "governance"],
+  },
+  {
+    id: "akamai-agent-sandbox",
+    date: "2026-10-27",
+    title: "Akamai launches Agent Sandbox with WebAssembly isolation for agent-written code",
+    source: "Akamai Newsroom",
+    url: "https://www.akamai.com/newsroom/press-release/akamai-launches-ai-inference-service-and-agent-execution-environment",
+    summary: "Akamai Agent Sandbox, an open source component of the Spin framework, runs agent-written code in its own isolated environment with set limits on compute, memory, outbound connections, and system capabilities. It is in beta alongside Akamai Inference.",
+    whyItMatters: "Runtime: another vendor puts a hard boundary around what agent-generated code can reach, a core control for the Execution stage.",
+    touches: "Runtime",
+    tags: ["sandboxes", "isolation", "infrastructure"],
+  },
   {
     id: "mabl-agentic-testing-harness",
     date: "2026-10-21",
@@ -116,27 +138,5 @@ export const factoryUpdates = [
     whyItMatters: "Planning: the process becomes a versionable artifact, so the same steps and gates run every time.",
     touches: "Planning",
     tags: ["orchestration", "multi-agent", "github"],
-  },
-  {
-    id: "openai-agents-api",
-    date: "2026-09-10",
-    title: "OpenAI opens the Codex harness to developers through the Agents API",
-    source: "OpenAI",
-    url: "https://openai.com/index/introducing-the-agents-api/",
-    summary: "The Agents API, in public beta, runs cloud agents on the open-source Codex harness, with context compaction, tool search, and subagents. Agents run in an OpenAI-hosted sandbox, on the developer's own infrastructure, or with a sandbox partner.",
-    whyItMatters: "Agents: the harness is becoming a managed, versioned dependency, so factories should pin and evaluate it like any other component.",
-    touches: "Agents",
-    tags: ["harness", "api", "openai"],
-  },
-  {
-    id: "cursor-origin-code-hosting",
-    date: "2026-08-17",
-    title: "Cursor begins hosting code with Origin",
-    source: "Cursor Changelog",
-    url: "https://cursor.com/changelog/origin-code-hosting",
-    summary: "Origin, in early beta on paid plans, hosts repositories and pull requests designed for agent scale and can sync GitHub repositories. Agents work in the same place as the code and its pull requests.",
-    whyItMatters: "Execution: coding-agent vendors are moving into the system of record, which changes where the factory's evidence and approvals live.",
-    touches: "Execution",
-    tags: ["code hosting", "pull requests", "cursor"],
   },
 ] as const satisfies readonly FactoryUpdate[];
