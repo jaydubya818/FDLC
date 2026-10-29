@@ -26,9 +26,31 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-10-27";
+export const factoryUpdatesReviewed = "2026-10-28";
 
 export const factoryUpdates = [
+  {
+    id: "github-agentic-workflows-ga",
+    date: "2026-10-28",
+    title: "GitHub Agentic Workflows is generally available",
+    source: "GitHub Changelog",
+    url: "https://github.blog/changelog/2026-10-28-github-agentic-workflows-generally-available/",
+    summary: "The open source project compiles natural-language Markdown automations into standard Actions YAML so coding agents can handle issue triage, CI failure analysis, documentation updates, and test writing. Agents run read-only by default inside a sandboxed container behind a firewall, outputs pass safe-output validation, and a threat detection job scans proposed changes.",
+    whyItMatters: "Policy: layered, default-deny safeguards around agent automation inside CI mirror the controls FDLC expects at the Execution stage.",
+    touches: "Policy",
+    tags: ["github actions", "sandboxes", "governance"],
+  },
+  {
+    id: "github-code-scanning-ai-applications",
+    date: "2026-10-28",
+    title: "GitHub code scanning for AI applications enters public preview",
+    source: "GitHub Changelog",
+    url: "https://github.blog/changelog/2026-10-28-code-scanning-for-ai-applications-in-public-preview/",
+    summary: "Code scanning now flags agent vulnerabilities such as indirect prompt injection, sensitive information disclosure, and excessive agency, and runs automatically on pull requests with mitigation guidance. It requires a GitHub Advanced Security license.",
+    whyItMatters: "Verification: pull-request checks for agent-specific risks such as excessive agency add an evidence gate before approval.",
+    touches: "Verification",
+    tags: ["security", "prompt injection", "github"],
+  },
   {
     id: "jellyfish-ai-engineering-trends-october",
     date: "2026-10-27",
@@ -116,27 +138,5 @@ export const factoryUpdates = [
     whyItMatters: "Policy: the four governance questions (who, allowed to do what, what it did, what it must never touch) map directly to factory controls.",
     touches: "Policy",
     tags: ["identity", "audit", "governance"],
-  },
-  {
-    id: "github-copilot-local-sandboxing-ga",
-    date: "2026-10-07",
-    title: "Local sandboxing for GitHub Copilot is generally available",
-    source: "GitHub Changelog",
-    url: "https://github.blog/changelog/2026-10-07-local-sandboxing-for-github-copilot-now-generally-available/",
-    summary: "Commands that Copilot starts in the CLI, the Copilot app, and VS Code Agent Host sessions now run with restricted access to files, network, and credentials. Enterprises can require sandboxing and enforce policies that developers cannot weaken.",
-    whyItMatters: "Policy: tool execution is bounded by policy regardless of which model is in use, which is the precondition for granting more autonomy.",
-    touches: "Policy",
-    tags: ["sandboxing", "enterprise controls", "github"],
-  },
-  {
-    id: "github-copilot-dynamic-workflows",
-    date: "2026-10-01",
-    title: "Dynamic workflows bring code-defined orchestration to Copilot",
-    source: "GitHub Changelog",
-    url: "https://github.blog/changelog/2026-10-01-dynamic-workflows-in-copilot-cli-and-the-copilot-app/",
-    summary: "Copilot CLI, the Copilot app, and the Copilot SDK can run dynamic workflows: programs that define the steps, when agents are involved, and how their structured results flow, including cross-verification and checkpoints that pause for human review. The feature is in public preview.",
-    whyItMatters: "Planning: the process becomes a versionable artifact, so the same steps and gates run every time.",
-    touches: "Planning",
-    tags: ["orchestration", "multi-agent", "github"],
   },
 ] as const satisfies readonly FactoryUpdate[];
