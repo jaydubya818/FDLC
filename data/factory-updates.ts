@@ -26,9 +26,42 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-10-28";
+export const factoryUpdatesReviewed = "2026-10-29";
 
 export const factoryUpdates = [
+  {
+    id: "factory-droid-1-harness",
+    date: "2026-10-29",
+    title: "Factory ships Droid 1.0 with programmatic tool calling and bounded-autonomy rules in the loop",
+    source: "Factory",
+    url: "https://factory.com/news/frontier-harness",
+    summary: "Droid 1.0 makes programmatic tool calling the default, so the agent writes a sandboxed script that runs many tool calls in one model request, and Factory reports a 15% cost cut on Claude Opus 5.5 versus direct calls. Stuck and repeat detection (nudge, retry, or stop) lives in the loop rather than the model, and an internal agent proposes harness changes that an engineer must review and merge.",
+    whyItMatters: "Agents: loop-level limits and human-merged harness changes are concrete patterns for bounded autonomy at the Execution stage.",
+    touches: "Agents",
+    tags: ["harness", "tool calling", "bounded autonomy"],
+  },
+  {
+    id: "hud-agentic-rollouts",
+    date: "2026-10-29",
+    title: "Hud launches agentic rollouts to validate AI-written changes against production behavior",
+    source: "The Next Web (contributed article)",
+    url: "https://thenextweb.com/news/hud-agentic-rollouts-ai-code-production",
+    summary: "Hud's runtime code sensor learns function-level baselines from production, scores each pull request's production risk before merge, and watches each new version against the baseline, with rollback and root-cause feedback to the coding agent on regression. This is a vendor-contributed article, and the customer example reports reverting flawed deploys in about eight minutes.",
+    whyItMatters: "Outcomes: runtime evidence that feeds back to the agent closes the loop between Release and Learning that FDLC treats as part of the lifecycle.",
+    touches: "Outcomes",
+    tags: ["runtime", "rollout", "feedback loop"],
+  },
+  {
+    id: "microsoft-copilot-harness-foundry",
+    date: "2026-10-28",
+    title: "Microsoft makes the GitHub-built Copilot harness available through Foundry",
+    source: "Official Microsoft Blog",
+    url: "https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/",
+    summary: "The multi-model harness behind Copilot Code, the GitHub Copilot app, the CLI, and VS Code is now offered as a managed Foundry service, with 20+ frontier models plus bring-your-own-key and support for MCP and agent skills. Microsoft runs the agent loop and sandbox with governance built in, and the SDK is available separately.",
+    whyItMatters: "Runtime: a managed, model-agnostic harness with a built-in sandbox shows the agent loop becoming a platform layer that FDLC's controls must sit on top of.",
+    touches: "Runtime",
+    tags: ["harness", "multi-model", "foundry"],
+  },
   {
     id: "github-agentic-workflows-ga",
     date: "2026-10-28",
@@ -105,38 +138,5 @@ export const factoryUpdates = [
     whyItMatters: "Verification: the agent must prove its fix against the same check that raised the alert, and a human still reviews the pull request.",
     touches: "Verification",
     tags: ["security", "remediation", "github"],
-  },
-  {
-    id: "factory-opencompute",
-    date: "2026-10-14",
-    title: "Factory introduces OpenCompute for self-hosted agent sandboxes",
-    source: "Factory",
-    url: "https://factory.com/news/opencompute",
-    summary: "OpenCompute, in private preview, orchestrates agent sandboxes on customer-controlled infrastructure. It records desired state and reconciles toward it, and each provider driver must pass black-box conformance tests for the lifecycle profiles it claims.",
-    whyItMatters: "Runtime: on-demand compute for agents stays inside the customer's boundary, behind explicit, testable contracts.",
-    touches: "Runtime",
-    tags: ["sandboxes", "infrastructure", "self-hosted"],
-  },
-  {
-    id: "anthropic-scion-source-control",
-    date: "2026-10-13",
-    title: "Anthropic replaces git with an in-house system built for agent-scale merges",
-    source: "Anthropic Engineering",
-    url: "https://www.anthropic.com/engineering/redesigning-source-control",
-    summary: "Merged changes grew from about 2,500 a day in May to more than 30,000 a day in September, so a seven-person team built Scion and migrated the monorepo off git in five months. Reviewers now examine the intent of each change rather than every line.",
-    whyItMatters: "Release: when agents write the code, source control, CI, and the merge queue become the bottleneck, so post-merge and pre-deploy evidence carry more weight.",
-    touches: "Release",
-    tags: ["source control", "ci", "scale"],
-  },
-  {
-    id: "google-gemini-agent-governance",
-    date: "2026-10-08",
-    title: "Google Cloud frames agent governance around identity, policy, audit, and a gateway",
-    source: "Google Cloud Blog",
-    url: "https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026",
-    summary: "With the Gemini agent, each agent gets a cryptographically attested identity, actions are audited and attributed to the agent rather than a person, execution runs in a sandbox, and all traffic passes through Agent Gateway, which enforces organization policy.",
-    whyItMatters: "Policy: the four governance questions (who, allowed to do what, what it did, what it must never touch) map directly to factory controls.",
-    touches: "Policy",
-    tags: ["identity", "audit", "governance"],
   },
 ] as const satisfies readonly FactoryUpdate[];
