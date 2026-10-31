@@ -26,9 +26,20 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-10-29";
+export const factoryUpdatesReviewed = "2026-10-30";
 
 export const factoryUpdates = [
+  {
+    id: "dynatrace-ai-observability-coding-agents",
+    date: "2026-10-29",
+    title: "Dynatrace unifies AI observability ingest across coding agents, OneAgent, and OpenInference",
+    source: "Dynatrace",
+    url: "https://www.dynatrace.com/news/blog/dynatrace-unifies-ai-observability-ingest-across-coding-agents-oneagent-and-openinference/",
+    summary: "Dynatrace now ingests OpenTelemetry signals from coding agents including Claude Code, Codex, Cursor and GitHub Copilot, tracking token use, cost, session activity and tool behavior, and normalizes OpenInference spans into its gen_ai data model. It says teams can tie agent activity to the commits, pull requests and production behavior that followed.",
+    whyItMatters: "Observability: connecting agent sessions to what shipped and how it ran in production feeds the Outcomes and Learning stages.",
+    touches: "Observability",
+    tags: ["observability", "opentelemetry", "coding agents"],
+  },
   {
     id: "factory-droid-1-harness",
     date: "2026-10-29",
@@ -50,6 +61,17 @@ export const factoryUpdates = [
     whyItMatters: "Outcomes: runtime evidence that feeds back to the agent closes the loop between Release and Learning that FDLC treats as part of the lifecycle.",
     touches: "Outcomes",
     tags: ["runtime", "rollout", "feedback loop"],
+  },
+  {
+    id: "github-universe-2026-agentic-delivery",
+    date: "2026-10-28",
+    title: "GitHub Universe 2026: Copilot app, projects, and automations that learn from outcomes",
+    source: "The GitHub Blog",
+    url: "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/",
+    summary: "GitHub launched the Copilot app and Copilot projects for running parallel agent sessions across repos, plus Copilot code review Max and automations that propose improvements from their own results for a human to approve. GitHub frames the SDLC as non-linear, with developers setting direction and agents implementing and verifying.",
+    whyItMatters: "Learning: automations that propose changes for human approval mirror FDLC's feedback loop from Outcomes back into Planning.",
+    touches: "Learning",
+    tags: ["github", "copilot", "agentic delivery"],
   },
   {
     id: "microsoft-copilot-harness-foundry",
@@ -116,27 +138,5 @@ export const factoryUpdates = [
     whyItMatters: "Verification: an independent verdict, separate from the agent that wrote the code, is the evidence gate FDLC expects before approval.",
     touches: "Verification",
     tags: ["testing", "verification", "guardrails"],
-  },
-  {
-    id: "gitlab-ai-native-engineering-playbook",
-    date: "2026-10-20",
-    title: "GitLab publishes an AI-native engineering playbook built on earned autonomy and layered verification",
-    source: "GitLab Blog",
-    url: "https://about.gitlab.com/blog/redesign-how-your-team-ships-software-with-ai-agents/",
-    summary: "The playbook describes a four-stage autonomy ladder in which no rung is skipped and each step up needs evidence from the rung below. It pairs that with layered review that matches depth to risk and records every agentic review decision.",
-    whyItMatters: "Approval: autonomy is widened only on measured evidence, with a named human accountable, which matches FDLC's gate model.",
-    touches: "Approval",
-    tags: ["autonomy", "code review", "governance"],
-  },
-  {
-    id: "github-agentic-autofix-ga",
-    date: "2026-10-15",
-    title: "Agentic autofix for code scanning alerts is generally available",
-    source: "GitHub Changelog",
-    url: "https://github.blog/changelog/2026-10-15-agentic-autofix-for-code-scanning-alerts-general-availability/",
-    summary: "Assigning a code scanning alert to Copilot now explores the codebase, proposes a fix, and reruns CodeQL to confirm the alert closes before opening a draft pull request that records the validation steps it took.",
-    whyItMatters: "Verification: the agent must prove its fix against the same check that raised the alert, and a human still reviews the pull request.",
-    touches: "Verification",
-    tags: ["security", "remediation", "github"],
   },
 ] as const satisfies readonly FactoryUpdate[];
