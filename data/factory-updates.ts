@@ -26,9 +26,20 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-10-29";
+export const factoryUpdatesReviewed = "2026-10-30";
 
 export const factoryUpdates = [
+  {
+    id: "dynatrace-ai-observability-coding-agents",
+    date: "2026-10-29",
+    title: "Dynatrace unifies AI observability ingest across coding agents, OneAgent, and OpenInference",
+    source: "Dynatrace",
+    url: "https://www.dynatrace.com/news/blog/dynatrace-unifies-ai-observability-ingest-across-coding-agents-oneagent-and-openinference/",
+    summary: "Dynatrace now ingests OpenTelemetry signals from coding agents including Claude Code, Codex, Cursor and GitHub Copilot, tracking token use, cost, session activity and tool behavior, and normalizes OpenInference spans into its gen_ai data model. It says teams can tie agent activity to the commits, pull requests and production behavior that followed.",
+    whyItMatters: "Observability: connecting agent sessions to what shipped and how it ran in production feeds the Outcomes and Learning stages.",
+    touches: "Observability",
+    tags: ["observability", "opentelemetry", "coding agents"],
+  },
   {
     id: "factory-droid-1-harness",
     date: "2026-10-29",
@@ -50,6 +61,17 @@ export const factoryUpdates = [
     whyItMatters: "Outcomes: runtime evidence that feeds back to the agent closes the loop between Release and Learning that FDLC treats as part of the lifecycle.",
     touches: "Outcomes",
     tags: ["runtime", "rollout", "feedback loop"],
+  },
+  {
+    id: "github-universe-2026-agentic-delivery",
+    date: "2026-10-28",
+    title: "GitHub Universe 2026: Copilot app, projects, and automations that learn from outcomes",
+    source: "The GitHub Blog",
+    url: "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/",
+    summary: "GitHub launched the Copilot app and Copilot projects for running parallel agent sessions across repos, plus Copilot code review Max and automations that propose improvements from their own results for a human to approve. GitHub frames the SDLC as non-linear, with developers setting direction and agents implementing and verifying.",
+    whyItMatters: "Learning: automations that propose changes for human approval mirror FDLC's feedback loop from Outcomes back into Planning.",
+    touches: "Learning",
+    tags: ["github", "copilot", "agentic delivery"],
   },
   {
     id: "microsoft-copilot-harness-foundry",
