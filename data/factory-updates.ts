@@ -26,9 +26,20 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-10-30";
+export const factoryUpdatesReviewed = "2026-11-01";
 
 export const factoryUpdates = [
+  {
+    id: "deepseek-super-agent-prototype",
+    date: "2026-11-01",
+    title: "DeepSeek open-sources Super-Agent, a proactive repo-level coding agent prototype",
+    source: "The Next Web",
+    url: "https://thenextweb.com/news/deepseek-super-agent-open-source-coding-agent",
+    summary: "DeepSeek released an MIT-licensed research prototype that works on one GitHub repository, turns requests from approved people into tasks in separate agent sessions, replies with pull requests, and lists items needing a human on a web panel. It acts only when asked or when a team rule allows it, and DeepSeek says the public code differs from its internal version.",
+    whyItMatters: "Human control: an allow-list of who can trigger work and a panel of items awaiting a human are concrete approval-gate patterns for FDLC's Approval stage.",
+    touches: "Human control",
+    tags: ["open source", "coding agents", "approval"],
+  },
   {
     id: "dynatrace-ai-observability-coding-agents",
     date: "2026-10-29",
@@ -61,6 +72,17 @@ export const factoryUpdates = [
     whyItMatters: "Outcomes: runtime evidence that feeds back to the agent closes the loop between Release and Learning that FDLC treats as part of the lifecycle.",
     touches: "Outcomes",
     tags: ["runtime", "rollout", "feedback loop"],
+  },
+  {
+    id: "coforge-autonomous-software-factory",
+    date: "2026-10-29",
+    title: "Coforge introduces an Autonomous Software Factory operating model for governing AI agents across the SDLC",
+    source: "Capital Market",
+    url: "https://www.capitalmarket.com/markets/news/results-announcements-news/coforge-launches-new-operating-model-for-managing-ai-agents/1741096",
+    summary: "Coforge announced its Autonomous Software Factory (ASF), an operating model in which specialized agents run coding, testing, validation, code review and QA in parallel inside secure execution environments. The company frames the main enterprise challenge as governing and coordinating agents rather than generating code. This is a company announcement reported by a news outlet.",
+    whyItMatters: "Policy: IT-services vendors are packaging governance and human oversight as the product, which is the control layer FDLC models across every stage.",
+    touches: "Policy",
+    tags: ["software factory", "governance", "enterprise"],
   },
   {
     id: "github-universe-2026-agentic-delivery",
