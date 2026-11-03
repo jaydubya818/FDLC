@@ -26,9 +26,20 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-11-01";
+export const factoryUpdatesReviewed = "2026-11-02";
 
 export const factoryUpdates = [
+  {
+    id: "qodo-codex-plugin-review-loop",
+    date: "2026-11-02",
+    title: "Qodo's Codex plugin feeds org rules into coding sessions and returns independent review before the PR",
+    source: "OpenAI",
+    url: "https://openai.com/index/qodo-codex-plugin/",
+    summary: "Qodo's plugin in the Codex marketplace retrieves codebase rules and pull request history before Codex writes code, then reviews the changes and returns findings in the same session before a pull request opens. Qodo's CEO describes agents debating findings and surfacing only unresolved ones to humans.",
+    whyItMatters: "Verification: a separate review agent with organizational context, escalating only disputed findings, is a pattern for FDLC's Verification stage.",
+    touches: "Verification",
+    tags: ["code review", "codex", "software factory"],
+  },
   {
     id: "deepseek-super-agent-prototype",
     date: "2026-11-01",
@@ -85,6 +96,17 @@ export const factoryUpdates = [
     tags: ["software factory", "governance", "enterprise"],
   },
   {
+    id: "opsera-forge-ai-native-software-factory",
+    date: "2026-10-29",
+    title: "Opsera relaunches as an AI-native software factory built around spec-driven Forge",
+    source: "DEVOPSdigest",
+    url: "https://www.devopsdigest.com/opsera-relaunches-ai-native-software-factory",
+    summary: "Opsera's Forge turns business intent into living specs and reviewable work orders for any model or coding assistant, with a human in the loop and evals, security and compliance checks at every stage. The vendor claims time to market falls from two weeks to two days.",
+    whyItMatters: "Planning: spec-to-work-order decomposition with checks at each stage mirrors FDLC's Intent and Planning stages (efficiency figures are vendor claims).",
+    touches: "Planning",
+    tags: ["software factory", "spec-driven", "governance"],
+  },
+  {
     id: "github-universe-2026-agentic-delivery",
     date: "2026-10-28",
     title: "GitHub Universe 2026: Copilot app, projects, and automations that learn from outcomes",
@@ -116,27 +138,5 @@ export const factoryUpdates = [
     whyItMatters: "Policy: layered, default-deny safeguards around agent automation inside CI mirror the controls FDLC expects at the Execution stage.",
     touches: "Policy",
     tags: ["github actions", "sandboxes", "governance"],
-  },
-  {
-    id: "github-code-scanning-ai-applications",
-    date: "2026-10-28",
-    title: "GitHub code scanning for AI applications enters public preview",
-    source: "GitHub Changelog",
-    url: "https://github.blog/changelog/2026-10-28-code-scanning-for-ai-applications-in-public-preview/",
-    summary: "Code scanning now flags agent vulnerabilities such as indirect prompt injection, sensitive information disclosure, and excessive agency, and runs automatically on pull requests with mitigation guidance. It requires a GitHub Advanced Security license.",
-    whyItMatters: "Verification: pull-request checks for agent-specific risks such as excessive agency add an evidence gate before approval.",
-    touches: "Verification",
-    tags: ["security", "prompt injection", "github"],
-  },
-  {
-    id: "jellyfish-ai-engineering-trends-october",
-    date: "2026-10-27",
-    title: "Jellyfish data: agents touch 27.7% of pull requests, but AI-only merges are just 0.5%",
-    source: "R&D World (Jellyfish report)",
-    url: "https://www.rdworldonline.com/jellyfish-claude-code-bills-hit-252-a-month-per-developer-as-software-factories-automate-code-production-among-early-adopters/",
-    summary: "Jellyfish's October report, covering more than 1,300 companies, found agents opened or committed code to 27.7% of pull requests at the median company in September, while software factories opened 0.0% of pull requests even at the 90th percentile. Only 62% of surveyed developers said their organization manages AI-code risk effectively.",
-    whyItMatters: "Approval: full autonomy is still rare and humans sign off on nearly every merge, which supports FDLC's earned-autonomy gates.",
-    touches: "Approval",
-    tags: ["adoption", "software factory", "governance"],
   },
 ] as const satisfies readonly FactoryUpdate[];
