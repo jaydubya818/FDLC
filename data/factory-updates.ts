@@ -26,9 +26,20 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-11-01";
+export const factoryUpdatesReviewed = "2026-11-02";
 
 export const factoryUpdates = [
+  {
+    id: "qodo-codex-plugin-review-loop",
+    date: "2026-11-02",
+    title: "Qodo's Codex plugin feeds org rules into coding sessions and returns independent review before the PR",
+    source: "OpenAI",
+    url: "https://openai.com/index/qodo-codex-plugin/",
+    summary: "Qodo's plugin in the Codex marketplace retrieves codebase rules and pull request history before Codex writes code, then reviews the changes and returns findings in the same session before a pull request opens. Qodo's CEO describes agents debating findings and surfacing only unresolved ones to humans.",
+    whyItMatters: "Verification: a separate review agent with organizational context, escalating only disputed findings, is a pattern for FDLC's Verification stage.",
+    touches: "Verification",
+    tags: ["code review", "codex", "software factory"],
+  },
   {
     id: "deepseek-super-agent-prototype",
     date: "2026-11-01",
@@ -83,6 +94,17 @@ export const factoryUpdates = [
     whyItMatters: "Policy: IT-services vendors are packaging governance and human oversight as the product, which is the control layer FDLC models across every stage.",
     touches: "Policy",
     tags: ["software factory", "governance", "enterprise"],
+  },
+  {
+    id: "opsera-forge-ai-native-software-factory",
+    date: "2026-10-29",
+    title: "Opsera relaunches as an AI-native software factory built around spec-driven Forge",
+    source: "DEVOPSdigest",
+    url: "https://www.devopsdigest.com/opsera-relaunches-ai-native-software-factory",
+    summary: "Opsera's Forge turns business intent into living specs and reviewable work orders for any model or coding assistant, with a human in the loop and evals, security and compliance checks at every stage. The vendor claims time to market falls from two weeks to two days.",
+    whyItMatters: "Planning: spec-to-work-order decomposition with checks at each stage mirrors FDLC's Intent and Planning stages (efficiency figures are vendor claims).",
+    touches: "Planning",
+    tags: ["software factory", "spec-driven", "governance"],
   },
   {
     id: "github-universe-2026-agentic-delivery",
