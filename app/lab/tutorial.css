@@ -41,7 +41,7 @@
   .engineering-tutorial .tutorial-orientation { padding: 22px 20px; margin-block: 24px 40px; }
   .tutorial-orientation-links { flex-direction: column; align-items: flex-start; gap: 12px; }
   .tutorial-download-actions { align-items: stretch; flex-direction: column; gap: 18px; }
-  .tutorial-download-actions .button { justify-content: center; text-align: center; }
+  .tutorial-download-actions .button { flex: none; justify-content: center; text-align: center; }
 }
 
 .tutorial-reference-links { display: flex; flex-wrap: wrap; align-items: start; gap: 12px 24px; margin-block: 24px; }
