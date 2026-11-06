@@ -1,7 +1,18 @@
+.engineering-tutorial .tutorial-body { width: min(var(--content-width), calc(100% - 40px)); margin-inline: auto; }
+.engineering-tutorial .tutorial-orientation { margin: 32px 0 56px; padding: 28px 32px; display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1.8fr); gap: 32px; align-items: start; background: var(--sage); border: 1px solid var(--line); border-left: 4px solid var(--green); }
+.tutorial-orientation > div { min-width: 0; }
+.tutorial-orientation h2 { margin: 14px 0 0; color: var(--green); font-size: 25px; font-weight: 600; line-height: 1.25; letter-spacing: -.025em; }
+.tutorial-orientation-copy > p { max-width: 82ch; margin: 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+.tutorial-orientation-copy > p + p { margin-top: 12px; }
+.tutorial-orientation-links { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 20px; }
+.tutorial-orientation-links a, .tutorial-download-actions > a:not(.button) { color: var(--green); font-size: 14px; font-weight: 650; line-height: 1.6; text-decoration: underline; text-underline-offset: 3px; }
+.tutorial-orientation-links a { padding-block: 4px; }
+.tutorial-download-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-block: 24px; }
+.engineering-tutorial .tutorial-section[id] { scroll-margin-top: 120px; }
 .engineering-tutorial .tutorial-nav { display: flex; flex-wrap: wrap; gap: 12px 24px; border-block: 1px solid var(--line); padding: 18px 0; font-size: 14px; font-weight: 650; }
 .engineering-tutorial .tutorial-nav a { padding-block: 6px; }
 .tutorial-section { margin-block: 48px; scroll-margin-top: 120px; }
-.tutorial-section > p { max-width: 950px; font-size: 16px; color: var(--muted); line-height: 1.75; }
+.tutorial-section > p { max-width: 82ch; margin-block: 20px; font-size: 16px; color: var(--muted); line-height: 1.75; }
 .tutorial-section p a:not(.button), .tutorial-section li a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
 .tutorial-section code { overflow-wrap: anywhere; font-size: .87em; }
 .tutorial-section .quickstart-code { margin-top: 24px; }
@@ -10,7 +21,7 @@
 .tutorial-checkpoints > li { padding: 22px 24px 22px 68px; background: var(--white); border: 1px solid var(--line); position: relative; counter-increment: checkpoint; }
 .tutorial-checkpoints > li::before { content: counter(checkpoint,decimal-leading-zero); position: absolute; top: 24px; left: 22px; font: 700 12px var(--mono); color: var(--green); }
 .tutorial-checkpoints strong { font-size: 18px; }
-.tutorial-checkpoints p { font-size: 15px; color: var(--muted); line-height: 1.7; margin: 8px 0 0; }
+.tutorial-checkpoints p { max-width: 88ch; font-size: 15px; color: var(--muted); line-height: 1.7; margin: 8px 0 0; }
 .tutorial-scenarios, .tutorial-contract-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin-block: 24px; }
 .tutorial-scenarios > article, .tutorial-contract-grid > article { min-width: 0; padding: 22px; border: 1px solid var(--line); }
 .tutorial-scenarios code { color: var(--green); }
@@ -18,3 +29,22 @@
 .tutorial-scenarios p, .tutorial-contract-grid ul { color: var(--muted); font-size: 15px; line-height: 1.7; margin-block: 8px; }
 .tutorial-contract-grid ul { padding-left: 20px; }
 @media(max-width: 620px) { .tutorial-scenarios, .tutorial-contract-grid { grid-template-columns: 1fr; } .tutorial-checkpoints > li { padding: 20px 18px 20px 52px; } .tutorial-checkpoints > li::before { left: 16px; top: 23px; } }
+
+@media(max-width: 820px) {
+  .engineering-tutorial .tutorial-orientation { grid-template-columns: 1fr; gap: 20px; }
+  .tutorial-orientation h2 br { display: none; }
+}
+@media(max-width: 560px) {
+  .engineering-tutorial .tutorial-body { width: calc(100% - 28px); }
+  .engineering-tutorial .tutorial-nav { gap: 4px 18px; padding-block: 12px; }
+  .engineering-tutorial .tutorial-nav a { min-height: 44px; display: inline-flex; align-items: center; }
+  .engineering-tutorial .tutorial-orientation { padding: 22px 20px; margin-block: 24px 40px; }
+  .tutorial-orientation-links { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .tutorial-download-actions { align-items: stretch; flex-direction: column; gap: 18px; }
+  .tutorial-download-actions .button { justify-content: center; text-align: center; }
+}
+
+.tutorial-reference-links { display: flex; flex-wrap: wrap; align-items: start; gap: 12px 24px; margin-block: 24px; }
+.tutorial-reference-links > a { max-width: 100%; padding-block: 6px; color: var(--green); font-size: 14px; font-weight: 650; line-height: 1.6; text-decoration: underline; text-underline-offset: 3px; }
+.tutorial-section .quickstart-code pre { margin: 0; padding: 20px 24px; color: #d1e9de; font-family: var(--mono); font-size: 14px; line-height: 1.7; }
+.tutorial-section .quickstart-code pre code { font: inherit; }

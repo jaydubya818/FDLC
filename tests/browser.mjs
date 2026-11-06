@@ -81,6 +81,25 @@ try {
       await page.getByRole("heading", { level: 1 }).waitFor();
       await checkGlobalNavigation(page, { mobile: width === 390, keyboard: route === "/" });
       await audit(route);
+      if (route === "/lab") {
+        const layout = await page.evaluate(() => {
+          const hero = document.querySelector(".engineering-tutorial .page-hero").getBoundingClientRect();
+          return {
+            hero: { left: hero.left, right: hero.right, width: hero.width },
+            sections: [...document.querySelectorAll(".tutorial-nav, .tutorial-orientation, .tutorial-section")].map(node => {
+              const rect = node.getBoundingClientRect();
+              return { name: node.id || node.className, left: rect.left, right: rect.right };
+            }),
+            introTextWidth: document.querySelector(".tutorial-orientation-copy > p").getBoundingClientRect().width,
+          };
+        });
+        for (const section of layout.sections) {
+          assert.ok(Math.abs(section.left - layout.hero.left) < 2, `${section.name}: shares the hero's left gutter`);
+          assert.ok(Math.abs(section.right - layout.hero.right) < 2, `${section.name}: shares the hero's right gutter`);
+        }
+        assert.ok(layout.introTextWidth >= layout.hero.width * (width < 820 ? .75 : .55), "Lab introduction has a readable column width");
+        report.flows.push({ name: "lab-page-gutters-and-readable-introduction", width, result: "PASS" });
+      }
       if (route === "/lab" && width === 390) {
         const code = page.getByRole("region", { name: "Reference Lab commands", exact: true });
         await code.focus();
