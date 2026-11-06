@@ -2,7 +2,7 @@
 .engineering-tutorial .tutorial-nav a { padding-block: 6px; }
 .tutorial-section { margin-block: 48px; scroll-margin-top: 120px; }
 .tutorial-section > p { max-width: 950px; font-size: 16px; color: var(--muted); line-height: 1.75; }
-.tutorial-section p a, .tutorial-section li a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+.tutorial-section p a:not(.button), .tutorial-section li a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
 .tutorial-section code { overflow-wrap: anywhere; font-size: .87em; }
 .tutorial-section .quickstart-code { margin-top: 24px; }
 .tutorial-section pre { max-width: 100%; overflow: auto; }
