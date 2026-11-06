@@ -14,7 +14,7 @@ Extract the download, then run from its parent folder:
 
 ```sh
 git clone https://github.com/jaydubya818/skillz.git skillz
-git -C skillz checkout --detach 4942dde4b2a442df3ee45879bb22734c658426df
+git -C skillz checkout --detach 44df27bc06f11d76d9f490c76578f222e254be6f
 node factory-starter/demo.mjs ./skillz
 ```
 
@@ -23,6 +23,12 @@ commit is pinned in `skills.lock.json`; the runner rejects a different commit
 or a dirty checkout. The complete checkout preserves the skills' supporting
 references, runtime mappings, and attribution. This kit does not redistribute
 or install the skills globally. See `skillz/LICENSES.md` for their licenses.
+
+Starter v0.1.1 updates the Skillz pin to the latest source as of November 6,
+2026, including the refreshed workflow instructions and supporting references.
+The same five phases and local runner remain in use. To update an older kit,
+extract v0.1.1 into a new folder and use its pinned checkout for new runs.
+Keep existing runs with the kit and Skillz revision that created them.
 
 The demo creates a temporary Git repository and an isolated branch. Its batch
 counter returns two batches for five items at capacity two. A new regression

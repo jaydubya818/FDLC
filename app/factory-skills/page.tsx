@@ -16,7 +16,7 @@ const outcomes = ["Understand the affected code", "Define the fix and its scope"
 
 export default function FactorySkillsPage() {
   return <SiteShell><div className="page-wrap starter-page">
-    <PageHero eyebrow="Factory skills / v0.1" status="Local pilot" variant="compact" title="Your first factory starts with one fix." description="Turn the Guide into practice. Use your Skillz skills and an existing Codex session to take a small bug from a failing test to a reviewable fix." meta={[["Runtime", "Node.js + Git"], ["Execution", "Local"], ["Merge", "Human decision"]]}>
+    <PageHero eyebrow={`Factory skills / v${download.version}`} status="Local pilot" variant="compact" title="Your first factory starts with one fix." description="Turn the Guide into practice. Use your Skillz skills and an existing Codex session to take a small bug from a failing test to a reviewable fix." meta={[["Runtime", "Node.js + Git"], ["Execution", "Local"], ["Merge", "Human decision"]]}>
       <div className="hero-actions"><a className="button button-dark" href={download.href} download>Download starter kit ↓</a><a className="text-action" href="#try-it">Try the example →</a></div>
     </PageHero>
     <section className="starter-outcome" aria-label="The result">
