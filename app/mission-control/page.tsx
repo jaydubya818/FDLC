@@ -118,6 +118,7 @@ export default function MissionControlPage() {
 
     <FactoryHandoffDiagram />
     <GuideReading page="mission-control" />
+    <p className="enterprise-note"><Link href="/about#engineering-discipline">Software Factory Engineering responsibilities</Link> · <Link href="/architecture#governed-improvement">Production feedback and governed factory improvement</Link></p>
     <NextSteps {...pageHandoffs["mission-control"]} />
     <section className="reading-next" id="build-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/specification">Preview the Specification →</Link></div></section>
   </div></SiteShell>;

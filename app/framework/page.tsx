@@ -170,6 +170,7 @@ export default function FrameworkPage() {
         <blockquote>Verified delivery, not merely generated code.</blockquote>
       </section>
       <GuideReading page="framework" />
+      <p className="enterprise-note"><Link href="/about#engineering-discipline">Software Factory Engineering responsibilities</Link> · <Link href="/architecture#governed-improvement">Production feedback and governed factory improvement</Link></p>
       <NextSteps {...pageHandoffs.framework} />
       </div>
       </div>

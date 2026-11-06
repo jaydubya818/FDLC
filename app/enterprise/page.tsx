@@ -1,4 +1,6 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- Guide routes cross the microfrontend boundary. */
 import type { Metadata } from "next";
+import { operatingDomainExamples } from "../../data/software-factory-engineering";
 import { ReferenceDiagram } from "../components/reference-diagrams";
 import Link from "next/link";
 import { PageHero, SectionHeader } from "../components/page-hero";
@@ -15,6 +17,7 @@ const contents = [
   { label: "Factory portfolio", href: "#factory-portfolio" },
   { label: "Routing and dependencies", href: "#routing" },
   { label: "Verification", href: "#verification" },
+  { label: "Operating domains", href: "#operating-domains" },
   { label: "Enterprise readiness", href: "#readiness" },
   { label: "Adoption and pricing", href: "#pricing" },
 ] as const;
@@ -96,6 +99,13 @@ export default function EnterprisePage() {
       <div className="enterprise-version"><h3>Measure accepted outcomes and the effort to achieve them.</h3><p>Track objective success, first-attempt verification, escaped defects, rollback and recovery, end-to-end cycle time, human review minutes, and adoption. Attribute inference, compute, tools, verification, retries, and human intervention to the outcome.</p><p>Compare similar workloads over a declared observation window. Report sample size and missing data. Cost per accepted outcome is undefined when no outcomes are accepted; activity and token volume alone do not establish business value.</p><Link className="section-link" href="/benchmarks">Use the measurement contract →</Link></div>
     </section>
 
+    <section className="section-block" id="operating-domains">
+      <SectionHeader eyebrow="Autonomous Operating Domains" title="Delegate a class of work under explicit conditions." description="An Autonomous Operating Domain specifies the engineering work a qualified factory may execute within workload, authority, evidence, risk and operational boundaries. This is a framework contract to implement and qualify." />
+      <ReferenceDiagram name="autonomy" />
+      <details><summary>Compare eight workload classes</summary><div className="engineering-grid">{operatingDomainExamples.map(([name, conditions]) => <article key={name}><h3>{name}</h3><p>{conditions}</p></article>)}</div></details>
+      <p>Record the Factory Version, workload scope, environment, tool permissions, credential scope, evidence requirements, named approvers, limits and safe-stop / recovery paths. Qualification must cover the whole composition. Routine recoverable failures can use bounded reconciliation without interrupting a human; consequential decisions retain an authorized owner.</p>
+      <p><Link href="/about#engineering-discipline">Assign factory engineering responsibilities</Link> · <a href="/guide/02-design/07-governance-policy-and-risk-proportional-approval#autonomous-operating-domains">Use the Guide’s operating-domain contract</a></p>
+    </section>
     <section className="section-block" id="adoption">
       <SectionHeader eyebrow="Recommended adoption path" title="Prove one workflow. Expand on evidence." />
       <ol className="enterprise-stages">{enterpriseAdoption.map(([title, description], index) => <li key={title}><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{title}</h3><p>{description}</p></div></li>)}</ol>
