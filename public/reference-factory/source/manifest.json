@@ -1,0 +1,58 @@
+{
+  "version": "1.1.0",
+  "archive": "/downloads/fdlc-reference-lab-v1.1.0.zip",
+  "sha256": "4445529284e7072643b40504e45bf3d35ae5d99a756d521da1f2ee524ee2055c",
+  "files": [
+    {
+      "path": "README.md",
+      "source": "/reference-factory/source/README.md.txt",
+      "sha256": "28ed99759fcce86a05341d75a39043c76bed2e7c9b76816c07751ec4abea368b"
+    },
+    {
+      "path": "lab.mjs",
+      "source": "/reference-factory/source/lab.mjs.txt",
+      "sha256": "670b9bc3f2225d6108f2d0dd61ec7748b4f7f8ea8452292456b6689beedf8125"
+    },
+    {
+      "path": "contract.test.mjs",
+      "source": "/reference-factory/source/contract.test.mjs.txt",
+      "sha256": "7833a6e6561fe00ca3a96a7df4adfe1d35fc3bf0624f5bedc0f69916b26a3002"
+    },
+    {
+      "path": "factory-definition.json",
+      "source": "/reference-factory/source/factory-definition.json.txt",
+      "sha256": "669a9ca02177a9e316c3934fd4a584ce7c058ced0b3e1e5a6f7761bef3e408c9"
+    },
+    {
+      "path": "work-order.json",
+      "source": "/reference-factory/source/work-order.json.txt",
+      "sha256": "00bffc3010a1c813690e9b6db752a53e00ebe003676a6a68d830697385536746"
+    },
+    {
+      "path": "sandbox/package.json",
+      "source": "/reference-factory/source/sandbox/package.json.txt",
+      "sha256": "1239d4d885dcad42201a27ed9324f8f0f760b78700d8db9ced39a511cffe7eae"
+    },
+    {
+      "path": "sandbox/src/add.js",
+      "source": "/reference-factory/source/sandbox/src/add.js.txt",
+      "sha256": "33a5a81349f3940bb66bd78fa2a9fc507a4c2346d61e4bd6ad0a915e506dd53a"
+    },
+    {
+      "path": "sandbox/src/api.mjs",
+      "source": "/reference-factory/source/sandbox/src/api.mjs.txt",
+      "sha256": "9413b3393bdc193dc1df8879b309b27581ce8bec2a6abc3f7c78d7d425ef8fea"
+    },
+    {
+      "path": "sandbox/tests/add.test.js",
+      "source": "/reference-factory/source/sandbox/tests/add.test.js.txt",
+      "sha256": "144a3fc141305531c8665c545e41c727ff99ca51ebbcbd2b78115ae291d36c45"
+    },
+    {
+      "path": "sandbox/tests/api.test.mjs",
+      "source": "/reference-factory/source/sandbox/tests/api.test.mjs.txt",
+      "sha256": "782076a14f26ceef0e5f5a6e4d48e7789c4bf87d65c216af75007c0f9a2fdd2e"
+    }
+  ],
+  "scope": "Trusted local teaching fixture; no production qualification"
+}

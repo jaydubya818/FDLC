@@ -43,7 +43,7 @@ try {
   // independently built Guide artifact and are covered by the migration's
   // exact-deployment composition suites, not by a mutable remote dependency
   // during the FDLC local-build gate.
-  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/factory-skills", "/about"];
+  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/factory-skills", "/lab", "/simulator", "/about"];
   const links = new Set();
   async function audit(label) {
     // Measure settled styles; entry fades are deliberately below final contrast.
@@ -81,6 +81,35 @@ try {
       await page.getByRole("heading", { level: 1 }).waitFor();
       await checkGlobalNavigation(page, { mobile: width === 390, keyboard: route === "/" });
       await audit(route);
+      if (route === "/lab") {
+        const layout = await page.evaluate(() => {
+          const hero = document.querySelector(".engineering-tutorial .page-hero").getBoundingClientRect();
+          return {
+            hero: { left: hero.left, right: hero.right, width: hero.width },
+            sections: [...document.querySelectorAll(".tutorial-nav, .tutorial-orientation, .tutorial-section")].map(node => {
+              const rect = node.getBoundingClientRect();
+              return { name: node.id || node.className, left: rect.left, right: rect.right };
+            }),
+            introTextWidth: document.querySelector(".tutorial-orientation-copy > p").getBoundingClientRect().width,
+          };
+        });
+        for (const section of layout.sections) {
+          assert.ok(Math.abs(section.left - layout.hero.left) < 2, `${section.name}: shares the hero's left gutter`);
+          assert.ok(Math.abs(section.right - layout.hero.right) < 2, `${section.name}: shares the hero's right gutter`);
+        }
+        assert.ok(layout.introTextWidth >= layout.hero.width * (width < 820 ? .75 : .55), "Lab introduction has a readable column width");
+        report.flows.push({ name: "lab-page-gutters-and-readable-introduction", width, result: "PASS" });
+      }
+      if (route === "/lab" && width === 390) {
+        const code = page.getByRole("region", { name: "Reference Lab commands", exact: true });
+        await code.focus();
+        assert.ok(await code.evaluate(node => node === document.activeElement));
+        if (await code.evaluate(node => node.scrollWidth > node.clientWidth)) {
+          await page.keyboard.press("ArrowRight");
+          await page.waitForFunction(() => document.querySelector('pre[aria-label="Reference Lab commands"]').scrollLeft > 0);
+        }
+        report.flows.push({ name: "tutorial-commands-keyboard-scroll", width, result: "PASS" });
+      }
       if (route === "/factory-skills") {
         assert.equal(await page.locator(".starter-outcome").evaluate(node => getComputedStyle(node).display), "grid", "Starter layout styles must reach the browser");
       }
@@ -301,10 +330,38 @@ try {
 
     await page.goto(origin);
     assert.match(await page.locator(".hero-problem").innerText(), /Trusted autonomous software delivery is not/);
-    await page.getByRole("link", { name: "See a factory in action" }).click();
-    await page.waitForURL(`${origin}/#worked-example`);
+    await page.getByRole("link", { name: "Experience a Factory", exact: true }).click();
+    await page.waitForURL(`${origin}/simulator`);
+    await keyboardActivateButton("Submit sample intent");
+    await keyboardActivateButton("Run to the next boundary");
+    assert.match(await page.locator(".simulator-result").innerText(), /Complete.*sample only/is);
+    await audit("simulator-happy-outcome");
+    await page.getByRole("radio", { name: "Failed verification + recovery", exact: true }).check();
+    await keyboardActivateButton("Submit sample intent");
+    await keyboardActivateButton("Run to the next boundary");
+    assert.match(await page.locator(".simulator-result").innerText(), /Blocked/i);
+    assert.equal(await page.locator(".experience-evidence > li").count(), 1);
+    await keyboardActivateButton("Apply the fix and continue");
+    await keyboardActivateButton("Run to the next boundary");
+    assert.equal(await page.locator(".experience-evidence > li").count(), 2);
+    assert.match(await page.locator(".experience-evidence").innerText(), /EV-1.*FAIL.*EV-2.*PASS/s);
+    await audit("simulator-recovery-evidence");
+    for (const approved of [false, true]) {
+      await page.getByRole("radio", { name: "Human approval required", exact: true }).check();
+      if (approved) await keyboardActivateButton("Reset");
+      await keyboardActivateButton("Submit sample intent");
+      await keyboardActivateButton("Run to the next boundary");
+      assert.match(await page.locator(".simulator-result").innerText(), /Awaiting human approval/i);
+      assert.ok(await page.getByRole("button", { name: "Run to the next boundary", exact: true }).isDisabled());
+      await keyboardActivateButton(approved ? "Record sample human approval" : "Reject sample request");
+      assert.ok(await page.locator(".simulator-result").evaluate(node => node === document.activeElement));
+      if (approved) await keyboardActivateButton("Run to the next boundary");
+      assert.match(await page.locator(".simulator-result").innerText(), approved ? /Complete.*sample only/is : /Denied.*safely stopped/is);
+      await audit(approved ? "simulator-human-approved" : "simulator-human-denied");
+    }
+    report.flows.push({ name: "homepage-to-simulator-success-failure-recovery-human-decisions", width, result: "PASS" });
+    await page.goto(origin);
     assert.ok(await page.getByRole("list", { name: "Dependency modernization factory flow" }).isVisible());
-    report.flows.push({ name: "homepage-problem-to-worked-example", width, result: "PASS" });
 
     const explorer = page.locator("#factory-explorer");
     await explorer.scrollIntoViewIfNeeded();

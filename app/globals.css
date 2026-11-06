@@ -2452,3 +2452,18 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 .engineering-grid h3 { margin: 0 0 14px; font-size: 21px; }
 .engineering-grid p { color: var(--muted); font-size: 16px; line-height: 1.65; margin: 12px 0 0; }
 @media (max-width: 760px) { .engineering-grid { grid-template-columns: 1fr; } .engineering-grid > article { padding: 20px 0; } .engineering-grid > article:nth-child(odd) { border-right: 0; } }
+
+/* Practical journey: reuse existing destinations and the editorial card system. */
+.hero-copy .engineering-title { font-size: clamp(42px, 4.6vw, 66px); line-height: 1; }
+.engineering-journey > h2 { max-width: 960px; font-size: clamp(28px, 3.3vw, 44px); line-height: 1.2; }
+.engineering-journey > p { max-width: 900px; color: var(--muted); line-height: 1.65; }
+.engineering-journey > ol { padding: 0; margin: 28px 0 18px; list-style: none; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.engineering-journey > ol > li { padding: 24px; min-width: 0; display: flex; flex-direction: column; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.engineering-journey li > span { color: var(--green); font: 700 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.engineering-journey h3 { margin: 14px 0 0; font-size: 19px; }
+.engineering-journey li p { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 10px 0 20px; }
+.engineering-journey li a { margin-top: auto; font-size: 14px; line-height: 1.6; }
+.engineering-independence { padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; }
+.engineering-independence a { text-decoration: underline; text-underline-offset: 3px; }
+@media(max-width: 900px) { .engineering-journey > ol { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width: 560px) { .engineering-journey > ol { grid-template-columns: 1fr; } }

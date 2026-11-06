@@ -17,13 +17,15 @@ import { missionControlIncidentRequirements } from "../../data/production-operat
 import { pageHandoffs } from "../../data/page-handoffs";
 import { pageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Mission Control", "The open-source reference implementation of the Factory Development Lifecycle.", "/mission-control");
+export const metadata: Metadata = pageMetadata("Mission Control", "An optional open-source reference implementation of selected FDLC control-plane concepts, with source-linked capability boundaries.", "/mission-control");
 
 const quickstartCommands = `git clone https://github.com/jaydubya818/MissionControl.git
 cd MissionControl
-corepack enable && pnpm install
-cp .env.example .env.local
+git checkout --detach eb0598123b818fcf6f0a4e9b2851839550749c8d
+corepack enable
+pnpm install
 pnpm exec convex dev --once
+# In .env.local, set VITE_CONVEX_URL to the generated CONVEX_URL value.
 
 # Terminal 1
 pnpm run dev:demo
@@ -43,9 +45,9 @@ export default function MissionControlPage() {
   return <SiteShell><div className="page-wrap mission-page">
     <section className="mc-product-hero">
       <div className="mc-product-hero-copy">
-        <p className="section-label">Mission Control / Open-source FDLC reference</p>
+        <p className="section-label">Mission Control / Optional open-source FDLC reference</p>
         <h1>Governed autonomous delivery.</h1>
-        <p className="mc-product-hero-lede"><strong>Mission Control is the reference implementation of the Factory Development Lifecycle.</strong> It turns intent, execution, evidence, approval, and outcomes into durable operating records.</p>
+        <p className="mc-product-hero-lede"><strong>Mission Control is an optional open-source reference implementation of selected FDLC control-plane concepts.</strong> It demonstrates how intent, execution, evidence, approval, and outcomes become durable operating records. FDLC remains useful with your own implementation and technology stack.</p>
         <p className="mc-product-hero-proof"><strong>Not another coding agent.</strong> The system that decides what agents may do—and what evidence must return before work advances.</p>
         <div className="hero-actions"><a className="button button-dark" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View source on GitHub ↗</a><a className="button button-light" href="#quickstart">Run the demo</a></div>
       </div>
@@ -124,12 +126,17 @@ export default function MissionControlPage() {
     </section>
 
     <section className="quickstart-section" id="quickstart">
-      <div><p className="section-label">Local quickstart</p><h2>Run the deterministic factory demo.</h2><p>Requires Node 20, pnpm 9, Git, and a Convex development deployment. Live providers are not required for the demo.</p></div>
+      <div><p className="section-label">Local quickstart</p><h2>Run the deterministic factory demo.</h2><p>Requires Node 20+, pnpm 9+, Git, and a Convex development deployment. Convex setup may require its own account. Live model providers are not required for the deterministic demo.</p></div>
       <div className="quickstart-code" aria-label="Mission Control local quickstart commands" role="region">
         <div className="quickstart-code-toolbar"><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Mission Control repository ↗</a><CopyButton label="Copy commands" text={quickstartCommands} /></div>
         <pre><code>{quickstartCommands}</code></pre>
       </div>
-      <p className="quickstart-note">Then open <code>http://localhost:5199/v2/command-center</code> and select <strong>Software Factory Demo</strong>. The seeded path runs without live model providers.</p>
+      <p className="quickstart-note">After Convex creates or links a development deployment, copy its generated <code>CONVEX_URL</code> value to <code>VITE_CONVEX_URL</code> in <code>.env.local</code> before starting the demo. Then open <code>http://localhost:5199/v2/command-center</code> and select <strong>Software Factory Demo</strong>. The seeded path runs without live model providers.</p>
+    </section>
+
+    <section className="section-block" id="engineering-path"><SectionHeader eyebrow="Source-checked learning path / Optional" title="Inspect the implementation without adopting its stack." description="The commands above follow Mission Control’s README and package scripts at eb0598123b818fcf6f0a4e9b2851839550749c8d. Source was reviewed for this tutorial; no new Mission Control environment or qualification run was activated." />
+      <ol className="mc-object-ledger"><li><span>01</span><div><strong>Follow the existing deterministic demo</strong><p>Inspect Mission intent and Plan, WorkOrder gates, Tasks and Attempts, Factory configuration, verifier evidence and human decision history. Seeded outcomes are fixture data.</p></div></li><li><span>02</span><div><strong>Read code, tests and retained evidence together</strong><p><a href="https://github.com/jaydubya818/MissionControl/blob/eb0598123b818fcf6f0a4e9b2851839550749c8d/convex/seedMissionControlDemo.ts">Demo fixture source ↗</a> · <a href="https://github.com/jaydubya818/MissionControl/blob/eb0598123b818fcf6f0a4e9b2851839550749c8d/apps/orchestration-server/src/__tests__/factoryVerification.test.ts">Verification tests ↗</a> · <a href="https://github.com/jaydubya818/MissionControl/blob/eb0598123b818fcf6f0a4e9b2851839550749c8d/docs/testing/evidence/system-factory-e2e-v2/README.md">Retained qualification evidence ↗</a></p></div></li><li><span>03</span><div><strong>Apply the contracts independently</strong><p>Use the <Link href="/simulator">account-free browser demonstration</Link> or <Link href="/lab">dependency-free Reference Lab</Link> for a controlled failed API test, correction, re-verification and human authority boundary. Neither requires Mission Control.</p></div></li></ol>
+      <p><a className="text-action" href="/guide/appendix/engineering-experience#path-a-experience-mission-control">Guided Mission Control inspection and local qualification commands →</a></p>
     </section>
 
     <FactoryHandoffDiagram />

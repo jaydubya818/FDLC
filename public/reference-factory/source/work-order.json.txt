@@ -1,0 +1,9 @@
+{
+  "id": "WO-1",
+  "title": "Fix GET /sum without changing its protected acceptance tests",
+  "planRevision": "PLAN-API-1/r1",
+  "tasks": [{ "id": "TASK-FIX-1", "role": "producer" }, { "id": "TASK-VERIFY-1", "role": "verifier", "dependsOn": ["TASK-FIX-1"] }],
+  "acceptance": ["AC-1: GET /sum?a=2&b=3 returns 200 with sum 5", "AC-2: invalid input returns 400", "AC-3: unknown path returns 404"],
+  "maxCorrections": 1,
+  "completion": "Eligible for human review only; no release authority"
+}
