@@ -26,9 +26,42 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-11-02";
+export const factoryUpdatesReviewed = "2026-11-05";
 
 export const factoryUpdates = [
+  {
+    id: "aws-kiro-bots-crew-coordination",
+    date: "2026-11-05",
+    title: "AWS launches Kiro bots to coordinate parallel coding agents in Kiro Crew",
+    source: "InfoWorld",
+    url: "https://www.infoworld.com/article/4245120/aws-launches-kiro-bots-to-help-devs-coordinate-ai-coding-agents.html",
+    summary: "Kiro bots are generally available in Kiro Crew, AWS's open-source multi-agent environment. Each bot owns a responsibility such as issue triage or release readiness, launches parallel worker sessions, asks for approval when needed, and keeps editable persistent Notes. Analysts warn of coordination-tax costs, harder audit trails, and permission creep.",
+    whyItMatters: "Human control: scoped bot permissions, approval requests, and inspectable memory map to FDLC's Approval stage, while the audit and permission-creep concerns bear on Policy.",
+    touches: "Human control",
+    tags: ["aws", "multi-agent", "governance"],
+  },
+  {
+    id: "launchdarkly-release-autopilot",
+    date: "2026-11-04",
+    title: "LaunchDarkly introduces Release Autopilot for automated release control of AI-built code",
+    source: "LaunchDarkly",
+    url: "https://launchdarkly.com/blog/introducing-release-autopilot",
+    summary: "Release Autopilot classifies a pull request's risk, adds a feature flag where needed, rolls changes out progressively against guardrail metrics, rolls back automatically, and opens a cleanup PR. LaunchDarkly says agents ship over 20% of its PRs directly to production; GA is November 16, with some features in beta.",
+    whyItMatters: "Release: risk-tiered autonomy with metric-driven rollback is a pattern for FDLC's Release and Outcomes stages.",
+    touches: "Release",
+    tags: ["release", "feature flags", "software factory"],
+  },
+  {
+    id: "tessl-software-factory-platform",
+    date: "2026-11-04",
+    title: "Tessl launches an open software factory platform built on skills, loops, and verifiers",
+    source: "DEVOPSdigest",
+    url: "https://www.devopsdigest.com/tessl-launches-software-factory-platform",
+    summary: "Tessl's agent- and model-agnostic platform lets teams define reusable skills, combine them into repeatable loops, and add verification and feedback. Starter workflows cover ticket to PR, code review, and vulnerability remediation; verifiers check repository rules and evaluations test changes to agent context.",
+    whyItMatters: "Skills: verifier-gated loops with evals on agent context line up with FDLC's Skills capability and Verification stage.",
+    touches: "Skills",
+    tags: ["software factory", "skills", "evals"],
+  },
   {
     id: "qodo-codex-plugin-review-loop",
     date: "2026-11-02",
@@ -105,38 +138,5 @@ export const factoryUpdates = [
     whyItMatters: "Planning: spec-to-work-order decomposition with checks at each stage mirrors FDLC's Intent and Planning stages (efficiency figures are vendor claims).",
     touches: "Planning",
     tags: ["software factory", "spec-driven", "governance"],
-  },
-  {
-    id: "github-universe-2026-agentic-delivery",
-    date: "2026-10-28",
-    title: "GitHub Universe 2026: Copilot app, projects, and automations that learn from outcomes",
-    source: "The GitHub Blog",
-    url: "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/",
-    summary: "GitHub launched the Copilot app and Copilot projects for running parallel agent sessions across repos, plus Copilot code review Max and automations that propose improvements from their own results for a human to approve. GitHub frames the SDLC as non-linear, with developers setting direction and agents implementing and verifying.",
-    whyItMatters: "Learning: automations that propose changes for human approval mirror FDLC's feedback loop from Outcomes back into Planning.",
-    touches: "Learning",
-    tags: ["github", "copilot", "agentic delivery"],
-  },
-  {
-    id: "microsoft-copilot-harness-foundry",
-    date: "2026-10-28",
-    title: "Microsoft makes the GitHub-built Copilot harness available through Foundry",
-    source: "Official Microsoft Blog",
-    url: "https://blogs.microsoft.com/blog/2026/10/28/introducing-the-microsoft-copilot-harness-unlocking-the-potential-of-truly-multi-model-agentic-work/",
-    summary: "The multi-model harness behind Copilot Code, the GitHub Copilot app, the CLI, and VS Code is now offered as a managed Foundry service, with 20+ frontier models plus bring-your-own-key and support for MCP and agent skills. Microsoft runs the agent loop and sandbox with governance built in, and the SDK is available separately.",
-    whyItMatters: "Runtime: a managed, model-agnostic harness with a built-in sandbox shows the agent loop becoming a platform layer that FDLC's controls must sit on top of.",
-    touches: "Runtime",
-    tags: ["harness", "multi-model", "foundry"],
-  },
-  {
-    id: "github-agentic-workflows-ga",
-    date: "2026-10-28",
-    title: "GitHub Agentic Workflows is generally available",
-    source: "GitHub Changelog",
-    url: "https://github.blog/changelog/2026-10-28-github-agentic-workflows-generally-available/",
-    summary: "The open source project compiles natural-language Markdown automations into standard Actions YAML so coding agents can handle issue triage, CI failure analysis, documentation updates, and test writing. Agents run read-only by default inside a sandboxed container behind a firewall, outputs pass safe-output validation, and a threat detection job scans proposed changes.",
-    whyItMatters: "Policy: layered, default-deny safeguards around agent automation inside CI mirror the controls FDLC expects at the Execution stage.",
-    touches: "Policy",
-    tags: ["github actions", "sandboxes", "governance"],
   },
 ] as const satisfies readonly FactoryUpdate[];
