@@ -1,3 +1,4 @@
+import { factoryScorecard } from "../../data/software-factory-engineering";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, SectionHeader } from "../components/page-hero";
@@ -15,6 +16,13 @@ export default function BenchmarksPage() {
     </PageHero>
     <section className="benchmark-thesis"><span>Success metric</span><h2>Verified outcome</h2><p>Tokens, prompts, lines of code, and concurrent agents can explain operating cost. They do not prove value.</p></section>
     <section className="section-block" id="measurement-contract"><SectionHeader eyebrow="Measurement contract" title="Twelve metrics worth earning." description="A useful benchmark publishes the work type, acceptance contract, risk, environment, evaluator, and uncertainty beside every result." /><div className="metric-grid is-full">{metrics.map(([name, description], index) => <article key={name}><span>{String(index + 1).padStart(2, "0")}</span><h3>{name}</h3><p>{description}</p></article>)}</div></section>
+    <section className="section-block" id="factory-performance-scorecard">
+      <SectionHeader eyebrow="Factory Performance Scorecard" title="Eight categories. One declared measurement contract." description="A proposed scorecard, with no invented benchmark values. Freeze workload, Factory Version, risk, evaluator, baseline and observation window before comparing results." />
+      <div className="engineering-grid">{factoryScorecard.map(([category, definition, interpretation], index) => <article key={category}><p className="section-label">{String(index + 1).padStart(2, "0")} / {category}</p><h3>{category}</h3><p>{definition}</p><p><strong>Denominator and missing data:</strong> {interpretation}</p></article>)}</div>
+      <p>Choose a fixed intake window and a declared production follow-up period; publish both dates, sample sizes and observation coverage. Ratios with zero denominators are undefined. Report unknown and estimated data separately; do not turn missing observations into passes or zero cost.</p>
+      <p>Fewer interventions can conceal longer investigations. Track minutes, context switches and perceived effort alongside counts. Faster output that causes incidents reduces value; excessive approvals can erase autonomy benefits. Report tradeoffs together, segmented by workload.</p>
+      <a className="text-action" href={`${guideRoot}/02-design/08-economics-metrics-and-human-attention#factory-performance-scorecard`}>Use the Guide’s formulas and operating checklist →</a>
+    </section>
     <section className="do-dont-grid"><article><span>Measure</span><ul><li>Accepted outcomes by work type</li><li>Evidence coverage and first-pass quality</li><li>Human attention and recovery</li><li>Complete attributable cost</li><li>Failure, rollback, and escaped defects</li></ul></article><article><span>Do not confuse with value</span><ul><li>Generated tokens</li><li>Lines of code</li><li>Prompt volume</li><li>Agent count</li><li>Demo throughput without accepted outcomes</li></ul></article></section>
     <section className="section-block" id="comparable-results">
       <SectionHeader eyebrow="Comparable results" title="Publish the denominator and the missing evidence." description="A green service, a completed Attempt, a verified artifact, and an accepted outcome answer different questions. Report each separately." />

@@ -67,7 +67,7 @@ try {
 
   const homepage = await request("/");
   assert.equal(homepage.status, 200);
-  assert.match(await homepage.text(), /rel="canonical" href="https:\/\/www\.fdlc\.ai\/?"/);
+  assert.match(await homepage.text(), /rel="canonical" href="https:\/\/fdlc\.ai\/?"/);
   assert.equal((await request("/specification")).status, 200);
 
   const query = "?source=old&tag=one&tag=two&return=%2Fguide%3Ftab%3Dproof";

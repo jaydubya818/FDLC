@@ -27,7 +27,7 @@ export default function Home() {
           <div className="hero-copy">
             <p className="eyebrow"><span>Factory Development Lifecycle (FDLC)</span><span>Open framework · v0.1</span></p>
             <h1>Build the factory that builds your software.</h1>
-            <p className="hero-lede">The operating model and technical foundation for AI software factories that turn intent into verified software.</p>
+            <p className="hero-lede">Engineer the production system that turns intent into verified software. FDLC provides the operating model and technical foundation for building, governing and continuously improving the factory itself.</p>
             <div className="hero-actions">
               <a className="button button-dark" href="/guide/00-front-matter/00-how-to-read-this-guide">Start reading the Guide</a>
               <Link className="button button-light" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
@@ -57,6 +57,8 @@ export default function Home() {
         <section className="statement-band" aria-label="FDLC category statement">
           <p>FDLC / Category promise</p><strong>{primaryPositioning}</strong><span>{evidencePositioning}</span>
         </section>
+
+        <section className="content-section" id="software-factory-engineering"><p className="section-label">Software Factory Engineering</p><h2>The factory is the engineering artifact.</h2><p>Design, build, integrate, operate, measure and improve the systems that produce verified software outcomes: workflows, Agent interfaces, recovery, organizational knowledge, independent verification and executable governance.</p><Link className="text-action" href="/about#engineering-discipline">What a Software Factory Engineer builds →</Link></section>
 
         <section className="content-section try-it" aria-labelledby="try-it-title">
           <p className="section-label">Learn by doing</p>

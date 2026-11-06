@@ -35,6 +35,9 @@ const contents = [
   { label: "04 Model", href: "#model" },
   { label: "05 Trust", href: "#trust" },
   { label: "06 Learning", href: "#learning" },
+  { label: "Knowledge infrastructure", href: "#knowledge-infrastructure" },
+  { label: "Independent verification", href: "#independent-verification" },
+  { label: "Governed improvement", href: "#governed-improvement" },
   { label: "Context & skills", href: "#context-skills" },
   { label: "Design decisions", href: "#design-decisions" },
   { label: "Production operations", href: "#production-operations" },
@@ -136,6 +139,22 @@ export default function ArchitecturePage() {
       </ResponsiveDetails>)}
     </section>
 
+    <section className="section-block" id="knowledge-infrastructure">
+      <SectionHeader eyebrow="Organizational knowledge" title="Make validated decisions reusable." description="A source-code index and a larger context window do not establish authoritative organizational knowledge. Preserve ownership, provenance, applicability, freshness and revocation across sessions and repositories." />
+      <ReferenceDiagram name="knowledge" />
+      <p><a href="/guide/03-build/19-data-knowledge-and-semantic-engineering#worked-example-the-payment-segment-exception">Trace a payment exception from incident to qualified rule →</a></p>
+    </section>
+    <section className="section-block" id="independent-verification">
+      <SectionHeader eyebrow="Independent verification" title="The author must not self-approve." description="A separate reviewing Agent can share the same mistaken assumptions. Protect acceptance criteria under the requirements owner, verify observable behavior against authoritative requirements, and bind proof to the exact Candidate." />
+      <ReferenceDiagram name="verification" />
+      <p>A tiny authentication change can affect few lines yet carry high business criticality. A broad documentation edit may have a large scope and low consequence. Blast radius, criticality, failure likelihood, reversibility and evidence sufficiency must be assessed separately.</p>
+      <a href="/guide/04-prove/27-quality-and-evidence-architecture#protected-criteria-and-release-authority">Inspect the proof and authority contract →</a>
+    </section>
+    <section className="section-block" id="governed-improvement">
+      <SectionHeader eyebrow="Production feedback" title="Repair the component that caused the failure." description="The responsibility continues after merge and deployment. Observe the outcome, classify the failure, evaluate a proposed improvement and qualify the new composition before authorized promotion." />
+      <ReferenceDiagram name="learning" />
+      <a href="/guide/06-improve/40-governed-learning#production-failure-to-qualified-factory-improvement">Follow the governed improvement loop →</a>
+    </section>
     <section className="section-block" id="context-skills">
       <SectionHeader eyebrow="Context & skills" title="Treat skills as production dependencies." description="A skill changes how an agent works. Give it an owner, pin its version, test its behavior, and control where it can run." />
       <ContextSkillsMap />
