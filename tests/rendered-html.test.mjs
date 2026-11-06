@@ -331,6 +331,16 @@ test("core technical pages preserve distinct delivery states", async () => {
   }
 });
 
+test("Mission Control exposes its skills catalog and keeps execution authority separate", async () => {
+  const html = await (await render("/mission-control")).text();
+  const section = html.match(/<section\b[^>]*id="skills"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(section, "Mission Control needs a reachable skills section");
+  assert.match(section, /109 Skillz skills and 9 native Mission Control skills/);
+  assert.match(section, /href="\/factory-skills"/);
+  assert.match(section, /github\.com\/jaydubya818\/MissionControl\/blob\/main\/docs\/skills\/skillz-catalog\.md/);
+  assert.match(section, /Registry import, trust, qualification, and execution remain separate decisions/);
+});
+
 test("mission control leads with the product and exposes an interactive governed path", async () => {
   const html = await (await render("/mission-control")).text();
   assert.match(html, /Governed autonomous delivery/i);
