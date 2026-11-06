@@ -1,5 +1,8 @@
 {
-  "name": "Reference factory: fix a failing function",
-  "authority": { "pathScopes": ["src/**", "tests/**"], "maxFilesChanged": 2 },
-  "verification": { "command": "tests/add.test.js", "independent": true }
+  "name": "Reference factory: fix a failing API test",
+  "version": "1.1.0",
+  "workload": "api-arithmetic-fixture",
+  "authority": { "pathScopes": ["src/add.js"], "maxFilesChanged": 1, "publication": false, "production": false },
+  "verification": { "command": "tests/add.test.js", "commandArgs": ["--test", "tests/add.test.js", "tests/api.test.mjs"], "independent": true },
+  "limitations": ["Scripted producer", "Local identity labels, not security isolation", "Trusted fixture only", "No live model or harness qualification", "No publication, merge or deployment"]
 }

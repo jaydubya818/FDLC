@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { EngineeringJourney } from "./components/engineering-journey";
 import { FactoryExplorer } from "./components/factory-explorer";
 import { GoverningLifecycleDiagram } from "./components/governing-lifecycle-diagram";
 import { SectionHeader } from "./components/page-hero";
@@ -12,7 +13,7 @@ import { homepageActions, homepageExampleSteps, homepageThesis, operatingModelBr
 import { evidencePositioning, primaryPositioning } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC): Build the factory that builds your software", "FDLC is the open operating model and technical foundation for designing, governing, and operating trusted AI software factories.", "/");
+export const metadata: Metadata = pageMetadata("FDLC: Learn the framework. Build your factory. Verify the outcome.", "FDLC is an open, implementation-independent engineering framework for designing, building, operating, verifying, governing and improving software factories.", "/");
 
 export default function Home() {
   return (
@@ -26,13 +27,13 @@ export default function Home() {
         <section className="hero-shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>Factory Development Lifecycle (FDLC)</span><span>Open framework · v0.1</span></p>
-            <h1>Build the factory that builds your software.</h1>
-            <p className="hero-lede">Engineer the production system that turns intent into verified software. FDLC provides the operating model and technical foundation for building, governing and continuously improving the factory itself.</p>
+            <h1 className="engineering-title">Learn the framework. Build your factory. Verify the outcome.</h1>
+            <p className="hero-lede">FDLC is an open, implementation-independent engineering framework for designing, building, operating, verifying, governing and continuously improving software factories. Its operating model and technical foundation help you build the factory that builds your software.</p>
             <div className="hero-actions">
-              <a className="button button-dark" href="/guide/00-front-matter/00-how-to-read-this-guide">Start reading the Guide</a>
-              <Link className="button button-light" href="/in-5-minutes">Understand FDLC in 5 minutes</Link>
+              <Link className="button button-dark" href="/framework">Explore the Framework</Link>
+              <Link className="button button-light" href="/simulator">Experience a Factory</Link>
             </div>
-            <div><Link className="text-action hero-example-link" href="/factory-skills">Try the Factory Skills Starter Kit →</Link><a className="text-action" href="#worked-example">See a factory in action →</a></div>
+            <div><Link className="text-action hero-example-link" href="/lab">Build Your Own →</Link><a className="text-action" href="/guide">Read the Guide →</a></div>
             <p className="hero-audience">For engineering leaders, platform teams, software-factory architects, and builders evaluating governed AI delivery.</p>
             <div className="hero-category-contrast" aria-label="Difference between SDLC and FDLC" role="group">
               <div><span>SDLC</span><p>Governs the lifecycle of <strong>software.</strong></p></div>
@@ -60,15 +61,7 @@ export default function Home() {
 
         <section className="content-section" id="software-factory-engineering"><p className="section-label">Software Factory Engineering</p><h2>The factory is the engineering artifact.</h2><p>Design, build, integrate, operate, measure and improve the systems that produce verified software outcomes: workflows, Agent interfaces, recovery, organizational knowledge, independent verification and executable governance.</p><Link className="text-action" href="/about#engineering-discipline">What a Software Factory Engineer builds →</Link></section>
 
-        <section className="content-section try-it" aria-labelledby="try-it-title">
-          <p className="section-label">Learn by doing</p>
-          <h2 id="try-it-title">Don&apos;t just read about a factory. Break one.</h2>
-          <ol className="try-it-grid">
-            <li><span>5 minutes</span><h3>Inject a fault</h3><p>Step a run through the artifact chain and watch the factory refuse a bad release.</p><Link className="text-action" href="/simulator">Open the simulator →</Link></li>
-            <li><span>30 minutes</span><h3>Run a real gate</h3><p>A zero-dependency Node factory with an independent verifier and a gate you can read in one sitting.</p><Link className="text-action" href="/lab">Run the reference factory →</Link></li>
-            <li><span>An afternoon</span><h3>Define your own</h3><p>Load an example, edit it, and export a v0.2 Factory Definition as JSON or YAML.</p><Link className="text-action" href="/start">Open the builder →</Link></li>
-          </ol>
-        </section>
+        <EngineeringJourney />
 
         <section className="content-section"><GoverningLifecycleDiagram /></section>
 
@@ -112,8 +105,8 @@ export default function Home() {
 
         <section className="mission-preview adoption-mission-preview">
           <div className="mission-preview-copy">
-            <p className="section-label">Open-source reference implementation</p><h2>See the operating model in Mission Control.</h2>
-            <p>Inspect how plans, Work Orders, attempts, evidence, approvals, releases, and outcomes stay visible across autonomous software work.</p>
+            <p className="section-label">Optional open-source reference implementation</p><h2>See the operating model in Mission Control.</h2>
+            <p>Mission Control demonstrates selected control-plane concepts. Inspect plans, WorkOrders, Attempts, evidence and human decisions, with each capability’s current limits visible. FDLC does not require it.</p>
             <div className="hero-actions"><Link className="button button-dark" href="/mission-control">Inspect Mission Control</Link><a className="button button-light" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View source ↗</a></div>
           </div>
           <figure className="product-frame"><div><span>MISSION CONTROL / COMMAND CENTER</span><span>DEMO VIEW</span></div><Image src="/mission-control/command-center.png" alt="Mission Control command center showing ranked work that needs operator attention" width={1600} height={1050} sizes="(max-width: 980px) 100vw, 65vw" /><figcaption>Deterministic demo view. Current capability status is documented on the Mission Control page.</figcaption></figure>

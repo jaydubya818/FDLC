@@ -160,7 +160,7 @@ test("homepage answers the category boundary and links to primary destinations",
   const response = await render("/");
   const html = await response.text();
   assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?operating model and technical foundation[\s\S]*?Code generation is becoming abundant\. Trusted autonomous software delivery is not\.[\s\S]*?<\/section>/i);
-  assert.match(html, /Build the factory that builds your software/i);
+  assert.match(html, /Learn the framework\. Build your factory\. Verify the outcome/i);
   assert.match(html, /For engineering leaders, platform teams, software-factory architects, and builders/i);
   assert.match(html, /SDLC.*Governs the lifecycle of.*software.*FDLC.*Governs the.*factory that builds it/is);
   assert.match(html, /Verified delivery, not merely generated code/i);
@@ -321,7 +321,7 @@ test("core technical pages preserve distinct delivery states", async () => {
 test("mission control leads with the product and exposes an interactive governed path", async () => {
   const html = await (await render("/mission-control")).text();
   assert.match(html, /Governed autonomous delivery/i);
-  assert.match(html, /Mission Control is the reference implementation of the Factory Development Lifecycle/i);
+  assert.match(html, /Mission Control is an optional open-source reference implementation of selected FDLC control-plane concepts/i);
   assert.match(html, /Not another coding agent.*what agents may do.*what evidence must return/is);
   assert.match(html, /Governed delivery trace.*Define.*Authorize.*Execute.*Verify.*Decide.*Observe/is);
   assert.match(html, /What outcome is required.*what would prove success/is);

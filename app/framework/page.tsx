@@ -28,7 +28,7 @@ const frameworkPieces = [
   ["FDLC Framework", "Open methodology", "The operating model and engineering discipline defined on this page.", "/framework"],
   ["FDLC Specification", "Proposed standard", "Formal definitions and invariants for portable artifacts and state transitions.", "/specification"],
   ["AI Software Factory Guide", "Open field guide", "The detailed methodology from first principles through production.", "/guide"],
-  ["Mission Control", "Open-source reference", "The reference implementation that makes the FDLC protocol concrete.", "/mission-control"],
+  ["Mission Control", "Open-source reference", "An optional implementation of selected control-plane concepts; not required to use FDLC.", "/mission-control"],
   ["AI-FDE", "Preview product", "The evidence-driven product for turning reviewed enterprise reality into an approved Factory Definition, led by an accountable human Factory Deployed Engineer.", "/deploy"],
   ["FDLC Enterprise", "Proposed product", "The commercial control plane for operating proven factories at organizational scale.", "/enterprise"],
 ] as const;
@@ -68,8 +68,10 @@ export default function FrameworkPage() {
         <div className="hero-actions"><Link className="button button-dark" href="/in-5-minutes">Understand FDLC in 5 minutes</Link><Link className="button button-light" href="/architecture">Explore the Architecture</Link><Link className="text-action" href="/manifesto">Read the Manifesto →</Link></div>
       </PageHero>
     <GuideReference description="Explore the full methodology behind the lifecycle: intent, planning, bounded execution, evidence, and delivery." />
+      <aside className="builder-orientation" id="implementation-independence"><strong>FDLC defines the engineering discipline, not the technology stack.</strong><p>Use your own agents, harnesses, models, tools, runtime, orchestration and infrastructure. The framework defines contracts, evidence and governance boundaries. Mission Control is an optional open-source reference implementation. A different stack must demonstrate compatibility and qualify its exact configuration; portability is not universal plug-and-play interchangeability.</p><p><Link href="/lab">Build and run a minimal factory →</Link> · <Link href="/simulator">Experience the deterministic workflow →</Link></p></aside>
       <div className="longform-layout">
-      <PageContentsNav items={contents} mobileTitle="Jump to section" title="Framework sections" variant="rail" />
+
+    <PageContentsNav items={contents} mobileTitle="Jump to section" title="Framework sections" variant="rail" />
       <div className="longform-content">
       <LensSwitcher items={systemLenses} />
 
