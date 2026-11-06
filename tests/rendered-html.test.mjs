@@ -11,6 +11,19 @@ function render(pathname = "/", method = "GET") {
 
 const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/specification", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/factory-skills", "/lab", "/simulator", "/updates", "/about"];
 
+test("Factory Skills offers the complete collection before the optional starter kit", async () => {
+  const response = await render("/factory-skills");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const fullDownload = html.match(/<a[^>]+href="(https:\/\/github\.com\/jaydubya818\/skillz\/archive\/[a-f0-9]{40}\.zip)"[^>]*>Download Factory Skills/);
+  assert.ok(fullDownload, "The complete skills collection needs a direct ZIP download");
+  const starterDownload = html.indexOf('href="/downloads/fdlc-factory-starter-');
+  assert.ok(starterDownload > fullDownload.index, "Keep the starter kit as a separate secondary download");
+  assert.match(html, /python3 scripts\/install_skills\.py --codex --dry-run/);
+  assert.match(html, /--claude/);
+  assert.match(html, /--cursor/);
+});
+
 test("corpus preview renders a noindex catalog without entering the public sitemap", async () => {
   const response = await render("/corpus-preview");
   assert.equal(response.status, 200);
