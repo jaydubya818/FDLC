@@ -88,7 +88,7 @@ try {
           clippedText: [...document.querySelectorAll("main h1, main h2, main h3, main p")].filter(visible).map(rect).filter(box => box.width > 0 && (box.left < -.5 || box.right > innerWidth + .5)),
           oversizedButtons: [...document.querySelectorAll("main .button")].filter(visible).map(rect).filter(box => box.height > 80),
           hero: document.querySelector(".page-hero") && rect(document.querySelector(".page-hero")),
-          contained: [...document.querySelectorAll(".page-wrap > :is(.guide-reference, .longform-layout, .guide-reading, .factory-handoff-diagram, .enterprise-note, .governing-lifecycle, .starter-outcome, .starter-limits, .starter-download-note)")].filter(visible).map(rect),
+          contained: [...document.querySelectorAll(".page-wrap > :is(.guide-reference, .guide-reading, .factory-handoff-diagram, .enterprise-note, .governing-lifecycle, .starter-outcome, .starter-limits, .starter-download-note)"), ...document.querySelectorAll(innerWidth >= 1024 ? ".page-wrap > .longform-layout" : ".longform-content > .section-block")].filter(visible).map(rect),
           wrapperOverflow: document.querySelector(".page-wrap") && getComputedStyle(document.querySelector(".page-wrap")).overflowX,
         };
       });
