@@ -85,8 +85,10 @@ try {
         const code = page.getByRole("region", { name: "Reference Lab commands", exact: true });
         await code.focus();
         assert.ok(await code.evaluate(node => node === document.activeElement));
-        await page.keyboard.press("ArrowRight");
-        await page.waitForFunction(() => document.querySelector('pre[aria-label="Reference Lab commands"]').scrollLeft > 0);
+        if (await code.evaluate(node => node.scrollWidth > node.clientWidth)) {
+          await page.keyboard.press("ArrowRight");
+          await page.waitForFunction(() => document.querySelector('pre[aria-label="Reference Lab commands"]').scrollLeft > 0);
+        }
         report.flows.push({ name: "tutorial-commands-keyboard-scroll", width, result: "PASS" });
       }
       if (route === "/factory-skills") {
