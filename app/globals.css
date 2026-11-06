@@ -131,7 +131,7 @@ button, input, textarea, select { font: inherit; }
   .home-guide-banner > span { max-width: 220px; font-size: 15px; }
   .eyebrow { margin-bottom: 24px; }
   .hero-actions { align-items: stretch; }
-  .hero-actions > .button { flex: 1 1 150px; }
+  .hero-actions > .button { flex: 1 1 100%; }
   .text-action { flex-basis: 100%; padding-left: 0; }
   .hero-model { padding: 0 16px 18px; box-shadow: 12px 14px 0 #dcdcd4; }
   .model-chrome { margin-left: -16px; margin-right: -16px; }
