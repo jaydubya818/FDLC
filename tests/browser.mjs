@@ -43,7 +43,7 @@ try {
   // independently built Guide artifact and are covered by the migration's
   // exact-deployment composition suites, not by a mutable remote dependency
   // during the FDLC local-build gate.
-  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/factory-skills", "/lab", "/simulator", "/about", "/updates", "/corpus-preview"];
+  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/factory-skills", "/lab", "/simulator", "/about", "/updates", "/corpus-preview", "/corpus-preview/compare", "/corpus-preview/anti-patterns/hidden-agent-state", "/corpus-preview/tutorials/scale-across-repositories"];
   const links = new Set();
   async function audit(label) {
     // Measure settled styles; entry fades are deliberately below final contrast.

@@ -2158,6 +2158,7 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 .corpus-review .corpus-review-boundary { width: 100%; margin-top: 24px; }
 .corpus-review .corpus-evidence { width: 100%; margin: 0; padding: 24px 0 0; border: 0; }
 .corpus-document-layout { grid-template-columns: minmax(190px, 240px) minmax(0, 800px) minmax(160px, 210px); width: min(1510px, 100%); }
+.corpus-document-layout > * { min-width: 0; }
 .corpus-sidebar { max-height: calc(100vh - 130px); overflow-y: auto; }
 .corpus-sidebar nav a { grid-template-columns: 28px minmax(0, 1fr); }
 .corpus-document-meta { margin: 32px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
@@ -2166,7 +2167,7 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 .corpus-document-meta dd { min-width: 0; margin: 0; color: var(--muted); font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
 .corpus-toc { max-height: calc(100vh - 140px); overflow-y: auto; }
 .corpus-toc .depth-3 { padding-left: 10px; }
-.corpus-markdown { padding-top: 18px; color: var(--ink); font-size: 16px; line-height: 1.75; }
+.corpus-markdown { min-width: 0; padding-top: 18px; color: var(--ink); font-size: 16px; line-height: 1.75; overflow-wrap: anywhere; }
 .corpus-markdown h2, .corpus-markdown h3, .corpus-markdown h4 { scroll-margin-top: 105px; }
 .corpus-markdown h2 { margin: 64px 0 22px; padding-top: 24px; border-top: 1px solid var(--line); font-family: var(--serif); font-size: 38px; font-weight: 500; letter-spacing: -.035em; line-height: 1.05; }
 .corpus-markdown h3 { margin: 44px 0 16px; font-family: var(--serif); font-size: 27px; font-weight: 500; line-height: 1.15; }
@@ -2175,9 +2176,10 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 .corpus-markdown a, .corpus-related a { color: var(--green); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .corpus-markdown blockquote { margin: 30px 0; padding: 20px 24px; border-left: 4px solid var(--amber); background: #f2e8db; }
 .corpus-markdown blockquote p { margin: 0; }
-.corpus-markdown pre { margin: 26px 0; }
+.corpus-markdown pre { max-width: 100%; margin: 26px 0; overflow-x: auto; overflow-wrap: normal; }
+.corpus-markdown pre code { overflow-wrap: normal; }
 .corpus-markdown :not(pre) > code, .corpus-document-meta code { padding: 2px 5px; background: #e3e4dc; border-radius: 2px; font-family: var(--mono); font-size: .82em; }
-.corpus-table-scroll { width: 100%; margin: 28px 0; overflow-x: auto; border: 1px solid var(--line); }
+.corpus-table-scroll { min-width: 0; max-width: 100%; width: 100%; margin: 28px 0; overflow-x: auto; border: 1px solid var(--line); }
 .corpus-table-scroll table { width: 100%; min-width: 620px; border-collapse: collapse; background: var(--surface); font-size: 12px; line-height: 1.5; }
 .corpus-table-scroll th, .corpus-table-scroll td { padding: 11px 13px; vertical-align: top; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: left; }
 .corpus-table-scroll th { background: #e1e3db; color: var(--green); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }
