@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/jaydubya818/skillz.git",
-  "commit": "4942dde4b2a442df3ee45879bb22734c658426df",
+  "commit": "44df27bc06f11d76d9f490c76578f222e254be6f",
   "phases": [
     { "phase": "Inspect", "skill": "how" },
     { "phase": "Define", "skill": "blast-radius" },
