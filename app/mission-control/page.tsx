@@ -31,6 +31,14 @@ pnpm run dev:demo
 # Terminal 2
 pnpm run convex:seed:demo:force`;
 
+const skillGroups = [
+  ["Production engineering", "API contracts, CI/CD, migrations, accessible UI, observability, performance, and security."],
+  ["Continuity and decisions", "Verified handoffs, architecture decisions, assumption checks, scoped database access, and teammate instructions."],
+  ["Planning and verification", "Prompt refinement, formal verification, benchmark checks, and code review."],
+  ["Bounded orchestration", "Explicitly invoked delegation, usage limits, progress summaries, and controlled continuation."],
+  ["Agent-Native workflows", "Connected apps, visual plans and recaps, local visual editing, and WebMCP. These require their documented host capabilities and connectors."],
+] as const;
+
 export default function MissionControlPage() {
   return <SiteShell><div className="page-wrap mission-page">
     <section className="mc-product-hero">
@@ -55,7 +63,7 @@ export default function MissionControlPage() {
       <article><span>03 / Decide</span><strong>Put human attention at consequential boundaries.</strong></article>
     </section>
 
-    <nav aria-label="Mission Control page sections" className="mc-section-nav"><a href="#how-it-works">How it works</a><a href="#operator-experience">Operator views</a><a href="#architecture">Architecture</a><a href="#capabilities">Capabilities</a><a href="#enhancements">Development priorities</a><a href="#incident-operations">Incident operations</a><a href="#quickstart">Run locally</a></nav>
+    <nav aria-label="Mission Control page sections" className="mc-section-nav"><a href="#how-it-works">How it works</a><a href="#operator-experience">Operator views</a><a href="#architecture">Architecture</a><a href="#capabilities">Capabilities</a><a href="#skills">Skills</a><a href="#enhancements">Development priorities</a><a href="#incident-operations">Incident operations</a><a href="#quickstart">Run locally</a></nav>
 
     <section className="section-block mc-how-section" id="how-it-works">
       <SectionHeader eyebrow="Interactive governed path" title="Follow one mission through the control plane." description="Select a stage to see the governing question, the authority allowed to answer it, and the proof required before state can advance." />
@@ -93,6 +101,14 @@ export default function MissionControlPage() {
         return <section className={`mc-capability-group is-${status.toLowerCase()}`} key={status}><header><StatusBadge status={status} /><span>{String(capabilities.length).padStart(2, "0")} capabilities</span></header><div>{capabilities.map((capability, index) => <details key={capability.name} open={status === "Available" && index === 0}><summary><strong>{capability.name}</strong><span aria-hidden="true">+</span></summary><div><p><b>Supported</b>{capability.summary}</p><p><b>Current boundary</b>{capability.limitation}</p></div></details>)}</div></section>;
       })}</div>
       <a className="section-link" href="https://github.com/jaydubya818/MissionControl/blob/main/docs/product/software-factory-capability-maturity.md" rel="noreferrer" target="_blank">Read the canonical capability maturity ledger ↗</a>
+    </section>
+
+    <section className="section-block" id="skills" style={{ scrollMarginTop: 160 }}>
+      <SectionHeader eyebrow="Repository skills / Skillz" title="Load the right skills for the task." description="109 Skillz skills and 9 native Mission Control skills cover delivery workflows and the control-plane integrations that support them." />
+      <p>The refreshed catalog adds 36 skills and preserves the original supporting references and license notices. Start with <code>mission-control-delivery</code>, use <code>poteto-mode</code> to choose a workflow, and load only the skills relevant to the WorkOrder.</p>
+      <div className="engineering-grid">{skillGroups.map(([title, description]) => <article key={title}><h3>{title}</h3><p>{description}</p></article>)}</div>
+      <p className="mc-demo-disclaimer">Registry import, trust, qualification, and execution remain separate decisions. A repository skill does not authorize an action or qualify a Factory Version.</p>
+      <div className="hero-actions"><Link className="button button-dark" href="/factory-skills">Download Factory Skills →</Link><a className="text-action" href="https://github.com/jaydubya818/MissionControl/blob/main/docs/skills/skillz-catalog.md" rel="noreferrer" target="_blank">Inspect the Mission Control catalog ↗</a></div>
     </section>
 
     <section className="section-block mc-enhancement-section" id="enhancements">
