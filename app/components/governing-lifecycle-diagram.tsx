@@ -24,7 +24,7 @@ export function GoverningLifecycleDiagram() {
         <div className="governing-center" aria-hidden="true"><span>FDLC</span><strong>Work earns<br />progression.</strong><small>9 stages · one feedback loop</small></div>
       <ol aria-label="Select a lifecycle stage">
         {governingLifecycle.map((step, index) => (
-          <li key={step.name} style={{ left: `${50 + 36.8 * Math.sin(index * Math.PI * 2 / 9)}%`, top: `${50 - 36.8 * Math.cos(index * Math.PI * 2 / 9)}%` }}>
+          <li key={step.name} style={{ left: `${(50 + 36.8 * Math.sin(index * Math.PI * 2 / 9)).toFixed(4)}%`, top: `${(50 - 36.8 * Math.cos(index * Math.PI * 2 / 9)).toFixed(4)}%` }}>
             <h3><button type="button" aria-pressed={selected === index} aria-controls={panelId} onClick={() => setSelected(index)}>
               <span className="governing-node" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               <span>{step.name}</span>

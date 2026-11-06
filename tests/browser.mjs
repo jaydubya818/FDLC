@@ -43,7 +43,7 @@ try {
   // independently built Guide artifact and are covered by the migration's
   // exact-deployment composition suites, not by a mutable remote dependency
   // during the FDLC local-build gate.
-  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/factory-skills", "/lab", "/simulator", "/about"];
+  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/factory-skills", "/lab", "/simulator", "/about", "/updates", "/corpus-preview"];
   const links = new Set();
   async function audit(label) {
     // Measure settled styles; entry fades are deliberately below final contrast.
@@ -81,6 +81,24 @@ try {
       await page.getByRole("heading", { level: 1 }).waitFor();
       await checkGlobalNavigation(page, { mobile: width === 390, keyboard: route === "/" });
       await audit(route);
+      const presentation = await page.evaluate(() => {
+        const visible = node => !node.closest("svg") && node.getClientRects().length && getComputedStyle(node).visibility !== "hidden";
+        const rect = node => { const box = node.getBoundingClientRect(); return { name: node.id || node.className || node.tagName, left: box.left, right: box.right, height: box.height, width: box.width }; };
+        return {
+          clippedText: [...document.querySelectorAll("main h1, main h2, main h3, main p")].filter(visible).map(rect).filter(box => box.width > 0 && (box.left < -.5 || box.right > innerWidth + .5)),
+          oversizedButtons: [...document.querySelectorAll("main .button")].filter(visible).map(rect).filter(box => box.height > 80),
+          hero: document.querySelector(".page-hero") && rect(document.querySelector(".page-hero")),
+          contained: [...document.querySelectorAll(".page-wrap > :is(.guide-reference, .longform-layout, .guide-reading, .factory-handoff-diagram, .enterprise-note, .governing-lifecycle, .starter-outcome, .starter-limits, .starter-download-note)")].filter(visible).map(rect),
+          wrapperOverflow: document.querySelector(".page-wrap") && getComputedStyle(document.querySelector(".page-wrap")).overflowX,
+        };
+      });
+      assert.deepEqual(presentation.clippedText, [], `${route}: visible reading text stays within the page`);
+      assert.deepEqual(presentation.oversizedButtons, [], `${route}: actions keep their intended control height`);
+      assert.ok(!["hidden", "clip"].includes(presentation.wrapperOverflow), `${route}: page wrapper must not hide layout failures`);
+      for (const block of presentation.contained) if (presentation.hero) {
+        assert.ok(Math.abs(block.left - presentation.hero.left) < 2, `${route} ${block.name}: aligned left gutter`);
+        assert.ok(Math.abs(block.right - presentation.hero.right) < 2, `${route} ${block.name}: aligned right gutter`);
+      }
       if (route === "/lab") {
         const layout = await page.evaluate(() => {
           const hero = document.querySelector(".engineering-tutorial .page-hero").getBoundingClientRect();
