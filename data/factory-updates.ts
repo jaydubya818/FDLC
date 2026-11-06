@@ -26,9 +26,42 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-11-02";
+export const factoryUpdatesReviewed = "2026-11-05";
 
 export const factoryUpdates = [
+  {
+    id: "aws-kiro-bots-crew-coordination",
+    date: "2026-11-05",
+    title: "AWS launches Kiro bots to coordinate parallel coding agents in Kiro Crew",
+    source: "InfoWorld",
+    url: "https://www.infoworld.com/article/4245120/aws-launches-kiro-bots-to-help-devs-coordinate-ai-coding-agents.html",
+    summary: "Kiro bots are generally available in Kiro Crew, AWS's open-source multi-agent environment. Each bot owns a responsibility such as issue triage or release readiness, launches parallel worker sessions, asks for approval when needed, and keeps editable persistent Notes. Analysts warn of coordination-tax costs, harder audit trails, and permission creep.",
+    whyItMatters: "Human control: scoped bot permissions, approval requests, and inspectable memory map to FDLC's Approval stage, while the audit and permission-creep concerns bear on Policy.",
+    touches: "Human control",
+    tags: ["aws", "multi-agent", "governance"],
+  },
+  {
+    id: "launchdarkly-release-autopilot",
+    date: "2026-11-04",
+    title: "LaunchDarkly introduces Release Autopilot for automated release control of AI-built code",
+    source: "LaunchDarkly",
+    url: "https://launchdarkly.com/blog/introducing-release-autopilot",
+    summary: "Release Autopilot classifies a pull request's risk, adds a feature flag where needed, rolls changes out progressively against guardrail metrics, rolls back automatically, and opens a cleanup PR. LaunchDarkly says agents ship over 20% of its PRs directly to production; GA is November 16, with some features in beta.",
+    whyItMatters: "Release: risk-tiered autonomy with metric-driven rollback is a pattern for FDLC's Release and Outcomes stages.",
+    touches: "Release",
+    tags: ["release", "feature flags", "software factory"],
+  },
+  {
+    id: "tessl-software-factory-platform",
+    date: "2026-11-04",
+    title: "Tessl launches an open software factory platform built on skills, loops, and verifiers",
+    source: "DEVOPSdigest",
+    url: "https://www.devopsdigest.com/tessl-launches-software-factory-platform",
+    summary: "Tessl's agent- and model-agnostic platform lets teams define reusable skills, combine them into repeatable loops, and add verification and feedback. Starter workflows cover ticket to PR, code review, and vulnerability remediation; verifiers check repository rules and evaluations test changes to agent context.",
+    whyItMatters: "Skills: verifier-gated loops with evals on agent context line up with FDLC's Skills capability and Verification stage.",
+    touches: "Skills",
+    tags: ["software factory", "skills", "evals"],
+  },
   {
     id: "qodo-codex-plugin-review-loop",
     date: "2026-11-02",
