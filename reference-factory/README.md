@@ -1,7 +1,7 @@
 # FDLC Reference Lab
 
 A dependency-free teaching factory for one bounded objective: fix `GET /sum`
-without changing protected acceptance tests. Requires Node 22.13+ and Git.
+without changing protected acceptance tests. Requires Node 22.13+. Download and extract the Lab package from `/lab`; no repository access, account or dependency installation is needed.
 This extends the existing Reference Lab; it does not run a live coding agent.
 
 From this directory:
@@ -51,10 +51,10 @@ protect verification and authority, authenticate identities, retain immutable
 evidence, bound resources and qualify representative failure/recovery cases.
 Production reliability, cost and model/harness compatibility are not proven.
 
-Maintainer checks from the repository root:
+Contract and negative-control checks from this directory:
 
 ```sh
-node --experimental-strip-types --test tests/unit/reference-factory.test.ts tests/unit/runtime-simulator.test.ts
+node --test contract.test.mjs
 ```
 
 The guided 30–60 minute exercise, stack-neutral contract map and engineering
