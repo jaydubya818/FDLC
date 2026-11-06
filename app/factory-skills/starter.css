@@ -5,6 +5,7 @@
 .starter-outcome li { display: flex; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); font-weight: 650; }
 .starter-outcome li span, .starter-skills > li > span { font-family: var(--mono); font-size: 12px; color: var(--green); }
 .starter-setup { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; }
+.starter-setup > div { min-width: 0; }
 .starter-setup pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: var(--ink); color: var(--paper); font-size: 13px; line-height: 1.85; border-radius: 6px; }
 .starter-setup p, .starter-skills p, .starter-steps p, .starter-limits p { line-height: 1.65; }
 .starter-setup h3, .starter-skills h3, .starter-steps h3 { margin: 0 0 10px; font-size: 19px; }
