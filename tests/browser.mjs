@@ -91,6 +91,7 @@ try {
               return { name: node.id || node.className, left: rect.left, right: rect.right };
             }),
             introTextWidth: document.querySelector(".tutorial-orientation-copy > p").getBoundingClientRect().width,
+            downloadHeight: document.querySelector(".tutorial-download-actions .button").getBoundingClientRect().height,
           };
         });
         for (const section of layout.sections) {
@@ -98,6 +99,7 @@ try {
           assert.ok(Math.abs(section.right - layout.hero.right) < 2, `${section.name}: shares the hero's right gutter`);
         }
         assert.ok(layout.introTextWidth >= layout.hero.width * (width < 820 ? .75 : .55), "Lab introduction has a readable column width");
+        assert.ok(layout.downloadHeight >= 44 && layout.downloadHeight <= 72, "Lab download action keeps a normal touch-target height");
         report.flows.push({ name: "lab-page-gutters-and-readable-introduction", width, result: "PASS" });
       }
       if (route === "/lab" && width === 390) {
