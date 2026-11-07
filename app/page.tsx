@@ -13,7 +13,7 @@ import { homepageActions, homepageExampleSteps, homepageThesis, operatingModelBr
 import { evidencePositioning, primaryPositioning } from "../data/fdlc";
 import { pageMetadata } from "../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("FDLC: Learn the framework. Build your factory. Verify the outcome.", "FDLC is an open, implementation-independent engineering framework for designing, building, operating, verifying, governing and improving software factories.", "/");
+export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC)", "The Factory Development Lifecycle (FDLC) is an open framework for building and running AI software factories, with clear limits, verification and human approval.", "/");
 
 export default function Home() {
   return (
@@ -21,29 +21,29 @@ export default function Home() {
       <SiteHeader />
       <main id="main-content">
         <a className="home-guide-banner" href="/guide/00-front-matter/00-how-to-read-this-guide">
-          <span>New to FDLC? Start with the Guide.</span>
+          <span>Understand the Factory Development Lifecycle.</span>
           <strong>Start here <span aria-hidden="true">→</span></strong>
         </a>
         <section className="hero-shell">
           <div className="hero-copy">
-            <p className="eyebrow"><span>Factory Development Lifecycle (FDLC)</span><span>Open framework · v0.1</span></p>
-            <h1 className="engineering-title">Learn the framework. Build your factory. Verify the outcome.</h1>
-            <p className="hero-lede">FDLC is an open, implementation-independent engineering framework for designing, building, operating, verifying, governing and continuously improving software factories. Its operating model and technical foundation help you build the factory that builds your software.</p>
+            <p className="eyebrow"><span>A framework for AI software factories</span><span>Open framework · v0.1</span></p>
+            <h1 className="engineering-title">Factory Development Lifecycle (FDLC)</h1>
+            <p className="hero-lede">An open framework for building and running AI software factories—systems of AI agents, tools and people that build, test and deliver software. Use it to design the system, set limits on agent actions, verify results, approve releases and improve the workflow over time.</p>
             <div className="hero-actions">
               <Link className="button button-dark" href="/framework">Explore the Framework</Link>
               <Link className="button button-light" href="/simulator">Experience a Factory</Link>
             </div>
             <div><Link className="text-action hero-example-link" href="/lab">Build Your Own →</Link><a className="text-action" href="/guide">Read the Guide →</a></div>
-            <p className="hero-audience">For engineering leaders, platform teams, software-factory architects, and builders evaluating governed AI delivery.</p>
+            <p className="hero-audience">For engineering leaders and teams building reliable AI software delivery.</p>
             <div className="hero-category-contrast" aria-label="Difference between SDLC and FDLC" role="group">
-              <div><span>SDLC</span><p>Governs the lifecycle of <strong>software.</strong></p></div>
-              <div><span>FDLC</span><p>Governs the <strong>factory that builds it.</strong></p></div>
+              <div><span>SDLC</span><p>The Software Development Lifecycle manages a <strong>software product.</strong></p></div>
+              <div><span>FDLC</span><p>The Factory Development Lifecycle manages the <strong>system that produces it.</strong></p></div>
             </div>
             <p className="hero-problem">Code generation is becoming abundant. Trusted autonomous software delivery is not.</p>
           </div>
           <aside className="hero-model hero-value-model" aria-labelledby="hero-model-title">
-            <div className="model-chrome"><span>FDLC / OPERATING MODEL</span><span>01—04</span></div>
-            <h2 id="hero-model-title">Make autonomous delivery governable.</h2>
+            <div className="model-chrome"><span>How the framework works</span><span>01—04</span></div>
+            <h2 id="hero-model-title">Give AI software delivery a clear process.</h2>
             <ol>
               {operatingModelMoves.map(([number, title, description]) => <li key={number}><span>{number}</span><div><strong>{title}</strong><p>{description}</p></div></li>)}
             </ol>

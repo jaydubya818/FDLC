@@ -172,10 +172,10 @@ test("robots explicitly permits search and AI fetch agents", async () => {
 test("homepage answers the category boundary and links to primary destinations", async () => {
   const response = await render("/");
   const html = await response.text();
-  assert.match(html, /<section class="hero-shell">[\s\S]*?Factory Development Lifecycle \(FDLC\)[\s\S]*?operating model and technical foundation[\s\S]*?Code generation is becoming abundant\. Trusted autonomous software delivery is not\.[\s\S]*?<\/section>/i);
-  assert.match(html, /Learn the framework\. Build your factory\. Verify the outcome/i);
-  assert.match(html, /For engineering leaders, platform teams, software-factory architects, and builders/i);
-  assert.match(html, /SDLC.*Governs the lifecycle of.*software.*FDLC.*Governs the.*factory that builds it/is);
+  assert.match(html, /<h1 class="engineering-title">Factory Development Lifecycle \(FDLC\)<\/h1>/i);
+  assert.match(html, /<section class="hero-shell">[\s\S]*?systems of AI agents, tools and people that build, test and deliver software[\s\S]*?Code generation is becoming abundant\. Trusted autonomous software delivery is not\.[\s\S]*?<\/section>/i);
+  assert.match(html, /For engineering leaders and teams building reliable AI software delivery/i);
+  assert.match(html, /SDLC.*Software Development Lifecycle.*software product.*FDLC.*Factory Development Lifecycle.*system that produces it/is);
   assert.match(html, /Verified delivery, not merely generated code/i);
   assert.match(html, /Autonomy without evidence is just faster guessing/i);
   assert.match(html, /One illustrative example.*Modernize a dependency without surrendering control/is);

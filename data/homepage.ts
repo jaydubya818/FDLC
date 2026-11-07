@@ -1,12 +1,12 @@
 export const operatingModelMoves = [
-  ["01", "Define the outcome", "State what should happen and how success will be judged."],
-  ["02", "Bound the work", "Give each attempt explicit scope, identity, and authority."],
-  ["03", "Require evidence", "Verify the exact candidate before it advances."],
-  ["04", "Learn from outcomes", "Improve the factory only from validated results."],
+  ["01", "Define the outcome", "State what the software must do and how success will be checked."],
+  ["02", "Bound the work", "Set tasks, permissions, budgets and approval requirements before agents act."],
+  ["03", "Require evidence", "Use tests and independent review to check each result."],
+  ["04", "Learn from outcomes", "Improve the system using observed results and approved changes."],
 ] as const;
 
 export const operatingModelBridge = {
-  summary: "Four moves explain the operating model. The lifecycle explains progression. The runtime explains execution. Architecture explains composition.",
+  summary: "Apply these controls when you design the factory, qualify it for use, operate it and improve it from measured results.",
   links: [
     ["Factory lifecycle", "/framework#lifecycle"],
     ["Runtime", "/framework#runtime"],
