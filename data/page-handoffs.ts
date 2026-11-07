@@ -3,17 +3,17 @@ export const pageHandoffs = {
     eyebrow: "What should I do next?",
     title: "Turn the model into a Factory Definition.",
     links: [
-      ["/start", "Build a Factory Definition"],
-      ["/in-5-minutes", "See one concrete factory"],
-      ["/deploy", "Explore AI-FDE"],
+      ["/in-5-minutes", "Experience FDLC in 5 minutes"],
+      ["/simulator", "Run the factory simulator"],
+      ["/start", "Define your first factory line"],
     ],
   },
   architecture: {
     eyebrow: "What should I do next?",
-    title: "Inspect how Mission Control realizes the control plane.",
+    title: "See the architecture work, then build your own.",
     links: [
-      ["/mission-control", "Inspect Mission Control"],
-      ["/start", "Build a Factory Definition"],
+      ["/lab", "Build and run a minimal factory"],
+      ["/mission-control", "Inspect an optional reference implementation"],
       ["/guide/appendix/execution-boundaries-and-terminology", "Read the terminology reference"],
     ],
   },
@@ -22,23 +22,22 @@ export const pageHandoffs = {
     title: "See the principles applied to one factory line.",
     links: [
       ["/in-5-minutes", "Understand FDLC in 5 minutes"],
-      ["/start", "Build a Factory Definition"],
-      ["/mission-control", "Inspect Mission Control"],
+      ["/simulator", "Run the factory simulator"],
+      ["/start", "Define your first factory line"],
     ],
   },
   start: {
     eyebrow: "What should I do next?",
-    title: "A Factory Definition is governed intent, not an executed factory.",
+    title: "Next: run a governed factory on your machine.",
     links: [
-      ["/lab", "Run the reference factory"],
+      ["/lab", "Build and run a minimal factory"],
       ["/simulator", "Break a factory in the simulator"],
-      ["/deploy", "Explore AI-FDE"],
-      ["/mission-control", "Inspect Mission Control"],
+      ["/maturity", "Assess organizational maturity"],
     ],
   },
   deploy: {
     eyebrow: "What should I do next?",
-    title: "AI-FDE helps design the Factory Definition that Mission Control can qualify.",
+    title: "AI-FDE helps design a Factory Definition; your chosen runtime qualifies and runs it.",
     links: [
       ["/start", "Build a Factory Definition"],
       ["/mission-control", "Inspect Mission Control"],
@@ -67,9 +66,9 @@ export const pageHandoffs = {
     eyebrow: "What should I do next?",
     title: "You have the mental model. Take one concrete next step.",
     links: [
-      ["/#factory-explorer", "Inspect the Factory Explorer"],
-      ["/start", "Build your Factory Definition"],
-      ["/mission-control", "See Mission Control"],
+      ["/simulator", "Next: run the factory simulator"],
+      ["/start", "Define your first factory line"],
+      ["/lab", "Build and run a minimal factory"],
     ],
   },
 } as const;

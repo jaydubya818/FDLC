@@ -1,8 +1,14 @@
 import assert from "node:assert/strict";
 
-const moreLabels = ["In 5 Minutes", "Start", "Factory Skills", "Simulator", "Reference Lab", "Learning Library (Preview)", "Manifesto", "Enterprise", "Factory Updates", "About"];
-const morePaths = ["/in-5-minutes", "/start", "/factory-skills", "/simulator", "/lab", "/corpus-preview", "/manifesto", "/enterprise", "/updates", "/about"];
-const primaryLabels = ["Framework", "Architecture", "Guide", "AI-FDE", "Mission Control", "Maturity", "More"];
+// Navigation follows the visitor journey: learn → try → build, with optional implementations kept separate.
+const moreLabels = ["Manifesto", "Learning Library (Preview)", "Factory Updates", "About"];
+const morePaths = ["/manifesto", "/corpus-preview", "/updates", "/about"];
+const primaryLabels = ["Framework", "Architecture", "Guide", "Try", "Build", "Implementations", "More"];
+const journeyGroups = [
+  ["Try", "#try-navigation", [["FDLC in 5 Minutes", "/in-5-minutes"], ["Factory Simulator", "/simulator"], ["Reference Lab", "/lab"]]],
+  ["Build", "#build-navigation", [["Define a factory line", "/start"], ["Factory Skills", "/factory-skills"], ["Maturity assessment", "/maturity"]]],
+  ["Implementations", "#implementations-navigation", [["Mission Control", "/mission-control"], ["AI-FDE", "/deploy"], ["Enterprise", "/enterprise"]]],
+];
 
 export async function checkGlobalNavigation(page, { mobile, keyboard = false, touch = false }) {
   const header = page.locator("header").first();
@@ -17,6 +23,12 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
   assert.ok(headerLayout.logoWidth >= 180 && headerLayout.logoWidth <= 220, "The logo retains its intended size");
   const desktop = header.getByRole("navigation", { name: "Primary navigation", includeHidden: true });
   assert.deepEqual(await desktop.locator(":scope > a, :scope > .nav-dropdown:not(.nav-dropdown-linked) > button, :scope > .nav-dropdown-linked > a").allTextContents().then(labels => labels.map(label => label.replace("⌄", "").trim())), primaryLabels);
+  for (const [, id, links] of journeyGroups) {
+    const group = header.locator(id);
+    assert.deepEqual(await group.locator("a").allTextContents(), links.map(([label]) => label), id);
+    assert.deepEqual(await group.locator("a").evaluateAll(nodes => nodes.map(node => new URL(node.href).pathname)), links.map(([, href]) => href), id);
+  }
+  assert.equal(await header.locator(".header-github").getAttribute("href"), "https://github.com/jaydubya818/FDLC", "GitHub opens the public FDLC repository");
   const more = header.locator("#more-navigation");
   assert.deepEqual(await more.locator("a").allTextContents(), moreLabels);
   assert.deepEqual(await more.locator("a").evaluateAll(nodes => nodes.map(node => new URL(node.href).pathname)), morePaths);
@@ -69,7 +81,7 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
     if (!mobile) {
       await trigger.focus();
       await page.keyboard.press("ArrowDown");
-      await page.waitForFunction(() => document.activeElement?.textContent === "In 5 Minutes");
+      await page.waitForFunction((first) => document.activeElement?.textContent === first, moreLabels[0]);
       for (const label of moreLabels.slice(1)) {
         await page.keyboard.press("Tab");
         assert.equal(await page.evaluate(() => document.activeElement.textContent), label);
@@ -79,7 +91,7 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
       assert.equal(await panel.evaluate(node => node.contains(document.activeElement)), false, "Tab leaves the dropdown");
       await trigger.focus();
       await page.keyboard.press("ArrowDown");
-      await page.waitForFunction(() => document.activeElement?.textContent === "In 5 Minutes");
+      await page.waitForFunction((first) => document.activeElement?.textContent === first, moreLabels[0]);
       await page.keyboard.press("Shift+Tab");
       assert.ok(await trigger.evaluate(node => document.activeElement === node), "Shift+Tab returns to the trigger");
       await page.keyboard.press("Shift+Tab");
@@ -88,21 +100,23 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
   }
   const productNavigation = mobile ? header.locator("#mobile-navigation") : desktop;
   if (mobile) await header.getByLabel("Open navigation", { exact: true }).click();
+  // Optional implementations live together, separate from the framework.
   const productLink = productNavigation.getByRole("link", { name: "AI-FDE", exact: true });
-  assert.equal(await productLink.getAttribute("href"), "/deploy", "AI-FDE opens the explanatory product page");
-  const productTrigger = productNavigation.getByRole("button", { name: "AI-FDE navigation", exact: true });
-  await productTrigger.focus();
-  await page.keyboard.press("ArrowDown");
-  const workspaceLink = productNavigation.getByRole("link", { name: "Engagement workspace", exact: true });
-  await workspaceLink.waitFor({ state: "visible" });
-  assert.equal(await workspaceLink.getAttribute("href"), "/deploy/app");
-  await page.waitForFunction(() => document.activeElement?.textContent === "Engagement workspace");
-  assert.ok(await workspaceLink.evaluate(node => document.activeElement === node));
-  await page.keyboard.press("Escape");
-  await workspaceLink.waitFor({ state: "hidden" });
-  assert.ok(await productTrigger.evaluate(node => document.activeElement === node));
+  if (mobile) assert.equal(await productLink.getAttribute("href"), "/deploy", "AI-FDE opens the explanatory product page");
+  if (!mobile) {
+    const productTrigger = productNavigation.getByRole("button", { name: "Implementations", exact: true });
+    await productTrigger.focus();
+    await page.keyboard.press("ArrowDown");
+    const referenceLink = productNavigation.getByRole("link", { name: "Mission Control", exact: true });
+    await referenceLink.waitFor({ state: "visible" });
+    await page.waitForFunction(() => document.activeElement?.textContent === "Mission Control");
+    assert.equal(await productLink.getAttribute("href"), "/deploy", "AI-FDE opens the explanatory product page");
+    await page.keyboard.press("Escape");
+    await referenceLink.waitFor({ state: "hidden" });
+    assert.ok(await productTrigger.evaluate(node => document.activeElement === node));
+  }
   if (mobile) {
-    assert.ok(await productNavigation.isVisible(), "Escape closes the product dropdown before the mobile menu");
+    assert.ok(await productNavigation.isVisible(), "The mobile menu lists optional implementations");
     await header.getByLabel("Open navigation", { exact: true }).click();
   }
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);

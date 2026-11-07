@@ -7,12 +7,6 @@ export const operatingModelMoves = [
 
 export const operatingModelBridge = {
   summary: "Apply these controls when you design the factory, qualify it for use, operate it and improve it from measured results.",
-  links: [
-    ["Factory lifecycle", "/framework#lifecycle"],
-    ["Runtime", "/framework#runtime"],
-    ["Architecture", "/architecture"],
-    ["Protocol", "/framework#protocol"],
-  ],
 } as const;
 
 export const homepageExampleSteps = [
@@ -22,11 +16,20 @@ export const homepageExampleSteps = [
   ["Outcome", "A production-ready modernization candidate with an attributable evidence trail."],
 ] as const;
 
+// The visitor journey: understand → experience → define → build. Order matters; each step links to the next.
 export const homepageActions = [
-  ["Understand", "See one workflow move from intent to verified outcome.", "/in-5-minutes", "Follow the five-minute example"],
-  ["Assess", "Identify your current factory maturity and the next capability to earn.", "/maturity", "Assess your factory"],
-  ["Build", "Turn one engineering outcome into a reusable Factory Definition.", "/start", "Build a Factory Definition"],
-  ["Read", "Use the Guide as the field book for the deeper system.", "/guide", "Open the Guide"],
+  ["01 / Understand", "Follow one dependency upgrade from intent to verified outcome, across every FDLC view.", "/in-5-minutes", "Experience FDLC in 5 minutes"],
+  ["02 / Experience", "Run a sample factory in your browser. Inject a fault and watch evidence block the release.", "/simulator", "Run the factory simulator"],
+  ["03 / Define", "Turn one engineering outcome into a Factory Definition you can review and keep.", "/start", "Define your first factory line"],
+  ["04 / Build", "Download the dependency-free Reference Lab, run its gates locally, then swap in your own stack.", "/lab", "Build and run a minimal factory"],
+] as const;
+
+export const homepageReferences = [
+  ["Assess your maturity", "/maturity"],
+  ["Read the Guide", "/guide"],
+  ["Architecture", "/architecture"],
+  ["Manifesto", "/manifesto"],
+  ["Mission Control (optional reference)", "/mission-control"],
 ] as const;
 
 export const homepageThesis = [

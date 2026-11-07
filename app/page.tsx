@@ -9,8 +9,9 @@ import { SectionHeader } from "./components/page-hero";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import { WhatsRealToday } from "./components/whats-real-today";
-import { homepageActions, homepageExampleSteps, homepageThesis, operatingModelBridge, operatingModelMoves } from "../data/homepage";
+import { homepageActions, homepageExampleSteps, homepageReferences, homepageThesis, operatingModelBridge, operatingModelMoves } from "../data/homepage";
 import { evidencePositioning, primaryPositioning } from "../data/fdlc";
+import { missionControlRepository } from "../lib/global-navigation";
 import { pageMetadata } from "../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Factory Development Lifecycle (FDLC)", "The Factory Development Lifecycle (FDLC) is an open framework for building and running AI software factories, with clear limits, verification and human approval.", "/");
@@ -20,21 +21,16 @@ export default function Home() {
     <>
       <SiteHeader />
       <main id="main-content">
-        <a className="home-guide-banner" href="/guide/00-front-matter/00-how-to-read-this-guide">
-          <span>Understand the Factory Development Lifecycle.</span>
-          <strong>Start here <span aria-hidden="true">→</span></strong>
-        </a>
         <section className="hero-shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>A framework for AI software factories</span><span>Open framework · v0.1</span></p>
             <h1 className="engineering-title">Factory Development Lifecycle (FDLC)</h1>
-            <p className="hero-lede">An open framework for building and running AI software factories—systems of AI agents, tools and people that build, test and deliver software. Use it to design the system, set limits on agent actions, verify results, approve releases and improve the workflow over time.</p>
+            <p className="hero-lede">An open framework for engineering AI software factories—the systems of AI agents, tools and people that build, test and deliver software. FDLC defines how work is bounded, verified, approved and improved, so autonomous delivery can be trusted.</p>
             <div className="hero-actions">
-              <Link className="button button-dark" href="/framework">Explore the Framework</Link>
-              <Link className="button button-light" href="/simulator">Experience a Factory</Link>
+              <Link className="button button-dark" href="/in-5-minutes">Experience FDLC in 5 Minutes</Link>
+              <Link className="button button-light" href="/framework">Explore the Framework</Link>
             </div>
-            <div><Link className="text-action hero-example-link" href="/lab">Build Your Own →</Link><a className="text-action" href="/guide">Read the Guide →</a></div>
-            <p className="hero-audience">For engineering leaders and teams building reliable AI software delivery.</p>
+            <p className="hero-audience">For engineering leaders and teams building reliable AI software delivery. Use your own agents, models and tools: FDLC defines the engineering discipline, not the technology stack.</p>
             <div className="hero-category-contrast" aria-label="Difference between SDLC and FDLC" role="group">
               <div><span>SDLC</span><p>The Software Development Lifecycle manages a <strong>software product.</strong></p></div>
               <div><span>FDLC</span><p>The Factory Development Lifecycle manages the <strong>system that produces it.</strong></p></div>
@@ -48,15 +44,22 @@ export default function Home() {
               {operatingModelMoves.map(([number, title, description]) => <li key={number}><span>{number}</span><div><strong>{title}</strong><p>{description}</p></div></li>)}
             </ol>
             <p className="model-bridge">{operatingModelBridge.summary}</p>
-            <nav aria-label="Deeper system lenses" className="model-bridge-links">
-              {operatingModelBridge.links.map(([label, href]) => <Link href={href} key={href}>{label}</Link>)}
-            </nav>
             <div className="model-outcome"><span>Unit of value</span><strong>Verified outcome</strong></div>
           </aside>
         </section>
 
         <section className="statement-band" aria-label="FDLC category statement">
           <p>FDLC / Category promise</p><strong>{primaryPositioning}</strong><span>{evidencePositioning}</span>
+        </section>
+
+        <section className="content-section adoption-actions">
+          <SectionHeader eyebrow="Your path through FDLC" title="Understand it, see it run, then build your own." description="Start in the browser in five minutes, then run a governed factory on your own machine. No account, and no particular agent, model or vendor, is required." />
+          <div className="adoption-action-grid" id="your-path">
+            {homepageActions.map(([label, description, href, action]) => href.startsWith("/guide")
+              ? <a href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></a>
+              : <Link href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></Link>)}
+          </div>
+          <nav className="adoption-reference-links" aria-label="Go deeper">{homepageReferences.map(([label, href]) => href.startsWith("/guide") ? <a href={href} key={href}>{label}</a> : <Link href={href} key={href}>{label}</Link>)}</nav>
         </section>
 
         <section className="content-section" id="software-factory-engineering"><p className="section-label">Software Factory Engineering</p><h2>The factory is the engineering artifact.</h2><p>Design, build, integrate, operate, measure and improve the systems that produce verified software outcomes: workflows, Agent interfaces, recovery, organizational knowledge, independent verification and executable governance.</p><Link className="text-action" href="/about#engineering-discipline">What a Software Factory Engineer builds →</Link></section>
@@ -93,21 +96,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="content-section adoption-actions">
-          <SectionHeader eyebrow="Use FDLC now" title="Choose the next useful step." description="Start with the depth that matches your question. Every path leads back to one governed system." />
-          <div className="adoption-action-grid">
-            {homepageActions.map(([label, description, href, action]) => href.startsWith("/guide")
-              ? <a href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></a>
-              : <Link href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></Link>)}
-          </div>
-          <nav className="adoption-reference-links" aria-label="FDLC technical references"><Link href="/architecture">Architecture</Link><a href="/guide">Guide</a><Link href="/mission-control">Mission Control</Link><Link href="/manifesto">Manifesto</Link></nav>
-        </section>
 
         <section className="mission-preview adoption-mission-preview">
           <div className="mission-preview-copy">
             <p className="section-label">Optional open-source reference implementation</p><h2>See the operating model in Mission Control.</h2>
             <p>Mission Control demonstrates selected control-plane concepts. Inspect plans, WorkOrders, Attempts, evidence and human decisions, with each capability’s current limits visible. FDLC does not require it.</p>
-            <div className="hero-actions"><Link className="button button-dark" href="/mission-control">Inspect Mission Control</Link><a className="button button-light" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View source ↗</a></div>
+            <div className="hero-actions"><Link className="button button-dark" href="/mission-control">Inspect Mission Control</Link><a className="button button-light" href={missionControlRepository} rel="noreferrer" target="_blank">Mission Control source ↗</a></div>
           </div>
           <figure className="product-frame"><div><span>MISSION CONTROL / COMMAND CENTER</span><span>DEMO VIEW</span></div><Image src="/mission-control/command-center.png" alt="Mission Control command center showing ranked work that needs operator attention" width={1600} height={1050} sizes="(max-width: 980px) 100vw, 65vw" /><figcaption>Deterministic demo view. Current capability status is documented on the Mission Control page.</figcaption></figure>
         </section>
@@ -118,7 +112,7 @@ export default function Home() {
 
         <section className="content-section adoption-enterprise">
           <div><p className="section-label">Need help applying FDLC?</p><h2>Start with one bounded factory line.</h2></div>
-          <div><p>AI-FDE helps an accountable human Factory Deployed Engineer turn reviewed enterprise evidence into an approved Factory Definition for Mission Control validation.</p><div className="hero-actions"><Link className="button button-dark" href="/deploy">Explore AI-FDE</Link><Link className="text-action" href="/enterprise">Enterprise path →</Link></div></div>
+          <div><p>AI-FDE (Preview) helps an accountable human Factory Deployed Engineer turn reviewed enterprise evidence into an approved Factory Definition, ready for qualification on the runtime you choose. FDLC does not require it.</p><div className="hero-actions"><Link className="button button-dark" href="/deploy">Explore AI-FDE</Link><Link className="text-action" href="/enterprise">Enterprise path →</Link></div></div>
         </section>
       </main>
       <SiteFooter />

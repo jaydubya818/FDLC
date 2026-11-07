@@ -8,6 +8,7 @@ import { FactoryExplorer } from "../components/factory-explorer";
 import { GuideReading } from "../components/guide-reading";
 import { LensSwitcher } from "../components/lens-switcher";
 import { LifecycleDiagram } from "../components/lifecycle-diagram";
+import { LifecycleViews } from "../components/lifecycle-views";
 import { GoverningLifecycleDiagram } from "../components/governing-lifecycle-diagram";
 import { NextSteps } from "../components/next-steps";
 import { PageContentsNav } from "../components/page-contents-nav";
@@ -49,7 +50,7 @@ const contents = [
   { label: "Why FDLC", href: "#why" },
   { label: "Four views", href: "#models" },
   { label: "Factory lifecycle", href: "#lifecycle" },
-  { label: "Runtime", href: "#runtime" },
+  { label: "Lifecycle in operation", href: "#runtime" },
   { label: "Architecture", href: "#architecture" },
   { label: "Artifacts", href: "#protocol" },
   { label: "Factory Explorer", href: "#explorer" },
@@ -101,13 +102,14 @@ export default function FrameworkPage() {
       </section>
 
       <section className="section-block model-distinction" id="models">
-        <SectionHeader eyebrow="Four views of the system" title="Do not collapse these into one diagram." description="Each view answers a different question. Keeping them separate is what makes the operating model precise." />
+        <SectionHeader eyebrow="Four views of the system" title="One architecture. Distinct views." description="Each view answers a different question. The nine-stage governing lifecycle is canonical; the other views relate to it as shown below." />
         <div className="system-models">
           <article><span>01 / Factory lifecycle</span><h3>How the factory evolves.</h3><p>Discover, design, assemble, validate, deploy, operate, and improve.</p><a href="#lifecycle">View outer lifecycle ↓</a></article>
-          <article><span>02 / Runtime lifecycle</span><h3>How software moves inside it.</h3><p>One autonomous delivery loop from received intent to governed learning.</p><a href="#runtime">View inner lifecycle ↓</a></article>
+          <article><span>02 / Governing lifecycle</span><h3>How work moves inside it.</h3><p>Nine stages from Intent to Learning: the canonical sequence for every unit of work.</p><a href="#runtime">View the nine stages ↓</a></article>
           <article><span>03 / Architecture</span><h3>What the factory contains.</h3><p>Six capability areas that every implementation must address.</p><a href="#architecture">View architecture ↓</a></article>
           <article><span>04 / Artifact protocol</span><h3>What makes work durable.</h3><p>Eleven semantic objects from Intent to Learning Signal.</p><a href="#protocol">View protocol ↓</a></article>
         </div>
+        <LifecycleViews />
       </section>
 
 
@@ -118,9 +120,9 @@ export default function FrameworkPage() {
       </section>
 
       <section className="section-block" id="runtime">
-        <SectionHeader eyebrow="Model 02 / Runtime lifecycle" title="How software moves inside an operating factory." description="The inner lifecycle transforms intent into independently verified software under explicit policy and human authority, then returns production outcomes as controlled learning signals." />
+        <SectionHeader eyebrow="Model 02 / Governing lifecycle in operation" title="How one unit of work moves inside an operating factory." description="The same nine governing stages, with the durable records each one produces. The lifecycle transforms intent into independently verified software under explicit policy and human authority, then returns production outcomes as controlled learning signals." />
         <RuntimeLifecycleDiagram detailed />
-        <aside className="callout"><strong>Keep the boundaries clear</strong><p>Deploy promotes a validated factory version during the outer lifecycle. Release promotes an accepted software artifact during the inner lifecycle. Neither transition creates its own authority.</p></aside>
+        <aside className="callout"><strong>Keep the boundaries clear</strong><p>Deploy promotes a validated factory version during the outer lifecycle. Release promotes an accepted software artifact during the governing lifecycle. Neither transition creates its own authority.</p></aside>
         <div className="section-links"><Link href="/in-5-minutes#runtime">Follow one runtime walkthrough →</Link></div>
       </section>
 

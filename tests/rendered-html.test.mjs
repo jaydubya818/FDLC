@@ -102,7 +102,7 @@ test("corpus raw artifacts are allowlisted and unknown targets fail closed", asy
 });
 
 test("global More exposes the preview while contextual artifacts remain focused", async () => {
-  const expected = ["In 5 Minutes", "Start", "Factory Skills", "Simulator", "Reference Lab", "Learning Library (Preview)", "Manifesto", "Enterprise", "Factory Updates", "About"];
+  const expected = ["Manifesto", "Learning Library (Preview)", "Factory Updates", "About"];
   for (const route of routes) {
     const html = await (await render(route)).text();
     const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
@@ -181,8 +181,13 @@ test("homepage answers the category boundary and links to primary destinations",
   assert.match(html, /One illustrative example.*Modernize a dependency without surrendering control/is);
   assert.match(html, /Intent.*Factory.*Evidence.*Outcome/is);
   assert.match(html, /Plan.*Modify.*Test.*Verify.*Approve/is);
-  assert.match(html, /Choose the next useful step/i);
-  assert.match(html, /Understand.*Assess.*Build.*Read/is);
+  assert.match(html, /Understand it, see it run, then build your own/i);
+  assert.match(html, /Understand.*Experience.*Define.*Build/is);
+  // One primary and one secondary call to action in the hero.
+  const heroActions = html.match(/<div class="hero-actions">([\s\S]*?)<\/div>/)?.[1] ?? "";
+  assert.deepEqual([...heroActions.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/g)].map((match) => [match[1], match[2]]), [["/in-5-minutes", "Experience FDLC in 5 Minutes"], ["/framework", "Explore the Framework"]]);
+  assert.match(html, /FDLC defines the engineering discipline, not the technology stack/);
+  assert.match(html, /href="https:\/\/github\.com\/jaydubya818\/FDLC"/);
   assert.doesNotMatch(html, /Explore the Learning Library \(Preview\)/i);
   assert.match(html, /Need help applying FDLC.*Start with one bounded factory line/is);
   assert.match(html, /id="factory-explorer"/);
@@ -246,7 +251,7 @@ test("global navigation exposes the canonical Guide disclosure in desktop and mo
   const html = await (await render("/guide")).text();
   const header = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0];
   assert.ok(header, "renders the persistent FDLC global header");
-  for (const label of ["Framework", "Architecture", "Guide", "AI-FDE", "Mission Control", "Maturity", "More"]) {
+  for (const label of ["Framework", "Architecture", "Guide", "Try", "Build", "Implementations", "AI-FDE", "Mission Control", "Maturity", "More"]) {
     assert.match(header, new RegExp(`>${label}(?:\\s|<)`), label);
   }
   for (const [label, href] of [
@@ -290,14 +295,14 @@ test("worked example connects all four models without claiming production proof"
   assert.match(html, /One workflow.*Four system views.*Eleven artifacts.*One measurable outcome/is);
   assert.match(html, /Baseline.*illustrative.*Cycle time.*Human review minutes.*Reopen.*rollback risk.*Escaped defect potential/is);
   assert.match(html, /Discover.*Design.*Assemble.*Validate.*Deploy.*Operate.*Improve/is);
-  assert.match(html, /Receive.*Specify.*Plan.*Execute.*Verify.*Approve.*Release.*Observe.*Learn/is);
+  assert.match(html, /Intent.*Planning.*Execution.*Evidence.*Verification.*Approval.*Release.*Outcomes.*Learning/is);
   assert.match(html, /INT-104.*SPEC-104-R1.*PLAN-104-R2.*WO-104-01.*ATT-104-03.*EVD-104-09.*VER-104-02.*APR-104-01.*REL-104-01.*OUT-104-01.*LS-104-01/is);
   assert.match(html, /Command Center.*Work Order.*Audit and evidence/is);
   assert.match(html, /Evidence Envelopes.*Independent verification.*Human acceptance/is);
   assert.match(html, /Cost per verified outcome.*First-pass verification rate.*Reopen.*rollback rate/is);
   assert.match(html, /accepted dependency upgrades.*eligible dependency-upgrade missions/is);
   assert.match(html, /canonical example.*not a certification of production readiness.*discipline is open.*value is determined by verified outcomes/is);
-  for (const href of ["/#factory-explorer", "/start", "/mission-control"]) assert.match(html, new RegExp(`href=["']${href}["']`));
+  for (const href of ["/simulator", "/start", "/lab", "/mission-control"]) assert.match(html, new RegExp(`href=["']${href}["']`));
 });
 
 test("legacy worked-example route redirects to the canonical five-minute path", async () => {

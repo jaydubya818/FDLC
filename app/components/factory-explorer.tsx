@@ -10,7 +10,7 @@ import {
 } from "../../data/factory-explorer";
 import { preferredScrollBehavior } from "../../lib/motion";
 
-const defaultStageId = "verify";
+const defaultStageId = "verification";
 const defaultCapabilityId: FactoryCapabilityId = "evals";
 
 function stageHasCapability(stage: (typeof factoryExplorerStages)[number], capabilityId: FactoryCapabilityId) {
@@ -84,7 +84,7 @@ export function FactoryExplorer({ id = "factory-explorer", showFrameworkLink = t
           </p>
           <div className="factory-explorer-progress" aria-label={`Stage ${selectedStage.number} of ${factoryExplorerStages.length}`} role="group">
             <button
-              aria-label="View previous runtime stage"
+              aria-label="View previous lifecycle stage"
               disabled={selectedStageIndex === 0}
               onClick={() => selectStage(selectedStageIndex - 1)}
               type="button"
@@ -93,7 +93,7 @@ export function FactoryExplorer({ id = "factory-explorer", showFrameworkLink = t
             </button>
             <span>{String(selectedStage.number).padStart(2, "0")} / {String(factoryExplorerStages.length).padStart(2, "0")}</span>
             <button
-              aria-label="View next runtime stage"
+              aria-label="View next lifecycle stage"
               disabled={selectedStageIndex === factoryExplorerStages.length - 1}
               onClick={() => selectStage(selectedStageIndex + 1)}
               type="button"
@@ -107,7 +107,7 @@ export function FactoryExplorer({ id = "factory-explorer", showFrameworkLink = t
       <div
         className="factory-explorer-stages"
         aria-describedby="factory-explorer-instructions"
-        aria-label="Runtime lifecycle stages"
+        aria-label="Governing lifecycle stages"
         ref={stageList}
         role="tablist"
       >
@@ -177,7 +177,7 @@ export function FactoryExplorer({ id = "factory-explorer", showFrameworkLink = t
           </div>
           <nav aria-label="Explore this stage in depth">
             <Link href="/in-5-minutes">Full walkthrough <span aria-hidden="true">→</span></Link>
-            <a href={selectedStage.guideHref}>Guide deep dive <span aria-hidden="true">↗</span></a>
+            <a href={selectedStage.guideHref}>{selectedStage.guideLabel} <span aria-hidden="true">↗</span></a>
           </nav>
         </aside>
       </div>

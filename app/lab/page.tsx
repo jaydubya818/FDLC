@@ -10,7 +10,7 @@ import "./tutorial.css";
 
 export const metadata: Metadata = pageMetadata("Build and Run Your First FDLC Software Factory", "A practical, dependency-free Reference Lab: fix a failing API test, inspect real evidence, block unsafe work and qualify your next implementation.", "/lab");
 const source = "/reference-factory/source/";
-const commands = `cd fdlc-reference-lab-v1.1.0
+const commands = `cd fdlc-reference-lab-v1.1.1
 node lab.mjs all
 node lab.mjs failed
 node lab.mjs recovery
@@ -29,7 +29,7 @@ const scenarios = [
 
 export default function LabPage() {
   return <SiteShell><div className="page-wrap engineering-tutorial">
-    <PageHero eyebrow="Hands-on / Existing Reference Lab" variant="compact" status="Executable example" title="Build and run your first FDLC software factory." description="Fix a failing API test, inspect the contract and evidence, then replace the scripted producer with your own stack. Mission Control is an optional second learning path." meta={[["Prerequisites", "Node 22.13+"], ["Guide time", "30–60 minutes, estimated"], ["Dependencies", "None for this Lab"]]} />
+    <PageHero eyebrow="Your path · step 4 of 4 · Build" variant="compact" status="Available" title="Build and run your first FDLC software factory." description="Fix a failing API test, inspect the contract and evidence, then replace the scripted producer with your own stack. Mission Control is an optional second learning path." meta={[["Prerequisites", "Node 22.13+"], ["Guide time", "30–60 minutes, estimated"], ["Dependencies", "None for this Lab"]]} />
     <div className="tutorial-body">
     <nav className="tutorial-nav" aria-label="Tutorial sections"><a href="#reference">Run the Lab</a><a href="#own-stack">Use your own stack</a><a href="#qualification">Qualification</a><a href="#mission-control-path">Mission Control path</a><a href="#improve">Improve</a></nav>
     <aside className="tutorial-orientation" aria-labelledby="tutorial-orientation-title">
@@ -41,7 +41,7 @@ export default function LabPage() {
       </div>
     </aside>
     <section className="tutorial-section" id="reference"><SectionHeader eyebrow="First 10 minutes / Reference implementation" title="Run the existing Lab, then inspect its records." description="Download and extract the standalone Lab into a new folder. It includes the code, contracts, protected tests and README. No repository access, account or npm install is needed." />
-      <div className="tutorial-download-actions"><a className="button button-dark" href="/downloads/fdlc-reference-lab-v1.1.0.zip" download>Download the Reference Lab ZIP</a><a href="/reference-factory/source/manifest.json">Inspect files and SHA-256 manifest →</a></div>
+      <div className="tutorial-download-actions"><a className="button button-dark" href="/downloads/fdlc-reference-lab-v1.1.1.zip" download>Download the Reference Lab ZIP</a><a href="/reference-factory/source/manifest.json">Inspect files and SHA-256 manifest →</a></div>
       <div className="quickstart-code">
         <div className="quickstart-code-toolbar"><a href={`${source}lab.mjs.txt`}>Read the executable source ↗</a><CopyButton label="Copy Lab commands" text={commands} /></div>
         {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- The horizontal command scroller must be keyboard reachable. */}

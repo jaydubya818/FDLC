@@ -9,7 +9,7 @@ import zipfile
 
 root = Path(__file__).resolve().parents[1]
 source = root / 'reference-factory'
-version = '1.1.0'
+version = '1.1.1'
 folder = f'fdlc-reference-lab-v{version}'
 files = ['README.md', 'lab.mjs', 'contract.test.mjs', 'factory-definition.json', 'work-order.json', 'sandbox/package.json', 'sandbox/src/add.js', 'sandbox/src/api.mjs', 'sandbox/tests/add.test.js', 'sandbox/tests/api.test.mjs']
 public = root / 'public'

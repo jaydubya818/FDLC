@@ -8,13 +8,16 @@ FDLC is the engineering discipline for the factory itself: the control system ar
 
 ## Start here
 
-Pick a track by how much time you have.
+FDLC defines the engineering discipline, not the technology stack. Nothing below requires a particular agent, harness, model, vendor or runtime. The steps match the "Your path" journey on [fdlc.ai](https://fdlc.ai); use the hosted pages or run the site locally (see [Local development](#local-development)).
 
-| Time | Do this | You learn |
+| Step | Do this | You learn |
 | --- | --- | --- |
-| 5 minutes | Run `npm run dev`, open `/in-5-minutes`, then `/simulator` and inject a fault | What a factory is and what blocks a bad release |
-| 30 minutes | `node reference-factory/lab.mjs` and read `gate()` in `reference-factory/lab.mjs` | Real API checks, bounded scope, failed evidence, recovery and human authority as inspectable code |
-| An afternoon | Open `/start`, click "Load an example", edit it, export the v0.2 JSON | How to define governed intent for your own work |
+| 1. Understand (5 minutes) | Open `/in-5-minutes` | One workflow across every FDLC view, from intent to verified outcome |
+| 2. Experience (10 minutes) | Open `/simulator`, submit the sample intent, then inject a fault | What blocks a bad release, and why verified does not mean authorized |
+| 3. Define (30 minutes) | Open `/start`, click "Load an example", edit it, export JSON (v0.2) | How to define governed intent for your own work |
+| 4. Build (30–60 minutes) | `node reference-factory/lab.mjs` (all scenarios), then read `gate()` in `reference-factory/lab.mjs`; or download the Lab ZIP from `/lab` and run `node lab.mjs all` | Real API checks, bounded scope, failed evidence, recovery and human authority as inspectable code |
+
+The nine-stage governing lifecycle (Intent → Planning → Execution → Evidence → Verification → Approval → Release → Outcomes → Learning) is defined once in [`data/governing-lifecycle.ts`](data/governing-lifecycle.ts). Other views — the seven-stage factory lifecycle, the eleven-record artifact protocol, the enterprise delivery flow and the Guide's value stream — are separate abstractions; `lifecycleViews` in the same file states how each relates.
 
 Factory Definition v0.2 is described by `public/schemas/factory-definition-0.2.json`. The builder at `/start` imports v0.1 and v0.2 files (JSON or YAML) and upgrades v0.1 on import.
 
@@ -48,7 +51,15 @@ npm test
 - `docs/` — source audit, information architecture, content model, design system, implementation plan, capability matrix, and release checklist
 - `tests/` — unit and rendered-route checks
 
-Mission Control and the Guide remain separate open-source projects. The Guide is composed into FDLC.ai through Vercel Microfrontends while retaining its own source, runtime, routes, and assets.
+## Repositories
+
+| Repository | What it is | Required to use FDLC? |
+| --- | --- | --- |
+| [jaydubya818/FDLC](https://github.com/jaydubya818/FDLC) | This repository: the FDLC.ai site, framework content model, Reference Lab and Factory Skills starter | — |
+| [jaydubya818/ai-software-factory-mastery](https://github.com/jaydubya818/ai-software-factory-mastery) | The AI Software Factory Guide, served at `/guide` | No; it teaches FDLC in depth |
+| [jaydubya818/MissionControl](https://github.com/jaydubya818/MissionControl) | Mission Control, an optional open-source reference implementation of selected control-plane concepts | No |
+
+The Guide is composed into FDLC.ai through Vercel Microfrontends while retaining its own source, runtime, routes, and assets.
 
 ## Guide and Microfrontends
 

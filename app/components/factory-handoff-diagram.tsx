@@ -7,6 +7,7 @@ export function FactoryHandoffDiagram({ builder = false }: { builder?: boolean }
       <span className="handoff-number" aria-hidden="true">0{index + 1}</span>
       <p className="handoff-owner">{step.owner}</p><h3>{step.title}</h3><p>{step.detail}</p><strong>{step.state}</strong>
     </li>)}</ol>
+    <p className="handoff-boundary">{factoryHandoff.example}</p>
     {builder && <p className="handoff-boundary">{factoryHandoff.boundary}</p>}
   </figure>;
 }

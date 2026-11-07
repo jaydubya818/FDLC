@@ -7,17 +7,20 @@ import { NextSteps } from "../components/next-steps";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
 import { MaturityJourney } from "../components/maturity-journey";
+import { maturityDimensions } from "../../data/fdlc";
 import { pageHandoffs } from "../../data/page-handoffs";
 import { pageMetadata } from "../../lib/metadata";
 
 export const metadata: Metadata = pageMetadata("Maturity", "Assess the maturity of your AI software factory across eleven operating dimensions.", "/maturity");
 
+const dimensionList = maturityDimensions.map((dimension) => dimension.name.toLowerCase());
+const dimensionSentence = `${dimensionList.slice(0, -1).join(", ")} and ${dimensionList.at(-1)}`;
+
 export default function MaturityPage() {
   return <SiteShell><div className="page-wrap maturity-page">
-    <PageHero eyebrow="FDLC maturity / 11" variant="compact" title="How mature is your software factory?" description="Maturity is the quality of your operating system for autonomous work: intent, authority, execution, verification, oversight, observability, reuse, and learning." meta={[["Levels", "L0–L5"], ["Dimensions", "11"], ["Privacy", "Browser only"]]}>
+    <PageHero eyebrow="FDLC maturity" variant="compact" title="How mature is your software factory?" description={`Maturity is the quality of your operating system for autonomous work, scored across ${maturityDimensions.length} dimensions: ${dimensionSentence}.`} meta={[["Levels", "L0–L5"], ["Dimensions", String(maturityDimensions.length)], ["Privacy", "Browser only"]]}>
       <div className="hero-actions"><a className="button button-dark" href="#assessment">Start the assessment</a><Link className="text-action" href="/framework#measurement">How FDLC measures →</Link></div>
     </PageHero>
-    <GuideReference description="Turn assessment gaps into practical next steps with chapters on verification, operations, governance, and continuous improvement." />
     <section className="maturity-model" aria-labelledby="maturity-model-title">
       <div className="maturity-model-intro">
         <p className="section-label">The maturity journey</p>
@@ -26,6 +29,8 @@ export default function MaturityPage() {
       </div>
       <MaturityJourney />
     </section>
+    <section className="section-block" id="assessment"><SectionHeader eyebrow="Assessment" title="Score what is demonstrably true today." description="This is an educational diagnostic, not certification. The useful output is the next control or evidence gap to close." /><MaturityAssessment /></section>
+    <GuideReference description="Turn assessment gaps into practical next steps with chapters on verification, operations, governance, and continuous improvement." />
     <section className="section-block" id="operating-domains">
       <SectionHeader eyebrow="Bounded autonomy" title="Assess each operating domain." description="Earn autonomy for a workload class, Factory Version and operating environment. A documentation corridor does not qualify migrations, authentication changes or production deployment." />
       <ReferenceDiagram name="autonomy" />
@@ -33,7 +38,6 @@ export default function MaturityPage() {
       <p>Itamar Friedman’s <a href="https://x.com/itamar_mar/status/2118356299612033305" target="_blank" rel="noreferrer">L4 Autonomous Software Factories concept ↗</a> is an external autonomy reference. It does not replace FDLC’s maturity levels, establish a universal certification or assert that FDLC has achieved L4.</p>
       <Link className="text-action" href="/enterprise#operating-domains">Compare workload conditions and authority →</Link>
     </section>
-    <section className="section-block" id="assessment"><SectionHeader eyebrow="Assessment" title="Score what is demonstrably true today." description="This is an educational diagnostic, not certification. The useful output is the next control or evidence gap to close." /><MaturityAssessment /></section>
     <NextSteps {...pageHandoffs.maturity} />
   </div></SiteShell>;
 }

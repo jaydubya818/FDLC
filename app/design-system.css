@@ -1,4 +1,9 @@
 /* Canonical public FDLC design primitives. Synced into the Guide; see docs/design-system.md. */
+/* Self-hosted fallbacks (SIL OFL 1.1, see public/fonts). Apple devices keep Avenir Next and Iowan Old Style;
+   other platforms use these close matches instead of Segoe UI / Times New Roman. Browsers download a face
+   only when an earlier family in the stack is unavailable. */
+@font-face { font-family: "FDLC Sans"; src: url("/fonts/nunito-sans-latin-wght-normal.woff2") format("woff2"); font-weight: 200 1000; font-style: normal; font-display: swap; }
+@font-face { font-family: "FDLC Serif"; src: url("/fonts/source-serif-4-latin-wght-normal.woff2") format("woff2"); font-weight: 200 900; font-style: normal; font-display: swap; }
 :root {
   --paper: #f3f1ea;
   --surface: #faf9f5;
@@ -12,8 +17,8 @@
   --blue: #3f6e85;
   --white: #fffef9;
   --sage: #e3ebe4;
-  --sans: "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif;
-  --serif: "Iowan Old Style", Baskerville, "Times New Roman", serif;
+  --sans: "Avenir Next", Avenir, "FDLC Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --serif: "Iowan Old Style", "FDLC Serif", Baskerville, "Times New Roman", serif;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --content-width: 1240px;
   --reading-width: 760px;
@@ -86,7 +91,7 @@
 .nav-dropdown-panel[hidden], .global-mobile nav[hidden], .mobile-guide-links[hidden] { display: none; }
 
 .global-footer { padding: 64px 0 0; background: #171a18; color: #c8d0ca; font-family: var(--sans); font-size: 14px; line-height: 1.6; }
-.global-footer-inner { width: min(var(--content-width), calc(100% - 40px)); margin: 0 auto; display: grid; grid-template-columns: 1.5fr repeat(4, 1fr); gap: 32px; }
+.global-footer-inner { width: min(var(--content-width), calc(100% - 40px)); margin: 0 auto; display: grid; grid-template-columns: 1.4fr repeat(5, 1fr); gap: 28px; }
 .global-footer-brand p { max-width: 260px; margin: 18px 0 0; color: #aeb9b1; font-size: 14px; }
 .global-footer .global-logo { width: 190px; }
 .global-footer .global-logo img { filter: grayscale(1) brightness(0) invert(1); }
@@ -100,7 +105,7 @@
   .global-logo { width: 190px; }
   .desktop-nav, .header-utilities { display: none; }
   .global-mobile { display: block; }
-  .global-footer-inner { grid-template-columns: repeat(4, 1fr); }
+  .global-footer-inner { grid-template-columns: repeat(3, 1fr); }
   .global-footer-brand { grid-column: 1 / -1; }
 }
 @media (max-width: 640px) {

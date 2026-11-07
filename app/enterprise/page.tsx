@@ -24,7 +24,7 @@ const contents = [
 
 export default function EnterprisePage() {
   return <SiteShell><div className="page-wrap enterprise-page">
-    <PageHero eyebrow="FDLC Enterprise" status="Design partnership" variant="compact" title="One platform. Many verified outcomes." description="Centralize the enterprise infrastructure that should be shared. Compose factories only for materially different governed outcomes. Reuse qualified agents, harnesses, tools, model routes, context, and execution profiles across the portfolio." meta={[["Architecture", "Shared platform"], ["Operating units", "Composable factories"], ["Pricing", "Contact FDLC Enterprise"]]}>
+    <PageHero eyebrow="FDLC Enterprise · design partnership" status="Proposed" variant="compact" title="One platform. Many verified outcomes." description="Proposed — not generally available. Centralize the enterprise infrastructure that should be shared. Compose factories only for materially different governed outcomes. Reuse qualified agents, harnesses, tools, model routes, context, and execution profiles across the portfolio." meta={[["Architecture", "Shared platform"], ["Operating units", "Composable factories"], ["Pricing", "Contact FDLC Enterprise"]]}>
       <div className="hero-actions"><a className="button button-dark" href="mailto:support@fdlc.ai?subject=FDLC%20Enterprise%20pricing%20and%20scope">Contact FDLC Enterprise</a><a className="text-action" href={enterpriseGuideHref}>Read the enterprise guide →</a></div>
     </PageHero>
     <PageContentsNav items={contents} />

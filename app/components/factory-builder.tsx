@@ -143,12 +143,12 @@ export function FactoryBuilder() {
         <article><span>Human controls</span><ul>{definition.humanControls.map((item) => <li key={item}>{item}</li>)}</ul></article>
         <article><span>Outcome metrics</span><ul>{definition.outcomeMetrics.map((item) => <li key={item}>{item}</li>)}</ul></article>
       </div>
-      <aside className="callout"><strong>Conceptual output</strong><p>This teaches the FDLC mental model. It is not an executable Mission Control manifest or a formal FDLC Specification document. {factoryDefinitionBridge.definition} {factoryDefinitionBridge.version} {factoryDefinitionBridge.boundary}</p></aside>
+      <aside className="callout"><strong>What to do with it</strong><p>Keep it with the work as the reviewable design, then exercise the same contracts in the Reference Lab. Markdown is for people; JSON (v0.2) and YAML (v0.2) follow the <a href="/schemas/factory-definition-0.2.json">published v0.2 schema</a>. It is not an executable manifest for any particular runtime or a formal FDLC Specification document. {factoryDefinitionBridge.definition} {factoryDefinitionBridge.version} {factoryDefinitionBridge.boundary}</p></aside>
       <ArtifactExport artifacts={artifacts} copyLabel="Copy Factory Definition" downloadLabel="Download Factory Definition" />
       <nav className="factory-result-actions" aria-label="Continue from Factory Definition">
-        {factoryDefinitionNextSteps.map(([href, label]) => href.startsWith("/guide")
-          ? <a className="button button-light" href={href} key={href}>{label}</a>
-          : <Link className="button button-light" href={href} key={href}>{label}</Link>)}
+        {factoryDefinitionNextSteps.map(([href, label], index) => href.startsWith("/guide")
+          ? <a className={index === 0 ? "button button-dark" : "button button-light"} href={href} key={href}>{label}</a>
+          : <Link className={index === 0 ? "button button-dark" : "button button-light"} href={href} key={href}>{label}</Link>)}
       </nav>
     </section>;
   }
