@@ -133,6 +133,10 @@ try {
       if (route === "/factory-skills") {
         assert.equal(await page.locator(".starter-outcome").evaluate(node => getComputedStyle(node).display), "grid", "Starter layout styles must reach the browser");
       }
+      if (route === "/simulator") {
+        const bounds = await page.locator(".factory-experience").boundingBox();
+        assert.ok(bounds.x >= 14 && bounds.x + bounds.width <= width - 14, "Simulator forms and records retain page gutters");
+      }
       if (route === "/framework" && width === 390) {
         const disclosures = await page.locator(".protocol-track.is-detailed .model-disclosure > summary").evaluateAll(nodes => nodes.map(node => {
           const row = node.getBoundingClientRect();
