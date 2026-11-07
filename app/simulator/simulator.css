@@ -1,4 +1,4 @@
-.factory-experience { max-width: 1120px; width: 100%; margin: 40px auto 64px; display: grid; gap: 24px; }
+.factory-experience { max-width: 1120px; width: calc(100% - 40px); margin: 40px auto 64px; display: grid; gap: 24px; }
 .experience-heading { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: end; }
 .experience-heading p { margin: 8px 0 0; color: var(--muted); line-height: 1.6; }
 .experience-heading a, .experience-sample-note a { text-decoration: underline; text-underline-offset: 3px; }
@@ -46,4 +46,5 @@
 .experience-evidence > li { border-top: 1px solid var(--line); padding-top: 14px; }
 .experience-evidence ul { padding-left: 18px; font-size: 14px; line-height: 1.7; }
 @media(max-width: 900px) { .experience-heading { grid-template-columns: 1fr; gap: 10px; } .experience-scenarios > div { grid-template-columns: 1fr; } .experience-scenarios label { min-height: 68px; } }
+@media(max-width: 700px) { .factory-experience { width: calc(100% - 28px); } }
 @media(max-width: 620px) { .experience-workspace { grid-template-columns: 1fr; } .experience-timeline { border-right: 0; border-bottom: 1px solid var(--line); } .experience-timeline ol { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 4px; } .experience-timeline button { height: 100%; min-height: 72px; } .experience-intent { grid-template-columns: 1fr; } .experience-intent input { font-size: 13px; } .experience-stage dl > div, .experience-records dl > div { grid-template-columns: 1fr; gap: 4px; } .experience-records > details { padding: 16px; } }

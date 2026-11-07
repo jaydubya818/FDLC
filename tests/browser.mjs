@@ -43,7 +43,7 @@ try {
   // independently built Guide artifact and are covered by the migration's
   // exact-deployment composition suites, not by a mutable remote dependency
   // during the FDLC local-build gate.
-  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/factory-skills", "/lab", "/simulator", "/about"];
+  const routes = ["/", "/framework", "/architecture", "/in-5-minutes", "/manifesto", "/mission-control", "/spec", "/maturity", "/benchmarks", "/enterprise", "/deploy", "/start", "/factory-skills", "/lab", "/simulator", "/about", "/updates", "/corpus-preview", "/corpus-preview/compare", "/corpus-preview/anti-patterns/hidden-agent-state", "/corpus-preview/tutorials/scale-across-repositories"];
   const links = new Set();
   async function audit(label) {
     // Measure settled styles; entry fades are deliberately below final contrast.
@@ -81,6 +81,24 @@ try {
       await page.getByRole("heading", { level: 1 }).waitFor();
       await checkGlobalNavigation(page, { mobile: width === 390, keyboard: route === "/" });
       await audit(route);
+      const presentation = await page.evaluate(() => {
+        const visible = node => !node.closest("svg") && node.getClientRects().length && getComputedStyle(node).visibility !== "hidden";
+        const rect = node => { const box = node.getBoundingClientRect(); return { name: node.id || node.className || node.tagName, left: box.left, right: box.right, height: box.height, width: box.width }; };
+        return {
+          clippedText: [...document.querySelectorAll("main h1, main h2, main h3, main p")].filter(visible).map(rect).filter(box => box.width > 0 && (box.left < -.5 || box.right > innerWidth + .5)),
+          oversizedButtons: [...document.querySelectorAll("main .button")].filter(visible).map(rect).filter(box => box.height > 80),
+          hero: document.querySelector(".page-hero") && rect(document.querySelector(".page-hero")),
+          contained: [...document.querySelectorAll(".page-wrap > :is(.guide-reference, .guide-reading, .factory-handoff-diagram, .enterprise-note, .governing-lifecycle, .starter-outcome, .starter-limits, .starter-download-note)"), ...document.querySelectorAll(innerWidth >= 1024 ? ".page-wrap > .longform-layout" : ".longform-content > .section-block")].filter(visible).map(rect),
+          wrapperOverflow: document.querySelector(".page-wrap") && getComputedStyle(document.querySelector(".page-wrap")).overflowX,
+        };
+      });
+      assert.deepEqual(presentation.clippedText, [], `${route}: visible reading text stays within the page`);
+      assert.deepEqual(presentation.oversizedButtons, [], `${route}: actions keep their intended control height`);
+      assert.ok(!["hidden", "clip"].includes(presentation.wrapperOverflow), `${route}: page wrapper must not hide layout failures`);
+      for (const block of presentation.contained) if (presentation.hero) {
+        assert.ok(Math.abs(block.left - presentation.hero.left) < 2, `${route} ${block.name}: aligned left gutter`);
+        assert.ok(Math.abs(block.right - presentation.hero.right) < 2, `${route} ${block.name}: aligned right gutter`);
+      }
       if (route === "/lab") {
         const layout = await page.evaluate(() => {
           const hero = document.querySelector(".engineering-tutorial .page-hero").getBoundingClientRect();
@@ -114,6 +132,24 @@ try {
       }
       if (route === "/factory-skills") {
         assert.equal(await page.locator(".starter-outcome").evaluate(node => getComputedStyle(node).display), "grid", "Starter layout styles must reach the browser");
+      }
+      if (route === "/simulator") {
+        const bounds = await page.locator(".factory-experience").boundingBox();
+        assert.ok(bounds.x >= 14 && bounds.x + bounds.width <= width - 14, "Simulator forms and records retain page gutters");
+      }
+      if (route === "/framework" && width === 390) {
+        const disclosures = await page.locator(".protocol-track.is-detailed .model-disclosure > summary").evaluateAll(nodes => nodes.map(node => {
+          const row = node.getBoundingClientRect();
+          const title = node.querySelector("strong").getBoundingClientRect();
+          const action = node.querySelector("small").getBoundingClientRect();
+          return { width: row.width, titleRight: title.right, actionLeft: action.left, actionRight: action.right, rowRight: row.right };
+        }));
+        assert.equal(disclosures.length, 11);
+        for (const row of disclosures) {
+          assert.ok(row.width >= 300, "Protocol disclosure uses the mobile content column");
+          assert.ok(row.titleRight + 8 <= row.actionLeft && row.actionRight <= row.rowRight, "Disclosure title and action have readable separation");
+        }
+        report.flows.push({ name: "framework-mobile-disclosures-readable", width, result: "PASS" });
       }
       if (route === "/architecture") {
         const systemFlow = page.locator("#system-flow");
