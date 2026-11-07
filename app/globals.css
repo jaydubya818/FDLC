@@ -1892,11 +1892,12 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
   .lifecycle-track a { min-height: auto; padding: 18px; display: grid; grid-template-columns: 42px 1fr; gap: 6px; }
   .lifecycle-track strong { margin: 0; font-size: 18px; }
   .lifecycle-track.is-detailed > li, .protocol-track.is-detailed > li { min-height: auto; }
-  .model-disclosure > summary { min-height: auto; padding: 18px; grid-template-columns: 38px 1fr auto; align-items: center; }
+  .model-disclosure > summary { min-height: auto; padding: 18px; grid-template-columns: 38px minmax(0, 1fr) auto; align-items: center; column-gap: 12px; }
   .model-disclosure > summary strong { margin: 0; font-size: 20px; }
   .model-disclosure > summary small { grid-column: auto; margin: 0; }
   .model-disclosure-body { padding: 2px 18px 22px 56px; }
   .protocol-track > li { min-height: auto; display: grid; grid-template-columns: 40px 1fr; }
+  .protocol-track.is-detailed > li { display: block; }
   .protocol-track strong { margin: 0; font-size: 18px; }
   .lifecycle-controls { grid-template-columns: 1fr; }
   .lifecycle-controls > span { grid-column: auto; }
@@ -2179,7 +2180,7 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 .corpus-markdown pre { max-width: 100%; margin: 26px 0; overflow-x: auto; overflow-wrap: normal; }
 .corpus-markdown pre code { overflow-wrap: normal; }
 .corpus-markdown :not(pre) > code, .corpus-document-meta code { padding: 2px 5px; background: #e3e4dc; border-radius: 2px; font-family: var(--mono); font-size: .82em; }
-.corpus-table-scroll { min-width: 0; max-width: 100%; width: 100%; margin: 28px 0; overflow-x: auto; border: 1px solid var(--line); }
+.corpus-table-scroll { position: relative; min-width: 0; max-width: 100%; width: 100%; margin: 28px 0; overflow-x: auto; border: 1px solid var(--line); }
 .corpus-table-scroll table { width: 100%; min-width: 620px; border-collapse: collapse; background: var(--surface); font-size: 12px; line-height: 1.5; }
 .corpus-table-scroll th, .corpus-table-scroll td { padding: 11px 13px; vertical-align: top; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: left; }
 .corpus-table-scroll th { background: #e1e3db; color: var(--green); font-family: var(--mono); font-size: 10px; text-transform: uppercase; }

@@ -133,6 +133,20 @@ try {
       if (route === "/factory-skills") {
         assert.equal(await page.locator(".starter-outcome").evaluate(node => getComputedStyle(node).display), "grid", "Starter layout styles must reach the browser");
       }
+      if (route === "/framework" && width === 390) {
+        const disclosures = await page.locator(".protocol-track.is-detailed .model-disclosure > summary").evaluateAll(nodes => nodes.map(node => {
+          const row = node.getBoundingClientRect();
+          const title = node.querySelector("strong").getBoundingClientRect();
+          const action = node.querySelector("small").getBoundingClientRect();
+          return { width: row.width, titleRight: title.right, actionLeft: action.left, actionRight: action.right, rowRight: row.right };
+        }));
+        assert.equal(disclosures.length, 11);
+        for (const row of disclosures) {
+          assert.ok(row.width >= 300, "Protocol disclosure uses the mobile content column");
+          assert.ok(row.titleRight + 8 <= row.actionLeft && row.actionRight <= row.rowRight, "Disclosure title and action have readable separation");
+        }
+        report.flows.push({ name: "framework-mobile-disclosures-readable", width, result: "PASS" });
+      }
       if (route === "/architecture") {
         const systemFlow = page.locator("#system-flow");
         const layout = await systemFlow.evaluate(section => {
