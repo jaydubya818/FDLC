@@ -32,6 +32,16 @@ npm run dev
 
 The local site runs at `http://localhost:3000`.
 
+`npm run dev` and `npm run start` serve only this repository's routes, so Guide chapter pages under `/guide/*` return 404 locally. To browse the site and the Guide together on one origin, as on fdlc.ai:
+
+```bash
+npm run build
+npm run preview:composed            # Guide pages come from the deployed Guide
+npm run preview:composed -- --with-local-guide   # Guide pages come from a Guide app you run locally
+```
+
+The composed preview uses the official `@vercel/microfrontends` proxy and the `development` settings in `microfrontends.json`. It changes no deployment, environment or domain.
+
 ## Quality checks
 
 ```bash
