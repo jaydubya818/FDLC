@@ -18,17 +18,18 @@ export const homepageExampleSteps = [
 
 // The visitor journey: understand → experience → define → build. Order matters; each step links to the next.
 export const homepageActions = [
-  ["01 / Understand", "Follow one dependency upgrade from intent to verified outcome, across every FDLC view.", "/in-5-minutes", "Experience FDLC in 5 minutes"],
-  ["02 / Experience", "Run a sample factory in your browser. Inject a fault and watch evidence block the release.", "/simulator", "Run the factory simulator"],
-  ["03 / Define", "Turn one engineering outcome into a Factory Definition you can review and keep.", "/start", "Define your first factory line"],
-  ["04 / Build", "Download the dependency-free Reference Lab, run its gates locally, then swap in your own stack.", "/lab", "Build and run a minimal factory"],
+  ["01 / Understand", "See one factory end to end", "Follow one dependency upgrade from intent to verified outcome, across every FDLC view.", "/in-5-minutes", "Experience FDLC in 5 minutes"],
+  ["02 / Experience", "Watch evidence block a bad release", "Run a sample factory in your browser. Inject a fault and see which gate stops it.", "/simulator", "Run the factory simulator"],
+  ["03 / Define", "Write down your first factory line", "Turn one engineering outcome into a Factory Definition you can review and keep.", "/start", "Define your first factory line"],
+  ["04 / Build", "Run a governed factory locally", "Download the dependency-free Reference Lab, run its gates, then swap in your own stack.", "/lab", "Build and run a minimal factory"],
 ] as const;
 
 export const homepageReferences = [
-  ["Assess your maturity", "/maturity"],
   ["Read the Guide", "/guide"],
+  ["Assess your maturity", "/maturity"],
   ["Architecture", "/architecture"],
   ["Manifesto", "/manifesto"],
+  ["What a Software Factory Engineer builds", "/about#engineering-discipline"],
   ["Mission Control (optional reference)", "/mission-control"],
 ] as const;
 

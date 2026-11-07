@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { EngineeringJourney } from "./components/engineering-journey";
 import { FactoryExplorer } from "./components/factory-explorer";
 import { GoverningLifecycleDiagram } from "./components/governing-lifecycle-diagram";
 import { SectionHeader } from "./components/page-hero";
@@ -21,6 +20,10 @@ export default function Home() {
     <>
       <SiteHeader />
       <main id="main-content">
+        <a className="home-guide-banner" href="/guide/00-front-matter/00-how-to-read-this-guide">
+          <span>The AI Software Factory Guide: 44 chapters on designing, building and running a factory.</span>
+          <strong>Read the Guide <span aria-hidden="true">→</span></strong>
+        </a>
         <section className="hero-shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>A framework for AI software factories</span><span>Open framework · v0.1</span></p>
@@ -55,16 +58,12 @@ export default function Home() {
         <section className="content-section adoption-actions">
           <SectionHeader eyebrow="Your path through FDLC" title="Understand it, see it run, then build your own." description="Start in the browser in five minutes, then run a governed factory on your own machine. No account, and no particular agent, model or vendor, is required." />
           <div className="adoption-action-grid" id="your-path">
-            {homepageActions.map(([label, description, href, action]) => href.startsWith("/guide")
-              ? <a href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></a>
-              : <Link href={href} key={label}><span>{label}</span><p>{description}</p><strong>{action} →</strong></Link>)}
+            {homepageActions.map(([label, title, description, href, action]) => <Link href={href} key={label}><span>{label}</span><h3>{title}</h3><p>{description}</p><strong>{action} →</strong></Link>)}
           </div>
           <nav className="adoption-reference-links" aria-label="Go deeper">{homepageReferences.map(([label, href]) => href.startsWith("/guide") ? <a href={href} key={href}>{label}</a> : <Link href={href} key={href}>{label}</Link>)}</nav>
         </section>
 
-        <section className="content-section" id="software-factory-engineering"><p className="section-label">Software Factory Engineering</p><h2>The factory is the engineering artifact.</h2><p>Design, build, integrate, operate, measure and improve the systems that produce verified software outcomes: workflows, Agent interfaces, recovery, organizational knowledge, independent verification and executable governance.</p><Link className="text-action" href="/about#engineering-discipline">What a Software Factory Engineer builds →</Link></section>
 
-        <EngineeringJourney />
 
         <section className="content-section"><GoverningLifecycleDiagram /></section>
 
