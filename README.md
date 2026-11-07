@@ -42,6 +42,13 @@ npm run preview:composed -- --with-local-guide   # Guide pages come from a Guide
 
 The composed preview uses the official `@vercel/microfrontends` proxy and the `development` settings in `microfrontends.json`. It changes no deployment, environment or domain.
 
+For `--with-local-guide`, run the Guide in its native local mode so its assets carry the Microfrontends prefix (the standalone `npm run start` build serves `/_next` assets the proxy routes to FDLC). From the Guide repository's `site/` folder:
+
+```bash
+npm run test:next                                   # native build plus its runtime checks
+GUIDE_NATIVE_LOCAL=1 npx next start -H 127.0.0.1 -p "$(npm run -s microfrontends:port | tail -1)"
+```
+
 ## Quality checks
 
 ```bash
