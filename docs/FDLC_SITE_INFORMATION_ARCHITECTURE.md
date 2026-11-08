@@ -47,7 +47,7 @@ Updated 2026-11-07. Desktop primary navigation follows the visitor journey (lear
 - Guide (Overview, Atlas, Reference, Glossary, Search)
 - Try (FDLC in 5 Minutes, Factory Simulator, Reference Lab)
 - Build (Define a factory line, Factory Skills, Maturity assessment)
-- Implementations (Mission Control — optional reference, AI-FDE — Preview, Enterprise — Proposed)
+- Implementations (Mission Control — optional reference, AI-FDE — Preview, AI-FDE workspace, Enterprise — Proposed)
 - More (Manifesto, Learning Library — Preview, Factory Updates, About)
 
 Proposed pages (Specification, Benchmarks) stay out of the header; they are linked contextually and from the footer.

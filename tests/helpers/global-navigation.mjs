@@ -7,7 +7,7 @@ const primaryLabels = ["Framework", "Architecture", "Guide", "Try", "Build", "Im
 const journeyGroups = [
   ["Try", "#try-navigation", [["FDLC in 5 Minutes", "/in-5-minutes"], ["Factory Simulator", "/simulator"], ["Reference Lab", "/lab"]]],
   ["Build", "#build-navigation", [["Define a factory line", "/start"], ["Factory Skills", "/factory-skills"], ["Maturity assessment", "/maturity"]]],
-  ["Implementations", "#implementations-navigation", [["Mission Control", "/mission-control"], ["AI-FDE", "/deploy"], ["Enterprise", "/enterprise"]]],
+  ["Implementations", "#implementations-navigation", [["Mission Control", "/mission-control"], ["AI-FDE", "/deploy"], ["AI-FDE workspace", "/deploy/app"], ["Enterprise", "/enterprise"]]],
 ];
 
 export async function checkGlobalNavigation(page, { mobile, keyboard = false, touch = false }) {

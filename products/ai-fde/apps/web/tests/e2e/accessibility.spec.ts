@@ -72,11 +72,8 @@ test("FDLC global navigation is usable on mobile", async ({ page }) => {
   await expect(
     navigation.getByRole("link", { name: "AI-FDE", exact: true }),
   ).toHaveAttribute("href", "/deploy");
-  await navigation
-    .getByRole("button", { name: "AI-FDE navigation", exact: true })
-    .click();
   await expect(
-    navigation.getByRole("link", { name: "Engagement workspace", exact: true }),
+    navigation.getByRole("link", { name: "AI-FDE workspace", exact: true }),
   ).toHaveAttribute("aria-current", "page");
   await expect(
     navigation.getByRole("link", { name: "Search the Guide", exact: true }),

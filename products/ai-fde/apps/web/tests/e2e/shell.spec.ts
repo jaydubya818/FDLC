@@ -28,31 +28,41 @@ for (const width of [1440, 1024, 768, 640, 390]) {
       name: mobile ? "Mobile navigation" : "Primary navigation",
       exact: true,
     });
+    // AI-FDE and its workspace live in the FDLC "Implementations" group:
+    // a dropdown on desktop, a flat group in the mobile menu.
+    const implementationsMenu = mobile
+      ? null
+      : navigation.getByRole("button", {
+          name: "Implementations",
+          exact: true,
+        });
+    if (implementationsMenu) {
+      await implementationsMenu.focus();
+      await page.keyboard.press("ArrowDown");
+    }
     await expect(
       navigation.getByRole("link", { name: "AI-FDE", exact: true }),
     ).toHaveAttribute("href", "/deploy");
-    const workspaceMenu = navigation.getByRole("button", {
-      name: "AI-FDE navigation",
-      exact: true,
-    });
-    await workspaceMenu.focus();
-    await page.keyboard.press("ArrowDown");
     const workspaceLink = navigation.getByRole("link", {
-      name: "Engagement workspace",
+      name: "AI-FDE workspace",
       exact: true,
     });
-    await expect(workspaceLink).toBeFocused();
     await expect(workspaceLink).toHaveAttribute("href", "/deploy/app");
     await expect(workspaceLink).toHaveAttribute("aria-current", "page");
     await page.screenshot({
       path: testInfo.outputPath(`workspace-menu-${width}.png`),
       fullPage: false,
     });
-    await page.keyboard.press("Escape");
-    await expect(workspaceMenu).toBeFocused();
-    await expect(workspaceMenu).toHaveAttribute("aria-expanded", "false");
+    if (implementationsMenu) {
+      await page.keyboard.press("Escape");
+      await expect(implementationsMenu).toBeFocused();
+      await expect(implementationsMenu).toHaveAttribute(
+        "aria-expanded",
+        "false",
+      );
+      await implementationsMenu.click();
+    }
     if (mobile) await expect(navigation).toBeVisible();
-    await workspaceMenu.click();
     await workspaceLink.click();
     await expect(engagement).toBeVisible();
     if (mobile) await expect(navigation).toBeHidden();
