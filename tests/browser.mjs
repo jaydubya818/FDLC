@@ -242,6 +242,8 @@ try {
     assert.equal(await page.getByLabel("Describe the outcome", { exact: true }).inputValue(), "");
     await page.getByRole("combobox").selectOption("Test repair");
     await page.getByLabel("Describe the outcome", { exact: true }).fill("Persist this draft across refresh.");
+    // The builder saves its draft in an effect after render; wait for that write before reloading.
+    await page.waitForFunction(() => sessionStorage.getItem("fdlc.factory-definition.draft.v1")?.includes("Persist this draft across refresh."));
     await page.reload();
     assert.equal(await page.getByLabel("Describe the outcome", { exact: true }).inputValue(), "Persist this draft across refresh.");
     report.flows.push({ name: "factory-builder-validation-export-reset", width, result: "PASS" });
