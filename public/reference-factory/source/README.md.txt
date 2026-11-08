@@ -41,7 +41,8 @@ To use your own stack, replace only the producer seam while keeping the
 WorkOrder, protected criteria and gate contract. Re-qualify the exact agent,
 harness, model, tools, context, runtime, authority and workload. This Lab does
 not implement adapters for named products or claim cross-stack compatibility.
-The optional Factory Skills Starter Kit at `../factory-starter/` is a separate
+The optional Factory Skills Starter Kit (https://fdlc.ai/factory-skills; source in
+`factory-starter/` of https://github.com/jaydubya818/FDLC) is a separate
 opinionated pilot, not a framework requirement.
 
 Run trusted code only. Local functions, identity strings and temporary folders

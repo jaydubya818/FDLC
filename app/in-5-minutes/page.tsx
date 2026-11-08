@@ -30,7 +30,7 @@ const contents = [
 
 const views = [
   ["01", "Factory lifecycle", "How the production system itself is created, validated, operated, and improved.", "/framework#lifecycle"],
-  ["02", "Runtime lifecycle", "How one unit of software work advances inside the operating factory.", "/framework#runtime"],
+  ["02", "Governing lifecycle", "How one unit of work earns progression through the nine canonical stages.", "/framework#runtime"],
   ["03", "Architecture", "The six capability areas the factory must make explicit.", "/architecture"],
   ["04", "Artifact protocol", "The eleven durable records that make every transition auditable.", "/framework#protocol"],
 ] as const;
@@ -43,7 +43,7 @@ const missionControlViews = [
 
 export default function FiveMinuteWalkthroughPage() {
   return <SiteShell><div className="page-wrap example-page">
-    <PageHero eyebrow="FDLC in 5 Minutes" status="Illustrative" variant="compact" title="One workflow. Four views. Eleven artifacts. One measurable outcome." description={canonicalDefinition} meta={[["Example", "Dependency modernization"], ["Views", "04"], ["Artifacts", "11"]]}>
+    <PageHero eyebrow="Your path · step 1 of 4 · Understand" status="Demo" variant="compact" title="One workflow. Four views. Eleven artifacts. One measurable outcome." description={canonicalDefinition} meta={[["Example", "Dependency modernization"], ["Views", "04"], ["Artifacts", "11"]]}>
       <div className="hero-actions"><a className="button button-dark" href="#the-factory-line">Follow the example</a><Link className="button button-light" href="/framework">Explore the Framework</Link><Link className="text-action" href="/mission-control#quickstart">Run Mission Control →</Link></div>
     </PageHero>
     <GuideReference description="Go beyond this worked example with the complete, chapter-by-chapter explanation of how to build and operate a software factory." />
@@ -99,7 +99,7 @@ export default function FiveMinuteWalkthroughPage() {
 
     <section className="example-runtime-section" id="runtime">
       <div className="example-inner">
-        <SectionHeader eyebrow="04 / Runtime lifecycle" title="One unit of work advances only by earning the next state." description="Optimistic status labels are not sufficient. Runtime verbs move the work; artifact links point to the durable records that make every transition attributable and reviewable." />
+        <SectionHeader eyebrow="04 / Governing lifecycle" title="One unit of work advances only by earning the next state." description="Optimistic status labels are not sufficient. Runtime verbs move the work; artifact links point to the durable records that make every transition attributable and reviewable." />
         <ol className="example-runtime-ledger">
           {example.runtimeSteps.map((item) => {
             const step = runtimeLifecycle.find((candidate) => candidate.id === item.stepId);
@@ -127,12 +127,12 @@ export default function FiveMinuteWalkthroughPage() {
     </section>
 
     <section className="section-block" id="architecture">
-      <SectionHeader eyebrow="06 / Architecture participation" title="All six areas participate in the same run." description="No single agent owns the outcome. Each architectural area contributes a distinct responsibility and maps to concrete Mission Control records or decisions." />
+      <SectionHeader eyebrow="06 / Architecture participation" title="All six areas participate in the same run." description="No single agent owns the outcome. Each architectural area contributes a distinct responsibility and maps to concrete records or decisions. The reference mapping shows how Mission Control, one optional implementation, names them." />
       <div className="example-architecture-grid">
         {example.architecture.map((item) => {
           const area = architectureAreas.find((candidate) => candidate.id === item.areaId);
           if (!area) return null;
-          return <article key={item.areaId}><span>{String(area.number).padStart(2, "0")} / {area.name}</span><h3>{area.short}</h3><p>{item.contribution}</p><dl><dt>Mission Control</dt><dd>{item.missionControl}</dd></dl><div><Link href={`/architecture#${area.id}`}>Architecture →</Link><a href={item.guideHref}>Guide →</a></div></article>;
+          return <article key={item.areaId}><span>{String(area.number).padStart(2, "0")} / {area.name}</span><h3>{area.short}</h3><p>{item.contribution}</p><dl><dt>Reference mapping · Mission Control</dt><dd>{item.missionControl}</dd></dl><div><Link href={`/architecture#${area.id}`}>Architecture →</Link><a href={item.guideHref}>Guide →</a></div></article>;
         })}
       </div>
       <p className="example-architecture-invariant"><strong>Trust constrains every area.</strong> Learning captures validated outcomes and failures, but it never writes directly to production.</p>
@@ -141,7 +141,7 @@ export default function FiveMinuteWalkthroughPage() {
 
     <section className="example-mission-section" id="mission-control">
       <div className="example-inner">
-        <SectionHeader eyebrow="07 / Mission Control in the loop" title="The control plane materializes the records, gates, and attention boundaries." description="These reference-implementation views show where governed work, evidence, and decisions become inspectable. They demonstrate the operating model; they do not claim fleet-scale production certification." />
+        <SectionHeader eyebrow="07 / One reference implementation in the loop" title="A control plane materializes the records, gates, and attention boundaries." description="These reference-implementation views show where governed work, evidence, and decisions become inspectable. They demonstrate the operating model; they do not claim fleet-scale production certification." />
         <ul className="example-mission-ledger">
           <li><strong>Mission + Specification</strong><span>Define the governed outcome and proof contract.</span></li>
           <li><strong>Versioned Plan</strong><span>Must be approved before Work Orders are released.</span></li>
@@ -151,7 +151,7 @@ export default function FiveMinuteWalkthroughPage() {
           <li><strong>Human acceptance</strong><span>Preserves accountable judgment at the consequential boundary.</span></li>
         </ul>
         <div className="example-mission-grid">{missionControlViews.map((view) => <figure className="product-frame" key={view.image}><div><span>{view.label}</span><span>Reference view</span></div><Image src={view.image} alt={view.alt} width={1600} height={1050} sizes="(max-width: 820px) 100vw, 33vw" /><figcaption><strong>{view.title}</strong><span>{view.description}</span></figcaption></figure>)}</div>
-        <div className="example-mission-actions"><Link className="button button-dark" href="/mission-control#quickstart">Run the deterministic demo</Link><a className="text-action" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Inspect the source ↗</a></div>
+        <div className="example-mission-actions"><Link className="button button-dark" href="/mission-control#quickstart">Run the deterministic demo</Link><a className="text-action" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Mission Control source ↗</a></div>
       </div>
     </section>
 

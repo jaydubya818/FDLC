@@ -1,15 +1,14 @@
 export const factoryDefinitionBridge = {
   definition: "Factory Definition is governed implementation intent.",
   version: "Factory Version is the immutable qualified runtime composition.",
-  boundary: "A Factory Definition is not automatically accepted or executed by Mission Control.",
+  boundary: "A Factory Definition is not automatically accepted or executed by any runtime.",
 } as const;
 
+// First entry is the recommended next step in the visitor journey (Define → Build).
 export const factoryDefinitionNextSteps = [
-  ["/lab", "Run the reference factory"],
+  ["/lab", "Next: run a governed factory in the Reference Lab"],
   ["/maturity", "Assess organizational maturity"],
-  ["/guide/02-design/06-intent-and-specification-engineering", "Read relevant Guide material"],
-  ["/deploy", "Explore AI-FDE"],
-  ["/mission-control", "Inspect Mission Control"],
+  ["/guide/02-design/06-intent-and-specification-engineering", "Guide chapter 6 · Intent and specification engineering"],
 ] as const;
 
 export const maturityGapLinks: Record<string, readonly [label: string, href: string][]> = {

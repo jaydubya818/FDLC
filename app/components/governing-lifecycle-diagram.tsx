@@ -40,6 +40,7 @@ export function GoverningLifecycleDiagram() {
           <dl className="governing-artifacts"><div><dt>Input</dt><dd>{step.input}</dd></div><div><dt>Output</dt><dd>{step.output}</dd></div></dl>
           <div className="governing-control"><strong>Control at this stage</strong><p>{step.control}</p></div>
           <div className="governing-example"><strong>Example · dependency upgrade</strong><p>{step.example}</p></div>
+          <a className="text-action governing-guide-link" href={step.guideHref}>Read more: {step.guideLabel} <span aria-hidden="true">↗</span></a>
         </div>
         <nav aria-label="Walk through the lifecycle"><button type="button" onClick={() => setSelected((selected + 8) % 9)}>← Previous stage</button><button type="button" onClick={() => setSelected((selected + 1) % 9)}>{selected === 8 ? "Return to Intent ↺" : "Next stage →"}</button></nav>
       </div>

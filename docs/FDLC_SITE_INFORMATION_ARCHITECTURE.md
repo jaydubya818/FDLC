@@ -40,18 +40,23 @@ Future versioned routes are reserved under `/spec/v1`, `/spec/v1/[entity]`, and 
 
 ## Navigation
 
-Desktop primary navigation:
+Updated 2026-11-07. Desktop primary navigation follows the visitor journey (learn → try → build), with optional implementations kept separate from the framework:
 
 - Framework
 - Architecture
-- Guide
-- Mission Control
-- Maturity
-- More
+- Guide (Overview, Atlas, Reference, Glossary, Search)
+- Try (FDLC in 5 Minutes, Factory Simulator, Reference Lab)
+- Build (Define a factory line, Factory Skills, Maturity assessment)
+- Implementations (Mission Control — optional reference, AI-FDE — Preview, AI-FDE workspace, Enterprise — Proposed)
+- More (Manifesto, Learning Library — Preview, Factory Updates, About)
 
-`More` contains Manifesto, Specification, Benchmarks, Start, Enterprise, Deploy, and About. The primary utility CTA is GitHub and points to Mission Control until an FDLC organization repository exists.
+Proposed pages (Specification, Benchmarks) stay out of the header; they are linked contextually and from the footer.
 
-Mobile navigation uses one accessible disclosure containing the same hierarchy. The footer repeats Learn, Build, Adopt, and Project groups. `/examples/dependency-modernization` is retained only as a permanent redirect to `/in-5-minutes`.
+The utility GitHub link points to the public FDLC repository (`jaydubya818/FDLC`). Links to Mission Control and Guide source name their repository explicitly.
+
+Mobile navigation uses one accessible disclosure containing the same hierarchy. The footer repeats Learn, Try, Build, Implementations, and Project groups. `/examples/dependency-modernization` is retained only as a permanent redirect to `/in-5-minutes`.
+
+The Guide renders a generated copy of `lib/global-navigation.ts`. Regenerate and `--check` that copy from the Guide repository before releasing a navigation change (see README, "Shared global navigation").
 
 ## Page-to-page narrative
 

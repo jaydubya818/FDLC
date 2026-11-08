@@ -25,7 +25,7 @@ export function SiteFooter() {
       <div className="global-footer-base">
         <span>© 2026 FDLC.ai</span>
         <span>Factory Development Lifecycle</span>
-        <span>Open framework · Working reference · Governed autonomy</span>
+        <span>Open framework · Implementation-independent · Governed autonomy</span>
       </div>
     </footer>
   );

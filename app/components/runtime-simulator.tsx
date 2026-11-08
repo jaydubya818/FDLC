@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
+import { governingStage } from "../../data/governing-lifecycle";
 import { applyFix, artifactChain, decideRun, faults, nextArtifact, runStatus, runToEnd, scenarioRun, stepRun, toggleFault, type Scenario, type SimRun } from "../../lib/runtime-simulator";
 
 const scenarios = [["happy", "Verified local outcome", "Follow the bounded API fix."], ["recovery", "Failed verification + recovery", "Keep failed evidence; correct and re-verify."], ["human", "Human approval required", "Passing tests cannot authorize production."]] as const;
@@ -35,19 +36,6 @@ export function RuntimeSimulator() {
     </form>
     <details className="experience-extra-faults"><summary>Explore additional failure boundaries</summary><fieldset className="simulator-faults" disabled={started}><legend>Inject faults before execution</legend><div>{faults.map((fault) => <label key={fault.id} className={run.active.includes(fault.id) ? "is-selected" : ""}><input type="checkbox" checked={run.active.includes(fault.id)} onChange={() => setRun((current) => toggleFault(current, fault.id))} /><span>{fault.label}</span></label>)}</div><p>Reset to change faults after submission.</p></fieldset></details>
 
-    <div className="experience-workspace">
-      <nav className="experience-timeline" aria-label="Execution timeline"><ol>{artifactChain.map((item, index) => {
-        const state = run.completed.includes(item.id) ? "recorded" : run.blocked?.at === item.id ? "blocked" : item.id === next ? "next" : "waiting";
-        return <li key={item.id}><button type="button" aria-current={selected === index ? "step" : undefined} onClick={() => setSelected(index)}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item.name}</strong><small className={`is-${state}`}>{state}</small></button></li>;
-      })}</ol></nav>
-      <article className="experience-stage" aria-labelledby="inspected-stage-title">
-        <p className="section-label">Step {selected + 1} / {artifactChain.length} · {inspectedState}</p><h3 id="inspected-stage-title">{stage.name}</h3><p className="experience-stage-lede">{stage.meaning}</p>
-        <dl>{[["Responsible component", stage.producer], ["Required inputs", stage.inputs], ["Authority boundary", stage.authority], ["Expected record", stage.evidence], ["What could fail", stage.failure], ["What happens next", stage.next]].map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-        <p className="experience-sample-note">Expected records describe the teaching scenario. Inspect the ledger below to see what this run has actually reached.</p>
-        <a className="text-action" href={stage.guide}>Read the governing Guide chapter →</a>
-        <div className="experience-inspection-nav"><button type="button" disabled={selected === 0} onClick={() => setSelected((value) => value - 1)}>← Previous step</button><button type="button" disabled={selected === artifactChain.length - 1} onClick={() => setSelected((value) => value + 1)}>Next step →</button></div>
-      </article>
-    </div>
     <div className="simulator-actions"><button className="button button-dark" disabled={stopped || !started} onClick={() => advance()} type="button">Produce next artifact</button><button className="button button-light" disabled={stopped || !started} onClick={() => advance(true)} type="button">Run to the next boundary</button><button className="button button-light" onClick={() => reset(scenario)} type="button">Reset</button></div>
     <div className={`simulator-result is-${status}`} ref={statusRef} tabIndex={-1}>
       <p className="section-label" role="status" aria-live="polite">Run status: {statusText[status]}</p>
@@ -59,6 +47,19 @@ export function RuntimeSimulator() {
       {status === "in-progress" && <h3>{artifactChain.length - run.completed.length} steps remain. Continue until verification or authority requires a decision.</h3>}
     </div>
 
+    <div className="experience-workspace">
+      <nav className="experience-timeline" aria-label="Execution timeline"><ol>{artifactChain.map((item, index) => {
+        const state = run.completed.includes(item.id) ? "recorded" : run.blocked?.at === item.id ? "blocked" : item.id === next ? "next" : "waiting";
+        return <li key={item.id}><button type="button" aria-current={selected === index ? "step" : undefined} onClick={() => setSelected(index)}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item.name}</strong><small className={`is-${state}`}>{state}</small></button></li>;
+      })}</ol></nav>
+      <article className="experience-stage" aria-labelledby="inspected-stage-title">
+        <p className="section-label">Step {selected + 1} / {artifactChain.length} · {inspectedState}</p><h3 id="inspected-stage-title">{stage.name}</h3><p className="experience-stage-governing">FDLC stage: {governingStage(stage.stage).name}</p><p className="experience-stage-lede">{stage.meaning}</p>
+        <dl>{[["Responsible component", stage.producer], ["Required inputs", stage.inputs], ["Authority boundary", stage.authority], ["Expected record", stage.evidence], ["What could fail", stage.failure], ["What happens next", stage.next]].map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+        <p className="experience-sample-note">Expected records describe the teaching scenario. Inspect the ledger below to see what this run has actually reached.</p>
+        <a className="text-action" href={stage.guide}>Read the governing Guide chapter →</a>
+        <div className="experience-inspection-nav"><button type="button" disabled={selected === 0} onClick={() => setSelected((value) => value - 1)}>← View previous step</button><button type="button" disabled={selected === artifactChain.length - 1} onClick={() => setSelected((value) => value + 1)}>View next step →</button></div><p className="experience-inspection-hint">Viewing a step does not advance the run. Use “Produce next artifact” above.</p>
+      </article>
+    </div>
     <section className="experience-records" aria-labelledby="records-title"><h3 id="records-title">Inspect this run&apos;s records</h3>
       <details open><summary>WorkOrder + Factory Version</summary>{run.completed.includes("work-order") ? <dl><div><dt>WorkOrder / Plan</dt><dd>WO-API-1 / PLAN-API-1 revision 1</dd></div><div><dt>Acceptance contract</dt><dd>AC-1 sum=5 · AC-2 invalid input=400 · AC-3 unknown path=404</dd></div><div><dt>Tasks / scope</dt><dd>TASK-FIX-1 → TASK-VERIFY-1 · producer writes src/add.js only</dd></div><div><dt>Factory / qualification</dt><dd>{run.completed.includes("selection") ? "api-fix@1.0.0 · Q-API-1 synthetic local fixture; not a real qualification receipt" : "Selection not reached"}</dd></div></dl> : <p>No WorkOrder yet. Submit intent, then advance through Plan.</p>}</details>
       <details open><summary>Attempts + artifacts</summary>{run.completed.includes("attempt") || run.blocked?.at === "attempt" ? <dl><div><dt>Producer Attempt</dt><dd>ATT-P-{run.attempt} / producer-1 / scripted-local-v1</dd></div><div><dt>Candidate</dt><dd>{run.candidate} (synthetic identifier) · {run.completed.includes("candidate") ? "frozen sample artifact" : "not yet frozen"}</dd></div><div><dt>Change</dt><dd>{run.active.includes("failed-verification") ? "Faulty correction: GET /sum returns -1; verification must reject it." : "src/add.js: replace subtraction with addition."}</dd></div><div><dt>Environment / tools</dt><dd>Browser state machine; no model, harness process, network access or file writes.</dd></div></dl> : <p>No Attempt yet. Routing must finish before execution.</p>}</details>

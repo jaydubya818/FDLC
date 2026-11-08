@@ -39,7 +39,7 @@ export default function SpecificationPage() {
 /specification/v1/release
 /specification/v1/outcome
 /specification/v1/learning-signal`}</code></pre></section>
-    <section className="reading-next" id="spec-next"><p className="section-label">Use what exists today</p><h2>Inspect the model before claiming compatibility.</h2><div><Link href="/framework#protocol">Review the artifact protocol →</Link><Link href="/mission-control">Inspect Mission Control →</Link><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Review the source ↗</a></div></section>
+    <section className="reading-next" id="spec-next"><p className="section-label">Use what exists today</p><h2>Inspect the model before claiming compatibility.</h2><div><Link href="/framework#protocol">Review the artifact protocol →</Link><Link href="/mission-control">Inspect Mission Control →</Link><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Mission Control source ↗</a></div></section>
   </div></SiteShell>;
 }
 

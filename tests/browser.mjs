@@ -242,7 +242,11 @@ try {
     assert.equal(await page.getByLabel("Describe the outcome", { exact: true }).inputValue(), "");
     await page.getByRole("combobox").selectOption("Test repair");
     await page.getByLabel("Describe the outcome", { exact: true }).fill("Persist this draft across refresh.");
+    // The builder saves its draft in an effect after render; wait for that write before reloading.
+    await page.waitForFunction(() => sessionStorage.getItem("fdlc.factory-definition.draft.v1")?.includes("Persist this draft across refresh."));
     await page.reload();
+    // The server renders an empty form; the saved draft is restored after hydration.
+    await page.waitForFunction((value) => document.getElementById("outcome")?.value === value, "Persist this draft across refresh.");
     assert.equal(await page.getByLabel("Describe the outcome", { exact: true }).inputValue(), "Persist this draft across refresh.");
     report.flows.push({ name: "factory-builder-validation-export-reset", width, result: "PASS" });
 
@@ -303,6 +307,18 @@ try {
 
     await page.goto(`${origin}/maturity`);
     await page.getByRole("button", { name: "Start assessment", exact: true }).click();
+    // Option labels sit beside the radio in one readable text column, never one word per line.
+    for (const option of await page.locator(".assessment-options label").evaluateAll(nodes => nodes.map(node => {
+      const input = node.querySelector("input").getBoundingClientRect();
+      const label = node.querySelector("strong").getBoundingClientRect();
+      const style = getComputedStyle(node.querySelector("strong"));
+      const lineHeight = parseFloat(style.lineHeight) || parseFloat(style.fontSize) * 1.25;
+      return { text: node.querySelector("strong").textContent, inputRight: input.right, labelLeft: label.left, labelWidth: label.width, lines: label.height / lineHeight };
+    }))) {
+      assert.ok(option.labelLeft >= option.inputRight, `${option.text}: label sits beside its radio`);
+      assert.ok(option.labelWidth > 60 && option.lines <= 2.1, `${option.text}: label wraps readably`);
+    }
+    report.flows.push({ name: "maturity-option-labels-readable", width, result: "PASS" });
     for (let index = 0; index < 11; index++) {
       const next = page.getByRole("button", { name: index === 10 ? "View result" : "Next dimension", exact: true });
       assert.ok(await next.isDisabled());
@@ -368,8 +384,27 @@ try {
 
     await page.goto(origin);
     assert.match(await page.locator(".hero-problem").innerText(), /Trusted autonomous software delivery is not/);
-    await page.getByRole("link", { name: "Experience a Factory", exact: true }).click();
+    // First screen: exactly one primary and one secondary call to action.
+    const heroActions = await page.locator(".hero-copy .hero-actions a").evaluateAll(nodes => nodes.map(node => [node.textContent?.trim(), node.getAttribute("href"), node.className]));
+    assert.deepEqual(heroActions.map(([label, href]) => [label, href]), [["Experience FDLC in 5 Minutes", "/in-5-minutes"], ["Explore the Framework", "/framework"]]);
+    assert.match(heroActions[0][2], /button-dark/);
+    assert.equal(await page.locator(".hero-copy a").count(), 2, "The hero offers no competing links");
+    await page.getByRole("link", { name: "Experience FDLC in 5 Minutes", exact: true }).click();
+    await page.waitForURL(`${origin}/in-5-minutes`);
+    await page.goto(origin);
+    await page.locator('#your-path a[href="/simulator"]').click();
     await page.waitForURL(`${origin}/simulator`);
+    await keyboardActivateButton("Submit sample intent");
+    // The run controls sit with the intent form, and the step pager does not advance the run.
+    const produce = page.getByRole("button", { name: "Produce next artifact", exact: true });
+    const submitBox = await page.getByRole("button", { name: "Submit sample intent", exact: true }).boundingBox();
+    const produceBox = await produce.boundingBox();
+    assert.ok(produceBox && submitBox && produceBox.y - submitBox.y < 360, "Run controls must stay next to the submitted intent");
+    const statusBefore = await page.locator(".simulator-result").innerText();
+    await page.getByRole("button", { name: "View next step →", exact: true }).click();
+    assert.equal(await page.locator(".simulator-result").innerText(), statusBefore, "Viewing a step must not advance the run");
+    assert.match(await page.locator(".experience-stage-governing").innerText(), /FDLC stage: (Intent|Planning|Execution|Evidence|Verification|Approval|Release|Outcomes|Learning)/i);
+    await keyboardActivateButton("Reset");
     await keyboardActivateButton("Submit sample intent");
     await keyboardActivateButton("Run to the next boundary");
     assert.match(await page.locator(".simulator-result").innerText(), /Complete.*sample only/is);
@@ -403,17 +438,17 @@ try {
 
     const explorer = page.locator("#factory-explorer");
     await explorer.scrollIntoViewIfNeeded();
-    const verifyTab = explorer.getByRole("tab", { name: /Verify/ });
+    const verifyTab = explorer.getByRole("tab", { name: /Verification/ });
     assert.equal(await verifyTab.getAttribute("aria-selected"), "true");
     await verifyTab.focus();
     await page.keyboard.press("ArrowRight");
-    assert.equal(await explorer.getByRole("tab", { name: /Approve/ }).getAttribute("aria-selected"), "true");
+    assert.equal(await explorer.getByRole("tab", { name: /Approval/ }).getAttribute("aria-selected"), "true");
     await explorer.getByRole("button", { name: /Evals/ }).click();
     assert.match(await explorer.locator(".factory-explorer-capability-detail").innerText(), /Evals/);
     const exampleRecord = explorer.locator(".factory-explorer-example a").first();
     assert.match(await exampleRecord.getAttribute("href") ?? "", /in-5-minutes/);
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await explorer.getByRole("tab", { name: /Verify/ }).click();
+    await explorer.getByRole("tab", { name: /Verification/ }).click();
     assert.equal(await verifyTab.getAttribute("aria-selected"), "true");
     await page.emulateMedia({ reducedMotion: "no-preference" });
     report.flows.push({ name: "factory-explorer-keyboard-capabilities-example-links", width, result: "PASS" });

@@ -5,9 +5,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEventHandler, type ReactNode } from "react";
+import { Fragment, useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEventHandler, type ReactNode } from "react";
 
-import { primary, guide, aiFde, afterGuide, secondary, type NavLink } from "../../lib/global-navigation";
+import { primary, guide, tryLinks, buildLinks, implementations, secondary, fdlcRepository, type NavLink } from "../../lib/global-navigation";
 
 function isCurrent(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
@@ -102,7 +102,7 @@ function GlobalLink({ children, current, href, onClick }: { children: ReactNode;
 export function SiteHeader() {
   const pathname = usePathname() ?? "";
   const guideActive = isCurrent(pathname, "/guide");
-  const secondaryActive = secondary.some(([, href]) => isCurrent(pathname, href));
+  const groupActive = (links: readonly NavLink[]) => links.some(([, href]) => isCurrent(pathname, href));
   const [mobileOpen, setMobileOpen] = useState(false);
   const mobileRoot = useRef<HTMLDivElement>(null);
   const mobileTrigger = useRef<HTMLButtonElement>(null);
@@ -130,12 +130,13 @@ export function SiteHeader() {
         <nav className="desktop-nav" aria-label="Primary navigation">
           {primary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
           <NavDropdown active={guideActive} id="guide-navigation" label="Guide" href="/guide" links={guide} />
-          <NavDropdown active={isCurrent(pathname, "/deploy")} id="ai-fde-navigation" label="AI-FDE" href="/deploy" links={aiFde} />
-          {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href}>{label}</GlobalLink>)}
-          <NavDropdown active={secondaryActive} id="more-navigation" label="More" links={secondary} />
+          <NavDropdown active={groupActive(tryLinks)} id="try-navigation" label="Try" links={tryLinks} />
+          <NavDropdown active={groupActive(buildLinks)} id="build-navigation" label="Build" links={buildLinks} />
+          <NavDropdown active={groupActive(implementations)} id="implementations-navigation" label="Implementations" links={implementations} />
+          <NavDropdown active={groupActive(secondary)} id="more-navigation" label="More" links={secondary} />
         </nav>
         <div className="header-utilities">
-          <a className="header-github" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">GitHub <span aria-hidden="true">↗</span></a>
+          <a className="header-github" href={fdlcRepository} rel="noreferrer" target="_blank" aria-label="FDLC source on GitHub (opens in a new tab)">GitHub <span aria-hidden="true">↗</span></a>
         </div>
         <div className={`global-mobile${mobileOpen ? " is-open" : ""}`} ref={mobileRoot} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setMobileOpen(false); }}>
           <button aria-controls="mobile-navigation" aria-expanded={mobileOpen} aria-label="Open navigation" onClick={() => setMobileOpen((value) => !value)} onKeyDown={(event) => { if (event.key === "Escape") setMobileOpen(false); }} type="button" ref={mobileTrigger}>Menu</button>
@@ -143,10 +144,11 @@ export function SiteHeader() {
             {primary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
             <NavDropdown active={guideActive} id="mobile-guide-navigation" label="Guide" href="/guide" links={guide} onNavigate={() => setMobileOpen(false)} />
             <a className="mobile-guide-search" href="/guide/search" onClick={() => setMobileOpen(false)}>Search the Guide</a>
-            <NavDropdown active={isCurrent(pathname, "/deploy")} id="mobile-ai-fde-navigation" label="AI-FDE" href="/deploy" links={aiFde} onNavigate={() => setMobileOpen(false)} />
-            {afterGuide.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
-            <span>More</span>
-            {secondary.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
+            <a href={fdlcRepository} rel="noreferrer" target="_blank" onClick={() => setMobileOpen(false)}>FDLC source on GitHub <span aria-hidden="true">↗</span></a>
+            {([["Try", tryLinks], ["Build", buildLinks], ["Implementations", implementations], ["More", secondary]] as const).map(([group, links]) => <Fragment key={group}>
+              <span>{group}</span>
+              {links.map(([label, href]) => <GlobalLink current={isCurrent(pathname, href)} href={href} key={href} onClick={() => setMobileOpen(false)}>{label}</GlobalLink>)}
+            </Fragment>)}
           </nav>
         </div>
       </div>

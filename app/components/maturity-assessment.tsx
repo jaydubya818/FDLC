@@ -11,7 +11,7 @@ import { formatMaturityMarkdown, parseMaturityAnswers, serializeMaturityAnswers 
 function primaryNextForScore(score: number): readonly [string, string] {
   if (score <= 1) return ["Define one bounded factory line", "/start"];
   if (score === 2) return ["Inspect the required architecture", "/architecture"];
-  if (score === 3) return ["See the operating model in Mission Control", "/mission-control"];
+  if (score === 3) return ["Qualify one factory line in the Reference Lab", "/lab"];
   if (score === 4) return ["Establish outcome measures", "/benchmarks"];
   return ["Review continuous improvement practices", "/guide/06-improve/40-governed-learning"];
 }

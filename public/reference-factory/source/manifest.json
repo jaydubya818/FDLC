@@ -1,12 +1,12 @@
 {
-  "version": "1.1.0",
-  "archive": "/downloads/fdlc-reference-lab-v1.1.0.zip",
-  "sha256": "4445529284e7072643b40504e45bf3d35ae5d99a756d521da1f2ee524ee2055c",
+  "version": "1.1.1",
+  "archive": "/downloads/fdlc-reference-lab-v1.1.1.zip",
+  "sha256": "9f55000711b14def7ede586961326db133f17f616a887f6ec76d941ea154d7b9",
   "files": [
     {
       "path": "README.md",
       "source": "/reference-factory/source/README.md.txt",
-      "sha256": "28ed99759fcce86a05341d75a39043c76bed2e7c9b76816c07751ec4abea368b"
+      "sha256": "32e4ce88934f2bb085138ea17c3bd6c0c657fc8e338509832b62601879bdfe78"
     },
     {
       "path": "lab.mjs",

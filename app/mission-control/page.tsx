@@ -49,7 +49,7 @@ export default function MissionControlPage() {
         <h1>Governed autonomous delivery.</h1>
         <p className="mc-product-hero-lede"><strong>Mission Control is an optional open-source reference implementation of selected FDLC control-plane concepts.</strong> It demonstrates how intent, execution, evidence, approval, and outcomes become durable operating records. FDLC remains useful with your own implementation and technology stack.</p>
         <p className="mc-product-hero-proof"><strong>Not another coding agent.</strong> The system that decides what agents may do—and what evidence must return before work advances.</p>
-        <div className="hero-actions"><a className="button button-dark" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View source on GitHub ↗</a><a className="button button-light" href="#quickstart">Run the demo</a></div>
+        <div className="hero-actions"><a className="button button-dark" href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">View Mission Control source on GitHub ↗</a><a className="button button-light" href="#quickstart">Run the demo</a></div>
       </div>
       <figure className="mc-hero-window">
         <div className="mc-product-chrome"><span>Mission Control / Command Center</span><span>Demo view</span></div>
@@ -143,6 +143,6 @@ export default function MissionControlPage() {
     <GuideReading page="mission-control" />
     <p className="enterprise-note"><Link href="/about#engineering-discipline">Software Factory Engineering responsibilities</Link> · <Link href="/architecture#governed-improvement">Production feedback and governed factory improvement</Link></p>
     <NextSteps {...pageHandoffs["mission-control"]} />
-    <section className="reading-next" id="build-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/specification">Preview the Specification →</Link></div></section>
+    <section className="reading-next" id="build-next"><p className="section-label">Build with the model</p><h2>Inspect it, then define your own factory line.</h2><div><a href="https://github.com/jaydubya818/MissionControl" rel="noreferrer" target="_blank">Contribute to Mission Control on GitHub ↗</a><Link href="/start">Build a Factory Definition →</Link><Link href="/specification">Preview the Specification →</Link></div></section>
   </div></SiteShell>;
 }

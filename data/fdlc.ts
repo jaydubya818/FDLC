@@ -1,3 +1,5 @@
+import { governingLifecycle } from "./governing-lifecycle.ts";
+
 export const siteName = "FDLC.ai";
 export const canonicalDefinition =
   "The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.";
@@ -36,20 +38,8 @@ export const categoryTransitions = [
   },
 ] as const;
 
-export const runtimeLifecycle = [
-  { id: "receive", number: 1, name: "Receive", artifact: "Intent", purpose: "Capture the desired outcome, constraints, owner, and initial risk." },
-  { id: "specify", number: 2, name: "Specify", artifact: "Specification", purpose: "Define what must be true and what evidence will establish it." },
-  { id: "plan", number: 3, name: "Plan", artifact: "Plan", purpose: "Choose the governed path, decomposition, and verification strategy." },
-  { id: "execute", number: 4, name: "Execute", artifact: "Work Order · Attempt", purpose: "Run bounded, authorized work as attributable attempts." },
-  { id: "verify", number: 5, name: "Verify", artifact: "Evidence · Verification", purpose: "Evaluate the exact candidate against the specification." },
-  { id: "approve", number: 6, name: "Approve", artifact: "Approval", purpose: "Apply policy and human authority at consequential boundaries." },
-  { id: "release", number: 7, name: "Release", artifact: "Release", purpose: "Promote the exact accepted software artifact with rollback readiness." },
-  { id: "observe", number: 8, name: "Observe", artifact: "Outcome", purpose: "Compare the production result with the intended outcome." },
-  { id: "learn", number: 9, name: "Learn", artifact: "Learning Signal", purpose: "Propose controlled changes to the factory from validated outcomes." },
-] as const;
-
 export const guideValueStream = [
-  { id: "intent", number: 1, name: "Intent", purpose: "Establish the desired software outcome and its operating context.", href: "/guide/stages/01-builder-intent" },
+  { id: "intent", number: 1, name: "Builder Intent", purpose: "Establish the desired software outcome and its operating context.", href: "/guide/stages/01-builder-intent" },
   { id: "plan", number: 2, name: "Plan", purpose: "Turn intent into a governed path, decomposition, and proof strategy.", href: "/guide/stages/02-plan" },
   { id: "define-agent", number: 3, name: "Define Agent", purpose: "Bind the role, model, context, authority, and capabilities required for the work.", href: "/guide/stages/03-define-agent" },
   { id: "execute-through-harness", number: 4, name: "Execute through Harness", purpose: "Run bounded work in a durable, observable, and recoverable execution system.", href: "/guide/stages/04-execute-through-harness" },
@@ -170,6 +160,18 @@ export const protocolSteps = [
   { id: "outcome", number: 10, name: "Outcome", question: "Did the intended result hold in reality?", requiredProof: "Observed technical, operational, and user result", missionControlMapping: "Production feedback + outcome records" },
   { id: "learning-signal", number: 11, name: "Learning Signal", question: "What should change in the factory?", requiredProof: "Attributable outcome and a controlled improvement proposal", missionControlMapping: "LearningSignal + governed promotion" },
 ] as const;
+
+/**
+ * The governing lifecycle as it runs inside an operating factory. Derived from the single authoritative
+ * definition in data/governing-lifecycle.ts so stage names and order cannot drift.
+ */
+export const runtimeLifecycle = governingLifecycle.map((stage, index) => ({
+  id: stage.id,
+  number: index + 1,
+  name: stage.name,
+  artifact: stage.records.map((record) => protocolSteps.find((step) => step.id === record)?.name ?? record).join(" · "),
+  purpose: stage.detail,
+}));
 
 export const manifesto = [
   { number: 1, principle: "Intent must be explicit before execution begins.", explanation: "A factory cannot govern an implied objective. The outcome, constraints, owner, and proof of success must be visible before capability is delegated.", implication: "Reject work that cannot state its outcome and acceptance criteria." },

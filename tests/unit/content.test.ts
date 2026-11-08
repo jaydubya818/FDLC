@@ -5,6 +5,9 @@ import { architectureAreas, canonicalDefinition, categoryComparison, ecosystemRo
 import { dependencyModernizationExample } from "../../data/dependency-modernization-example.ts";
 import { guideDiscovery } from "../../data/guide-discovery.ts";
 import { guideEntryPaths, guideParts, proposedGuideMap } from "../../data/guide.ts";
+import { governingLifecycle, governingStageNames, lifecycleViews } from "../../data/governing-lifecycle.ts";
+import { statusVocabulary, whatsRealToday } from "../../data/whats-real.ts";
+import { artifactChain } from "../../lib/runtime-simulator.ts";
 
 test("keeps the canonical category positioning stable", () => {
   assert.equal(canonicalDefinition, "The Factory Development Lifecycle is the process for designing, assembling, governing, operating, measuring, and continuously improving an AI software factory.");
@@ -16,7 +19,8 @@ test("keeps the canonical category positioning stable", () => {
 test("keeps the four canonical system views stable", () => {
   assert.deepEqual(lifecycleStages.map((item) => item.name), ["Discover", "Design", "Assemble", "Validate", "Deploy", "Operate", "Improve"]);
   assert.deepEqual(factoryControls.map((item) => item.name), ["Govern", "Secure", "Observe", "Measure"]);
-  assert.deepEqual(runtimeLifecycle.map((item) => item.name), ["Receive", "Specify", "Plan", "Execute", "Verify", "Approve", "Release", "Observe", "Learn"]);
+  assert.deepEqual(governingStageNames, ["Intent", "Planning", "Execution", "Evidence", "Verification", "Approval", "Release", "Outcomes", "Learning"]);
+  assert.deepEqual(runtimeLifecycle.map((item) => item.name), governingStageNames);
   assert.deepEqual(architectureAreas.map((item) => item.name), ["Intent", "Harness", "Capability", "Model", "Trust", "Learning"]);
   assert.deepEqual(protocolSteps.map((item) => item.name), ["Intent", "Specification", "Plan", "Work Order", "Attempt", "Evidence", "Verification", "Approval", "Release", "Outcome", "Learning Signal"]);
 });
@@ -71,4 +75,54 @@ test("maps the worked example to every canonical model", () => {
   assert.deepEqual(dependencyModernizationExample.artifacts.map((item) => item.protocolId), protocolSteps.map((item) => item.id));
   assert.deepEqual(dependencyModernizationExample.baselineMetrics.map(([name]) => name), ["Cycle time", "Human review minutes", "Reopen / rollback risk", "Escaped defect potential"]);
   assert.deepEqual(dependencyModernizationExample.outcomeMetrics.map(([name]) => name), ["Verified completion rate", "Cost per verified outcome", "Human review minutes", "Cycle time", "First-pass verification rate", "Reopen / rollback rate"]);
+});
+
+test("derives every lifecycle surface from the one governing lifecycle", () => {
+  const ids = governingLifecycle.map((stage) => stage.id);
+  assert.deepEqual(runtimeLifecycle.map((stage) => stage.id), ids);
+  assert.deepEqual(factoryExplorerStages.map((stage) => stage.id), ids);
+  assert.deepEqual(factoryExplorerStages.map((stage) => stage.name), governingStageNames);
+  assert.deepEqual(factoryExplorerStages.map((stage) => stage.number), ids.map((_, index) => index + 1));
+  assert.deepEqual(dependencyModernizationExample.runtimeSteps.map((step) => step.stepId), ids);
+  // Each of the eleven protocol records belongs to exactly one stage, in protocol order.
+  assert.deepEqual(governingLifecycle.flatMap((stage) => stage.records), protocolSteps.map((step) => step.id));
+  for (const step of dependencyModernizationExample.runtimeSteps) {
+    assert.deepEqual(step.artifacts, governingLifecycle.find((stage) => stage.id === step.stepId)?.records, step.stepId);
+  }
+});
+
+test("labels Guide links with the Guide stage or chapter they open", () => {
+  for (const stage of governingLifecycle) {
+    assert.match(stage.guideHref, /^\/guide\//, stage.name);
+    assert.match(stage.guideLabel, /^Guide (stage \d+|chapter \d+) · /, stage.name);
+    const stageNumber = stage.guideHref.match(/\/stages\/0(\d)-/)?.[1];
+    if (stageNumber) {
+      assert.ok(stage.guideLabel.startsWith(`Guide stage ${stageNumber} · `), stage.name);
+      const guideStage = guideValueStream.find((item) => item.href === stage.guideHref);
+      assert.ok(guideStage && stage.guideLabel.endsWith(guideStage.name), `${stage.name} → ${guideStage?.name}`);
+    }
+  }
+});
+
+test("labels each simulator step with a governing stage, in lifecycle order", () => {
+  const order = governingLifecycle.map((stage) => stage.id);
+  let previous = -1;
+  for (const step of artifactChain) {
+    const index = order.indexOf(step.stage);
+    assert.ok(index >= 0, step.id);
+    assert.ok(index >= previous, `${step.id} moves backwards in the governing lifecycle`);
+    previous = index;
+  }
+});
+
+test("explains how every other view relates to the governing lifecycle", () => {
+  assert.equal(lifecycleViews[0].name, "Governing lifecycle");
+  for (const name of ["Factory lifecycle", "Artifact protocol", "Enterprise delivery flow", "Guide value stream", "Simulator walkthrough"]) {
+    assert.ok(lifecycleViews.some((view) => view.name === name), name);
+  }
+});
+
+test("uses one public status vocabulary", () => {
+  for (const item of whatsRealToday) assert.ok((statusVocabulary as readonly string[]).includes(item.status), item.name);
+  assert.equal(whatsRealToday.find((item) => item.name === "Mission Control")?.kind, "Optional reference implementation");
 });
