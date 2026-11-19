@@ -1,3 +1,29 @@
+/**
+ * The product-vs-factory-engineering framing, as it has emerged in 2026 practice.
+ * Sources are attributed inline; every figure is the source's own claim.
+ */
+export const twoJobsFraming = {
+  headline: "Engineering now has two jobs.",
+  productEngineering: {
+    name: "Product engineering",
+    definition: "Decides what to build and owns its quality.",
+  },
+  factoryEngineering: {
+    name: "Factory engineering",
+    definition: "Builds, measures, and improves the system of agents, tools, people, and controls that builds the product.",
+  },
+  fdlcPosition: "FDLC is the lifecycle for the second job.",
+  discipline: "Factory engineering is engineering, not prompting: define the system in code, measure what it produces on your own codebase, and change it only on evidence.",
+  governanceNote: "Factory engineering includes governance and authority, not just throughput and cost. The goal is not full automation—it is appropriately governed autonomy, earned through measured performance.",
+  attribution: {
+    text: "The product/factory engineering framing is used widely in 2026 practice.",
+    sources: [
+      { label: "Zach Lloyd, AI Engineer Code Summit keynote (Nov 12, 2026)", url: "https://ai.engineer/code/2026/talks/zach-lloyd" },
+      { label: "Ben Holmes, 'Becoming a factory engineer' (Nov 19, 2026)", url: "https://www.warp.dev/blog/factory-engineering-software-factories" },
+    ],
+  },
+} as const;
+
 export const operatingModelMoves = [
   ["01", "Define the outcome", "State what the software must do and how success will be checked."],
   ["02", "Bound the work", "Set tasks, permissions, budgets and approval requirements before agents act."],
