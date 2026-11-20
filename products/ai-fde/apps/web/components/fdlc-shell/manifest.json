@@ -3,7 +3,7 @@
   "sources": {
     "app/components/site-header.tsx": "020886dd4d580f802c2a0a74a0572f8d32cea86de0e64d352a1bf47f00a41f64",
     "app/design-system.css": "220f8b1e47fe7d7c54bc22658233cf25e23c06e981e45d4fda7c1c14197bf084",
-    "lib/global-navigation.ts": "0cdaa38e88a96ed428f8b9e5bc9a85a56b9577b09731cdb6fdf75996278369b0",
+    "lib/global-navigation.ts": "fa8bc7149cca9816defe3ac0db5b6832528507cddde341e25e26a57d66398240",
     "public/fdlc-logo-transparent.png": "8ce5db993f13d466f8df90c1520e97dd8118fa4206e4e90256a3c43b7863914c"
   }
 }
