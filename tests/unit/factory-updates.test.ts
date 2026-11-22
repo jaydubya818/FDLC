@@ -5,7 +5,9 @@ import { factoryUpdates, factoryUpdatesReviewed, fdlcCapabilities, fdlcStages } 
 const touchpoints = new Set<string>([...fdlcStages, ...fdlcCapabilities]);
 
 test("Factory Updates entries are complete, sourced, unique, and newest first", () => {
-  assert.ok(factoryUpdates.length >= 6 && factoryUpdates.length <= 10);
+  assert.ok(factoryUpdates.length >= 6, "retain historical entries as the feed grows");
+  assert.match(factoryUpdatesReviewed, /^\d{4}-\d{2}-\d{2}$/);
+  assert.ok(factoryUpdatesReviewed <= new Date().toISOString().slice(0, 10), "review date must not be in the future");
   const ids = new Set<string>();
   const urls = new Set<string>();
   let previous = "9999-12-31";
@@ -17,6 +19,11 @@ test("Factory Updates entries are complete, sourced, unique, and newest first", 
     assert.ok(!Number.isNaN(Date.parse(`${update.date}T00:00:00Z`)), update.id);
     assert.ok(update.date <= previous, `${update.id} is out of order`);
     assert.ok(update.date <= factoryUpdatesReviewed, `${update.id} is dated after the review date`);
+    if (update.dateBasis) {
+      assert.equal(update.dateBasis, "reviewed", update.id);
+      assert.equal(update.kind, "Resource", `${update.id} must label an undated resource`);
+    }
+    if (update.kind) assert.ok(["Resource", "Perspective"].includes(update.kind), update.id);
     previous = update.date;
     assert.match(update.url, /^https:\/\//, update.id);
     assert.ok(!urls.has(update.url), `duplicate url ${update.url}`);
