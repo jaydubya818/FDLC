@@ -5,7 +5,7 @@ import { SiteShell } from "../components/site-shell";
 import { factoryUpdates, factoryUpdatesReviewed } from "../../data/factory-updates";
 import { pageMetadata } from "../../lib/metadata";
 
-export const metadata: Metadata = pageMetadata("Factory Updates", "What is changing in AI software factories, from first-party sources, and why it matters for governed delivery.", "/updates");
+export const metadata: Metadata = pageMetadata("Factory Updates", "Sourced developments, practical resources, and operator perspectives on AI software factories and governed delivery.", "/updates");
 
 const dateFormat = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 
@@ -14,19 +14,20 @@ function formatDate(date: string) {
 }
 
 export default function UpdatesPage() {
-  const sources = new Set(factoryUpdates.map((update) => update.source.split(" ")[0])).size;
+  const sources = new Set(factoryUpdates.map((update) => update.source)).size;
   return <SiteShell><div className="page-wrap">
-    <PageHero eyebrow="Factory Updates" variant="compact" title="What changed in the factory, and why it matters." description="Agents, harnesses, sandboxes, and controls change every week. This feed tracks the notable shifts in AI software factories, each linked to its first-party source and tied to the FDLC stage or capability it affects, so you can judge what it means for governed delivery." meta={[["Entries", String(factoryUpdates.length).padStart(2, "0")], ["Publishers", String(sources).padStart(2, "0")], ["Last reviewed", formatDate(factoryUpdatesReviewed)]]}>
+    <PageHero eyebrow="Factory Updates" variant="compact" title="What changed in the factory, and why it matters." description="Notable developments, practical resources, and operator perspectives on AI software factories. Each entry names its source and connects it to the FDLC stage or capability it affects. Read the evidence, compare approaches, and judge what should change in your own delivery loop." meta={[["Entries", String(factoryUpdates.length).padStart(2, "0")], ["Publishers", String(sources).padStart(2, "0")], ["Last reviewed", formatDate(factoryUpdatesReviewed)]]}>
       <div className="hero-actions"><a className="button button-dark" href="#latest">Read the latest</a><Link className="text-action" href="/framework">See the FDLC stages →</Link></div>
     </PageHero>
     <section className="section-block" id="latest">
-      <SectionHeader eyebrow="Latest" title="Newest first, sourced." description="Summaries describe what each source says. The FDLC reading is ours. Follow the link before you rely on a detail." />
+      <SectionHeader eyebrow="Latest" title="Newest first, sourced." description="Dates are source publication dates unless labeled Reviewed. Resources and perspectives are labeled; vendor results remain attributed claims. Summaries describe the source. The FDLC reading is ours." />
       <ol className="updates-feed">
         {factoryUpdates.map((update) => <li key={update.id} id={update.id}>
           <article>
             <header>
-              <time dateTime={update.date}>{formatDate(update.date)}</time>
+              <time dateTime={update.date}>{update.dateBasis === "reviewed" ? "Reviewed " : ""}{formatDate(update.date)}</time>
               <span>{update.source}</span>
+              {update.kind ? <span>{update.kind}</span> : null}
               <span className="updates-touch">{update.touches}</span>
             </header>
             <h3><a href={update.url} rel="noreferrer" target="_blank">{update.title} <span aria-hidden="true">↗</span><span className="visually-hidden"> (opens in a new tab)</span></a></h3>

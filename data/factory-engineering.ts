@@ -32,14 +32,14 @@ export const factoryStackLayers: readonly FactoryStackLayer[] = [
   {
     number: "01",
     name: "Data and context",
-    description: "Own all agent data: skills, MCP results, full traces, access logs, and telemetry. Keep it in a single, API-accessible source of truth so scorers, benchmarks, and self-improvement agents can consume it. Zero data retention with model providers is a recommended baseline.",
+    description: "Keep the skills, run metadata, approved evidence, and telemetry needed to evaluate the factory in an organization-controlled, API-accessible store. Apply access controls, redaction, and retention limits before collecting prompts or tool results; never treat secrets or personal data as unrestricted evaluation material.",
     fdlcMapping: "Evidence and Observability: centralized trace storage is what FDLC's Evidence stage depends on for the scorer inputs that feed Evals and Learning.",
     sourceNote: "Zach Lloyd, factory stack post (Nov 13, 2026): https://x.com/zachlloydtweets/status/2121318753711583254",
   },
   {
     number: "02",
     name: "Compute",
-    description: "Sandboxed, multi-OS execution environments, pre-warmed for low-latency human-initiated work. Blast-radius containment replaces confirmation prompts: agents run without interrupting humans because the environment prevents consequential side-effects rather than asking for permission.",
+    description: "Use isolated execution environments with enforced file, network, identity, and resource limits. Pre-warm environments when interactive latency justifies the cost. Isolation limits what an agent can reach; consequential actions still require the authority declared in the task and approval policy.",
     fdlcMapping: "Runtime and Policy: execution sandboxing is a Policy-layer control; pre-warmed sandboxes serve the Runtime capability's durability requirement.",
     sourceNote: "Warp, 'Don't vibe code your software factory' (Nov 4, 2026): https://www.warp.dev/blog/build-production-software-factory",
   },
@@ -48,7 +48,7 @@ export const factoryStackLayers: readonly FactoryStackLayer[] = [
     name: "Inference",
     description: "Any model, any harness: the factory is not bound to one provider or coding-agent vendor. Model routing assigns different model classes to different task types, driven by benchmark results on your own prior tasks rather than published frontier scores.",
     fdlcMapping: "Models: model-agnostic routing from evidence is the FDLC approach to the Models capability; never make a provider the factory identity.",
-    sourceNote: "Zach Lloyd, factory stack (Sep 23, 2026): https://www.warp.dev/blog/the-factory-stack",
+    sourceNote: "Zach Lloyd, factory stack (Sep 5, 2026): https://www.warp.dev/blog/the-factory-stack",
   },
   {
     number: "04",
@@ -60,7 +60,7 @@ export const factoryStackLayers: readonly FactoryStackLayer[] = [
   {
     number: "05",
     name: "Orchestration",
-    description: "Launch, track, and recover work across agents. The orchestration layer reads the factory code (or a branch for experiments), spins up sandboxes, routes to agents with the right model and harness, records all artifacts and traces, loops in humans at declared gates, and integrates with error monitoring, issue trackers, and forges.",
+    description: "Launch, track, and recover work across agents. The orchestration layer reads the factory code (or a branch for experiments), spins up sandboxes, routes to agents with the right model and harness, records approved evidence and redacted traces, loops in humans at declared gates, and integrates with error monitoring, issue trackers, and forges.",
     fdlcMapping: "Runtime and Human control: durability, checkpointing, and human hand-off gates are Runtime requirements; the human-gate pattern maps to FDLC's Approval stage.",
     sourceNote: "Zach Lloyd (Nov 16, 2026): https://x.com/zachlloydtweets/status/2122343954595340414",
   },
@@ -354,9 +354,9 @@ export const publicNumbersNotes = {
       company: "Uber",
       figures: [
         "Uber Engineering's Aug 2026 blog (https://www.uber.com/us/en/blog/efficient-software-factory/) reports that 'weekly agent requests grew 9.4x while spend stabilized.'",
-        "Coverage of that work cites both '11% of PRs' (agent-authored) and '>70% of PRs' (agent-involved). These are different denominators measuring different things.",
+        "Other coverage cites '11% of PRs', while Uber's engineering article says more than 70% are attributed to local or cloud agents. Verify the attribution definition, cohort, and time window before treating these as comparable figures.",
       ],
-      lesson: "Always state what 'agent PR' means: authored from scratch, touched by an agent, or reviewed by an agent. The denominator determines what the figure proves.",
+      lesson: "State what 'agent PR' means and which pull requests are counted. Authored, assisted, and reviewed work can measure different activity; a missing definition is a limitation, not a reason to infer one.",
       source: "https://www.uber.com/us/en/blog/efficient-software-factory/ · https://software-factories.port.io/companies/uber",
     },
     {
@@ -366,7 +366,7 @@ export const publicNumbersNotes = {
         "Warp's Sep 3, 2026 benchmark post reports '63% cost reduction on certain types of tasks' (https://www.warp.dev/blog/warp-factory-benchmarks).",
         "Warp's Oct 20, 2026 post reports '40% more PRs merged and 67% lower cost per PR' over three months (https://x.com/warpdotdev/status/2112605226196750762).",
       ],
-      lesson: "Warp's figures are consistent with each other if read as applying to different task types and time windows. Report the specific cohort and window rather than averaging across them.",
+      lesson: "Different task mixes and observation windows make these figures unsuitable for a combined estimate. Check each source's cohort, cost boundaries, and baseline before making a comparison.",
       source: "https://www.warp.dev/blog/warp-factory-benchmarks · https://x.com/warpdotdev/status/2112605226196750762",
     },
   ],
@@ -379,7 +379,7 @@ export const factoryEngineeringDebate = {
   headline: "Is 'software factory' just marketing?",
   counterpoint: "Critics—including experienced engineers working at coding-agent companies—argue that 'software factory' is marketing for what should just be called good software engineering with thoughtful token allocation. @poteto (Nov 6, 2026) wrote: 'hot take: you don't need a software factory, and i don't love the term. it's just marketing. all you need is good software engineering and investing your tokens in the right places.' (https://x.com/poteto/status/2118613050462728659)",
   support: "Supporters, including Matt Pocock (Nov 9, 2026) and Zach Lloyd, say the term is imperfect but names a real move up in abstraction: from writing code, to writing prompts, to engineering the system of agents that executes on those prompts. (https://x.com/mattpocockuk/status/2119748545691402733)",
-  fdlcPosition: "FDLC's position: the label matters less than the discipline. Bounded intent, attributable evidence, explicit authority, and measured improvement apply whether you call it a software factory, an agentic pipeline, or a well-governed CI system. FDLC defines the engineering discipline, not the technology stack.",
+  fdlcPosition: "The label matters less than the discipline. Bounded intent, attributable evidence, explicit authority, and measured improvement apply whether you call it a software factory, an agentic pipeline, or a well-governed CI system. FDLC defines the engineering discipline, not the technology stack.",
 } as const;
 
 // ─── Sources ─────────────────────────────────────────────────────────────────

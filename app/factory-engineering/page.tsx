@@ -26,7 +26,7 @@ export const metadata: Metadata = pageMetadata(
 export default function FactoryEngineeringPage() {
   return (
     <SiteShell>
-      <div className="page-wrap">
+      <div className="page-wrap factory-engineering-page">
         <PageHero
           eyebrow="Factory Engineering / Practice"
           variant="compact"
@@ -74,8 +74,8 @@ export default function FactoryEngineeringPage() {
         <section className="section-block" id="factory-stack">
           <SectionHeader
             eyebrow="02 / The factory stack"
-            title="Seven layers, all defined in code."
-            description="A production software factory has seven layers. They are vendor-neutral principles; example tools from multiple vendors implement each layer."
+            title="A practical map of the factory stack."
+            description="This seven-part map adapts Warp's stack to FDLC stages and capabilities. Use the parts your delivery contract requires; FDLC does not prescribe one vendor or a fixed number of runtime layers."
           />
           <ol className="factory-stack-list">
             {factoryStackLayers.map((layer) => (
@@ -221,7 +221,7 @@ export default function FactoryEngineeringPage() {
 
         {/* Sources */}
         <section className="section-block" id="sources">
-          <SectionHeader eyebrow="Sources" title="First-party sources, read before cited." description="Every external claim on this page links to its source. Figures are the source's own claims unless noted otherwise." />
+          <SectionHeader eyebrow="Sources" title="Read the sources and compare their assumptions." description="Vendor figures remain attributed claims. Check the workload, observation window, attribution rules, and missing evidence before applying a result to your own factory." />
           <ul className="sources-list">
             {factoryEngineeringPageSources.map((s) => (
               <li key={s.url}><a href={s.url} rel="noreferrer" target="_blank">{s.label} ↗</a></li>
