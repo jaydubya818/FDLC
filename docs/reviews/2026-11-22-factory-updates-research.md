@@ -72,3 +72,16 @@ the debate and benchmark sections; wrapping them prevents horizontal overflow
 on mobile. The shared header switches to its compact menu before the extra
 navigation link can clip the GitHub action. The existing browser gate now includes
 the factory-engineering route and identifies the route if overflow recurs.
+
+## Security qualification
+
+The complete CI run passed both browser matrices but failed the unchanged high
+severity audit gate on the existing React Server Components dependency. The
+[React advisory](https://github.com/advisories/GHSA-xqc2-xf4c-x3h3) identifies
+19.2.9 as the patched release on the existing 19.2 line. Update React, React DOM,
+and react-server-dom-webpack from 19.2.8 to 19.2.9, and Next from 16.4.1 to the
+16.4.6 patch release. These are supported patch updates rather than the major
+versions proposed by a blanket force-fix. The lockfile changes are limited to
+these packages and Next's own platform packages. The patched local audit reports
+zero high or critical findings; two low and ten moderate findings remain for
+separate maintenance. Repeat the full qualification on the patched candidate.
