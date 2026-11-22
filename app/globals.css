@@ -2480,6 +2480,49 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 .engineering-grid p { color: var(--muted); font-size: 16px; line-height: 1.65; margin: 12px 0 0; }
 @media (max-width: 760px) { .engineering-grid { grid-template-columns: 1fr; } .engineering-grid > article { padding: 20px 0; } .engineering-grid > article:nth-child(odd) { border-right: 0; } }
 
+/* Factory engineering uses the existing editorial cards, rules, and type scale. */
+.factory-engineering-page, .benchmarks-page { overflow-wrap: anywhere; }
+.two-jobs-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .7fr); gap: 32px; margin-bottom: 28px; }
+.two-jobs-intro h2 { margin: 0; font-size: clamp(30px, 3.2vw, 44px); font-weight: 600; letter-spacing: -.035em; line-height: 1.15; }
+.two-jobs-intro p { margin: 0; color: var(--muted); font-size: 17px; line-height: 1.7; }
+.two-jobs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--ink); border-left: 1px solid var(--line); }
+.two-jobs-grid > article { min-width: 0; padding: 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+.two-jobs-grid h3 { margin: 0 0 14px; font-size: 21px; }
+.two-jobs-grid p, .two-jobs-note, .two-jobs-about p { margin: 16px 0 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+.two-jobs-grid strong { color: var(--ink); }
+.two-jobs-note a, .attribution-line a, .sources-list a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+.two-jobs-note a { display: inline-block; margin-top: 8px; }
+.attribution-line, .engineering-source-note { color: var(--muted); font-size: 14px; line-height: 1.65; overflow-wrap: anywhere; }
+.attribution-line { margin: 22px 0 0; }
+.factory-engineering-page .section-block > p { max-width: 92ch; font-size: 16px; line-height: 1.7; }
+.factory-engineering-page .section-block > h3 { margin: 32px 0 12px; font-size: 22px; }
+.factory-stack-list, .measure-improve-list, .merge-risk-list, .rollout-list { padding: 0; margin: 28px 0; list-style: none; border-top: 1px solid var(--ink); }
+.factory-stack-list > li, .measure-improve-list > li, .merge-risk-list > li, .rollout-list > li { min-width: 0; padding: 26px 0; border-bottom: 1px solid var(--line); }
+.factory-stack-list article > header, .measure-improve-list article > header, .merge-risk-list article > header, .rollout-list article > header { display: flex; align-items: baseline; gap: 16px; }
+.factory-stack-list header > span, .measure-improve-list header > span, .merge-risk-list header > span, .rollout-list header > span { min-width: 30px; color: var(--green); font-family: var(--mono); font-size: 14px; }
+.factory-stack-list h3, .measure-improve-list h3, .merge-risk-list h3, .rollout-list h3 { margin: 0; font-size: 21px; line-height: 1.3; }
+.factory-stack-list article > p, .measure-improve-list article > p, .merge-risk-list article > p, .rollout-list article > p { max-width: 92ch; margin: 12px 0 0 46px; color: var(--muted); font-size: 16px; line-height: 1.7; }
+.factory-stack-list article > .engineering-source-note, .measure-improve-list article > .engineering-source-note, .rollout-list article > .engineering-source-note { font-size: 14px; }
+.governance-callout, .fdlc-principle { padding: 20px 24px; border-left: 3px solid var(--green); background: var(--sage); font-size: 16px; line-height: 1.7; }
+.taxonomy-list { margin: 28px 0; border-top: 1px solid var(--ink); }
+.taxonomy-item { display: grid; grid-template-columns: minmax(180px, .35fr) minmax(0, 1fr); gap: 12px 32px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.taxonomy-item dt { font-size: 18px; font-weight: 700; }
+.taxonomy-item dd { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.7; }
+.taxonomy-item .engineering-source-note { grid-column: 2; font-size: 14px; }
+.public-number-case { margin: 24px 0; padding: 24px; border: 1px solid var(--line); background: var(--surface); overflow-wrap: anywhere; }
+.public-number-case h3 { margin-top: 0; font-size: 22px; }
+.public-number-case p, .public-number-case ul { font-size: 16px; line-height: 1.7; }
+.public-number-case ul { padding-left: 22px; list-style: disc; }
+.public-number-case .engineering-source-note { font-size: 14px; }
+.sources-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 32px; padding: 0; margin: 28px 0 0; list-style: none; }
+.sources-list a { display: inline-flex; min-height: 44px; align-items: center; font-size: 15px; line-height: 1.6; overflow-wrap: anywhere; }
+@media (max-width: 760px) {
+  .two-jobs-intro, .two-jobs-grid, .taxonomy-item, .sources-list { grid-template-columns: 1fr; }
+  .two-jobs-grid > article { padding: 22px; }
+  .taxonomy-item .engineering-source-note { grid-column: 1; }
+  .factory-stack-list article > p, .measure-improve-list article > p, .merge-risk-list article > p, .rollout-list article > p { margin-left: 0; }
+}
+
 /* Practical journey: reuse existing destinations and the editorial card system. */
 .hero-copy .engineering-title { font-size: clamp(42px, 4.6vw, 66px); line-height: 1; }
 .engineering-journey > h2 { max-width: 960px; font-size: clamp(28px, 3.3vw, 44px); line-height: 1.2; }

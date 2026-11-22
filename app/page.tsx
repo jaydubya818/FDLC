@@ -8,7 +8,7 @@ import { SectionHeader } from "./components/page-hero";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import { WhatsRealToday } from "./components/whats-real-today";
-import { homepageActions, homepageExampleSteps, homepageReferences, homepageThesis, operatingModelBridge, operatingModelMoves } from "../data/homepage";
+import { homepageActions, homepageExampleSteps, homepageReferences, homepageThesis, operatingModelBridge, operatingModelMoves, twoJobsFraming } from "../data/homepage";
 import { evidencePositioning, primaryPositioning } from "../data/fdlc";
 import { missionControlRepository } from "../lib/global-navigation";
 import { pageMetadata } from "../lib/metadata";
@@ -53,6 +53,25 @@ export default function Home() {
 
         <section className="statement-band" aria-label="FDLC category statement">
           <p>FDLC / Category promise</p><strong>{primaryPositioning}</strong><span>{evidencePositioning}</span>
+        </section>
+
+        <section className="content-section two-jobs-section" aria-labelledby="two-jobs-title">
+          <div className="two-jobs-intro">
+            <h2 id="two-jobs-title">{twoJobsFraming.headline}</h2>
+            <p>{twoJobsFraming.discipline}</p>
+          </div>
+          <div className="two-jobs-grid">
+            <article>
+              <h3>{twoJobsFraming.productEngineering.name}</h3>
+              <p>{twoJobsFraming.productEngineering.definition}</p>
+            </article>
+            <article>
+              <h3>{twoJobsFraming.factoryEngineering.name}</h3>
+              <p>{twoJobsFraming.factoryEngineering.definition} <strong>{twoJobsFraming.fdlcPosition}</strong></p>
+            </article>
+          </div>
+          <p className="two-jobs-note">{twoJobsFraming.governanceNote} <Link href="/factory-engineering">What factory engineering looks like in practice →</Link></p>
+          <p className="attribution-line">{twoJobsFraming.attribution.text} {twoJobsFraming.attribution.sources.map((s, i) => <span key={s.url}>{i > 0 && " · "}<a href={s.url} rel="noreferrer" target="_blank">{s.label} ↗</a></span>)}</p>
         </section>
 
         <section className="content-section adoption-actions">

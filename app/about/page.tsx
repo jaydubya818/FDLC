@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- Guide links cross the microfrontend boundary. */
 import { GuideReference } from "../components/guide-reference";
 import { engineeringOwnership } from "../../data/software-factory-engineering";
+import { twoJobsFraming } from "../../data/homepage";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero, SectionHeader } from "../components/page-hero";
@@ -28,6 +29,11 @@ export default function AboutPage() {
     <section className="section-block"><SectionHeader eyebrow="Why this exists" title="An open discipline around a moving stack." /><ol className="reason-list">{reasons.map(([title, description], index) => <li key={title}><span>{String(index + 1).padStart(2, "0")}</span><h2>{title}</h2><p>{description}</p></li>)}</ol></section>
     <section className="section-block" id="engineering-discipline">
       <SectionHeader eyebrow="Software Factory Engineering" title="A hands-on systems discipline." description="The practice of designing, building, integrating, operating, measuring and continuously improving systems that produce verified software outcomes. The primary artifact is the factory itself." />
+      <div className="two-jobs-about">
+        <p><strong>{twoJobsFraming.headline}</strong> {twoJobsFraming.productEngineering.name}: {twoJobsFraming.productEngineering.definition} {twoJobsFraming.factoryEngineering.name}: {twoJobsFraming.factoryEngineering.definition}</p>
+        <p>{twoJobsFraming.governanceNote}</p>
+        <p className="attribution-line">{twoJobsFraming.attribution.text} {twoJobsFraming.attribution.sources.map((s, i) => <span key={s.url}>{i > 0 && " · "}<a href={s.url} rel="noreferrer" target="_blank">{s.label} ↗</a></span>)}</p>
+      </div>
       <p>The engineer builds working interfaces, runtime and recovery mechanisms, knowledge infrastructure, protected verification, governance and production feedback. Prompt writing and agent coordination are parts of this work; the integrated production system is the responsibility.</p>
       <div className="engineering-grid">{engineeringOwnership.map(([area, artifacts, handoff]) => <article key={area}><h3>{area}</h3><p><strong>Artifacts:</strong> {artifacts}</p><p><strong>Decision handoff:</strong> {handoff}</p></article>)}</div>
       <p>One engineer may hold these responsibilities in a small organization; an enterprise may distribute them across teams with explicit interface ownership. Business leaders, domain experts, security owners and service owners keep their decision rights.</p>

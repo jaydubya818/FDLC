@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 // Navigation follows the visitor journey: learn → try → build, with optional implementations kept separate.
 const moreLabels = ["Manifesto", "Learning Library (Preview)", "Factory Updates", "About"];
 const morePaths = ["/manifesto", "/corpus-preview", "/updates", "/about"];
-const primaryLabels = ["Framework", "Architecture", "Guide", "Try", "Build", "Implementations", "More"];
+const primaryLabels = ["Framework", "Architecture", "Factory Engineering", "Guide", "Try", "Build", "Implementations", "More"];
 const journeyGroups = [
   ["Try", "#try-navigation", [["FDLC in 5 Minutes", "/in-5-minutes"], ["Factory Simulator", "/simulator"], ["Reference Lab", "/lab"]]],
   ["Build", "#build-navigation", [["Define a factory line", "/start"], ["Factory Skills", "/factory-skills"], ["Maturity assessment", "/maturity"]]],
@@ -119,5 +119,5 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
     assert.ok(await productNavigation.isVisible(), "The mobile menu lists optional implementations");
     await header.getByLabel("Open navigation", { exact: true }).click();
   }
-  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${new URL(page.url()).pathname}: horizontal overflow`);
 }

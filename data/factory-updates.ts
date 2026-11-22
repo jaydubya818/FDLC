@@ -1,5 +1,6 @@
 // Factory Updates: notable, sourced changes in AI software factories.
-// Every entry links to a first-party source that was read before it was cited.
+// New entries use original announcements, release notes, research, or attributed perspectives.
+// Legacy reporting retains its named publisher; never describe all sources as first-party.
 // Keep entries sorted newest first; the unit test enforces order and shape.
 
 export const fdlcStages = ["Intent", "Planning", "Execution", "Evidence", "Verification", "Approval", "Release", "Outcomes", "Learning"] as const;
@@ -11,8 +12,10 @@ export type FdlcCapability = (typeof fdlcCapabilities)[number];
 export type FactoryUpdate = {
   /** Stable kebab-case identifier, unique across the feed. */
   id: string;
-  /** Publication date of the source, YYYY-MM-DD. */
+  /** Publication date, or explicitly labeled review date for an undated resource. */
   date: string;
+  dateBasis?: "reviewed";
+  kind?: "Resource" | "Perspective";
   title: string;
   /** Publisher of the source. */
   source: string;
@@ -26,9 +29,177 @@ export type FactoryUpdate = {
   tags: readonly string[];
 };
 
-export const factoryUpdatesReviewed = "2026-11-05";
+export const factoryUpdatesReviewed = "2026-11-22";
 
-export const factoryUpdates = [
+export const factoryUpdates: readonly FactoryUpdate[] = [
+  {
+    id: "warp-learn-factory-engineering-course",
+    date: "2026-11-22",
+    dateBasis: "reviewed",
+    kind: "Resource",
+    title: "Warp Learn connects factory setup, verification, and production feedback in a practical course",
+    source: "Warp",
+    url: "https://www.warp.dev/learn",
+    summary: "Warp's free course covers factory fundamentals, issue intake, triage and specifications, verification and merge risk, and alert monitoring. Its measurement and improvement unit is marked coming soon. The page has no publication date; this entry records when we reviewed it.",
+    whyItMatters: "Learning: teach one complete delivery loop and distinguish available lessons from planned material. Warp is one implementation of that loop; FDLC's operating principles should remain usable with other tools.",
+    touches: "Learning",
+    tags: ["factory engineering", "education", "feedback loop"],
+  },
+  {
+    id: "kiro-crew-conductor-ledger-evidence",
+    date: "2026-11-20",
+    title: "Kiro Crew conductor mode coordinates workers through durable ledgers and evidence reports",
+    source: "AWS Kiro",
+    url: "https://kiro.dev/blog/conductor-mode/",
+    summary: "Kiro's conductor delegates changes to workers, tracks structured progress and evidence, and resumes from an append-only crew log and task ledgers. The engineering account also describes an incorrect comparison of CI results and a security-boundary change that was escalated to a person.",
+    whyItMatters: "Planning: keep task state, evidence links, and changed requirements outside transient chat. A coordinator must compare equivalent checks and escalate decisions that weaken security boundaries.",
+    touches: "Planning",
+    tags: ["multi-agent", "durable state", "human authority"],
+  },
+  {
+    id: "gemini-cli-069-bounded-retries",
+    date: "2026-11-19",
+    title: "Gemini CLI 0.69.0 bounds quota retries and hardens execution lifecycle handling",
+    source: "Google Gemini",
+    url: "https://github.com/google-gemini/gemini-cli/releases/tag/v0.69.0",
+    summary: "The release adds a daily token-usage heatmap and configurable response-header timeouts, prevents multi-hour quota retries, and fixes cancellation and sandbox lifecycle behavior. These are operational changes to the harness rather than a new model benchmark.",
+    whyItMatters: "Runtime: quota exhaustion, cancellation, and network failure need explicit terminal states so a factory does not silently consume time or leave child processes running.",
+    touches: "Runtime",
+    tags: ["harness", "retries", "resource limits"],
+  },
+  {
+    id: "codex-0170-telemetry-sandbox-recovery",
+    date: "2026-11-18",
+    title: "Codex 0.170.0 refreshes telemetry credentials and repairs inherited sandbox restrictions",
+    source: "OpenAI",
+    url: "https://github.com/openai/codex/releases/tag/rust-v0.170.0",
+    summary: "Codex adds automatically refreshed authentication headers for OpenTelemetry HTTP exporters. The release also fixes MCP OAuth credential races and permission updates that could cause child threads to lose existing sandbox restrictions.",
+    whyItMatters: "Policy: test permission inheritance across delegated work and session recovery. A policy declaration is useful only when the runtime continues enforcing it as agents reconnect and spawn work.",
+    touches: "Policy",
+    tags: ["codex", "sandbox", "opentelemetry"],
+  },
+  {
+    id: "factory-azure-mxc-containment",
+    date: "2026-11-18",
+    title: "Factory adds Azure deployment options and operating-system containment through Microsoft MXC",
+    source: "Factory",
+    url: "https://factory.com/news/microsoft-collaboration",
+    summary: "Factory describes customer-controlled agent execution on Azure through its OpenCompute sandbox infrastructure and support for Microsoft Execution Containers. It says approved file and network access is enforced by the operating system, with policies managed through Intune and existing review rules retained.",
+    whyItMatters: "Runtime: distinguish agent instructions from enforced file, network, identity, and execution boundaries. Evaluate deployment options against actual containment and review requirements.",
+    touches: "Runtime",
+    tags: ["containment", "enterprise", "self-hosting"],
+  },
+  {
+    id: "vercel-eve-10-approval-observability",
+    date: "2026-11-17",
+    title: "Vercel makes eve 1.0 generally available with approval controls and agent tracing",
+    source: "Vercel",
+    url: "https://vercel.com/blog/eve-is-now-generally-available",
+    summary: "Vercel's open-source agent framework reaches general availability with configurable approvals, memory, and OpenTelemetry tracing. Traces include human wait states, model choices, approval decisions, and costs, with controls for filtering and redacting collected content.",
+    whyItMatters: "Observability: record approval waits and decisions alongside execution and cost. That makes human intervention and elapsed delivery time visible without requiring every prompt or tool result to be retained.",
+    touches: "Observability",
+    tags: ["agent framework", "approvals", "telemetry"],
+  },
+  {
+    id: "replit-missions-contract-budget-judge",
+    date: "2026-11-17",
+    title: "Replit Missions combines outcome contracts, spending limits, and independent agent evaluation",
+    source: "Replit",
+    url: "https://replit.com/blog/introducing-replit-missions",
+    summary: "Missions coordinates agents around agreed success criteria, budgets, and actions requiring human approval. Replit says an independent AI judge evaluates results, and work stops unresolved if the budget runs out; its DataCat example is a vendor-reported case study.",
+    whyItMatters: "Intent: define acceptance criteria, resource limits, and approval boundaries before execution. An AI judge supplies evidence to examine; completion still depends on whether the agreed checks establish the intended outcome.",
+    touches: "Intent",
+    tags: ["multi-agent", "budgets", "acceptance criteria"],
+  },
+  {
+    id: "github-mdash-verified-security-fixes",
+    date: "2026-11-17",
+    title: "GitHub's MDASH pilot filters AI security findings into checked reports and suggested fixes",
+    source: "GitHub",
+    url: "https://github.blog/open-source/maintainers/maintainers-dont-need-more-ai-bug-reports-they-need-fixes/",
+    summary: "GitHub and Microsoft describe AI triage followed by researcher verification and private reporting to consenting maintainers. Their six-project pilot reduced thousands of possible issues to 99 checked reports with suggested fixes; as of November 15, 55 had been fixed and 14 fixes released.",
+    whyItMatters: "Verification: measure confirmed and released fixes, not raw findings. Deduplication, reproducible evidence, private disclosure, and maintainer authority are part of the delivery workflow.",
+    touches: "Verification",
+    tags: ["security", "independent review", "verified outcomes"],
+  },
+  {
+    id: "anthropic-safety-evaluation-validity",
+    date: "2026-11-13",
+    title: "Anthropic sets out how to validate safety graders and report evaluation uncertainty",
+    source: "Anthropic",
+    url: "https://www.anthropic.com/research/building-strong-safety-evaluations",
+    summary: "Anthropic recommends defining the behavior an evaluation measures, checking automated graders against expert judgment, matching the harness to deployment, and reporting uncertainty. It distinguishes observational comparisons from tests that can support a causal claim about an intervention.",
+    whyItMatters: "Evals: a score alone cannot establish that a harness or model change made delivery safer. Validate the grader, hold comparisons consistent, and report the uncertainty behind release decisions.",
+    touches: "Evals",
+    tags: ["evaluation design", "graders", "evidence quality"],
+  },
+  {
+    id: "aie-code-factory-engineering-keynote",
+    date: "2026-11-12",
+    title: "Zach Lloyd's AI Engineer keynote connects factory definitions, evaluations, and improvement",
+    source: "AI Engineer Code Summit",
+    url: "https://ai.engineer/code/2026/talks/zach-lloyd",
+    summary: "Lloyd describes a code-defined delivery loop with recorded runs, interchangeable agents and models, online scorers, and replay benchmarks on an organization's own tasks. The conference's dated reading edition distinguishes the talk's operating model from simply moving local agents to the cloud.",
+    whyItMatters: "Evals: compare factory configurations on representative work with the same acceptance criteria. Version the setup and connect each proposed improvement to the evidence that supports it.",
+    touches: "Evals",
+    tags: ["factory engineering", "benchmarks", "evaluations"],
+  },
+  {
+    id: "cursor-cli-context-rules-reliability",
+    date: "2026-11-12",
+    title: "Cursor fixes silently dropped file rules and makes agent questions explain their context",
+    source: "Cursor",
+    url: "https://prod.cursor.com/docs/release-notes",
+    summary: "Cursor's November 12 CLI notes fix file-scoped rules and nested skills being dropped after reads of empty, image, or oversized files. Agent questions now state what the agent found and why it needs input, and self-hosted workers surface source-control token policy status.",
+    whyItMatters: "Context: verify that repository rules actually reach the agent across file types. Human handoffs should include the evidence behind a question instead of relying on reasoning the operator cannot inspect.",
+    touches: "Context",
+    tags: ["skills", "repository rules", "human handoff"],
+  },
+  {
+    id: "deepmind-alphaproof-code-signal",
+    date: "2026-11-10",
+    title: "DeepMind's AlphaProof Code checks Signal security properties against approved specifications",
+    source: "Google DeepMind",
+    url: "https://deepmind.google/blog/introducing-alphaproof-code/",
+    summary: "DeepMind reports a human-guided framework in which agents produce Lean proofs for key security properties of compiled libsignal code. Humans approve the specifications and Lean checks the proofs; the work covers specified properties and assumptions, rather than establishing that all software is free of bugs.",
+    whyItMatters: "Evidence: separate specification authority, proof generation, and proof checking. The strength of verification depends on both the checker and the correctness and scope of the approved specification.",
+    touches: "Evidence",
+    tags: ["formal verification", "specifications", "research"],
+  },
+  {
+    id: "8090-factory-cost-connector-controls",
+    date: "2026-11-10",
+    title: "8090 Software Factory adds API cost limits and organization controls for MCP connectors",
+    source: "8090",
+    url: "https://docs.8090.ai/resources/changelog#version-0-60-0",
+    summary: "Version 0.60.0 lets organization administrators retrieve token-cost metrics, set user-level token-cost limits through the API, and allow or deny MCP connectors. Agent chats also show pull requests associated with the work orders they changed.",
+    whyItMatters: "Policy: pair resource budgets and connector permissions with traceability from work order to pull request. Those controls make delegated work attributable and bounded.",
+    touches: "Policy",
+    tags: ["software factory", "cost controls", "mcp"],
+  },
+  {
+    id: "lee-chan-thinner-factories-owned-standards",
+    date: "2026-11-07",
+    kind: "Perspective",
+    title: "Jeffrey Lee-Chan argues for thinner orchestration and company-owned skills and standards",
+    source: "Jeffrey Lee-Chan",
+    url: "https://x.com/jleechan2015/status/2119218626293358612",
+    summary: "Lee-Chan predicts that stronger coding agents will absorb much generic factory orchestration. His proposed test is to remove a layer after a model upgrade and compare outcomes, cost, and missed failures while retaining enforceable boundaries, evidence, and company-owned standards. This is an operator's argument, not an established forecast.",
+    whyItMatters: "Learning: evaluate simpler harnesses against the same acceptance and evidence requirements. FDLC should preserve the delivery contract while allowing orchestration, agents, and vendors to change.",
+    touches: "Learning",
+    tags: ["operator perspective", "skills", "harness evaluation"],
+  },
+  {
+    id: "warp-code-review-bottleneck",
+    date: "2026-11-05",
+    title: "Warp describes review loops, computer-use evidence, and risk scoring for agent changes",
+    source: "Warp",
+    url: "https://www.warp.dev/blog/agent-code-review-bottleneck",
+    summary: "Warp outlines implementation/review-agent iterations, end-to-end evidence such as screen recordings, and risk scoring to focus human review. It presents these as ways to reduce review effort while keeping consequential approval decisions with people.",
+    whyItMatters: "Verification: use independent review and user-journey evidence to make a candidate easier to assess. Risk scores can route review; they do not grant permission to merge or release.",
+    touches: "Verification",
+    tags: ["code review", "merge risk", "evidence"],
+  },
   {
     id: "aws-kiro-bots-crew-coordination",
     date: "2026-11-05",
@@ -39,6 +210,17 @@ export const factoryUpdates = [
     whyItMatters: "Human control: scoped bot permissions, approval requests, and inspectable memory map to FDLC's Approval stage, while the audit and permission-creep concerns bear on Policy.",
     touches: "Human control",
     tags: ["aws", "multi-agent", "governance"],
+  },
+  {
+    id: "warp-production-software-factory",
+    date: "2026-11-04",
+    title: "Warp's production guide treats factory configuration, durable execution, and replay as engineering work",
+    source: "Warp",
+    url: "https://www.warp.dev/blog/build-production-software-factory",
+    summary: "Warp describes versioned workflow definitions, scoped runner access, checkpointed orchestration, persistent evidence, and controlled replay for benchmarks. Its worked incident workflow makes review, human handoffs, integrations, and configuration explicit.",
+    whyItMatters: "Runtime: preserve enough state to recover interrupted work without duplicating effects, and reset benchmark environments so comparisons measure the configuration rather than leftover state.",
+    touches: "Runtime",
+    tags: ["factories as code", "durable execution", "replay"],
   },
   {
     id: "launchdarkly-release-autopilot",
