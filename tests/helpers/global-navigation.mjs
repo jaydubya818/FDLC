@@ -119,5 +119,5 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
     assert.ok(await productNavigation.isVisible(), "The mobile menu lists optional implementations");
     await header.getByLabel("Open navigation", { exact: true }).click();
   }
-  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
+  assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, `${new URL(page.url()).pathname}: horizontal overflow`);
 }

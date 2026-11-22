@@ -11,7 +11,7 @@ import { pageMetadata } from "../../lib/metadata";
 export const metadata: Metadata = pageMetadata("Benchmarks", "How FDLC measures AI software factory effectiveness through verified outcomes.", "/benchmarks");
 
 export default function BenchmarksPage() {
-  return <SiteShell><div className="page-wrap">
+  return <SiteShell><div className="page-wrap benchmarks-page">
     <PageHero eyebrow="FDLC Benchmarks / 07" status="Proposed" variant="compact" title="Measure the outcome, not the activity." description="FDLC Benchmarks will compare factory effectiveness through verified delivery, quality, cost, human effort, recovery, and risk. No public benchmark results are claimed today." meta={[["Unit of value", "Verified outcome"], ["Metrics", String(metrics.length).padStart(2, "0")], ["Public results", "None yet"]]}>
       <div className="hero-actions"><a className="button button-dark" href="#measurement-contract">Review the measurement contract</a><Link className="text-action" href="/maturity">Assess your current system →</Link></div>
     </PageHero>

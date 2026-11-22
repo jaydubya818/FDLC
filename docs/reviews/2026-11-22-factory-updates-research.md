@@ -67,5 +67,8 @@ The new factory-engineering page adapts Warp's stack without prescribing a fixed
 runtime architecture. Isolation does not grant authority for consequential actions;
 evidence collection requires access controls, redaction, and retention limits.
 Public performance figures stay attributed, and missing attribution definitions
-are not filled in by inference. Responsive checks identified long social URLs in
-the debate section; wrapping them prevents horizontal overflow on mobile.
+are not filled in by inference. Responsive checks identified long source URLs in
+the debate and benchmark sections; wrapping them prevents horizontal overflow
+on mobile. The shared header switches to its compact menu before the extra
+navigation link can clip the GitHub action. The existing browser gate now includes
+the factory-engineering route and identifies the route if overflow recurs.

@@ -2481,7 +2481,7 @@ pre { min-width: 0; margin: 0; padding: 24px; overflow-x: auto; background: #090
 @media (max-width: 760px) { .engineering-grid { grid-template-columns: 1fr; } .engineering-grid > article { padding: 20px 0; } .engineering-grid > article:nth-child(odd) { border-right: 0; } }
 
 /* Factory engineering uses the existing editorial cards, rules, and type scale. */
-.factory-engineering-page { overflow-wrap: anywhere; }
+.factory-engineering-page, .benchmarks-page { overflow-wrap: anywhere; }
 .two-jobs-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .7fr); gap: 32px; margin-bottom: 28px; }
 .two-jobs-intro h2 { margin: 0; font-size: clamp(30px, 3.2vw, 44px); font-weight: 600; letter-spacing: -.035em; line-height: 1.15; }
 .two-jobs-intro p { margin: 0; color: var(--muted); font-size: 17px; line-height: 1.7; }
