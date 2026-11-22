@@ -87,7 +87,7 @@ export default function FactoryEngineeringPage() {
                   </header>
                   <p>{layer.description}</p>
                   <p className="fdlc-mapping"><strong>FDLC mapping:</strong> {layer.fdlcMapping}</p>
-                  <p className="source-note"><strong>Source:</strong> {layer.sourceNote}</p>
+                  <p className="engineering-source-note"><strong>Source:</strong> {layer.sourceNote}</p>
                 </article>
               </li>
             ))}
@@ -108,7 +108,7 @@ export default function FactoryEngineeringPage() {
                   <header><span>{tool.number}</span><h3>{tool.name}</h3></header>
                   <p>{tool.description}</p>
                   <p className="fdlc-guardrail"><strong>FDLC guardrail:</strong> {tool.fdlcGuardrail}</p>
-                  <p className="source-note"><strong>Source:</strong> {tool.sourceNote}</p>
+                  <p className="engineering-source-note"><strong>Source:</strong> {tool.sourceNote}</p>
                 </article>
               </li>
             ))}
@@ -127,13 +127,13 @@ export default function FactoryEngineeringPage() {
           <h3>Evidence artifacts</h3>
           <p>{verificationPractice.evidenceArtifacts.description}</p>
           <p className="fdlc-mapping"><strong>FDLC:</strong> {verificationPractice.evidenceArtifacts.fdlcNote}</p>
-          <p className="source-note"><strong>Sources:</strong> {verificationPractice.evidenceArtifacts.source}</p>
+          <p className="engineering-source-note"><strong>Sources:</strong> {verificationPractice.evidenceArtifacts.source}</p>
 
           <h3>Review-agent loop</h3>
           <p>{verificationPractice.reviewAgentLoop.description}</p>
           <p className="fdlc-mapping"><strong>FDLC:</strong> {verificationPractice.reviewAgentLoop.fdlcNote}</p>
           <p className="governance-callout"><strong>Contested practice:</strong> {verificationPractice.reviewAgentLoop.contestedPractice}</p>
-          <p className="source-note"><strong>Sources:</strong> {verificationPractice.reviewAgentLoop.source}</p>
+          <p className="engineering-source-note"><strong>Sources:</strong> {verificationPractice.reviewAgentLoop.source}</p>
 
           <h3>Merge-risk rubric</h3>
           <p>Use merge-risk scoring to set review depth and route to code owners—not to replace approval. Each criterion maps to an FDLC stage.</p>
@@ -148,7 +148,7 @@ export default function FactoryEngineeringPage() {
               </li>
             ))}
           </ol>
-          <p className="source-note">Merge-risk skill source: Ben Holmes (Oct 20 and Nov 6, 2026): <a href="https://x.com/BHolmesDev/status/2118807366250721741" rel="noreferrer" target="_blank">https://x.com/BHolmesDev/status/2118807366250721741 ↗</a></p>
+          <p className="engineering-source-note">Merge-risk skill source: Ben Holmes (Oct 20 and Nov 6, 2026): <a href="https://x.com/BHolmesDev/status/2118807366250721741" rel="noreferrer" target="_blank">https://x.com/BHolmesDev/status/2118807366250721741 ↗</a></p>
         </section>
 
         {/* Section 5: Rollout and adoption */}
@@ -164,7 +164,7 @@ export default function FactoryEngineeringPage() {
                 <article>
                   <header><span>{tactic.number}</span><h3>{tactic.name}</h3></header>
                   <p>{tactic.description}</p>
-                  {tactic.sourceNote && <p className="source-note"><strong>Source:</strong> {tactic.sourceNote}</p>}
+                  {tactic.sourceNote && <p className="engineering-source-note"><strong>Source:</strong> {tactic.sourceNote}</p>}
                 </article>
               </li>
             ))}
@@ -184,7 +184,7 @@ export default function FactoryEngineeringPage() {
               <div key={term.term} className="taxonomy-item">
                 <dt>{term.term}</dt>
                 <dd>{term.definition}</dd>
-                {term.sourceNote && <dd className="source-note"><strong>Source:</strong> {term.sourceNote}</dd>}
+                {term.sourceNote && <dd className="engineering-source-note"><strong>Source:</strong> {term.sourceNote}</dd>}
               </div>
             ))}
           </dl>
@@ -202,7 +202,7 @@ export default function FactoryEngineeringPage() {
               <h3>{c.company}</h3>
               <ul>{c.figures.map((f) => <li key={f}>{f}</li>)}</ul>
               <p><strong>Lesson:</strong> {c.lesson}</p>
-              <p className="source-note"><strong>Sources:</strong> {c.source}</p>
+              <p className="engineering-source-note"><strong>Sources:</strong> {c.source}</p>
             </div>
           ))}
           <p className="fdlc-principle">{publicNumbersNotes.fdlcPrinciple}</p>
