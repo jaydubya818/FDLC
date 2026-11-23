@@ -37,6 +37,12 @@ type DraftState = { step: number; form: FactoryForm; submitted: boolean };
 function toggle(values: string[], value: string) { return values.includes(value) ? values.filter((item) => item !== value) : [...values, value]; }
 function slugify(value: string) { return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
 
+function focusBuilderSection(section: HTMLElement | null) {
+  if (!section) return;
+  section.focus({ preventScroll: true });
+  section.scrollIntoView({ block: "start", behavior: "instant" });
+}
+
 function readDraft(): DraftState | null {
   try {
     const raw = sessionStorage.getItem(draftKey);
@@ -99,7 +105,7 @@ export function FactoryBuilder() {
 
   useEffect(() => {
     if (submitted && focusOnGenerate.current) {
-      resultRef.current?.focus();
+      focusBuilderSection(resultRef.current);
       focusOnGenerate.current = false;
     }
   }, [submitted]);
@@ -108,7 +114,7 @@ export function FactoryBuilder() {
     setStep(0);
     setForm(initialForm);
     setSubmitted(false);
-    requestAnimationFrame(() => stepRef.current?.focus());
+    requestAnimationFrame(() => focusBuilderSection(stepRef.current));
     try { sessionStorage.removeItem(draftKey); } catch { setStorageFailed(true); }
   }
   function setList(key: "authority" | "verification" | "humanControls", label: string) {
@@ -129,7 +135,7 @@ export function FactoryBuilder() {
   }
   function moveToStep(next: number) {
     setStep(next);
-    requestAnimationFrame(() => stepRef.current?.focus());
+    requestAnimationFrame(() => focusBuilderSection(stepRef.current));
   }
 
   if (definition) {

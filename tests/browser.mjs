@@ -228,6 +228,7 @@ try {
     await page.getByRole("button", { name: "Generate Factory Definition" }).click();
     await page.getByRole("heading", { name: "Test repair", exact: true }).waitFor();
     assert.ok(await page.locator(".factory-result").evaluate(node => node === document.activeElement));
+    assert.ok(await page.locator(".factory-result").evaluate(node => node.getBoundingClientRect().top >= document.querySelector(".global-header").getBoundingClientRect().bottom - 1));
     assert.match(await page.locator(".factory-result").innerText(), /Repair the synthetic date conversion regression/);
     await page.getByRole("button", { name: "Copy Factory Definition" }).click();
     await page.getByText("Copied to your clipboard.", { exact: true }).waitFor();
