@@ -71,7 +71,6 @@ export default function Home() {
             </article>
           </div>
           <p className="two-jobs-note">{twoJobsFraming.governanceNote} <Link href="/factory-engineering">What factory engineering looks like in practice →</Link></p>
-          <p className="attribution-line">{twoJobsFraming.attribution.text} {twoJobsFraming.attribution.sources.map((s, i) => <span key={s.url}>{i > 0 && " · "}<a href={s.url} rel="noreferrer" target="_blank">{s.label} ↗</a></span>)}</p>
         </section>
 
         <section className="content-section adoption-actions">
