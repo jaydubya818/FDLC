@@ -196,6 +196,11 @@ test("homepage answers the category boundary and links to primary destinations",
   const homeHeader = html.match(/<header class="global-header">[\s\S]*?<\/header>/)?.[0] ?? "";
   const homeMain = html.match(/<main\b[^>]*>[\s\S]*?<\/main>/)?.[0] ?? "";
   const homeFooter = html.match(/<footer class="global-footer">[\s\S]*?<\/footer>/)?.[0] ?? "";
+  assert.match(homeMain, /id="two-jobs-title"/);
+  assert.doesNotMatch(homeMain, /The product\/factory engineering framing is used widely in 2026 practice/i);
+  for (const url of ["https://ai.engineer/code/2026/talks/zach-lloyd", "https://www.warp.dev/blog/factory-engineering-software-factories"]) {
+    assert.ok(!homeMain.includes(`href="${url}"`), `Unexpected homepage citation ${url}`);
+  }
   assert.equal([...homeHeader.matchAll(/href="\/corpus-preview"/g)].length, 2, "desktop and mobile navigation expose the preview");
   assert.equal([...homeMain.matchAll(/href="\/corpus-preview"/g)].length, 0, "homepage primary path does not promote the preview");
   assert.equal([...homeFooter.matchAll(/href="\/corpus-preview"/g)].length, 1, "footer exposes the preview");
