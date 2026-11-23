@@ -10,9 +10,21 @@ import {
   publicNumbersNotes,
   rolloutTactics,
   verificationPractice,
+  type PracticeSource,
 } from "../../data/factory-engineering.ts";
 import { antiMetrics, publicNumbersCaution } from "../../data/software-factory-engineering.ts";
 import { twoJobsFraming } from "../../data/homepage.ts";
+
+function assertSources(sources: readonly PracticeSource[], subject: string) {
+  assert.ok(sources.length > 0, `missing source for ${subject}`);
+  const urls = new Set<string>();
+  for (const { label, url } of sources) {
+    assert.ok(label.trim() && !label.startsWith("https://"), `missing source title for ${subject}`);
+    assert.equal(new URL(url).protocol, "https:", subject);
+    assert.ok(!urls.has(url), `duplicate source for ${subject}`);
+    urls.add(url);
+  }
+}
 
 test("twoJobsFraming has the required fields and attributed sources", () => {
   assert.ok(twoJobsFraming.headline.length > 0, "headline is non-empty");
@@ -30,7 +42,7 @@ test("twoJobsFraming has the required fields and attributed sources", () => {
   }
 });
 
-test("factoryStackLayers has seven layers, each with number, name, description, fdlcMapping, sourceNote", () => {
+test("factoryStackLayers has seven layers, each with number, name, description, FDLC mapping, and linked sources", () => {
   assert.equal(factoryStackLayers.length, 7, "should have exactly 7 layers");
   const numbers = new Set<string>();
   for (const layer of factoryStackLayers) {
@@ -40,8 +52,8 @@ test("factoryStackLayers has seven layers, each with number, name, description, 
     assert.ok(layer.name.length > 0, "name is non-empty");
     assert.ok(layer.description.length > 20, `description too short for ${layer.name}`);
     assert.ok(layer.fdlcMapping.length > 10, `fdlcMapping too short for ${layer.name}`);
-    assert.ok(layer.sourceNote.length > 10, `sourceNote too short for ${layer.name}`);
-    assert.match(layer.sourceNote, /https:\/\//, `sourceNote must contain a URL for ${layer.name}`);
+    assert.ok(layer.question.endsWith("?"), layer.name);
+    assertSources(layer.sources, layer.name);
   }
 });
 
@@ -54,8 +66,8 @@ test("measureImproveTools has five tools, each with FDLC guardrail and source UR
     assert.ok(tool.name.length > 0);
     assert.ok(tool.description.length > 20, `description too short for ${tool.name}`);
     assert.ok(tool.fdlcGuardrail.length > 10, `fdlcGuardrail too short for ${tool.name}`);
-    assert.ok(tool.sourceNote.length > 10, `sourceNote too short for ${tool.name}`);
-    assert.match(tool.sourceNote, /https:\/\//, `sourceNote must contain a URL for ${tool.name}`);
+    assert.ok(tool.question.endsWith("?"), tool.name);
+    assertSources(tool.sources, tool.name);
   }
 });
 
@@ -75,11 +87,11 @@ test("verificationPractice has evidence artifacts, review-agent loop, and contes
   assert.ok(verificationPractice.coreNote.length > 0);
   assert.ok(verificationPractice.evidenceArtifacts.description.length > 20);
   assert.ok(verificationPractice.evidenceArtifacts.fdlcNote.length > 0);
-  assert.match(verificationPractice.evidenceArtifacts.source, /https:\/\//);
+  assertSources(verificationPractice.evidenceArtifacts.sources, "evidence artifacts");
   assert.ok(verificationPractice.reviewAgentLoop.description.length > 20);
   assert.ok(verificationPractice.reviewAgentLoop.fdlcNote.length > 0);
   assert.ok(verificationPractice.reviewAgentLoop.contestedPractice.length > 20, "must include contested practice note");
-  assert.match(verificationPractice.reviewAgentLoop.source, /https:\/\//);
+  assertSources(verificationPractice.reviewAgentLoop.sources, "review-agent loop");
 });
 
 test("rolloutTactics has at least eight tactics, each numbered and sourced", () => {
@@ -90,9 +102,7 @@ test("rolloutTactics has at least eight tactics, each numbered and sourced", () 
     numbers.add(tactic.number);
     assert.ok(tactic.name.length > 0);
     assert.ok(tactic.description.length > 20, `description too short for ${tactic.name}`);
-    if (tactic.sourceNote) {
-      assert.match(tactic.sourceNote, /https:\/\//, `sourceNote must contain a URL for ${tactic.name}`);
-    }
+    assertSources(tactic.sources ?? [], tactic.name);
   }
 });
 
@@ -103,9 +113,7 @@ test("factoryTaxonomyTerms has at least eight terms, each with a definition", ()
     assert.ok(!terms.has(entry.term), `duplicate term ${entry.term}`);
     terms.add(entry.term);
     assert.ok(entry.definition.length > 20, `definition too short for '${entry.term}'`);
-    if (entry.sourceNote) {
-      assert.match(entry.sourceNote, /https:\/\//, `sourceNote must contain a URL for '${entry.term}'`);
-    }
+    assertSources(entry.sources ?? [], entry.term);
   }
   const termNames = [...terms];
   assert.ok(termNames.some((t) => t.toLowerCase().includes("software factory")), "should include 'software factory' term");
@@ -120,7 +128,7 @@ test("publicNumbersNotes has cases with figures, lesson, source, and fdlcPrincip
     assert.ok(c.company.length > 0);
     assert.ok(c.figures.length >= 1, `${c.company} should have at least one figure`);
     assert.ok(c.lesson.length > 0);
-    assert.match(c.source, /https:\/\//, `${c.company} source must include a URL`);
+    assertSources(c.sources, c.company);
   }
   assert.ok(publicNumbersNotes.fdlcPrinciple.length > 0);
 });
@@ -141,8 +149,7 @@ test("factoryEngineeringDebate has counterpoint, support, and fdlcPosition", () 
   assert.ok(factoryEngineeringDebate.counterpoint.length > 20);
   assert.ok(factoryEngineeringDebate.support.length > 20);
   assert.ok(factoryEngineeringDebate.fdlcPosition.length > 20);
-  assert.match(factoryEngineeringDebate.counterpoint, /https:\/\//, "counterpoint must cite a URL");
-  assert.match(factoryEngineeringDebate.support, /https:\/\//, "support must cite a URL");
+  assertSources([factoryEngineeringDebate.counterpointSource, factoryEngineeringDebate.supportSource], "operator perspectives");
 });
 
 test("antiMetrics has good and bad lists plus a note", () => {
