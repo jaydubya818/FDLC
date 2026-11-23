@@ -32,7 +32,6 @@ export default function AboutPage() {
       <div className="two-jobs-about">
         <p><strong>{twoJobsFraming.headline}</strong> {twoJobsFraming.productEngineering.name}: {twoJobsFraming.productEngineering.definition} {twoJobsFraming.factoryEngineering.name}: {twoJobsFraming.factoryEngineering.definition}</p>
         <p>{twoJobsFraming.governanceNote}</p>
-        <p className="attribution-line">{twoJobsFraming.attribution.text} {twoJobsFraming.attribution.sources.map((s, i) => <span key={s.url}>{i > 0 && " · "}<a href={s.url} rel="noreferrer" target="_blank">{s.label} ↗</a></span>)}</p>
       </div>
       <p>The engineer builds working interfaces, runtime and recovery mechanisms, knowledge infrastructure, protected verification, governance and production feedback. Prompt writing and agent coordination are parts of this work; the integrated production system is the responsibility.</p>
       <div className="engineering-grid">{engineeringOwnership.map(([area, artifacts, handoff]) => <article key={area}><h3>{area}</h3><p><strong>Artifacts:</strong> {artifacts}</p><p><strong>Decision handoff:</strong> {handoff}</p></article>)}</div>

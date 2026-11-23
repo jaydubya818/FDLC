@@ -143,6 +143,33 @@ test("server-renders every public route with FDLC metadata and a heading", async
   }
 });
 
+test("public pages exclude withdrawn editorial material in text, links and metadata", async () => {
+  for (const route of new Set([...routes, "/factory-engineering"])) {
+    const response = await render(route);
+    assert.equal(response.status, 200, route);
+    assert.doesNotMatch(await response.text(), /zach|software-factory-as-code|aie-code-factory-engineering-keynote/i, route);
+  }
+});
+
+test("factory engineering connects the worked example, section bookmarks and labeled sources", async () => {
+  const response = await render("/factory-engineering");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
+  assert.ok(main);
+  assert.match(main, /<h1>Factory engineering<\/h1>/i);
+  assert.match(main, /Acme Payments SDK upgrade/);
+  assert.match(main, /href="\/in-5-minutes"/);
+  assert.match(main, /What the SDK upgrade must prove/);
+  const sections = ["two-jobs", "factory-stack", "verification", "measure-improve", "rollout", "taxonomy", "sources"];
+  for (const id of sections) assert.ok(main.includes(`href="#${id}"`), `missing section link for ${id}`);
+  for (const id of [...sections, "public-numbers", "debate"]) {
+    assert.equal(main.split(` id="${id}"`).length - 1, 1, `expected a unique destination for ${id}`);
+  }
+  assert.match(main, /href="https:\/\/www\.warp\.dev\/[^"]+">[^<]*Warp/i);
+  assert.doesNotMatch(main, />\s*https?:\/\/|framing is used widely/i);
+});
+
 test("benchmarks publishes the incoming measurement contract and mode-correct Guide links", async () => {
   const response = await render("/benchmarks");
   assert.equal(response.status, 200);
