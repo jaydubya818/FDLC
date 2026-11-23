@@ -77,6 +77,7 @@ export default function ArchitecturePage() {
         <article><span>Required to persist</span><strong>Intent · identity · authority · state · evidence · decisions · outcomes</strong><p>The operating record must survive every capability substitution.</p></article>
       </div>
       <p className="control-boundary-rule">Every Attempt returns attributable evidence. No producing system may promote its own result.</p>
+      <p><a href="/guide/03-build/13-control-plane-orchestrator-and-execution-plane#agent-platform-pillars-and-factory-authority">Map the platform pillars to factory decisions →</a></p>
     </section>
 
     <section id="factory-composition" className="section-block"><ReferenceDiagram name="composition" /></section>
@@ -142,6 +143,7 @@ export default function ArchitecturePage() {
     <section className="section-block" id="knowledge-infrastructure">
       <SectionHeader eyebrow="Organizational knowledge" title="Make validated decisions reusable." description="A source-code index and a larger context window do not establish authoritative organizational knowledge. Preserve ownership, provenance, applicability, freshness and revocation across sessions and repositories." />
       <ReferenceDiagram name="knowledge" />
+      <p>A curator can propose a correction. Independent checks and an authorized decision determine which knowledge reaches the next Attempt. <a href="/guide/03-build/19-data-knowledge-and-semantic-engineering#from-knowledge-discovery-to-governed-knowledge-curation">Inspect the correction record and quality checks →</a></p>
       <p><a href="/guide/03-build/19-data-knowledge-and-semantic-engineering#worked-example-the-payment-segment-exception">Trace a payment exception from incident to qualified rule →</a></p>
     </section>
     <section className="section-block" id="independent-verification">

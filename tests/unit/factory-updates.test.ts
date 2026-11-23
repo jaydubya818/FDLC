@@ -32,5 +32,9 @@ test("Factory Updates entries are complete, sourced, unique, and newest first", 
     assert.ok(touchpoints.has(update.touches), `${update.id} touches an unknown stage or capability`);
     assert.ok(update.whyItMatters.startsWith(`${update.touches}:`), `${update.id} why-it-matters should lead with its stage or capability`);
     assert.ok(update.tags.length > 0, update.id);
+    if (update.guideReading) {
+      assert.match(update.guideReading.href, /^\/guide\/[a-z0-9/-]+#[a-z0-9-]+$/, update.id);
+      assert.ok(update.guideReading.label.trim().length > 0, update.id);
+    }
   }
 });
