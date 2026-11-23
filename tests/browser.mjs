@@ -285,6 +285,9 @@ try {
     await page.keyboard.press("Enter");
     assert.equal((await keyboardDownloadPromise).suggestedFilename(), "test-repair-factory-definition.md");
     // Verify every reusable format, including the browser's denied-clipboard fallback.
+    const formats = page.locator(".export-format-picker");
+    assert.equal(await formats.getAttribute("open"), null);
+    await formats.locator("summary").click();
     const exported = {};
     for (const format of ["JSON", "YAML"]) {
       await page.getByRole("button", { name: format, exact: true }).click();
@@ -302,7 +305,12 @@ try {
     const fallback = page.getByRole("textbox", { name: "YAML artifact", exact: true });
     assert.ok(await fallback.isVisible());
     assert.ok(await fallback.evaluate(field => field === document.activeElement && field.selectionEnd === field.value.length));
+    await page.evaluate(() => { history.replaceState(null, "", location.pathname); window.scrollTo({ top: 0, behavior: "instant" }); });
     await page.reload();
+    await page.locator(".factory-result").waitFor();
+    assert.equal(await page.locator(".factory-result").evaluate(node => node === document.activeElement), false);
+    assert.ok(await page.evaluate(() => document.querySelector("main h1").getBoundingClientRect().top >= document.querySelector(".global-header").getBoundingClientRect().bottom));
+    assert.ok(await page.locator('#factory-builder a[href="/factory-skills"]').isVisible());
     report.flows.push({ name: "factory-builder-keyboard-only-complete-copy-download", width, result: "PASS" });
 
     await page.goto(`${origin}/maturity`);
@@ -383,7 +391,7 @@ try {
     report.flows.push({ name: "mission-control-delivery-and-operator-tabs", width, result: "PASS" });
 
     await page.goto(origin);
-    assert.match(await page.locator(".hero-problem").innerText(), /Trusted autonomous software delivery is not/);
+    assert.match(await page.locator(".statement-band").innerText(), /Trusted autonomous software delivery is not/);
     // First screen: exactly one primary and one secondary call to action.
     const heroActions = await page.locator(".hero-copy .hero-actions a").evaluateAll(nodes => nodes.map(node => [node.textContent?.trim(), node.getAttribute("href"), node.className]));
     assert.deepEqual(heroActions.map(([label, href]) => [label, href]), [["Experience FDLC in 5 Minutes", "/in-5-minutes"], ["Explore the Framework", "/framework"]]);
@@ -403,6 +411,8 @@ try {
     const statusBefore = await page.locator(".simulator-result").innerText();
     await page.getByRole("button", { name: "View next step →", exact: true }).click();
     assert.equal(await page.locator(".simulator-result").innerText(), statusBefore, "Viewing a step must not advance the run");
+    await page.locator(".inspector-run-action button").click();
+    assert.notEqual(await page.locator(".simulator-result").innerText(), statusBefore);
     assert.match(await page.locator(".experience-stage-governing").innerText(), /FDLC stage: (Intent|Planning|Execution|Evidence|Verification|Approval|Release|Outcomes|Learning)/i);
     await keyboardActivateButton("Reset");
     await keyboardActivateButton("Submit sample intent");

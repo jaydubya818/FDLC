@@ -200,7 +200,8 @@ test("homepage answers the category boundary and links to primary destinations",
   const response = await render("/");
   const html = await response.text();
   assert.match(html, /<h1 class="engineering-title">Factory Development Lifecycle \(FDLC\)<\/h1>/i);
-  assert.match(html, /<section class="hero-shell">[\s\S]*?systems of AI agents, tools and people that build, test and deliver software[\s\S]*?Code generation is becoming abundant\. Trusted autonomous software delivery is not\.[\s\S]*?<\/section>/i);
+  assert.match(html, /<section class="hero-shell">[\s\S]*?systems of AI agents, tools and people that build, test and deliver software[\s\S]*?<\/section>/i);
+  assert.match(html, /Code generation is becoming abundant\. Trusted autonomous software delivery is not\./);
   assert.match(html, /For engineering leaders and teams building reliable AI software delivery/i);
   assert.match(html, /SDLC.*Software Development Lifecycle.*software product.*FDLC.*Factory Development Lifecycle.*system that produces it/is);
   assert.match(html, /Verified delivery, not merely generated code/i);
@@ -213,7 +214,7 @@ test("homepage answers the category boundary and links to primary destinations",
   // One primary and one secondary call to action in the hero.
   const heroActions = html.match(/<div class="hero-actions">([\s\S]*?)<\/div>/)?.[1] ?? "";
   assert.deepEqual([...heroActions.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([^<]+)<\/a>/g)].map((match) => [match[1], match[2]]), [["/in-5-minutes", "Experience FDLC in 5 Minutes"], ["/framework", "Explore the Framework"]]);
-  assert.match(html, /FDLC defines the engineering discipline, not the technology stack/);
+  assert.match(html, /Use it with your own agents, models and tools/);
   assert.match(html, /href="https:\/\/github\.com\/jaydubya818\/FDLC"/);
   assert.doesNotMatch(html, /Explore the Learning Library \(Preview\)/i);
   assert.match(html, /Need help applying FDLC.*Start with one bounded factory line/is);

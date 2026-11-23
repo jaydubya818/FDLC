@@ -64,5 +64,5 @@ export const footerGroups = [
   ["Try", [["FDLC in 5 Minutes", "/in-5-minutes"], ["Factory Simulator", "/simulator"], ["Reference Lab", "/lab"]]],
   ["Build", [["Define a factory line", "/start"], ["Factory Skills", "/factory-skills"], ["Maturity assessment", "/maturity"], ["Specification (Proposed)", "/specification"], ["Benchmarks (Proposed)", "/benchmarks"]]],
   ["Implementations", [["Mission Control (reference)", "/mission-control"], ["AI-FDE (Preview)", "/deploy"], ["Enterprise (Proposed)", "/enterprise"]]],
-  ["Project", [["About", "/about"], ["Factory Updates", "/updates"], ["What's real today", "/framework#whats-real"], ["FDLC source", fdlcRepository], ["Guide source", guideRepository], ["Mission Control source", missionControlRepository]]],
+  ["Project", [["Guide search", "/guide/search"], ["About", "/about"], ["Factory Updates", "/updates"], ["What's real today", "/framework#whats-real"], ["FDLC source", fdlcRepository], ["Guide source", guideRepository], ["Mission Control source", missionControlRepository]]],
 ] as const;

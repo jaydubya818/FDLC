@@ -20,25 +20,16 @@ export default function Home() {
     <>
       <SiteHeader />
       <main id="main-content">
-        <a className="home-guide-banner" href="/guide/00-front-matter/00-how-to-read-this-guide">
-          <span>The AI Software Factory Guide: 44 chapters on designing, building and running a factory.</span>
-          <strong>Read the Guide <span aria-hidden="true">→</span></strong>
-        </a>
         <section className="hero-shell">
           <div className="hero-copy">
             <p className="eyebrow"><span>A framework for AI software factories</span><span>Open framework · v0.1</span></p>
             <h1 className="engineering-title">Factory Development Lifecycle (FDLC)</h1>
-            <p className="hero-lede">An open framework for engineering AI software factories—the systems of AI agents, tools and people that build, test and deliver software. FDLC defines how work is bounded, verified, approved and improved, so autonomous delivery can be trusted.</p>
+            <p className="hero-lede">An open framework for engineering AI software factories—the systems of AI agents, tools and people that build, test and deliver software. Use it to bound the work, verify the result, and decide who can approve release.</p>
             <div className="hero-actions">
               <Link className="button button-dark" href="/in-5-minutes">Experience FDLC in 5 Minutes</Link>
               <Link className="button button-light" href="/framework">Explore the Framework</Link>
             </div>
-            <p className="hero-audience">For engineering leaders and teams building reliable AI software delivery. Use your own agents, models and tools: FDLC defines the engineering discipline, not the technology stack.</p>
-            <div className="hero-category-contrast" aria-label="Difference between SDLC and FDLC" role="group">
-              <div><span>SDLC</span><p>The Software Development Lifecycle manages a <strong>software product.</strong></p></div>
-              <div><span>FDLC</span><p>The Factory Development Lifecycle manages the <strong>system that produces it.</strong></p></div>
-            </div>
-            <p className="hero-problem">Code generation is becoming abundant. Trusted autonomous software delivery is not.</p>
+            <p className="hero-audience">For engineering leaders and teams building reliable AI software delivery. Use it with your own agents, models and tools.</p>
           </div>
           <aside className="hero-model hero-value-model" aria-labelledby="hero-model-title">
             <div className="model-chrome"><span>How the framework works</span><span>01—04</span></div>
@@ -52,7 +43,7 @@ export default function Home() {
         </section>
 
         <section className="statement-band" aria-label="FDLC category statement">
-          <p>FDLC / Category promise</p><strong>{primaryPositioning}</strong><span>{evidencePositioning}</span>
+          <p>Code generation is becoming abundant. Trusted autonomous software delivery is not.</p><strong>{primaryPositioning}</strong><span>{evidencePositioning}</span>
         </section>
 
         <section className="content-section two-jobs-section" aria-labelledby="two-jobs-title">
@@ -60,6 +51,10 @@ export default function Home() {
             <h2 id="two-jobs-title">{twoJobsFraming.headline}</h2>
             <p>{twoJobsFraming.discipline}</p>
           </div>
+        <div className="hero-category-contrast" aria-label="Difference between SDLC and FDLC" role="group">
+          <div><span>SDLC</span><p>The Software Development Lifecycle manages a <strong>software product.</strong></p></div>
+          <div><span>FDLC</span><p>The Factory Development Lifecycle manages the <strong>system that produces it.</strong></p></div>
+        </div>
           <div className="two-jobs-grid">
             <article>
               <h3>{twoJobsFraming.productEngineering.name}</h3>
@@ -91,7 +86,7 @@ export default function Home() {
             <h2 id="home-guide-invite-title">Follow the complete guide.</h2>
             <p>Move from the factory overview to the chapters on design, agents, evidence, operations, and improvement.</p>
           </div>
-          <a className="button button-dark" href="/guide">Browse all chapters →</a>
+          <div className="guide-reading-actions"><a className="button button-dark" href="/guide">Browse all chapters →</a><a className="text-action" href="/guide/00-front-matter/00-how-to-read-this-guide">Read the Guide introduction →</a></div>
         </section>
 
         <section className="content-section adoption-example" id="worked-example">

@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-/* FDLC-served fallback faces for the shared --sans/--serif stacks (SIL OFL 1.1, files in public/fonts).
-   Apple devices keep Avenir Next and Iowan Old Style; browsers download a face only when it is needed. */
+/* Locally served FDLC text faces, licensed under SIL OFL 1.1. */
 @font-face { font-family: "FDLC Sans"; src: url("/fonts/nunito-sans-latin-wght-normal.woff2") format("woff2"); font-weight: 200 1000; font-style: normal; font-display: swap; }
 @font-face { font-family: "FDLC Serif"; src: url("/fonts/source-serif-4-latin-wght-normal.woff2") format("woff2"); font-weight: 200 900; font-style: normal; font-display: swap; }
 

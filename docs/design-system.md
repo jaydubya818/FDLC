@@ -6,8 +6,14 @@ FDLC imports the shared stylesheet directly from the root layout so it is an exp
 
 Use cream paper, deep green actions, editorial serif headings, sans-serif interface text, and monospace technical values. Shared widths are 1240px for content and 760px for reading; spacing uses 4/8/12/16/24/32px increments. Controls have 44px minimum targets and 4px corners; cards use 6px corners. Status words always carry meaning independently of color. Never equate qualification or synthetic evidence with live operation.
 
-Global navigation changes to a touch menu at 1100px in both apps. Desktop disclosure menus support arrows, Escape, and natural Tab/Shift+Tab exit. The Guide search palette remains a modal with its own focus containment and restoration. Reader search/theme controls sit below the common header so the header does not change between applications.
+The shared masthead uses 88px, 76px and 72px inner heights plus its border. Fragment targets use the shared offset. Both readers serve the licensed Nunito Sans and Source Serif 4 variable faces before platform fallbacks. Global navigation changes to a touch menu at 1160px in both apps. Desktop disclosure menus support arrows, Escape, and natural Tab/Shift+Tab exit. The Guide search palette remains a modal with its own focus containment and restoration. Reader search/theme controls sit below the common header so the header does not change between applications.
 
 Tables use sans-serif text, 14px body/13px header, consistent cell padding and local horizontal scrolling. Technical values wrap without truncation. Copy controls report success or failure without replacing the value. Reduced motion disables nonessential transitions.
 
 Production audit: 23 representative routes at 1440, 900, and 390px. Findings addressed include differing header geometry/breakpoints, trapped keyboard focus, tablet home overflow, a long Guide qualification label overflowing mobile, duplicate scroll-region names, tiny qualification IDs/status labels, and disconnected footer styles. Preserve existing product hierarchy and technical claims; qualify the exact FDLC/Guide release pair after merge.
+
+## Visual regression
+
+Run both applications at the supplied origins and use `npm run test:experience -- --site=<site-origin> --guide=<guide-origin> --output=<capture-directory>`. The check measures nine widths and saves twelve representative views at 1440, 768, and 390 CSS pixels. The Guide origin must serve the canonical `/guide` routes. Mobile and desktop fixtures use reduced motion, loaded fonts and isolated browser contexts.
+
+Use `--compare=tests/visual/macos-chrome.json.gz` with the macOS Chrome reference (158.0.8127.36, device scale 1). Set `CHROMIUM_PATH` to that Chrome executable. Pixel checks tolerate small rasterization differences and fail on substantial composition changes. Other engines can run geometry checks with `--engine=webkit` or `--engine=firefox`. Review the desktop, tablet and phone captures before replacing a reference. The interaction suites separately exercise menus, forms, downloads, diagrams and keyboard recovery.
