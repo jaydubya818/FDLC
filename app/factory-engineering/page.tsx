@@ -74,7 +74,7 @@ export default function FactoryEngineeringPage() {
 
         <section id="factory-stack" className={styles.section}>
           <h2>The factory stack</h2>
-          <p className={styles.intro}>Use these questions when designing a workflow. The seven areas adapt Warp’s factory stack. A team can implement several of them in the same tool.</p>
+          <p className={styles.intro}>Use these seven questions to review a workflow. A team can handle several responsibilities in the same tool.</p>
           <div className={styles.stack}>
             {factoryStackLayers.map((layer) => <details key={layer.name} className={styles.layer}>
               <summary><strong>{layer.name}</strong><span>{layer.question}</span><i className={styles.toggle} aria-hidden="true" /></summary>
@@ -98,7 +98,7 @@ export default function FactoryEngineeringPage() {
               <h3>Evidence to attach</h3><p>{verificationPractice.evidenceArtifacts.description} {verificationPractice.evidenceArtifacts.fdlcNote}</p>
               <SourceLinks sources={verificationPractice.evidenceArtifacts.sources} />
               <h3>Agent review and human approval</h3><p>{verificationPractice.reviewAgentLoop.description} {verificationPractice.reviewAgentLoop.fdlcNote}</p>
-              <p>{verificationPractice.reviewAgentLoop.contestedPractice}</p><SourceLinks sources={verificationPractice.reviewAgentLoop.sources} />
+              <SourceLinks sources={verificationPractice.reviewAgentLoop.sources} />
             </div>
           </details>
           <details className={styles.disclosure}>
@@ -141,14 +141,10 @@ export default function FactoryEngineeringPage() {
             <span>{tactic.phase}</span><div><h3>{tactic.name}</h3><p>{tactic.description}</p></div>
           </li>)}</ol>
           <details className={styles.disclosure}>
-            <summary>Team adoption checklist and rollout readings<i className={styles.toggle} aria-hidden="true" /></summary>
+            <summary>Team adoption checklist<i className={styles.toggle} aria-hidden="true" /></summary>
             <div className={styles.detailBody}><dl className={styles.referenceList}>{rolloutTactics.filter((tactic) => !tactic.phase).map((tactic) => <div key={tactic.name}>
-              <dt>{tactic.name}</dt><dd>{tactic.description}</dd>{tactic.sources && <dd><SourceLinks sources={tactic.sources} /></dd>}
+              <dt>{tactic.name}</dt><dd>{tactic.description}</dd>
             </div>)}</dl>
-              <SourceLinks sources={[
-                { label: "Zach Lloyd on selecting early tasks", url: "https://x.com/zachlloydtweets/status/2113042668993614069" },
-                { label: "Warp’s staged rollout account", url: "https://www.warp.dev/blog/adopting-the-software-factory-model-crawl-walk-run" },
-              ]} />
             </div>
           </details>
           <a className={styles.readMore} href="/guide/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape">Read the enterprise adoption chapter <span aria-hidden="true">→</span></a>
@@ -159,7 +155,7 @@ export default function FactoryEngineeringPage() {
           <details className={styles.disclosure}>
             <summary>Factory engineering terms<i className={styles.toggle} aria-hidden="true" /></summary>
             <div className={styles.detailBody}><dl className={styles.referenceList}>{factoryTaxonomyTerms.map((term) => <div key={term.term}>
-              <dt>{term.term}</dt><dd>{term.definition}</dd>{term.sources && <dd><SourceLinks sources={term.sources} /></dd>}
+              <dt>{term.term}</dt><dd>{term.definition}</dd>
             </div>)}</dl></div>
           </details>
           <details id="debate" className={styles.disclosure}>

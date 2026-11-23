@@ -14,7 +14,7 @@ changes to delivery workflows over model launch coverage or corporate news.
 
 | Source | What to follow |
 | --- | --- |
-| [Warp Learn](https://www.warp.dev/learn), [Warp docs](https://docs.warp.dev/factories/how-factories-work/), Zach Lloyd and Varoon Kodithala | Factory education, definitions as code, verification, scorers, feedback loops |
+| [Warp Learn](https://www.warp.dev/learn), [Warp docs](https://docs.warp.dev/factories/how-factories-work/), and Varoon Kodithala | Factory education, definitions as code, verification, scorers, feedback loops |
 | [Factory](https://factory.com/news/software-factory), Matan Grinberg and Eno Reyes | Droid harnesses, validation, model independence, organizational learning |
 | [OpenAI Codex releases](https://github.com/openai/codex/releases), official Codex engineering guidance | Harnesses, permissions, delegation, evals and operational reliability |
 | [Anthropic engineering](https://www.anthropic.com/engineering), [Claude Code](https://github.com/anthropics/claude-code), Boris Cherny | Context, skills, long-running agents, verification and harness simplification |
@@ -30,7 +30,7 @@ changes to delivery workflows over model launch coverage or corporate news.
 This is a representative watchlist, not a ranking or an assertion that every
 source publishes every day. Follow new credible builders when their work adds
 evidence relevant to FDLC. Social posts are leads and attributed perspectives,
-not proof of product availability, security, or performance.
+not proof of product availability, security, or performance. Keep the withdrawn keynote, its speaker’s personal posts, bylines and quotations out of the feed and public Guide. The rendered-page regression test enforces this editorial decision.
 
 ## Editorial contract
 

@@ -17,13 +17,7 @@ export type FactoryStackLayer = {
   readonly sources: readonly PracticeSource[];
 };
 
-/**
- * Seven-layer factory stack, adapted from Zach Lloyd's public posts and
- * Warp's blog, mapped to FDLC stages and capabilities.
- * Source: https://www.warp.dev/blog/the-factory-stack (Sep 5, 2026);
- *   https://x.com/zachlloydtweets/status/2121318753711583254 (Nov 13, 2026).
- * Principles: open, composable, defined in code.
- */
+/** Design questions and further reading for each part of a workflow. */
 export const factoryStackLayers: readonly FactoryStackLayer[] = [
   {
     number: "00",
@@ -32,7 +26,7 @@ export const factoryStackLayers: readonly FactoryStackLayer[] = [
     description: "Version the workflow, permissions and checks together. A change to those rules gets its own review.",
     fdlcMapping: "Record the factory revision with each work order so a verifier can reconstruct the run.",
     sources: [
-      { label: "Zach Lloyd, 'Terraform for agents' (Sep 30, 2026)", url: "https://www.warp.dev/blog/software-factory-as-code" },
+      { label: "Read the FDLC Specification", url: "/specification" },
     ],
   },
   {
@@ -42,7 +36,7 @@ export const factoryStackLayers: readonly FactoryStackLayer[] = [
     description: "Give workers approved skills and the context their task needs. Limit access and redact sensitive material before retaining traces.",
     fdlcMapping: "Record where evidence came from, who can see it and when it expires.",
     sources: [
-      { label: "Zach Lloyd, factory stack post (Nov 13, 2026)", url: "https://x.com/zachlloydtweets/status/2121318753711583254" },
+      { label: "Guide to data, knowledge and semantic engineering", url: "/guide/03-build/19-data-knowledge-and-semantic-engineering" },
     ],
   },
   {
@@ -52,7 +46,7 @@ export const factoryStackLayers: readonly FactoryStackLayer[] = [
     description: "Isolate the workspace and enforce limits on files, network access, identity and spend. Reuse prepared environments when the saved time justifies their cost.",
     fdlcMapping: "A worker still needs explicit permission for consequential actions inside a sandbox.",
     sources: [
-      { label: "Warp, 'Don't vibe code your software factory' (Nov 4, 2026)", url: "https://www.warp.dev/blog/build-production-software-factory" },
+      { label: "Execution environments and authority", url: "/guide/appendix/execution-boundaries-and-terminology" },
     ],
   },
   {
@@ -62,7 +56,7 @@ export const factoryStackLayers: readonly FactoryStackLayer[] = [
     description: "Compare candidate models on the team's own tasks. Put the routing decision in the reviewed configuration so the team can repeat the comparison.",
     fdlcMapping: "Record the model and harness alongside the candidate and its results.",
     sources: [
-      { label: "Zach Lloyd, factory stack (Sep 5, 2026)", url: "https://www.warp.dev/blog/the-factory-stack" },
+      { label: "Evaluate model choices against the workload", url: "/guide/04-prove/29-evaluation-engineering" },
     ],
   },
   {
@@ -72,7 +66,7 @@ export const factoryStackLayers: readonly FactoryStackLayer[] = [
     description: "Group recurring failures and propose a change to a skill, workflow or check. Replay comparable tasks to see whether it helps.",
     fdlcMapping: "A named owner reviews improvements before activating a new factory revision.",
     sources: [
-      { label: "Zach Lloyd, 'Measure and improve' thread (Nov 17, 2026)", url: "https://x.com/zachlloydtweets/status/2122706371905049006" },
+      { label: "Use production feedback to evaluate changes", url: "/guide/06-improve/39-production-feedback-review-and-the-agentic-merge-queue" },
     ],
   },
   {
@@ -82,7 +76,7 @@ export const factoryStackLayers: readonly FactoryStackLayer[] = [
     description: "Track assignments, checkpoints and evidence outside the conversation. Resume the same work order after an interruption and send unresolved decisions to its owner.",
     fdlcMapping: "Record which steps finished before retrying a tool or handing work to another agent.",
     sources: [
-      { label: "Zach Lloyd (Nov 16, 2026)", url: "https://x.com/zachlloydtweets/status/2122343954595340414" },
+      { label: "Guide to durable execution", url: "/guide/03-build/14-durable-execution" },
     ],
   },
   {
@@ -92,7 +86,7 @@ export const factoryStackLayers: readonly FactoryStackLayer[] = [
     description: "Accept a scoped request through the team's issue tracker, code host or chat. Return progress and the review decision to the same place.",
     fdlcMapping: "Preserve the requester's identity and the approval boundary across each handoff.",
     sources: [
-      { label: "Zach Lloyd, 'Tactics for rolling out software factories' (Oct 15, 2026)", url: "https://x.com/zachlloydtweets/status/2110808772058960367" },
+      { label: "Intake and authority in the FDLC framework", url: "/framework" },
     ],
   },
 ] as const;
@@ -108,13 +102,7 @@ export type MeasureImproveTool = {
   readonly sources: readonly PracticeSource[];
 };
 
-/**
- * Five measure-and-improve tools for factory engineers.
- * Source: Zach Lloyd (Nov 17, 2026): https://x.com/zachlloydtweets/status/2122706371905049006
- *   Ben Holmes, 'Becoming a factory engineer' (Nov 19, 2026): https://www.warp.dev/blog/factory-engineering-software-factories
- *   Warp, 'Using LLM-as-a-judge scoring' (Sep 18, 2026): https://www.warp.dev/blog/using-llm-as-a-judge-scoring-to-measure-your-software-factory
- *   Warp, factory benchmarks (Sep 3, 2026): https://www.warp.dev/blog/warp-factory-benchmarks
- */
+/** Measurement methods and the checks FDLC uses when applying them. */
 export const measureImproveTools: readonly MeasureImproveTool[] = [
   {
     number: "01",
@@ -144,7 +132,6 @@ export const measureImproveTools: readonly MeasureImproveTool[] = [
     fdlcGuardrail: "Hermetic replay: reset tracker state and all side-effects before replaying a task; naively replaying completed tasks breaks the benchmark. Report cost per verified outcome and verifier disagreement beside every result.",
     sources: [
       { label: "Warp, factory benchmarks (Sep 3, 2026)", url: "https://www.warp.dev/blog/warp-factory-benchmarks" },
-      { label: "Warp, 'Don't vibe code your factory' (Nov 4, 2026)", url: "https://www.warp.dev/blog/build-production-software-factory" },
     ],
   },
   {
@@ -165,7 +152,7 @@ export const measureImproveTools: readonly MeasureImproveTool[] = [
     description: "Treat factory configurations as hypotheses. Branch the factory config, route a declared cohort of live work to the branch, and compare scorer results and cost on matching task types. Close the branch when the evidence is in.",
     fdlcGuardrail: "Declare the cohort, the denominator, and the observation window before you start. Report both legs together; a quality improvement that triples cost is a tradeoff to decide, not a win.",
     sources: [
-      { label: "Zach Lloyd (Nov 17, 2026)", url: "https://x.com/zachlloydtweets/status/2122706371905049006" },
+      { label: "Guide to evaluation engineering", url: "/guide/04-prove/29-evaluation-engineering" },
     ],
   },
 ] as const;
@@ -226,17 +213,14 @@ export const verificationPractice = {
     description: "Attach the smallest artifact that demonstrates the intended behavior. A contract-test result can establish an API response. A short recording can show a change a user can see.",
     fdlcNote: "Record the tested revision, environment and result together so the reviewer can identify exactly what passed.",
     sources: [
-      { label: "Warp (Oct 23, 2026)", url: "https://x.com/zachlloydtweets/status/2113655321189359831" },
       { label: "Warp, 'Addressing the code review bottleneck' (Nov 5, 2026)", url: "https://www.warp.dev/blog/agent-code-review-bottleneck" },
     ],
   },
   reviewAgentLoop: {
     description: "A reviewer can return a specific failing check to the producer. Keep the evidence from both attempts and escalate a disagreement to the owner.",
     fdlcNote: "An independent review supplies evidence. The named owner decides whether to accept the change.",
-    contestedPractice: "Warp describes some workflows where an agent authors the pull request and a second engineer’s review is optional. FDLC asks teams to name the scope and the accountable approver before trying that policy.",
     sources: [
-      { label: "Zach Lloyd (Nov 12, 2026)", url: "https://x.com/zachlloydtweets/status/2121000139410321774" },
-      { label: "Zach Lloyd (Oct 22, 2026)", url: "https://x.com/zachlloydtweets/status/2113284357918224422" },
+      { label: "FDLC testing strategy for agentic changes", url: "/guide/04-prove/28-testing-strategy-for-agentic-change" },
     ],
   },
 } as const;
@@ -248,99 +232,41 @@ export type RolloutTactic = {
   readonly number: string;
   readonly name: string;
   readonly description: string;
-  readonly sources?: readonly PracticeSource[];
 };
 
-/**
- * Adoption tactics for rolling out software factories.
- * Source: Zach Lloyd, 'Tactics for rolling out software factories' (Oct 15, 2026):
- *   https://x.com/zachlloydtweets/status/2110808772058960367
- *   https://www.warp.dev/blog/software-factory-adoption-challenges (Nov 16, 2026)
- */
+/** Steps for qualifying one workflow before extending its scope. */
 export const rolloutTactics: readonly RolloutTactic[] = [
   {
-    number: "01",
-    name: "The goal is not full automation",
-    description: "The goal is quality software with customer impact, measured. Factories that run invisibly without shared ownership risk attrition and produce a 'dark factory' that engineers don't trust or understand.",
-    sources: [
-      { label: "Zach Lloyd (Oct 15, 2026)", url: "https://x.com/zachlloydtweets/status/2110808772058960367" },
-    ],
-  },
-  {
-    number: "02",
-    name: "Automate a low-risk chore",
-    phase: "Start",
+    number: "01", name: "Automate a low-risk chore", phase: "Start",
     description: "Start with crash triage, release notes or a documentation correction. Ask a maintainer to review the first few results and record what they had to fix.",
-    sources: [
-      { label: "Zach Lloyd (Oct 21, 2026)", url: "https://x.com/zachlloydtweets/status/2113042668993614069" },
-      { label: "Warp, 'Crawl, walk, run' (Sep 15, 2026)", url: "https://www.warp.dev/blog/adopting-the-software-factory-model-crawl-walk-run" },
-    ],
   },
   {
-    number: "03",
-    name: "Prove one complete workflow",
-    phase: "Prove",
+    number: "02", name: "Prove one complete workflow", phase: "Prove",
     description: "Run one change through a documentation site or an isolated service. Exercise the verifier, the approval handoff and the recovery procedure together.",
-    sources: [
-      { label: "Warp, 'Crawl, walk, run' (Sep 15, 2026)", url: "https://www.warp.dev/blog/adopting-the-software-factory-model-crawl-walk-run" },
-    ],
   },
   {
-    number: "04",
-    name: "Extend the proven boundary",
-    phase: "Expand",
+    number: "03", name: "Extend the proven boundary", phase: "Expand",
     description: "Add repositories or risk classes once the team can recover failed runs. Watch review queues, environment setup time, cost and escalation delays as the workload grows.",
-    sources: [
-      { label: "Warp, 'Crawl, walk, run' (Sep 15, 2026)", url: "https://www.warp.dev/blog/adopting-the-software-factory-model-crawl-walk-run" },
-    ],
   },
   {
-    number: "05",
-    name: "Meet engineers in the tools they already use",
-    description: "Make work accessible via Slack, Teams, GitHub, Linear, and Jira. Accept work at any lifecycle stage: a ticket, a spec, or a local PR via a factory MCP. Do not build a new factory web portal as the primary interface; it creates a destination engineers must remember to visit.",
-    sources: [
-      { label: "Zach Lloyd (Oct 15, 2026)", url: "https://x.com/zachlloydtweets/status/2110808772058960367" },
-    ],
+    number: "04", name: "Name the release owner",
+    description: "Record who can accept the candidate, stop the workflow and approve a restart after recovery.",
   },
   {
-    number: "06",
-    name: "Position the factory as infrastructure, not a product",
-    description: "Everyone on the team does factory engineering: they can debug it, improve it, and propose changes. Factory work counts in feedback and performance reviews. The factory is shared infrastructure, not a product someone else owns.",
-    sources: [
-      { label: "Zach Lloyd (Oct 15, 2026)", url: "https://x.com/zachlloydtweets/status/2110808772058960367" },
-    ],
+    number: "05", name: "Use the team’s normal intake",
+    description: "Send requests through the issue tracker or review queue the team already uses. Return evidence and the final decision to the same request.",
   },
   {
-    number: "07",
-    name: "Encourage, don't require; celebrate shipped work, not tokens",
-    description: "Token spend, lines of code, and agent counts are costs, not value. The right signals are shipped outcomes, cycle time, and adoption (the percentage of merged PRs that flowed through the factory). Token leaderboards 'can make us all feel like cogs in a machine.'",
-    sources: [
-      { label: "Zach Lloyd (Oct 22, 2026)", url: "https://x.com/zachlloydtweets/status/2113405050903237103" },
-    ],
+    number: "06", name: "Agree on a baseline",
+    description: "Collect the human review time, accepted changes and escaped defects for a comparable group of recent changes.",
   },
   {
-    number: "08",
-    name: "Metric order: adoption first, then efficiency",
-    description: "Track in this order: adoption percentage (what fraction of merged PRs flowed through the factory) → throughput → cycle time → cost per PR → scorer metrics. Efficiency numbers without adoption context are ungrounded.",
-    sources: [
-      { label: "Zach Lloyd (Oct 15, 2026)", url: "https://x.com/zachlloydtweets/status/2110808772058960367" },
-    ],
+    number: "07", name: "Rehearse recovery",
+    description: "Interrupt a trial run. Verify that another operator can find the last confirmed state and resume the same request safely.",
   },
   {
-    number: "09",
-    name: "Working in public: benefits and costs",
-    description: "Shared factory sessions let teammates add context, pick up work from any device, and build a searchable history. The costs are real too: working in public changes how effort feels, and token-spend visibility can expose individuals. Acknowledge both when introducing the shift.",
-    sources: [
-      { label: "Zach Lloyd, 'Adapting for a world of software factories' (Sep 29, 2026)", url: "https://www.warp.dev/blog/adapting-for-a-world-of-software-factories" },
-    ],
-  },
-  {
-    number: "10",
-    name: "Reframe: design the factory, not work the line",
-    description: "The objection 'my personal productivity depends on my local setup' is real and reasonable. Meet it by framing the shift as moving up an abstraction layer—from individual agent cockpit to team-owned factory infrastructure—not as giving up tools that work. The transition has a short-term step back.",
-    sources: [
-      { label: "Zach Lloyd, 'Overcoming challenges in software factory adoption' (Nov 16, 2026)", url: "https://www.warp.dev/blog/software-factory-adoption-challenges" },
-    ],
+    number: "08", name: "Review before expanding",
+    description: "Inspect failures and cost alongside successful changes. Have the release owner record which permissions or workload classes the team can add next.",
   },
 ] as const;
 
@@ -349,87 +275,41 @@ export const rolloutTactics: readonly RolloutTactic[] = [
 export type TaxonomyTerm = {
   readonly term: string;
   readonly definition: string;
-  readonly sources?: readonly PracticeSource[];
 };
 
-/**
- * Factory engineering taxonomy: the ladder from coding agent to software factory,
- * plus terms that have entered 2026 practice.
- * Primary source: Zach Lloyd, coding-agent glossary (Nov 6, 2026):
- *   https://x.com/zachlloydtweets/status/2118725953966715217
- *   https://x.com/zachlloydtweets/status/2120245800924262816 (Nov 10, 2026)
- */
+/** Working definitions used on this page. */
 export const factoryTaxonomyTerms: readonly TaxonomyTerm[] = [
   {
     term: "Coding agent",
-    definition: "An AI agent that takes a coding task and produces a code change. Runs locally or in the cloud; the base unit of automated coding work.",
-    sources: [
-      { label: "Zach Lloyd, glossary (Nov 6, 2026)", url: "https://x.com/zachlloydtweets/status/2118725953966715217" },
-    ],
+    definition: "A worker that can read repository context, use tools and propose a code change within its assigned permissions.",
   },
   {
-    term: "Cloud coding agent automation",
-    definition: "A coding agent that runs headlessly in the cloud, triggered by an event or schedule, without requiring a human to be present. The step above interactive use.",
-    sources: [
-      { label: "Zach Lloyd, glossary (Nov 6, 2026)", url: "https://x.com/zachlloydtweets/status/2118725953966715217" },
-    ],
+    term: "Cloud coding agent",
+    definition: "A coding worker that runs in a hosted environment. Its work order identifies the repository, revision, permissions and expected result.",
   },
   {
     term: "Software factory",
-    definition: "A repeatable system that takes scoped changes from request through verification. Zach Lloyd describes headless cloud agents, versioned workflows and measurement. FDLC also specifies who owns the evidence, approval and release.",
-    sources: [
-      { label: "Zach Lloyd (Nov 12, 2026)", url: "https://x.com/zachlloydtweets/status/2121015195216785887" },
-      { label: "Zach Lloyd, glossary (Nov 6, 2026)", url: "https://x.com/zachlloydtweets/status/2118725953966715217" },
-    ],
+    definition: "A system of people, tools and agents that takes scoped software changes from request through verification and release.",
   },
   {
-    term: "What a software factory is not",
-    definition: "Per Zach Lloyd (Nov 10, 2026): (1) a loose collection of automations around cloud agents; (2) a team of AI Engineers that developers manage interactively; (3) a set of skills and MCPs that individual engineers all adopt independently across a team; (4) a personal agent swarm.",
-    sources: [
-      { label: "Zach Lloyd (Nov 10, 2026)", url: "https://x.com/zachlloydtweets/status/2120245800924262816" },
-    ],
+    term: "Factory Definition",
+    definition: "The versioned description of what a factory may produce, the capabilities it needs and the conditions for accepting its work.",
   },
   {
     term: "Human touches per PR",
-    definition: "The number of times a human intervenes per pull request: approval, steering, correction, or escalation. A factory efficiency signal: over time, you want to drive this down. Distinct from approval authority—a named human still holds approval even when touches are low.",
-    sources: [
-      { label: "Zach Lloyd (Sep 30, 2026)", url: "https://x.com/zachlloydtweets/status/2105296615783436436" },
-    ],
+    definition: "The number of human interventions in a pull request. Record the reason and time spent so the team can distinguish planned review from unexpected rescue.",
   },
   {
-    term: "Factory leaderboard",
-    definition: "A view of factory performance ranked by shipped work and cost efficiency, not by token spend or PR volume. The leaderboard should champion real outcomes; token leaderboards misalign incentives.",
-    sources: [
-      { label: "Zach Lloyd (Oct 22, 2026)", url: "https://x.com/zachlloydtweets/status/2113405050903237103" },
-    ],
+    term: "Verified outcome",
+    definition: "A result tied to a specific candidate and evidence showing whether it met the agreed acceptance criteria.",
   },
   {
     term: "Hermetic replay",
-    definition: "Re-running a past task in a fully reset environment—tracker state, side-effects, and all—so the benchmark result reflects the configuration change, not residual state from the first run. Required for valid replay benchmarks.",
-    sources: [
-      { label: "Warp (Nov 4, 2026)", url: "https://www.warp.dev/blog/build-production-software-factory" },
-    ],
+    definition: "Re-running a task with its starting revision, inputs and external state restored so that configurations can be compared on the same work.",
   },
   {
-    term: "Factory champions",
-    definition: "A small team that tunes and owns factory automations before wide rollout. Champions have permission to experiment, break things safely, and report back; they lower the risk that a broad rollout surfaces poorly calibrated automations.",
-    sources: [
-      { label: "Zach Lloyd (Oct 15, 2026)", url: "https://x.com/zachlloydtweets/status/2110808772058960367" },
-    ],
-  },
-  {
-    term: "Gardening / outer loop",
-    definition: "The supervisory practice of watching what the factory produces, pruning bad patterns, and proposing improvements. Ben Holmes credits @poteto with the 'gardening' framing; the outer loop is factory engineering, while the inner loop is product engineering.",
-    sources: [
-      { label: "Ben Holmes (Oct 6, 2026)", url: "https://x.com/BHolmesDev/status/2107588784275816461" },
-    ],
-  },
-  {
-    term: "Multi-player interactive agents",
-    definition: "A stepping stone between individual local agent use and a full factory: individuals still prompt directly, but in shared tools (Slack, GitHub) so teammates can add context and the conversation history is searchable by the whole team.",
-    sources: [
-      { label: "Zach Lloyd (Sep 22, 2026)", url: "https://x.com/zachlloydtweets/status/2102520507883012589" },
-    ],
+    term: "Release owner",
+    definition: "The person with delegated authority to accept a candidate for release, request more evidence or stop the change.",
   },
 ] as const;
 
@@ -487,17 +367,12 @@ export const factoryEngineeringDebate = {
 // ─── Sources ─────────────────────────────────────────────────────────────────
 
 export const factoryEngineeringPageSources = [
+  { label: "How Warp Factories work", url: "https://docs.warp.dev/factories/how-factories-work/" },
   { label: "Ben Holmes, 'Becoming a factory engineer' (Nov 19, 2026)", url: "https://www.warp.dev/blog/factory-engineering-software-factories" },
-  { label: "Zach Lloyd, AI Engineer Code Summit keynote (Nov 12, 2026)", url: "https://ai.engineer/code/2026/talks/zach-lloyd" },
-  { label: "Zach Lloyd, 'Overcoming challenges in software factory adoption' (Nov 16, 2026)", url: "https://www.warp.dev/blog/software-factory-adoption-challenges" },
-  { label: "Warp, 'Don't vibe code your software factory' (Nov 4, 2026)", url: "https://www.warp.dev/blog/build-production-software-factory" },
   { label: "Warp, 'Addressing the code review bottleneck' (Nov 5, 2026)", url: "https://www.warp.dev/blog/agent-code-review-bottleneck" },
-  { label: "Warp, 'The factory stack' (Sep 5, 2026)", url: "https://www.warp.dev/blog/the-factory-stack" },
-  { label: "Warp, 'Terraform for agents: how we define our software factory in code' (Sep 30, 2026)", url: "https://www.warp.dev/blog/software-factory-as-code" },
   { label: "Warp, 'Using LLM-as-a-judge scoring' (Sep 18, 2026)", url: "https://www.warp.dev/blog/using-llm-as-a-judge-scoring-to-measure-your-software-factory" },
   { label: "Warp, 'Adopting the software factory model: crawl, walk, run' (Sep 15, 2026)", url: "https://www.warp.dev/blog/adopting-the-software-factory-model-crawl-walk-run" },
   { label: "Warp factory benchmarks (Sep 3, 2026)", url: "https://www.warp.dev/blog/warp-factory-benchmarks" },
-  { label: "Warp, 'Adapting for a world of software factories' (Sep 29, 2026)", url: "https://www.warp.dev/blog/adapting-for-a-world-of-software-factories" },
   { label: "Uber Engineering, 'Running a Software Factory Efficiently at Uber Scale' (Aug 27, 2026)", url: "https://www.uber.com/us/en/blog/efficient-software-factory/" },
   { label: "Linux Foundation Research, Enterprise Transitions to the Agentic Era (2026)", url: "https://www.linuxfoundation.org/research/enterprise-transitions-to-agentic-2026" },
 ] as const;

@@ -1,14 +1,9 @@
-/**
- * Anti-metrics: signals that measure activity, not value.
- * Source: Zach Lloyd (Oct 22, 2026): https://x.com/zachlloydtweets/status/2113405050903237103
- */
+/** Signals used alongside the FDLC measurement contract. */
 export const antiMetrics = {
   headline: "Don't celebrate the wrong signals.",
   bad: ["Lines of code written", "Tokens used", "Agents running", "PRs opened", "Token leaderboard rank"],
   good: ["Cost per verified outcome", "Cycle time from intent to validated production outcome", "Human touches per accepted outcome", "Adoption percentage (share of merged PRs through the factory)", "Escaped consequential defects"],
-  note: "A factory leaderboard should take cost into account and champion shipped work, not token spend.",
-  openQuestion: "Zach Lloyd (Nov 17, 2026) notes: 'we need a better productivity metric than PRs merged.' FDLC's answer is the verified outcome: a production-ready candidate with an attributable evidence trail.",
-  source: "https://x.com/zachlloydtweets/status/2113405050903237103 · https://x.com/zachlloydtweets/status/2122772833772462472",
+  note: "For each accepted change, record review time, total cost and any defects that appeared after release.",
 } as const;
 
 /**
@@ -18,7 +13,6 @@ export const antiMetrics = {
 export const publicNumbersCaution = {
   headline: "Reading public factory numbers",
   instruction: "Before citing a public figure, check: what was the cohort, the window, and the denominator? Several widely-cited figures count different things.",
-  warpAdversarialReview: "Warp's adversarial-review benchmark (Nov 6, 2026): +140% cost for +7.5% quality improvement on its task set, later reported as '2–3x cost' for a quality increase on a different run. Source: https://x.com/zachlloydtweets/status/2118519684387512450 · https://x.com/zachlloydtweets/status/2120621519487586629",
   warpOpenWeights: "Warp reports that for some task types, open-weights models are more expensive than frontier equivalents once total cost is counted. Source: https://x.com/warpdotdev/status/2115849706131661029 (Oct 29, 2026)",
   uberCounting: "Uber's own engineering article reports more than 70% of PRs attributed to local or cloud agents, while other coverage cites about 11%. Check attribution rules, cohort, and time window before comparing them; the percentages alone do not establish why they differ. Sources: https://www.uber.com/us/en/blog/efficient-software-factory/ · https://software-factories.port.io/companies/uber",
   fdlcPrinciple: "FDLC's 'publish the denominator' principle applies to external figures as much as your own. Report cohort, window, what counts, and what costs are included.",

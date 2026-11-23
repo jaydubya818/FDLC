@@ -143,6 +143,14 @@ test("server-renders every public route with FDLC metadata and a heading", async
   }
 });
 
+test("public pages exclude withdrawn editorial material in text, links and metadata", async () => {
+  for (const route of new Set([...routes, "/factory-engineering"])) {
+    const response = await render(route);
+    assert.equal(response.status, 200, route);
+    assert.doesNotMatch(await response.text(), /zach|software-factory-as-code|aie-code-factory-engineering-keynote/i, route);
+  }
+});
+
 test("factory engineering connects the worked example, section bookmarks and labeled sources", async () => {
   const response = await render("/factory-engineering");
   assert.equal(response.status, 200);

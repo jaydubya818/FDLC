@@ -219,17 +219,6 @@ export const factoryUpdates: readonly FactoryUpdate[] = [
     tags: ["evaluation design", "graders", "evidence quality"],
   },
   {
-    id: "aie-code-factory-engineering-keynote",
-    date: "2026-11-12",
-    title: "Zach Lloyd's AI Engineer keynote connects factory definitions, evaluations, and improvement",
-    source: "AI Engineer Code Summit",
-    url: "https://ai.engineer/code/2026/talks/zach-lloyd",
-    summary: "Lloyd describes a code-defined delivery loop with recorded runs, interchangeable agents and models, online scorers, and replay benchmarks on an organization's own tasks. The conference's dated reading edition distinguishes the talk's operating model from simply moving local agents to the cloud.",
-    whyItMatters: "Evals: compare factory configurations on representative work with the same acceptance criteria. Version the setup and connect each proposed improvement to the evidence that supports it.",
-    touches: "Evals",
-    tags: ["factory engineering", "benchmarks", "evaluations"],
-  },
-  {
     id: "cursor-cli-context-rules-reliability",
     date: "2026-11-12",
     title: "Cursor fixes silently dropped file rules and makes agent questions explain their context",

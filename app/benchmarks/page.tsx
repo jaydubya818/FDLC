@@ -30,7 +30,7 @@ export default function BenchmarksPage() {
           </li>
         ))}
       </ol>
-      <p>Source: Zach Lloyd (Nov 17, 2026): <a href="https://x.com/zachlloydtweets/status/2122706371905049006" rel="noreferrer" target="_blank">https://x.com/zachlloydtweets/status/2122706371905049006 ↗</a> · Ben Holmes, &ldquo;Becoming a factory engineer&rdquo; (Nov 19, 2026): <a href="https://www.warp.dev/blog/factory-engineering-software-factories" rel="noreferrer" target="_blank">warp.dev/blog/factory-engineering-software-factories ↗</a></p>
+      <p><a className="text-action" href="https://www.warp.dev/blog/factory-engineering-software-factories">Ben Holmes on measuring factory performance ↗</a></p>
     </section>
 
     <section className="section-block do-dont-grid" id="anti-metrics">
@@ -42,16 +42,16 @@ export default function BenchmarksPage() {
         <span>{antiMetrics.headline}</span>
         <ul>{antiMetrics.bad.map((m) => <li key={m}>{m}</li>)}</ul>
         <p>{antiMetrics.note}</p>
-        <p>{antiMetrics.openQuestion}</p>
+
       </article>
     </section>
 
     <section className="section-block reading-numbers-box" id="reading-public-numbers">
       <SectionHeader eyebrow="Reading public factory numbers" title={publicNumbersCaution.headline} description={publicNumbersCaution.instruction} />
       <div className="metric-grid is-full">
-        <article><span>01</span><h3>Warp adversarial review</h3><p>{publicNumbersCaution.warpAdversarialReview}</p></article>
-        <article><span>02</span><h3>Warp open-weights caution</h3><p>{publicNumbersCaution.warpOpenWeights}</p></article>
-        <article><span>03</span><h3>Uber PR counting</h3><p>{publicNumbersCaution.uberCounting}</p></article>
+
+        <article><span>01</span><h3>Warp open-weights caution</h3><p>{publicNumbersCaution.warpOpenWeights}</p></article>
+        <article><span>02</span><h3>Uber PR counting</h3><p>{publicNumbersCaution.uberCounting}</p></article>
       </div>
       <p>{publicNumbersCaution.fdlcPrinciple}</p>
       <p><Link href="/factory-engineering#public-numbers">More examples on the Factory Engineering page →</Link></p>
