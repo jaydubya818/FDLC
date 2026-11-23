@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 /* Locally served FDLC text faces, licensed under SIL OFL 1.1. */
-@font-face { font-family: "FDLC Sans"; src: url("/fonts/nunito-sans-latin-wght-normal.woff2") format("woff2"); font-weight: 200 1000; font-style: normal; font-display: swap; }
-@font-face { font-family: "FDLC Serif"; src: url("/fonts/source-serif-4-latin-wght-normal.woff2") format("woff2"); font-weight: 200 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "FDLC Sans"; src: url("/fonts/nunito-sans-latin-wght-normal.woff2") format("woff2"); font-weight: 200 1000; font-style: normal; font-display: optional; }
+@font-face { font-family: "FDLC Serif"; src: url("/fonts/source-serif-4-latin-wght-normal.woff2") format("woff2"); font-weight: 200 900; font-style: normal; font-display: optional; }
 
 * { box-sizing: border-box; }
 :root { --section-space: clamp(56px, 5vw, 80px); }
