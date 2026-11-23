@@ -33,6 +33,7 @@ export default function UpdatesPage() {
             <h3><a href={update.url} rel="noreferrer" target="_blank">{update.title} <span aria-hidden="true">↗</span><span className="visually-hidden"> (opens in a new tab)</span></a></h3>
             <p>{update.summary}</p>
             <p className="updates-why"><strong>Why it matters</strong> {update.whyItMatters}</p>
+            {update.guideReading && <p><a className="text-action" href={update.guideReading.href}>{update.guideReading.label} →</a></p>}
             <ul aria-label="Tags">{update.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul>
           </article>
         </li>)}

@@ -27,11 +27,38 @@ export type FactoryUpdate = {
   /** The FDLC stage or capability the change bears on most. */
   touches: FdlcStage | FdlcCapability;
   tags: readonly string[];
+  guideReading?: { href: string; label: string };
 };
 
-export const factoryUpdatesReviewed = "2026-11-22";
+export const factoryUpdatesReviewed = "2026-11-23";
 
 export const factoryUpdates: readonly FactoryUpdate[] = [
+  {
+    id: "chase-agent-platform-pillars",
+    date: "2026-11-23",
+    kind: "Perspective",
+    title: "Harrison Chase identifies runtime, observability/evals, and governance as three agent-platform pillars",
+    source: "Harrison Chase",
+    url: "https://x.com/hwchase17/status/2124654748104302930",
+    summary: "Responding to Suh, Chase distinguishes intended behavior from what agents actually do and proposes model and tool gateways to constrain identity, tool use and spend. His reply appeared at 00:02 UTC on November 23, or 6:02 p.m. US Central on November 22.",
+    whyItMatters: "Observability: use traces to diagnose behavior, protected evaluations to compare versions and independent verification to check the exact candidate. Approval and release remain separate decisions.",
+    touches: "Observability",
+    tags: ["evaluations", "governance", "tool gateway", "agent platform", "continuous improvement"],
+    guideReading: { href: "/guide/03-build/13-control-plane-orchestrator-and-execution-plane#agent-platform-pillars-and-factory-authority", label: "See who owns execution, verification and release" },
+  },
+  {
+    id: "suh-agent-platform-2027",
+    date: "2026-11-22",
+    kind: "Perspective",
+    title: "John Suh outlines a 2027 agent-platform vision centered on isolated actors and durable execution",
+    source: "John Suh",
+    url: "https://x.com/john_ssuh/status/2124336124172935336",
+    summary: "Suh proposes agent instances with independent lifecycles, local and remote computers, shared artifacts, durable workflows and event listeners. He separates user conversations from internal sessions and predicts that users will customize task-specific applications.",
+    whyItMatters: "Runtime: define identity, isolation, recovery and artifact ownership before running concurrent agents. The proposed operating-system model is a forecast. Correctness and release still need evidence and authority.",
+    touches: "Runtime",
+    tags: ["agent runtime", "actor model", "sandboxes", "workflows", "human control", "policy"],
+    guideReading: { href: "/guide/06-improve/44-where-this-is-going#agent-platforms-as-configurable-application-infrastructure", label: "Explore how to test the platform hypothesis" },
+  },
   {
     id: "warp-learn-factory-engineering-course",
     date: "2026-11-22",
@@ -44,6 +71,19 @@ export const factoryUpdates: readonly FactoryUpdate[] = [
     whyItMatters: "Learning: teach one complete delivery loop and distinguish available lessons from planned material. Warp is one implementation of that loop; FDLC's operating principles should remain usable with other tools.",
     touches: "Learning",
     tags: ["factory engineering", "education", "feedback loop"],
+  },
+  {
+    id: "langchain-governed-knowledge-factory",
+    date: "2026-11-21",
+    kind: "Resource",
+    title: "LangChain describes a knowledge factory for maintaining reusable organizational context",
+    source: "LangChain",
+    url: "https://www.langchain.com/blog/knowledge-factory",
+    summary: "Harrison Chase describes how task agents flag missing or stale knowledge and a dedicated curator maintains skills, domain definitions and guidance for finding current data. The curator draws on source material, authorized traces and corrections.",
+    whyItMatters: "Context: treat each correction as a proposal. Check the source and allowed scope, measure regressions, and approve an immutable revision before including it in a later Attempt.",
+    touches: "Context",
+    tags: ["knowledge engineering", "skills", "context", "learning", "provenance"],
+    guideReading: { href: "/guide/03-build/19-data-knowledge-and-semantic-engineering#from-knowledge-discovery-to-governed-knowledge-curation", label: "Follow a governed knowledge correction" },
   },
   {
     id: "kiro-crew-conductor-ledger-evidence",
