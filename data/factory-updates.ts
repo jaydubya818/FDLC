@@ -30,9 +30,53 @@ export type FactoryUpdate = {
   guideReading?: { href: string; label: string };
 };
 
-export const factoryUpdatesReviewed = "2026-11-23";
+export const factoryUpdatesReviewed = "2026-11-24";
 
 export const factoryUpdates: readonly FactoryUpdate[] = [
+  {
+    id: "codex-0172-resume-permissions",
+    date: "2026-11-24",
+    title: "Codex restores the saved workspace and permissions when a job resumes",
+    source: "OpenAI",
+    url: "https://github.com/openai/codex/releases/tag/rust-v0.172.0",
+    summary: "Codex 0.172.0 resumes a command-line job with its saved sandbox permissions, working directory and workspace roots by default. The operator can still override those settings explicitly.",
+    whyItMatters: "Policy: include a restart in permission tests. An attempt saved with read-only access should resume with the same file boundaries, even on a worker whose default permits writes.",
+    touches: "Policy",
+    tags: ["session recovery","sandbox permissions","workspace roots"],
+  },
+  {
+    id: "factory-droid-pinned-model-unavailable",
+    date: "2026-11-23",
+    title: "Droid stops a delegated task when its pinned model is unavailable",
+    source: "Factory",
+    url: "https://docs.factory.com/changelog/release-notes#v1.18.0",
+    summary: "Factory’s 1.18.0 release reports an error when a subagent lacks access to its configured model. Earlier versions silently substituted the parent session’s model.",
+    whyItMatters: "Models: record the model that actually ran each delegated task. If a replacement is allowed, make it an explicit routing decision so reviewers can tell which configuration produced the evidence.",
+    touches: "Models",
+    tags: ["delegation","model routing","reproducibility"],
+  },
+  {
+    id: "claude-code-request-trace-token-accounting",
+    date: "2026-11-23",
+    title: "Claude Code reports the model and token usage for each traced request",
+    source: "Anthropic",
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.331",
+    summary: "Claude Code 2.1.331 adds the response model, operation name and token usage to its language-model request traces. The reported input-token total includes prompt-cache tokens.",
+    whyItMatters: "Observability: when comparing the cost of two factory runs, record the model and how each counter treats cached input. Adding cache tokens to an already inclusive total would count them twice.",
+    touches: "Observability",
+    tags: ["OpenTelemetry","token accounting","run costs"],
+  },
+  {
+    id: "github-coverage-upload-format-validation",
+    date: "2026-11-23",
+    title: "GitHub fails coverage uploads when the report format is unsupported",
+    source: "GitHub",
+    url: "https://github.blog/changelog/2026-11-23-code-coverage-uploads-now-flag-invalid-report-formats/",
+    summary: "GitHub Code Quality now checks for Cobertura XML during upload. Previously a workflow could report success while its pull request showed no coverage. A valid report can still be processed when individual lines lack usable data.",
+    whyItMatters: "Evidence: check that the coverage report for a candidate can be read and contains the expected files. A successful upload alone gives a reviewer no basis for a coverage decision.",
+    touches: "Evidence",
+    tags: ["CI","code coverage","evidence quality"],
+  },
   {
     id: "chase-agent-platform-pillars",
     date: "2026-11-23",
@@ -139,6 +183,17 @@ export const factoryUpdates: readonly FactoryUpdate[] = [
     whyItMatters: "Runtime: quota exhaustion, cancellation, and network failure need explicit terminal states so a factory does not silently consume time or leave child processes running.",
     touches: "Runtime",
     tags: ["harness", "retries", "resource limits"],
+  },
+  {
+    id: "vercel-board-experimental-task-threads",
+    date: "2026-11-18",
+    title: "Vercel opens an experimental shared task board to agents using different harnesses",
+    source: "Vercel",
+    url: "https://vercel.com/changelog/vercel-board-is-now-available",
+    summary: "Vercel Board keeps each task’s discussion and results in a thread. Teams can grant channel access to people and agents and sync messages with GitHub or Slack. Vercel made the experiment available on all plans.",
+    whyItMatters: "Planning: give a work order a durable discussion and link it to the candidate, verification record and approver. That lets a new worker pick up the conversation while the release decision stays traceable.",
+    touches: "Planning",
+    tags: ["coordination","work orders","agent handoffs"],
   },
   {
     id: "codex-0170-telemetry-sandbox-recovery",
