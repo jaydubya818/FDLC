@@ -1,0 +1,582 @@
+Route,Family,Live HTTP,Candidate HTTP,Redirect target,Rendered H1,H1 count,390px horizontal overflow,Unique local destinations,Unresolved local destinations,Additional responsive widths,Verification origin,Result
+/,Site,200,200,,Factory Development Lifecycle (FDLC),1,0,23,0,"320,375,390,768,900,1024,1280,1440,1920",native composed candidates,Pass
+/about,Site,200,200,,"Software factories need engineering discipline, too.",1,0,7,0,,native composed candidates,Pass
+/architecture,Site,200,200,,Six areas. Explicit boundaries.,1,0,51,0,"320,375,390,768,900,1024,1280,1440,1920",native composed candidates,Pass
+/benchmarks,Site,200,200,,"Measure the outcome, not the activity.",1,0,8,0,,native composed candidates,Pass
+/corpus-artifacts/audit/05-industry-landscape.md,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/corpus-artifacts/audit/06-corpus-verification.md,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/corpus-artifacts/audit/07-strategic-roadmap.md,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/corpus-artifacts/canon/00-FDLC-CANON.md,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/corpus-artifacts/corpus/specification/CHANGELOG.md,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/corpus-artifacts/corpus/specification/schemas/factory-manifest.schema.json,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/corpus-artifacts/corpus/specification/schemas/factory-version.schema.json,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/corpus-artifacts/corpus/specification/schemas/qualification-record.schema.json,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/corpus-artifacts/site-implementation/RUNBOOK.md,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/corpus-preview,Library,200,200,,Find the guidance you need to build a trustworthy software factory.,1,0,32,0,,native composed candidates,Pass
+/corpus-preview/about,Library document,200,200,,About,1,0,22,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns,Library document,200,200,,FDLC Anti-pattern Library,1,0,61,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/agent-as-authorization-system,Library document,200,200,,Agent as Authorization System,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/agent-has-production-credentials,Library document,200,200,,Agent Has Production Credentials,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/agent-to-agent-spaghetti,Library document,200,200,,Agent-to-Agent Spaghetti,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/cheapest-model-everywhere,Library document,200,200,,Cheapest Model Everywhere,1,0,40,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/context-dumping,Library document,200,200,,Context Dumping,1,0,40,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/frontier-model-everywhere,Library document,200,200,,Frontier Model Everywhere,1,0,40,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/hidden-agent-state,Library document,200,200,,Hidden Agent State,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/hidden-learning,Library document,200,200,,Hidden Learning,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/human-approval-everywhere,Library document,200,200,,Human Approval Everywhere,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/infinite-retry-loop,Library document,200,200,,Infinite Retry Loop,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/invisible-context,Library document,200,200,,Invisible Context,1,0,40,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/model-lock-in,Library document,200,200,,Model Lock-In,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/mutable-production-factory,Library document,200,200,,Mutable Production Factory,1,0,40,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/no-candidate-identity,Library document,200,200,,No Candidate Identity,1,0,40,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/no-evidence-lineage,Library document,200,200,,No Evidence Lineage,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/no-outcome-metrics,Library document,200,200,,No Outcome Metrics,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/no-qualification,Library document,200,200,,No Qualification,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/no-sandbox,Library document,200,200,,No Sandbox,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/no-versioning,Library document,200,200,,No Versioning,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/prompt-as-governance,Library document,200,200,,Prompt as Governance,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/proposed,Library document,200,200,,Proposed Anti-Patterns (Unwritten),1,0,69,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/self-verifying-agent,Library document,200,200,,Self-Verifying Agent,1,0,40,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/shared-mutable-workspace,Library document,200,200,,Shared Mutable Workspace,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/the-mega-agent,Library document,200,200,,The Mega-Agent,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/top-10,Library document,200,200,,FDLC Top 10 Factory Failure Modes,1,0,81,0,,native composed candidates,Pass
+/corpus-preview/anti-patterns/unlimited-tool-access,Library document,200,200,,Unlimited Tool Access,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/architecture,Library document,200,200,,Reference architecture,1,0,63,0,,native composed candidates,Pass
+/corpus-preview/architecture/agents-skills-tools-harnesses,Library document,200,200,,"Agents, Skills, Tools, and Harnesses",1,0,44,0,,native composed candidates,Pass
+/corpus-preview/architecture/authority,Library document,200,200,,Authority model,1,0,52,0,,native composed candidates,Pass
+/corpus-preview/architecture/builders,Library document,200,200,,Builders,1,0,49,0,,native composed candidates,Pass
+/corpus-preview/architecture/context,Library document,200,200,,Context and Knowledge Architecture,1,0,56,0,,native composed candidates,Pass
+/corpus-preview/architecture/design-decisions,Library document,200,200,,Design decisions,1,0,58,0,,native composed candidates,Pass
+/corpus-preview/architecture/economics,Library document,200,200,,Economics of Autonomous Software Factories,1,0,58,0,,native composed candidates,Pass
+/corpus-preview/architecture/evidence,Library document,200,200,,Evidence model,1,0,52,0,,native composed candidates,Pass
+/corpus-preview/architecture/execution-vocabulary,Library document,200,200,,Execution vocabulary,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/architecture/factory-versioning,Library document,200,200,,Factory versioning,1,0,49,0,,native composed candidates,Pass
+/corpus-preview/architecture/learning,Library document,200,200,,Governed Learning,1,0,59,0,,native composed candidates,Pass
+/corpus-preview/architecture/multi-factory,Library document,200,200,,Multi-factory orchestration,1,0,52,0,,native composed candidates,Pass
+/corpus-preview/architecture/observability,Library document,200,200,,Observability Standard,1,0,55,0,,native composed candidates,Pass
+/corpus-preview/architecture/qualification,Library document,200,200,,Factory Qualification Standard,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/architecture/routing,Library document,200,200,,Three-level routing,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/architecture/sandboxing,Library document,200,200,,Secure Execution Environments,1,0,53,0,,native composed candidates,Pass
+/corpus-preview/architecture/security,Library document,200,200,,Securing Autonomous Software Execution,1,0,62,0,,native composed candidates,Pass
+/corpus-preview/architecture/transformation,Library document,200,200,,How Software Engineering Changes,1,0,61,0,,native composed candidates,Pass
+/corpus-preview/architecture/verification,Library document,200,200,,Verification-first engineering,1,0,50,0,,native composed candidates,Pass
+/corpus-preview/benchmarks,Library document,200,200,,Benchmarks,1,0,30,0,,native composed candidates,Pass
+/corpus-preview/compare,Library document,200,200,,Where FDLC fits,1,0,30,0,,native composed candidates,Pass
+/corpus-preview/diagrams,Library document,200,200,,Visual canon,1,0,26,0,,native composed candidates,Pass
+/corpus-preview/diagrams/decision-trees,Library document,200,200,,Decision trees,1,0,27,0,,native composed candidates,Pass
+/corpus-preview/diagrams/infographics,Library document,200,200,,Infographic briefs,1,0,38,0,,native composed candidates,Pass
+/corpus-preview/enterprise,Library document,200,200,,FDLC Enterprise,1,0,49,0,,native composed candidates,Pass
+/corpus-preview/enterprise/adoption,Library document,200,200,,Adoption,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/enterprise/execution-fleet,Library document,200,200,,Execution Fleet,1,0,45,0,,native composed candidates,Pass
+/corpus-preview/enterprise/identity-tenancy,Library document,200,200,,Identity and Tenancy,1,0,43,0,,native composed candidates,Pass
+/corpus-preview/enterprise/model-gateway,Library document,200,200,,Model Gateway,1,0,44,0,,native composed candidates,Pass
+/corpus-preview/enterprise/operations,Library document,200,200,,Operating the Factory in Production,1,0,53,0,,native composed candidates,Pass
+/corpus-preview/enterprise/organization,Library document,200,200,,Organization,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/enterprise/policy-governance,Library document,200,200,,Policy and Governance,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/enterprise/reference-architecture,Library document,200,200,,Enterprise Reference Architecture,1,0,69,0,,native composed candidates,Pass
+/corpus-preview/essays,Library document,200,200,,Essays,1,0,21,0,,native composed candidates,Pass
+/corpus-preview/essays/the-agent-is-not-the-factory,Library document,200,200,,The Agent Is Not the Factory,1,0,20,0,,native composed candidates,Pass
+/corpus-preview/essays/the-case-for-factory-versioning,Library document,200,200,,The Case for Factory Versioning,1,0,26,0,,native composed candidates,Pass
+/corpus-preview/essays/verification-is-the-scarce-resource,Library document,200,200,,Verification Is the Scarce Resource,1,0,22,0,,native composed candidates,Pass
+/corpus-preview/examples,Library document,200,200,,FDLC Case-Study Factories,1,0,26,0,,native composed candidates,Pass
+/corpus-preview/examples/code-generation-factory,Library document,200,200,,Code generation factory,1,0,33,0,,native composed candidates,Pass
+/corpus-preview/examples/code-review-factory,Library document,200,200,,Code review factory,1,0,30,0,,native composed candidates,Pass
+/corpus-preview/examples/dependency-factory,Library document,200,200,,Dependency factory,1,0,37,0,,native composed candidates,Pass
+/corpus-preview/examples/migration-factory,Library document,200,200,,Migration factory,1,0,32,0,,native composed candidates,Pass
+/corpus-preview/examples/security-factory,Library document,200,200,,Security factory,1,0,36,0,,native composed candidates,Pass
+/corpus-preview/framework,Library document,200,200,,The FDLC Framework,1,0,44,0,,native composed candidates,Pass
+/corpus-preview/framework/delivery-loop,Library document,200,200,,The Delivery Loop,1,0,37,0,,native composed candidates,Pass
+/corpus-preview/framework/factory-lifecycle,Library document,200,200,,The Factory Lifecycle,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/framework/maturity,Library document,200,200,,Maturity Model,1,0,29,0,,native composed candidates,Pass
+/corpus-preview/framework/principles,Library document,200,200,,Principles,1,0,29,0,,native composed candidates,Pass
+/corpus-preview/glossary,Library document,200,200,,Glossary,1,0,19,0,,native composed candidates,Pass
+/corpus-preview/guides,Library document,200,200,,FDLC Build Guides,1,0,32,0,,native composed candidates,Pass
+/corpus-preview/guides/build-your-first-factory,Library document,200,200,,Build your first factory: guided quickstart,1,0,37,0,,native composed candidates,Pass
+/corpus-preview/guides/code-review-factory,Library document,200,200,,Code review factory,1,0,39,0,,native composed candidates,Pass
+/corpus-preview/guides/dependency-upgrade-factory,Library document,200,200,,Dependency upgrade factory,1,0,48,0,,native composed candidates,Pass
+/corpus-preview/guides/documentation-factory,Library document,200,200,,Documentation factory,1,0,40,0,,native composed candidates,Pass
+/corpus-preview/guides/enterprise-factory-platform,Library document,200,200,,Enterprise factory platform,1,0,52,0,,native composed candidates,Pass
+/corpus-preview/guides/jira-to-pr-factory,Library document,200,200,,Issue tracker to PR factory,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/guides/multi-factory-workflow,Library document,200,200,,Multi-factory workflow,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/guides/multi-repository-factory,Library document,200,200,,Multi-repository factory,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/guides/production-bounded-fix-factory,Library document,200,200,,Production bounded-fix factory blueprint,1,0,44,0,,native composed candidates,Pass
+/corpus-preview/guides/security-remediation-factory,Library document,200,200,,Security remediation factory,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/guides/testing-factory,Library document,200,200,,Testing factory,1,0,36,0,,native composed candidates,Pass
+/corpus-preview/in-5-minutes,Library document,200,200,,FDLC in 5 Minutes,1,0,28,0,,native composed candidates,Pass
+/corpus-preview/mission-control,Library document,200,200,,Mission Control,1,0,56,0,,native composed candidates,Pass
+/corpus-preview/patterns,Library document,200,200,,FDLC Pattern Library,1,0,40,0,,native composed candidates,Pass
+/corpus-preview/patterns/bounded-agent,Library document,200,200,,Bounded Agent,1,0,51,0,,native composed candidates,Pass
+/corpus-preview/patterns/candidate-currentness,Library document,200,200,,Candidate Currentness,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/patterns/capability-based-routing,Library document,200,200,,Capability-Based Routing,1,0,48,0,,native composed candidates,Pass
+/corpus-preview/patterns/context-package,Library document,200,200,,Context Package,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/patterns/decision-record,Library document,200,200,,Decision Record,1,0,50,0,,native composed candidates,Pass
+/corpus-preview/patterns/degraded-mode,Library document,200,200,,Degraded Mode,1,0,49,0,,native composed candidates,Pass
+/corpus-preview/patterns/evidence-bound-acceptance,Library document,200,200,,Evidence-Bound Acceptance,1,0,48,0,,native composed candidates,Pass
+/corpus-preview/patterns/fail-closed-qualification,Library document,200,200,,Fail-Closed Qualification,1,0,48,0,,native composed candidates,Pass
+/corpus-preview/patterns/governed-learning,Library document,200,200,,Governed Learning,1,0,50,0,,native composed candidates,Pass
+/corpus-preview/patterns/human-authority-gate,Library document,200,200,,Human Authority Gate,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/patterns/immutable-factory-version,Library document,200,200,,Immutable Factory Version,1,0,49,0,,native composed candidates,Pass
+/corpus-preview/patterns/independent-verifier,Library document,200,200,,Independent Verifier,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/patterns/lease-based-worker,Library document,200,200,,Lease-Based Worker,1,0,46,0,,native composed candidates,Pass
+/corpus-preview/patterns/model-routing,Library document,200,200,,Model Routing,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/patterns/multi-factory-orchestration,Library document,200,200,,Multi-Factory Orchestration,1,0,48,0,,native composed candidates,Pass
+/corpus-preview/patterns/objective-decomposition,Library document,200,200,,Objective Decomposition,1,0,48,0,,native composed candidates,Pass
+/corpus-preview/patterns/progressive-autonomy,Library document,200,200,,Progressive Autonomy,1,0,49,0,,native composed candidates,Pass
+/corpus-preview/patterns/proposed,Library document,200,200,,Proposed Patterns (Unwritten),1,0,67,0,,native composed candidates,Pass
+/corpus-preview/patterns/publication-permit,Library document,200,200,,Publication Permit,1,0,48,0,,native composed candidates,Pass
+/corpus-preview/patterns/recovery-checkpoint,Library document,200,200,,Recovery Checkpoint,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/patterns/sandbox-per-work-order,Library document,200,200,,Sandbox per Work Order,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/patterns/tool-grant-and-receipt,Library document,200,200,,Tool Grant and Receipt,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/patterns/verification-contract,Library document,200,200,,Verification Contract,1,0,48,0,,native composed candidates,Pass
+/corpus-preview/project,Library document,200,200,,Project,1,0,25,0,,native composed candidates,Pass
+/corpus-preview/project/governance,Library document,200,200,,FDLC Project Governance,1,0,29,0,,native composed candidates,Pass
+/corpus-preview/project/roadmap,Library document,200,200,,The 3-5 year path to industry-standard status,1,0,12,0,,native composed candidates,Pass
+/corpus-preview/project/seo,Library document,200,200,,SEO and discovery plan,1,0,38,0,,native composed candidates,Pass
+/corpus-preview/specification,Library document,200,200,,FDLC Specification v1,1,0,48,0,,native composed candidates,Pass
+/corpus-preview/specification/conformance,Library document,200,200,,FDLC Conformance,1,0,49,0,,native composed candidates,Pass
+/corpus-preview/specification/schemas,Library document,200,200,,FDLC Schemas and Examples,1,0,24,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/attempt,Library document,200,200,,Attempt,1,0,38,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/candidate,Library document,200,200,,Candidate,1,0,38,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/capability-manifest,Library document,200,200,,Capability Manifest,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/context-package,Library document,200,200,,Context Package,1,0,36,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/decision,Library document,200,200,,Decision,1,0,40,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/evidence,Library document,200,200,,Evidence,1,0,38,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/execution-profile,Library document,200,200,,Execution Profile,1,0,38,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/factory-manifest,Library document,200,200,,Factory Manifest,1,0,40,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/factory-version,Library document,200,200,,Factory Version,1,0,38,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/improvement-candidate,Library document,200,200,,Improvement Candidate,1,0,38,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/intent,Library document,200,200,,Intent,1,0,39,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/learning-signal,Library document,200,200,,Learning Signal,1,0,38,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/outcome,Library document,200,200,,Outcome,1,0,39,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/plan,Library document,200,200,,Plan,1,0,39,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/qualification-record,Library document,200,200,,Qualification Record,1,0,39,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/release,Library document,200,200,,Release,1,0,39,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/specification,Library document,200,200,,Specification,1,0,38,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/verification,Library document,200,200,,Verification,1,0,37,0,,native composed candidates,Pass
+/corpus-preview/specification/v1/work-order,Library document,200,200,,Work Order,1,0,39,0,,native composed candidates,Pass
+/corpus-preview/start,Library document,200,200,,Start Here,1,0,72,0,,native composed candidates,Pass
+/corpus-preview/tutorials,Library document,200,200,,Tutorials,1,0,31,0,,native composed candidates,Pass
+/corpus-preview/tutorials/add-a-skill,Library document,200,200,,Add a Skill,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/tutorials/add-a-tool,Library document,200,200,,Add a Tool,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/tutorials/build-enterprise-governance,Library document,200,200,,Build Enterprise Governance,1,0,51,0,,native composed candidates,Pass
+/corpus-preview/tutorials/build-your-first-software-factory,Library document,200,200,,Build Your First Software Factory,1,0,45,0,,native composed candidates,Pass
+/corpus-preview/tutorials/capture-evidence,Library document,200,200,,Capture Evidence,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/tutorials/configure-a-model-route,Library document,200,200,,Configure a Model Route,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/tutorials/configure-approval-policy,Library document,200,200,,Configure Approval Policy,1,0,46,0,,native composed candidates,Pass
+/corpus-preview/tutorials/create-a-factory-version,Library document,200,200,,Create a Factory Version,1,0,44,0,,native composed candidates,Pass
+/corpus-preview/tutorials/create-a-second-factory,Library document,200,200,,Create a Second Factory,1,0,46,0,,native composed candidates,Pass
+/corpus-preview/tutorials/create-an-execution-profile,Library document,200,200,,Create an Execution Profile,1,0,41,0,,native composed candidates,Pass
+/corpus-preview/tutorials/define-verification-rules,Library document,200,200,,Define Verification Rules,1,0,44,0,,native composed candidates,Pass
+/corpus-preview/tutorials/execute-a-work-order,Library document,200,200,,Execute a Work Order,1,0,52,0,,native composed candidates,Pass
+/corpus-preview/tutorials/qualify-a-factory-version,Library document,200,200,,Qualify a Factory Version,1,0,42,0,,native composed candidates,Pass
+/corpus-preview/tutorials/route-an-objective-across-factories,Library document,200,200,,Route an Objective Across Factories,1,0,47,0,,native composed candidates,Pass
+/corpus-preview/tutorials/scale-across-repositories,Library document,200,200,,Scale Across Repositories,1,0,50,0,,native composed candidates,Pass
+/deploy,Site,200,200,,Design your software factory.,1,0,7,0,,native composed candidates,Pass
+/deploy/app,Workspace,200,200,,Define the factory before Mission Control runs it.,1,0,0,0,,exact-source public workspace Preview,Pass
+/deploy/app/engagements/21427e57-fbf9-4521-91a2-9529187480c9,Workspace,200,200,,Northstar Health,1,0,2,0,,exact-source public workspace Preview,Pass
+/deploy/app/engagements/b4c1d7f5-52f4-43d1-a429-325f15d4ef6a,Workspace,200,200,,Beacon Logistics,1,0,2,0,,exact-source public workspace Preview,Pass
+/deploy/app/engagements/df1c4048-ddfb-4518-bb91-9db5e528ea26,Workspace,200,200,,Acme Manufacturing,1,0,2,0,,exact-source public workspace Preview,Pass
+/docs/00-front-matter/00-how-to-read-this-guide,Compatibility,308,308,/guide/00-front-matter/00-how-to-read-this-guide,,,,0,0,,native composed candidates,Pass
+/docs/00-front-matter/01-what-this-guide-covers,Compatibility,308,308,/guide/00-front-matter/01-what-this-guide-covers,,,,0,0,,native composed candidates,Pass
+/docs/01-understand/01-why-software-engineering-is-changing,Compatibility,308,308,/guide/01-understand/01-why-software-engineering-is-changing,,,,0,0,,native composed candidates,Pass
+/docs/01-understand/02-the-factory-in-one-view,Compatibility,308,308,/guide/01-understand/02-the-factory-in-one-view,,,,0,0,,native composed candidates,Pass
+/docs/01-understand/03-first-principles-trust-evidence-and-authority,Compatibility,308,308,/guide/01-understand/03-first-principles-trust-evidence-and-authority,,,,0,0,,native composed candidates,Pass
+/docs/02-design/04-the-human-agent-operating-model,Compatibility,308,308,/guide/02-design/04-the-human-agent-operating-model,,,,0,0,,native composed candidates,Pass
+/docs/02-design/05-authoritative-records,Compatibility,308,308,/guide/02-design/05-authoritative-records,,,,0,0,,native composed candidates,Pass
+/docs/02-design/06-intent-and-specification-engineering,Compatibility,308,308,/guide/02-design/06-intent-and-specification-engineering,,,,0,0,,native composed candidates,Pass
+/docs/02-design/07-governance-policy-and-risk-proportional-approval,Compatibility,308,308,/guide/02-design/07-governance-policy-and-risk-proportional-approval,,,,0,0,,native composed candidates,Pass
+/docs/02-design/08-economics-metrics-and-human-attention,Compatibility,308,308,/guide/02-design/08-economics-metrics-and-human-attention,,,,0,0,,native composed candidates,Pass
+/docs/02-design/09-tokenomics-and-factory-economics,Compatibility,308,308,/guide/02-design/09-tokenomics-and-factory-economics,,,,0,0,,native composed candidates,Pass
+/docs/02-design/10-multi-repository-design,Compatibility,308,308,/guide/02-design/10-multi-repository-design,,,,0,0,,native composed candidates,Pass
+/docs/03-build/11-the-agent-factory,Compatibility,308,308,/guide/03-build/11-the-agent-factory,,,,0,0,,native composed candidates,Pass
+/docs/03-build/12-skills-as-packages,Compatibility,308,308,/guide/03-build/12-skills-as-packages,,,,0,0,,native composed candidates,Pass
+/docs/03-build/13-control-plane-orchestrator-and-execution-plane,Compatibility,308,308,/guide/03-build/13-control-plane-orchestrator-and-execution-plane,,,,0,0,,native composed candidates,Pass
+/docs/03-build/14-durable-execution,Compatibility,308,308,/guide/03-build/14-durable-execution,,,,0,0,,native composed candidates,Pass
+/docs/03-build/15-coding-harnesses-and-agent-protocols,Compatibility,308,308,/guide/03-build/15-coding-harnesses-and-agent-protocols,,,,0,0,,native composed candidates,Pass
+/docs/03-build/16-harness-engineering,Compatibility,308,308,/guide/03-build/16-harness-engineering,,,,0,0,,native composed candidates,Pass
+/docs/03-build/17-development-environments-sandboxes-and-compute,Compatibility,308,308,/guide/03-build/17-development-environments-sandboxes-and-compute,,,,0,0,,native composed candidates,Pass
+/docs/03-build/18-agent-architecture,Compatibility,308,308,/guide/03-build/18-agent-architecture,,,,0,0,,native composed candidates,Pass
+/docs/03-build/19-data-knowledge-and-semantic-engineering,Compatibility,308,308,/guide/03-build/19-data-knowledge-and-semantic-engineering,,,,0,0,,native composed candidates,Pass
+/docs/03-build/20-context-engineering,Compatibility,308,308,/guide/03-build/20-context-engineering,,,,0,0,,native composed candidates,Pass
+/docs/03-build/21-models-and-capability-selection,Compatibility,308,308,/guide/03-build/21-models-and-capability-selection,,,,0,0,,native composed candidates,Pass
+/docs/03-build/22-routing-and-the-escalation-ladder,Compatibility,308,308,/guide/03-build/22-routing-and-the-escalation-ladder,,,,0,0,,native composed candidates,Pass
+/docs/03-build/23-agent-and-loop-engineering,Compatibility,308,308,/guide/03-build/23-agent-and-loop-engineering,,,,0,0,,native composed candidates,Pass
+/docs/03-build/24-loop-engineering-patterns-and-defaults,Compatibility,308,308,/guide/03-build/24-loop-engineering-patterns-and-defaults,,,,0,0,,native composed candidates,Pass
+/docs/03-build/25-the-12-layer-production-ai-agent-stack,Compatibility,308,308,/guide/03-build/25-the-12-layer-production-ai-agent-stack,,,,0,0,,native composed candidates,Pass
+/docs/03-build/26-autonomous-engineering-workflows,Compatibility,308,308,/guide/03-build/26-autonomous-engineering-workflows,,,,0,0,,native composed candidates,Pass
+/docs/04-prove/27-quality-and-evidence-architecture,Compatibility,308,308,/guide/04-prove/27-quality-and-evidence-architecture,,,,0,0,,native composed candidates,Pass
+/docs/04-prove/28-testing-strategy-for-agentic-change,Compatibility,308,308,/guide/04-prove/28-testing-strategy-for-agentic-change,,,,0,0,,native composed candidates,Pass
+/docs/04-prove/29-evaluation-engineering,Compatibility,308,308,/guide/04-prove/29-evaluation-engineering,,,,0,0,,native composed candidates,Pass
+/docs/04-prove/30-evals-as-factory-assets,Compatibility,308,308,/guide/04-prove/30-evals-as-factory-assets,,,,0,0,,native composed candidates,Pass
+/docs/04-prove/31-quality-contracts-proof-packages-and-certificates,Compatibility,308,308,/guide/04-prove/31-quality-contracts-proof-packages-and-certificates,,,,0,0,,native composed candidates,Pass
+/docs/04-prove/32-cicd-progressive-delivery-and-production-verification,Compatibility,308,308,/guide/04-prove/32-cicd-progressive-delivery-and-production-verification,,,,0,0,,native composed candidates,Pass
+/docs/04-prove/33-security,Compatibility,308,308,/guide/04-prove/33-security,,,,0,0,,native composed candidates,Pass
+/docs/05-operate/34-the-factory-as-a-platform,Compatibility,308,308,/guide/05-operate/34-the-factory-as-a-platform,,,,0,0,,native composed candidates,Pass
+/docs/05-operate/35-observability-telemetry-and-forensics,Compatibility,308,308,/guide/05-operate/35-observability-telemetry-and-forensics,,,,0,0,,native composed candidates,Pass
+/docs/05-operate/36-resilience-incidents-and-the-control-tower,Compatibility,308,308,/guide/05-operate/36-resilience-incidents-and-the-control-tower,,,,0,0,,native composed candidates,Pass
+/docs/05-operate/37-control-surfaces-event-contracts-and-storage,Compatibility,308,308,/guide/05-operate/37-control-surfaces-event-contracts-and-storage,,,,0,0,,native composed candidates,Pass
+/docs/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape,Compatibility,308,308,/guide/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape,,,,0,0,,native composed candidates,Pass
+/docs/06-improve/39-production-feedback-review-and-the-agentic-merge-queue,Compatibility,308,308,/guide/06-improve/39-production-feedback-review-and-the-agentic-merge-queue,,,,0,0,,native composed candidates,Pass
+/docs/06-improve/40-governed-learning,Compatibility,308,308,/guide/06-improve/40-governed-learning,,,,0,0,,native composed candidates,Pass
+/docs/06-improve/41-meta-loops-and-the-closed-loop-factory,Compatibility,308,308,/guide/06-improve/41-meta-loops-and-the-closed-loop-factory,,,,0,0,,native composed candidates,Pass
+/docs/06-improve/42-mission-control-as-a-living-case-study,Compatibility,308,308,/guide/06-improve/42-mission-control-as-a-living-case-study,,,,0,0,,native composed candidates,Pass
+/docs/06-improve/43-mastering-the-factory,Compatibility,308,308,/guide/06-improve/43-mastering-the-factory,,,,0,0,,native composed candidates,Pass
+/docs/06-improve/44-where-this-is-going,Compatibility,308,308,/guide/06-improve/44-where-this-is-going,,,,0,0,,native composed candidates,Pass
+/docs/appendix/agentic-system-operating-checks,Compatibility,308,308,/guide/appendix/agentic-system-operating-checks,,,,0,0,,native composed candidates,Pass
+/docs/appendix/architecture-communication,Compatibility,308,308,/guide/appendix/architecture-communication,,,,0,0,,native composed candidates,Pass
+/docs/appendix/changelog,Compatibility,308,308,/guide/appendix/changelog,,,,0,0,,native composed candidates,Pass
+/docs/appendix/context-skills-engineering,Compatibility,308,308,/guide/appendix/context-skills-engineering,,,,0,0,,native composed candidates,Pass
+/docs/appendix/coverage-and-maturity,Compatibility,308,308,/guide/appendix/coverage-and-maturity,,,,0,0,,native composed candidates,Pass
+/docs/appendix/engineering-experience,Compatibility,308,308,/guide/appendix/engineering-experience,,,,0,0,,native composed candidates,Pass
+/docs/appendix/enterprise-multi-factory-delivery,Compatibility,308,308,/guide/appendix/enterprise-multi-factory-delivery,,,,0,0,,native composed candidates,Pass
+/docs/appendix/execution-boundaries-and-terminology,Compatibility,308,308,/guide/appendix/execution-boundaries-and-terminology,,,,0,0,,native composed candidates,Pass
+/docs/appendix/factory-system-design-playbook,Compatibility,308,308,/guide/appendix/factory-system-design-playbook,,,,0,0,,native composed candidates,Pass
+/docs/appendix/glossary,Compatibility,308,308,/guide/glossary,,,,0,0,,native composed candidates,Pass
+/docs/appendix/governed-factory-admission,Compatibility,308,308,/guide/appendix/governed-factory-admission,,,,0,0,,native composed candidates,Pass
+/docs/appendix/mission-control/01-implementation-maturity-and-evidence-map,Compatibility,308,308,/guide/appendix/mission-control/01-implementation-maturity-and-evidence-map,,,,0,0,,native composed candidates,Pass
+/docs/appendix/mission-control/02-verification-first-software-factory,Compatibility,308,308,/guide/appendix/mission-control/02-verification-first-software-factory,,,,0,0,,native composed candidates,Pass
+/docs/appendix/mission-control/03-capability-workflow-and-admission-map,Compatibility,308,308,/guide/appendix/mission-control/03-capability-workflow-and-admission-map,,,,0,0,,native composed candidates,Pass
+/docs/appendix/operator-surfaces,Compatibility,308,308,/guide/appendix/operator-surfaces,,,,0,0,,native composed candidates,Pass
+/docs/appendix/principles,Compatibility,308,308,/guide/appendix/principles,,,,0,0,,native composed candidates,Pass
+/docs/appendix/production-reliability-operations-playbook,Compatibility,308,308,/guide/appendix/production-reliability-operations-playbook,,,,0,0,,native composed candidates,Pass
+/docs/appendix/research/initial-canon,Compatibility,308,308,/guide/appendix/research/initial-canon,,,,0,0,,native composed candidates,Pass
+/docs/appendix/reviewer-guide,Compatibility,308,308,/guide/appendix/reviewer-guide,,,,0,0,,native composed candidates,Pass
+/docs/guide,Compatibility,308,308,/guide,,,,0,0,,native composed candidates,Pass
+/docs/stages/01-builder-intent,Compatibility,308,308,/guide/stages/01-builder-intent,,,,0,0,,native composed candidates,Pass
+/docs/stages/02-plan,Compatibility,308,308,/guide/stages/02-plan,,,,0,0,,native composed candidates,Pass
+/docs/stages/03-define-agent,Compatibility,308,308,/guide/stages/03-define-agent,,,,0,0,,native composed candidates,Pass
+/docs/stages/04-execute-through-harness,Compatibility,308,308,/guide/stages/04-execute-through-harness,,,,0,0,,native composed candidates,Pass
+/docs/stages/05-apply-skills,Compatibility,308,308,/guide/stages/05-apply-skills,,,,0,0,,native composed candidates,Pass
+/docs/stages/06-evaluate,Compatibility,308,308,/guide/stages/06-evaluate,,,,0,0,,native composed candidates,Pass
+/docs/stages/07-improve,Compatibility,308,308,/guide/stages/07-improve,,,,0,0,,native composed candidates,Pass
+/docs/stages/08-deliver-software,Compatibility,308,308,/guide/stages/08-deliver-software,,,,0,0,,native composed candidates,Pass
+/downloads/fdlc-factory-starter-0.1.0.zip,Download,200,200,,,,,0,0,,native composed candidates,Pass
+/downloads/fdlc-factory-starter-0.1.1.zip,Download,200,200,,,,,0,0,,native composed candidates,Pass
+/downloads/fdlc-reference-lab-v1.1.0.zip,Download,200,200,,,,,0,0,,native composed candidates,Pass
+/downloads/fdlc-reference-lab-v1.1.1.zip,Download,200,200,,,,,0,0,,native composed candidates,Pass
+/enterprise,Site,200,200,,One platform. Many verified outcomes.,1,0,14,0,"320,375,390,768,900,1024,1280,1440,1920",native composed candidates,Pass
+/enterprise/multi-factory-software-delivery.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/examples/dependency-modernization,Redirect,308,308,/in-5-minutes,,,,0,0,,native composed candidates,Pass
+/factory-engineering,Site,200,200,,Factory engineering,1,0,20,0,,native composed candidates,Pass
+/factory-skills,Site,200,200,,Factory skills for your coding agent.,1,0,5,0,,native composed candidates,Pass
+/favicon.svg,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/framework,Site,200,200,,The lifecycle for the factory itself.,1,0,50,0,,native composed candidates,Pass
+/guide,Guide,200,200,,The AI Software Factory Guide,1,0,83,0,"320,375,390,768,900,1024,1280,1440,1920",native composed candidates,Pass
+/guide/00-front-matter/00-how-to-read-this-guide,Guide,200,200,,How to read this guide,1,0,90,0,,native composed candidates,Pass
+/guide/00-front-matter/01-what-this-guide-covers,Guide,200,200,,What this guide covers,1,0,86,0,,native composed candidates,Pass
+/guide/01-understand/01-why-software-engineering-is-changing,Guide,200,200,,1. Why software engineering is changing,1,0,99,0,,native composed candidates,Pass
+/guide/01-understand/02-the-factory-in-one-view,Guide,200,200,,2. The factory in one view,1,0,102,0,"320,375,390,768,900,1024,1280,1440,1920",native composed candidates,Pass
+/guide/01-understand/03-first-principles-trust-evidence-and-authority,Guide,200,200,,"3. First principles: trust, evidence, and authority",1,0,101,0,,native composed candidates,Pass
+/guide/02-design/04-the-human-agent-operating-model,Guide,200,200,,4. The human–agent operating model,1,0,113,0,,native composed candidates,Pass
+/guide/02-design/05-authoritative-records,Guide,200,200,,5. Authoritative records: from company to release,1,0,103,0,,native composed candidates,Pass
+/guide/02-design/06-intent-and-specification-engineering,Guide,200,200,,6. Intent and specification engineering,1,0,107,0,,native composed candidates,Pass
+/guide/02-design/07-governance-policy-and-risk-proportional-approval,Guide,200,200,,"7. Governance, policy, and risk-proportional approval",1,0,115,0,,native composed candidates,Pass
+/guide/02-design/08-economics-metrics-and-human-attention,Guide,200,200,,"8. Economics, metrics, and human attention",1,0,103,0,,native composed candidates,Pass
+/guide/02-design/09-multi-repository-design,Redirect,308,308,/guide/02-design/10-multi-repository-design,,,,0,0,,native composed candidates,Pass
+/guide/02-design/09-tokenomics-and-factory-economics,Guide,200,200,,9. Tokenomics and factory economics,1,0,96,0,,native composed candidates,Pass
+/guide/02-design/10-multi-repository-design,Guide,200,200,,10. Multi-repository design and coordinated delivery,1,0,102,0,,native composed candidates,Pass
+/guide/03-build/10-the-agent-factory,Redirect,308,308,/guide/03-build/11-the-agent-factory,,,,0,0,,native composed candidates,Pass
+/guide/03-build/11-control-plane-orchestrator-and-execution-plane,Redirect,308,308,/guide/03-build/13-control-plane-orchestrator-and-execution-plane,,,,0,0,,native composed candidates,Pass
+/guide/03-build/11-the-agent-factory,Guide,200,200,,11. The Agent Factory,1,0,111,0,,native composed candidates,Pass
+/guide/03-build/12-durable-execution,Redirect,308,308,/guide/03-build/14-durable-execution,,,,0,0,,native composed candidates,Pass
+/guide/03-build/12-skills-as-packages,Guide,200,200,,12. Skills as packages,1,0,100,0,,native composed candidates,Pass
+/guide/03-build/13-coding-harnesses-and-agent-protocols,Redirect,308,308,/guide/03-build/15-coding-harnesses-and-agent-protocols,,,,0,0,,native composed candidates,Pass
+/guide/03-build/13-control-plane-orchestrator-and-execution-plane,Guide,200,200,,"13. Control plane, orchestrator, and execution plane",1,0,118,0,,native composed candidates,Pass
+/guide/03-build/14-development-environments-sandboxes-and-compute,Redirect,308,308,/guide/03-build/17-development-environments-sandboxes-and-compute,,,,0,0,,native composed candidates,Pass
+/guide/03-build/14-durable-execution,Guide,200,200,,"14. Durable execution: tasks, attempts, leases, and recovery",1,0,107,0,,native composed candidates,Pass
+/guide/03-build/15-agent-architecture,Redirect,308,308,/guide/03-build/18-agent-architecture,,,,0,0,,native composed candidates,Pass
+/guide/03-build/15-coding-harnesses-and-agent-protocols,Guide,200,200,,15. Coding harnesses and agent protocols,1,0,101,0,,native composed candidates,Pass
+/guide/03-build/16-data-knowledge-semantic-and-context-engineering,Redirect,308,308,/guide/03-build/19-data-knowledge-and-semantic-engineering,,,,0,0,,native composed candidates,Pass
+/guide/03-build/16-harness-engineering,Guide,200,200,,16. Harness engineering,1,0,101,0,,native composed candidates,Pass
+/guide/03-build/17-development-environments-sandboxes-and-compute,Guide,200,200,,"17. Development environments, sandboxes, and compute",1,0,109,0,,native composed candidates,Pass
+/guide/03-build/17-models-routing-and-capability-selection,Redirect,308,308,/guide/03-build/21-models-and-capability-selection,,,,0,0,,native composed candidates,Pass
+/guide/03-build/18-agent-and-loop-engineering,Redirect,308,308,/guide/03-build/23-agent-and-loop-engineering,,,,0,0,,native composed candidates,Pass
+/guide/03-build/18-agent-architecture,Guide,200,200,,"18. Agent architecture: loop, MCP, tools, context, and memory",1,0,104,0,,native composed candidates,Pass
+/guide/03-build/19-data-knowledge-and-semantic-engineering,Guide,200,200,,"19. Data, knowledge, and semantic engineering",1,0,101,0,,native composed candidates,Pass
+/guide/03-build/19-the-12-layer-production-ai-agent-stack,Redirect,308,308,/guide/03-build/25-the-12-layer-production-ai-agent-stack,,,,0,0,,native composed candidates,Pass
+/guide/03-build/20-autonomous-engineering-workflows,Redirect,308,308,/guide/03-build/26-autonomous-engineering-workflows,,,,0,0,,native composed candidates,Pass
+/guide/03-build/20-context-engineering,Guide,200,200,,20. Context engineering,1,0,110,0,,native composed candidates,Pass
+/guide/03-build/21-models-and-capability-selection,Guide,200,200,,21. Models and capability selection,1,0,88,0,,native composed candidates,Pass
+/guide/03-build/22-routing-and-the-escalation-ladder,Guide,200,200,,22. Routing and the escalation ladder,1,0,102,0,,native composed candidates,Pass
+/guide/03-build/23-agent-and-loop-engineering,Guide,200,200,,23. Agent and loop engineering,1,0,95,0,,native composed candidates,Pass
+/guide/03-build/24-loop-engineering-patterns-and-defaults,Guide,200,200,,24. Loop engineering patterns and defaults,1,0,88,0,,native composed candidates,Pass
+/guide/03-build/25-the-12-layer-production-ai-agent-stack,Guide,200,200,,25. The 12-layer production AI agent stack,1,0,102,0,,native composed candidates,Pass
+/guide/03-build/26-autonomous-engineering-workflows,Guide,200,200,,26. Autonomous engineering workflows,1,0,102,0,,native composed candidates,Pass
+/guide/04-prove/21-quality-and-evidence-architecture,Redirect,308,308,/guide/04-prove/27-quality-and-evidence-architecture,,,,0,0,,native composed candidates,Pass
+/guide/04-prove/22-testing-strategy-for-agentic-change,Redirect,308,308,/guide/04-prove/28-testing-strategy-for-agentic-change,,,,0,0,,native composed candidates,Pass
+/guide/04-prove/23-evaluation-engineering,Redirect,308,308,/guide/04-prove/29-evaluation-engineering,,,,0,0,,native composed candidates,Pass
+/guide/04-prove/24-quality-contracts-proof-packages-and-certificates,Redirect,308,308,/guide/04-prove/31-quality-contracts-proof-packages-and-certificates,,,,0,0,,native composed candidates,Pass
+/guide/04-prove/25-cicd-progressive-delivery-and-production-verification,Redirect,308,308,/guide/04-prove/32-cicd-progressive-delivery-and-production-verification,,,,0,0,,native composed candidates,Pass
+/guide/04-prove/26-security,Redirect,308,308,/guide/04-prove/33-security,,,,0,0,,native composed candidates,Pass
+/guide/04-prove/27-quality-and-evidence-architecture,Guide,200,200,,27. Quality and evidence architecture,1,0,108,0,,native composed candidates,Pass
+/guide/04-prove/28-testing-strategy-for-agentic-change,Guide,200,200,,28. Testing strategy for agentic change,1,0,93,0,,native composed candidates,Pass
+/guide/04-prove/29-evaluation-engineering,Guide,200,200,,29. Evaluation engineering,1,0,101,0,,native composed candidates,Pass
+/guide/04-prove/30-evals-as-factory-assets,Guide,200,200,,30. Evals as factory assets,1,0,96,0,,native composed candidates,Pass
+/guide/04-prove/31-quality-contracts-proof-packages-and-certificates,Guide,200,200,,"31. Quality contracts, proof packages, and certificates",1,0,116,0,,native composed candidates,Pass
+/guide/04-prove/32-cicd-progressive-delivery-and-production-verification,Guide,200,200,,"32. CI/CD, progressive delivery, and production verification",1,0,109,0,,native composed candidates,Pass
+/guide/04-prove/33-security,Guide,200,200,,"33. Security: identity, secrets, threats, and supply chain",1,0,111,0,,native composed candidates,Pass
+/guide/05-operate/27-the-factory-as-a-platform,Redirect,308,308,/guide/05-operate/34-the-factory-as-a-platform,,,,0,0,,native composed candidates,Pass
+/guide/05-operate/28-observability-telemetry-and-forensics,Redirect,308,308,/guide/05-operate/35-observability-telemetry-and-forensics,,,,0,0,,native composed candidates,Pass
+/guide/05-operate/29-resilience-incidents-and-the-control-tower,Redirect,308,308,/guide/05-operate/36-resilience-incidents-and-the-control-tower,,,,0,0,,native composed candidates,Pass
+/guide/05-operate/30-control-surfaces-event-contracts-and-storage,Redirect,308,308,/guide/05-operate/37-control-surfaces-event-contracts-and-storage,,,,0,0,,native composed candidates,Pass
+/guide/05-operate/31-enterprise-adoption-and-the-infrastructure-landscape,Redirect,308,308,/guide/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape,,,,0,0,,native composed candidates,Pass
+/guide/05-operate/34-the-factory-as-a-platform,Guide,200,200,,34. The factory as a platform,1,0,102,0,,native composed candidates,Pass
+/guide/05-operate/35-observability-telemetry-and-forensics,Guide,200,200,,"35. Observability, telemetry, and forensics",1,0,104,0,,native composed candidates,Pass
+/guide/05-operate/36-resilience-incidents-and-the-control-tower,Guide,200,200,,"36. Resilience, incidents, and the control tower",1,0,102,0,,native composed candidates,Pass
+/guide/05-operate/37-control-surfaces-event-contracts-and-storage,Guide,200,200,,"37. Control surfaces, event contracts, and storage",1,0,111,0,,native composed candidates,Pass
+/guide/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape,Guide,200,200,,38. Enterprise adoption and the infrastructure landscape,1,0,125,0,,native composed candidates,Pass
+/guide/06-improve/32-production-feedback-review-and-the-agentic-merge-queue,Redirect,308,308,/guide/06-improve/39-production-feedback-review-and-the-agentic-merge-queue,,,,0,0,,native composed candidates,Pass
+/guide/06-improve/33-governed-learning-and-compounding-engineering,Redirect,308,308,/guide/06-improve/40-governed-learning,,,,0,0,,native composed candidates,Pass
+/guide/06-improve/34-mission-control-as-a-living-case-study,Redirect,308,308,/guide/06-improve/42-mission-control-as-a-living-case-study,,,,0,0,,native composed candidates,Pass
+/guide/06-improve/35-mastering-the-factory,Redirect,308,308,/guide/06-improve/43-mastering-the-factory,,,,0,0,,native composed candidates,Pass
+/guide/06-improve/36-where-this-is-going,Redirect,308,308,/guide/06-improve/44-where-this-is-going,,,,0,0,,native composed candidates,Pass
+/guide/06-improve/39-production-feedback-review-and-the-agentic-merge-queue,Guide,200,200,,"39. Production feedback, automated review, and the agentic merge queue",1,0,108,0,,native composed candidates,Pass
+/guide/06-improve/40-governed-learning,Guide,200,200,,40. Governed learning,1,0,107,0,,native composed candidates,Pass
+/guide/06-improve/41-meta-loops-and-the-closed-loop-factory,Guide,200,200,,41. Meta-loops and the closed-loop factory,1,0,108,0,,native composed candidates,Pass
+/guide/06-improve/42-mission-control-as-a-living-case-study,Guide,200,200,,42. Mission Control as a living case study,1,0,144,0,,native composed candidates,Pass
+/guide/06-improve/43-mastering-the-factory,Guide,200,200,,"43. Mastering the factory: explaining, defending, and building it",1,0,115,0,,native composed candidates,Pass
+/guide/06-improve/44-where-this-is-going,Guide,200,200,,44. Where this is going,1,0,95,0,,native composed candidates,Pass
+/guide/appendix/agentic-system-operating-checks,Guide,200,200,,Agentic systems: practical operating checks,1,0,87,0,,native composed candidates,Pass
+/guide/appendix/architecture-communication,Guide,200,200,,Software Architecture and System Design Study Guide,1,0,134,0,,native composed candidates,Pass
+/guide/appendix/changelog,Guide,200,200,,Guide Changelog,1,0,115,0,,native composed candidates,Pass
+/guide/appendix/context-skills-engineering,Guide,200,200,,Context and skills engineering: five operating practices,1,0,85,0,,native composed candidates,Pass
+/guide/appendix/coverage-and-maturity,Guide,200,200,,Capability Coverage and Maturity,1,0,82,0,,native composed candidates,Pass
+/guide/appendix/engineering-experience,Guide,200,200,,Build and run your first FDLC software factory,1,0,113,0,,native composed candidates,Pass
+/guide/appendix/enterprise-multi-factory-delivery,Guide,200,200,,Enterprise multi-factory software delivery,1,0,98,0,,native composed candidates,Pass
+/guide/appendix/execution-boundaries-and-terminology,Guide,200,200,,Execution boundaries and canonical terminology,1,0,96,0,,native composed candidates,Pass
+/guide/appendix/factory-system-design-playbook,Guide,200,200,,Factory System Design Playbook,1,0,101,0,,native composed candidates,Pass
+/guide/appendix/glossary,Redirect,308,308,/guide/glossary,,,,0,0,,native composed candidates,Pass
+/guide/appendix/governed-factory-admission,Guide,200,200,,Governed Factory admission and independent verification,1,0,84,0,,native composed candidates,Pass
+/guide/appendix/mission-control/01-implementation-maturity-and-evidence-map,Guide,200,200,,Mission Control Implementation Maturity and Evidence Map,1,0,85,0,,native composed candidates,Pass
+/guide/appendix/mission-control/02-verification-first-software-factory,Guide,200,200,,Verification-First Software Factory — Mission Control Case Study,1,0,92,0,,native composed candidates,Pass
+/guide/appendix/mission-control/03-capability-workflow-and-admission-map,Guide,200,200,,"Mission Control Capability, Workflow, and Admission Map",1,0,98,0,,native composed candidates,Pass
+/guide/appendix/operator-surfaces,Guide,200,200,,Mission Control operator surfaces,1,0,90,0,,native composed candidates,Pass
+/guide/appendix/principles,Guide,200,200,,Principles to have cold,1,0,90,0,,native composed candidates,Pass
+/guide/appendix/production-reliability-operations-playbook,Guide,200,200,,Production reliability and incident operations playbook,1,0,88,0,,native composed candidates,Pass
+/guide/appendix/research/initial-canon,Guide,200,200,,Initial AI Software Factory Research Canon,1,0,84,0,,native composed candidates,Pass
+/guide/appendix/reviewer-guide,Guide,200,200,,External Reviewer Guide,1,0,82,0,,native composed candidates,Pass
+/guide/architecture,Guide,200,200,,Trace the factory from intent to evidence.,1,0,9,0,,native composed candidates,Pass
+/guide/atlas,Guide,200,200,,See the whole factory. Then follow each boundary.,1,0,36,0,"320,375,390,768,900,1024,1280,1440,1920",native composed candidates,Pass
+/guide/build,Redirect,308,308,/guide/03-build/11-the-agent-factory,,,,0,0,,native composed candidates,Pass
+/guide/coverage,Guide,200,200,,Coverage is not proof.,1,0,16,0,,native composed candidates,Pass
+/guide/design,Redirect,308,308,/guide/02-design/04-the-human-agent-operating-model,,,,0,0,,native composed candidates,Pass
+/guide/glossary,Guide,200,200,,Canonical Glossary,1,0,100,0,,native composed candidates,Pass
+/guide/improve,Redirect,308,308,/guide/06-improve/39-production-feedback-review-and-the-agentic-merge-queue,,,,0,0,,native composed candidates,Pass
+/guide/infographics/adaptation-ladder.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/adapter-admission.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/adaptive-routing.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/adoption-path.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/agent-contract.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/agent-factory-architecture.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/agent-layers.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/agent-loop.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/agent-runtime-management.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/agent-topologies.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/agentic-merge-queue.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/agentic-security-architecture.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/attempt-lifecycle.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/attention-altitude.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/authoritative-state-machines.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/autonomy-by-action-class.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/autonomy-levels.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/autonomy-matrix.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/autonomy-selection.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/budget-feedback-loop.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/build-vs-buy.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/builder-entry-points.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/builder-journey.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/capability-lifecycle.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/capability-supply-chain.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/certificate-lifecycle.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/change-impact-selection.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/closed-loop-factory.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/command-center.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/commodity-vs-differentiated.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/completion-record.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/completion-vs-acceptance.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/composable-future.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/context-assembly.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/context-cdl.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/context-firewall.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/context-graph.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/context-hierarchy.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/context-lifecycle.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/context-posture.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/contribution-model.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/control-tower.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/control-vs-execution-plane.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/coordinated-pr-ordering.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/coordination-repo-layout.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/correction-to-skill.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/cost-attribution.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/cost-equation.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/cost-per-validated-change.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/decision-packet.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/decision-rights.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/delivery-hierarchy.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/delivery-pipeline.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/deployment-topologies.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/dispatch-loop.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/emergency-control.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/engine-authority-split.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/engineering-os-shell.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/environment-vs-compute.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/escalation-ladder.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/eval-pipeline.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/evaluation-windows.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/event-contract.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/evidence-architecture.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/execution-contract.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/execution-lineage.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/execution-loop.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/executor-snapshot.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/extensible-software.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/factory-asset-lifecycle.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/factory-board.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/factory-configuration.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/factory-data-model.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/factory-flywheel.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/factory-in-one-line.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/factory-learning-chain.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/fde-loop.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/feedback-to-reproduction.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/five-audiences.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/five-metric-dimensions.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/fix-review-loop.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/governed-lifecycle.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/grader-types.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/gravity-well.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/harness-adapter-contract.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/harness-pruning.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/human-agent-split.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/human-loop-modes.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/identity-and-secrets-flow.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/incident-framework.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/incident-procedure.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/intent-to-plan.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/isolation-model.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/issue-to-pr-wedge.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/knowledge-pipeline.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/layer-handoffs.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/learning-loop.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/learning-writeback.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/lease-and-recovery.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/loop-catalog.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/loop-layers.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/master-architecture-chain.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/mastery-levels.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/maturity-model.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/mcp-topology.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/memory-admission.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/mid-workflow-recovery.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/mission-control-architecture.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/model-profile-lifecycle.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/model-router.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/ninety-day-plan.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/operating-loop.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/operator-surface.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/operator-surfaces.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/orchestration-state-machine.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/overnight-continuity.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/pets-vs-cattle.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/platform-golden-path.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/pluggable-execution-engine.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/policy-decision-flow.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/post-merge-chain.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/progressive-rollout.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/promotion-gate.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/proof-package.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/protocol-boundaries.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/prototype-to-pr.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/prototype-to-production.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/quality-contract.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/recipe-ladder.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/record-lifecycles.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/recursive-loop.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/release-clocks.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/reliability-dimensions.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/repository-onboarding.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/repository-profile.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/responsibility-split.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/retrieval-evaluation.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/retry-backoff-escalate.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/review-at-scale.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/review-compression.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/review-package.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/review-pipeline.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/risk-classification-inputs.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/risk-proportional-autonomy.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/risk-tier-review.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/rollback-decision.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/sandbox-isolation-and-publication.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/scheduling-and-capacity.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/self-improvement-levels.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/semantic-layer.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/seven-step-loop.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/signal-aggregation.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/signal-diagnosis.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/signal-to-deployment.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/signal-to-review-path.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/six-areas.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/skill-anatomy.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/skill-maturity-lifecycle.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/skill-verifier-chain.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/skills-loops-factory-ladder.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/slo-and-dr.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/spec-contract.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/sufficiency-loop.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/supply-chain-attestation.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/task-graph.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/tech-stack-five-layers.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/telemetry-model.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/test-portfolio.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/threat-model.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/three-axes.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/three-layers.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/three-loops.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/three-measures.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/three-release-clocks.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/trace-replay-comparison.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/traceability-chain.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/trust-equation.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/twelve-layer-stack.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/twelve-month-plan.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/two-counts.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/usage-layers.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/workflow-catalog.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/infographics/workflow-specialisation.png,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/operate,Redirect,308,308,/guide/05-operate/34-the-factory-as-a-platform,,,,0,0,,native composed candidates,Pass
+/guide/prove,Redirect,308,308,/guide/04-prove/27-quality-and-evidence-architecture,,,,0,0,,native composed candidates,Pass
+/guide/search,Guide,200,200,,Search the whole system.,1,0,5,0,"320,375,390,768,900,1024,1280,1440,1920",native composed candidates,Pass
+/guide/search-index.json,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/sitemap.xml,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/guide/stages/01-builder-intent,Guide,200,200,,Stage 1 · Builder Intent,1,0,85,0,,native composed candidates,Pass
+/guide/stages/02-plan,Guide,200,200,,Stage 2 · Plan,1,0,85,0,,native composed candidates,Pass
+/guide/stages/03-define-agent,Guide,200,200,,Stage 3 · Define Agent,1,0,85,0,,native composed candidates,Pass
+/guide/stages/04-execute-through-harness,Guide,200,200,,Stage 4 · Execute through Harness,1,0,85,0,,native composed candidates,Pass
+/guide/stages/05-apply-skills,Guide,200,200,,Stage 5 · Apply Skills,1,0,85,0,,native composed candidates,Pass
+/guide/stages/06-evaluate,Guide,200,200,,Stage 6 · Evaluate,1,0,85,0,,native composed candidates,Pass
+/guide/stages/07-improve,Guide,200,200,,Stage 7 · Improve,1,0,85,0,,native composed candidates,Pass
+/guide/stages/08-deliver-software,Guide,200,200,,Stage 8 · Deliver Software,1,0,85,0,,native composed candidates,Pass
+/guide/this-route-does-not-exist,404,404,404,,That page is not in the guide.,1,0,4,0,,native composed candidates,Pass
+/guide/topics,Guide,200,200,,The reference shelf.,1,0,18,0,,native composed candidates,Pass
+/guide/understand,Redirect,308,308,/guide/01-understand/01-why-software-engineering-is-changing,,,,0,0,,native composed candidates,Pass
+/in-5-minutes,Site,200,200,,One workflow. Four views. Eleven artifacts. One measurable outcome.,1,0,43,0,,native composed candidates,Pass
+/lab,Site,200,200,,Build and run your first FDLC software factory.,1,0,20,0,,native composed candidates,Pass
+/manifesto,Site,200,200,,Autonomy is useful only when it can be trusted.,1,0,20,0,,native composed candidates,Pass
+/maturity,Site,200,200,,How mature is your software factory?,1,0,7,0,"320,375,390,768,900,1024,1280,1440,1920",native composed candidates,Pass
+/mission-control,Site,200,200,,Governed autonomous delivery.,1,0,24,0,"320,375,390,768,900,1024,1280,1440,1920",native composed candidates,Pass
+/reference-factory/source/contract.test.mjs.txt,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/reference-factory/source/factory-definition.json.txt,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/reference-factory/source/lab.mjs.txt,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/reference-factory/source/manifest.json,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/reference-factory/source/sandbox/tests/api.test.mjs.txt,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/reference-factory/source/work-order.json.txt,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/robots.txt,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/simulator,Site,200,200,,Fix a failing API test. Earn every transition.,1,0,5,0,"320,375,390,768,900,1024,1280,1440,1920",native composed candidates,Pass
+/sitemap.xml,Resource,200,200,,,,,0,0,,native composed candidates,Pass
+/spec,Redirect,308,308,/specification,,,,0,0,,native composed candidates,Pass
+/specification,Site,200,200,,A machine-readable contract for governed software work.,1,0,7,0,,native composed candidates,Pass
+/start,Site,200,200,,Define your first factory line.,1,0,5,0,"320,375,390,768,900,1024,1280,1440,1920",native composed candidates,Pass
+/this-route-does-not-exist,404,404,404,,That page isn’t here.,1,0,4,0,,native composed candidates,Pass
+/updates,Site,200,200,,"What changed in the factory, and why it matters.",1,0,7,0,,native composed candidates,Pass

@@ -1,0 +1,588 @@
+{
+  "recorded": "November 23–24, 2026",
+  "previews": {
+    "site": {
+      "id": "dpl_C9wihZzmUmTzh9fRXip1qHaYPii9",
+      "url": "fdlc-en91kejmi-jaydubya818.vercel.app",
+      "sha": "9e3cf0e9dd89249486af0b2579aa87b3c12d672f",
+      "state": "READY",
+      "observedThroughParent": "dpl_C9wihZzmUmTzh9fRXip1qHaYPii9"
+    },
+    "guide": {
+      "id": "dpl_9dHEzncskt5gDp5e4mTQye8MBFTu",
+      "url": "ai-software-factory-mastery-1005r40id-jaydubya818.vercel.app",
+      "sha": "c21a4cc86bfad61d828cd120cad70a8a6bc9e536",
+      "state": "READY",
+      "observedThroughParent": "dpl_9dHEzncskt5gDp5e4mTQye8MBFTu"
+    },
+    "workspace": {
+      "id": "dpl_5v8EoDZvbWfVc74rPkCHHV58Vw1x",
+      "url": "ai-4z4nqgi24-jaydubya818.vercel.app",
+      "sha": "9e3cf0e9dd89249486af0b2579aa87b3c12d672f",
+      "state": "READY"
+    }
+  },
+  "browserEngines": {
+    "chromium": {
+      "version": "158.0.8127.36",
+      "geometries": 108,
+      "widths": [
+        320,
+        375,
+        390,
+        768,
+        900,
+        1024,
+        1280,
+        1440,
+        1920
+      ],
+      "failedGeometry": [],
+      "interactionChecks": [
+        "landscape-menu",
+        "builder-validation",
+        "builder-completion",
+        "blocked-recovery",
+        "diagram-dialog",
+        "chapter-top",
+        "ranked-search",
+        "empty-search",
+        "failed-search",
+        "search-recovered",
+        "cross-application round trip",
+        "150% root text, 7 routes"
+      ],
+      "uncaughtJourneyErrors": []
+    },
+    "webkit": {
+      "version": "26.5",
+      "geometries": 108,
+      "widths": [
+        320,
+        375,
+        390,
+        768,
+        900,
+        1024,
+        1280,
+        1440,
+        1920
+      ],
+      "failedGeometry": [],
+      "interactionChecks": [
+        "landscape-menu",
+        "builder-validation",
+        "builder-completion",
+        "blocked-recovery",
+        "diagram-dialog",
+        "chapter-top",
+        "ranked-search",
+        "empty-search",
+        "failed-search",
+        "search-recovered",
+        "cross-application round trip",
+        "150% root text, 7 routes"
+      ],
+      "uncaughtJourneyErrors": []
+    },
+    "firefox": {
+      "version": "153.0",
+      "geometries": 108,
+      "widths": [
+        320,
+        375,
+        390,
+        768,
+        900,
+        1024,
+        1280,
+        1440,
+        1920
+      ],
+      "failedGeometry": [],
+      "interactionChecks": [
+        "landscape-menu",
+        "builder-validation",
+        "builder-completion",
+        "blocked-recovery",
+        "diagram-dialog",
+        "chapter-top",
+        "ranked-search",
+        "empty-search",
+        "failed-search",
+        "search-recovered",
+        "cross-application round trip",
+        "150% root text, 7 routes"
+      ],
+      "uncaughtJourneyErrors": []
+    }
+  },
+  "actualZoom": [
+    {
+      "zoom": 2,
+      "natural": 1280,
+      "route": "/",
+      "width": 640,
+      "content": 640,
+      "h1": 143.5,
+      "header": 73
+    },
+    {
+      "zoom": 2,
+      "natural": 1280,
+      "route": "/start",
+      "width": 640,
+      "content": 640,
+      "h1": 137.5,
+      "header": 73
+    },
+    {
+      "zoom": 2,
+      "natural": 1280,
+      "route": "/simulator",
+      "width": 640,
+      "content": 640,
+      "h1": 172,
+      "header": 73
+    },
+    {
+      "zoom": 2,
+      "natural": 1280,
+      "route": "/maturity",
+      "width": 640,
+      "content": 640,
+      "h1": 163.5,
+      "header": 73
+    },
+    {
+      "zoom": 2,
+      "natural": 1280,
+      "route": "/architecture",
+      "width": 640,
+      "content": 640,
+      "h1": 163.5,
+      "header": 73
+    },
+    {
+      "zoom": 2,
+      "natural": 1280,
+      "route": "/enterprise",
+      "width": 640,
+      "content": 640,
+      "h1": 172,
+      "header": 73
+    },
+    {
+      "zoom": 2,
+      "natural": 1280,
+      "route": "/guide",
+      "width": 640,
+      "content": 640,
+      "h1": 217.59375,
+      "header": 73
+    },
+    {
+      "zoom": 2,
+      "natural": 1280,
+      "route": "/guide/search",
+      "width": 640,
+      "content": 640,
+      "h1": 225.59375,
+      "header": 73
+    },
+    {
+      "zoom": 2,
+      "natural": 1280,
+      "route": "/guide/atlas",
+      "width": 640,
+      "content": 640,
+      "h1": 217.59375,
+      "header": 73
+    },
+    {
+      "zoom": 4,
+      "natural": 1280,
+      "route": "/",
+      "width": 320,
+      "content": 320,
+      "h1": 170,
+      "header": 73
+    },
+    {
+      "zoom": 4,
+      "natural": 1280,
+      "route": "/start",
+      "width": 320,
+      "content": 320,
+      "h1": 137.5,
+      "header": 73
+    },
+    {
+      "zoom": 4,
+      "natural": 1280,
+      "route": "/simulator",
+      "width": 320,
+      "content": 320,
+      "h1": 200.5,
+      "header": 73
+    },
+    {
+      "zoom": 4,
+      "natural": 1280,
+      "route": "/maturity",
+      "width": 320,
+      "content": 320,
+      "h1": 163.5,
+      "header": 73
+    },
+    {
+      "zoom": 4,
+      "natural": 1280,
+      "route": "/architecture",
+      "width": 320,
+      "content": 320,
+      "h1": 163.5,
+      "header": 73
+    },
+    {
+      "zoom": 4,
+      "natural": 1280,
+      "route": "/enterprise",
+      "width": 320,
+      "content": 320,
+      "h1": 200.5,
+      "header": 73
+    },
+    {
+      "zoom": 4,
+      "natural": 1280,
+      "route": "/guide",
+      "width": 320,
+      "content": 320,
+      "h1": 217.59765625,
+      "header": 73
+    },
+    {
+      "zoom": 4,
+      "natural": 1280,
+      "route": "/guide/search",
+      "width": 320,
+      "content": 320,
+      "h1": 249.59765625,
+      "header": 73
+    },
+    {
+      "zoom": 4,
+      "natural": 1280,
+      "route": "/guide/atlas",
+      "width": 320,
+      "content": 320,
+      "h1": 217.59765625,
+      "header": 73
+    }
+  ],
+  "restoredBuilder": {
+    "before": [
+      {
+        "label": "cold",
+        "width": 390,
+        "scrollY": 0,
+        "focus": "",
+        "heading": 164,
+        "header": 73,
+        "builder": 1256
+      },
+      {
+        "label": "anchor",
+        "width": 390,
+        "scrollY": 1164,
+        "focus": "factory-builder",
+        "heading": -1000,
+        "header": 73,
+        "builder": 92
+      },
+      {
+        "label": "generated",
+        "width": 390,
+        "scrollY": 1256,
+        "focus": "factory-result",
+        "heading": -1092,
+        "header": 73,
+        "builder": 0
+      },
+      {
+        "label": "restored-completed-at-top",
+        "width": 390,
+        "scrollY": 2763,
+        "focus": "factory-result",
+        "heading": -2599,
+        "header": 73,
+        "builder": -1507
+      },
+      {
+        "label": "cold",
+        "width": 1440,
+        "scrollY": 0,
+        "focus": "",
+        "heading": 192,
+        "header": 89,
+        "builder": 898
+      },
+      {
+        "label": "anchor",
+        "width": 1440,
+        "scrollY": 806,
+        "focus": "factory-builder",
+        "heading": -614,
+        "header": 89,
+        "builder": 92
+      },
+      {
+        "label": "generated",
+        "width": 1440,
+        "scrollY": 898,
+        "focus": "factory-result",
+        "heading": -706,
+        "header": 89,
+        "builder": 0
+      },
+      {
+        "label": "restored-completed-at-top",
+        "width": 1440,
+        "scrollY": 898,
+        "focus": "factory-result",
+        "heading": -706,
+        "header": 89,
+        "builder": 0
+      }
+    ],
+    "after": [
+      {
+        "label": "cold",
+        "width": 390,
+        "scrollY": 0,
+        "focus": "",
+        "heading": 138,
+        "header": 73,
+        "builder": 828
+      },
+      {
+        "label": "anchor",
+        "width": 390,
+        "scrollY": 743,
+        "focus": "factory-builder",
+        "heading": -605,
+        "header": 73,
+        "builder": 85
+      },
+      {
+        "label": "generated",
+        "width": 390,
+        "scrollY": 743,
+        "focus": "factory-result",
+        "heading": -605,
+        "header": 73,
+        "builder": 85
+      },
+      {
+        "label": "restored-completed-at-top",
+        "width": 390,
+        "scrollY": 0,
+        "focus": "",
+        "heading": 138,
+        "header": 73,
+        "builder": 828
+      },
+      {
+        "label": "cold",
+        "width": 1440,
+        "scrollY": 0,
+        "focus": "",
+        "heading": 194,
+        "header": 89,
+        "builder": 593
+      },
+      {
+        "label": "anchor",
+        "width": 1440,
+        "scrollY": 492,
+        "focus": "factory-builder",
+        "heading": -298,
+        "header": 89,
+        "builder": 101
+      },
+      {
+        "label": "generated",
+        "width": 1440,
+        "scrollY": 492,
+        "focus": "factory-result",
+        "heading": -298,
+        "header": 89,
+        "builder": 101
+      },
+      {
+        "label": "restored-completed-at-top",
+        "width": 1440,
+        "scrollY": 0,
+        "focus": "",
+        "heading": 194,
+        "header": 89,
+        "builder": 593
+      }
+    ]
+  },
+  "guideFontShift": {
+    "intermediatePreview": [
+      {
+        "delayMs": 0,
+        "cls": 0.1344323779447579
+      },
+      {
+        "delayMs": 400,
+        "cls": 0.1344323779447579
+      }
+    ],
+    "qualifiedPreview": [
+      {
+        "delayMs": 0,
+        "cls": 0
+      },
+      {
+        "delayMs": 400,
+        "cls": 0
+      }
+    ]
+  },
+  "searchBenchmark": {
+    "before": {
+      "documents": 74,
+      "sections": 2116,
+      "samples": 110,
+      "p50": 18.684291999999914,
+      "p95": 22.628165999999965,
+      "results": {
+        "verification subject": {
+          "ms": 21.49,
+          "count": 30,
+          "first": "/glossary#term-verification-subject"
+        },
+        "what is a factory version": {
+          "ms": 20.73,
+          "count": 30,
+          "first": "/docs/appendix/enterprise-multi-factory-delivery#2-one-enterprise-platform-as-shared-infrastructure"
+        },
+        "the": {
+          "ms": 24.91,
+          "count": 30,
+          "first": "/docs/01-understand/02-the-factory-in-one-view"
+        },
+        "station": {
+          "ms": 18.79,
+          "count": 30,
+          "first": "/glossary#term-remote-development-workstation"
+        },
+        "multi-repository": {
+          "ms": 17.78,
+          "count": 30,
+          "first": "/docs/02-design/10-multi-repository-design#the-coordination-repository"
+        },
+        "evidence": {
+          "ms": 22.16,
+          "count": 30,
+          "first": "/glossary#term-evidence"
+        },
+        "intent": {
+          "ms": 19.52,
+          "count": 30,
+          "first": "/docs/00-front-matter/01-what-this-guide-covers#intent"
+        },
+        "Factory Version": {
+          "ms": 19.23,
+          "count": 30,
+          "first": "/docs/06-improve/42-mission-control-as-a-living-case-study#factory-version"
+        },
+        "human authority": {
+          "ms": 20.82,
+          "count": 30,
+          "first": "/glossary#term-human-authority"
+        },
+        "no-match-xyzzz": {
+          "ms": 17.99,
+          "count": 0,
+          "first": null
+        }
+      }
+    },
+    "after": {
+      "documents": 74,
+      "sections": 2116,
+      "samples": 110,
+      "p50": 3.5207080000000133,
+      "p95": 4.534917000000007,
+      "results": {
+        "verification subject": {
+          "ms": 25.98,
+          "count": 30,
+          "first": "/glossary#term-verification-subject"
+        },
+        "what is a factory version": {
+          "ms": 4.87,
+          "count": 30,
+          "first": "/glossary#term-factory-version"
+        },
+        "the": {
+          "ms": 0.01,
+          "count": 0,
+          "first": null
+        },
+        "station": {
+          "ms": 2.22,
+          "count": 2,
+          "first": "/docs/04-prove/27-quality-and-evidence-architecture#quality-is-the-control-system-not-the-final-gate"
+        },
+        "multi-repository": {
+          "ms": 4.02,
+          "count": 30,
+          "first": "/docs/02-design/10-multi-repository-design#the-coordination-repository"
+        },
+        "evidence": {
+          "ms": 3.95,
+          "count": 30,
+          "first": "/glossary#term-evidence"
+        },
+        "intent": {
+          "ms": 3.45,
+          "count": 30,
+          "first": "/docs/00-front-matter/01-what-this-guide-covers#intent"
+        },
+        "Factory Version": {
+          "ms": 4.94,
+          "count": 30,
+          "first": "/glossary#term-factory-version"
+        },
+        "human authority": {
+          "ms": 5.04,
+          "count": 30,
+          "first": "/glossary#term-human-authority"
+        },
+        "no-match-xyzzz": {
+          "ms": 3.42,
+          "count": 0,
+          "first": null
+        }
+      }
+    }
+  },
+  "lab": {
+    "version": "1.1.1",
+    "archiveSha256": "9f55000711b14def7ede586961326db133f17f616a887f6ec76d941ea154d7b9",
+    "fileCount": 10,
+    "suite": {
+      "total": 8,
+      "matched": 8,
+      "mismatched": 0
+    },
+    "contractTestsPassed": 5,
+    "productionQualified": false
+  }
+}

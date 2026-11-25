@@ -1,0 +1,48 @@
+{
+  "routes": 581,
+  "families": {
+    "Site": 18,
+    "Resource": 204,
+    "Library": 1,
+    "Library document": 158,
+    "Workspace": 4,
+    "Compatibility": 74,
+    "Download": 4,
+    "Redirect": 37,
+    "Guide": 79,
+    "404": 2
+  },
+  "localDestinations": 4329,
+  "brokenFrom": {
+    "/guide/02-design/10-multi-repository-design": [
+      "/guide/appendix/enterprise-multi-factory-delivery#4-governed-dependencies-and-artifact-handoffs"
+    ],
+    "/guide/03-build/15-coding-harnesses-and-agent-protocols": [
+      "/guide/03-build/15-coding-harnesses-and-agent-protocols#adapter-conformance-suite"
+    ],
+    "/guide/03-build/22-routing-and-the-escalation-ladder": [
+      "/guide/appendix/enterprise-multi-factory-delivery#3-three-levels-of-routing"
+    ],
+    "/guide/03-build/24-loop-engineering-patterns-and-defaults": [
+      "/guide/03-build/16-harness-engineering#inner-loop-outer-loop-meta-loop"
+    ],
+    "/guide/04-prove/27-quality-and-evidence-architecture": [
+      "/guide/appendix/enterprise-multi-factory-delivery#6-local-and-global-verification"
+    ],
+    "/guide/06-improve/40-governed-learning": [
+      "/guide/03-build/16-harness-engineering#inner-loop-outer-loop-meta-loop"
+    ],
+    "/guide/06-improve/41-meta-loops-and-the-closed-loop-factory": [
+      "/guide/03-build/16-harness-engineering#inner-loop-outer-loop-meta-loop"
+    ],
+    "/guide/coverage": [
+      "/guide/topics#mission-control-case-studies"
+    ]
+  },
+  "afterBroken": {},
+  "http": {
+    "200": 468,
+    "308": 111,
+    "404": 2
+  }
+}
