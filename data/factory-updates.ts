@@ -30,9 +30,42 @@ export type FactoryUpdate = {
   guideReading?: { href: string; label: string };
 };
 
-export const factoryUpdatesReviewed = "2026-11-24";
+export const factoryUpdatesReviewed = "2026-11-25";
 
 export const factoryUpdates: readonly FactoryUpdate[] = [
+  {
+    id: "claude-code-skill-load-policy",
+    date: "2026-11-25",
+    title: "Claude Code adds a policy check for shell commands run while loading a skill",
+    source: "Anthropic",
+    url: "https://github.com/anthropics/claude-code/releases/tag/v2.1.332",
+    summary: "Claude Code 2.1.332 adds a hook called PreSkillShellCommand. A team can use it to log or block an inline shell command before it runs while a skill or slash command is loading.",
+    whyItMatters: "Policy: include skill loading in permission checks. Before assigning a skill to a worker, verify that the installed version enforces the rule and records the decision.",
+    touches: "Policy",
+    tags: ["skills", "permissions", "audit records"],
+  },
+  {
+    id: "vercel-workflow-run-payload-retention",
+    date: "2026-11-24",
+    title: "Vercel Workflow can erase a finished run’s payload and retain its timing records",
+    source: "Vercel",
+    url: "https://vercel.com/changelog/delete-run-data-workflow-sdk",
+    summary: "Workflow SDK 5.7.0 adds on-demand removal of stored inputs, outputs, hook payloads and error traces for a finished run. Step timings and other metadata remain visible. Active runs are skipped.",
+    whyItMatters: "Evidence: decide which release evidence must outlive the raw payload. Check that a reviewer can still identify the approved artifact and its approver after sensitive run data is removed.",
+    touches: "Evidence",
+    tags: ["data retention", "workflow history", "release evidence"],
+  },
+  {
+    id: "spec-test-gap-unstated-requirements",
+    date: "2026-11-24",
+    title: "Researchers find coding benchmarks can grade fixes against unstated requirements",
+    source: "Avi Aggarwal and Yiran Hu",
+    url: "https://arxiv.org/abs/2611.31839v1",
+    summary: "Two model judges compared issue descriptions with grading tests. The authors report that both judges flagged unstated requirements in 23% of the 500 SWE-bench Verified tasks and 35% of the 731 public SWE-bench Pro tasks.",
+    whyItMatters: "Verification: trace each acceptance test back to a written requirement. When a test demands a particular implementation, ask the spec owner to review that assumption before using the failure to reject a patch.",
+    touches: "Verification",
+    tags: ["acceptance criteria", "coding benchmarks", "test design"],
+  },
   {
     id: "codex-0172-resume-permissions",
     date: "2026-11-24",
@@ -43,6 +76,17 @@ export const factoryUpdates: readonly FactoryUpdate[] = [
     whyItMatters: "Policy: include a restart in permission tests. An attempt saved with read-only access should resume with the same file boundaries, even on a worker whose default permits writes.",
     touches: "Policy",
     tags: ["session recovery","sandbox permissions","workspace roots"],
+  },
+  {
+    id: "kiro-cli-long-session-memory",
+    date: "2026-11-23",
+    title: "Kiro measures how CLI memory changes over weeks of simulated agent work",
+    source: "AWS Kiro",
+    url: "https://kiro.dev/blog/agents-run-for-days/",
+    summary: "Kiro moved older turns to disk and began releasing state when delegated tasks finish. On the team’s simulated 21-day workload, it reports 193.5 MB of CLI memory at day 21, down from 370.5 MB on the same workload.",
+    whyItMatters: "Runtime: measure memory growth across repeated tasks on one worker. After old turns move to storage, verify that operators can still retrieve the transcript for a reviewed decision.",
+    touches: "Runtime",
+    tags: ["long-running agents", "memory growth", "transcript retention"],
   },
   {
     id: "factory-droid-pinned-model-unavailable",
