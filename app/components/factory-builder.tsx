@@ -37,6 +37,12 @@ type DraftState = { step: number; form: FactoryForm; submitted: boolean };
 function toggle(values: string[], value: string) { return values.includes(value) ? values.filter((item) => item !== value) : [...values, value]; }
 function slugify(value: string) { return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
 
+function focusBuilderSection(section: HTMLElement | null) {
+  if (!section) return;
+  section.focus({ preventScroll: true });
+  section.scrollIntoView({ block: "start", behavior: "instant" });
+}
+
 function readDraft(): DraftState | null {
   try {
     const raw = sessionStorage.getItem(draftKey);
@@ -60,6 +66,7 @@ export function FactoryBuilder() {
   const [hydrated, setHydrated] = useState(false);
   const [importText, setImportText] = useState("");
   const [importMessage, setImportMessage] = useState("");
+  const focusOnGenerate = useRef(false);
   const resultRef = useRef<HTMLElement>(null);
   const stepRef = useRef<HTMLElement>(null);
   const errors = useMemo(() => factoryFormErrors(form), [form]);
@@ -97,13 +104,17 @@ export function FactoryBuilder() {
   }, [form, hydrated, step, submitted]);
 
   useEffect(() => {
-    if (submitted) resultRef.current?.focus();
+    if (submitted && focusOnGenerate.current) {
+      focusBuilderSection(resultRef.current);
+      focusOnGenerate.current = false;
+    }
   }, [submitted]);
 
   function restart() {
     setStep(0);
     setForm(initialForm);
     setSubmitted(false);
+    requestAnimationFrame(() => focusBuilderSection(stepRef.current));
     try { sessionStorage.removeItem(draftKey); } catch { setStorageFailed(true); }
   }
   function setList(key: "authority" | "verification" | "humanControls", label: string) {
@@ -124,14 +135,15 @@ export function FactoryBuilder() {
   }
   function moveToStep(next: number) {
     setStep(next);
-    requestAnimationFrame(() => stepRef.current?.focus());
+    requestAnimationFrame(() => focusBuilderSection(stepRef.current));
   }
 
   if (definition) {
-    return <section className="factory-result" aria-labelledby="factory-result-title" ref={resultRef} tabIndex={-1}>
+    return <section className="factory-result" id="factory-builder" aria-labelledby="factory-result-title" ref={resultRef} tabIndex={-1}>
       {storageFailed && <p role="status">Draft could not be saved in this browser. Copy or download your result before leaving.</p>}
       <header><div><p className="section-label">Factory Definition / v{definition.version}</p><h2 id="factory-result-title">{definition.intent.workType}</h2></div><button className="button button-light" onClick={restart} type="button">Start over</button></header>
-      <p className="factory-result-success" role="status">Your conceptual Factory Definition is ready. Copy or download Markdown, JSON, or YAML to keep the result.</p>
+      <p className="factory-result-success" role="status">Your conceptual Factory Definition is ready. Save the Markdown version for review, or choose another export format.</p>
+      <ArtifactExport artifacts={artifacts} copyLabel="Copy Factory Definition" downloadLabel="Download Factory Definition" />
       <div className="factory-result-grid">
         <article className="factory-goal"><span>Intent</span><p>{definition.intent.outcome}</p></article>
         <article><span>Acceptance criteria</span><ul>{definition.acceptanceCriteria.map((item) => <li key={item}>{item}</li>)}</ul></article>
@@ -144,11 +156,11 @@ export function FactoryBuilder() {
         <article><span>Outcome metrics</span><ul>{definition.outcomeMetrics.map((item) => <li key={item}>{item}</li>)}</ul></article>
       </div>
       <aside className="callout"><strong>What to do with it</strong><p>Keep it with the work as the reviewable design, then exercise the same contracts in the Reference Lab. Markdown is for people; JSON (v0.2) and YAML (v0.2) follow the <a href="/schemas/factory-definition-0.2.json">published v0.2 schema</a>. It is not an executable manifest for any particular runtime or a formal FDLC Specification document. {factoryDefinitionBridge.definition} {factoryDefinitionBridge.version} {factoryDefinitionBridge.boundary}</p></aside>
-      <ArtifactExport artifacts={artifacts} copyLabel="Copy Factory Definition" downloadLabel="Download Factory Definition" />
       <nav className="factory-result-actions" aria-label="Continue from Factory Definition">
         {factoryDefinitionNextSteps.map(([href, label], index) => href.startsWith("/guide")
-          ? <a className={index === 0 ? "button button-dark" : "button button-light"} href={href} key={href}>{label}</a>
-          : <Link className={index === 0 ? "button button-dark" : "button button-light"} href={href} key={href}>{label}</Link>)}
+          ? <a className={index === 0 ? "button button-dark" : "text-action"} href={href} key={href}>{label}</a>
+          : <Link className={index === 0 ? "button button-dark" : "text-action"} href={href} key={href}>{label}</Link>)}
+        <Link className="text-action" href="/factory-skills">Try the optional Factory Skills starter kit →</Link>
       </nav>
     </section>;
   }
@@ -183,7 +195,7 @@ export function FactoryBuilder() {
     </div>
     {panels[step]}
     <div className={`builder-validation${stepValid ? " is-valid" : ""}`} aria-live="polite"><strong>{stepValid ? "Ready to continue" : "Required before continuing"}</strong>{stepErrors.length > 0 && <ul>{stepErrors.map((error) => <li key={error}>{error}</li>)}</ul>}</div>
-    <div className="builder-actions"><button className="button button-light" disabled={step === 0} onClick={() => moveToStep(step - 1)} type="button">Previous</button>{step < 4 ? <button className="button button-dark" disabled={!stepValid} onClick={() => moveToStep(step + 1)} type="button">Continue</button> : <button className="button button-dark" disabled={!stepValid} onClick={() => setSubmitted(true)} type="button">Generate Factory Definition</button>}</div>
+    <div className="builder-actions"><button className="button button-light" disabled={step === 0} onClick={() => moveToStep(step - 1)} type="button">Previous</button>{step < 4 ? <button className="button button-dark" disabled={!stepValid} onClick={() => moveToStep(step + 1)} type="button">Continue</button> : <button className="button button-dark" disabled={!stepValid} onClick={() => { focusOnGenerate.current = true; setSubmitted(true); }} type="button">Generate Factory Definition</button>}</div>
   </section>;
 }
 

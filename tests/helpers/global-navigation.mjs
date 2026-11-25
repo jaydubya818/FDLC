@@ -38,6 +38,12 @@ export async function checkGlobalNavigation(page, { mobile, keyboard = false, to
   }
 
   const trigger = mobile ? header.getByLabel("Open navigation", { exact: true }) : desktop.getByRole("button", { name: "More", exact: true });
+  if (mobile) {
+    await trigger.click();
+    assert.equal(await trigger.evaluate((element) => element === document.activeElement), true);
+    await page.keyboard.press("Escape");
+    await page.waitForFunction(() => document.querySelector("#mobile-navigation")?.hidden);
+  }
   const panel = mobile ? header.locator("#mobile-navigation") : more;
   const activate = async () => touch ? trigger.tap() : trigger.click();
   await activate();

@@ -8,6 +8,11 @@ import { ArtifactExport } from "./artifact-export";
 import { assessmentIsComplete, scoreMaturity, type MaturityAnswers } from "../../lib/maturity";
 import { formatMaturityMarkdown, parseMaturityAnswers, serializeMaturityAnswers } from "../../lib/maturity-share";
 
+const evidenceByScore = [
+  "No repeatable example yet.", "A person handles it case by case.", "The team follows a written practice.",
+  "An owner enforces the agreed controls.", "Independent checks produce evidence.", "Measured results guide changes to the practice.",
+] as const;
+
 function primaryNextForScore(score: number): readonly [string, string] {
   if (score <= 1) return ["Define one bounded factory line", "/start"];
   if (score === 2) return ["Inspect the required architecture", "/architecture"];
@@ -98,7 +103,7 @@ export function MaturityAssessment() {
   const canFinish = assessmentIsComplete(answers);
   return <section aria-label={`Maturity assessment, dimension ${index + 1} of ${maturityDimensions.length}`} className="assessment-panel" ref={panelRef} tabIndex={-1}>
     <div className="assessment-progress"><span>Dimension {index + 1} of {maturityDimensions.length}</span><div aria-hidden="true"><i style={{ width: `${((index + 1) / maturityDimensions.length) * 100}%` }} /></div><strong>{dimension.name}</strong></div>
-    <fieldset><legend>{dimension.question}</legend><div className="assessment-options">{dimension.options.map((option) => <label className={selected === option.score ? "is-selected" : ""} key={option.score}><input checked={selected === option.score} name={dimension.id} onChange={() => choose(option.score)} type="radio" value={option.score} /><span>L{option.score}</span><strong>{option.label}</strong></label>)}</div></fieldset>
+    <fieldset><legend>{dimension.question}</legend><div className="assessment-options">{dimension.options.map((option) => <label className={selected === option.score ? "is-selected" : ""} key={option.score}><input checked={selected === option.score} name={dimension.id} onChange={() => choose(option.score)} type="radio" value={option.score} /><span>L{option.score}</span><strong>{option.label}</strong><small>{evidenceByScore[option.score]}</small></label>)}</div></fieldset>
     <p className={`assessment-validation${Number.isFinite(selected) ? " is-valid" : ""}`} aria-live="polite">{Number.isFinite(selected) ? "Response recorded. You can continue." : "Choose the statement that best describes what you can demonstrate today."}</p>
     <div className="assessment-actions"><button className="button button-light" disabled={index === 0} onClick={() => moveToDimension(index - 1)} type="button">Previous</button>{index < maturityDimensions.length - 1 ? <button className="button button-dark" disabled={!Number.isFinite(selected)} onClick={() => moveToDimension(index + 1)} type="button">Next dimension</button> : <button className="button button-dark" disabled={!canFinish} onClick={() => setShowResult(true)} type="button">View result</button>}</div>
   </section>;

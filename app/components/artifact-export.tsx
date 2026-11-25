@@ -54,9 +54,8 @@ export function ArtifactExport({
     setDownloadStatus("ready");
   }
 
-  return (
-    <div className="artifact-export">
-      <div className="artifact-export-formats" role="group" aria-label="Artifact formats">
+  const formatOptions = (
+    <div className="artifact-export-formats" role="group" aria-label="Artifact formats">
         {artifacts.map((artifact) => (
           <button
             aria-pressed={artifact.id === active.id}
@@ -69,6 +68,11 @@ export function ArtifactExport({
           </button>
         ))}
       </div>
+  );
+
+  return (
+    <div className="artifact-export">
+      {artifacts.length > 2 ? <details className="export-format-picker"><summary>Export format · {active.label}</summary>{formatOptions}</details> : formatOptions}
       <div className="factory-export-actions" aria-label="Keep this artifact">
         <button className="button button-dark" onClick={copy} type="button">{copyText}</button>
         <button className="button button-light" onClick={download} type="button">{downloadText}</button>

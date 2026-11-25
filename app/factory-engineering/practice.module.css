@@ -24,7 +24,7 @@
 .hero h1 {
   max-width: 10ch;
   margin: 14px 0 20px;
-  font: 500 clamp(62px, 6.3vw, 94px)/.96 var(--serif);
+  font: 500 clamp(3.25rem, 5.5vw, 5rem)/.96 var(--serif);
   letter-spacing: -.055em;
 }
 .heroCopy > p { max-width: 48ch; margin: 0; color: #e0e9df; font-size: clamp(18px, 1.55vw, 21px); line-height: 1.5; }
@@ -70,7 +70,7 @@
 
 .layout { padding-block: 50px 72px; }
 .article { max-width: 850px; }
-.section { padding-block: clamp(36px, 4.5vw, 62px); border-top: 1px solid var(--line); scroll-margin-top: 108px; }
+.section { padding-block: clamp(36px, 4.5vw, 62px); border-top: 1px solid var(--line); scroll-margin-top: var(--anchor-offset); }
 .section:first-child { padding-top: 0; border-top: 0; }
 .section:last-child { padding-bottom: 0; }
 .section h2 { margin: 0 0 15px; color: var(--ink); font: 500 clamp(33px, 3.3vw, 48px)/1.08 var(--serif); letter-spacing: -.045em; text-wrap: balance; }
@@ -80,7 +80,7 @@
 .roles dt, .referenceList dt, .evidence h3, .phases h3, .subhead { color: var(--ink); font: 680 18px/1.32 var(--sans); letter-spacing: -.02em; }
 .roles dd { margin: 8px 0 0; color: var(--muted); font-size: 16px; line-height: 1.6; }
 .stack { border-top: 1px solid var(--ink); }
-.layer, .disclosure { min-width: 0; border-bottom: 1px solid var(--line); scroll-margin-top: 108px; }
+.layer, .disclosure { min-width: 0; border-bottom: 1px solid var(--line); scroll-margin-top: var(--anchor-offset); }
 .layer summary, .disclosure summary { display: grid; align-items: center; gap: 18px; min-height: 56px; cursor: pointer; list-style: none; }
 .layer summary::-webkit-details-marker, .disclosure summary::-webkit-details-marker { display: none; }
 .layer summary { grid-template-columns: minmax(145px, .75fr) minmax(0, 1fr) 20px; padding: 14px 4px; }
@@ -148,7 +148,6 @@
   .roles { grid-template-columns: 1fr; gap: 13px; }
   .roles > div { padding-top: 10px; border-top-width: 1px; }
   .roles dd { margin-top: 4px; }
-  .section, .layer, .disclosure { scroll-margin-top: 83px; }
   .layer summary { grid-template-columns: 1fr 20px; gap: 3px 12px; padding-block: 11px; }
   .layer summary > span { grid-column: 1; }
   .layer summary .toggle { grid-column: 2; grid-row: 1 / 3; }

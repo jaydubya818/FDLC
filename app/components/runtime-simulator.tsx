@@ -14,6 +14,7 @@ export function RuntimeSimulator() {
   const status = runStatus(run);
   const next = nextArtifact(run);
   const stage = artifactChain[selected];
+  const nextName = artifactChain.find((item) => item.id === next)?.name;
   const stopped = ["blocked", "awaiting-approval", "denied", "complete"].includes(status);
   const started = run.completed.length > 0 || run.blocked !== null;
   const inspectedState = run.completed.includes(stage.id) ? "Recorded" : run.blocked?.at === stage.id ? "Blocked" : stage.id === next ? "Next" : "Not reached";
@@ -30,14 +31,14 @@ export function RuntimeSimulator() {
   return <section className="simulator factory-experience" aria-labelledby="simulator-title">
     <header className="experience-heading"><div><p className="section-label">Deterministic demonstration / API repair</p><h2 id="simulator-title" className="simulator-title">One objective. Inspect every boundary.</h2></div><p>Precomputed sample records. No accounts, live agents, external calls or production permissions. The executable counterpart is in the <a href="/lab">Reference Lab →</a></p></header>
     <fieldset className="experience-scenarios"><legend>Choose a scenario</legend><div>{scenarios.map(([value, title, description]) => <label aria-label={title} key={value} className={scenario === value ? "is-selected" : ""}><input type="radio" name="scenario" value={value} checked={scenario === value} onChange={() => reset(value)} /><span><strong>{title}</strong><small>{description}</small></span></label>)}</div><p>Choosing a scenario resets this sample run.</p></fieldset>
-    <form className="experience-intent" onSubmit={(event) => { event.preventDefault(); advance(); }}>
+    <form id="sample-submission" className="experience-intent" onSubmit={(event) => { event.preventDefault(); advance(); }}>
       <label htmlFor="sample-intent">Bounded sample intent</label><input id="sample-intent" readOnly value="Fix GET /sum: 2 + 3 must return 5. Preserve 400 and 404 responses." />
       <button type="submit" className="button button-dark" disabled={started}>Submit sample intent</button>
     </form>
     <details className="experience-extra-faults"><summary>Explore additional failure boundaries</summary><fieldset className="simulator-faults" disabled={started}><legend>Inject faults before execution</legend><div>{faults.map((fault) => <label key={fault.id} className={run.active.includes(fault.id) ? "is-selected" : ""}><input type="checkbox" checked={run.active.includes(fault.id)} onChange={() => setRun((current) => toggleFault(current, fault.id))} /><span>{fault.label}</span></label>)}</div><p>Reset to change faults after submission.</p></fieldset></details>
 
     <div className="simulator-actions"><button className="button button-dark" disabled={stopped || !started} onClick={() => advance()} type="button">Produce next artifact</button><button className="button button-light" disabled={stopped || !started} onClick={() => advance(true)} type="button">Run to the next boundary</button><button className="button button-light" onClick={() => reset(scenario)} type="button">Reset</button></div>
-    <div className={`simulator-result is-${status}`} ref={statusRef} tabIndex={-1}>
+    <div className={`simulator-result is-${status}`} id="sample-run-status" ref={statusRef} tabIndex={-1}>
       <p className="section-label" role="status" aria-live="polite">Run status: {statusText[status]}</p>
       {status === "blocked" && run.blocked && <><h3>Progression blocked. Evidence stays available.</h3><dl><div><dt>What happened</dt><dd>{run.blocked.reason}</dd></div><div><dt>The rule</dt><dd>{run.blocked.rule}</dd></div><div><dt>Recovery</dt><dd>{run.blocked.fix}</dd></div></dl><button className="button button-light" disabled={run.blocked.recoverable === false} type="button" onClick={() => { setRun(applyFix(run, run.blocked!.fault)); setSelected(artifactChain.findIndex((item) => item.id === (run.blocked!.fault === "failed-verification" || run.blocked!.fault === "authority-exceeded" ? "attempt" : "verification"))); statusRef.current?.focus(); }}>Apply the fix and continue</button></>}
       {status === "awaiting-approval" && <><h3>Verified does not mean authorized.</h3><p>The requested production action exceeds this profile&apos;s local completion grant. Only the accountable human can decide. These buttons simulate that decision; neither performs a release.</p><div className="simulator-actions"><button type="button" className="button button-dark" onClick={() => resolve(true)}>Record sample human approval</button><button type="button" className="button button-light" onClick={() => resolve(false)}>Reject sample request</button></div></>}
@@ -57,7 +58,13 @@ export function RuntimeSimulator() {
         <dl>{[["Responsible component", stage.producer], ["Required inputs", stage.inputs], ["Authority boundary", stage.authority], ["Expected record", stage.evidence], ["What could fail", stage.failure], ["What happens next", stage.next]].map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
         <p className="experience-sample-note">Expected records describe the teaching scenario. Inspect the ledger below to see what this run has actually reached.</p>
         <a className="text-action" href={stage.guide}>Read the governing Guide chapter →</a>
-        <div className="experience-inspection-nav"><button type="button" disabled={selected === 0} onClick={() => setSelected((value) => value - 1)}>← View previous step</button><button type="button" disabled={selected === artifactChain.length - 1} onClick={() => setSelected((value) => value + 1)}>View next step →</button></div><p className="experience-inspection-hint">Viewing a step does not advance the run. Use “Produce next artifact” above.</p>
+        <div className="experience-inspection-nav"><button type="button" disabled={selected === 0} onClick={() => setSelected((value) => value - 1)}>← View previous step</button><button type="button" disabled={selected === artifactChain.length - 1} onClick={() => setSelected((value) => value + 1)}>View next step →</button></div><p className="experience-inspection-hint">Browse the timeline to inspect the sample. {run.completed.length} of {artifactChain.length} artifacts recorded.</p>
+        <div className="inspector-run-action">
+          {!started ? <a className="text-action" href="#sample-submission">Go to sample intent ↑</a>
+            : !stopped ? <button className="button button-dark" onClick={() => advance()} type="button">Produce next artifact · {nextName}</button>
+            : status === "complete" ? <a className="text-action" href="/lab">Run the Reference Lab →</a>
+            : <a className="text-action" href="#sample-run-status">Review the decision and recovery options ↑</a>}
+        </div>
       </article>
     </div>
     <section className="experience-records" aria-labelledby="records-title"><h3 id="records-title">Inspect this run&apos;s records</h3>

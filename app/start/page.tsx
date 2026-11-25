@@ -3,9 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FactoryBuilder } from "../components/factory-builder";
 import { NextSteps } from "../components/next-steps";
-import { PageHero } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
-import { factoryDefinitionBridge } from "../../data/maturity-actions";
 import { pageHandoffs } from "../../data/page-handoffs";
 import { pageMetadata } from "../../lib/metadata";
 
@@ -13,11 +11,23 @@ export const metadata: Metadata = pageMetadata("Define Your First Factory Line",
 
 export default function StartPage() {
   return <SiteShell><div className="page-wrap start-page">
-    <PageHero eyebrow="Your path · step 3 of 4 · Define" variant="compact" title="Define your first factory line." description="Start with one bounded engineering outcome. Define its evidence, authority, deterministic checks, and human control boundaries. FDLC begins with the work—not the agent." meta={[["Output", "Factory Definition"], ["Steps", "05"], ["Privacy", "Browser only"]]}>
-      <div className="hero-actions"><a className="button button-dark" href="#factory-builder">Start the builder</a><Link className="text-action" href="/in-5-minutes">See a completed example first →</Link></div>
-    </PageHero>
-    <aside className="builder-orientation"><strong>Before you begin</strong><p>Bring one outcome, measurable acceptance criteria, and the actions a human must approve. {factoryDefinitionBridge.boundary}</p><span>No account · no upload · conceptual output</span></aside>
-    <aside className="guide-reference" aria-label="Try the Factory Skills Starter Kit"><div><h2>Ready to try a small workflow?</h2><p>Run a bounded bug fix with the optional Factory Skills starter kit, an isolated branch, and before/after test evidence. It works with your own coding agent.</p></div><Link className="button button-dark" href="/factory-skills">Try the starter kit →</Link></aside>
+    <header className="builder-intro">
+      <div>
+        <p className="section-label">Your path · step 3 of 4 · Define</p>
+        <h1>Define your first factory line.</h1>
+        <p className="builder-intro-lede">Write a Factory Definition for one engineering outcome. Decide what the factory may do, how to verify its work, and where a person must approve it.</p>
+        <div className="hero-actions"><a className="button button-dark" href="#factory-builder">Start the builder</a><Link className="text-action" href="/in-5-minutes">See a completed example →</Link></div>
+      </div>
+      <aside aria-label="Before you begin">
+        <h2>Before you begin</h2>
+        <p>Bring one outcome and a way to tell whether the work succeeded.</p>
+        <dl>
+          <div><dt>Time</dt><dd>Five steps · about 10 minutes for a first draft</dd></div>
+          <div><dt>Output</dt><dd>A reviewable definition you can download</dd></div>
+          <div><dt>Privacy</dt><dd>Your draft stays in this browser tab</dd></div>
+        </dl>
+      </aside>
+    </header>
     <FactoryBuilder />
     <FactoryHandoffDiagram builder />
     <NextSteps {...pageHandoffs.start} />

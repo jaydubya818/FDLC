@@ -1,9 +1,9 @@
 {
   "version": 1,
   "sources": {
-    "app/components/site-header.tsx": "020886dd4d580f802c2a0a74a0572f8d32cea86de0e64d352a1bf47f00a41f64",
-    "app/design-system.css": "10a421905bd5b1a9b8be62ce271b83dea3743cbd015d06b8fb8d14b869180e21",
-    "lib/global-navigation.ts": "fa8bc7149cca9816defe3ac0db5b6832528507cddde341e25e26a57d66398240",
+    "app/components/site-header.tsx": "497e8601bbc76c4af11744161893ca2bc2a81f4c8ec35de6bf910aec8325b745",
+    "app/design-system.css": "74997570ee7061e88706b99df1c0c5c054873b64ee44ecd86ebb4c88e0cf8455",
+    "lib/global-navigation.ts": "32c9dfb71b869180169738f2bd2861aabf43a2fd237905f91ee03da34bd950cc",
     "public/fdlc-logo-transparent.png": "8ce5db993f13d466f8df90c1520e97dd8118fa4206e4e90256a3c43b7863914c"
   }
 }
