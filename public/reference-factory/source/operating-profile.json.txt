@@ -1,0 +1,12 @@
+{
+  "kind": "fdlc-local-operations-profile",
+  "version": 1,
+  "maxAttemptsPerWorkOrder": 2,
+  "parentWorkBudget": 2,
+  "workUnitsPerAttempt": 1,
+  "maxWorkOrders": 20,
+  "budgetUnit": "scripted attempt; not tokens, dollars or elapsed compute",
+  "reviewer": "local-exercise-operator",
+  "publication": false,
+  "productionQualified": false
+}

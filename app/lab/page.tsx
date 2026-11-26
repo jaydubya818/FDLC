@@ -5,6 +5,7 @@ import { CopyButton } from "../components/copy-button";
 import { NextSteps } from "../components/next-steps";
 import { PageHero, SectionHeader } from "../components/page-hero";
 import { SiteShell } from "../components/site-shell";
+import { SmallFactoryTutorial } from "../components/small-factory-tutorial";
 import { pageMetadata } from "../../lib/metadata";
 import "./tutorial.css";
 
@@ -12,7 +13,7 @@ export const metadata: Metadata = pageMetadata("Build and Run Your First FDLC So
 import manifest from "../../public/reference-factory/source/manifest.json";
 
 const source = "/reference-factory/source/";
-const commands = `cd fdlc-reference-lab-v1.1.1
+const commands = `cd fdlc-reference-lab-v${manifest.version}
 node lab.mjs all
 node lab.mjs failed
 node lab.mjs recovery
@@ -33,7 +34,7 @@ export default function LabPage() {
   return <SiteShell><div className="page-wrap engineering-tutorial">
     <PageHero eyebrow="Your path · step 4 of 4 · Build" variant="compact" status="Available" title="Build and run your first FDLC software factory." description="Fix a failing API test, inspect the contract and evidence, then replace the scripted producer with your own stack. Mission Control is an optional second learning path." meta={[["Prerequisites", "Node 22.13+"], ["Guide time", "30–60 minutes, estimated"], ["Dependencies", "None for this Lab"]]} />
     <div className="tutorial-body">
-    <nav className="tutorial-nav" aria-label="Tutorial sections"><a href="#reference">Run the Lab</a><a href="#own-stack">Use your own stack</a><a href="#qualification">Qualification</a><a href="#mission-control-path">Mission Control path</a><a href="#improve">Improve</a></nav>
+    <nav className="tutorial-nav" aria-label="Tutorial sections"><a href="#reference">Run the Lab</a><a href="#operate-a-small-factory">Operate a small factory</a><a href="#own-stack">Use your own stack</a><a href="#qualification">Qualification</a><a href="#mission-control-path">Mission Control path</a><a href="#improve">Improve</a></nav>
     <aside className="tutorial-orientation" aria-labelledby="tutorial-orientation-title">
       <div><p className="section-label">What you will run</p><h2 id="tutorial-orientation-title">Same contracts. <br />Your implementation.</h2></div>
       <div className="tutorial-orientation-copy">
@@ -54,6 +55,7 @@ export default function LabPage() {
       <ol className="tutorial-checkpoints"><li><strong>Define</strong><p>Read <a href={`${source}factory-definition.json.txt`}>factory-definition.json</a> and <a href={`${source}work-order.json.txt`}>work-order.json</a>. Find scope, protected acceptance criteria, Tasks, correction limit and retained human authority.</p></li><li><strong>Run + inspect</strong><p>Read <a href={`${source}lab.mjs.txt`}>runAgent, runVerifier, gate and runScenario</a>. Follow the Attempt, exact Candidate digest, verifier output and decision in the JSON report.</p></li><li><strong>Break + recover</strong><p>Run the failed and recovery cases. Compare the first failed Candidate and its evidence with the corrected Candidate. A new result preserves the earlier record.</p></li></ol>
       <div className="tutorial-scenarios">{scenarios.map(([id, title, body]) => <article key={id}><code>node lab.mjs {id}</code><h3>{title}</h3><p>{body}</p></article>)}</div>
     </section>
+    <SmallFactoryTutorial />
     <section className="tutorial-section" id="own-stack"><SectionHeader eyebrow="Next 20–35 minutes / Path B" title="Build with your preferred technology stack." description="Keep the contract and verifier fixed while changing how a producer creates the Candidate. You do not need Mission Control, the Starter Kit or a particular provider." />
       <ol className="tutorial-checkpoints"><li><strong>Freeze the outcome</strong><p>Keep AC-1/2/3 and the acceptance tests outside producer write scope. Export a <Link href="/start">Factory Definition</Link> and record workload, owner, file scope, budgets, verifier and authority boundary.</p></li><li><strong>Replace one seam</strong><p>Adapt <code>runAgent(dir)</code> to return an attributable identity and changed-file list after your chosen agent, harness or deterministic tool creates the patch. Preserve <code>runVerifier(dir)</code> and <code>gate(...)</code>. For a first exercise, manually apply the known correction in an isolated copy; then integrate your own executor separately.</p></li><li><strong>Protect the boundary</strong><p>A real implementation must put protected tests, verifier identity, policy and release credentials beyond producer control. A temporary folder and different strings do not enforce that boundary. Add isolation, timeouts and immutable evidence suitable for your workload.</p></li><li><strong>Prove the substitution</strong><p>Re-run the API and policy cases, including self-verification, stale evidence, protected-test changes and recovery. Keep the same acceptance criteria. Treat every changed harness/model/runtime tuple as unqualified until its evidence supports the intended operating domain.</p></li></ol>
       <p><Link href="/factory-skills">Optional Factory Skills Starter Kit</Link> supplies a more opinionated local Codex pilot with pinned skills. Its selected-test evidence is not independent certification. No compatibility with other harnesses or model providers is claimed.</p>

@@ -24,6 +24,7 @@ const contents = [
   { href: "#verification", label: "Verification and release" },
   { href: "#measure-improve", label: "Measurement" },
   { href: "#rollout", label: "Rollout" },
+  { href: "#small-factory-operations", label: "Recurring operation" },
   { href: "#taxonomy", label: "Glossary and perspectives" },
   { href: "#sources", label: "Source material" },
 ] as const satisfies readonly PageContentsItem[];
@@ -150,8 +151,30 @@ export default function FactoryEngineeringPage() {
           <a className={styles.readMore} href="/guide/05-operate/38-enterprise-adoption-and-the-infrastructure-landscape">Read the enterprise adoption chapter <span aria-hidden="true">→</span></a>
         </section>
 
+        <section id="small-factory-operations" className={styles.section}>
+          <h2>Operate between human reviews</h2>
+          <p className={styles.intro}>Specialize a small factory for one recurring outcome. Let it prepare attributable work within its existing authority, then bring evidence and exceptions to an accountable operator.</p>
+          <details className={styles.disclosure}><summary>Inspect the agent and its operating boundary<i className={styles.toggle} aria-hidden="true" /></summary><div className={styles.detailBody}>
+            <dl className={styles.referenceList}>
+              <div><dt>Context</dt><dd>Show the approved sources, revisions, retrieval scope and checkpoint state. Context compaction is a memory technique; persisted WorkOrder and effect records establish operational continuity.</dd></div>
+              <div><dt>Model</dt><dd>Record the selected model and its settings separately from the harness that executes tools and manages state. A cheaper or stronger model must still qualify for the workload.</dd></div>
+              <div><dt>Prompt</dt><dd>Version the instructions and profile. Treat an instruction change as a candidate factory change when it affects behavior or evidence.</dd></div>
+              <div><dt>Tools</dt><dd>Show schemas, versions and granted actions. UI and agent tools can share an operation contract while enforcing the caller&apos;s own authority.</dd></div>
+            </dl><p>The operating boundary also names the owner, event source, schedule time zone, shared budget, protected verifier and release policy. An agent may propose changes to these controls; the proposal does not grant itself permission.</p>
+            <a className={styles.readMore} href="/guide/05-operate/37-control-surfaces-event-contracts-and-storage#authorized-action-parity">Read authorized action parity →</a>
+          </div></details>
+          <details className={styles.disclosure}><summary>Use specialists and evolve the template deliberately<i className={styles.toggle} aria-hidden="true" /></summary><div className={styles.detailBody}>
+            <p>A persistent specialist role owns a durable responsibility. A temporary subagent owns one bounded task. Both need explicit inputs, permissions, evidence and cancellation behavior; delegated work consumes the shared parent budget.</p>
+            <p>A useful local customization can become a template improvement after evaluation. Give the change its own WorkOrder, preserve its source evidence, qualify a new Factory Version, and authorize each running factory&apos;s upgrade. In-flight work keeps its pinned composition unless an explicit migration handles it.</p>
+            <a className={styles.readMore} href="/guide/03-build/23-agent-and-loop-engineering#persistent-roles-and-temporary-subagents">Compare specialist roles and temporary subagents →</a>
+            <a className={styles.readMore} href="/guide/06-improve/41-meta-loops-and-the-closed-loop-factory#template-backports-and-running-factory-upgrades">Read the template and upgrade contract →</a>
+          </div></details>
+          <div className={styles.next}><Link href="/lab#operate-a-small-factory">Run the operating exercise →</Link><Link href="/simulator#morning-review">Practice the morning review →</Link></div>
+        </section>
+
         <section id="taxonomy" className={styles.section}>
           <h2>Glossary and perspectives</h2>
+          <p className={styles.intro}>Coming from Tiny Software Factories? Use the <a href="/guide/appendix/engineering-experience#tiny-software-factories-crosswalk">TSF-to-FDLC crosswalk</a> to connect templates, near-loop operation, extensible harnesses and liquid software to the existing FDLC model.</p>
           <details className={styles.disclosure}>
             <summary>Factory engineering terms<i className={styles.toggle} aria-hidden="true" /></summary>
             <div className={styles.detailBody}><dl className={styles.referenceList}>{factoryTaxonomyTerms.map((term) => <div key={term.term}>

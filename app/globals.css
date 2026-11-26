@@ -112,6 +112,13 @@ button, input, textarea, select { font: inherit; }
 .adoption-action-grid strong { font-size: 13px; }
 .adoption-reference-links { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px 24px; }
 .adoption-reference-links a { min-height: 44px; display: inline-flex; align-items: center; color: var(--green); font-size: 13px; font-weight: 700; }
+.small-factory-invite { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 32px; align-items: center; padding: 28px 32px; margin-top: 28px; background: var(--sage); border: 1px solid var(--line); border-left: 4px solid var(--green); }
+.small-factory-invite .section-label { margin: 0 0 10px; }
+.small-factory-invite h3 { margin: 0 0 10px; font-size: clamp(23px, 2.2vw, 30px); font-weight: 550; line-height: 1.25; letter-spacing: -.02em; }
+.small-factory-invite p:last-child { margin: 0; max-width: 67ch; font-size: 15px; color: var(--muted); line-height: 1.7; }
+.small-factory-invite > div:last-child { display: flex; flex-direction: column; align-items: start; gap: 10px; }
+.small-factory-invite a { color: var(--green); font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; padding-block: 8px; }
+@media(max-width: 700px) { .small-factory-invite { grid-template-columns: 1fr; padding: 24px; gap: 16px; } }
 .adoption-mission-preview { align-items: center; }
 .adoption-enterprise { display: grid; grid-template-columns: 1fr .8fr; gap: clamp(50px, 10vw, 140px); align-items: end; }
 .adoption-enterprise h2 { margin: 18px 0 0; font-family: var(--serif); font-size: clamp(30px, 3.2vw, 44px); font-weight: 500; letter-spacing: -.05em; line-height: 1.02; }

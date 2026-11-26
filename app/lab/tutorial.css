@@ -48,3 +48,19 @@
 .tutorial-reference-links > a { max-width: 100%; padding-block: 6px; color: var(--green); font-size: 14px; font-weight: 650; line-height: 1.6; text-decoration: underline; text-underline-offset: 3px; }
 .tutorial-section .quickstart-code pre { margin: 0; padding: 20px 24px; color: #d1e9de; font-family: var(--mono); font-size: 14px; line-height: 1.7; }
 .tutorial-section .quickstart-code pre code { font: inherit; }
+.tutorial-operating-intro { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; padding: 24px; margin-block: 24px; background: var(--sage); border: 1px solid var(--line); }
+.tutorial-operating-intro h3 { margin: 0 0 12px; font-size: 20px; }
+.tutorial-operating-intro p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.75; }
+.tutorial-operating-details { margin-block: 28px; padding: 20px 24px; border: 1px solid var(--line); background: var(--white); }
+.tutorial-operating-details summary { color: var(--green); font-size: 16px; font-weight: 700; cursor: pointer; }
+.tutorial-operating-details > p { color: var(--muted); font-size: 15px; line-height: 1.75; }
+.tutorial-operating-details .quickstart-code-toolbar > span { font-size: 13px; color: #d1e9de; }
+.tutorial-review-cases { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); border-top: 1px solid var(--line); margin-block: 24px; gap: 0 28px; }
+.tutorial-review-cases article { min-width: 0; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.tutorial-review-cases h4 { margin: 0 0 8px; color: var(--green); font-size: 17px; }
+.tutorial-review-cases p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+.tutorial-measurements { margin-block: 24px; }
+.tutorial-measurements > div { padding: 20px 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0,1fr) minmax(0,3fr); gap: 24px; }
+.tutorial-measurements dt { color: var(--green); font-size: 15px; font-weight: 700; }
+.tutorial-measurements dd { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+@media(max-width: 620px) { .tutorial-operating-intro, .tutorial-review-cases, .tutorial-measurements > div { grid-template-columns: 1fr; } .tutorial-operating-details { padding: 20px 16px; } .tutorial-measurements > div { gap: 10px; } }
