@@ -30,9 +30,54 @@ export type FactoryUpdate = {
   guideReading?: { href: string; label: string };
 };
 
-export const factoryUpdatesReviewed = "2026-11-25";
+export const factoryUpdatesReviewed = "2026-11-26";
 
 export const factoryUpdates: readonly FactoryUpdate[] = [
+  {
+    id: "kirobench-workload-coverage",
+    date: "2026-11-26",
+    title: "Kiro builds its agent benchmark around the work developers actually bring it",
+    source: "AWS Kiro",
+    url: "https://kiro.dev/blog/kirobench/",
+    summary: "Kiro describes a private benchmark of more than 300 tasks drawn from volunteered sessions, merged changes and public repositories. The team compares the tasks with its usage data to find common jobs its benchmark barely tests.",
+    whyItMatters: "Evals: group recent work orders by task and codebase. If reviewers spend hours on a task the evaluation suite rarely exercises, add a held-out example before comparing the next two factory versions.",
+    touches: "Evals",
+    tags: ["evaluation coverage", "production feedback", "held-out tasks"],
+  },
+  {
+    id: "kiro-factory-manual-human-review",
+    date: "2026-11-25",
+    kind: "Perspective",
+    title: "Kiro publishes the manual its team uses to decide when a factory needs a person",
+    source: "AWS Kiro",
+    url: "https://kiro.dev/blog/software-factory-human-attention/",
+    summary: "Kiro’s team records reversible choices on the pull request and escalates decisions that are hard to undo. Its internal edge build lets the team study mistakes while every main-branch merge still gets human review.",
+    whyItMatters: "Human control: record why a run stopped for a reviewer. Track avoidable interruptions separately from required sign-offs when deciding which decisions a worker can make next time.",
+    touches: "Human control",
+    tags: ["human review", "escalation", "factory operations"],
+  },
+  {
+    id: "vercel-workflow-speculative-steps",
+    date: "2026-11-25",
+    title: "Vercel Workflow 5.8 can run retryable steps speculatively",
+    source: "Vercel",
+    url: "https://vercel.com/changelog/workflows-speculative-execution",
+    summary: "New runs use the new engine after upgrading to 5.8. Existing runs finish on their original engine. Vercel documents a stable step identifier for deduplicating writes and a zero-retry setting for operations that must run at most once.",
+    whyItMatters: "Runtime: replay a step that sends a release notification. Verify that the recipient gets one message even if the worker attempts the send twice.",
+    touches: "Runtime",
+    tags: ["durable execution", "idempotency", "retries"],
+  },
+  {
+    id: "github-copilot-review-billing-owner",
+    date: "2026-11-25",
+    title: "GitHub announces a December 30 change to who pays for Copilot code review",
+    source: "GitHub",
+    url: "https://github.blog/changelog/2026-11-25-copilot-code-review-billing-will-default-to-the-organization/",
+    summary: "For Copilot Business and Enterprise, GitHub plans to bill the repository’s organization for licensed members’ reviews when no billing choice is saved. Organizations without paid AI Credits usage, with a billing lock, or without a billable customer will use member billing.",
+    whyItMatters: "Observability: record which account pays for automated reviews before comparing cost per change across December 30. A higher organization bill can reflect the payer change even if review volume stays flat.",
+    touches: "Observability",
+    tags: ["review costs", "billing attribution", "budgets"],
+  },
   {
     id: "claude-code-skill-load-policy",
     date: "2026-11-25",
@@ -43,6 +88,17 @@ export const factoryUpdates: readonly FactoryUpdate[] = [
     whyItMatters: "Policy: include skill loading in permission checks. Before assigning a skill to a worker, verify that the installed version enforces the rule and records the decision.",
     touches: "Policy",
     tags: ["skills", "permissions", "audit records"],
+  },
+  {
+    id: "specengineeringbench-tests-detect-defects",
+    date: "2026-11-24",
+    title: "SpecEngineeringBench measures whether agent-written tests catch known defects",
+    source: "Xingjian Wang and colleagues",
+    url: "https://arxiv.org/abs/2611.32973v1",
+    summary: "Across seven coding agents and 100 tasks from 78 Python repositories, the researchers report a 91.47% mean pass rate on repaired code. The mean rate for tests that failed on buggy code and passed after the fix was 26.36%.",
+    whyItMatters: "Verification: run a proposed regression test on both sides of a known fix. Keep the before-and-after results together so a reviewer can see which failure the test would catch.",
+    touches: "Verification",
+    tags: ["regression tests", "defect detection", "evaluation methods"],
   },
   {
     id: "vercel-workflow-run-payload-retention",
@@ -76,6 +132,17 @@ export const factoryUpdates: readonly FactoryUpdate[] = [
     whyItMatters: "Policy: include a restart in permission tests. An attempt saved with read-only access should resume with the same file boundaries, even on a worker whose default permits writes.",
     touches: "Policy",
     tags: ["session recovery","sandbox permissions","workspace roots"],
+  },
+  {
+    id: "claude-ship-repair-and-approval-policy",
+    date: "2026-11-23",
+    title: "Claude Ship gives pull request fixes and approval decisions separate roles",
+    source: "Anthropic",
+    url: "https://claude.com/resources/articles/introducing-claude-ship",
+    summary: "For Team and Enterprise accounts using GitHub, Anthropic introduced two beta agents. PR Steward addresses review feedback and failing checks. Claude Approvals reads a repository policy to decide which changes can pass and which need a person.",
+    whyItMatters: "Approval: try a proposed approval rule in observe mode on real pull requests. Compare its decisions with the maintainers’ decisions before making the check a condition for merge.",
+    touches: "Approval",
+    tags: ["pull requests", "approval policy", "human review"],
   },
   {
     id: "kiro-cli-long-session-memory",
