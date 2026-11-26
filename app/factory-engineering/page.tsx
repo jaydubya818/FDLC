@@ -8,6 +8,7 @@ import {
   type PracticeSource,
 } from "../../data/factory-engineering";
 import { pageMetadata } from "../../lib/metadata";
+import { FactoryIntakePlaybook } from "../components/factory-intake-playbook";
 import { PageContentsNav, type PageContentsItem } from "../components/page-contents-nav";
 import { SiteShell } from "../components/site-shell";
 import styles from "./practice.module.css";
@@ -21,6 +22,7 @@ export const metadata: Metadata = pageMetadata(
 const contents = [
   { href: "#two-jobs", label: "Responsibilities" },
   { href: "#factory-stack", label: "The factory stack" },
+  { href: "#intake-to-review", label: "Intake to review" },
   { href: "#verification", label: "Verification and release" },
   { href: "#measure-improve", label: "Measurement" },
   { href: "#rollout", label: "Rollout" },
@@ -85,6 +87,8 @@ export default function FactoryEngineeringPage() {
             </details>)}
           </div>
         </section>
+
+        <FactoryIntakePlaybook />
 
         <section id="verification" className={styles.section}>
           <h2>{verificationPractice.headline}</h2>

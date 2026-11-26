@@ -34,6 +34,8 @@ export function SmallFactoryTutorial() {
       <li><strong>Authorize operation and observe results</strong><p>A deployment decision names the version, environment and allowed actions. Operating approval and permission to release each candidate remain explicit. Feedback proposes a new version, which repeats qualification before promotion.</p></li>
     </ol>
 
+    <p>Before connecting a backlog, follow the <Link href="/factory-engineering#intake-to-review">intake-to-review practice flow</Link>: admit eligible work, resolve product choices, bind evidence to a candidate, and correlate later alerts with the work that produced it.</p>
+
     <h3>Run the persisted operating exercise</h3>
     <p>From the extracted Lab directory, use a new directory name for each demo. The companion uses the same protected API checks as the original Lab, adds saved WorkOrder records and local effect receipts, and exercises recovery through separate processes.</p>
     <div className="quickstart-code"><div className="quickstart-code-toolbar"><a href="/reference-factory/source/operations.mjs.txt">Read the operating companion ↗</a><CopyButton label="Copy operating exercise" text={demoCommands} /></div>

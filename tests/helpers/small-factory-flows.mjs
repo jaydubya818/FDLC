@@ -261,6 +261,23 @@ export async function checkSmallFactoryFlows(page, { origin, audit, report, widt
   await page.locator("#morning-review").getByRole("heading", { name: "Morning review", exact: true }).waitFor();
   report.flows.push({ name: "small-factory-tutorial-deep-link-commands-copy-review-handoff", width, result: "PASS" });
 
+  await page.goto(`${origin}/factory-engineering#intake-to-review`);
+  const playbook = page.locator("#intake-to-review");
+  await playbook.getByRole("heading", { level: 2 }).waitFor();
+  for (const id of ["admit-one-issue", "route-before-implementation", "prepare-the-review", "correlate-an-alert"]) {
+    const example = playbook.locator(`#${id}`);
+    assert.equal(await example.getAttribute("open"), null);
+    const summary = example.locator(":scope > summary");
+    await summary.focus();
+    assert.ok(await summary.evaluate(node => node === document.activeElement));
+    await page.keyboard.press("Enter");
+    assert.notEqual(await example.getAttribute("open"), null);
+    assert.equal(await example.getByRole("heading", { level: 3 }).count(), 2);
+  }
+  await audit("intake-to-review-all-disclosures-open");
+  await playbook.screenshot({ path: new URL(`intake-to-review-${width}.png`, output).pathname });
+  report.flows.push({ name: "intake-to-review-keyboard-disclosures-and-responsive-records", width, result: "PASS" });
+
   // A document navigation closes disclosures and discards temporary component state.
   await page.goto(`${origin}/about`);
 }

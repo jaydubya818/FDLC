@@ -13,9 +13,18 @@ The existing FDLC journey explains a bounded factory and its evidence gates. Thi
 | `/lab#operate-a-small-factory` | Template-to-operation walkthrough, persisted local exercise, six review situations and outcome/attention measurement. |
 | `/simulator#morning-review` | Six fixed examples with distinct execution, verification, authorization and observed-outcome states; retained receipts and exact-subject decisions. |
 | `/factory-engineering#small-factory-operations` | Agent inspection, authorized action parity, specialist roles and controlled template changes. |
+| `/factory-engineering#intake-to-review` | Four keyboard-operable examples for issue admission, intent/specification, candidate-bound review and correlated alert response. |
 | Guide companion change | Additions in existing canonical chapters and the engineering-experience appendix, with TSF crosswalk, glossary aliases and accepted research provenance. |
 
 The nine-stage governing lifecycle, existing lifecycle crosswalks, Factory Definition v0.2 schema, Mission Control boundary, Microfrontends routing, and production-deployment guards remain unchanged. The operating profile is not an executable manifest. The browser review is explicitly synthetic.
+
+## Warp course and article follow-up
+
+The follow-up source review covers all ten supplied Warp Learn lessons and the supplied article, *How to build a software factory you'll actually use*. The Guide's research intake maps each source to its existing canonical owner. Existing coverage of roles, scoring, benchmarking and governed learning is retained; the additions make the intake and review handoffs concrete.
+
+The site playbook follows one illustrative API repair through an admitted issue, an approved specification revision, candidate-bound evidence and a later correlated incident. Native disclosures show input/output records, possible dispositions, decision boundaries and primary-source links. The section is instructional; it does not connect a tracker, verifier, monitor or runtime.
+
+The Guide adds answer/change/unclear triage, researched facts versus product decisions, backlog/alert examples, a user-flow verification preflight and a first-batch calibration exercise. Its existing five review-risk dimensions now explicitly preserve evidence gaps and remain advisory to policy. Chapter 41 corrects two older conflations: a manifest is an authoring input to a Factory Version, and a merged definition revision is not qualification or authorization to activate it. Its diagram makes qualification and activation distinct.
 
 ## Executable deliverable
 
@@ -40,7 +49,7 @@ All 13 packaged sources have matching public readable mirrors and per-file hashe
 | FDLC native Next production build and emitted CSS | Passed |
 | Existing Factory Skills starter package/test gate | Passed; 17 tests |
 | Original Reference Lab scenarios from fresh ZIP extraction | 8 passed |
-| Original contracts plus operating subprocess tests | 18 passed, including both CLI entrypoints through real directory symlinks |
+| Original contracts plus operating subprocess tests from fresh ZIP extraction | 18 passed, including both CLI entrypoints through real directory symlinks |
 | Operating demo and fresh status from extraction | 10 checks passed; expected retained state and one receipt |
 | Deterministic Lab package/mirror check after CLI portability correction | Passed |
 | Guide lint, types and Markdown links | Passed; 77 Markdown files checked |
@@ -50,7 +59,7 @@ All 13 packaged sources have matching public readable mirrors and per-file hashe
 
 Local managed visual preview stopped at the Cloudflare development runtime's `uv_interface_addresses` environment error. Browser execution is not qualified locally: the pinned Chromium binary is absent and its download endpoint returns HTTP 403. Guide's native runtime check reached browser launch after successful compilation. These environment limitations do not count as passing browser gates.
 
-The repository browser suite now includes the six morning-review scenarios, both reconciliation branches, receipts, keyboard/mobile focus, reduced motion, profile validation and exact export contents, both presets, and the tutorial handoff. The existing hosted CI must execute those checks on the exact pull-request source. Fab's contained native gate remains owned by its declared macOS arm64 CI environment.
+The repository browser suite now includes the six morning-review scenarios, both reconciliation branches, receipts, keyboard/mobile focus, reduced motion, profile validation and exact export contents, both presets, the tutorial handoff, and the fully expanded intake playbook. The existing hosted CI must execute those checks on the exact pull-request source. Fab's contained native gate remains owned by its declared macOS arm64 CI environment.
 
 ## Hosted qualification history
 

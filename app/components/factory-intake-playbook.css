@@ -1,0 +1,50 @@
+.intake-playbook { min-width: 0; padding-block: clamp(36px, 4.5vw, 62px); border-top: 1px solid var(--line); scroll-margin-top: var(--anchor-offset); }
+.intake-playbook h2 { margin: 0 0 15px; color: var(--ink); font: 500 clamp(33px, 3.3vw, 48px)/1.08 var(--serif); letter-spacing: -.045em; text-wrap: balance; }
+.intake-playbook-intro { max-width: 66ch; margin: 0 0 18px; color: var(--muted); font-size: 17px; line-height: 1.6; }
+.intake-playbook-note { margin: 0 0 22px; padding: 13px 16px; background: #e4ede3; border-left: 3px solid var(--green); color: #405348; font-size: 14px; line-height: 1.6; }
+.intake-playbook-note strong { color: var(--green); }
+.intake-playbook a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.intake-playbook a:focus-visible, .intake-playbook summary:focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+.intake-playbook-examples { border-top: 1px solid var(--ink); }
+.intake-playbook-example { min-width: 0; border-bottom: 1px solid var(--line); scroll-margin-top: var(--anchor-offset); }
+.intake-playbook-example > summary { display: grid; grid-template-columns: minmax(0, 1fr) 20px; align-items: center; gap: 20px; min-height: 72px; padding: 15px 4px; cursor: pointer; list-style: none; }
+.intake-playbook-example > summary::-webkit-details-marker { display: none; }
+.intake-playbook-example > summary:hover { background: #e9eee5; }
+.intake-playbook-example > summary > span { display: grid; gap: 4px; }
+.intake-playbook-example > summary strong { color: var(--green); font: 650 17px/1.4 var(--sans); }
+.intake-playbook-example > summary > span > span { color: var(--muted); font-size: 14px; line-height: 1.5; }
+.intake-playbook-toggle { position: relative; width: 15px; height: 15px; justify-self: end; color: var(--green); }
+.intake-playbook-toggle::before, .intake-playbook-toggle::after { content: ""; position: absolute; top: 7px; left: 1px; width: 13px; height: 1.5px; background: currentColor; }
+.intake-playbook-toggle::after { transform: rotate(90deg); }
+.intake-playbook-example[open] > summary .intake-playbook-toggle::after { transform: none; }
+.intake-playbook-body { margin: 0 4px 18px; padding: 2px 15px 6px; border-left: 2px solid #bad0bf; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.intake-playbook-body > p { margin: 12px 0; }
+.intake-playbook-body > .intake-playbook-provenance { margin-top: 1px; font-size: 14px; }
+.intake-playbook-records { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; margin: 21px 0; }
+.intake-playbook-record { min-width: 0; padding-top: 11px; border-top: 2px solid var(--green); }
+.intake-playbook-record h3 { margin: 0 0 12px; color: var(--green); font: 650 12px/1.5 var(--mono); text-transform: uppercase; letter-spacing: .035em; }
+.intake-playbook-record dl { display: grid; gap: 13px; margin: 0; }
+.intake-playbook-record dt { margin-bottom: 4px; color: var(--muted); font-size: 12px; }
+.intake-playbook-record dd { display: grid; gap: 6px; margin: 0; font-size: 14px; }
+.intake-playbook-record dd strong { color: var(--ink); font: 600 13px/1.6 var(--mono); overflow-wrap: anywhere; }
+.intake-playbook-choices { margin: 19px 0; }
+.intake-playbook-choices > div { display: grid; grid-template-columns: minmax(100px, .6fr) minmax(0, 1.5fr); gap: 18px; padding-block: 11px; border-top: 1px solid var(--line); }
+.intake-playbook-choices dt { color: var(--ink); font-weight: 650; font-size: 14px; }
+.intake-playbook-choices dd { margin: 0; font-size: 14px; }
+.intake-playbook-body > .intake-playbook-boundary { border-left: 3px solid var(--green); padding: 11px 14px; background: #e9eee5; color: #405348; font-size: 14px; }
+.intake-playbook-guide { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding-block: 7px; font-size: 14px; font-weight: 650; }
+.intake-playbook-guide > span { flex-shrink: 0; }
+.intake-playbook-sources { margin-top: 21px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.intake-playbook-sources > p { max-width: 75ch; margin: 0 0 11px; }
+.intake-playbook-sources > ul { display: flex; flex-wrap: wrap; gap: 5px 20px; margin: 0 0 7px; padding: 0; list-style: none; }
+.intake-playbook-sources li { margin: 0; }
+.intake-playbook-sources li > a { display: inline-flex; align-items: center; min-height: 32px; }
+
+@media (max-width: 720px) {
+  .intake-playbook-body { margin-inline: 0; padding-inline: 12px 0; }
+  .intake-playbook-records { grid-template-columns: 1fr; gap: 20px; }
+  .intake-playbook-choices > div { grid-template-columns: 1fr; gap: 3px; }
+  .intake-playbook-example > summary { gap: 12px; }
+  .intake-playbook-sources > ul { display: grid; gap: 1px; }
+  .intake-playbook-sources li > a { min-height: 40px; }
+}
