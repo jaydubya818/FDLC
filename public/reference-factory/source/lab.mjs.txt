@@ -3,7 +3,7 @@
 // Local role labels illustrate separation; they are not an OS security boundary.
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { cpSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -75,7 +75,7 @@ export function qualificationReport() {
   const compositionDigest = hash([readFileSync(join(here, 'factory-definition.json')), readFileSync(join(here, 'work-order.json')), readFileSync(fileURLToPath(import.meta.url)), stateHash(fixture)].join('\n'));
   return { kind: 'fdlc-reference-lab-local-evidence', schema: 'illustrative report, not the canonical Qualification Record wire format', generatedAt: new Date().toISOString(), factoryVersion: `api-reference@1.1.0+${compositionDigest.slice(0, 12)}`, compositionDigest, workloadClass: definition.workload, environment: { node: process.version, platform: process.platform, arch: process.arch, execution: 'temporary local directory; no OS sandbox' }, configuration: definition, acceptanceCriteria: workOrder.acceptance, suite: { total: results.length, matched: results.filter((r) => r.matchesExpectation).length, mismatched: results.filter((r) => !r.matchesExpectation).length }, results, dimensions: { functionalCorrectness: 'MEASURED: protected API and baseline checks in each scenario', evidenceCompleteness: 'MEASURED: candidate SHA-256, output digest, role labels and gate reasons', policy: 'MEASURED: file scope, self-verification, stale and missing evidence denied', recovery: 'MEASURED: failed record retained, new Candidate independently checked', contextSufficiency: 'BOUNDED: fixture, contract and protected tests only', independence: 'ILLUSTRATIVE: separate functions and identity labels, not security principals', isolation: 'NOT QUALIFIED: temporary directory is not a sandbox', modelHarnessCompatibility: 'NOT TESTED: scripted producer only', reliability: 'NOT ESTABLISHED: one deterministic suite, no production cohort', cost: 'UNKNOWN: no model calls; compute and human cost not measured' }, qualifiedOperatingDomain: 'NONE for production; demonstration limited to this exact trusted local fixture', productionQualified: false, limitations: definition.limitations, nextGate: 'Replace the producer behind the same contracts, protect verifier authority, and qualify the exact stack and workload before operation.' };
 }
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (process.argv[1] && existsSync(process.argv[1]) && realpathSync(process.argv[1]) === realpathSync(fileURLToPath(import.meta.url))) {
   try {
     if (process.argv[2] === '--report') { const report = qualificationReport(); console.log(JSON.stringify(report, null, 2)); process.exitCode = report.suite.mismatched === 0 ? 0 : 1; }
     else {

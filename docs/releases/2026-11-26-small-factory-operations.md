@@ -25,9 +25,9 @@ The companion demonstrates duplicate intake, process restart, unknown-effect rec
 
 Published archive: `/downloads/fdlc-reference-lab-v1.2.0.zip`
 
-SHA-256: `2d724997045d371a71479dc9630cbe613bd8a24378f5ebe3dc5c7c4b896d68d6`
+SHA-256: `3a4cd83b8cb09b28d04892e243d7bc1f48d14864b5e94a93c58594a23519fd58`
 
-All 13 packaged sources have matching public readable mirrors and per-file hashes. The final repack changes README wording only from the independently executed archive; executable file hashes are unchanged.
+All 13 packaged sources have matching public readable mirrors and per-file hashes. Both CLI entrypoints resolve their filesystem paths before checking whether they were invoked directly, including macOS temporary-directory aliases and directory symlinks.
 
 ## Local evidence
 
@@ -35,14 +35,14 @@ All 13 packaged sources have matching public readable mirrors and per-file hashe
 | --- | --- |
 | FDLC typecheck, including Fab types | Passed |
 | FDLC lint | Passed |
-| FDLC unit suite on final feature logic | 115 passed |
+| FDLC unit suite after CLI portability correction | 117 passed |
 | FDLC Vinext build and rendered routes | Passed; 31 rendered-route tests |
 | FDLC native Next production build and emitted CSS | Passed |
 | Existing Factory Skills starter package/test gate | Passed; 17 tests |
 | Original Reference Lab scenarios from fresh ZIP extraction | 8 passed |
-| Original contracts plus operating subprocess tests from extraction | 16 passed |
+| Original contracts plus operating subprocess tests | 18 passed, including both CLI entrypoints through real directory symlinks |
 | Operating demo and fresh status from extraction | 10 checks passed; expected retained state and one receipt |
-| Deterministic Lab package/mirror check after final README precision edit | Passed |
+| Deterministic Lab package/mirror check after CLI portability correction | Passed |
 | Guide lint, types and Markdown links | Passed; 77 Markdown files checked |
 | Guide build/test suite | 90 passed |
 | Guide native Next compile, static generation and emitted CSS | Passed; 89 pages |
@@ -51,6 +51,10 @@ All 13 packaged sources have matching public readable mirrors and per-file hashe
 Local managed visual preview stopped at the Cloudflare development runtime's `uv_interface_addresses` environment error. Browser execution is not qualified locally: the pinned Chromium binary is absent and its download endpoint returns HTTP 403. Guide's native runtime check reached browser launch after successful compilation. These environment limitations do not count as passing browser gates.
 
 The repository browser suite now includes the six morning-review scenarios, both reconciliation branches, receipts, keyboard/mobile focus, reduced motion, profile validation and exact export contents, both presets, and the tutorial handoff. The existing hosted CI must execute those checks on the exact pull-request source. Fab's contained native gate remains owned by its declared macOS arm64 CI environment.
+
+## Hosted qualification history
+
+The Guide's initial candidate at `3f70b75f7669ca007d527933f4636e2e55a24ad7` passed its full hosted workflow, including browser and native runtime checks. FDLC's initial candidate at `a8a7dc2c24f5a99a41ec8ce0f0d6e11ee8a3fb33` reached a macOS CLI entrypoint failure in its unit gate: a temporary-directory path alias caused a subprocess to exit without running the command. The canonical-path correction and two real-subprocess regressions address that failure. A fresh hosted run must qualify the corrected source before release.
 
 ## Release contract
 

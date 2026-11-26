@@ -1,7 +1,7 @@
 {
   "version": "1.2.0",
   "archive": "/downloads/fdlc-reference-lab-v1.2.0.zip",
-  "sha256": "2d724997045d371a71479dc9630cbe613bd8a24378f5ebe3dc5c7c4b896d68d6",
+  "sha256": "3a4cd83b8cb09b28d04892e243d7bc1f48d14864b5e94a93c58594a23519fd58",
   "files": [
     {
       "path": "README.md",
@@ -11,22 +11,22 @@
     {
       "path": "lab.mjs",
       "source": "/reference-factory/source/lab.mjs.txt",
-      "sha256": "670b9bc3f2225d6108f2d0dd61ec7748b4f7f8ea8452292456b6689beedf8125"
+      "sha256": "395d9f98ef1e40ffe911ce44853e4fd719e3f9f585a711aa72026be3f2e5268a"
     },
     {
       "path": "contract.test.mjs",
       "source": "/reference-factory/source/contract.test.mjs.txt",
-      "sha256": "7833a6e6561fe00ca3a96a7df4adfe1d35fc3bf0624f5bedc0f69916b26a3002"
+      "sha256": "5ed8a89c0fb90ca297c4d8df721b620fc9b62b8772effc5d5536668b927b960b"
     },
     {
       "path": "operations.mjs",
       "source": "/reference-factory/source/operations.mjs.txt",
-      "sha256": "c7e596822e4c65233d49c8ee87e637a548704c79ad8dbe56f90183d4a83a5aef"
+      "sha256": "d8d5887fa7497c572c487b3f0b2ad82bb07e3a0a3a9e7210fe71a87b14d5c8e3"
     },
     {
       "path": "operations.test.mjs",
       "source": "/reference-factory/source/operations.test.mjs.txt",
-      "sha256": "74ec1f4b3daffc39382d285c97bed03047555aab714cac021a6c94344a153db0"
+      "sha256": "763a167ad9ec112eefa49490cccc3663c4161e0739e66478029ec4daa05bd3ce"
     },
     {
       "path": "operating-profile.json",

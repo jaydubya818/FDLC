@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { cpSync, existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -23,6 +23,21 @@ function fixture(t, script = defaultScript) {
 function exactReview(item, decision = 'accept') {
   return [item.id, decision, `--candidate=${item.candidate}`, `--evidence=${item.evidence}`];
 }
+
+test('the operations CLI persists work through a real directory symlink', t => {
+  const root = mkdtempSync(join(tmpdir(), 'fdlc-operations-symlink-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const alias = join(root, 'template-link');
+  symlinkSync(here, alias, 'dir');
+  const f = fixture(t, join(alias, 'operations.mjs'));
+  f.cli('init');
+  const queued = f.cli('enqueue', ['symlink-entry']);
+  const result = f.cli('work');
+  assert.equal(result.outcome, 'review-ready');
+  assert.equal(f.cli('status').workOrders[0].id, queued.workOrderId);
+  assert.equal(f.state().budget.reserved, 1);
+  assert.equal(f.cli('review', exactReview(result.state.workOrders[0])).outcome, 'accepted-locally');
+});
 
 test('a real process restart preserves the candidate and resumes verification without a new reservation', t => {
   const f = fixture(t); f.cli('init');

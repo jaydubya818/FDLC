@@ -5,7 +5,7 @@ import { spawnSync } from 'node:child_process';
 import { createHash, randomUUID } from 'node:crypto';
 import {
   closeSync, cpSync, existsSync, fsyncSync, mkdirSync, mkdtempSync, openSync,
-  readFileSync, readdirSync, renameSync, rmSync, writeFileSync,
+  readFileSync, readdirSync, realpathSync, renameSync, rmSync, writeFileSync,
 } from 'node:fs';
 import { hostname, tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
@@ -370,7 +370,7 @@ export function main(args) {
   fail('UNKNOWN_COMMAND', `Unknown command ${command}; use help.`);
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === script) {
+if (process.argv[1] && existsSync(process.argv[1]) && realpathSync(process.argv[1]) === realpathSync(script)) {
   try { console.log(encode(main(process.argv.slice(2))).trimEnd()); }
   catch (error) {
     console.log(encode({ error: { code: error.code || 'OPERATION_FAILED', message: error.message } }).trimEnd());
