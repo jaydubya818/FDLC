@@ -165,7 +165,7 @@ export async function checkSmallFactoryFlows(page, { origin, audit, report, widt
   await profile.getByLabel("Factory Definition reference", { exact: true }).fill("docs-maintenance / revision 1");
   await profile.getByLabel("Accountable operator or team", { exact: true }).fill("Documentation quality team");
   await profile.getByLabel("Eligible intake source and scope", { exact: true }).fill("Approved API changes in sample/docs");
-  await profile.getByLabel("Intake trigger", { exact: true }).selectOption("schedule");
+  await profile.locator("#profile-trigger").selectOption("schedule");
   await profile.locator("#profile-schedule").fill("Weekdays at 08:00");
   await profile.getByLabel("IANA time zone", { exact: true }).fill("Mars/Olympus_Mons");
   await profile.getByText("Use a valid IANA time zone, such as America/Chicago or UTC.", { exact: true }).waitFor();
