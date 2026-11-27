@@ -30,9 +30,31 @@ export type FactoryUpdate = {
   guideReading?: { href: string; label: string };
 };
 
-export const factoryUpdatesReviewed = "2026-11-26";
+export const factoryUpdatesReviewed = "2026-11-27";
 
 export const factoryUpdates: readonly FactoryUpdate[] = [
+  {
+    id: "tessl-loop-request-launch-history",
+    date: "2026-11-27",
+    title: "Tessl shows whether a workflow request started a run",
+    source: "Tessl",
+    url: "https://docs.tessl.io/changelog-cli#01260",
+    summary: "Tessl CLI 0.126.0 lists each Loop request, explains refusals and failures, and links to the execution it started. If the CLI loses the reply to a trigger, it reports that the outcome is unknown and points to the run history.",
+    whyItMatters: "Observability: give each request an ID that an operator can look up after a timeout. Check for an existing execution before submitting the same work again.",
+    touches: "Observability",
+    tags: ["workflow triggers", "run history", "duplicate work"],
+  },
+  {
+    id: "copilot-cli-custom-agent-tool-access",
+    date: "2026-11-27",
+    title: "GitHub Copilot CLI lets custom agents opt in to specific tools",
+    source: "GitHub",
+    url: "https://github.com/github/copilot-cli/releases/tag/v1.0.117",
+    summary: "Copilot CLI 1.0.117 adds explicit tool selection for custom agents. The release also makes delegated workers honor the tool list in their agent configuration independently of the text of their prompt.",
+    whyItMatters: "Policy: verify which tools a review worker can actually call when it receives a delegated task. Record that list alongside the worker’s configuration revision.",
+    touches: "Policy",
+    tags: ["delegation", "tool access", "agent configuration"],
+  },
   {
     id: "kirobench-workload-coverage",
     date: "2026-11-26",
@@ -43,6 +65,28 @@ export const factoryUpdates: readonly FactoryUpdate[] = [
     whyItMatters: "Evals: group recent work orders by task and codebase. If reviewers spend hours on a task the evaluation suite rarely exercises, add a held-out example before comparing the next two factory versions.",
     touches: "Evals",
     tags: ["evaluation coverage", "production feedback", "held-out tasks"],
+  },
+  {
+    id: "coding-agent-patch-edit-necessity",
+    date: "2026-11-25",
+    title: "Researchers measure which edits an agent-written patch needs to pass its tests",
+    source: "Aakash Goel, Benjamin Steenhoek and Yu Hu",
+    url: "https://arxiv.org/abs/2611.34875v1",
+    summary: "The authors examined 7,660 successful coding-agent runs across two benchmarks. They reverted one block at a time and reran the task tests. On SWE-bench Verified, removing about 11% of a patch’s code blocks on average left those tests passing.",
+    whyItMatters: "Verification: ask which requirement or test justifies an unexpected change in behavior. A test suite can miss a legitimate reason to keep an edit, so involve the reviewer before trimming it.",
+    touches: "Verification",
+    tags: ["patch scope", "code review", "behavioral tests"],
+  },
+  {
+    id: "agent-eval-test-selection-budget",
+    date: "2026-11-25",
+    title: "A study compares test samples for estimating pass rates and finding failures",
+    source: "Ali Asgari and colleagues",
+    url: "https://arxiv.org/abs/2611.34617v1",
+    summary: "In one SWE-bench Verified evaluation of GPT-5.2 Codex, a sample of 100 of the 500 tasks, chosen by category, estimated the full pass rate within 0.8 percentage points. Selecting harder tasks found more failures at the same budget.",
+    whyItMatters: "Evals: label each sample with its purpose. Use representative tasks to track the pass rate and harder cases to discover regressions. Check both against the full suite before changing a release threshold.",
+    touches: "Evals",
+    tags: ["test selection", "evaluation cost", "regression detection"],
   },
   {
     id: "kiro-factory-manual-human-review",
@@ -88,6 +132,18 @@ export const factoryUpdates: readonly FactoryUpdate[] = [
     whyItMatters: "Policy: include skill loading in permission checks. Before assigning a skill to a worker, verify that the installed version enforces the rule and records the decision.",
     touches: "Policy",
     tags: ["skills", "permissions", "audit records"],
+  },
+  {
+    id: "yegge-persistent-role-handoffs",
+    date: "2026-11-24",
+    kind: "Perspective",
+    title: "Steve Yegge describes how to hand an agent’s role to a new session",
+    source: "Software Engineering Daily",
+    url: "https://softwareengineeringdaily.com/podcasts/steve-yegge-on-building-software-factories/",
+    summary: "In an interview with Kevin Ball, Yegge describes keeping a role’s responsibilities, history and handoff notes available to the next session. In his factory, the incoming worker can look up earlier decisions instead of reconstructing them from conversation.",
+    whyItMatters: "Context: try a handoff with a fresh worker. Check whether it can identify the current work item, the last verified result and the person who can approve the next step.",
+    touches: "Context",
+    tags: ["session handoff", "role ownership", "decision history"],
   },
   {
     id: "specengineeringbench-tests-detect-defects",
