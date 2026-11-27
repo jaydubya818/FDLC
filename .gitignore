@@ -44,3 +44,12 @@ yarn-error.log*
 *.tsbuildinfo
 
 /output/
+
+# Added by daily-repo-improvement
+.env
+build/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
