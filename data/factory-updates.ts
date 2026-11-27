@@ -34,6 +34,20 @@ export const factoryUpdatesReviewed = "2026-11-27";
 
 export const factoryUpdates: readonly FactoryUpdate[] = [
   {
+    id: "port-task-scoped-virtual-mcp",
+    date: "2026-11-27",
+    dateBasis: "reviewed",
+    kind: "Resource",
+    title: "Port lets teams choose the tools and arguments an agent sees for one job",
+    source: "Port",
+    url: "https://docs.port.io/agent-management/virtual-mcp-servers/",
+    summary: "Port documents virtual MCP servers that expose a chosen set of tools through an OAuth-authenticated endpoint. A team can rename a tool, fix an argument or restrict its allowed values. Each call runs with the caller’s existing permissions.",
+    whyItMatters: "Policy: give a release rehearsal a tool limited to staging. Check that a request for production is rejected and that a caller without deployment permission cannot run the tool.",
+    touches: "Policy",
+    tags: ["tool scope", "MCP", "permissions"],
+    guideReading: { href: "/guide/03-build/18-agent-architecture#tool-access-without-context-bloat", label: "See how to scope a tool for one job" },
+  },
+  {
     id: "tessl-loop-request-launch-history",
     date: "2026-11-27",
     title: "Tessl shows whether a workflow request started a run",
@@ -132,6 +146,19 @@ export const factoryUpdates: readonly FactoryUpdate[] = [
     whyItMatters: "Policy: include skill loading in permission checks. Before assigning a skill to a worker, verify that the installed version enforces the rule and records the decision.",
     touches: "Policy",
     tags: ["skills", "permissions", "audit records"],
+  },
+  {
+    id: "langfuse-trace-review-loop",
+    date: "2026-11-24",
+    kind: "Resource",
+    title: "Langfuse shows how to turn a production trace into a regression test",
+    source: "Langfuse",
+    url: "https://langfuse.com/blog/2026-11-24-simplest-software-factory-loop",
+    summary: "A scheduled review samples ordinary runs alongside errors and customer feedback. A person judges ambiguous cases. The team can save a reviewed example with its expected behavior and compare a proposed fix against the current version.",
+    whyItMatters: "Learning: review some successful requests too. A support agent can return a response and still leave the customer’s question unanswered. Use a redacted example to test the next change.",
+    touches: "Learning",
+    tags: ["trace review", "evaluation datasets", "regression testing"],
+    guideReading: { href: "/guide/06-improve/40-governed-learning#daily-trace-review", label: "Follow a support trace from review to regression test" },
   },
   {
     id: "yegge-persistent-role-handoffs",
