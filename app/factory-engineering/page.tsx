@@ -105,7 +105,10 @@ export default function FactoryEngineeringPage() {
             <summary>Five questions for assessing merge risk<i className={styles.toggle} aria-hidden="true" /></summary>
             <div className={styles.detailBody}><dl className={styles.referenceList}>{mergeRiskCriteria.map((criterion) => <div key={criterion.name}>
               <dt>{criterion.name}</dt><dd>{criterion.description}</dd><dd>{criterion.fdlcMapping}</dd>
-            </div>)}</dl><SourceLinks sources={[{ label: "Ben Holmes on assessing merge risk", url: "https://x.com/BHolmesDev/status/2118807366250721741" }]} /></div>
+            </div>)}</dl>
+              <p>Warp’s skill rates the change low, medium or high and lists the gaps behind each finding. Use those findings to focus review. Required checks and merge approval still apply.</p>
+              <SourceLinks sources={[{ label: "Read Warp’s /merge-risk skill", url: "https://github.com/warpdotdev/common-skills/blob/8792394ff1b655e0af451b8fabb68ef0cfcbd208/.agents/skills/merge-risk/SKILL.md" }]} />
+            </div>
           </details>
         </section>
 
