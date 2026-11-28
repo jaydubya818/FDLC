@@ -1,22 +1,37 @@
 {
-  "version": "1.1.1",
-  "archive": "/downloads/fdlc-reference-lab-v1.1.1.zip",
-  "sha256": "9f55000711b14def7ede586961326db133f17f616a887f6ec76d941ea154d7b9",
+  "version": "1.2.0",
+  "archive": "/downloads/fdlc-reference-lab-v1.2.0.zip",
+  "sha256": "3a4cd83b8cb09b28d04892e243d7bc1f48d14864b5e94a93c58594a23519fd58",
   "files": [
     {
       "path": "README.md",
       "source": "/reference-factory/source/README.md.txt",
-      "sha256": "32e4ce88934f2bb085138ea17c3bd6c0c657fc8e338509832b62601879bdfe78"
+      "sha256": "897edf3abd32e0f7b3150ab35611883242106b36278115034e8a5a23c2585f5f"
     },
     {
       "path": "lab.mjs",
       "source": "/reference-factory/source/lab.mjs.txt",
-      "sha256": "670b9bc3f2225d6108f2d0dd61ec7748b4f7f8ea8452292456b6689beedf8125"
+      "sha256": "395d9f98ef1e40ffe911ce44853e4fd719e3f9f585a711aa72026be3f2e5268a"
     },
     {
       "path": "contract.test.mjs",
       "source": "/reference-factory/source/contract.test.mjs.txt",
-      "sha256": "7833a6e6561fe00ca3a96a7df4adfe1d35fc3bf0624f5bedc0f69916b26a3002"
+      "sha256": "5ed8a89c0fb90ca297c4d8df721b620fc9b62b8772effc5d5536668b927b960b"
+    },
+    {
+      "path": "operations.mjs",
+      "source": "/reference-factory/source/operations.mjs.txt",
+      "sha256": "d8d5887fa7497c572c487b3f0b2ad82bb07e3a0a3a9e7210fe71a87b14d5c8e3"
+    },
+    {
+      "path": "operations.test.mjs",
+      "source": "/reference-factory/source/operations.test.mjs.txt",
+      "sha256": "763a167ad9ec112eefa49490cccc3663c4161e0739e66478029ec4daa05bd3ce"
+    },
+    {
+      "path": "operating-profile.json",
+      "source": "/reference-factory/source/operating-profile.json.txt",
+      "sha256": "86aab10e460c443a58e2180b7d745c951a3ee6698518e3b58f73f4f5687f624f"
     },
     {
       "path": "factory-definition.json",

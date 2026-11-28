@@ -9,9 +9,9 @@ import zipfile
 
 root = Path(__file__).resolve().parents[1]
 source = root / 'reference-factory'
-version = '1.1.1'
+version = '1.2.0'
 folder = f'fdlc-reference-lab-v{version}'
-files = ['README.md', 'lab.mjs', 'contract.test.mjs', 'factory-definition.json', 'work-order.json', 'sandbox/package.json', 'sandbox/src/add.js', 'sandbox/src/api.mjs', 'sandbox/tests/add.test.js', 'sandbox/tests/api.test.mjs']
+files = ['README.md', 'lab.mjs', 'contract.test.mjs', 'operations.mjs', 'operations.test.mjs', 'operating-profile.json', 'factory-definition.json', 'work-order.json', 'sandbox/package.json', 'sandbox/src/add.js', 'sandbox/src/api.mjs', 'sandbox/tests/add.test.js', 'sandbox/tests/api.test.mjs']
 public = root / 'public'
 archive = public / 'downloads' / f'{folder}.zip'
 source_public = public / 'reference-factory' / 'source'
@@ -24,7 +24,7 @@ with tempfile.TemporaryDirectory(prefix='fdlc-lab-package-') as tmp:
     with zipfile.ZipFile(packed, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for name in files:
             content = (source / name).read_bytes()
-            info = zipfile.ZipInfo(f'{folder}/{name}', date_time=(2026, 11, 6, 0, 0, 0))
+            info = zipfile.ZipInfo(f'{folder}/{name}', date_time=(2026, 11, 26, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             z.writestr(info, content)

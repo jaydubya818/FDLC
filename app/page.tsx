@@ -73,6 +73,7 @@ export default function Home() {
           <div className="adoption-action-grid" id="your-path">
             {homepageActions.map(([label, title, description, href, action]) => <Link href={href} key={label}><span>{label}</span><h3>{title}</h3><p>{description}</p><strong>{action} →</strong></Link>)}
           </div>
+          <aside className="small-factory-invite" aria-labelledby="small-factory-invite-title"><div><p className="section-label">One repeatable outcome</p><h3 id="small-factory-invite-title">Start small. Review work that is ready for you.</h3><p>Define a bounded workload, run the local operating exercise, and practice the decisions that keep a human near the loop.</p></div><div><Link href="/lab#operate-a-small-factory">Operate a small factory →</Link><Link href="/simulator#morning-review">Try the morning review →</Link></div></aside>
           <nav className="adoption-reference-links" aria-label="Go deeper">{homepageReferences.map(([label, href]) => href.startsWith("/guide") ? <a href={href} key={href}>{label}</a> : <Link href={href} key={href}>{label}</Link>)}</nav>
         </section>
 

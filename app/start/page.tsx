@@ -2,6 +2,7 @@ import { FactoryHandoffDiagram } from "../components/factory-handoff-diagram";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FactoryBuilder } from "../components/factory-builder";
+import { OperatingProfile } from "../components/operating-profile";
 import { NextSteps } from "../components/next-steps";
 import { SiteShell } from "../components/site-shell";
 import { pageHandoffs } from "../../data/page-handoffs";
@@ -29,6 +30,7 @@ export default function StartPage() {
       </aside>
     </header>
     <FactoryBuilder />
+    <OperatingProfile />
     <FactoryHandoffDiagram builder />
     <NextSteps {...pageHandoffs.start} />
   </div></SiteShell>;

@@ -6,6 +6,7 @@ import { factoryDefinitionBridge, factoryDefinitionNextSteps } from "../../data/
 import { ArtifactExport } from "./artifact-export";
 import { factoryFormErrors, formatFactoryDefinitionJson, formatFactoryDefinitionMarkdown, formatFactoryDefinitionYaml, generateFactoryDefinition, type FactoryForm } from "../../lib/factory-definition";
 import { definitionToForm, exampleFactoryForm, formatFactoryDefinitionV2Json, formatFactoryDefinitionV2Yaml, generateFactoryDefinitionV2, parseFactoryDefinition } from "../../lib/factory-definition-v2";
+import { smallFactoryPresets } from "../../data/factory-presets";
 
 const workTypes = ["Dependency upgrade", "Vulnerability remediation", "Test repair", "API migration", "Feature implementation", "Documentation update"];
 const authorityOptions = ["Read repositories", "Create branches", "Modify code", "Run tests", "Open pull requests", "Deploy software"];
@@ -186,6 +187,7 @@ export function FactoryBuilder() {
     <div className="builder-progress"><span>Step {step + 1} of 5</span><div aria-hidden="true"><i style={{ width: `${((step + 1) / 5) * 100}%` }} /></div></div>
     <div className="builder-import">
       <button className="button button-light" onClick={loadExample} type="button">Load an example</button>
+      <details><summary>Start with a small factory</summary><p>Load a bounded starting point, then review every step for your own scope.</p><div className="builder-preset-actions">{smallFactoryPresets.map((preset) => <button className="button button-light" key={preset.id} type="button" onClick={() => { setForm({ ...preset.form, authority: [...preset.form.authority], verification: [...preset.form.verification], humanControls: [...preset.form.humanControls] }); setStep(0); setImportMessage(`Loaded the ${preset.label.toLowerCase()} starting point. Review its scope, checks and human controls.`); }}>{preset.label}</button>)}</div></details>
       <details><summary>Import a Factory Definition (JSON or YAML, v0.1 or v0.2)</summary>
         <label htmlFor="import-definition">Paste a definition</label>
         <textarea id="import-definition" rows={6} value={importText} onChange={(event) => setImportText(event.target.value)} />

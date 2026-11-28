@@ -37,7 +37,7 @@ export const homepageActions = [
   ["01 / Understand", "See one factory end to end", "Follow one dependency upgrade from intent to verified outcome, across every FDLC view.", "/in-5-minutes", "Experience FDLC in 5 minutes"],
   ["02 / Experience", "Watch evidence block a bad release", "Run a sample factory in your browser. Inject a fault and see which gate stops it.", "/simulator", "Run the factory simulator"],
   ["03 / Define", "Write down your first factory line", "Turn one engineering outcome into a Factory Definition you can review and keep.", "/start", "Define your first factory line"],
-  ["04 / Build", "Run a governed factory locally", "Download the dependency-free Reference Lab, run its gates, then swap in your own stack.", "/lab", "Build and run a minimal factory"],
+  ["04 / Build", "Run a governed factory locally", "Run the Reference Lab, persist one workload through restart and review, then use your own stack.", "/lab", "Build and run a minimal factory"],
 ] as const;
 
 export const homepageReferences = [

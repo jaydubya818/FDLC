@@ -21,6 +21,22 @@ The nine-stage governing lifecycle (Intent → Planning → Execution → Eviden
 
 Factory Definition v0.2 is described by `public/schemas/factory-definition-0.2.json`. The builder at `/start` imports v0.1 and v0.2 files (JSON or YAML) and upgrades v0.1 on import.
 
+### Operate one small factory
+
+The next exercise at `/lab#operate-a-small-factory` connects a bounded workload to recurring operation and a human decision queue. `/start` includes test-repair and documentation-drift starting points, plus a separate design-only Operating Profile export. It leaves the canonical Factory Definition schema unchanged.
+
+Use `/simulator#morning-review` to explore six fixed operating situations: a verified candidate, failed verification, an unknown effect, stale evidence, exhausted budget and no eligible work. Every action and cost in the simulator is synthetic.
+
+The dependency-free Reference Lab v1.2.0 includes a real filesystem operating companion:
+
+```bash
+node reference-factory/operations.mjs demo ./small-factory-demo
+node reference-factory/operations.mjs status ./small-factory-demo
+node --test reference-factory/contract.test.mjs reference-factory/operations.test.mjs
+```
+
+Use a new demo directory. The exercise preserves intake, Attempts, evidence, local receipts and review decisions across processes, and tests duplicate intake, crash recovery and bounded correction. It uses a scripted producer and manual intake; it installs no scheduler or live agent and grants no release authority. Read [`reference-factory/README.md`](reference-factory/README.md) for exact commands and scope.
+
 ## Local development
 
 Requires Node.js 22.13 or newer.

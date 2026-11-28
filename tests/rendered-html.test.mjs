@@ -161,7 +161,7 @@ test("factory engineering connects the worked example, section bookmarks and lab
   assert.match(main, /Acme Payments SDK upgrade/);
   assert.match(main, /href="\/in-5-minutes"/);
   assert.match(main, /What the SDK upgrade must prove/);
-  const sections = ["two-jobs", "factory-stack", "verification", "measure-improve", "rollout", "taxonomy", "sources"];
+  const sections = ["two-jobs", "factory-stack", "intake-to-review", "verification", "measure-improve", "rollout", "small-factory-operations", "taxonomy", "sources"];
   for (const id of sections) assert.ok(main.includes(`href="#${id}"`), `missing section link for ${id}`);
   for (const id of [...sections, "public-numbers", "debate"]) {
     assert.equal(main.split(` id="${id}"`).length - 1, 1, `expected a unique destination for ${id}`);

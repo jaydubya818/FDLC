@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, cpSync, readFileSync, writeFileSync, rmSync } from "node:fs";
+import { mkdtempSync, cpSync, readFileSync, writeFileSync, rmSync, symlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { gate, runAgent, runVerifier } from "./lab.mjs";
@@ -24,6 +24,18 @@ test("reference factory blocks each failure mode with its own reason", () => {
 
 test("reference factory runs every scenario and exits 0", () => {
   assert.match(run("all"), /expected allowed \(ok\)/);
+});
+
+test("the original CLI executes all eight scenarios through a real directory symlink", (t) => {
+  const root = mkdtempSync(join(tmpdir(), "fdlc-lab-symlink-"));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const alias = join(root, "template-link");
+  symlinkSync(here, alias, "dir");
+  const output = execFileSync(process.execPath, [join(alias, "lab.mjs"), "--report"], { encoding: "utf8" });
+  const report = JSON.parse(output);
+  assert.deepEqual(report.suite, { total: 8, matched: 8, mismatched: 0 });
+  assert.equal(report.productionQualified, false);
+  assert.equal(report.results.every((result) => result.released === false), true);
 });
 
 

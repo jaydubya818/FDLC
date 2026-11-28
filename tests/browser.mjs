@@ -6,6 +6,7 @@ import { createRequire } from "node:module";
 import { setTimeout as delay } from "node:timers/promises";
 import { chromium } from "playwright";
 import { checkGlobalNavigation } from "./helpers/global-navigation.mjs";
+import { checkSmallFactoryFlows } from "./helpers/small-factory-flows.mjs";
 
 // A local production build, a new browser profile and synthetic form inputs only.
 const require = createRequire(import.meta.url);
@@ -206,6 +207,8 @@ try {
       }
       report.flows.push({ name: "global-navigation-stable-across-active-routes", width, result: "PASS" });
     }
+
+    await checkSmallFactoryFlows(page, { origin, audit, report, width, output });
 
     await page.goto(`${origin}/about`);
     await page.evaluate(() => sessionStorage.removeItem("fdlc.factory-definition.draft.v1"));

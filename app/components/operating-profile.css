@@ -1,0 +1,22 @@
+.operating-profile { width: min(1050px, calc(100% - 40px)); margin: -64px auto 88px; padding: 32px 40px; border: 1px solid var(--line); background: var(--white); scroll-margin-top: 112px; }
+.operating-profile h2 { font-size: clamp(26px, 3vw, 36px); letter-spacing: -.025em; line-height: 1.2; margin: 12px 0; }
+.operating-profile p { max-width: 78ch; color: var(--muted); line-height: 1.7; }
+.operating-profile summary { padding: 16px 0; color: var(--green); font-weight: 700; cursor: pointer; }
+.operating-profile-note { background: var(--sage); border-left: 3px solid var(--green); padding: 14px 18px; font-size: 14px; }
+.operating-profile-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-block: 24px; }
+.operating-profile label { display: grid; align-content: start; gap: 8px; min-width: 0; color: var(--ink); font-size: 14px; font-weight: 650; }
+.operating-profile input, .operating-profile select { width: 100%; min-width: 0; min-height: 44px; padding: 10px 12px; font: inherit; font-weight: 400; color: var(--ink); border: 1px solid var(--line); border-radius: var(--radius-control); background: var(--white); }
+.operating-profile small { color: var(--muted); font-size: 13px; font-weight: 400; line-height: 1.5; }
+.operating-profile fieldset { padding: 20px; border: 1px solid var(--line); margin: 28px 0; min-width: 0; }
+.operating-profile legend { max-width: 100%; padding-inline: 8px; font-weight: 700; font-size: 15px; }
+.operating-profile fieldset p { margin-top: 0; font-size: 14px; }
+.operating-profile-bounds { margin-bottom: 0; }
+.operating-profile-review { max-width: 420px; }
+.operating-profile-contract { margin-top: 28px; }
+.operating-profile-contract h3 { font-size: 19px; }
+.operating-profile-contract ul { color: var(--muted); font-size: 14px; line-height: 1.8; padding-left: 20px; }
+.operating-profile-result { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); }
+.operating-profile-links { display: flex; flex-wrap: wrap; gap: 12px 24px; margin: 24px 0 0; }
+.operating-profile-links a { color: var(--green); font-size: 14px; font-weight: 650; text-decoration: underline; text-underline-offset: 3px; padding-block: 4px; }
+.builder-preset-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 620px) { .operating-profile { width: calc(100% - 28px); margin-top: -72px; padding: 24px 20px; } .operating-profile-grid { grid-template-columns: 1fr; gap: 16px; } .operating-profile fieldset { padding: 16px; } .operating-profile-links { flex-direction: column; } }

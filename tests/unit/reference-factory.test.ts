@@ -1,5 +1,6 @@
 // The public, dependency-free contract suite is the same suite used by the site.
 import "../../reference-factory/contract.test.mjs";
+import "../../reference-factory/operations.test.mjs";
 
 import { execFileSync } from "node:child_process";
 import test from "node:test";
