@@ -30,9 +30,20 @@ export type FactoryUpdate = {
   guideReading?: { href: string; label: string };
 };
 
-export const factoryUpdatesReviewed = "2026-11-27";
+export const factoryUpdatesReviewed = "2026-11-28";
 
 export const factoryUpdates: readonly FactoryUpdate[] = [
+  {
+    id: "softwarefabrik-agent-network-policy",
+    date: "2026-11-28",
+    title: "Softwarefabrik adds a network allowlist for agent containers",
+    source: "softwarefabrik.io",
+    url: "https://softwarefabrik.io/en/news.html",
+    summary: "Version 0.63.0 adds an optional network policy for agent containers. The publisher says blocked connections appear in the run log and audit record. With the policy enabled, a missing prerequisite stops the run before the agent starts.",
+    whyItMatters: "Runtime: in a rehearsal, allow one test service and deny a second. Confirm the first request succeeds and the rejection appears in the audit. Repeat with the required proxy image missing and check that the worker never starts.",
+    touches: "Runtime",
+    tags: ["agent sandbox", "network access", "audit evidence"],
+  },
   {
     id: "port-task-scoped-virtual-mcp",
     date: "2026-11-27",
@@ -79,6 +90,29 @@ export const factoryUpdates: readonly FactoryUpdate[] = [
     whyItMatters: "Evals: group recent work orders by task and codebase. If reviewers spend hours on a task the evaluation suite rarely exercises, add a held-out example before comparing the next two factory versions.",
     touches: "Evals",
     tags: ["evaluation coverage", "production feedback", "held-out tasks"],
+  },
+  {
+    id: "clay-agent-bulk-workload-fairness",
+    date: "2026-11-26",
+    kind: "Perspective",
+    title: "Clay’s head of AI describes what happens when one table starts thousands of agent runs",
+    source: "Latent Space",
+    url: "https://latent.space/p/how-clay-builds-gtm-agents-jeff-barg-head-of-ai/",
+    summary: "Jeff Barg describes how one agent run per row can turn a customer’s bulk job into a sudden spike in model requests. He says Clay added throttling and the ability to pause and resume work during a provider outage. Keeping small jobs moving during a large batch remains a challenge.",
+    whyItMatters: "Execution: run a small work order alongside a large batch that hits a provider limit. Measure how long the small job waits and check that the paused batch resumes at the right row.",
+    touches: "Execution",
+    tags: ["work queues", "provider limits", "workload isolation"],
+  },
+  {
+    id: "skillsbench-held-out-skill-evaluation",
+    date: "2026-11-25",
+    title: "A SkillsBench audit tests whether a rule for choosing skills holds up on fresh runs",
+    source: "Haozhe Zhang and Zhen Long",
+    url: "https://arxiv.org/abs/2611.33943v1",
+    summary: "Zhang and Long reanalyzed 7,554 public trials. A rule for deciding when to load a skill appeared to improve scores even after the researchers shuffled the labels for runs with and without skills. On held-out runs, the rule showed no statistically significant gain.",
+    whyItMatters: "Evals: use separate runs to choose a skill and to test that choice. Record the skills already bundled with the worker so the comparison shows what actually changed.",
+    touches: "Evals",
+    tags: ["skill selection", "held-out runs", "evaluation design"],
   },
   {
     id: "coding-agent-patch-edit-necessity",
@@ -159,6 +193,17 @@ export const factoryUpdates: readonly FactoryUpdate[] = [
     touches: "Learning",
     tags: ["trace review", "evaluation datasets", "regression testing"],
     guideReading: { href: "/guide/06-improve/40-governed-learning#daily-trace-review", label: "Follow a support trace from review to regression test" },
+  },
+  {
+    id: "ghostapi-migration-contract-feedback",
+    date: "2026-11-24",
+    title: "GhostAPI-V tests migration instructions that spell out which old API calls must go",
+    source: "Jingtao Zhang, Zeming Liu and Haorui Gao",
+    url: "https://arxiv.org/abs/2611.33396v1",
+    summary: "The researchers studied 48 internal API migrations in eight Python repositories. Of 192 candidates, 148 passed hidden behavior tests after receiving feedback on both required and obsolete API usage. With feedback based on raw version differences, 120 passed.",
+    whyItMatters: "Verification: name the new call a migration requires and the old call it must retire. Give the reviewer a separate behavior test that exercises an affected caller after the switch.",
+    touches: "Verification",
+    tags: ["API migrations", "acceptance criteria", "behavioral tests"],
   },
   {
     id: "yegge-persistent-role-handoffs",
