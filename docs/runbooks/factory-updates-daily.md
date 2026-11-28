@@ -59,12 +59,11 @@ automatic commits, pushes, and publication of validated FDLC updates on
 November 22, 2026. This standing authorization covers this maintenance workflow;
 it preserves the main-branch deployment guard and excludes unrelated releases.
 
-Verify the scheduler's actual state before claiming it runs in the cloud. Keep
-the existing local schedule active until a hosted replacement has a recorded
-schedule ID, timezone, next run, and a successful off-device research and
-publication check. At the time of this PR, the cloud migration remains incomplete:
-the Vercel connector identifies the correct account but returns 403 for the FDLC
-team. Do not export Mac credentials or disable the local fallback to mask that gap.
+The [daily GitHub Actions workflow](https://github.com/jaydubya818/FDLC/actions/workflows/factory-updates.yml) uses `0 8 * * *` in `America/Chicago`. GitHub hosts its Linux research and release runners and the macOS runner that qualifies Fab. GitHub may queue a scheduled start. The research runner reads publisher material and runs a checksum-pinned Qwen model locally on the hosted machine. Sources that are unavailable appear in the daily report. A second editorial pass checks shortlisted claims against their source and the archive. A day with no qualifying story still produces a dated review.
+
+The `fdlc-daily-updates` GitHub environment accepts only `main`. Its `FDLC_PR_TOKEN` is a fine-grained credential limited to pull requests for this repository. Its `FDLC_VERCEL_TOKEN` belongs to the FDLC Vercel project. Rotate each at its issuer before expiration and replace only its matching environment secret. The temporary workflow token pushes the daily branch and merges after CI and both Vercel previews pass. A separate job qualifies the merged revision before the production stage. The production job checks the uploaded files, rendered feed and child applications, promotes explicitly, and tests both public hosts. Research inputs and the deployment receipt are attached to the run.
+
+For cutover, dispatch the workflow on `main` with `publish=true` and `bootstrap_sha` set to the reviewed migration commit. This one-time option permits only the workflow, its scripts, CI wiring and this runbook in the gap from the deployed revision to the research base. Verify the production receipt and the public feed, set repository Actions variable `FDLC_DAILY_CLOUD_ACTIVE=true`, and then pause the desktop task. Subsequent scheduled runs need no input. To stop new scheduled publications, set the variable to `false`. To rehearse research without publishing, dispatch with `publish=false`. To retry a partial publication after merge, dispatch with `publish=true`; the runner resumes a completed daily review at the tip of `main`.
 
 1. Inspect production deployment metadata and its Git SHA. Fetch current source.
    Reconcile any newer commits before editing. Use an isolated checkout and leave

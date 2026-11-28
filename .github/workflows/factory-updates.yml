@@ -1,0 +1,164 @@
+name: Daily factory research and publishing
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+      timezone: America/Chicago
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish after the hosted research and qualification pass
+        type: boolean
+        required: true
+        default: false
+      bootstrap_sha:
+        description: Exact reviewed migration commit (first cutover only)
+        type: string
+        required: false
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/factory-updates.yml'
+      - 'scripts/factory-updates/**'
+
+permissions:
+  contents: read
+concurrency:
+  group: fdlc-factory-updates-${{ github.event_name == 'pull_request' && github.event.pull_request.number || 'production' }}
+  cancel-in-progress: false
+
+jobs:
+  research:
+    if: github.event_name != 'schedule' || vars.FDLC_DAILY_CLOUD_ACTIVE == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    outputs:
+      recorded: ${{ steps.date.outputs.recorded }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '24'
+      - run: npm ci
+      - run: node --test scripts/factory-updates/automation.test.mjs
+      - id: date
+        name: Check for a completed review on this Central date
+        shell: bash
+        run: |
+          day=$(TZ=America/Chicago date +%F)
+          if [[ -f "docs/reviews/$day-factory-updates-cloud.md" ]]; then
+            echo 'recorded=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'recorded=false' >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.date.outputs.recorded == 'false'
+        name: Read first-party sources and run the editorial model on this hosted runner
+        run: bash scripts/factory-updates/research.sh "$RUNNER_TEMP/research"
+        env:
+          GH_RELEASES_TOKEN: ${{ github.token }}
+      - if: steps.date.outputs.recorded == 'false'
+        name: Check publication scope and archive preservation
+        run: |
+          node scripts/factory-updates/apply.mjs "$RUNNER_TEMP/research/proposal.json"
+          node --test tests/unit/factory-updates.test.ts
+          git diff --check
+          node --input-type=module -e 'import fs from "node:fs"; const p=JSON.parse(fs.readFileSync(process.env.RUNNER_TEMP+"/research/proposal.json")); fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,"## Hosted research\n\n"+p.inventory.filter(i=>i.status==="read").length+"/"+p.inventory.length+" sources read. "+p.candidates+" dated candidates, "+p.selected.length+" selected, "+p.archived+" archived entries preserved.\n");'
+      - if: steps.date.outputs.recorded == 'false'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: research-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/research/proposal.json
+          if-no-files-found: error
+          retention-days: 30
+
+  source:
+    needs: research
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.publish))
+    runs-on: ubuntu-24.04
+    environment: fdlc-daily-updates
+    timeout-minutes: 55
+    permissions:
+      contents: write
+      pull-requests: read
+      checks: read
+      statuses: read
+    outputs:
+      revision: ${{ steps.merge.outputs.revision || steps.recover.outputs.revision }}
+      base: ${{ steps.open.outputs.base || steps.recover.outputs.base }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '24'
+      - run: npm ci
+      - if: needs.research.outputs.recorded == 'true'
+        id: recover
+        run: node scripts/factory-updates/source.mjs recover
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - if: needs.research.outputs.recorded == 'false'
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          name: research-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/research
+      - if: needs.research.outputs.recorded == 'false'
+        id: open
+        name: Open a scoped daily pull request
+        run: node scripts/factory-updates/source.mjs open "$RUNNER_TEMP/research/proposal.json"
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FDLC_PR_TOKEN: ${{ secrets.FDLC_PR_TOKEN }}
+      - if: needs.research.outputs.recorded == 'false'
+        id: merge
+        name: Wait for the exact candidate CI and previews, then merge
+        run: node scripts/factory-updates/source.mjs merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE: ${{ steps.open.outputs.candidate }}
+          BASE: ${{ steps.open.outputs.base }}
+          PR_NUMBER: ${{ steps.open.outputs.pr }}
+
+  clean-main:
+    needs: source
+    uses: ./.github/workflows/ci.yml
+    with:
+      revision: ${{ needs.source.outputs.revision }}
+
+  production:
+    needs: [source, clean-main]
+    runs-on: ubuntu-24.04
+    environment: fdlc-daily-updates
+    timeout-minutes: 35
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ needs.source.outputs.revision }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '24'
+      - run: npm ci
+      - name: Install the qualified Vercel CLI outside the release checkout
+        run: npm install --prefix "$RUNNER_TEMP/fdlc-cli" --ignore-scripts --no-audit --no-fund vercel@50.35.0
+      - name: Stage production, verify the archive and composed routes, promote and verify both canonical hosts
+        run: node scripts/factory-updates/release.mjs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERCEL_TOKEN: ${{ secrets.FDLC_VERCEL_TOKEN }}
+          BOOTSTRAP_SHA: ${{ inputs.bootstrap_sha }}
+          RESEARCH_BASE: ${{ needs.source.outputs.base }}
+          REVISION: ${{ needs.source.outputs.revision }}
+      - if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: publication-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/publication.json
+          if-no-files-found: warn
+          retention-days: 90
