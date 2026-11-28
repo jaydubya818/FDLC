@@ -48,7 +48,12 @@ const hostname = url => new URL(url).hostname.toLowerCase().replace(/^www\./, ""
 
 export function canonical(url) {
   const u = new URL(url);
-  u.hash = ""; u.search = "";
+  // Each publisher exposes these releases as separate, permanent sections on one page.
+  const version = (u.hostname==="docs.tessl.io" && u.pathname==="/changelog-cli" && /^#\d+$/.test(u.hash)) ||
+    (u.hostname==="docs.factory.com" && u.pathname==="/changelog/release-notes" && /^#v[\d.]+$/.test(u.hash)) ||
+    (u.hostname==="antigravity.google" && u.pathname==="/docs/changelog" && /^#rel-[a-z0-9.-]+$/.test(u.hash));
+  if (!version) u.hash = "";
+  u.search = "";
   u.hostname = u.hostname.replace(/^www\./, "");
   return u.href.replace(/\/$/, "").replace(/(arxiv\.org\/abs\/[\d.]+)v\d+$/i,"$1");
 }
@@ -100,6 +105,26 @@ function article(doc) {
 }
 function metadata(doc, name) {
   return doc.querySelector('meta[property="'+name+'"],meta[name="'+name+'"]')?.getAttribute("content") || "";
+}
+export function datedReleases(doc, publisher, url) {
+  const results=[];
+  if (publisher==="Tessl CLI") {
+    for (const heading of doc.querySelectorAll('[id^="update-"] h2[id]')) {
+      const container=heading.parentNode;
+      const date=/^update-(\d{4}-\d{2}-\d{2})-/.exec(container?.id)?.[1];
+      if (date && /^\d+$/.test(heading.id)) results.push({publisher, date,
+        url:url+"#"+heading.id, title:"Tessl CLI "+clean(heading.text).replace(/^#/,""), text:clean(container.structuredText).slice(0,16000)});
+    }
+  } else if (publisher==="Factory Droid" || publisher==="Google Antigravity") {
+    for (const section of doc.querySelectorAll("article[id]")) {
+      if (!/^(?:v[\d.]+|rel-[a-z0-9.-]+)$/.test(section.id)) continue;
+      const text=clean(section.structuredText);
+      const label=section.querySelector("time")?.text || text.slice(0,140).match(/(?:January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}/)?.[0];
+      const title=clean(section.querySelector("h2,h3")?.text);
+      if (title && iso(label)) results.push({publisher,date:iso(label),url:url+"#"+section.id,title,text:text.slice(0,16000)});
+    }
+  }
+  return results;
 }
 function safeLink(raw, index, prefix) {
   try {
@@ -197,7 +222,9 @@ export async function collect(start, end, archive) {
       const doc=parse((await fetchSource(url)).body);
       row.title=clean(doc.querySelector("title")?.text).slice(0,200);
       if(!row.title || /Just a moment|Access denied|Verifying|Browser check/i.test(row.title))throw new Error("publisher challenge");
-      // Living guides and operator profiles remain context unless a dated, specific work is available.
+      const sections=datedReleases(doc,publisher,url);
+      if(sections.length) {row.items=sections.length; for (const section of sections) add(section);}
+      // An undated page or operator profile provides context only.
       row.context=article(doc).slice(0,450);
     });
   });

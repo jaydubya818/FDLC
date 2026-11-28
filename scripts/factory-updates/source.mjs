@@ -25,21 +25,31 @@ if (mode==="recover") {
   sameMain(head);
   const proposal=JSON.parse(await readFile(input,"utf8"));
   assert.equal(proposal.day,today); assert.equal(proposal.base,head);
-  const branch="automation/factory-updates-"+today+"-"+process.env.GITHUB_RUN_ID+"-"+process.env.GITHUB_RUN_ATTEMPT;
-  assert.match(branch,/^automation\/factory-updates-[0-9-]+$/);
-  git("switch","-c",branch);
+  assert.ok(process.env.FDLC_PR_TOKEN,"Dedicated FDLC pull-request credential missing");
   run(process.execPath,["scripts/factory-updates/apply.mjs",input]);
   run(process.execPath,["--test","tests/unit/factory-updates.test.ts"]);
   git("add","--","data/factory-updates.ts",record);
   const files=git("diff","--cached","--name-only").split("\n");
   assert.ok(files.includes(record) && files.every(x=>x===record || x==="data/factory-updates.ts"));
-  git("-c","user.name=FDLC Daily Updates","-c","user.email=41898282+github-actions[bot]@users.noreply.github.com","commit","-m","Record factory research for "+today);
-  const candidate=sha(git("rev-parse","HEAD")); sameMain(head);
-  git("push","origin","HEAD:refs/heads/"+branch);
+  // A retry of the same researched content reuses its exact branch and outstanding PR.
+  const content=sha(git("write-tree"));
+  const branch="automation/factory-updates-"+today+"-"+head.slice(0,8)+"-"+content.slice(0,10);
+  const ref="refs/heads/"+branch;
+  const known=git("ls-remote","--heads","origin",ref);
+  let candidate;
+  if (known) {
+    candidate=sha(known.split(/\s+/)[0]); git("fetch","origin",ref);
+    assert.equal(git("rev-parse",candidate+"^{tree}"),content);
+    assert.equal(git("rev-parse",candidate+"^"),head);
+  } else {
+    git("-c","user.name=FDLC Daily Updates","-c","user.email=41898282+github-actions[bot]@users.noreply.github.com","commit","-m","Record factory research for "+today);
+    candidate=sha(git("rev-parse","HEAD")); sameMain(head); git("push","origin","HEAD:"+ref);
+  }
   const note=join(await mkdtemp(join(tmpdir(),"fdlc-pr-")),"body.md");
   await writeFile(note,"Daily primary-source review for "+today+". The hosted runner compared "+proposal.candidates+" candidates with "+proposal.archived+" archive entries and selected "+proposal.selected.length+".\n\n[Cloud research and evidence](https://github.com/"+repository+"/actions/runs/"+process.env.GITHUB_RUN_ID+")\n");
-  assert.ok(process.env.FDLC_PR_TOKEN,"Dedicated FDLC pull-request credential missing");
-  const link=run("gh",["pr","create","--repo",repository,"--base","main","--head",branch,"--title","Daily factory updates for "+today,"--body-file",note],{GH_TOKEN:process.env.FDLC_PR_TOKEN});
+  const existing=JSON.parse(gh("api","repos/"+repository+"/pulls?state=open&base=main&head="+encodeURIComponent("jaydubya818:"+branch)));
+  if (existing.length) {assert.equal(existing.length,1);assert.equal(existing[0].head.sha,candidate);}
+  const link=existing[0]?.html_url || run("gh",["pr","create","--repo",repository,"--base","main","--head",branch,"--title","Daily factory updates for "+today,"--body-file",note],{GH_TOKEN:process.env.FDLC_PR_TOKEN});
   const match=/^https:\/\/github\.com\/jaydubya818\/FDLC\/pull\/(\d+)$/.exec(link);assert.ok(match,"Expected an FDLC pull request");
   console.log(link);
   await output({candidate,base:head,pr:match[1]});

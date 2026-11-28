@@ -3,7 +3,8 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { factoryUpdates, factoryUpdatesReviewed } from "../../data/factory-updates.ts";
 import { render, recordPath } from "./apply.mjs";
-import { canonical } from "./sources.mjs";
+import { createRequire } from "node:module";
+import { canonical, datedReleases } from "./sources.mjs";
 
 const source=await readFile(new URL("../../data/factory-updates.ts",import.meta.url),"utf8");
 const day=factoryUpdatesReviewed;
@@ -34,4 +35,14 @@ test("duplicate, unsafe, stale or under-researched proposals cannot be applied",
   assert.throws(()=>render(source,{...review,inventory:[]},factoryUpdates));
   assert.throws(()=>recordPath("../../elsewhere"));
   assert.equal(canonical("https://www.arxiv.org/abs/2611.12345v2?a=1#one"),canonical("https://arxiv.org/abs/2611.12345v1"));
+});
+
+test("explicit dated release sections remain distinct on the same publisher page",()=>{
+  const base="https://docs.tessl.io/changelog-cli";
+  const {parse}=createRequire(import.meta.url)("next/dist/compiled/node-html-parser");
+  const doc=parse('<main><div id="update-2026-11-27-0-126-0"><h2 id="01260">0.126.0</h2><p>Release evidence</p></div></main>');
+  const [release]=datedReleases(doc,"Tessl CLI",base);
+  assert.equal(release.date,"2026-11-27"); assert.equal(release.url,base+"#01260");
+  assert.notEqual(canonical(release.url),canonical(base+"#01250"));
+  assert.equal(canonical(base+"#navigation"),canonical(base));
 });

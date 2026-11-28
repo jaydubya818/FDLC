@@ -117,7 +117,18 @@ if (tree(before.sha)===tree(expected)) {
   if(last) {
     // Never roll back over a concurrent release. Only restore the qualified predecessor if both aliases are ours.
     await current(stage.id); await api("/v1/projects/"+project+"/rollback/"+before.id,"POST");
-    throw new Error("Public checks failed; requested rollback to "+before.id+". "+last.message);
+    let restored=false;
+    for(let attempt=0;attempt<15;attempt++) {
+      try {
+        await current(before.id);
+        for (const host of hostnames) assert.equal(verifyFeed(await publicPage("/updates",host),previous.factoryUpdates,previous.factoryUpdatesReviewed).id,before.id);
+        assertComposition(baselineRoutes,await checkRoutes(publicPage),before.id);
+        restored=true;break;
+      } catch {await wait(8000);}
+    }
+    receipt.outcome=restored?"Rolled back and reverified":"Rollback requested; public verification failed";
+    await writeFile(join(directory,"publication.json"),JSON.stringify(receipt,null,2)+"\n");
+    throw new Error(receipt.outcome+" for "+before.id+". "+last.message);
   }
   receipt.outcome="Promoted and verified";
 }
