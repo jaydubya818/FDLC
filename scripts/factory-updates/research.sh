@@ -16,6 +16,7 @@ fetch_verified() {
 }
 binary=llama-b12833
 weights=85e4a5b7b8ef0e48af0e8658f5aaab9c2324c76c1641493f4d1e25fce54b18b9
+echo "Checking the inference engine and public model checksums"
 fetch_verified "https://github.com/ggml-org/llama.cpp/releases/download/b12833/$binary-bin-ubuntu-x64.tar.gz" \
   "$work/llama.tar.gz" 92627825b3d5bf50f47d140019bf71b3ba2bcfe67b6ff1b541fb9c49c31588cd
 fetch_verified "https://registry.ollama.ai/v2/library/qwen3/blobs/sha256:$weights" "$work/research.gguf" "$weights"
@@ -30,4 +31,5 @@ for _ in {1..90}; do
   sleep 2
 done
 curl --fail --silent http://127.0.0.1:8091/health >/dev/null
+echo "Hosted inference is ready"
 node scripts/factory-updates/research.mjs "$1"

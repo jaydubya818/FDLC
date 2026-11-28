@@ -4,7 +4,7 @@ import test from "node:test";
 import { factoryUpdates, factoryUpdatesReviewed } from "../../data/factory-updates.ts";
 import { render, recordPath } from "./apply.mjs";
 import { createRequire } from "node:module";
-import { canonical, datedReleases } from "./sources.mjs";
+import { canonical, datedReleases, sourcePassages } from "./sources.mjs";
 
 const source=await readFile(new URL("../../data/factory-updates.ts",import.meta.url),"utf8");
 const day=factoryUpdatesReviewed;
@@ -45,4 +45,12 @@ test("explicit dated release sections remain distinct on the same publisher page
   assert.equal(release.date,"2026-11-27"); assert.equal(release.url,base+"#01260");
   assert.notEqual(canonical(release.url),canonical(base+"#01250"));
   assert.equal(canonical(base+"#navigation"),canonical(base));
+});
+
+test("editorial evidence comes from real, contiguous publisher text",()=>{
+  const text="The release records every approval decision alongside its source revision. Operators can compare both independent checks before promoting any production revision.";
+  const passages=sourcePassages(text);
+  assert.equal(passages.length,2);
+  assert.ok(passages.every(p=>text.includes(p) && p.split(" ").length<=18));
+  assert.deepEqual(sourcePassages("Two words."),[]);
 });

@@ -46,6 +46,22 @@ export const withdrawn = /zach|software-factory-as-code|aie-code-factory-enginee
 const clean = text => String(text || "").replace(/\s+/g, " ").trim();
 const hostname = url => new URL(url).hostname.toLowerCase().replace(/^www\./, "");
 
+// Give the editor exact passages to select. Only a publisher's own words can enter the evidence artifact.
+export function sourcePassages(text) {
+  const passages=[];
+  const normalized=clean(text.normalize("NFKC"));
+  for (const {segment} of new Intl.Segmenter("en",{granularity:"sentence"}).segment(normalized)) {
+    const words=segment.trim().split(" ");
+    for (let i=0;i<words.length;i+=18) {
+      const span=words.slice(i,i+18);
+      const quote=span.join(" ");
+      if (span.length>=6 && quote.length<=210 && !/[<>#\p{Cc}]|https?:\/\/|\$\{\{/ui.test(quote) && !withdrawn.test(quote)) passages.push(quote);
+      if (passages.length===32) return passages;
+    }
+  }
+  return passages;
+}
+
 export function canonical(url) {
   const u = new URL(url);
   // Each publisher exposes these releases as separate, permanent sections on one page.
